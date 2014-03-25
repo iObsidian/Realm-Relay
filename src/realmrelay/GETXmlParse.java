@@ -3,15 +3,9 @@ package realmrelay;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -27,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+
 public class GETXmlParse {
 
 	public static final Map<String, ItemData> itemMap = new HashMap<String, ItemData>();
@@ -37,7 +32,6 @@ public class GETXmlParse {
 	public static final Map<Integer, GroundData> tileMap2 = new HashMap<Integer, GroundData>();
 	public static final Map<String, Integer> packetMap = new HashMap<String, Integer>();
 	
-	private static final String USER_AGENT = "Mozilla/5.0";
 	private static final int XML_ITEMS = 0;
 	private static final int XML_OBJECTS = 1;
 	private static final int XML_PACKETS = 2;
@@ -48,55 +42,22 @@ public class GETXmlParse {
 		if (!file.isDirectory()) {
 			file.mkdir();
 		}
-		parseXMLtoMap("http://www.devoidcoder.net/rr/xml/objects.xml", "Object", XML_OBJECTS, "xml/objects.xml");
-		parseXMLtoMap("http://www.devoidcoder.net/rr/xml/tiles.xml", "Ground", XML_TILES, "xml/tiles.xml");
-		parseXMLtoMap("http://www.devoidcoder.net/rr/xml/packets.xml", "Packet", XML_PACKETS, "xml/packets.xml");
-		parseXMLtoMap("http://www.devoidcoder.net/rr/xml/items.xml", "Object", XML_ITEMS, "xml/items.xml");
+		parseXMLtoMap("Object", XML_OBJECTS, "xml/objects.xml");
+		parseXMLtoMap("Ground", XML_TILES, "xml/tiles.xml");
+		parseXMLtoMap("Packet", XML_PACKETS, "xml/packets.xml");
+		parseXMLtoMap("Object", XML_ITEMS, "xml/items.xml");
 	}
 
-	private static void parseXMLtoMap(String url, String elementTagName, int xmlType, String localFilePath) {
+	private static void parseXMLtoMap(String elementTagName, int xmlType, String localFilePath) throws Exception {
 		File file = new File(localFilePath);
-		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			URL obj = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-			
-			// optional default is GET
-			con.setRequestMethod("GET");
-
-			// add request header
-			con.setRequestProperty("User-Agent", USER_AGENT);
-
-			InputStream in = con.getInputStream();
-			Document doc = dBuilder.parse(in);
-			in.close();
-			doc.getDocumentElement().normalize();
-			
-			NodeList nodeList = doc.getElementsByTagName(elementTagName);
-			xmlToMap(nodeList, xmlType);
-			
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(file);
-			transformer.transform(source, result);
-		} catch (Exception e) {
-			ROTMGRelay.echo("Unable to get latest xml data, using local cache...");
-			try {
-				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				InputStream in = new FileInputStream(file);
-				Document doc = dBuilder.parse(in);
-				in.close();
-				doc.getDocumentElement().normalize();
-				NodeList nodeList = doc.getElementsByTagName(elementTagName);
-				xmlToMap(nodeList, xmlType);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-				throw new RuntimeException("cannot load local file: " + file.getName());
-			}
-		}
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		InputStream in = new FileInputStream(file);
+		Document doc = dBuilder.parse(in);
+		in.close();
+		doc.getDocumentElement().normalize();
+		NodeList nodeList = doc.getElementsByTagName(elementTagName);
+		xmlToMap(nodeList, xmlType);
 	}
 
 	private static void xmlToMap(NodeList node, int xmlType) {

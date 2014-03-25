@@ -10,7 +10,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 
-
 import realmrelay.GETXmlParse;
 import realmrelay.ROTMGRelay;
 import realmrelay.data.IData;
@@ -27,6 +26,7 @@ public abstract class Packet implements IData {
 			packetIdtoClassMap.add(null);
 		}
 		List<Class<? extends Packet>> list = new LinkedList<Class<? extends Packet>>();
+		
 		list.add(AcceptTradePacket.class);
 		list.add(AccountListPacket.class);
 		list.add(AllyShootPacket.class);
@@ -143,6 +143,10 @@ public abstract class Packet implements IData {
 	public static Packet create(byte id, byte[] bytes) throws Exception {
 		Packet packet = Packet.create(id);
 		packet.parseFromInput(new DataInputStream(new ByteArrayInputStream(bytes)));
+		int byteLength = packet.getBytes().length;
+		if (byteLength != bytes.length) {
+			ROTMGRelay.echo(packet + " byte length is " + byteLength + " after parsing, but was " + bytes.length + " before parsing. Try updating your packets.xml");
+		}
 		return packet;
 	}
 	
