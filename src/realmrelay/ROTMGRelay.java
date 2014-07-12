@@ -159,7 +159,7 @@ public final class ROTMGRelay {
 		}
 		Packet.init();
 		if (ROTMGRelay.instance.listenSocket.start()) {
-			ROTMGRelay.echo("This updated version or Realm Relay is brought to you by iObsidian.");
+			ROTMGRelay.echo("This updated version of RR is brought to you by iObsidian.");
 			while (!ROTMGRelay.instance.listenSocket.isClosed()) {
 				while (!ROTMGRelay.instance.newUsers.isEmpty()) {
 					User user = ROTMGRelay.instance.newUsers.remove(0);

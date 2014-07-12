@@ -145,7 +145,7 @@ function onClientPacket(event) {
 function onServerPacket(event) {
   var packet = event.getPacket();
   if(packet.id() == ID_RECONNECT){
-    event.echo("Reconnect Name: " + packet.name);
+    //event.echo("Reconnect Name: " + packet.name);
     if(packet.name.length() >= 11 && packet.name.substring(0,11) == "NexusPortal")
       event.setGlobal("rrec", packet);
     else if(packet.name == "{\"text\":\"server.vault\"}")

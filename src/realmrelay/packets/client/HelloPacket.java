@@ -27,6 +27,8 @@ public class HelloPacket extends Packet {
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		
+		
+		
 		this.buildVersion = in.readUTF();
 		this.gameId = in.readInt();
 		this.guid = in.readUTF();
@@ -44,6 +46,8 @@ public class HelloPacket extends Packet {
 		this.obf3 = in.readUTF();
 		this.obf4 = in.readUTF();
 		this.obf5 = in.readUTF();
+		
+		
 		
 	}
 	

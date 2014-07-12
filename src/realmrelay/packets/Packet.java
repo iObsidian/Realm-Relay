@@ -99,9 +99,10 @@ public abstract class Packet implements IData {
 		list.add(UseItemPacket.class);
 		list.add(UsePortalPacket.class);
 		try {
+			ROTMGRelay.echo("Mapping " + GETXmlParse.packetMap.size() +" packets.");
 			for (Class<? extends Packet> packetClass: list) {
 				Packet packet = packetClass.newInstance();
-				ROTMGRelay.echo("Mapping: " + packet.getName() + " -> " + packet.id());
+				
 				
 				if (packet.id() == -1){
 					packetIdtoClassMap.set(100, packetClass);
@@ -113,7 +114,7 @@ public abstract class Packet implements IData {
 				byte id = entry.getValue().byteValue();
 				Packet packet = Packet.create(id);
 				if (packet instanceof UnknownPacket) {
-					ROTMGRelay.echo("Not mapped: " + entry.getKey() + " -> " + id);
+					//ROTMGRelay.echo("Warning : Not mapped packet : " + entry.getKey() + " -> " + id);
 				}
 			}
 		} catch (Exception e) {

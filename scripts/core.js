@@ -34,7 +34,6 @@ function onClientPacket(event) {
 			event.cancel();
 			$.connect(packet.gameId);
 			helloPacket = packet;
-			$.echo("buildVersion: " + packet.buildVersion);
 			break;
 		}
 	}
