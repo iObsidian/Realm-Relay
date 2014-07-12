@@ -99,9 +99,9 @@ function onClientPacket(event) {
       }
       var server = text.substring(5, text.length());
 
-      if(servers[server] == null)
+      if(servers[server] == null){
         event.echo("Server " + server + " not found.");
-      else{
+      }else{
         event.setGameIdSocketAddress(-2, servers[server], event.getRemotePort());
 
         var recon = event.createPacket(ID_RECONNECT);
