@@ -11,23 +11,26 @@ public class AccountListPacket extends Packet {
 	
 	public int accountListId;
 	public String[] accountIds = new String[0];
-
+	public int lockAction = -1;
+	
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		this.accountListId = in.readInt();
 		this.accountIds = new String[in.readShort()];
-		for (int i = 0; i < this.accountIds.length; i++) {
-			this.accountIds[i] = in.readUTF();
+		for (int i = 0; i < accountIds.length; i++) {
+			accountIds[i] = in.readUTF();
 		}
+		lockAction = in.readInt();
 	}
-
+	
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.accountListId);
-		out.writeShort(this.accountIds.length);
-		for (String accountId: this.accountIds) {
+		out.writeInt(accountListId);
+		out.writeShort(accountIds.length);
+		for (String accountId : accountIds) {
 			out.writeUTF(accountId);
 		}
+		out.writeInt(lockAction);
 	}
-
+	
 }

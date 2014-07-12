@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TimeZone;
 import java.util.Vector;
-
 import realmrelay.net.ListenSocket;
 import realmrelay.packets.Packet;
 
@@ -38,8 +37,8 @@ public final class ROTMGRelay {
 	public String remoteHost = "54.226.214.216";
 	public int remotePort = 2050;
 	
-	public String key0 = "311F80691451C71B09A13A2A6E";
-	public String key1 = "72C5583CAFB6818995CBD74B80";
+	public String key0 = "311f80691451c71b09a13a2a6e";
+	public String key1 = "72c5583cafb6818995cbd74b80";
 	// #settings end
 	
 	private final ListenSocket listenSocket;

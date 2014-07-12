@@ -10,5 +10,5 @@ public class GroundData {
 	public boolean push = false; // element Push
 	public boolean sink = false; // element Sink
 	public float speed = 0; // element Speed
-
+	
 }
