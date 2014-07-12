@@ -102,7 +102,12 @@ public abstract class Packet implements IData {
 			for (Class<? extends Packet> packetClass: list) {
 				Packet packet = packetClass.newInstance();
 				ROTMGRelay.echo("Mapping: " + packet.getName() + " -> " + packet.id());
-				packetIdtoClassMap.set(packet.id(), packetClass);
+				
+				if (packet.id() == -1){
+					packetIdtoClassMap.set(100, packetClass);
+				} else {
+					packetIdtoClassMap.set(packet.id(), packetClass);
+				}
 			}
 			for (Entry<String, Integer> entry: GETXmlParse.packetMap.entrySet()) {
 				byte id = entry.getValue().byteValue();

@@ -37,8 +37,9 @@ public final class ROTMGRelay {
 	public String remoteHost = "54.226.214.216";
 	public int remotePort = 2050;
 	
-	public String key0 = "311f80691451c71b09a13a2a6e";
-	public String key1 = "72c5583cafb6818995cbd74b80";
+	public String key0 = "311f80691451c71d09a13a2a6e";
+	public String key1 = "72c5583cafb6818995cdd74b80";
+
 	// #settings end
 	
 	private final ListenSocket listenSocket;
@@ -158,7 +159,7 @@ public final class ROTMGRelay {
 		}
 		Packet.init();
 		if (ROTMGRelay.instance.listenSocket.start()) {
-			ROTMGRelay.echo("Realm Relay listener started");
+			ROTMGRelay.echo("This updated version or Realm Relay is brought to you by iObsidian.");
 			while (!ROTMGRelay.instance.listenSocket.isClosed()) {
 				while (!ROTMGRelay.instance.newUsers.isEmpty()) {
 					User user = ROTMGRelay.instance.newUsers.remove(0);

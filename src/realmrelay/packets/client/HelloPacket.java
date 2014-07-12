@@ -7,6 +7,7 @@ import realmrelay.packets.Packet;
 
 public class HelloPacket extends Packet {
 	
+	
 	public String buildVersion;
 	public int gameId;
 	public String guid;
@@ -25,6 +26,7 @@ public class HelloPacket extends Packet {
 	
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
+		
 		this.buildVersion = in.readUTF();
 		this.gameId = in.readInt();
 		this.guid = in.readUTF();
@@ -35,6 +37,8 @@ public class HelloPacket extends Packet {
 		this.keyTime = in.readInt();
 		this.key = new byte[in.readShort()];
 		in.readFully(this.key);
+		this.obf0 = new byte[in.readShort()];
+		in.readFully(this.obf0);
 		this.obf1 = in.readUTF();
 		this.obf2 = in.readUTF();
 		this.obf3 = in.readUTF();
