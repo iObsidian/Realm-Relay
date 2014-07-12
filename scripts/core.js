@@ -6,6 +6,10 @@ var ID_RECONNECT = $.findPacketId("RECONNECT");
 var ID_CREATE_SUCCESS = $.findPacketId("CREATE_SUCCESS");
 var ID_NOTIFICATION = $.findPacketId("NOTIFICATION");
 
+var playerName = "";
+var serverName = "";
+var numberOfPeople = "";
+
 var helloPacket = null;
 
 function onEnable(event) {
@@ -72,6 +76,6 @@ function displayRealmRelayNotification(event, playerObjectId) {
 	var notificationPacket = $.createPacket(ID_NOTIFICATION);
 	notificationPacket.objectId = playerObjectId;
 	notificationPacket.message = "{\"key\":\"blank\",\"tokens\":{\"data\":\"Realm Relay enabled!\"}}";
-	notificationPacket.color = 0x33FFFF;
+	notificationPacket.color = 0xffa500;
 	$.sendToClient(notificationPacket);
 }

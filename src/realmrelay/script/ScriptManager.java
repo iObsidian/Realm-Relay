@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 
+import realmrelay.PacketManager;
 import realmrelay.ROTMGRelay;
 import realmrelay.User;
 import realmrelay.packets.Packet;
@@ -61,8 +61,9 @@ public class ScriptManager {
 		}
 	}
 
-	public PacketScriptEvent clientPacketEvent(Packet packet) {
+	public PacketScriptEvent clientPacketEvent(Packet packet) throws Exception {
 		PacketScriptEvent event = new PacketScriptEvent(this.user, packet);
+		PacketManager.onClientPacketEvent(event);
 		this.invoke("onClientPacket", event);
 		return event;
 	}
@@ -106,8 +107,9 @@ public class ScriptManager {
 		this.newScheduledEvents.add(event);
 	}
 
-	public PacketScriptEvent serverPacketEvent(Packet packet) {
+	public PacketScriptEvent serverPacketEvent(Packet packet) throws Exception {
 		PacketScriptEvent event = new PacketScriptEvent(this.user, packet);
+		PacketManager.onServerPacketEvent(event);
 		this.invoke("onServerPacket", event);
 		return event;
 	}
