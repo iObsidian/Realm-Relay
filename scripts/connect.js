@@ -5,11 +5,12 @@ var ID_PLAYER_TEXT = $.findPacketId("PLAYERTEXT");
 var ID_RECONNECT = $.findPacketId("RECONNECT");
 var ID_ESCAPE = $.findPacketId("ESCAPE");
 
-var servers = { "usw" : "54.241.208.233",
+var servers = { 
+        "usw" : "54.241.208.233",
         "usw2"  : "54.193.168.4",
         "usw3"  : "54.241.223.240",
         "use" : "54.224.68.81",
-        "use2"  : "50.19.7.133",
+        "use2"  : "54.204.50.57",
         "use3"  : "54.226.214.216",
         "uss" : "23.22.180.212",
         "uss2"  : "107.20.55.255",
@@ -26,7 +27,31 @@ var servers = { "usw" : "54.241.208.233",
         "eun2"  : "54.216.200.98",
         "eusw"  : "54.217.63.70",
         "ae"  : "175.41.201.80",
-        "ase" : "54.255.15.39" };
+        "ase" : "54.255.15.39",
+
+
+        "uswest" : "54.241.208.233",
+        "uswest2"  : "54.193.168.4",
+        "uswest3"  : "54.241.223.240",
+        "useast" : "54.224.68.81",
+        "useast2"  : "54.204.50.57",
+        "useast3"  : "54.226.214.216",
+        "ussouth" : "23.22.180.212",
+        "ussouth2"  : "107.20.55.255",
+        "ussouth3"  : "54.80.250.47",
+        "usmidwest"  : "54.80.67.112",
+        "usmidwest2" : "50.17.143.165",
+        "ussouthwest"  : "54.219.44.205",
+        "usnorthwest"  : "50.18.24.120",
+        "euwest" : "54.195.57.43",
+        "euwest2"  : "54.195.154.140",
+        "eueast" : "46.137.30.179",
+        "eusouth" : "54.195.179.215",
+        "eunorth" : "54.195.96.152",
+        "eunorth2"  : "54.216.200.98",
+        "eusouthwest"  : "54.217.63.70",
+        "asiaeast"  : "175.41.201.80",
+        "asiasoutheast" : "54.255.15.39" };
 
 var usage = 
 "Usage: /con <server>\n \
@@ -97,7 +122,7 @@ function onClientPacket(event) {
         event.echo(usage)
         return;
       }
-      var server = text.substring(5, text.length());
+      var server = text.substring(5, text.length()).toLowerCase();
 
       if(servers[server] == null){
         event.echo("Server " + server + " not found.");

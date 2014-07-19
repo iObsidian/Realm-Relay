@@ -1,89 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Packets>
-	<Packet id="FAILURE" type="0" />
-	<Packet id="CREATE_SUCCESS" type="84" />
-	<Packet id="CREATE" type="41" />
-	<Packet id="PLAYERSHOOT" type="11" />
-	<Packet id="MOVE" type="92" />
-	<Packet id="PLAYERTEXT" type="20" />
-	<Packet id="TEXT" type="38" />
-	<Packet id="_-M0" type="37" />
-	<Packet id="DAMAGE" type="19" />
-	<Packet id="UPDATE" type="67" />
-	<Packet id="_-0Ug" type="17" />
-	<Packet id="NOTIFICATION" type="36" />
-	<Packet id="_-1if" type="34" />
-	<Packet id="INVSWAP" type="5" />
-	<Packet id="USEITEM" type="21" />
-	<Packet id="_-13p" type="75" />
-	<Packet id="HELLO" type="91" />
-	<Packet id="GOTO" type="46" />
-	<Packet id="INVDROP" type="74" />
-	<Packet id="INVRESULT" type="89" />
-	<Packet id="RECONNECT" type="24" />
-	<Packet id="PING" type="90" />
-	<Packet id="PONG" type="50" />
-	<Packet id="MAPINFO" type="7" />
-	<Packet id="LOAD" type="63" />
-	<Packet id="PIC" type="1" />
-	<Packet id="SETCONDITION" type="53" />
-	<Packet id="TELEPORT" type="60" />
-	<Packet id="USEPORTAL" type="8" />
-	<Packet id="DEATH" type="56" />
-	<Packet id="BUY" type="51" />
-	<Packet id="BUYRESULT" type="85" />
-	<Packet id="AOE" type="77" />
-	<Packet id="GROUNDDAMAGE" type="30" />
-	<Packet id="PLAYERHIT" type="86" />
-	<Packet id="ENEMYHIT" type="15" />
-	<Packet id="AOEACK" type="40" />
-	<Packet id="SHOOTACK" type="88" />
-	<Packet id="OTHERHIT" type="69" />
-	<Packet id="SQUAREHIT" type="14" />
-	<Packet id="GOTOACK" type="76" />
-	<Packet id="EDITACCOUNTLIST" type="64" />
-	<Packet id="ACCOUNTLIST" type="27" />
-	<Packet id="QUESTOBJID" type="6" />
-	<Packet id="CHOOSENAME" type="4" />
-	<Packet id="NAMERESULT" type="79" />
-	<Packet id="CREATEGUILD" type="25" />
-	<Packet id="_-01J" type="28" />
-	<Packet id="GUILDREMOVE" type="61" />
-	<Packet id="GUILDINVITE" type="45" />
-	<Packet id="ALLYSHOOT" type="94" />
-	<Packet id="_-0RN" type="93" />
-	<Packet id="REQUESTTRADE" type="59" />
-	<Packet id="TRADEREQUESTED" type="26" />
-	<Packet id="TRADESTART" type="49" />
-	<Packet id="CHANGETRADE" type="82" />
-	<Packet id="TRADECHANGED" type="68" />
-	<Packet id="ACCEPTTRADE" type="81" />
-	<Packet id="CANCELTRADE" type="57" />
-	<Packet id="TRADEDONE" type="87" />
-	<Packet id="TRADEACCEPTED" type="22" />
-	<Packet id="CLIENTSTAT" type="44" />
-	<Packet id="CHECKCREDITS" type="13" />
-	<Packet id="ESCAPE" type="9" />
-	<Packet id="_-0dG" type="80" />
-	<Packet id="INVITEDTOGUILD" type="33" />
-	<Packet id="JOINGUILD" type="78" />
-	<Packet id="CHANGEGUILDRANK" type="83" />
-	<Packet id="PLAYSOUND" type="31" />
-	<Packet id="GLOBAL_NOTIFICATION" type="58" />
-	<Packet id="RESKIN" type="10" />
-	<Packet id="_-Sn" type="52" />
-	<Packet id="_-1mL" type="65" />
-	<Packet id="_-jv" type="18" />
-	<Packet id="_-8Y" type="66" />
-	<Packet id="_-14A" type="39" />
-	<Packet id="_-1ID" type="16" />
-	<Packet id="_-0d7" type="47" />
-	<Packet id="_-0aQ" type="3" />
-	<Packet id="ENTER_ARENA" type="42" />
-	<Packet id="_-1QS" type="48" />
-	<Packet id="_-0at" type="12" />
-	<Packet id="_-0YD" type="23" />
-	<Packet id="_-0dP" type="35" />
-	<Packet id="_-0h6" type="55" />
-	<Packet id="_-va" type="62" />
+   <Packet id="FAILURE" type="0"/>
+   <Packet id="CREATE_SUCCESS" type="26"/>
+   <Packet id="CREATE" type="35"/>
+   <Packet id="PLAYERSHOOT" type="93"/>
+   <Packet id="MOVE" type="21"/>
+   <Packet id="PLAYERTEXT" type="68"/>
+   <Packet id="TEXT" type="42"/>
+   <Packet id="SHOOT2" type="87"/>
+   <Packet id="DAMAGE" type="83"/>
+   <Packet id="UPDATE" type="46"/>
+   <Packet id="UPDATEACK" type="27"/>
+   <Packet id="NOTIFICATION" type="57"/>
+   <Packet id="NEW_TICK" type="25"/>
+   <Packet id="INVSWAP" type="33"/>
+   <Packet id="USEITEM" type="50"/>
+   <Packet id="SHOW_EFFECT" type="24"/>
+   <Packet id="HELLO" type="60"/>
+   <Packet id="GOTO" type="7"/>
+   <Packet id="INVDROP" type="23"/>
+   <Packet id="INVRESULT" type="79"/>
+   <Packet id="RECONNECT" type="41"/>
+   <Packet id="PING" type="63"/>
+   <Packet id="PONG" type="37"/>
+   <Packet id="MAPINFO" type="11"/>
+   <Packet id="LOAD" type="89"/>
+   <Packet id="PIC" type="80"/>
+   <Packet id="SETCONDITION" type="62"/>
+   <Packet id="TELEPORT" type="31"/>
+   <Packet id="USEPORTAL" type="51"/>
+   <Packet id="DEATH" type="30"/>
+   <Packet id="BUY" type="14"/>
+   <Packet id="BUYRESULT" type="20"/>
+   <Packet id="AOE" type="88"/>
+   <Packet id="GROUNDDAMAGE" type="78"/>
+   <Packet id="PLAYERHIT" type="19"/>
+   <Packet id="ENEMYHIT" type="44"/>
+   <Packet id="AOEACK" type="9"/>
+   <Packet id="SHOOTACK" type="3"/>
+   <Packet id="OTHERHIT" type="15"/>
+   <Packet id="SQUAREHIT" type="90"/>
+   <Packet id="GOTOACK" type="48"/>
+   <Packet id="EDITACCOUNTLIST" type="1"/>
+   <Packet id="ACCOUNTLIST" type="82"/>
+   <Packet id="QUESTOBJID" type="85"/>
+   <Packet id="CHOOSENAME" type="81"/>
+   <Packet id="NAMERESULT" type="10"/>
+   <Packet id="CREATEGUILD" type="55"/>
+   <Packet id="CREATEGUILDRESULT" type="59"/>
+   <Packet id="GUILDREMOVE" type="17"/>
+   <Packet id="GUILDINVITE" type="5"/>
+   <Packet id="ALLYSHOOT" type="76"/>
+   <Packet id="SHOOT" type="4"/>
+   <Packet id="REQUESTTRADE" type="28"/>
+   <Packet id="TRADEREQUESTED" type="12"/>
+   <Packet id="TRADESTART" type="94"/>
+   <Packet id="CHANGETRADE" type="22"/>
+   <Packet id="TRADECHANGED" type="61"/>
+   <Packet id="ACCEPTTRADE" type="84"/>
+   <Packet id="CANCELTRADE" type="34"/>
+   <Packet id="TRADEDONE" type="74"/>
+   <Packet id="TRADEACCEPTED" type="36"/>
+   <Packet id="CLIENTSTAT" type="13"/>
+   <Packet id="CHECKCREDITS" type="49"/>
+   <Packet id="ESCAPE" type="66"/>
+   <Packet id="FILE" type="8"/>
+   <Packet id="INVITEDTOGUILD" type="92"/>
+   <Packet id="JOINGUILD" type="38"/>
+   <Packet id="CHANGEGUILDRANK" type="6"/>
+   <Packet id="PLAYSOUND" type="39"/>
+   <Packet id="GLOBAL_NOTIFICATION" type="64"/>
+   <Packet id="RESKIN" type="47"/>
+   <Packet id="_-0uG" type="91"/>
+   <Packet id="_-1-g" type="69"/>
+   <Packet id="_-0gI" type="58"/>
+   <Packet id="_-i" type="18"/>
+   <Packet id="_-0dd" type="65"/>
+   <Packet id="_-111" type="40"/>
+   <Packet id="_-0gm" type="52"/>
+   <Packet id="_-1hC" type="86"/>
+   <Packet id="ENTER_ARENA" type="45"/>
+   <Packet id="_-JZ" type="53"/>
+   <Packet id="_-Km" type="77"/>
+   <Packet id="_-16Z" type="56"/>
+   <Packet id="_-1lP" type="75"/>
+   <Packet id="_-036" type="16"/>
+   <Packet id="_-6t" type="67"/>
 </Packets>

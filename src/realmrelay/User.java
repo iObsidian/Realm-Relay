@@ -13,7 +13,7 @@ import realmrelay.script.ScriptManager;
 
 public class User {
 	
-	private static final int bufferLength = 65536 * 8;
+	private static final int bufferLength = 65536 * 10;
 	
 	public final byte[] localBuffer = new byte[bufferLength];
 	public int localBufferIndex = 0;
