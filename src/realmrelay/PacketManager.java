@@ -42,6 +42,8 @@ public class PacketManager {
 	public static HashMap<Integer, PortalData> portals = new HashMap<Integer, PortalData>();
 	
 	private static boolean enteredInRealm;
+
+	private static int tryingToJoinPortalId = 0;
 	
 	public static void onClientPacketEvent(final PacketScriptEvent event) throws Exception {
 		final Packet packet = event.getPacket();
@@ -69,10 +71,9 @@ public class PacketManager {
 			UsePortalPacket upk = (UsePortalPacket) packet;
 			System.out.println(upk.objectId);
 			
-			
-			if (portals.get(upk.objectId).population > 84){
+			if (portals.get(upk.objectId).population > 84) {
 				tellToPlayer(event, "You will be automatically connected soon.");
-			
+				
 			}
 			
 		} else if (packet instanceof HelloPacket) {
@@ -140,14 +141,27 @@ public class PacketManager {
 						nameAndID.put(j.stringValue, d); //save the name and the id of every players for later
 					}
 					
+					
+					
+					
+					
 					if (ent.status.objectId == playerData.id) {
 						//playerData.parseNewTICK(j.obf0, j.intValue, j.stringValue);
 						
 						if (j.intValue == 31) {
+							System.out.println("Thanks for using DeVoidCoder's RealmRelay, Sir "+j.stringValue+".");
+						}
+						
+						
+						if (j.intValue == 31) {
 							System.out.println(j.stringValue);
 						}
+						
+						
 					}
 				}
+				
+				
 				
 				for (StatData data : ent.status.data) {
 					if (data.id == 31 && data.stringValue.contains("NexusPortal")) { /* WTF IS "DARKPORTAL" ? */
@@ -161,6 +175,14 @@ public class PacketManager {
 							portals.put(ent.status.objectId, portal);
 							
 							echo("Found portal \"" + portal.name + "\" (" + portal.population + "/85).");
+							
+							if (ent.status.objectId == tryingToJoinPortalId ){
+								if (portals.get(ent.status.objectId).population < 85){
+									fromJostun(event,"Do you like my auto realm joining? :)");
+									UsePortalPacket upk = new UsePortalPacket();
+									upk.objectId = tryingToJoinPortalId;
+								}
+							}
 							
 							
 						}
@@ -181,7 +203,7 @@ public class PacketManager {
 				for (StatData d : wo.data) {
 					if (wo.objectId == playerData.id) {
 						
-						//playerData.parseNewTICK(d.obf0, d.intValue, d.stringValue);
+						playerData.parseNewTICK(d.id, d.intValue, d.stringValue);
 					}
 					
 				}
@@ -191,42 +213,29 @@ public class PacketManager {
 		return;
 	}
 	
+	public static void tellToPlayer(final PacketScriptEvent event, String text) throws IOException {
+		TextPacket notificationPacket = new TextPacket();
+		notificationPacket.bubbleTime = -1;
+		notificationPacket.cleanText = "";
+		notificationPacket.name = "";
+		notificationPacket.numStars = -1;
+		notificationPacket.objectId = -1;
+		notificationPacket.recipient = "";
+		notificationPacket.text = text;
+		event.sendToClient(notificationPacket);
+	}
 	
-	
-
-public static void tellToPlayer(final PacketScriptEvent event, String text) throws IOException {
-	TextPacket notificationPacket = new TextPacket();
-	notificationPacket.bubbleTime = -1;
-	notificationPacket.cleanText = "";
-	notificationPacket.name = "";
-	notificationPacket.numStars = -1;
-	notificationPacket.objectId = -1;
-	notificationPacket.recipient = "";
-	notificationPacket.text = text;
-	event.sendToClient(notificationPacket);
-}
-
-//LOL THIS IS SOME GAY SHIET
-public static void fromJostun(final PacketScriptEvent event, String text) throws IOException {
-	TextPacket notificationPacket = new TextPacket();
-	notificationPacket.bubbleTime = -1;
-	notificationPacket.cleanText = "";
-	notificationPacket.name = "iObsidian";
-	notificationPacket.numStars = 56;
-	notificationPacket.objectId = -1;
-	notificationPacket.recipient = playerData.name;
-	notificationPacket.text = text;
-	event.sendToClient(notificationPacket);
-}
-
-
-
-
-
-
-	
+	//LOL THIS IS SOME GAY SHIET
+	public static void fromJostun(final PacketScriptEvent event, String text) throws IOException {
+		TextPacket notificationPacket = new TextPacket();
+		notificationPacket.bubbleTime = -1;
+		notificationPacket.cleanText = "";
+		notificationPacket.name = "iObsidian";
+		notificationPacket.numStars = 56;
+		notificationPacket.objectId = -1;
+		notificationPacket.recipient = playerData.name;
+		notificationPacket.text = text;
+		event.sendToClient(notificationPacket);
+	}
 	
 }
-
-
-
