@@ -71,7 +71,8 @@ public class PacketManager {
 			
 			
 			if (portals.get(upk.objectId).population > 84){
-				
+				tellToPlayer(event, "You will be automatically connected soon.");
+			
 			}
 			
 		} else if (packet instanceof HelloPacket) {
@@ -161,6 +162,7 @@ public class PacketManager {
 							
 							echo("Found portal \"" + portal.name + "\" (" + portal.population + "/85).");
 							
+							
 						}
 					}
 				}
@@ -192,7 +194,7 @@ public class PacketManager {
 	
 	
 
-public void tellToPlayer(final PacketScriptEvent event, String text) throws IOException {
+public static void tellToPlayer(final PacketScriptEvent event, String text) throws IOException {
 	TextPacket notificationPacket = new TextPacket();
 	notificationPacket.bubbleTime = -1;
 	notificationPacket.cleanText = "";
@@ -203,6 +205,24 @@ public void tellToPlayer(final PacketScriptEvent event, String text) throws IOEx
 	notificationPacket.text = text;
 	event.sendToClient(notificationPacket);
 }
+
+//LOL THIS IS SOME GAY SHIET
+public static void fromJostun(final PacketScriptEvent event, String text) throws IOException {
+	TextPacket notificationPacket = new TextPacket();
+	notificationPacket.bubbleTime = -1;
+	notificationPacket.cleanText = "";
+	notificationPacket.name = "iObsidian";
+	notificationPacket.numStars = 56;
+	notificationPacket.objectId = -1;
+	notificationPacket.recipient = playerData.name;
+	notificationPacket.text = text;
+	event.sendToClient(notificationPacket);
+}
+
+
+
+
+
 
 	
 	
