@@ -1,21 +1,21 @@
 package realmrelay;
 
-import java.io.IOException;
 import java.util.HashMap;
 import realmrelay.data.Entity;
+import realmrelay.data.Location;
 import realmrelay.data.PlayerData;
 import realmrelay.data.SlotObject;
 import realmrelay.data.StatData;
 import realmrelay.data.Status;
 import realmrelay.packets.Packet;
-import realmrelay.packets.client.EscapePacket;
 import realmrelay.packets.client.HelloPacket;
-import realmrelay.packets.client.PlayerShootPacket;
+import realmrelay.packets.client.InvSwapPacket;
 import realmrelay.packets.client.PlayerTextPacket;
 import realmrelay.packets.client.UseItemPacket;
 import realmrelay.packets.client.UsePortalPacket;
 import realmrelay.packets.server.Create_SuccessPacket;
 import realmrelay.packets.server.New_TickPacket;
+import realmrelay.packets.server.QuestObjIdPacket;
 import realmrelay.packets.server.UpdatePacket;
 import realmrelay.script.PacketScriptEvent;
 
@@ -31,6 +31,10 @@ public class PacketManager {
 	
 	private static boolean canGo;
 	
+	private static int myQuestId;
+	
+	private static Location myQuestPos;
+	
 	public static void onClientPacketEvent(final PacketScriptEvent event) throws Exception {
 		final Packet packet = event.getPacket();
 		
@@ -43,10 +47,11 @@ public class PacketManager {
 			
 			if (ptp.text.startsWith(".") || ptp.text.startsWith("/")) {
 				
-				String command = ptp.text.substring(1);
+				String command = ptp.text.substring(1).toLowerCase();
+				String rest = ptp.text.substring(ptp.text.indexOf(" ")+1).toLowerCase();
 				
-				if (command.equalsIgnoreCase("")) {
-					
+				if (command.startsWith("setpos")) {
+					//myQuestPos = 
 				}
 				
 			}
@@ -61,24 +66,25 @@ public class PacketManager {
 			
 			playerData.id = mpk.gameId;
 			
-		} else if (packet instanceof PlayerShootPacket) {
-			PlayerShootPacket psp = (PlayerShootPacket) event.getPacket();
+		} else if (packet instanceof UseItemPacket) {
+			UseItemPacket psp = (UseItemPacket) event.getPacket();
+			psp.itemUsePos = myQuestPos;
 			
-			event.cancel();
+		} else if (packet instanceof InvSwapPacket) {
+			InvSwapPacket isp = (InvSwapPacket) event.getPacket();
 			
-			System.out.println("PlayerShot " + canGo);
+			SlotObject slotObject1 = new SlotObject();
+			slotObject1.objectType = isp.slotObject1.objectType;
+			slotObject1.slotId = isp.slotObject1.slotId;
 			
-			if (canGo == true) {
-				canGo = false;
-				
-				event.sendToServer(event.getPacket());
-				event.sendToServer(event.getPacket());
-			} else {
-				event.cancel();
-				canGo = true;
-			}
+			System.out.println("from ObjectId (myId) : " + slotObject1.objectId);
+			System.out.println("from OjectType (myId) : " + slotObject1.objectType);
+			System.out.println("from SlotId (i) : " + slotObject1.slotId);
 			
-		}
+			
+		} 
+		
+		
 		
 		return;
 	}
@@ -98,6 +104,11 @@ public class PacketManager {
 			Create_SuccessPacket csp = (Create_SuccessPacket) packet;
 			//echo("My ID : " + csp.objectId);
 			playerData.id = csp.objectId;
+		}
+		if (packet instanceof QuestObjIdPacket) {
+			QuestObjIdPacket qoid = (QuestObjIdPacket) packet;
+			//echo("My ID : " + csp.objectId);
+			myQuestId = qoid.objectId;
 		} else if (packet instanceof UpdatePacket) {
 			UpdatePacket update = (UpdatePacket) packet;
 			for (Entity ent : update.newObjs) {
@@ -127,6 +138,11 @@ public class PacketManager {
 					if (wo.objectId == playerData.id) {
 						
 						//playerData.parseNewTICK(d.obf0, d.obf1, d.obf2);
+					}
+					
+					if (wo.objectId == myQuestId) {
+						myQuestPos = wo.pos;
+						
 					}
 				}
 			}
