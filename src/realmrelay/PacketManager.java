@@ -2,12 +2,10 @@ package realmrelay;
 
 import java.io.IOException;
 import java.util.HashMap;
-import com.sun.corba.se.spi.activation.Server;
 import realmrelay.data.Entity;
 import realmrelay.data.Location;
 import realmrelay.data.PlayerData;
 import realmrelay.data.PortalData;
-import realmrelay.data.SlotObject;
 import realmrelay.data.StatData;
 import realmrelay.data.Status;
 import realmrelay.packets.Packet;
@@ -29,8 +27,6 @@ public class PacketManager {
 	
 	private static long startTime = 0;
 	
-	public static HashMap<String, PlayerData> nameAndID = new HashMap<String, PlayerData>();
-	
 	private static Packet lastUseItemPacket;
 	
 	private static boolean canGo;
@@ -42,51 +38,51 @@ public class PacketManager {
 	public static HashMap<Integer, PortalData> portals = new HashMap<Integer, PortalData>();
 	
 	private static boolean enteredInRealm;
-
+	
 	private static int tryingToJoinPortalId = 0;
+	
+	private static int maxPopulation = 85;
+	
+	private static boolean wantToConnect = false;
+	
+	private static boolean isUsingAutoCon;
+	
+	private static boolean wantToBeReconnected = true;
 	
 	public static void onClientPacketEvent(final PacketScriptEvent event) throws Exception {
 		final Packet packet = event.getPacket();
 		
-		if (packet instanceof PlayerTextPacket) {
-			PlayerTextPacket ptp = (PlayerTextPacket) packet;
-			
-			if (ptp.text.startsWith(".")) {
-				event.cancel();
-			}
-			
-			if (ptp.text.startsWith(".") || ptp.text.startsWith("/")) {
-				
-				String command = ptp.text.substring(1).toLowerCase();
-				String rest = ptp.text.substring(ptp.text.indexOf(" ") + 1).toLowerCase();
-				
-				if (command.startsWith("setpos")) {
-					//myQuestPos = 
-				}
-				
-			}
-			
-		}
 		if (packet instanceof UsePortalPacket) {
-			UsePortalPacket upk = (UsePortalPacket) packet;
-			System.out.println(upk.objectId);
 			
-			if (portals.get(upk.objectId).population > 84) {
-				tellToPlayer(event, "You will be automatically connected soon.");
+			if (wantToConnect == true) {
+				tellToPlayer(event, "There is already a waiting pending.");
+			} else {
+				
+				wantToConnect = true;
+				
+				UsePortalPacket upk = (UsePortalPacket) packet;
+				System.out.println(upk.objectId);
+				
+				if (portals.get(upk.objectId).population < maxPopulation) { //TESTING
+					event.cancel();
+					tellToPlayer(event, "You will be automatically connected soon.");
+					tryingToJoinPortalId = upk.objectId;
+				}
 				
 			}
 			
 		} else if (packet instanceof HelloPacket) {
 			
+			if (isUsingAutoCon) {
+				isUsingAutoCon = false;
+				fromJostun(event, "Do you like my auto realm joining? :)");
+			}
+			
 			HelloPacket mpk = (HelloPacket) event.getPacket();
 			
-			playerData.id = mpk.gameId;
+			wantToConnect = false; //reset
 			
 		} else if (packet instanceof UseItemPacket) {
-			UseItemPacket psp = (UseItemPacket) event.getPacket();
-			psp.itemUsePos = myQuestPos;
-			
-		} else if (packet instanceof UsePortalPacket) {
 			UseItemPacket psp = (UseItemPacket) event.getPacket();
 			psp.itemUsePos = myQuestPos;
 			
@@ -122,71 +118,40 @@ public class PacketManager {
 			Create_SuccessPacket csp = (Create_SuccessPacket) packet;
 			//echo("My ID : " + csp.objectId);
 			playerData.id = csp.objectId;
-		}
-		if (packet instanceof QuestObjIdPacket) {
+		} else if (packet instanceof QuestObjIdPacket) {
 			QuestObjIdPacket qoid = (QuestObjIdPacket) packet;
 			//echo("My ID : " + csp.objectId);
 			myQuestId = qoid.objectId;
 		} else if (packet instanceof UpdatePacket) {
 			UpdatePacket update = (UpdatePacket) packet;
-			
-			for (Entity ent : update.newObjs) {
+			for (Entity newObjs : update.newObjs) {
 				
-				for (StatData j : ent.status.data) {
+				for (StatData j : newObjs.status.data) {
 					
-					if (j.intValue == 31) {
-						PlayerData d = new PlayerData();
-						d.id = ent.status.objectId;
-						d.name = j.stringValue;
-						nameAndID.put(j.stringValue, d); //save the name and the id of every players for later
-					}
-					
-					
-					
-					
-					
-					if (ent.status.objectId == playerData.id) {
-						//playerData.parseNewTICK(j.obf0, j.intValue, j.stringValue);
-						
-						if (j.intValue == 31) {
-							System.out.println("Thanks for using DeVoidCoder's RealmRelay, Sir "+j.stringValue+".");
-						}
-						
-						
-						if (j.intValue == 31) {
-							System.out.println(j.stringValue);
-						}
-						
-						
-					}
-				}
-				
-				
-				
-				for (StatData data : ent.status.data) {
-					if (data.id == 31 && data.stringValue.contains("NexusPortal")) { /* WTF IS "DARKPORTAL" ? */
-						if (!enteredInRealm) {
-							
-							String portalName = data.stringValue.substring(data.stringValue.indexOf(".") + 1, data.stringValue.indexOf(" ("));
-							int portalPopulation = Integer.parseInt(data.stringValue.substring(data.stringValue.indexOf("(") + 1, data.stringValue.indexOf("/")));
-							
-							PortalData portal = new PortalData(portalPopulation, ent.status.objectId, ent.status.pos, portalName);
-							
-							portals.put(ent.status.objectId, portal);
-							
-							echo("Found portal \"" + portal.name + "\" (" + portal.population + "/85).");
-							
-							if (ent.status.objectId == tryingToJoinPortalId ){
-								if (portals.get(ent.status.objectId).population < 85){
-									fromJostun(event,"Do you like my auto realm joining? :)");
-									UsePortalPacket upk = new UsePortalPacket();
-									upk.objectId = tryingToJoinPortalId;
-								}
+					for (StatData data : newObjs.status.data) {
+						if (data.id == 31 && data.stringValue.contains("NexusPortal")) { /* WTF IS "DARKPORTAL" ? */
+							if (!enteredInRealm) {
+								
+								String portalName = data.stringValue.substring(data.stringValue.indexOf(".") + 1, data.stringValue.indexOf(" ("));
+								int portalPopulation = Integer.parseInt(data.stringValue.substring(data.stringValue.indexOf("(") + 1, data.stringValue.indexOf("/")));
+								
+								PortalData portal = new PortalData(portalPopulation, newObjs.status.objectId, newObjs.status.pos, portalName);
+								
+								portals.put(newObjs.status.objectId, portal);
+								
+								//echo("Found portal \"" + portal.name + "\" (" + portal.population + "/85).");
+								
 							}
-							
-							
 						}
 					}
+					
+					for (int drop : update.drops) {
+						if (portals.containsKey(drop)) {
+							portals.remove(drop);
+							echo("Dropped a realm");
+						}
+					}
+					
 				}
 				
 				for (int drop : update.drops) {
@@ -197,15 +162,90 @@ public class PacketManager {
 				}
 				
 			}
+			
+			for (Entity ent : update.newObjs) {
+				
+				for (int drop : update.drops) {
+					if (portals.containsKey(drop)) {
+						portals.remove(drop);
+						echo("Dropped a realm");
+					}
+				}
+				
+			}
 		} else if (packet instanceof New_TickPacket) {
-			New_TickPacket up = (New_TickPacket) packet;
-			for (Status wo : up.statuses) {
-				for (StatData d : wo.data) {
-					if (wo.objectId == playerData.id) {
+			New_TickPacket ent = (New_TickPacket) packet;
+			
+			for (Status he : ent.statuses) {
+				for (StatData data : he.data) {
+					
+					
+					if (data.id == 31 && data.stringValue.contains("NexusPortal")) { /* WTF IS "DARKPORTAL" ? */
 						
-						playerData.parseNewTICK(d.id, d.intValue, d.stringValue);
+						//System.out.println("FOUND PORTAL");
+						
+						if (!enteredInRealm) {
+							
+							int objectId = he.objectId;
+							
+							String portalName = data.stringValue.substring(data.stringValue.indexOf(".") + 1, data.stringValue.indexOf(" ("));
+							int portalPopulation = Integer.parseInt(data.stringValue.substring(data.stringValue.indexOf("(") + 1, data.stringValue.indexOf("/")));
+							
+							PortalData portal = new PortalData(portalPopulation, objectId, he.pos, portalName);
+							
+							portals.put(objectId, portal);
+							
+							//echo("Found portal \"" + portal.name + "\" (" + portal.population + "/" + maxPopulation + ").");
+							
+							if (objectId == tryingToJoinPortalId) {
+								//System.out.println("Found portal that we are trying to join.");
+								if (wantToConnect) {
+									if (portals.get(objectId).population < maxPopulation) {
+										
+										isUsingAutoCon = true;
+										tellToPlayer(event, "Connecting...");
+										UsePortalPacket upk = new UsePortalPacket();
+										upk.objectId = tryingToJoinPortalId;
+										event.sendToServer(upk);
+									}
+									
+								}
+							}
+							
+						}
 					}
 					
+					
+					
+					
+					
+					
+					
+					
+					
+					if (playerData.pos != null && portals.get(tryingToJoinPortalId) != null) {
+						
+						if (!enteredInRealm && wantToBeReconnected && playerData.pos.distanceSquaredTo(portals.get(tryingToJoinPortalId).loc) < 2) {
+							
+							tellToPlayer(event, "Auto Reconnecting...");
+							UsePortalPacket upk = new UsePortalPacket();
+							upk.objectId = tryingToJoinPortalId;
+							event.sendToServer(upk);
+						}
+					}
+					
+					/*
+					if (he.objectId == tryingToJoinPortalId) {
+						tellToPlayer(event, "Get closer to " + portals.get(tryingToJoinPortalId).name + " to autoreconnect.");
+					}
+					*/
+					
+					if (he.objectId == playerData.id) {
+						
+						playerData.parseNewTICK(data.id, data.intValue, data.stringValue);
+					}
+					
+
 				}
 			}
 			
@@ -230,10 +270,10 @@ public class PacketManager {
 		TextPacket notificationPacket = new TextPacket();
 		notificationPacket.bubbleTime = -1;
 		notificationPacket.cleanText = "";
-		notificationPacket.name = "iObsidian";
-		notificationPacket.numStars = 56;
+		notificationPacket.name = "Jostun";
+		notificationPacket.numStars = 61;
 		notificationPacket.objectId = -1;
-		notificationPacket.recipient = playerData.name;
+		notificationPacket.recipient = "*GUILD*";
 		notificationPacket.text = text;
 		event.sendToClient(notificationPacket);
 	}
