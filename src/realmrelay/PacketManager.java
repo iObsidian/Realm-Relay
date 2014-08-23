@@ -83,9 +83,7 @@ public class PacketManager {
 			wantToConnect = false; //reset
 			
 		} else if (packet instanceof UseItemPacket) {
-			UseItemPacket psp = (UseItemPacket) event.getPacket();
-			psp.itemUsePos = myQuestPos;
-			
+			//Fixed ;-)
 		} else if (packet instanceof InvSwapPacket) {
 			// inv debugger
 			/*InvSwapPacket isp = (InvSwapPacket) event.getPacket();
