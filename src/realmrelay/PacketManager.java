@@ -52,6 +52,7 @@ public class PacketManager {
 	public static void onClientPacketEvent(final PacketScriptEvent event) throws Exception {
 		final Packet packet = event.getPacket();
 		
+		/*
 		if (packet instanceof UsePortalPacket) {
 			
 			if (wantToConnect == true) {
@@ -71,7 +72,7 @@ public class PacketManager {
 				
 			}
 			
-		} else if (packet instanceof HelloPacket) {
+		} else */ if (packet instanceof HelloPacket) {
 			
 			if (isUsingAutoCon) {
 				isUsingAutoCon = false;
