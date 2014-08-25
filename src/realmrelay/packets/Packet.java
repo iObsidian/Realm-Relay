@@ -78,7 +78,7 @@ public abstract class Packet implements IData {
 		list.add(PlaySoundPacket.class);
 		list.add(PongPacket.class);
 		list.add(QuestObjIdPacket.class);
-		list.add(ReconnectPacket.class);
+		//list.add(ReconnectPacket.class); //Thanks to OkYk for the temporary solution.
 		list.add(RequestTradePacket.class);
 		list.add(ReskinPacket.class);
 		list.add(SetConditionPacket.class);

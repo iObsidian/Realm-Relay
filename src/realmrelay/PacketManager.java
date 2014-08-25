@@ -52,7 +52,6 @@ public class PacketManager {
 	public static void onClientPacketEvent(final PacketScriptEvent event) throws Exception {
 		final Packet packet = event.getPacket();
 		
-		/*
 		if (packet instanceof UsePortalPacket) {
 			
 			if (wantToConnect == true) {
@@ -64,7 +63,8 @@ public class PacketManager {
 				UsePortalPacket upk = (UsePortalPacket) packet;
 				System.out.println(upk.objectId);
 				
-				if (portals.get(upk.objectId).population < maxPopulation) { //TESTING
+				final PortalData portalData = portals.get(upk.objectId);
+				if (portalData != null && portalData.population < maxPopulation) { //TESTING
 					event.cancel();
 					tellToPlayer(event, "You will be automatically connected soon.");
 					tryingToJoinPortalId = upk.objectId;
@@ -72,20 +72,18 @@ public class PacketManager {
 				
 			}
 			
-		} else */ if (packet instanceof HelloPacket) {
+		} else if (packet instanceof HelloPacket) {
 			
 			if (isUsingAutoCon) {
 				isUsingAutoCon = false;
-				fromJostun(event, "Do you like my auto realm joining? :)");
 			}
 			
-			HelloPacket mpk = (HelloPacket) event.getPacket();
+			//HelloPacket mpk = (HelloPacket) event.getPacket();
 			
 			wantToConnect = false; //reset
 			
-		} else if (packet instanceof UseItemPacket) {
-			//Fixed ;-)
 		} else if (packet instanceof InvSwapPacket) {
+			
 			// inv debugger
 			/*InvSwapPacket isp = (InvSwapPacket) event.getPacket();
 			
@@ -119,7 +117,6 @@ public class PacketManager {
 			playerData.id = csp.objectId;
 		} else if (packet instanceof QuestObjIdPacket) {
 			QuestObjIdPacket qoid = (QuestObjIdPacket) packet;
-			//echo("My ID : " + csp.objectId);
 			myQuestId = qoid.objectId;
 		} else if (packet instanceof UpdatePacket) {
 			UpdatePacket update = (UpdatePacket) packet;
@@ -178,7 +175,6 @@ public class PacketManager {
 			for (Status he : ent.statuses) {
 				for (StatData data : he.data) {
 					
-					
 					if (data.id == 31 && data.stringValue.contains("NexusPortal")) { /* WTF IS "DARKPORTAL" ? */
 						
 						//System.out.println("FOUND PORTAL");
@@ -214,14 +210,6 @@ public class PacketManager {
 						}
 					}
 					
-					
-					
-					
-					
-					
-					
-					
-					
 					if (playerData.pos != null && portals.get(tryingToJoinPortalId) != null) {
 						
 						if (!enteredInRealm && wantToBeReconnected && playerData.pos.distanceSquaredTo(portals.get(tryingToJoinPortalId).loc) < 2) {
@@ -244,7 +232,6 @@ public class PacketManager {
 						playerData.parseNewTICK(data.id, data.intValue, data.stringValue);
 					}
 					
-
 				}
 			}
 			
@@ -260,19 +247,6 @@ public class PacketManager {
 		notificationPacket.numStars = -1;
 		notificationPacket.objectId = -1;
 		notificationPacket.recipient = "";
-		notificationPacket.text = text;
-		event.sendToClient(notificationPacket);
-	}
-	
-	//LOL THIS IS SOME GAY SHIET
-	public static void fromJostun(final PacketScriptEvent event, String text) throws IOException {
-		TextPacket notificationPacket = new TextPacket();
-		notificationPacket.bubbleTime = -1;
-		notificationPacket.cleanText = "";
-		notificationPacket.name = "Jostun";
-		notificationPacket.numStars = 61;
-		notificationPacket.objectId = -1;
-		notificationPacket.recipient = "*GUILD*";
 		notificationPacket.text = text;
 		event.sendToClient(notificationPacket);
 	}
