@@ -5,14 +5,13 @@ import java.io.DataOutput;
 import java.io.IOException;
 import realmrelay.packets.Packet;
 
-/* Thanks to Maat and Gratin */
+/* Thanks to Maat, Gratin and pieoewieoe for their contribution */
 
 public class HelloPacket extends Packet {
 	
 	public String buildVersion;
 	public int gameId = 0;
 	public String guid;
-	public int randomInt;
 	public String password;
 	public String secret;
 	public int keyTime = 0;
@@ -30,7 +29,6 @@ public class HelloPacket extends Packet {
 		this.buildVersion = in.readUTF();
 		this.gameId = in.readInt();
 		this.guid = in.readUTF();
-		this.randomInt = in.readInt();
 		this.password = in.readUTF();
 		this.secret = in.readUTF();
 		this.keyTime = in.readInt();
@@ -51,14 +49,16 @@ public class HelloPacket extends Packet {
 		out.writeUTF(this.buildVersion);
 		out.writeInt(this.gameId);
 		out.writeUTF(this.guid);
-		out.writeInt(randomInt);
 		out.writeUTF(this.password);
 		out.writeUTF(this.secret);
 		out.writeInt(this.keyTime);
+		
 		out.writeShort(this.key.length);
 		out.write(this.key);
+		
 		out.writeInt(this.obf1.length());
 		out.writeBytes(this.obf1);
+		
 		out.writeUTF(this.obf2);
 		out.writeUTF(this.obf3);
 		out.writeUTF(this.obf4);
