@@ -1,82 +1,38 @@
-// connect.js
-// authored by Nisuxen
-
 var ID_PLAYER_TEXT = $.findPacketId("PLAYERTEXT");
 var ID_RECONNECT = $.findPacketId("RECONNECT");
 var ID_ESCAPE = $.findPacketId("ESCAPE");
 
 var servers = { 
-        "usw" : "54.241.208.233",
-        "usw2"  : "54.193.168.4",
-        "usw3"  : "54.241.223.240",
-        "use" : "54.224.68.81",
-        "use2"  : "54.204.50.57",
-        "use3"  : "54.226.214.216",
-        "uss" : "23.22.180.212",
-        "uss2"  : "107.20.55.255",
-        "uss3"  : "54.80.250.47",
-        "usmw"  : "54.80.67.112",
-        "usmw2" : "50.17.143.165",
-        "ussw"  : "54.219.44.205",
-        "usnw"  : "50.18.24.120",
-        "euw" : "54.195.57.43",
-        "euw2"  : "54.195.154.140",
-        "eue" : "46.137.30.179",
-        "eus" : "54.195.179.215",
-        "eun" : "54.195.96.152",
-        "eun2"  : "54.216.200.98",
-        "eusw"  : "54.217.63.70",
-        "ae"  : "175.41.201.80",
-        "ase" : "54.255.15.39",
 
-
-        "uswest" : "54.241.208.233",
-        "uswest2"  : "54.193.168.4",
-        "uswest3"  : "54.241.223.240",
-        "useast" : "54.224.68.81",
-        "useast2"  : "54.204.50.57",
-        "useast3"  : "54.226.214.216",
-        "ussouth" : "23.22.180.212",
-        "ussouth2"  : "107.20.55.255",
-        "ussouth3"  : "54.80.250.47",
-        "usmidwest"  : "54.80.67.112",
-        "usmidwest2" : "50.17.143.165",
-        "ussouthwest"  : "54.219.44.205",
-        "usnorthwest"  : "50.18.24.120",
-        "euwest" : "54.195.57.43",
-        "euwest2"  : "54.195.154.140",
-        "eueast" : "46.137.30.179",
-        "eusouth" : "54.195.179.215",
-        "eunorth" : "54.195.96.152",
-        "eunorth2"  : "54.216.200.98",
-        "eusouthwest"  : "54.217.63.70",
-        "asiaeast"  : "175.41.201.80",
-        "asiasoutheast" : "54.255.15.39" };
+ "uswest" : "54.241.208.233",
+ "usmidwest" : "54.80.67.112",
+ "euwest" : "54.195.57.43",
+ "useast" : "54.224.68.81",
+ "asiasoutheast" : "54.255.15.39",
+ "ussouth" : "23.22.180.212",
+ "ussouthwest" : "54.241.53.42",
+ "eueast" : "46.137.30.179",
+ "eunorth" : "54.195.96.152",
+ "eusouthwest" : "54.217.63.70",
+ "useast3" : "54.226.214.216",
+ "uswest2" : "54.193.168.4",
+ "usmidwest2" : "50.17.143.165",
+ "USEast2" : "54.204.50.57",
+ "USNorthWest" : "50.18.24.120",
+ "AsiaEast" : "175.41.201.80",
+ "USSouth3" : "54.80.250.47",
+ "EUNorth2" : "54.216.200.98",
+ "EUWest2" : "54.216.27.65",
+ "EUSouth" : "54.195.179.215",
+ "USSouth2" : "50.19.7.133",
+ "USWest3" : "54.241.223.240",
+        
+        
+};//lazy
 
 var usage = 
 "Usage: /con <server>\n \
-\t\tusw     \n \
-\t\tusw2  \n \
-\t\tusw3  \n \
-\t\tuse   \n \
-\t\tuse2  \n \
-\t\tuse3  \n \
-\t\tuss   \n \
-\t\tuss2  \n \
-\t\tuss3  \n \
-\t\tusmw  \n \
-\t\tusmw2 \n \
-\t\tussw  \n \
-\t\tusnw  \n \
-\t\teuw   \n \
-\t\teuw2  \n \
-\t\teue   \n \
-\t\teus   \n \
-\t\teun   \n \
-\t\teun2  \n \
-\t\teusw  \n \
-\t\tae    \n \
-\t\tase   \n";
+\t\tAre you stupid  \n";
 
 var portals = { "{epicspiderDen.The_Crawling_Depths}" : 1,
         "{forestMaze.Forest_Maze_Portal}" : 1,
@@ -124,7 +80,7 @@ function onClientPacket(event) {
       }
       var server = text.substring(5, text.length()).toLowerCase();
 
-      if(servers[server] == null){
+      if (servers[server] == null){
         event.echo("Server " + server + " not found.");
       }else{
         event.setGameIdSocketAddress(-2, servers[server], event.getRemotePort());
