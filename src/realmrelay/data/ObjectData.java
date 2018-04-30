@@ -1,9 +1,15 @@
 package realmrelay.data;
 
 public class ObjectData {
-	
+
+	public String file;
+	public int index;
+
 	public String id = ""; // attribute id
 	public int type = -1; // attribute type
+
+	public String dungeonName = "";
+
 	public int maxHitPoints = -1; // element MaxHitPoints
 	public int maxSize = -1; // element MaxSize
 	public int minSize = -1; // element MinSize
@@ -25,5 +31,8 @@ public class ObjectData {
 	public boolean protectFromSink = false; // element ProtectFromSink
 	public boolean connects = false; // element Connects
 	public float z = 0; // element Z
+
+
+	public boolean hasAnimatedTexture;
 
 }

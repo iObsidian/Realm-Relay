@@ -5,29 +5,61 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public class Location implements IData {
-	
-	public float x, y;
-	
-	@Override
-	public void parseFromInput(DataInput in) throws IOException {
-		this.x = in.readFloat();
-		this.y = in.readFloat();
+
+	// - x = up
+	// + x = down
+	//
+	// - y = left
+	// + y = right
+
+	public float x;
+	public float y;
+
+	public Location() {
+		this.x = 0;
+		this.y = 0;
 	}
-	
-	@Override
-	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeFloat(this.x);
-		out.writeFloat(this.y);
+
+	public Location(float x, float y) {
+		this.x = x;
+		this.y = y;
 	}
-	
+
+	public Location(Location loc) {
+		x = loc.x;
+		y = loc.y;
+	}
+
+	@Override
+	public Location clone() {
+		return new Location(x, y);
+	}
+
 	public float distanceSquaredTo(Location location) {
-		float dx = location.x - this.x;
-		float dy = location.y - this.y;
+		float dx = location.x - x;
+		float dy = location.y - y;
 		return dx * dx + dy * dy;
 	}
-	
+
 	public float distanceTo(Location location) {
-		return (float) Math.sqrt(this.distanceSquaredTo(location));
+		return (float) Math.sqrt(distanceSquaredTo(location));
+	}
+
+	@Override
+	public void parseFromInput(DataInput in) throws IOException {
+		x = in.readFloat();
+		y = in.readFloat();
+	}
+
+	@Override
+	public String toString() {
+		return x + " " + y;
+	}
+
+	@Override
+	public void writeToOutput(DataOutput out) throws IOException {
+		out.writeFloat(x);
+		out.writeFloat(y);
 	}
 
 }

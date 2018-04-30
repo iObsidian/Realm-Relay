@@ -6,23 +6,29 @@ import java.io.IOException;
 
 
 public class SlotObject implements IData {
-	
-	public int objectId;
-	public int slotId;
-	public int objectType;
+
+	private int objectId; // the name of what holds it
+	private int slotId; // the slot of the item
+	private int objectType; // the ID of the item
+
+
+
+
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.objectId = in.readInt();
-		this.slotId = in.readUnsignedByte();
-		this.objectType = in.readShort();
+
+		objectId = in.readInt();
+		slotId = in.readUnsignedByte();
+		objectType = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.objectId);
-		out.writeByte(this.slotId);
-		out.writeShort(this.objectType);
+
+		out.writeInt(objectId);
+		out.writeByte(slotId);
+		out.writeInt(objectType);
 	}
 
 }

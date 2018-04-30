@@ -30,7 +30,7 @@ public class GETXmlParse {
 	public static final Map<String, GroundData> tileMap = new HashMap<String, GroundData>();
 	public static final Map<Integer, GroundData> tileMap2 = new HashMap<Integer, GroundData>();
 	public static final Map<String, Integer> packetMap = new HashMap<String, Integer>();
-	
+
 	private static final int XML_ITEMS = 0;
 	private static final int XML_OBJECTS = 1;
 	private static final int XML_PACKETS = 2;
@@ -64,7 +64,7 @@ public class GETXmlParse {
 			Element el = (Element) node.item(j);
 			// convert names with lowercase letters and spaces to the correct format
 			String idtemp = el.getAttribute("id").replace(" ", "").toUpperCase();
-			if(xmlType == XML_TILES) {
+			if (xmlType == XML_TILES) {
 				GroundData groundData = new GroundData();
 				groundData.id = el.getAttribute("id");
 				groundData.type = Integer.decode(el.getAttribute("type"));
@@ -84,7 +84,7 @@ public class GETXmlParse {
 				if (el.getElementsByTagName("Sink").getLength() > 0) {
 					groundData.sink = true;
 				}
-				if ((nodeList = el.getElementsByTagName("Speed")).getLength() > 0){
+				if ((nodeList = el.getElementsByTagName("Speed")).getLength() > 0) {
 					groundData.speed = Float.parseFloat(nodeList.item(0).getTextContent());
 				}
 				tileMap.put(idtemp, groundData);
@@ -246,5 +246,5 @@ public class GETXmlParse {
 			}
 		}
 	}
-	
+
 }

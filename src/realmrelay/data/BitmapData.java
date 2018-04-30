@@ -6,24 +6,26 @@ import java.io.IOException;
 
 
 public class BitmapData implements IData {
-	
-	public int width;
-	public int height;
-	public byte[] bytes = new byte[0];
+
+	private int width;
+	private int height;
+	private byte[] bytes = new byte[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.width = in.readInt();
-		this.height = in.readInt();
-		this.bytes = new byte[this.width * this.height * 4];
-		in.readFully(this.bytes);
+
+		width = in.readInt();
+		height = in.readInt();
+		bytes = new byte[width * height * 4];
+		in.readFully(bytes);
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.width);
-		out.writeInt(this.height);
-		out.write(this.bytes);
+
+		out.writeInt(width);
+		out.writeInt(height);
+		out.write(bytes);
 	}
 
 }

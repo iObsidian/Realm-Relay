@@ -6,12 +6,12 @@ import java.io.IOException;
 
 
 public class StatData implements IData {
-	
+
 	public int id;
 	public int intValue;
 	public String stringValue;
-	
-	public boolean isUTFData() {
+
+	boolean isUTFData() {
 		switch (id) {
 			case 31:
 			case 62:
@@ -23,7 +23,7 @@ public class StatData implements IData {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		id = in.readUnsignedByte();
@@ -33,7 +33,7 @@ public class StatData implements IData {
 			intValue = in.readInt();
 		}
 	}
-	
+
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeByte(id);
@@ -43,5 +43,5 @@ public class StatData implements IData {
 			out.writeInt(intValue);
 		}
 	}
-	
+
 }
