@@ -6,9 +6,8 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class PlayerTextPacket extends Packet {
-	
+
 	public String text;
 
 	@Override

@@ -4,7 +4,6 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-
 public class Location implements IData {
 	
 	public float x, y;

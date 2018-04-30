@@ -6,25 +6,24 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class NotificationPacket extends Packet {
-	
-	public int objectId;
-	public String message;
-	public int color;
+
+	private int objectId;
+	private String message;
+	private int color;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.objectId = in.readInt();
-		this.message = in.readUTF();
-		this.color = in.readInt();
+		objectId = in.readInt();
+		message = in.readUTF();
+		color = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.objectId);
-		out.writeUTF(this.message);
-		out.writeInt(this.color);
+		out.writeInt(objectId);
+		out.writeUTF(message);
+		out.writeInt(color);
 	}
 
 }

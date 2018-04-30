@@ -6,22 +6,24 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class TradeDonePacket extends Packet {
-	
-	public int code;
-	public String description;
+
+	public static final int TRADE_SUCCESSFUL = 0;
+	public static final int PLAYER_CANCELED = 1;
+
+	private int code;
+	private String description;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.code = in.readInt();
-		this.description = in.readUTF();
+		code = in.readInt();
+		description = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.code);
-		out.writeUTF(this.description);
+		out.writeInt(code);
+		out.writeUTF(description);
 	}
 
 }

@@ -3,23 +3,22 @@ package realmrelay;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import realmrelay.data.GroundData;
 import realmrelay.data.ItemData;
 import realmrelay.data.ObjectData;
 import realmrelay.data.ProjectileData;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 
 public class GETXmlParse {

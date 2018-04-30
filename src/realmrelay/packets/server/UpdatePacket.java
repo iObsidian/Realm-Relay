@@ -8,45 +8,48 @@ import realmrelay.data.Entity;
 import realmrelay.data.Tile;
 import realmrelay.packets.Packet;
 
-
 public class UpdatePacket extends Packet {
-	
-	public Tile[] tiles = new Tile[0];
+
+	private Tile[] tiles = new Tile[0];
 	public Entity[] newObjs = new Entity[0];
 	public int[] drops = new int[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.tiles = new Tile[in.readShort()];
-		for (int i = 0; i < this.tiles.length; i++) {
+
+		tiles = new Tile[in.readShort()];
+		for (int i = 0; i < tiles.length; i++) {
 			Tile tile = new Tile();
 			tile.parseFromInput(in);
-			this.tiles[i] = tile;
+			tiles[i] = tile;
 		}
-		this.newObjs = new Entity[in.readShort()];
-		for (int i = 0; i < this.newObjs.length; i++) {
+
+		newObjs = new Entity[in.readShort()];
+		for (int i = 0; i < newObjs.length; i++) {
 			Entity Entity = new Entity();
 			Entity.parseFromInput(in);
-			this.newObjs[i] = Entity;
+			newObjs[i] = Entity;
 		}
-		this.drops = new int[in.readShort()];
-		for (int i = 0; i < this.drops.length; i++) {
-			this.drops[i] = in.readInt();
+
+		drops = new int[in.readShort()];
+		for (int i = 0; i < drops.length; i++) {
+			drops[i] = in.readInt();
 		}
+
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeShort(this.tiles.length);
-		for (Tile tile: this.tiles) {
+		out.writeShort(tiles.length);
+		for (Tile tile : tiles) {
 			tile.writeToOutput(out);
 		}
-		out.writeShort(this.newObjs.length);
-		for (Entity obj: this.newObjs) {
+		out.writeShort(newObjs.length);
+		for (Entity obj : newObjs) {
 			obj.writeToOutput(out);
 		}
-		out.writeShort(this.drops.length);
-		for (int drop: this.drops) {
+		out.writeShort(drops.length);
+		for (int drop : drops) {
 			out.writeInt(drop);
 		}
 	}

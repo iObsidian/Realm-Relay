@@ -6,25 +6,24 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class SquareHitPacket extends Packet {
-	
-	public int time;
-	public int bulletId;
-	public int objectId;
+
+	private int time;
+	private int bulletId;
+	private int objectId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.time = in.readInt();
-		this.bulletId = in.readUnsignedByte();
-		this.objectId = in.readInt();
+		time = in.readInt();
+		bulletId = in.readUnsignedByte();
+		objectId = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.time);
-		out.writeByte(this.bulletId);
-		out.writeInt(this.objectId);
+		out.writeInt(time);
+		out.writeByte(bulletId);
+		out.writeInt(objectId);
 	}
 
 }

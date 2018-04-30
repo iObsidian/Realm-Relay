@@ -7,22 +7,21 @@ import java.io.IOException;
 import realmrelay.data.Location;
 import realmrelay.packets.Packet;
 
-
 public class GroundDamagePacket extends Packet {
-	
-	public int time;
-	public Location position = new Location();
+
+	private int time;
+	private Location position = new Location();
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.time = in.readInt();
-		this.position.parseFromInput(in);
+		time = in.readInt();
+		position.parseFromInput(in);
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.time);
-		this.position.writeToOutput(out);
+		out.writeInt(time);
+		position.writeToOutput(out);
 	}
 
 }

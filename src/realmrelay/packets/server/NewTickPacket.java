@@ -7,32 +7,30 @@ import java.io.IOException;
 import realmrelay.data.Status;
 import realmrelay.packets.Packet;
 
+public class NewTickPacket extends Packet {
 
-
-public class New_TickPacket extends Packet {
-	
 	public int tickId;
 	public int tickTime;
 	public Status[] statuses = new Status[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.tickId = in.readInt();
-		this.tickTime = in.readInt();
-		this.statuses = new Status[in.readShort()];
-		for (int i = 0; i < this.statuses.length; i++) {
+		tickId = in.readInt();
+		tickTime = in.readInt();
+		statuses = new Status[in.readShort()];
+		for (int i = 0; i < statuses.length; i++) {
 			Status status = new Status();
 			status.parseFromInput(in);
-			this.statuses[i] = status;
+			statuses[i] = status;
 		}
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.tickId);
-		out.writeInt(this.tickTime);
-		out.writeShort(this.statuses.length);
-		for (Status status: this.statuses) {
+		out.writeInt(tickId);
+		out.writeInt(tickTime);
+		out.writeShort(statuses.length);
+		for (Status status : statuses) {
 			status.writeToOutput(out);
 		}
 	}

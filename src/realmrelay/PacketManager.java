@@ -2,6 +2,7 @@ package realmrelay;
 
 import java.io.IOException;
 import java.util.HashMap;
+
 import realmrelay.data.Entity;
 import realmrelay.data.Location;
 import realmrelay.data.PlayerData;
@@ -11,8 +12,6 @@ import realmrelay.data.Status;
 import realmrelay.packets.Packet;
 import realmrelay.packets.client.HelloPacket;
 import realmrelay.packets.client.InvSwapPacket;
-import realmrelay.packets.client.PlayerTextPacket;
-import realmrelay.packets.client.UseItemPacket;
 import realmrelay.packets.client.UsePortalPacket;
 import realmrelay.packets.server.Create_SuccessPacket;
 import realmrelay.packets.server.New_TickPacket;

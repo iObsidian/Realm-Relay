@@ -8,21 +8,21 @@ import realmrelay.packets.Packet;
 
 
 public class TradeChangedPacket extends Packet {
-	
-	public boolean[] offer = new boolean[0];
+
+	private boolean[] offers = new boolean[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.offer = new boolean[in.readShort()];
-		for (int i = 0; i < this.offer.length; i++) {
-			this.offer[i] = in.readBoolean();
+		offers = new boolean[in.readShort()];
+		for (int i = 0; i < offers.length; i++) {
+			offers[i] = in.readBoolean();
 		}
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeShort(this.offer.length);
-		for (boolean b: this.offer) {
+		out.writeShort(offers.length);
+		for (boolean b : offers) {
 			out.writeBoolean(b);
 		}
 	}

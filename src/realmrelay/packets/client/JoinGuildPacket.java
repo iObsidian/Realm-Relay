@@ -6,19 +6,18 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class JoinGuildPacket extends Packet {
-	
-	public String guildName;
+
+	private String guildName;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.guildName = in.readUTF();
+		guildName = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeUTF(this.guildName);
+		out.writeUTF(guildName);
 	}
 
 }

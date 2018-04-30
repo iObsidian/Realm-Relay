@@ -6,22 +6,21 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class PongPacket extends Packet {
-	
+
 	public int serial;
 	public int time;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.serial = in.readInt();
-		this.time = in.readInt();
+		serial = in.readInt();
+		time = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.serial);
-		out.writeInt(this.time);
+		out.writeInt(serial);
+		out.writeInt(time);
 	}
 
 }

@@ -8,17 +8,17 @@ import realmrelay.packets.Packet;
 
 
 public class PingPacket extends Packet {
-	
+
 	public int serial;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.serial = in.readInt();
+		serial = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.serial);
+		out.writeInt(serial);
 	}
 
 }

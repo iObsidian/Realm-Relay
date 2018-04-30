@@ -6,19 +6,18 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class RequestTradePacket extends Packet {
-	
-	public String name;
+
+	private String name;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.name = in.readUTF();
+		name = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeUTF(this.name);
+		out.writeUTF(name);
 	}
 
 }

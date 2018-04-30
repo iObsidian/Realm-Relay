@@ -7,22 +7,22 @@ import java.io.IOException;
 import realmrelay.packets.Packet;
 
 public class CreateGuildResultPacket extends Packet {
-	
-	public boolean success;
-	public String errorText;
+
+	private boolean success;
+	private String errorText;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.success = in.readBoolean();
-		this.errorText = in.readUTF();
+		success = in.readBoolean();
+		errorText = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeBoolean(this.success);
-		out.writeUTF(this.errorText);
+		out.writeBoolean(success);
+		out.writeUTF(errorText);
 	}
-	
-	
+
+
 
 }

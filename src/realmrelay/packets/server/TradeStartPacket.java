@@ -7,40 +7,38 @@ import java.io.IOException;
 import realmrelay.data.Item;
 import realmrelay.packets.Packet;
 
-
-
 public class TradeStartPacket extends Packet {
-	
-	public Item[] myItems = new Item[0];
-	public String yourName;
-	public Item[] yourItems = new Item[0];
+
+	private Item[] myItems = new Item[0];
+	private String yourName;
+	private Item[] yourItems = new Item[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.myItems = new Item[in.readShort()];
-		for (int i = 0; i < this.myItems.length; i++) {
+		myItems = new Item[in.readShort()];
+		for (int i = 0; i < myItems.length; i++) {
 			Item item = new Item();
 			item.parseFromInput(in);
-			this.myItems[i] = item;
+			myItems[i] = item;
 		}
-		this.yourName = in.readUTF();
-		this.yourItems = new Item[in.readShort()];
-		for (int i = 0; i < this.yourItems.length; i++) {
+		yourName = in.readUTF();
+		yourItems = new Item[in.readShort()];
+		for (int i = 0; i < yourItems.length; i++) {
 			Item item = new Item();
 			item.parseFromInput(in);
-			this.yourItems[i] = item;
+			yourItems[i] = item;
 		}
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeShort(this.myItems.length);
-		for (Item item: this.myItems) {
+		out.writeShort(myItems.length);
+		for (Item item : myItems) {
 			item.writeToOutput(out);
 		}
-		out.writeUTF(this.yourName);
-		out.writeShort(this.yourItems.length);
-		for (Item item: this.yourItems) {
+		out.writeUTF(yourName);
+		out.writeShort(yourItems.length);
+		for (Item item : yourItems) {
 			item.writeToOutput(out);
 		}
 	}

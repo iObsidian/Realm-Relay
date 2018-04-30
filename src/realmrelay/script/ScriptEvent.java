@@ -8,7 +8,6 @@ import java.net.Proxy;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-
 import realmrelay.GETXmlParse;
 import realmrelay.ROTMGRelay;
 import realmrelay.User;

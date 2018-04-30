@@ -6,14 +6,13 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class MapInfoPacket extends Packet {
-	
+
 	public int width;
 	public int height;
 	public String name;
-	public String obf0;
-	public int obf1;
+	public String displayName;
+	public int difficulty;
 	public int fp;
 	public int background;
 	public boolean allowPlayerTeleport;
@@ -21,15 +20,14 @@ public class MapInfoPacket extends Packet {
 	public String[] clientXML = new String[0];
 	public String[] extraXML = new String[0];
 
-	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		this.width = in.readInt();
 		this.height = in.readInt();
 		this.name = in.readUTF();
-		this.obf0 = in.readUTF();
-		this.fp = in.readInt(); // TODO: fp is supposed to be unsigned
+		this.displayName = in.readUTF();
+		this.fp = in.readInt();
 		this.background = in.readInt();
-		this.obf1 = in.readInt();
+		this.difficulty = in.readInt();
 		this.allowPlayerTeleport = in.readBoolean();
 		this.showDisplays = in.readBoolean();
 		this.clientXML = new String[in.readShort()];
@@ -46,29 +44,27 @@ public class MapInfoPacket extends Packet {
 		}
 	}
 
-	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeInt(this.width);
 		out.writeInt(this.height);
 		out.writeUTF(this.name);
-		out.writeUTF(this.obf0);
+		out.writeUTF(this.displayName);
 		out.writeInt(this.fp);
 		out.writeInt(this.background);
-		out.writeInt(this.obf1);
+		out.writeInt(this.difficulty);
 		out.writeBoolean(this.allowPlayerTeleport);
 		out.writeBoolean(this.showDisplays);
 		out.writeShort(this.clientXML.length);
-		for (String xml: this.clientXML) {
+		for (String xml : this.clientXML) {
 			byte[] utf = xml.getBytes("UTF-8");
 			out.writeInt(utf.length);
 			out.write(utf);
 		}
 		out.writeShort(this.extraXML.length);
-		for (String xml: this.extraXML) {
+		for (String xml : this.extraXML) {
 			byte[] utf = xml.getBytes("UTF-8");
 			out.writeInt(utf.length);
 			out.write(utf);
 		}
 	}
-
 }

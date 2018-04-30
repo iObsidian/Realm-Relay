@@ -8,17 +8,20 @@ import realmrelay.packets.Packet;
 
 
 public class BuyPacket extends Packet {
-	
-	public int objectId;
+
+	private int objectId;
+	private int quantity;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.objectId = in.readInt();
+		objectId = in.readInt();
+		quantity = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.objectId);
+		out.writeInt(objectId);
+		out.writeInt(quantity);
 	}
 
 }

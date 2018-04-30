@@ -6,22 +6,21 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class CreatePacket extends Packet {
-	
+
 	public int classType;
 	public int skinType;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.classType = in.readUnsignedShort();
-		this.skinType = in.readUnsignedShort();
+		classType = in.readUnsignedShort();
+		skinType = in.readUnsignedShort();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeShort(this.classType);
-		out.writeShort(this.skinType);
+		out.writeShort(classType);
+		out.writeShort(skinType);
 	}
 
 }

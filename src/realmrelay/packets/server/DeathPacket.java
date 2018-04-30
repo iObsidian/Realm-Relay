@@ -6,31 +6,30 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class DeathPacket extends Packet {
-	
-	public String accountId;
-	public int charId;
+
+	private String accountId;
+	private int charId;
 	public String killedBy;
-	public int obf0;
-	public int obf1;
+	public int zombieType;
+	public int zombieId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.accountId = in.readUTF();
-		this.charId = in.readInt();
-		this.killedBy = in.readUTF();
-		this.obf0 = in.readInt();
-		this.obf1 = in.readInt();
+		accountId = in.readUTF();
+		charId = in.readInt();
+		killedBy = in.readUTF();
+		zombieType = in.readInt();
+		zombieId = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeUTF(this.accountId);
-		out.writeInt(this.charId);
-		out.writeUTF(this.killedBy);
-		out.writeInt(this.obf0);
-		out.writeInt(this.obf1);
+		out.writeUTF(accountId);
+		out.writeInt(charId);
+		out.writeUTF(killedBy);
+		out.writeInt(zombieType);
+		out.writeInt(zombieId);
 	}
 
 }

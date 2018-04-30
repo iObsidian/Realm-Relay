@@ -6,23 +6,22 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class ChangeTradePacket extends Packet {
-	
-	public boolean[] offer = new boolean[0];
+
+	private boolean[] offer = new boolean[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.offer = new boolean[in.readShort()];
-		for (int i = 0; i < this.offer.length; i++) {
-			this.offer[i] = in.readBoolean();
+		offer = new boolean[in.readShort()];
+		for (int i = 0; i < offer.length; i++) {
+			offer[i] = in.readBoolean();
 		}
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeShort(this.offer.length);
-		for (boolean b: this.offer) {
+		out.writeShort(offer.length);
+		for (boolean b : offer) {
 			out.writeBoolean(b);
 		}
 	}

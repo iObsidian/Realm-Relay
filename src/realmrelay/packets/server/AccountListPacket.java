@@ -6,23 +6,22 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class AccountListPacket extends Packet {
-	
+
 	public int accountListId;
-	public String[] accountIds = new String[0];
-	public int lockAction = -1;
-	
+	private String[] accountIds = new String[0];
+	private int lockAction;
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.accountListId = in.readInt();
-		this.accountIds = new String[in.readShort()];
+		accountListId = in.readInt();
+		accountIds = new String[in.readShort()];
 		for (int i = 0; i < accountIds.length; i++) {
 			accountIds[i] = in.readUTF();
 		}
 		lockAction = in.readInt();
 	}
-	
+
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeInt(accountListId);
@@ -32,5 +31,5 @@ public class AccountListPacket extends Packet {
 		}
 		out.writeInt(lockAction);
 	}
-	
+
 }

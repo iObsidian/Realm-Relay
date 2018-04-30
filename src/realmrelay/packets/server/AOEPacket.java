@@ -7,35 +7,36 @@ import java.io.IOException;
 import realmrelay.data.Location;
 import realmrelay.packets.Packet;
 
-
-
 public class AOEPacket extends Packet {
-	
-	public Location pos = new Location();
+
+	public Location location = new Location();
 	public float radius;
-	public int damage;
-	public int effect;
-	public float duration;
-	public int origType;
+	private short damage;
+	private byte effects;
+	private float effectDuration;
+	private short originType;
+	private int color;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.pos.parseFromInput(in);
-		this.radius = in.readFloat();
-		this.damage = in.readUnsignedShort();
-		this.effect = in.readUnsignedByte();
-		this.duration = in.readFloat();
-		this.origType = in.readUnsignedShort();
+		location.parseFromInput(in);
+		radius = in.readFloat();
+		damage = in.readShort();
+		effects = in.readByte();
+		effectDuration = in.readFloat();
+		originType = in.readShort();
+		color = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		this.pos.writeToOutput(out);
-		out.writeFloat(this.radius);
-		out.writeShort(this.damage);
-		out.writeByte(this.effect);
-		out.writeFloat(this.duration);
-		out.writeShort(this.origType);
+		location.writeToOutput(out);
+		out.writeFloat(radius);
+		out.writeShort(damage);
+		out.writeByte(effects);
+		out.writeFloat(effectDuration);
+		out.writeShort(originType);
+		out.writeInt(color);
 	}
 
 }

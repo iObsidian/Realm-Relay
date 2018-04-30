@@ -6,28 +6,27 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class EnemyHitPacket extends Packet {
-	
-	public int time;
-	public int bulletId;
-	public int targetId;
-	public boolean kill;
+
+	private int time;
+	private int bulletId;
+	private int targetId;
+	private boolean killed;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.time = in.readInt();
-		this.bulletId = in.readUnsignedByte();
-		this.targetId = in.readInt();
-		this.kill = in.readBoolean();
+		time = in.readInt();
+		bulletId = in.readUnsignedByte();
+		targetId = in.readInt();
+		killed = in.readBoolean();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.time);
-		out.writeByte(this.bulletId);
-		out.writeInt(this.targetId);
-		out.writeBoolean(this.kill);
+		out.writeInt(time);
+		out.writeByte(bulletId);
+		out.writeInt(targetId);
+		out.writeBoolean(killed);
 	}
 
 }

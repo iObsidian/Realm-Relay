@@ -8,28 +8,27 @@ import realmrelay.data.Location;
 import realmrelay.data.SlotObject;
 import realmrelay.packets.Packet;
 
-
 public class UseItemPacket extends Packet {
-	
-	public int time;
-	public SlotObject slotObject = new SlotObject();
-	public Location itemUsePos = new Location();
-	public int useType;
+
+	private int time;
+	private SlotObject slotObject = new SlotObject();
+	private Location itemUsePos = new Location();
+	private int useType;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.time = in.readInt();
-		this.slotObject.parseFromInput(in);
-		this.itemUsePos.parseFromInput(in);
-		this.useType = in.readUnsignedByte();
+		time = in.readInt();
+		slotObject.parseFromInput(in);
+		itemUsePos.parseFromInput(in);
+		useType = in.readUnsignedByte();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.time);
-		this.slotObject.writeToOutput(out);
-		this.itemUsePos.writeToOutput(out);
-		out.writeByte(this.useType);
+		out.writeInt(time);
+		slotObject.writeToOutput(out);
+		itemUsePos.writeToOutput(out);
+		out.writeByte(useType);
 	}
 
 }

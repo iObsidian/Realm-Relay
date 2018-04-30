@@ -6,22 +6,33 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class BuyResultPacket extends Packet {
-	
-	public int result;
-	public String resultString;
+
+	/**
+	UnknownError = -1
+	Success = 0
+	InvalidCharacter = 1
+	ItemNotFound = 2
+	NotEnoughGold = 3
+	InventoryFull = 4
+	TooLowRank = 5
+	NotEnoughFame = 6
+	PetFeedSuccess = 7
+	*/
+
+	private int result;
+	private String message;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.result = in.readInt();
-		this.resultString = in.readUTF();
+		result = in.readInt();
+		message = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.result);
-		out.writeUTF(this.resultString);
+		out.writeInt(result);
+		out.writeUTF(message);
 	}
 
 }

@@ -6,40 +6,39 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class DamagePacket extends Packet {
-	
-	public int targetId;
-	public int[] effects = new int[0];
-	public int damageAmount;
-	public boolean kill;
-	public int bulletId;
-	public int objectId;
+
+	private int targetId;
+	private int[] effects = new int[0];
+	private int damage;
+	private boolean killed;
+	private int bulletId;
+	private int objectId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.targetId = in.readInt();
-		this.effects = new int[in.readUnsignedByte()];
-		for (int i = 0; i < this.effects.length; i++) {
-			this.effects[i] = in.readUnsignedByte();
+		targetId = in.readInt();
+		effects = new int[in.readUnsignedByte()];
+		for (int i = 0; i < effects.length; i++) {
+			effects[i] = in.readUnsignedByte();
 		}
-		this.damageAmount = in.readUnsignedShort();
-		this.kill = in.readBoolean();
-		this.bulletId = in.readUnsignedByte();
-		this.objectId = in.readInt();
+		damage = in.readUnsignedShort();
+		killed = in.readBoolean();
+		bulletId = in.readUnsignedByte();
+		objectId = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.targetId);
-		out.writeByte(this.effects.length);
-		for (int effect: this.effects) {
+		out.writeInt(targetId);
+		out.writeByte(effects.length);
+		for (int effect : effects) {
 			out.writeByte(effect);
 		}
-		out.writeShort(this.damageAmount);
-		out.writeBoolean(this.kill);
-		out.writeByte(this.bulletId);
-		out.writeInt(this.objectId);
+		out.writeShort(damage);
+		out.writeBoolean(killed);
+		out.writeByte(bulletId);
+		out.writeInt(objectId);
 	}
 
 }

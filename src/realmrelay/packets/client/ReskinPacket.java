@@ -6,19 +6,18 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class ReskinPacket extends Packet {
-	
-	public int skinID;
+
+	private int skinID;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.skinID = in.readInt();
+		skinID = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.skinID);
+		out.writeInt(skinID);
 	}
 
 }

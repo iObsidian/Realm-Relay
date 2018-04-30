@@ -6,22 +6,26 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class FailurePacket extends Packet {
-	
+
+	public static final int INCORRECT_VERSION = 4;
+	public static final int BAD_KEY = 5;
+	public static final int INVALID_TELEPORT_TARGET = 6;
+	public static final int EMAIL_VERIFICATION_NEEDED = 7;
+
 	public int errorId;
 	public String errorDescription;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.errorId = in.readInt();
-		this.errorDescription = in.readUTF();
+		errorId = in.readInt();
+		errorDescription = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.errorId);
-		out.writeUTF(this.errorDescription);
+		out.writeInt(errorId);
+		out.writeUTF(errorDescription);
 	}
 
 }

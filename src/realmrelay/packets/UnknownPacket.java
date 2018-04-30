@@ -27,7 +27,7 @@ public class UnknownPacket extends Packet {
 		} catch (Exception e) {}
 	}
 	
-	protected void setId(byte id) {
+	public void setId(byte id) {
 		this.id = id;
 	}
 

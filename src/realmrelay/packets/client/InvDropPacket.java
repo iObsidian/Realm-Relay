@@ -7,19 +7,18 @@ import java.io.IOException;
 import realmrelay.data.SlotObject;
 import realmrelay.packets.Packet;
 
-
 public class InvDropPacket extends Packet {
-	
-	public SlotObject slotObject = new SlotObject();
+
+	private SlotObject slotObject = new SlotObject();
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.slotObject.parseFromInput(in);
+		slotObject.parseFromInput(in);
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		this.slotObject.writeToOutput(out);
+		slotObject.writeToOutput(out);
 	}
 
 }

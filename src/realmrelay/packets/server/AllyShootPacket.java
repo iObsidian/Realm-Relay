@@ -7,27 +7,29 @@ import java.io.IOException;
 import realmrelay.packets.Packet;
 
 
+
+
 public class AllyShootPacket extends Packet {
-	
-	public int bulletId;
-	public int ownerId;
-	public short containerType;
-	public float angle;
+
+	private int bulletId;
+	private int ownerId;
+	private short containerType;
+	private float angle;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.bulletId = in.readUnsignedByte();
-		this.ownerId = in.readInt();
-		this.containerType = in.readShort();
-		this.angle = in.readFloat();
+		bulletId = in.readUnsignedByte();
+		ownerId = in.readInt();
+		containerType = in.readShort();
+		angle = in.readFloat();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeByte(this.bulletId);
-		out.writeInt(this.ownerId);
-		out.writeShort(this.containerType);
-		out.writeFloat(this.angle);
+		out.writeByte(bulletId);
+		out.writeInt(ownerId);
+		out.writeShort(containerType);
+		out.writeFloat(angle);
 	}
 
 }

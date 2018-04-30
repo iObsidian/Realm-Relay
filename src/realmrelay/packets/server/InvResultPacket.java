@@ -6,19 +6,18 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
 public class InvResultPacket extends Packet {
-	
+
 	public int result;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.result = in.readInt();
+		result = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.result);
+		out.writeInt(result);
 	}
 
 }
