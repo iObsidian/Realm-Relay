@@ -4,15 +4,15 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.data.Location;
 import realmrelay.packets.Packet;
+import realmrelay.packets.data.WorldPosData;
 
 public class EnemyShootPacket extends Packet {
 
 	private int bulletId;
 	private int ownerId;
 	private int bulletType;
-	private Location startingPos = new Location();
+	private WorldPosData startingPos = new WorldPosData();
 	private float angle;
 	private short damage;
 	private int numShots;

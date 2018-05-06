@@ -8,28 +8,27 @@ import java.net.Proxy;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import realmrelay.GETXmlParse;
+import realmrelay.GetXMLParse;
 import realmrelay.ROTMGRelay;
 import realmrelay.User;
-import realmrelay.data.BitmapData;
-import realmrelay.data.Entity;
-import realmrelay.data.GroundData;
-import realmrelay.data.Item;
-import realmrelay.data.ItemData;
-import realmrelay.data.Location;
-import realmrelay.data.LocationRecord;
-import realmrelay.data.ObjectData;
-import realmrelay.data.SlotObject;
-import realmrelay.data.StatData;
-import realmrelay.data.Status;
-import realmrelay.data.Tile;
 import realmrelay.packets.Packet;
-
+import realmrelay.packets.data.BitmapData;
+import realmrelay.packets.data.Entity;
+import realmrelay.packets.data.GroundData;
+import realmrelay.packets.data.GroundTileData;
+import realmrelay.packets.data.Item;
+import realmrelay.packets.data.ItemData;
+import realmrelay.packets.data.MoveRecord;
+import realmrelay.packets.data.ObjectData;
+import realmrelay.packets.data.SlotObjectData;
+import realmrelay.packets.data.StatData;
+import realmrelay.packets.data.Status;
+import realmrelay.packets.data.WorldPosData;
 
 public class ScriptEvent {
-	
+
 	protected final User user;
-	
+
 	/**
 	 * Creates event to be handled by user scripts
 	 * @param user
@@ -37,7 +36,7 @@ public class ScriptEvent {
 	public ScriptEvent(User user) {
 		this.user = user;
 	}
-	
+
 	public boolean connect(int gameId) {
 		if (this.user.remoteSocket != null) {
 			return false;
@@ -49,7 +48,8 @@ public class ScriptEvent {
 			public void run() {
 				Socket remoteSocket;
 				if (ROTMGRelay.instance.bUseProxy) {
-					SocketAddress proxyAddress = new InetSocketAddress(ROTMGRelay.instance.proxyHost, ROTMGRelay.instance.proxyPort);
+					SocketAddress proxyAddress = new InetSocketAddress(ROTMGRelay.instance.proxyHost,
+							ROTMGRelay.instance.proxyPort);
 					Proxy proxy = new Proxy(Proxy.Type.SOCKS, proxyAddress);
 					remoteSocket = new Socket(proxy);
 				} else {
@@ -58,9 +58,13 @@ public class ScriptEvent {
 				try {
 					SocketAddress remoteAddress;
 					if (InetAddress.getByName(socketAddress.getHostString()).isLoopbackAddress()) {
-						remoteAddress = new InetSocketAddress(ROTMGRelay.instance.remoteHost, socketAddress.getPort() == -1 ? ROTMGRelay.instance.remotePort : socketAddress.getPort());
+						remoteAddress = new InetSocketAddress(ROTMGRelay.instance.remoteHost,
+								socketAddress.getPort() == -1 ? ROTMGRelay.instance.remotePort
+										: socketAddress.getPort());
 					} else {
-						remoteAddress = new InetSocketAddress(socketAddress.getHostString(), socketAddress.getPort() == -1 ? ROTMGRelay.instance.remotePort : socketAddress.getPort());
+						remoteAddress = new InetSocketAddress(socketAddress.getHostString(),
+								socketAddress.getPort() == -1 ? ROTMGRelay.instance.remotePort
+										: socketAddress.getPort());
 					}
 					remoteSocket.connect(remoteAddress, 10000);
 					user.remoteNoDataTime = System.currentTimeMillis();
@@ -70,31 +74,31 @@ public class ScriptEvent {
 					user.scriptManager.trigger("onConnectFail");
 				}
 			}
-		
+
 		}).start();
 		return true;
 	}
-	
+
 	public BitmapData createBitmapData() {
 		return new BitmapData();
 	}
-	
+
 	public Item createItem() {
 		return new Item();
 	}
-	
-	public Location createLocation() {
-		return new Location();
+
+	public WorldPosData createWorldPosData() {
+		return new WorldPosData();
 	}
-	
-	public LocationRecord createLocationRecord() {
-		return new LocationRecord();
+
+	public MoveRecord createWorldPosDataRecord() {
+		return new MoveRecord();
 	}
-	
+
 	public Entity createEntity() {
 		return new Entity();
 	}
-	
+
 	/**
 	 * Creates new packet from packet id
 	 * @param id
@@ -103,30 +107,30 @@ public class ScriptEvent {
 	public Packet createPacket(byte id) throws Exception {
 		return Packet.create(id);
 	}
-	
-	public SlotObject createSlotObject() {
-		return new SlotObject();
+
+	public SlotObjectData createSlotObject() {
+		return new SlotObjectData();
 	}
-	
+
 	public StatData createStatData() {
 		return new StatData();
 	}
-	
+
 	public Status createStatus() {
 		return new Status();
 	}
-	
-	public Tile createTile() {
-		return new Tile();
+
+	public GroundTileData createTile() {
+		return new GroundTileData();
 	}
-	
+
 	/**
 	 * Disconnects from the server
 	 */
 	public void disconnect() {
 		this.user.disconnect();
 	}
-	
+
 	/**
 	 * echo message
 	 * @param message
@@ -134,51 +138,39 @@ public class ScriptEvent {
 	public void echo(String message) {
 		ROTMGRelay.echo(message);
 	}
-	
-	public GroundData findGround(Object searchterm) {
-		if (searchterm instanceof Number) {
-			int type = (int)((double) searchterm);
-			return GETXmlParse.tileMap2.get(type);
-		}
-		return GETXmlParse.tileMap.get(searchterm.toString().toUpperCase());
+
+	public GroundData findGround(Number searchterm) {
+		return GetXMLParse.tileMap.get(searchterm);
 	}
-	
+
 	public ItemData findItem(Object searchterm) {
-		if (searchterm instanceof Number) {
-			int type = (int)((double) searchterm);
-			return GETXmlParse.itemMap2.get(type);
-		}
-		return GETXmlParse.itemMap.get(searchterm.toString().toUpperCase());
+		return GetXMLParse.itemMap.get(searchterm);
 	}
-	
+
 	public ObjectData findObject(Object searchterm) {
-		if (searchterm instanceof Number) {
-			int type = (int)((double) searchterm);
-			return GETXmlParse.objectMap2.get(type);
-		}
-		return GETXmlParse.objectMap.get(searchterm.toString().toUpperCase());
+		return GetXMLParse.objectMap.get(searchterm);
 	}
-	
+
 	public byte findPacketId(String name) {
-		Integer id = (Integer) GETXmlParse.packetMap.get(name.toUpperCase());
+		Integer id = (Integer) GetXMLParse.packetMap.get(name.toUpperCase());
 		if (id == null) {
 			return -1;
 		}
 		return id.byteValue();
 	}
-	
+
 	public Object getGlobal(String var) {
 		return ROTMGRelay.instance.getGlobal(var);
 	}
-	
+
 	public String getRemoteHost() {
 		return this.user.remoteSocket.getInetAddress().getHostName();
 	}
-	
+
 	public int getRemotePort() {
 		return this.user.remoteSocket.getPort();
 	}
-	
+
 	/**
 	 * Returns true if connected to remote host
 	 * @return
@@ -186,7 +178,7 @@ public class ScriptEvent {
 	public boolean isConnected() {
 		return this.user.remoteSocket != null;
 	}
-	
+
 	public void kickUser() {
 		this.user.kick();
 	}
@@ -200,7 +192,7 @@ public class ScriptEvent {
 	public void scheduleEvent(double seconds, String eventMethod, Object... objects) {
 		this.user.scriptManager.scheduleEvent(seconds, eventMethod, objects);
 	}
-	
+
 	/**
 	 * Sends packet to client
 	 * @param packet
@@ -216,7 +208,7 @@ public class ScriptEvent {
 		out.writeByte(packetId);
 		out.write(packetBytes);
 	}
-	
+
 	/**
 	 * Sends packet to server
 	 * @param packet
@@ -232,11 +224,11 @@ public class ScriptEvent {
 		out.writeByte(packetId);
 		out.write(packetBytes);
 	}
-	
+
 	public void setGameIdSocketAddress(int gameId, String host, int port) {
 		ROTMGRelay.instance.setSocketAddress(gameId, host, port);
 	}
-	
+
 	public void setGlobal(String var, Object value) {
 		ROTMGRelay.instance.setGlobal(var, value);
 	}

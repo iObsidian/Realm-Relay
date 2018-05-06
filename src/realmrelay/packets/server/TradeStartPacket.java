@@ -4,8 +4,8 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.data.Item;
 import realmrelay.packets.Packet;
+import realmrelay.packets.data.Item;
 
 public class TradeStartPacket extends Packet {
 
