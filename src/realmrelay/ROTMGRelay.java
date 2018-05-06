@@ -22,35 +22,34 @@ import java.util.Vector;
 import realmrelay.net.ListenSocket;
 import realmrelay.packets.Packet;
 
-
 public final class ROTMGRelay {
-	
+
 	public static final ROTMGRelay instance = new ROTMGRelay();
-	
+
 	// #settings
 	public String listenHost = "localhost";
 	public int listenPort = 2050;
-	
+
 	public boolean bUseProxy = false;
 	public String proxyHost = "socks4or5.someproxy.net";
 	public int proxyPort = 1080;
-	
-	public String remoteHost = "54.226.214.216";
+
+	public String remoteHost = "54.153.32.11";
 	public int remotePort = 2050;
-	
+
 	public String key0 = "6a39570cc9de4ec71d64821894";
 	public String key1 = "c79332b197f92ba85ed281a023";
-	
+
 	// #settings end
-	
+
 	private final ListenSocket listenSocket;
 	private final List<User> users = new ArrayList<User>();
 	private final List<User> newUsers = new Vector<User>();
 	private final Map<Integer, InetSocketAddress> gameIdSocketAddressMap = new Hashtable<Integer, InetSocketAddress>();
 	private final Map<String, Object> globalVarMap = new Hashtable<String, Object>();
-	
+
 	private ROTMGRelay() {
-		Properties p = new Properties();
+		/**Properties p = new Properties();
 		p.setProperty("listenHost", this.listenHost);
 		p.setProperty("listenPort", String.valueOf(this.listenPort));
 		p.setProperty("bUseProxy", String.valueOf(this.bUseProxy));
@@ -86,7 +85,7 @@ public final class ROTMGRelay {
 			this.key1 = p.getProperty("key1");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		this.listenSocket = new ListenSocket(this.listenHost, this.listenPort) {
 
 			@Override
@@ -103,10 +102,10 @@ public final class ROTMGRelay {
 					}
 				}
 			}
-			
+
 		};
 	}
-	
+
 	/**
 	 * error message
 	 * @param message
@@ -118,7 +117,7 @@ public final class ROTMGRelay {
 		String raw = timestamp + " " + message;
 		System.err.println(raw);
 	}
-	
+
 	/**
 	 * echo message
 	 * @param message
@@ -130,11 +129,11 @@ public final class ROTMGRelay {
 		String raw = timestamp + " " + message;
 		System.out.println(raw);
 	}
-	
+
 	public Object getGlobal(String var) {
 		return this.globalVarMap.get(var);
 	}
-	
+
 	public InetSocketAddress getSocketAddress(int gameId) {
 		InetSocketAddress socketAddress = this.gameIdSocketAddressMap.get(gameId);
 		if (socketAddress == null) {
@@ -142,16 +141,16 @@ public final class ROTMGRelay {
 		}
 		return socketAddress;
 	}
-	
+
 	public void setGlobal(String var, Object value) {
 		this.globalVarMap.put(var, value);
 	}
-	
+
 	public void setSocketAddress(int gameId, String host, int port) {
 		InetSocketAddress socketAddress = new InetSocketAddress(host, port);
 		this.gameIdSocketAddressMap.put(gameId, socketAddress);
 	}
-	
+
 	public static void main(String[] args) {
 		try {
 			GETXmlParse.parseXMLData();
@@ -168,7 +167,7 @@ public final class ROTMGRelay {
 					ROTMGRelay.echo("Connected " + user.localSocket);
 					user.scriptManager.trigger("onEnable");
 				}
-				
+
 				int cores = Runtime.getRuntime().availableProcessors();
 				Thread[] threads = new Thread[cores];
 				int core = 0;
@@ -187,16 +186,16 @@ public final class ROTMGRelay {
 						}
 					}
 					(threads[core] = new Thread(new Runnable() {
-						
+
 						@Override
 						public void run() {
 							user.process();
 						}
-						
+
 					})).start();
 					core = (core + 1) % cores;
 				}
-				for (Thread thread: threads) {
+				for (Thread thread : threads) {
 					if (thread == null) {
 						continue;
 					}
@@ -214,7 +213,8 @@ public final class ROTMGRelay {
 				user.kick();
 			}
 		} else {
-			ROTMGRelay.echo("Realm Relay listener problem. Make sure there are no instances of Realm Relay already running.");
+			ROTMGRelay.echo(
+					"Realm Relay listener problem. Make sure there are no instances of Realm Relay already running.");
 		}
 	}
 

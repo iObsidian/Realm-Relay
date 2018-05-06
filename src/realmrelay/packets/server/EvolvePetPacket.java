@@ -6,21 +6,17 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-public class CreateSuccessPacket extends Packet {
-
-	public int objectId;
-	public int charId;
+public class EvolvePetPacket extends Packet {
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		objectId = in.readInt();
-		charId = in.readInt();
+		int petID = in.readInt();
+		int initialSkin = in.readInt();
+		int finalSkin = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(objectId);
-		out.writeInt(charId);
 	}
 
 }

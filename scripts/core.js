@@ -73,9 +73,5 @@ function onServerPacket(event) {
 }
 
 function displayRealmRelayNotification(event, playerObjectId) {
-	var notificationPacket = $.createPacket(ID_NOTIFICATION);
-	notificationPacket.objectId = playerObjectId;
-	notificationPacket.message = "{\"key\":\"blank\",\"tokens\":{\"data\":\"Realm Relay enabled!\"}}";
-	notificationPacket.color = 0xffa500;
-	$.sendToClient(notificationPacket);
+
 }

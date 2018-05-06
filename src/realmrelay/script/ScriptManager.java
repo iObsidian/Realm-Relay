@@ -19,14 +19,13 @@ import realmrelay.ROTMGRelay;
 import realmrelay.User;
 import realmrelay.packets.Packet;
 
-
 public class ScriptManager {
-	
+
 	private final List<Invocable> scripts = new ArrayList<Invocable>();
 	private final List<ScheduledScriptEvent> newScheduledEvents = new Vector<ScheduledScriptEvent>();
 	private final List<ScheduledScriptEvent> scheduledEvents = new ArrayList<ScheduledScriptEvent>();
 	private final User user;
-	
+
 	public ScriptManager(User user) {
 		this.user = user;
 		File folder = new File("scripts/");
@@ -43,11 +42,11 @@ public class ScriptManager {
 				}
 				return name.substring(lastIndex).equalsIgnoreCase(".js");
 			}
-			
+
 		};
 		File[] files = folder.listFiles(filter);
 		Object scriptEvent = new ScriptEvent(this.user);
-		for (File file: files) {
+		for (File file : files) {
 			ScriptEngine scriptEngine = new ScriptEngineManager().getEngineByName("JavaScript");
 			try {
 				scriptEngine.put("$", scriptEvent);
@@ -67,7 +66,7 @@ public class ScriptManager {
 		this.invoke("onClientPacket", event);
 		return event;
 	}
-	
+
 	public void fireExpiredEvents() {
 		while (!this.newScheduledEvents.isEmpty()) {
 			ScheduledScriptEvent event = this.newScheduledEvents.remove(0);
@@ -84,14 +83,14 @@ public class ScriptManager {
 			}
 		}
 	}
-	
+
 	public void invoke(String method, ScriptEvent event, Object... args) {
 		Object[] args0 = new Object[args.length + 1];
 		args0[0] = event;
 		for (int i = 0; i < args.length; i++) {
 			args0[i + 1] = args[i];
 		}
-		for (Invocable script: this.scripts) {
+		for (Invocable script : this.scripts) {
 			try {
 				script.invokeFunction(method, args0);
 			} catch (NoSuchMethodException e) {
@@ -108,12 +107,16 @@ public class ScriptManager {
 	}
 
 	public PacketScriptEvent serverPacketEvent(Packet packet) throws Exception {
+
+		System.out.println("Packet received : " + packet.id() + " " + packet.getName());
+
 		PacketScriptEvent event = new PacketScriptEvent(this.user, packet);
 		PacketManager.onServerPacketEvent(event);
 		this.invoke("onServerPacket", event);
+
 		return event;
 	}
-	
+
 	public void trigger(String eventMethod, Object... objects) {
 		this.scheduleEvent(0, eventMethod, objects);
 	}

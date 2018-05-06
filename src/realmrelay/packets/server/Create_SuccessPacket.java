@@ -6,14 +6,21 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-public class VerifyEmailDialogPacket extends Packet {
+public class Create_SuccessPacket extends Packet {
+
+	public int objectId;
+	public int charId;
+
+	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		//this method is left intentionally blank*
+		objectId = in.readInt();
+		charId = in.readInt();
 	}
 
+	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		//this method is left intentionally blank*
+		out.writeInt(objectId);
+		out.writeInt(charId);
 	}
-}
 
-//* packet contains no variables, see github.com TheKronks KRelay VerifyEmailDialogPacket
+}

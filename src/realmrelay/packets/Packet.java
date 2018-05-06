@@ -66,7 +66,7 @@ import realmrelay.packets.server.ArenaNextWavePacket;
 import realmrelay.packets.server.BuyResultPacket;
 import realmrelay.packets.server.ClientStatPacket;
 import realmrelay.packets.server.CreateGuildResultPacket;
-import realmrelay.packets.server.CreateSuccessPacket;
+import realmrelay.packets.server.Create_SuccessPacket;
 import realmrelay.packets.server.DamagePacket;
 import realmrelay.packets.server.DeathPacket;
 import realmrelay.packets.server.EnemyShootPacket;
@@ -104,18 +104,57 @@ import realmrelay.packets.server.TradeRequestedPacket;
 import realmrelay.packets.server.TradeStartPacket;
 import realmrelay.packets.server.UpdatePacket;
 import realmrelay.packets.server.UpdatePetPacket;
-import realmrelay.packets.server.VerifyEmailDialogPacket;
+import realmrelay.packets.server.Verify_EmailPacket;
 
 public abstract class Packet implements IData {
 
-	private static final List<Class<? extends Packet>> packetIdtoClassMap = new ArrayList<Class<? extends Packet>>(127);
+	private static final List<Class<? extends Packet>> packetIdtoClassMap = new ArrayList<Class<? extends Packet>>();
+	public static boolean init;
+
+	/**
+	 * Creates new packet from packet id
+	 *
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 * @throws InstantiationException
+	 */
+	public static Packet create(byte id) throws Exception {
+
+		Class<? extends Packet> packetClass = null;
+
+		if (id != -1) {
+			packetClass = Packet.packetIdtoClassMap.get(id);
+		}
+
+		if (packetClass == null) {
+			UnknownPacket packet = new UnknownPacket();
+			packet.setId(id);
+			return packet;
+		}
+		return packetClass.newInstance();
+	}
+
+	/**
+	 * Creates new packet from packet id and packet bytes
+	 *
+	 * @param id
+	 * @param bytes
+	 * @return
+	 * @throws IOException
+	 */
+	public static Packet create(byte id, byte[] bytes) throws Exception {
+		Packet packet = Packet.create(id);
+		packet.parseFromInput(new DataInputStream(new ByteArrayInputStream(bytes)));
+		return packet;
+	}
 
 	public static void init() {
+		ROTMGRelay.echo("Mapping Packet IDs...");
 		for (int i = 0; i < 127; i++) {
-			packetIdtoClassMap.add(null);
+			Packet.packetIdtoClassMap.add(null);
 		}
 		List<Class<? extends Packet>> list = new LinkedList<Class<? extends Packet>>();
-
 		list.add(AcceptTradePacket.class);
 		list.add(AOEAckPacket.class);
 		list.add(BuyPacket.class);
@@ -169,7 +208,7 @@ public abstract class Packet implements IData {
 		list.add(BuyResultPacket.class);
 		list.add(ClientStatPacket.class);
 		list.add(CreateGuildResultPacket.class);
-		list.add(CreateSuccessPacket.class);
+		list.add(Create_SuccessPacket.class);
 		list.add(DamagePacket.class);
 		list.add(DeathPacket.class);
 		list.add(EnemyShootPacket.class);
@@ -207,90 +246,65 @@ public abstract class Packet implements IData {
 		list.add(TradeStartPacket.class);
 		list.add(UpdatePacket.class);
 		list.add(UpdatePetPacket.class);
-		list.add(VerifyEmailDialogPacket.class);
+		list.add(Verify_EmailPacket.class);
+		
+		String name = null;
 		try {
-			ROTMGRelay.echo("Mapping " + GETXmlParse.packetMap.size() + " packets.");
+
 			for (Class<? extends Packet> packetClass : list) {
+				name = packetClass.getName();
 				Packet packet = packetClass.newInstance();
 
-				if (packet.id() == -1) {
-					packetIdtoClassMap.set(100, packetClass);
-				} else {
-					packetIdtoClassMap.set(packet.id(), packetClass);
+				if (packet.id() != -1) {
+					Packet.packetIdtoClassMap.set(packet.id(), packetClass);
 				}
+
 			}
 			for (Entry<String, Integer> entry : GETXmlParse.packetMap.entrySet()) {
 				byte id = entry.getValue().byteValue();
 				Packet packet = Packet.create(id);
 				if (packet instanceof UnknownPacket) {
-					//ROTMGRelay.echo("Warning : Not mapped packet : " + entry.getKey() + " -> " + id);
+					ROTMGRelay.echo("Unknown packet... " + id + " " + entry.getKey());
+
 				}
 			}
 		} catch (Exception e) {
+			ROTMGRelay.echo("Error with packet " + name);
 			e.printStackTrace();
 		}
-	}
-
-	/**
-	 * Creates new packet from packet id
-	 * @param id
-	 * @return
-	 * @throws Exception 
-	 * @throws InstantiationException 
-	 */
-	public static Packet create(byte id) throws Exception {
-		Class<? extends Packet> packetClass = packetIdtoClassMap.get(id);
-		if (packetClass == null) {
-			UnknownPacket packet = new UnknownPacket();
-			packet.setId(id);
-			return packet;
-		}
-		return packetClass.newInstance();
-	}
-
-	/**
-	 * Creates new packet from packet id and packet bytes
-	 * @param id
-	 * @param bytes
-	 * @return
-	 * @throws IOException
-	 */
-	public static Packet create(byte id, byte[] bytes) throws Exception {
-		Packet packet = Packet.create(id);
-		packet.parseFromInput(new DataInputStream(new ByteArrayInputStream(bytes)));
-		int byteLength = packet.getBytes().length;
-		if (byteLength != bytes.length) {
-			ROTMGRelay.echo(packet + " byte length is " + byteLength + " after parsing, but was " + bytes.length
-					+ " before parsing. Try updating your packets.xml");
-		}
-		return packet;
+		ROTMGRelay.echo("Completed.");
+		init = true;
 	}
 
 	public byte[] getBytes() throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		DataOutputStream out = new DataOutputStream(baos);
-		this.writeToOutput(out);
+		writeToOutput(out);
 		return baos.toByteArray();
 	}
 
+	//Can cause Index Out Of Bound Exception if packet name doesnt contain Packet
 	public String getName() {
 		String simpleName = this.getClass().getSimpleName();
 		simpleName = simpleName.substring(0, simpleName.indexOf("Packet"));
 		return simpleName.toUpperCase();
 	}
 
-	public byte id() {
-		String name = this.getName();
-		Integer id = (Integer) GETXmlParse.packetMap.get(name);
-		if (id == null) {
+	public byte id() { //return id as byte
+		String name = getName();
+
+		if (!GETXmlParse.packetMap.containsKey(name)) {
+			ROTMGRelay.echo("Could not find packet with name '" + name + "'.");
 			return -1;
+		} else {
+			return GETXmlParse.packetMap.get(name).byteValue();
 		}
-		return id.byteValue();
+
 	}
 
 	@Override
 	public String toString() {
-		return this.getName();
+		return getName();
 	}
 
 }

@@ -26,6 +26,28 @@ public class HelloPacket extends Packet {
 	public String userToken = "";
 
 	@Override
+	public void parseFromInput(DataInput in) throws IOException {
+		this.buildVersion = in.readUTF();
+		this.gameId = in.readInt();
+		this.GUID = in.readUTF();
+		this.random1 = in.readInt();
+		this.password = in.readUTF();
+		this.random2 = in.readInt();
+		this.secret = in.readUTF();
+		this.keyTime = in.readInt();
+		this.key = new byte[in.readShort()];
+		in.readFully(this.key);
+		this.mapJSON = new byte[in.readShort()];
+		in.readFully(this.mapJSON);
+		this.entrytag = in.readUTF();
+		this.gameNet = in.readUTF();
+		this.gameNetUserId = in.readUTF();
+		this.playPlatform = in.readUTF();
+		this.platformToken = in.readUTF();
+		this.userToken = in.readUTF();
+	}
+
+	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeUTF(this.buildVersion);
 		out.writeInt(this.gameId);
@@ -45,11 +67,6 @@ public class HelloPacket extends Packet {
 		out.writeUTF(this.playPlatform);
 		out.writeUTF(this.platformToken);
 		out.writeUTF(this.userToken);
-
-	}
-
-	@Override
-	public void parseFromInput(DataInput in) throws IOException {
 	}
 
 }

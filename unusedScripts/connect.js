@@ -3,36 +3,33 @@ var ID_RECONNECT = $.findPacketId("RECONNECT");
 var ID_ESCAPE = $.findPacketId("ESCAPE");
 
 var servers = { 
-
- "uswest" : "54.241.208.233",
- "usmidwest" : "54.80.67.112",
- "euwest" : "54.195.57.43",
- "useast" : "54.224.68.81",
- "asiasoutheast" : "54.255.15.39",
- "ussouth" : "23.22.180.212",
- "ussouthwest" : "54.241.53.42",
- "eueast" : "46.137.30.179",
- "eunorth" : "54.195.96.152",
- "eusouthwest" : "54.217.63.70",
- "useast3" : "54.226.214.216",
- "uswest2" : "54.193.168.4",
- "usmidwest2" : "50.17.143.165",
- "USEast2" : "54.204.50.57",
- "USNorthWest" : "50.18.24.120",
- "AsiaEast" : "175.41.201.80",
- "USSouth3" : "54.80.250.47",
- "EUNorth2" : "54.216.200.98",
- "EUWest2" : "54.216.27.65",
- "EUSouth" : "54.195.179.215",
- "USSouth2" : "50.19.7.133",
- "USWest3" : "54.241.223.240",
-        
-        
-};//lazy
+ 	"USWest" : "54.153.32.11"
+ 	"USEast" : "52.23.232.42"
+ 	"AsiaSouthEast" : "52.77.221.237"
+	"USSouth" : "52.91.68.60"
+ 	"USSouthWest" : "54.183.179.205"
+ 	"USEast2" : "52.91.203.118"
+ 	"USNorthWest" : "54.234.151.78"
+	"AsiaEast" : "54.199.197.208"
+ 	"EUSouthWest" : "52.47.178.13"
+ 	"USSouth2" : "54.183.236.213"
+ 	"EUNorth2" : "52.59.198.155"
+	"EUSouth" : "52.47.150.186"
+	"USSouth3" : "13.57.182.96"
+	"EUWest2" : "34.243.37.98"
+	"USMidWest" : "18.220.226.127"
+	"EUWest" : "52.47.149.74"
+	"USEast3" : "54.157.6.58"
+	"USWest3" : "54.67.119.179"
+	"USMidWest2" : "18.218.255.91"
+	"EUEast" : "18.195.167.79"
+	"Australia" : "54.252.165.65"
+ 	"EUNorth" : "54.93.78.148"
+ 	"USWest2" : "54.215.251.128"
+};
 
 var usage = 
-"Usage: /con <server>\n \
-\t\tAre you stupid  \n";
+"Usage: /con <server>";
 
 var portals = { "{epicspiderDen.The_Crawling_Depths}" : 1,
         "{forestMaze.Forest_Maze_Portal}" : 1,

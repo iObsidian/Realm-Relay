@@ -6,6 +6,6 @@ public class ProjectileData {
 	public float speed = 0; // element Speed
 	public int maxDamage = 0; // element MaxDamage
 	public int minDamage = 0; // element MinDamage
-	public int lifetimeMS = 0; // element LifetimeMS
+	public float lifetimeMS = 0; // element LifetimeMS
 
 }
