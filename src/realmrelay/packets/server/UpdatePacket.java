@@ -4,22 +4,22 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.data.Entity;
-import realmrelay.data.Tile;
 import realmrelay.packets.Packet;
+import realmrelay.packets.data.Entity;
+import realmrelay.packets.data.GroundTileData;
 
 public class UpdatePacket extends Packet {
 
-	private Tile[] tiles = new Tile[0];
+	private GroundTileData[] tiles = new GroundTileData[0];
 	public Entity[] newObjs = new Entity[0];
 	public int[] drops = new int[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 
-		tiles = new Tile[in.readShort()];
+		tiles = new GroundTileData[in.readShort()];
 		for (int i = 0; i < tiles.length; i++) {
-			Tile tile = new Tile();
+			GroundTileData tile = new GroundTileData();
 			tile.parseFromInput(in);
 			tiles[i] = tile;
 		}
@@ -41,7 +41,7 @@ public class UpdatePacket extends Packet {
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeShort(tiles.length);
-		for (Tile tile : tiles) {
+		for (GroundTileData tile : tiles) {
 			tile.writeToOutput(out);
 		}
 		out.writeShort(newObjs.length);

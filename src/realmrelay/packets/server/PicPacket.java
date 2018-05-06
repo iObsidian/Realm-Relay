@@ -4,8 +4,8 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.data.BitmapData;
 import realmrelay.packets.Packet;
+import realmrelay.packets.data.BitmapData;
 
 public class PicPacket extends Packet {
 

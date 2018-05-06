@@ -4,12 +4,12 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.data.Location;
 import realmrelay.packets.Packet;
+import realmrelay.packets.data.WorldPosData;
 
-public class AOEPacket extends Packet {
+public class AoePacket extends Packet {
 
-	public Location location = new Location();
+	public WorldPosData location = new WorldPosData();
 	public float radius;
 	private short damage;
 	private byte effects;

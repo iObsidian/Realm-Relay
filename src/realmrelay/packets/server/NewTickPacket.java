@@ -4,8 +4,8 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.data.Status;
 import realmrelay.packets.Packet;
+import realmrelay.packets.data.Status;
 
 public class NewTickPacket extends Packet {
 

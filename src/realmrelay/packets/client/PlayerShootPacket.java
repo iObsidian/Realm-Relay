@@ -4,15 +4,16 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.data.Location;
 import realmrelay.packets.Packet;
+
+import realmrelay.packets.data.WorldPosData;
 
 public class PlayerShootPacket extends Packet {
 
 	private int time;
 	private int bulletId;
 	private int containerType;
-	private Location startingPos = new Location();
+	private WorldPosData startingPos = new WorldPosData();
 	private float angle;
 
 	@Override

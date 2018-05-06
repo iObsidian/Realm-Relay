@@ -6,9 +6,6 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
-
-
 public class AllyShootPacket extends Packet {
 
 	private int bulletId;
