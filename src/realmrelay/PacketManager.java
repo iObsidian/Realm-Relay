@@ -2,12 +2,12 @@ package realmrelay;
 
 import java.io.IOException;
 
+import realmrelay.data.Location;
+import realmrelay.data.PlayerData;
 import realmrelay.packets.Packet;
 import realmrelay.packets.client.InvSwapPacket;
 import realmrelay.packets.client.UsePortalPacket;
-import realmrelay.packets.data.PlayerData;
-import realmrelay.packets.data.WorldPosData;
-import realmrelay.packets.server.CreateSuccessPacket;
+import realmrelay.packets.server.Create_SuccessPacket;
 import realmrelay.packets.server.TextPacket;
 import realmrelay.script.PacketScriptEvent;
 
@@ -23,7 +23,7 @@ public class PacketManager {
 
 	private static int myQuestId;
 
-	private static WorldPosData myQuestPos;
+	private static Location myQuestPos;
 
 	private static boolean enteredInRealm;
 
@@ -60,7 +60,7 @@ public class PacketManager {
 	public static void onServerPacketEvent(PacketScriptEvent event) throws Exception {
 		Packet packet = event.getPacket();
 
-		if (packet instanceof CreateSuccessPacket) {
+		if (packet instanceof Create_SuccessPacket) {
 
 		}
 

@@ -8,7 +8,7 @@ import realmrelay.packets.Packet;
 
 public class UsePortalPacket extends Packet {
 
-	private int objectId;
+	public int objectId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

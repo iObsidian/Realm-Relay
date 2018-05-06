@@ -4,14 +4,13 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.data.Location;
 import realmrelay.packets.Packet;
-
-import realmrelay.packets.data.WorldPosData;
 
 public class GroundDamagePacket extends Packet {
 
 	private int time;
-	private WorldPosData position = new WorldPosData();
+	private Location position = new Location();
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

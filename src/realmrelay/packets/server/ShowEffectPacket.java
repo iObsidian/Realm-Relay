@@ -4,8 +4,8 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.data.Location;
 import realmrelay.packets.Packet;
-import realmrelay.packets.data.WorldPosData;
 
 public class ShowEffectPacket extends Packet {
 
@@ -32,8 +32,8 @@ public class ShowEffectPacket extends Packet {
 
 	private int effectType;
 	private int targetObjectId;
-	private WorldPosData pos1 = new WorldPosData();
-	private WorldPosData pos2 = new WorldPosData();
+	private Location pos1 = new Location();
+	private Location pos2 = new Location();
 	private int color;
 	private double duration;
 

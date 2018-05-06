@@ -4,13 +4,12 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.data.SlotObject;
 import realmrelay.packets.Packet;
-
-import realmrelay.packets.data.SlotObjectData;
 
 public class InvDropPacket extends Packet {
 
-	private SlotObjectData slotObject = new SlotObjectData();
+	private SlotObject slotObject = new SlotObject();
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

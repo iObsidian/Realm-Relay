@@ -4,16 +4,15 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.data.Location;
+import realmrelay.data.SlotObject;
 import realmrelay.packets.Packet;
-
-import realmrelay.packets.data.SlotObjectData;
-import realmrelay.packets.data.WorldPosData;
 
 public class UseItemPacket extends Packet {
 
 	private int time;
-	private SlotObjectData slotObject = new SlotObjectData();
-	private WorldPosData itemUsePos = new WorldPosData();
+	private SlotObject slotObject = new SlotObject();
+	private Location itemUsePos = new Location();
 	private int useType;
 
 	@Override
