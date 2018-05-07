@@ -9,13 +9,18 @@ import realmrelay.packets.Packet;
 import realmrelay.packets.data.SlotObjectData;
 import realmrelay.packets.data.WorldPosData;
 
-
 public class InvSwapPacket extends Packet {
 
 	private int time;
-	private WorldPosData position = new WorldPosData();
-	private SlotObjectData slotObject1 = new SlotObjectData();
-	private SlotObjectData slotObject2 = new SlotObjectData();
+	private WorldPosData position;
+	private SlotObjectData slotObject1;
+	private SlotObjectData slotObject2;
+
+	public InvSwapPacket() {
+		position = new WorldPosData();
+		slotObject1 = new SlotObjectData();
+		slotObject2 = new SlotObjectData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

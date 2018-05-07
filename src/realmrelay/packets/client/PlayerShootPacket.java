@@ -13,8 +13,12 @@ public class PlayerShootPacket extends Packet {
 	private int time;
 	private int bulletId;
 	private int containerType;
-	private WorldPosData startingPos = new WorldPosData();
+	private WorldPosData startingPos;
 	private float angle;
+
+	public PlayerShootPacket() {
+		startingPos = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

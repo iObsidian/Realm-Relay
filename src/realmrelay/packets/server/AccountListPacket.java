@@ -9,8 +9,12 @@ import realmrelay.packets.Packet;
 public class AccountListPacket extends Packet {
 
 	public int accountListId;
-	private String[] accountIds = new String[0];
-	private int lockAction;
+	private String[] accountIds;
+	private int lockAction = -1;
+
+	public AccountListPacket() {
+		accountIds = new String[0];
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -12,9 +12,14 @@ import realmrelay.packets.data.WorldPosData;
 public class UseItemPacket extends Packet {
 
 	private int time;
-	private SlotObjectData slotObject = new SlotObjectData();
-	private WorldPosData itemUsePos = new WorldPosData();
+	private SlotObjectData slotObject;
+	private WorldPosData itemUsePos;
 	private int useType;
+
+	public UseItemPacket() {
+		slotObject = new SlotObjectData();
+		itemUsePos = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

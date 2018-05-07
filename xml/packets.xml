@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Packets>
-	<Packet id="FAILURE" type="0"/>
-	<Packet id="CREATE_SUCCESS" type="87"/>
-	<Packet id="CREATE" type="7"/>
-	<Packet id="PLAYERSHOOT" type="82"/>
-	<Packet id="MOVE" type="51"/>
-	<Packet id="PLAYERTEXT" type="84"/>
-	<Packet id="TEXT" type="23"/>
-	<Packet id="SERVERPLAYERSHOOT" type="39"/>
-	<Packet id="DAMAGE" type="36"/>
-	<Packet id="UPDATE" type="79"/>
-	<Packet id="UPDATEACK" type="80"/>
-	<Packet id="NOTIFICATION" type="26"/>
-	<Packet id="NEWTICK" type="85"/>
-	<Packet id="INVSWAP" type="59"/>
-	<Packet id="USEITEM" type="49"/>
-	<Packet id="SHOWEFFECT" type="21"/>
-	<Packet id="HELLO" type="30"/>
-	<Packet id="GOTO" type="78"/>
-	<Packet id="INVDROP" type="102"/>
-	<Packet id="INVRESULT" type="9"/>
-	<Packet id="RECONNECT" type="1"/>
-	<Packet id="PING" type="97"/>
-	<Packet id="PONG" type="103"/>
-	<Packet id="MAPINFO" type="83"/>
-	<Packet id="LOAD" type="3"/>
-	<Packet id="PIC" type="64"/>
-	<Packet id="SETCONDITION" type="5"/>
-	<Packet id="TELEPORT" type="31"/>
-	<Packet id="USEPORTAL" type="48"/>
-	<Packet id="DEATH" type="91"/>
-	<Packet id="BUY" type="56"/>
-	<Packet id="BUYRESULT" type="67"/>
-	<Packet id="AOE" type="40"/>
-	<Packet id="GROUNDDAMAGE" type="98"/>
-	<Packet id="PLAYERHIT" type="35"/>
-	<Packet id="ENEMYHIT" type="76"/>
-	<Packet id="AOEACK" type="8"/>
-	<Packet id="SHOOTACK" type="27"/>
-	<Packet id="OTHERHIT" type="89"/>
-	<Packet id="SQUAREHIT" type="66"/>
-	<Packet id="GOTOACK" type="99"/>
-	<Packet id="EDITACCOUNTLIST" type="100"/>
-	<Packet id="ACCOUNTLIST" type="93"/>
-	<Packet id="QUESTOBJID" type="44"/>
-	<Packet id="CHOOSENAME" type="10"/>
-	<Packet id="NAMERESULT" type="88"/>
-	<Packet id="CREATEGUILD" type="57"/>
-	<Packet id="CREATEGUILDRESULT" type="13"/>
-	<Packet id="GUILDREMOVE" type="77"/>
-	<Packet id="GUILDINVITE" type="33"/>
-	<Packet id="ALLYSHOOT" type="41"/>
-	<Packet id="ENEMYSHOOT" type="75"/>
-	<Packet id="REQUESTTRADE" type="60"/>
-	<Packet id="TRADEREQUESTED" type="63"/>
-	<Packet id="TRADESTART" type="46"/>
-	<Packet id="CHANGETRADE" type="47"/>
-	<Packet id="TRADECHANGED" type="68"/>
-	<Packet id="ACCEPTTRADE" type="20"/>
-	<Packet id="CANCELTRADE" type="25"/>
-	<Packet id="TRADEDONE" type="17"/>
-	<Packet id="TRADEACCEPTED" type="94"/>
-	<Packet id="CLIENTSTAT" type="6"/>
-	<Packet id="CHECKCREDITS" type="62"/>
-	<Packet id="ESCAPE" type="37"/>
-	<Packet id="FILE" type="96"/>
-	<Packet id="INVITEDTOGUILD" type="101"/>
-	<Packet id="JOINGUILD" type="61"/>
-	<Packet id="CHANGEGUILDRANK" type="53"/>
-	<Packet id="PLAYSOUND" type="19"/>
-	<Packet id="GLOBAL_NOTIFICATION" type="22"/>
-	<Packet id="RESKIN" type="69"/>
-	<Packet id="PETUPGRADEREQUEST" type="55"/>
-	<Packet id="ACTIVE_PET_UPDATE_REQUEST" type="4"/>
-	<Packet id="ACTIVEPETUPDATE" type="38"/>
-	<Packet id="NEW_ABILITY" type="12"/>
-	<Packet id="PETYARDUPDATE" type="24"/>
-	<Packet id="EVOLVE_PET" type="50"/>
-	<Packet id="DELETE_PET" type="15"/>
-	<Packet id="HATCH_PET" type="14"/>
-	<Packet id="ENTER_ARENA" type="86"/>
-	<Packet id="IMMINENT_ARENA_WAVE" type="92"/>
-	<Packet id="ARENA_DEATH" type="74"/>
-	<Packet id="ACCEPT_ARENA_DEATH" type="18"/>
-	<Packet id="VERIFY_EMAIL" type="34"/>
-	<Packet id="RESKIN_UNLOCK" type="95"/>
-	<Packet id="PASSWORD_PROMPT" type="81"/>
-	<Packet id="QUEST_FETCH_ASK" type="104"/>
-	<Packet id="QUEST_REDEEM" type="52"/>
-	<Packet id="QUEST_FETCH_RESPONSE" type="28"/>
-	<Packet id="QUEST_REDEEM_RESPONSE" type="65"/>
-	<Packet id="PET_CHANGE_FORM_MSG" type="16"/>
-	<Packet id="KEY_INFO_REQUEST" type="90"/>
-	<Packet id="KEY_INFO_RESPONSE" type="11"/>
-	<Packet id="CLAIM_LOGIN_REWARD_MSG" type="45"/>
-	<Packet id="LOGIN_REWARD_MSG" type="42"/>
-	<Packet id="QUEST_ROOM_MSG" type="58"/>
+	<Packet id="FAILURE" type="0" />
+	<Packet id="CREATE_SUCCESS" type="87" />
+	<Packet id="CREATE" type="7" />
+	<Packet id="PLAYERSHOOT" type="82" />
+	<Packet id="MOVE" type="51" />
+	<Packet id="PLAYERTEXT" type="84" />
+	<Packet id="TEXT" type="23" />
+	<Packet id="SERVERPLAYERSHOOT" type="39" />
+	<Packet id="DAMAGE" type="36" />
+	<Packet id="UPDATE" type="79" />
+	<Packet id="UPDATEACK" type="80" />
+	<Packet id="NOTIFICATION" type="26" />
+	<Packet id="NEWTICK" type="85" />
+	<Packet id="INVSWAP" type="59" />
+	<Packet id="USEITEM" type="49" />
+	<Packet id="SHOWEFFECT" type="21" />
+	<Packet id="HELLO" type="30" />
+	<Packet id="GOTO" type="78" />
+	<Packet id="INVDROP" type="102" />
+	<Packet id="INVRESULT" type="9" />
+	<Packet id="RECONNECT" type="1" />
+	<Packet id="PING" type="97" />
+	<Packet id="PONG" type="103" />
+	<Packet id="MAPINFO" type="83" />
+	<Packet id="LOAD" type="3" />
+	<Packet id="PIC" type="64" />
+	<Packet id="SETCONDITION" type="5" />
+	<Packet id="TELEPORT" type="31" />
+	<Packet id="USEPORTAL" type="48" />
+	<Packet id="DEATH" type="91" />
+	<Packet id="BUY" type="56" />
+	<Packet id="BUYRESULT" type="67" />
+	<Packet id="AOE" type="40" />
+	<Packet id="GROUNDDAMAGE" type="98" />
+	<Packet id="PLAYERHIT" type="35" />
+	<Packet id="ENEMYHIT" type="76" />
+	<Packet id="AOEACK" type="8" />
+	<Packet id="SHOOTACK" type="27" />
+	<Packet id="OTHERHIT" type="89" />
+	<Packet id="SQUAREHIT" type="66" />
+	<Packet id="GOTOACK" type="99" />
+	<Packet id="EDITACCOUNTLIST" type="100" />
+	<Packet id="ACCOUNTLIST" type="93" />
+	<Packet id="QUESTOBJID" type="44" />
+	<Packet id="CHOOSENAME" type="10" />
+	<Packet id="NAMERESULT" type="88" />
+	<Packet id="CREATEGUILD" type="57" />
+	<Packet id="CREATEGUILDRESULT" type="13" />
+	<Packet id="GUILDREMOVE" type="77" />
+	<Packet id="GUILDINVITE" type="33" />
+	<Packet id="ALLYSHOOT" type="41" />
+	<Packet id="ENEMYSHOOT" type="75" />
+	<Packet id="REQUESTTRADE" type="60" />
+	<Packet id="TRADEREQUESTED" type="63" />
+	<Packet id="TRADESTART" type="46" />
+	<Packet id="CHANGETRADE" type="47" />
+	<Packet id="TRADECHANGED" type="68" />
+	<Packet id="ACCEPTTRADE" type="20" />
+	<Packet id="CANCELTRADE" type="25" />
+	<Packet id="TRADEDONE" type="17" />
+	<Packet id="TRADEACCEPTED" type="94" />
+	<Packet id="CLIENTSTAT" type="6" />
+	<Packet id="CHECKCREDITS" type="62" />
+	<Packet id="ESCAPE" type="37" />
+	<Packet id="FILE" type="96" />
+	<Packet id="INVITEDTOGUILD" type="101" />
+	<Packet id="JOINGUILD" type="61" />
+	<Packet id="CHANGEGUILDRANK" type="53" />
+	<Packet id="PLAYSOUND" type="19" />
+	<Packet id="GLOBAL_NOTIFICATION" type="22" />
+	<Packet id="RESKIN" type="69" />
+	<Packet id="PETUPGRADEREQUEST" type="55" />
+	<Packet id="ACTIVE_PET_UPDATE_REQUEST" type="4" />
+	<Packet id="ACTIVEPETUPDATE" type="38" />
+	<Packet id="NEW_ABILITY" type="12" />
+	<Packet id="PETYARDUPDATE" type="24" />
+	<Packet id="EVOLVE_PET" type="50" />
+	<Packet id="DELETE_PET" type="15" />
+	<Packet id="HATCH_PET" type="14" />
+	<Packet id="ENTER_ARENA" type="86" />
+	<Packet id="IMMINENT_ARENA_WAVE" type="92" />
+	<Packet id="ARENA_DEATH" type="74" />
+	<Packet id="ACCEPT_ARENA_DEATH" type="18" />
+	<Packet id="VERIFY_EMAIL" type="34" />
+	<Packet id="RESKIN_UNLOCK" type="95" />
+	<Packet id="PASSWORD_PROMPT" type="81" />
+	<Packet id="QUEST_FETCH_ASK" type="104" />
+	<Packet id="QUEST_REDEEM" type="52" />
+	<Packet id="QUEST_FETCH_RESPONSE" type="28" />
+	<Packet id="QUEST_REDEEM_RESPONSE" type="65" />
+	<Packet id="PET_CHANGE_FORM_MSG" type="16" />
+	<Packet id="KEY_INFO_REQUEST" type="90" />
+	<Packet id="KEY_INFO_RESPONSE" type="11" />
+	<Packet id="CLAIM_LOGIN_REWARD_MSG" type="45" />
+	<Packet id="LOGIN_REWARD_MSG" type="42" />
+	<Packet id="QUEST_ROOM_MSG" type="58" />
 </Packets>

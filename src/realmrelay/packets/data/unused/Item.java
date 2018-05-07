@@ -1,4 +1,4 @@
-package realmrelay.packets.data;
+package realmrelay.packets.data.unused;
 
 import java.io.DataInput;
 import java.io.DataOutput;

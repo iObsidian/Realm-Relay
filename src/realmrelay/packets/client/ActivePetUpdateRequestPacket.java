@@ -6,15 +6,18 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-public class ActivePetUpdateRequest extends Packet {
+public class ActivePetUpdateRequestPacket extends Packet {
 
-	private int petId;
+	private int commandtype;
+	private int instanceid;
 
 	public void parseFromInput(DataInput in) throws IOException {
-		this.petId = in.readInt();
+		commandtype = in.readByte();
+		instanceid = in.readInt();
 	}
 
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.petId);
+		out.writeInt(commandtype);
+		out.writeByte(instanceid);
 	}
 }

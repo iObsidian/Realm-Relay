@@ -2,10 +2,85 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d7f704-e69a-4440-8dcc-6c4214922787" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/settings.properties" afterPath="$PROJECT_DIR$/settings.properties" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/GETXmlParse.java" afterPath="$PROJECT_DIR$/src/realmrelay/GETXmlParse.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/GetXMLParse.java" afterPath="$PROJECT_DIR$/src/realmrelay/GetXMLParse.java" />
       <change beforePath="$PROJECT_DIR$/src/realmrelay/PacketManager.java" afterPath="$PROJECT_DIR$/src/realmrelay/PacketManager.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/Packet.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/Packet.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/ActivePetUpdateRequest.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/ActivePetUpdateRequestPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/AoeAckPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/AoeAckPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/ChangeTradePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/ChangeTradePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/EnemyHitPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/EnemyHitPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/GoToAckPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/GotoAckPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/GoToQuestRoomPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/GoToQuestRoomPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/GroundDamagePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/GroundDamagePacket.java" />
       <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/HelloPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/HelloPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/InvDropPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/InvDropPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/InvSwapPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/InvSwapPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/KeyInfoRequestPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/KeyInfoRequestPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/LoadPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/LoadPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/MovePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/MovePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/OtherHitPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/OtherHitPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/PlayerShootPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/PlayerShootPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/UpdateAckPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/UpdateAckPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/UseItemPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/UseItemPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/client/arena/QuestRedeemPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/client/arena/QuestRedeemPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/BitmapData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/BitmapData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/EffectProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/EffectProperties.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/EnemyData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/EnemyData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/EnemyProjectileData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/EnemyProjectileData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/Entity.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/Entity.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/GroundData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/GroundData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/GroundTileData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/GroundTileData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/IData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/IData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/Item.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/Item.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/ItemData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ItemData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/ItemProjectileData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ItemProjectileData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/LootBag.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/LootBag.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/MoveRecord.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/MoveRecord.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/ObjectData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/ObjectData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/ObjectStatusData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/ObjectStatusData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/PlayerData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/PlayerData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/PlayerLocation.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/PlayerLocation.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/ProjectileData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ProjectileData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/ProjectileStorage.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ProjectileStorage.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/RealmData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/RealmData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/SlotObjectData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/SlotObjectData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/SlotTypeToClass.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/SlotTypeToClass.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/SlotTypeToSlotId.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/SlotTypeToSlotId.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/StatData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/StatData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/Status.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/Status.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/TradeItem.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/TradeItem.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/WorldPosData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/WorldPosData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/AccountListPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/AccountListPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/AoePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/AoePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/BuyResultPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/BuyResultPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/DamagePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/DamagePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/DeathPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/DeathPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/EnemyShootPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/EnemyShootPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/EvolvedPetMessagePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/EvolvedPetMessagePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/FailurePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/FailurePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/FilePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/FilePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/GlobalNotificationPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/GlobalNotificationPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/GotoPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/GotoPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/GuildResultPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/GuildResultPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/KeyInfoResponsePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/KeyInfoResponsePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/NewAbilityMessagePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/NewAbilityMessagePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/NewTickPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/NewTickPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/PasswordPromptPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/PasswordPromptPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/PicPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/PicPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/QuestRedeemResponsePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/QuestRedeemResponsePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/ReconnectPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/ReconnectPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/ReskinUnlockPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/ReskinUnlockPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/ServerPlayerShootPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/ServerPlayerShootPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/ShowEffectPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/ShowEffectPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/TradeStartPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/TradeStartPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/UpdatePacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/UpdatePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/VerifyEmailPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/VerifyEmailPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/arena/ArenaDeathPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/arena/ArenaDeathPacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/arena/ImminentArenaWave.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/arena/ImminentArenaWavePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/pets/DeletePetPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/pets/DeletePetMessagePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/server/pets/Hatch_PetPacket.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/server/pets/Hatch_PetMessagePacket.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/script/ScriptEvent.java" afterPath="$PROJECT_DIR$/src/realmrelay/script/ScriptEvent.java" />
+      <change beforePath="$PROJECT_DIR$/xml/packets.xml" afterPath="$PROJECT_DIR$/xml/packets.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,28 +92,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="InvSwapPacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/InvSwapPacket.java">
+      <file leaf-file-name="ServerPlayerShootPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/ServerPlayerShootPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+            <state relative-caret-position="238">
+              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+              <folding>
+                <element signature="e#441#442#0" expanded="true" />
+                <element signature="e#480#481#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShowEffectPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/ShowEffectPacket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AcceptTradePacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/AcceptTradePacket.java">
+      <file leaf-file-name="TextPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TextPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+            <state relative-caret-position="204">
+              <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditAccountListPacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/EditAccountListPacket.java">
+      <file leaf-file-name="TradeAcceptedPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeAcceptedPacket.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="68">
               <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
@@ -47,35 +135,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreatePacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/CreatePacket.java">
+      <file leaf-file-name="TradeChangedPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeChangedPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="6" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnemyHitPacket.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/EnemyHitPacket.java">
+      <file leaf-file-name="TradeDonePacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeDonePacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HelloPacket.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/HelloPacket.java">
+      <file leaf-file-name="TradeRequestedPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeRequestedPacket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+            <state relative-caret-position="85">
+              <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TradeStartPacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeStartPacket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpdatePacket.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/UpdatePacket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VerifyEmailPacket.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/VerifyEmailPacket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -109,6 +223,16 @@
         <option value="$PROJECT_DIR$/src/realmrelay/packets/client/InvSwapPacket.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/packets/client/CreatePacket.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/packets/client/AcceptTradePacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/KeyInfoResponsePacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/NewAbilityMessagePacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/PasswordPromptPacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/QuestRedeemResponsePacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/ReskinUnlockPacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/ServerPlayerShootPacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/ShowEffectPacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/TradeStartPacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/UpdatePacket.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/packets/server/VerifyEmailPacket.java" />
       </list>
     </option>
   </component>
@@ -140,15 +264,41 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
               <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="realmrelay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="realmrelay" type="462c0819:PsiDirectoryNode" />
+              <item name="packets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="realmrelay" type="462c0819:PsiDirectoryNode" />
+              <item name="packets" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -275,14 +425,16 @@
       <updated>1525112297088</updated>
       <workItem from="1525112300465" duration="1098000" />
       <workItem from="1525402685880" duration="19000" />
+      <workItem from="1525653236557" duration="551000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1117000" />
+    <option name="totallyTimeSpent" value="1668000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -296,9 +448,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -311,7 +464,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,14 +485,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/Packet.java">
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/AcceptTradePacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="65" column="30" lean-forward="false" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
+        <state relative-caret-position="34">
+          <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/EditAccountListPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/CreatePacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="6" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/HelloPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/EnemyHitPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/InvSwapPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/Packet.java" />
     <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/EditAccountListPacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -387,7 +584,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/InvSwapPacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
+        <state relative-caret-position="119">
           <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
           <folding />
         </state>
@@ -395,7 +592,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/HelloPacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="68">
           <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
           <folding />
         </state>
@@ -411,14 +608,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/Packet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="65" column="30" lean-forward="false" selection-start-line="65" selection-start-column="30" selection-end-line="65" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/Packet.java" />
     <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/AcceptTradePacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -437,11 +627,230 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/client/EnemyHitPacket.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/InvitedToGuildPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/InvResultPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/KeyInfoResponsePacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/MapInfoPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/NameResultPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/NewAbilityMessagePacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="20" lean-forward="false" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/NewTickPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/NotificationPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/PasswordPromptPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/data/unused/BitmapData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/PicPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="11" column="18" lean-forward="true" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/PingPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/PlaySoundPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/QuestObjIdPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/QuestRedeemResponsePacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/ReconnectPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/ReskinUnlockPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/ServerPlayerShootPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
+          <folding>
+            <element signature="e#441#442#0" expanded="true" />
+            <element signature="e#480#481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/ShowEffectPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TextPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="28" lean-forward="true" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeAcceptedPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeChangedPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeDonePacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeRequestedPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/TradeStartPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/UpdatePacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/server/VerifyEmailPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="1" lean-forward="false" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -8,31 +8,29 @@ import realmrelay.packets.Packet;
 
 public class BuyResultPacket extends Packet {
 
-	/**
-	UnknownError = -1
-	Success = 0
-	InvalidCharacter = 1
-	ItemNotFound = 2
-	NotEnoughGold = 3
-	InventoryFull = 4
-	TooLowRank = 5
-	NotEnoughFame = 6
-	PetFeedSuccess = 7
-	*/
+	public static final int UNKNOWN_ERROR_BRID = -1;
+	public static final int SUCCESS_BRID = 0;
+	public static final int INVALID_CHARACTER_BRID = 1;
+	public static final int ITEM_NOT_FOUND_BRID = 2;
+	public static final int NOT_ENOUGH_GOLD_BRID = 3;
+	public static final int INVENTORY_FULL_BRID = 4;
+	public static final int TOO_LOW_RANK_BRID = 5;
+	public static final int NOT_ENOUGH_FAME_BRID = 6;
+	public static final int PET_FEED_SUCCESS_BRID = 7;
 
 	private int result;
-	private String message;
+	private String resultString;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		result = in.readInt();
-		message = in.readUTF();
+		resultString = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeInt(result);
-		out.writeUTF(message);
+		out.writeUTF(resultString);
 	}
 
 }

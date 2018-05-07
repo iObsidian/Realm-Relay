@@ -12,18 +12,18 @@ import realmrelay.GetXMLParse;
 import realmrelay.ROTMGRelay;
 import realmrelay.User;
 import realmrelay.packets.Packet;
-import realmrelay.packets.data.BitmapData;
-import realmrelay.packets.data.Entity;
-import realmrelay.packets.data.GroundData;
 import realmrelay.packets.data.GroundTileData;
-import realmrelay.packets.data.Item;
-import realmrelay.packets.data.ItemData;
 import realmrelay.packets.data.MoveRecord;
 import realmrelay.packets.data.ObjectData;
 import realmrelay.packets.data.SlotObjectData;
 import realmrelay.packets.data.StatData;
-import realmrelay.packets.data.Status;
 import realmrelay.packets.data.WorldPosData;
+import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.packets.data.unused.Entity;
+import realmrelay.packets.data.unused.GroundData;
+import realmrelay.packets.data.unused.Item;
+import realmrelay.packets.data.unused.ItemData;
+import realmrelay.packets.data.unused.Status;
 
 public class ScriptEvent {
 

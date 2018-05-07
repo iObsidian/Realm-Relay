@@ -8,18 +8,18 @@ import realmrelay.packets.Packet;
 
 public class GlobalNotificationPacket extends Packet {
 
-	private int typeId;
+	private int type;
 	private String text;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		typeId = in.readInt();
+		type = in.readInt();
 		text = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(typeId);
+		out.writeInt(type);
 		out.writeUTF(text);
 	}
 

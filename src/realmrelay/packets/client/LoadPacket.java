@@ -8,18 +8,18 @@ import realmrelay.packets.Packet;
 
 public class LoadPacket extends Packet {
 
-	public int characterId;
+	public int charId;
 	private boolean isFromArena;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		characterId = in.readInt();
+		charId = in.readInt();
 		isFromArena = in.readBoolean();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(characterId);
+		out.writeInt(charId);
 		out.writeBoolean(isFromArena);
 	}
 

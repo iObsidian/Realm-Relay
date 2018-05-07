@@ -1,8 +1,11 @@
-package realmrelay.packets.data;
+package realmrelay.packets.data.unused;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+
+import realmrelay.packets.data.StatData;
+import realmrelay.packets.data.WorldPosData;
 
 
 public class Status implements IData {

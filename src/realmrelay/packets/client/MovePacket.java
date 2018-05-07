@@ -13,8 +13,14 @@ public class MovePacket extends Packet {
 
 	public int tickId;
 	public int time;
-	public WorldPosData newPosition = new WorldPosData();
-	public MoveRecord[] records = new MoveRecord[0];
+
+	public WorldPosData newPosition;
+	public MoveRecord[] records;
+
+	public MovePacket() {
+		newPosition = new WorldPosData();
+		records = new MoveRecord[0];
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

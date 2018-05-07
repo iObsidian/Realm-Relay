@@ -1,38 +1,56 @@
 package realmrelay.packets.data;
 
-public class ObjectStatusData {
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import realmrelay.packets.data.unused.IData;
+
+public class ObjectStatusData implements IData {
 
 	public String file;
 	public int index;
 
-	public String id = ""; // attribute id
-	public int type = -1; // attribute type
+	public int objectId;
 
-	public String dungeonName = "";
+	public WorldPosData pos;
 
-	public int maxHitPoints = -1; // element MaxHitPoints
-	public int maxSize = -1; // element MaxSize
-	public int minSize = -1; // element MinSize
-	public int size = -1; // element Size
-	public int sizeStep = -1; // element SizeStep
-	public int shadowSize = -1; // element ShadowSize
-	public int color = -1; // element Color
-	public float xpMult = 0; // element XpMult
-	public float rotation = 0; // element Rotation
-	public boolean drawOnGround = false; // element DrawOnGround
-	public boolean enemy = false; // element Enemy
-	public boolean fullOccupy = false; // element FullOccupy
-	public boolean occupySquare = false; // element OccupySquare
-	public boolean enemyOccupySquare = false; // element EnemyOccupySquare
-	public boolean blocksSight = false; // element BlocksSight
-	public boolean noMiniMap = false; // element NoMiniMap
-	public boolean stasisImmune = false; // element StasisImmune
-	public boolean protectFromGroundDamage = false; // element ProtectFromGroundDamage
-	public boolean protectFromSink = false; // element ProtectFromSink
-	public boolean connects = false; // element Connects
-	public float z = 0; // element Z
+	public Map<Integer, StatData> stats;
 
+	public ObjectStatusData() {
+		pos = new WorldPosData();
+		stats = new HashMap<Integer, StatData>();
+	}
 
-	public boolean hasAnimatedTexture;
+	@Override
+	public void parseFromInput(DataInput in) throws IOException {
+
+		objectId = in.readInt();
+		pos.parseFromInput(in);
+		int size = in.readShort();
+
+		for (int i = 0; i < size; i++) {
+			StatData newStatData = new StatData();
+			newStatData.parseFromInput(in);
+			stats.put(newStatData.statType, newStatData);
+		}
+
+	}
+
+	@Override
+	public void writeToOutput(DataOutput out) throws IOException {
+
+		out.writeInt(this.objectId);
+		this.pos.writeToOutput(out);
+		out.writeShort(this.stats.size());
+		for (Integer s : stats.keySet()) {
+			stats.get(s).writeToOutput(out);
+		}
+
+	}
 
 }

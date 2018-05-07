@@ -8,13 +8,13 @@ import realmrelay.packets.Packet;
 
 public class ReskinUnlockPacket extends Packet {
 
-	private int skinId;
+	private int skinID;
 
 	public void parseFromInput(DataInput in) throws IOException {
-		this.skinId = in.readInt();
+		this.skinID = in.readInt();
 	}
 
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(this.skinId);
+		out.writeInt(this.skinID);
 	}
 }

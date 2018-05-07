@@ -4,6 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.packets.data.unused.IData;
 
 public class GroundTileData implements IData {
 
@@ -24,9 +25,5 @@ public class GroundTileData implements IData {
 		out.writeShort(y);
 		out.writeShort(type);
 	}
-
-	/*public GroundData getGroundData() {
-		return XmlParser.tileMap.get(type);
-	}**/
 
 }

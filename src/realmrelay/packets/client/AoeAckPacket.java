@@ -11,7 +11,11 @@ import realmrelay.packets.data.WorldPosData;
 public class AoeAckPacket extends Packet {
 
 	public int time;
-	public WorldPosData position = new WorldPosData();
+	public WorldPosData position;
+
+	public AoeAckPacket() {
+		position = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class MoveRecord extends WorldPosData {
 
-	private int time;
+	public int time;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -10,7 +10,11 @@ import realmrelay.packets.data.SlotObjectData;
 
 public class InvDropPacket extends Packet {
 
-	private SlotObjectData slotObject = new SlotObjectData();
+	private SlotObjectData slotObject;
+
+	public InvDropPacket() {
+		slotObject = new SlotObjectData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

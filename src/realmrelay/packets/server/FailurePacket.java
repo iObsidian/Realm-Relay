@@ -12,6 +12,7 @@ public class FailurePacket extends Packet {
 	public static final int BAD_KEY = 5;
 	public static final int INVALID_TELEPORT_TARGET = 6;
 	public static final int EMAIL_VERIFICATION_NEEDED = 7;
+	public static final int TELEPORT_REALM_BLOCK = 9;
 
 	public int errorId;
 	public String errorDescription;

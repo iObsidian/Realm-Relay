@@ -5,7 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 import realmrelay.packets.Packet;
-import realmrelay.packets.data.BitmapData;
+import realmrelay.packets.data.unused.BitmapData;
 
 public class PicPacket extends Packet {
 

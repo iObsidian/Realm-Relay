@@ -1,18 +1,25 @@
 package realmrelay.packets.server;
 
+import realmrelay.packets.Packet;
+import realmrelay.packets.data.GroundTileData;
+import realmrelay.packets.data.unused.Entity;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.packets.Packet;
-import realmrelay.packets.data.Entity;
-import realmrelay.packets.data.GroundTileData;
-
 public class UpdatePacket extends Packet {
 
-	private GroundTileData[] tiles = new GroundTileData[0];
-	public Entity[] newObjs = new Entity[0];
-	public int[] drops = new int[0];
+	private GroundTileData[] tiles;
+	public Entity[] newObjs;
+	public int[] drops;
+
+
+	public UpdatePacket() {
+		this.tiles = new GroundTileData[0];
+		this.newObjs = new Entity[0];
+		this.drops = new int[0];
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -37,7 +37,7 @@ public class HelloPacket extends Packet {
 		out.writeInt(this.keyTime);
 		out.writeShort(this.key.length);
 		out.write(this.key);
-		out.writeShort(this.mapJSON.length);
+		out.writeInt(this.mapJSON.length);
 		out.write(this.mapJSON);
 		out.writeUTF(this.entrytag);
 		out.writeUTF(this.gameNet);
@@ -45,28 +45,6 @@ public class HelloPacket extends Packet {
 		out.writeUTF(this.playPlatform);
 		out.writeUTF(this.platformToken);
 		out.writeUTF(this.userToken);
-
-		/**
-		 * param1.writeUTF(this.buildVersion_);
-		 param1.writeInt(this.gameId_);
-		 param1.writeUTF(this.guid_);
-		 param1.writeInt(int(Math.floor(Math.random() * 1000000000)));
-		 param1.writeUTF(this.password_);
-		 param1.writeInt(int(Math.floor(Math.random() * 1000000000)));
-		 param1.writeUTF(this.secret_);
-		 param1.writeInt(this.keyTime_);
-		 param1.writeShort(this.key_.length);
-		 param1.writeBytes(this.key_);
-		 param1.writeInt(this.mapJSON_.length);
-		 param1.writeUTFBytes(this.mapJSON_);
-		 param1.writeUTF(this.entrytag_);
-		 param1.writeUTF(this.gameNet);
-		 param1.writeUTF(this.gameNetUserId);
-		 param1.writeUTF(this.playPlatform);
-		 param1.writeUTF(this.platformToken);
-		 param1.writeUTF(this.userToken);
-		 */
-
 	}
 
 	@Override

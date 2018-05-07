@@ -8,12 +8,8 @@ import realmrelay.packets.Packet;
 
 public class VerifyEmailPacket extends Packet {
 	public void parseFromInput(DataInput in) throws IOException {
-		//this method is left intentionally blank*
 	}
 
 	public void writeToOutput(DataOutput out) throws IOException {
-		//this method is left intentionally blank*
 	}
 }
-
-//* packet contains no variables, see github.com TheKronks KRelay VerifyEmailDialogPacket

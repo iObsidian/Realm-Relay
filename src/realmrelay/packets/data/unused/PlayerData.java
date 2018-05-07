@@ -1,4 +1,7 @@
-package realmrelay.packets.data;
+package realmrelay.packets.data.unused;
+
+import realmrelay.packets.data.StatData;
+import realmrelay.packets.data.WorldPosData;
 
 public class PlayerData {
 
@@ -194,7 +197,7 @@ public class PlayerData {
 	public void parseNewTICK(StatData[] statData) {
 
 		for (StatData data2 : statData) {
-			parseStatData(data2.id, data2.intValue, data2.stringValue);
+			parseStatData(data2.statType, data2.statValue, data2.strStatValue);
 		}
 
 	}

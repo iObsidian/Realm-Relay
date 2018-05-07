@@ -10,7 +10,11 @@ import realmrelay.packets.data.WorldPosData;
 public class GotoPacket extends Packet {
 
 	public int objectId;
-	public WorldPosData pos = new WorldPosData();
+	public WorldPosData pos;
+
+	public GotoPacket() {
+		pos = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

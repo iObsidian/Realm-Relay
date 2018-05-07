@@ -29,13 +29,20 @@ public class ShowEffectPacket extends Packet {
 	public static final int SHOCKER_EFFECT_TYPE = 17;
 	public static final int SHOCKEE_EFFECT_TYPE = 18;
 	public static final int RISING_FURY_EFFECT_TYPE = 19;
+	public static final int NOVA_NO_AOE_EFFECT_TYPE = 20;
 
 	private int effectType;
 	private int targetObjectId;
-	private WorldPosData pos1 = new WorldPosData();
-	private WorldPosData pos2 = new WorldPosData();
+	private WorldPosData pos1;
+	private WorldPosData pos2;
 	private int color;
-	private double duration;
+	private float duration;
+
+
+	public ShowEffectPacket() {
+		this.pos1 = new WorldPosData();
+		this.pos2 = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
@@ -54,7 +61,7 @@ public class ShowEffectPacket extends Packet {
 		pos1.writeToOutput(out);
 		pos2.writeToOutput(out);
 		out.writeInt(color);
-		out.writeDouble(duration);
+		out.writeFloat(duration);
 	}
 
 }

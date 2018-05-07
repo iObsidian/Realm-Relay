@@ -12,11 +12,15 @@ public class EnemyShootPacket extends Packet {
 	private int bulletId;
 	private int ownerId;
 	private int bulletType;
-	private WorldPosData startingPos = new WorldPosData();
+	private WorldPosData startingPos;
 	private float angle;
 	private short damage;
 	private int numShots;
 	private float angleInc;
+
+	public EnemyShootPacket() {
+		startingPos = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

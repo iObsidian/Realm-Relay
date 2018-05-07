@@ -1,20 +1,24 @@
 package realmrelay.packets.server;
 
+import realmrelay.packets.Packet;
+import realmrelay.packets.data.WorldPosData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-
-import realmrelay.packets.Packet;
-import realmrelay.packets.data.WorldPosData;
 
 public class ServerPlayerShootPacket extends Packet {
 
 	private int bulletId;
 	private int ownerId;
 	private int containerType;
-	private WorldPosData startingLoc = new WorldPosData();
+	private WorldPosData startingLoc;
 	private float angle;
 	private short damage;
+
+	public ServerPlayerShootPacket() {
+		startingLoc = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

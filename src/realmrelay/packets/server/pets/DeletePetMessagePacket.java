@@ -6,22 +6,18 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-public class Hatch_PetPacket extends Packet {
+public class DeletePetMessagePacket extends Packet {
 
-	private String petName;
-	private int petSkinId;
+	int petID;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		petName = in.readUTF();
-		petSkinId = in.readInt();
+		petID = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeUTF(petName);
-		out.writeInt(petSkinId);
-
+		out.writeInt(petID);
 	}
 
 }

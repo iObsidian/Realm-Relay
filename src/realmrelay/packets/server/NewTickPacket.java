@@ -5,7 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 import realmrelay.packets.Packet;
-import realmrelay.packets.data.Status;
+import realmrelay.packets.data.unused.Status;
 
 public class NewTickPacket extends Packet {
 

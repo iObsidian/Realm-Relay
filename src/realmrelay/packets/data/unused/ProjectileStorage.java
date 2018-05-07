@@ -1,4 +1,6 @@
-package realmrelay.packets.data;
+package realmrelay.packets.data.unused;
+
+import realmrelay.packets.data.WorldPosData;
 
 class ProjectileStorage {
 

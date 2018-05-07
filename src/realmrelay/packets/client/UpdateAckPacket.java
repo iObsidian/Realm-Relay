@@ -8,6 +8,11 @@ import realmrelay.packets.Packet;
 
 public class UpdateAckPacket extends Packet {
 
+	/**
+	 * The client maps this to a Message (empty Packet)
+	 * This class is meant as a replacement of an empty packet
+	 */
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 

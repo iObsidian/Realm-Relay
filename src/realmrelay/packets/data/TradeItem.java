@@ -4,35 +4,29 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.packets.data.unused.IData;
 
 public class TradeItem implements IData {
 
-	public int objectId;
-	public WorldPosData pos = new WorldPosData();
-	public StatData[] data = new StatData[0];
+	int item;
+	int slotType;
+	boolean tradeable;
+	boolean included;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-
-		objectId = in.readInt();
-		pos.parseFromInput(in);
-		data = new StatData[in.readShort()];
-		for (int i = 0; i < data.length; i++) {
-			StatData statData = new StatData();
-			statData.parseFromInput(in);
-			data[i] = statData;
-		}
+		this.item = in.readInt();
+		this.slotType = in.readInt();
+		this.tradeable = in.readBoolean();
+		this.included = in.readBoolean();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-
-		out.writeInt(objectId);
-		pos.writeToOutput(out);
-		out.writeShort(data.length);
-		for (StatData statData : data) {
-			statData.writeToOutput(out);
-		}
+		out.writeInt(item);
+		out.writeInt(slotType);
+		out.writeBoolean(tradeable);
+		out.writeBoolean(included);
 	}
 
 }

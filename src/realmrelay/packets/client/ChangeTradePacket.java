@@ -8,7 +8,11 @@ import realmrelay.packets.Packet;
 
 public class ChangeTradePacket extends Packet {
 
-	private boolean[] offer = new boolean[0];
+	private boolean[] offer;
+
+	public ChangeTradePacket() {
+		offer = new boolean[0];
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

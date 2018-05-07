@@ -4,6 +4,8 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.packets.data.unused.IData;
+
 public class WorldPosData implements IData {
 
 	// - x = up

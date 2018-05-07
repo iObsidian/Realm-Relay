@@ -8,19 +8,19 @@ import realmrelay.packets.Packet;
 
 public class FilePacket extends Packet {
 
-	private String name;
+	private String filename;
 	private byte[] bytes = new byte[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		name = in.readUTF();
+		filename = in.readUTF();
 		bytes = new byte[in.readInt()];
 		in.readFully(bytes);
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeUTF(name);
+		out.writeUTF(filename);
 		out.writeInt(bytes.length);
 		out.write(bytes);
 	}

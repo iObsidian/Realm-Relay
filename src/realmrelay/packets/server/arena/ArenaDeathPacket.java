@@ -6,20 +6,18 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-
-
 public class ArenaDeathPacket extends Packet {
 
-	private int restartPrice;
+	private int cost;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		restartPrice = in.readInt();
+		cost = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(restartPrice);
+		out.writeInt(cost);
 	}
 
 }

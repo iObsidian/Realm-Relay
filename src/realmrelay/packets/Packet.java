@@ -10,9 +10,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import realmrelay.ROTMGRelay;
 import realmrelay.GetXMLParse;
+import realmrelay.ROTMGRelay;
 import realmrelay.packets.client.AcceptTradePacket;
+import realmrelay.packets.client.ActivePetUpdateRequestPacket;
+import realmrelay.packets.client.AoeAckPacket;
 import realmrelay.packets.client.BuyPacket;
 import realmrelay.packets.client.CancelTradePacket;
 import realmrelay.packets.client.ChangeGuildRankPacket;
@@ -24,7 +26,8 @@ import realmrelay.packets.client.CreatePacket;
 import realmrelay.packets.client.EditAccountListPacket;
 import realmrelay.packets.client.EnemyHitPacket;
 import realmrelay.packets.client.EscapePacket;
-import realmrelay.packets.client.GoToAckPacket;
+import realmrelay.packets.client.GotoAckPacket;
+import realmrelay.packets.client.GoToQuestRoomPacket;
 import realmrelay.packets.client.GroundDamagePacket;
 import realmrelay.packets.client.GuildInvitePacket;
 import realmrelay.packets.client.GuildRemovePacket;
@@ -32,6 +35,7 @@ import realmrelay.packets.client.HelloPacket;
 import realmrelay.packets.client.InvDropPacket;
 import realmrelay.packets.client.InvSwapPacket;
 import realmrelay.packets.client.JoinGuildPacket;
+import realmrelay.packets.client.KeyInfoRequestPacket;
 import realmrelay.packets.client.LoadPacket;
 import realmrelay.packets.client.MovePacket;
 import realmrelay.packets.client.OtherHitPacket;
@@ -48,27 +52,37 @@ import realmrelay.packets.client.TeleportPacket;
 import realmrelay.packets.client.UpdateAckPacket;
 import realmrelay.packets.client.UseItemPacket;
 import realmrelay.packets.client.UsePortalPacket;
-import realmrelay.packets.data.IData;
+import realmrelay.packets.client.arena.EnterArenaPacket;
+import realmrelay.packets.client.arena.QuestRedeemPacket;
+import realmrelay.packets.data.unused.IData;
 import realmrelay.packets.server.AccountListPacket;
 import realmrelay.packets.server.AllyShootPacket;
+import realmrelay.packets.server.AoePacket;
 import realmrelay.packets.server.BuyResultPacket;
 import realmrelay.packets.server.ClientStatPacket;
 import realmrelay.packets.server.CreateSuccessPacket;
 import realmrelay.packets.server.DamagePacket;
 import realmrelay.packets.server.DeathPacket;
 import realmrelay.packets.server.EnemyShootPacket;
+import realmrelay.packets.server.EvolvedPetMessagePacket;
 import realmrelay.packets.server.FailurePacket;
 import realmrelay.packets.server.FilePacket;
+import realmrelay.packets.server.GlobalNotificationPacket;
 import realmrelay.packets.server.GotoPacket;
+import realmrelay.packets.server.GuildResultPacket;
 import realmrelay.packets.server.InvResultPacket;
+import realmrelay.packets.server.KeyInfoResponsePacket;
 import realmrelay.packets.server.MapInfoPacket;
 import realmrelay.packets.server.NameResultPacket;
+import realmrelay.packets.server.NewAbilityMessagePacket;
 import realmrelay.packets.server.NewTickPacket;
 import realmrelay.packets.server.NotificationPacket;
+import realmrelay.packets.server.PasswordPromptPacket;
 import realmrelay.packets.server.PicPacket;
 import realmrelay.packets.server.PingPacket;
 import realmrelay.packets.server.PlaySoundPacket;
 import realmrelay.packets.server.QuestObjIdPacket;
+import realmrelay.packets.server.QuestRedeemResponsePacket;
 import realmrelay.packets.server.ReconnectPacket;
 import realmrelay.packets.server.ReskinUnlockPacket;
 import realmrelay.packets.server.ServerPlayerShootPacket;
@@ -80,7 +94,11 @@ import realmrelay.packets.server.TradeDonePacket;
 import realmrelay.packets.server.TradeRequestedPacket;
 import realmrelay.packets.server.TradeStartPacket;
 import realmrelay.packets.server.UpdatePacket;
+import realmrelay.packets.server.VerifyEmailPacket;
 import realmrelay.packets.server.arena.ArenaDeathPacket;
+import realmrelay.packets.server.arena.ImminentArenaWavePacket;
+import realmrelay.packets.server.pets.DeletePetMessagePacket;
+import realmrelay.packets.server.pets.Hatch_PetMessagePacket;
 
 public abstract class Packet implements IData {
 
@@ -120,8 +138,12 @@ public abstract class Packet implements IData {
 	 * @throws IOException
 	 */
 	public static Packet create(byte id, byte[] bytes) throws Exception {
+
 		Packet packet = Packet.create(id);
 		packet.parseFromInput(new DataInputStream(new ByteArrayInputStream(bytes)));
+
+		System.out.println(packet.getName());
+		
 		return packet;
 	}
 
@@ -132,6 +154,8 @@ public abstract class Packet implements IData {
 		}
 		List<Class<? extends Packet>> list = new LinkedList<Class<? extends Packet>>();
 		list.add(AcceptTradePacket.class);
+		list.add(ActivePetUpdateRequestPacket.class);
+		list.add(AoeAckPacket.class);
 		list.add(BuyPacket.class);
 		list.add(CancelTradePacket.class);
 		list.add(ChangeGuildRankPacket.class);
@@ -143,7 +167,8 @@ public abstract class Packet implements IData {
 		list.add(EditAccountListPacket.class);
 		list.add(EnemyHitPacket.class);
 		list.add(EscapePacket.class);
-		list.add(GoToAckPacket.class);
+		list.add(GotoAckPacket.class);
+		list.add(GoToQuestRoomPacket.class);
 		list.add(GroundDamagePacket.class);
 		list.add(GuildInvitePacket.class);
 		list.add(GuildRemovePacket.class);
@@ -151,6 +176,7 @@ public abstract class Packet implements IData {
 		list.add(InvDropPacket.class);
 		list.add(InvSwapPacket.class);
 		list.add(JoinGuildPacket.class);
+		list.add(KeyInfoRequestPacket.class);
 		list.add(LoadPacket.class);
 		list.add(MovePacket.class);
 		list.add(OtherHitPacket.class);
@@ -167,27 +193,36 @@ public abstract class Packet implements IData {
 		list.add(UpdateAckPacket.class);
 		list.add(UseItemPacket.class);
 		list.add(UsePortalPacket.class);
+		list.add(EnterArenaPacket.class);
+		list.add(QuestRedeemPacket.class);
 		list.add(AccountListPacket.class);
 		list.add(AllyShootPacket.class);
-		list.add(ArenaDeathPacket.class);
+		list.add(AoePacket.class);
 		list.add(BuyResultPacket.class);
 		list.add(ClientStatPacket.class);
 		list.add(CreateSuccessPacket.class);
 		list.add(DamagePacket.class);
 		list.add(DeathPacket.class);
 		list.add(EnemyShootPacket.class);
+		list.add(EvolvedPetMessagePacket.class);
 		list.add(FailurePacket.class);
 		list.add(FilePacket.class);
+		list.add(GlobalNotificationPacket.class);
 		list.add(GotoPacket.class);
+		list.add(GuildResultPacket.class);
 		list.add(InvResultPacket.class);
+		list.add(KeyInfoResponsePacket.class);
 		list.add(MapInfoPacket.class);
 		list.add(NameResultPacket.class);
+		list.add(NewAbilityMessagePacket.class);
 		list.add(NewTickPacket.class);
 		list.add(NotificationPacket.class);
+		list.add(PasswordPromptPacket.class);
 		list.add(PicPacket.class);
 		list.add(PingPacket.class);
 		list.add(PlaySoundPacket.class);
 		list.add(QuestObjIdPacket.class);
+		list.add(QuestRedeemResponsePacket.class);
 		list.add(ReconnectPacket.class);
 		list.add(ReskinUnlockPacket.class);
 		list.add(ServerPlayerShootPacket.class);
@@ -199,6 +234,11 @@ public abstract class Packet implements IData {
 		list.add(TradeRequestedPacket.class);
 		list.add(TradeStartPacket.class);
 		list.add(UpdatePacket.class);
+		list.add(VerifyEmailPacket.class);
+		list.add(ArenaDeathPacket.class);
+		list.add(ImminentArenaWavePacket.class);
+		list.add(DeletePetMessagePacket.class);
+		list.add(Hatch_PetMessagePacket.class);
 
 		String name = null;
 		try {
@@ -220,7 +260,7 @@ public abstract class Packet implements IData {
 				}
 			}
 		} catch (Exception e) {
-			ROTMGRelay.echo("Error with packet " + name);
+			ROTMGRelay.echo("Error with packet " + name + ". Is there a 'Packet' suffix?");
 			e.printStackTrace();
 		}
 		ROTMGRelay.echo("Completed.");

@@ -16,7 +16,7 @@ public class OtherHitPacket extends Packet {
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		time = in.readInt();
-		bulletId = in.readUnsignedByte();
+		bulletId = in.readByte();
 		objectId = in.readInt();
 		targetId = in.readInt();
 	}

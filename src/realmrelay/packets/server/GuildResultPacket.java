@@ -9,18 +9,18 @@ import realmrelay.packets.Packet;
 public class GuildResultPacket extends Packet {
 
 	private boolean success;
-	private String errorText;
+	private String lineBuilderJSON;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		success = in.readBoolean();
-		errorText = in.readUTF();
+		lineBuilderJSON = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeBoolean(success);
-		out.writeUTF(errorText);
+		out.writeUTF(lineBuilderJSON);
 	}
 
 

@@ -1,6 +1,8 @@
-package realmrelay.packets.data;
+package realmrelay.packets.data.unused;
 
 import java.util.ArrayList;
+
+import realmrelay.packets.data.WorldPosData;
 
 final class PlayerWorldPosData {
 

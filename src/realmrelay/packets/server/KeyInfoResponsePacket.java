@@ -8,18 +8,22 @@ import realmrelay.packets.Packet;
 
 public class KeyInfoResponsePacket extends Packet {
 
-	private byte[] response;
+	public String name;
+	public String description;
+	public String creator;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		response = new byte[in.readInt()];
-		in.readFully(response);
+		this.name = in.readUTF();
+		this.description = in.readUTF();
+		this.creator = in.readUTF();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeInt(response.length);
-		out.write(response);
+		out.writeUTF(name);
+		out.writeUTF(description);
+		out.writeUTF(creator);
 	}
 
 }

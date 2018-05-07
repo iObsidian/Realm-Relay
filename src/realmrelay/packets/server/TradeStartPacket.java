@@ -1,17 +1,22 @@
 package realmrelay.packets.server;
 
+import realmrelay.packets.Packet;
+import realmrelay.packets.data.unused.Item;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.packets.Packet;
-import realmrelay.packets.data.Item;
-
 public class TradeStartPacket extends Packet {
 
-	private Item[] myItems = new Item[0];
+	private Item[] myItems;
 	private String yourName;
-	private Item[] yourItems = new Item[0];
+	private Item[] yourItems;
+
+	public TradeStartPacket() {
+		this.myItems = new Item[0];
+		this.yourItems = new Item[0];
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

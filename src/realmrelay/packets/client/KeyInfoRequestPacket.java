@@ -8,19 +8,16 @@ import realmrelay.packets.Packet;
 
 public class KeyInfoRequestPacket extends Packet {
 
-	private byte[] request;
+	private int itemType;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		this.request = new byte[in.readShort()];
-		in.readFully(this.request);
+		this.itemType = in.readInt();
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-
-		out.writeShort(this.request.length);
-		out.write(this.request);
+		out.writeInt(this.itemType);
 	}
 
 }

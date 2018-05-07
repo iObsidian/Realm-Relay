@@ -14,12 +14,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import realmrelay.packets.data.EnemyData;
-import realmrelay.packets.data.EnemyProjectileData;
-import realmrelay.packets.data.GroundData;
-import realmrelay.packets.data.ItemData;
-import realmrelay.packets.data.ItemProjectileData;
 import realmrelay.packets.data.ObjectData;
+import realmrelay.packets.data.unused.GroundData;
+import realmrelay.packets.data.unused.ItemData;
+import realmrelay.packets.data.unused.ItemProjectileData;
 
 public class GetXMLParse {
 
@@ -27,18 +25,16 @@ public class GetXMLParse {
 	public static final Map<Integer, ObjectData> objectMap = new LinkedHashMap<Integer, ObjectData>();
 	public static final Map<Integer, GroundData> tileMap = new LinkedHashMap<Integer, GroundData>();
 	public static final Map<String, Integer> packetMap = new LinkedHashMap<String, Integer>();
-	public static final Map<Integer, EnemyData> enemyTypeMap = new LinkedHashMap<Integer, EnemyData>();
 
-	private static final int XML_ITEMS = 0, XML_OBJECTS = 1, XML_PACKETS = 2, XML_TILES = 3, XML_ENEMIES = 4;
+	private static final int XML_ITEMS = 0, XML_OBJECTS = 1, XML_PACKETS = 2, XML_TILES = 3;
 
 	static {
 		System.out.println("Parsing files...");
 
-		parseXMLtoMap("Object", XML_OBJECTS, "res/xml/objects.xml");
-		parseXMLtoMap("Ground", XML_TILES, "res/xml/tiles.xml");
-		parseXMLtoMap("Packet", XML_PACKETS, "res/xml/packets.xml");
-		parseXMLtoMap("Object", XML_ITEMS, "res/xml/items.xml");
-		parseXMLtoMap("Object", XML_ENEMIES, "res/xml/enemies.xml");
+		parseXMLtoMap("Object", XML_OBJECTS, "xml/objects.xml");
+		parseXMLtoMap("Ground", XML_TILES, "xml/tiles.xml");
+		parseXMLtoMap("Packet", XML_PACKETS, "xml/packets.xml");
+		parseXMLtoMap("Object", XML_ITEMS, "xml/items.xml");
 
 	}
 
@@ -202,139 +198,6 @@ public class GetXMLParse {
 					itemData.projectiles = projectiles.toArray();
 				}
 				itemMap.put(itemData.type, itemData);
-				break;
-			}
-			case XML_ENEMIES: {
-				EnemyData enemyData = new EnemyData();
-				enemyData.id = String.valueOf(el.getAttribute("id")).toLowerCase();
-				enemyData.type = Integer.decode(el.getAttribute("type"));
-				NodeList nodeList = null;
-
-				if ((nodeList = el.getElementsByTagName("File")).getLength() > 0) {
-					enemyData.file = nodeList.item(0).getTextContent();
-				}
-				if ((nodeList = el.getElementsByTagName("Index")).getLength() > 0) {
-					enemyData.index = hexToInt(nodeList.item(0).getTextContent());
-				}
-
-				// Float
-
-				if ((nodeList = el.getElementsByTagName("XpMult")).getLength() > 0) {
-					enemyData.xpMult = Float.parseFloat(nodeList.item(0).getTextContent());
-				}
-
-				if ((nodeList = el.getElementsByTagName("Z")).getLength() > 0) {
-					enemyData.z = Float.parseFloat(nodeList.item(0).getTextContent());
-				}
-
-				// Integer
-
-				if ((nodeList = el.getElementsByTagName("Level")).getLength() > 0) {
-					enemyData.level = Integer.parseInt(nodeList.item(0).getTextContent());
-				}
-
-				if ((nodeList = el.getElementsByTagName("ShadowSize")).getLength() > 0) {
-					enemyData.shadowSize = Integer.parseInt(nodeList.item(0).getTextContent());
-				}
-
-				if ((nodeList = el.getElementsByTagName("Defense")).getLength() > 0) {
-					enemyData.defense = Integer.parseInt(nodeList.item(0).getTextContent());
-				}
-
-				if ((nodeList = el.getElementsByTagName("MaxHitPoints")).getLength() > 0) {
-					enemyData.maxHitPoints = Integer.parseInt(nodeList.item(0).getTextContent());
-				}
-
-				if ((nodeList = el.getElementsByTagName("Type")).getLength() > 0) {
-					enemyData.type = Integer.parseInt(nodeList.item(0).getTextContent());
-				}
-
-				if ((nodeList = el.getElementsByTagName("Size")).getLength() > 0) {
-					enemyData.size = Integer.parseInt(nodeList.item(0).getTextContent());
-				}
-
-				// String
-
-				if ((nodeList = el.getElementsByTagName("DeathSound")).getLength() > 0) {
-					enemyData.deathSound = nodeList.item(0).getTextContent();
-				}
-
-				if ((nodeList = el.getElementsByTagName("HitSound")).getLength() > 0) {
-					enemyData.hitSound = nodeList.item(0).getTextContent();
-				}
-
-				if ((nodeList = el.getElementsByTagName("EnemyClass")).getLength() > 0) {
-					enemyData.enemyClass = nodeList.item(0).getTextContent();
-				}
-
-				if ((nodeList = el.getElementsByTagName("Group")).getLength() > 0) {
-					enemyData.group = nodeList.item(0).getTextContent();
-				}
-
-				if ((nodeList = el.getElementsByTagName("DisplayId")).getLength() > 0) {
-					enemyData.displayId = nodeList.item(0).getTextContent();
-				}
-
-				// Boolean
-
-				if (el.getElementsByTagName("OccupySquare").getLength() > 0) {
-					enemyData.occupySquare = true;
-				}
-
-				if (el.getElementsByTagName("Flying").getLength() > 0) {
-					enemyData.flying = true;
-				}
-
-				if (el.getElementsByTagName("NoArticle").getLength() > 0) {
-					enemyData.noAtricle = true;
-				}
-
-				if (el.getElementsByTagName("StasisImmune").getLength() > 0) {
-					enemyData.stasisImmune = true;
-				}
-
-				if (el.getElementsByTagName("Oryx").getLength() > 0) {
-					enemyData.oryx = true;
-				}
-
-				if (el.getElementsByTagName("God").getLength() > 0) {
-					enemyData.god = true;
-				}
-
-				if (el.getElementsByTagName("Quest").getLength() > 0) {
-					enemyData.quest = true;
-				}
-
-				if (el.getElementsByTagName("Enemy").getLength() > 0) {
-					enemyData.enemy = true;
-				}
-
-				if ((nodeList = el.getElementsByTagName("Projectile")).getLength() > 0) {
-					for (int i = 0; i < nodeList.getLength(); i++) {
-						Element projectile = (Element) nodeList.item(i);
-						EnemyProjectileData projectileData = new EnemyProjectileData();
-						NodeList nl = null;
-						if (!projectile.getAttribute("id").equals("")) {
-							projectileData.bulletId = Integer.parseInt(projectile.getAttribute("id"));
-						}
-
-						if ((nl = projectile.getElementsByTagName("ObjectId")).getLength() > 0) {
-							projectileData.objectId = nl.item(0).getTextContent();
-						}
-						if ((nl = projectile.getElementsByTagName("Speed")).getLength() > 0) {
-							projectileData.speed = Float.parseFloat(nl.item(0).getTextContent());
-						}
-						if ((nl = projectile.getElementsByTagName("Damage")).getLength() > 0) {
-							projectileData.damage = Integer.parseInt(nl.item(0).getTextContent());
-						}
-						if ((nl = projectile.getElementsByTagName("LifetimeMS")).getLength() > 0) {
-							projectileData.lifetimeMS = Integer.parseInt(nl.item(0).getTextContent());
-						}
-						enemyData.projectiles.add(projectileData);
-					}
-
-				}
-				enemyTypeMap.put(enemyData.type, enemyData);
 				break;
 			}
 			case XML_OBJECTS: {
