@@ -1,31 +1,48 @@
 package realmrelay.packets.data.unused;
 
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
+public class BitmapData {
 
-public class BitmapData implements IData {
-
-	private int width;
-	private int height;
-	private byte[] bytes = new byte[0];
-
-	@Override
-	public void parseFromInput(DataInput in) throws IOException {
-
-		width = in.readInt();
-		height = in.readInt();
-		bytes = new byte[width * height * 4];
-		in.readFully(bytes);
+	public int width() {
+		return image.getWidth();
 	}
 
-	@Override
-	public void writeToOutput(DataOutput out) throws IOException {
+	public int height() {
+		return image.getHeight();
+	}
 
-		out.writeInt(width);
-		out.writeInt(height);
-		out.write(bytes);
+	public BufferedImage image;
+
+	public BitmapData(BufferedImage b) {
+		image = b;
+	}
+
+	/**
+	 * Used by BitmapDataSpy
+	 */
+	public BitmapData(int param1, int param2, boolean param3, int param4) {
+		this.image = new BufferedImage(param1, param2, 1);
+	}
+
+	public BitmapData(int i, int i1) {
+	}
+
+	public BitmapData clone() {
+		return new BitmapData(image);
+	}
+
+	/**
+	 * From AS3 API :
+	 * 
+	 * This method copies a rectangular area of a source image to a rectangular 
+	 * area of the same size at the destination point of the destination BitmapData object. 
+	 * 
+	 * This method is not implemented as it should. TODO
+	 */
+	public void copyPixels(BitmapData sourceImage, Rectangle rectangle, Point point) {
+		this.image = sourceImage.image;
 	}
 
 }

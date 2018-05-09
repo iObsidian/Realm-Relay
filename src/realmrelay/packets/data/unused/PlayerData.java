@@ -3,108 +3,7 @@ package realmrelay.packets.data.unused;
 import realmrelay.packets.data.StatData;
 import realmrelay.packets.data.WorldPosData;
 
-public class PlayerData {
-
-	//
-
-	public static final int MAX_HP_STAT = 0;
-	public static final int HP_STAT = 1;
-	private static final int SIZE_STAT = 2;
-	public static final int MAX_MP_STAT = 3;
-	public static final int MP_STAT = 4;
-	private static final int NEXT_LEVEL_EXP_STAT = 5;
-	private static final int EXP_STAT = 6;
-	private static final int LEVEL_STAT = 7;
-	public static final int ATTACK_STAT = 20;
-	public static final int DEFENSE_STAT = 21;
-	public static final int SPEED_STAT = 22;
-	private static final int INVENTORY_0_STAT = 8;
-	private static final int INVENTORY_1_STAT = 9;
-	private static final int INVENTORY_2_STAT = 10;
-	private static final int INVENTORY_3_STAT = 11;
-	private static final int INVENTORY_4_STAT = 12;
-	private static final int INVENTORY_5_STAT = 13;
-	private static final int INVENTORY_6_STAT = 14;
-	private static final int INVENTORY_7_STAT = 15;
-	private static final int INVENTORY_8_STAT = 16;
-	private static final int INVENTORY_9_STAT = 17;
-	private static final int INVENTORY_10_STAT = 18;
-	private static final int INVENTORY_11_STAT = 19;
-	public static final int VITALITY_STAT = 26;
-	public static final int WISDOM_STAT = 27;
-	public static final int DEXTERITY_STAT = 28;
-	private static final int CONDITION_STAT = 29;
-	private static final int NUM_STARS_STAT = 30;
-	public static final int NAME_STAT = 31;
-	private static final int TEX1_STAT = 32;
-	private static final int TEX2_STAT = 33;
-	private static final int MERCHANDISE_TYPE_STAT = 34;
-	private static final int CREDITS_STAT = 35;
-	private static final int MERCHANDISE_PRICE_STAT = 36;
-	private static final int ACTIVE_STAT = 37;
-	private static final int ACCOUNT_ID_STAT = 38;
-	public static final int FAME_STAT = 39;
-	private static final int MERCHANDISE_CURRENCY_STAT = 40;
-	private static final int CONNECT_STAT = 41;
-	private static final int MERCHANDISE_COUNT_STAT = 42;
-	private static final int MERCHANDISE_MINS_LEFT_STAT = 43;
-	private static final int MERCHANDISE_DISCOUNT_STAT = 44;
-	private static final int MERCHANDISE_RANK_REQ_STAT = 45;
-	public static final int MAX_HP_BOOST_STAT = 46;
-	public static final int MAX_MP_BOOST_STAT = 47;
-	public static final int ATTACK_BOOST_STAT = 48;
-	public static final int DEFENSE_BOOST_STAT = 49;
-	public static final int SPEED_BOOST_STAT = 50;
-	public static final int VITALITY_BOOST_STAT = 51;
-	public static final int WISDOM_BOOST_STAT = 52;
-	public static final int DEXTERITY_BOOST_STAT = 53;
-	private static final int OWNER_ACCOUNT_ID_STAT = 54;
-	private static final int RANK_REQUIRED_STAT = 55;
-	private static final int NAME_CHOSEN_STAT = 56;
-	private static final int CURR_FAME_STAT = 57;
-	public static final int NEXT_CLASS_QUEST_FAME_STAT = 58;
-	private static final int LEGENDARY_RANK_STAT = 59;
-	private static final int SINK_LEVEL_STAT = 60;
-	private static final int ALT_TEXTURE_STAT = 61;
-	private static final int GUILD_NAME_STAT = 62;
-	private static final int GUILD_RANK_STAT = 63;
-	private static final int BREATH_STAT = 64;
-	private static final int XP_BOOSTED_STAT = 65;
-	private static final int XP_TIMER_STAT = 66;
-	private static final int LD_TIMER_STAT = 67;
-	private static final int LT_TIMER_STAT = 68;
-	private static final int HEALTH_POTION_STACK_STAT = 69;
-	private static final int MAGIC_POTION_STACK_STAT = 70;
-	private static final int BACKPACK_0_STAT = 71;
-	private static final int BACKPACK_1_STAT = 72;
-	private static final int BACKPACK_2_STAT = 73;
-	private static final int BACKPACK_3_STAT = 74;
-	private static final int BACKPACK_4_STAT = 75;
-	private static final int BACKPACK_5_STAT = 76;
-	private static final int BACKPACK_6_STAT = 77;
-	private static final int BACKPACK_7_STAT = 78;
-	private static final int HASBACKPACK_STAT = 79;
-	private static final int TEXTURE_STAT = 80;
-	private static final int PET_INSTANCEID_STAT = 81;
-	private static final int PET_NAME_STAT = 82;
-	private static final int PET_TYPE_STAT = 83;
-	private static final int PET_RARITY_STAT = 84;
-	private static final int PET_MAXABILITYPOWER_STAT = 85;
-	private static final int PET_FAMILY_STAT = 86;
-	private static final int PET_FIRSTABILITY_POINT_STAT = 87;
-	private static final int PET_SECONDABILITY_POINT_STAT = 88;
-	private static final int PET_THIRDABILITY_POINT_STAT = 89;
-	private static final int PET_FIRSTABILITY_POWER_STAT = 90;
-	private static final int PET_SECONDABILITY_POWER_STAT = 91;
-	private static final int PET_THIRDABILITY_POWER_STAT = 92;
-	private static final int PET_FIRSTABILITY_TYPE_STAT = 93;
-	private static final int PET_SECONDABILITY_TYPE_STAT = 94;
-	private static final int PET_THIRDABILITY_TYPE_STAT = 95;
-	private static final int NEW_CON_STAT = 96;
-	private static final int FORTUNE_TOKEN_STAT = 97;
-
-
-	//
+public class PlayerData extends StatData {
 
 	// values
 
@@ -196,8 +95,8 @@ public class PlayerData {
 
 	public void parseNewTICK(StatData[] statData) {
 
-		for (StatData data2 : statData) {
-			parseStatData(data2.statType, data2.statValue, data2.strStatValue);
+		for (StatData data : statData) {
+			parseStatData(data.statType, data.statValue, data.strStatValue);
 		}
 
 	}
@@ -491,11 +390,6 @@ public class PlayerData {
                 this.fortune_token_stat = intValue;
                 break;
         }
-	}
-
-	public static boolean isString(int id) {
-		/* [31, 38, 62, 82] */
-		return id == 31 || id == 38 || id == 62 || id == 82;
 	}
 
 	public String getStringValueFor(int id) {

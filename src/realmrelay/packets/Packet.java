@@ -10,8 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import realmrelay.GetXMLParse;
 import realmrelay.ROTMGRelay;
+import realmrelay.game.Old_ObjectLibrary;
 import realmrelay.packets.client.AcceptTradePacket;
 import realmrelay.packets.client.ActivePetUpdateRequestPacket;
 import realmrelay.packets.client.AoeAckPacket;
@@ -26,8 +26,8 @@ import realmrelay.packets.client.CreatePacket;
 import realmrelay.packets.client.EditAccountListPacket;
 import realmrelay.packets.client.EnemyHitPacket;
 import realmrelay.packets.client.EscapePacket;
-import realmrelay.packets.client.GotoAckPacket;
 import realmrelay.packets.client.GoToQuestRoomPacket;
+import realmrelay.packets.client.GotoAckPacket;
 import realmrelay.packets.client.GroundDamagePacket;
 import realmrelay.packets.client.GuildInvitePacket;
 import realmrelay.packets.client.GuildRemovePacket;
@@ -78,7 +78,6 @@ import realmrelay.packets.server.NewAbilityMessagePacket;
 import realmrelay.packets.server.NewTickPacket;
 import realmrelay.packets.server.NotificationPacket;
 import realmrelay.packets.server.PasswordPromptPacket;
-import realmrelay.packets.server.PicPacket;
 import realmrelay.packets.server.PingPacket;
 import realmrelay.packets.server.PlaySoundPacket;
 import realmrelay.packets.server.QuestObjIdPacket;
@@ -218,7 +217,6 @@ public abstract class Packet implements IData {
 		list.add(NewTickPacket.class);
 		list.add(NotificationPacket.class);
 		list.add(PasswordPromptPacket.class);
-		list.add(PicPacket.class);
 		list.add(PingPacket.class);
 		list.add(PlaySoundPacket.class);
 		list.add(QuestObjIdPacket.class);
@@ -252,7 +250,7 @@ public abstract class Packet implements IData {
 				}
 
 			}
-			for (Entry<String, Integer> entry : GetXMLParse.packetMap.entrySet()) {
+			for (Entry<String, Integer> entry : Old_ObjectLibrary.packetMap.entrySet()) {
 				byte id = entry.getValue().byteValue();
 				Packet packet = Packet.create(id);
 				if (packet instanceof UnknownPacket) {
@@ -284,11 +282,11 @@ public abstract class Packet implements IData {
 	public byte id() { //return id as byte
 		String name = getName();
 
-		if (!GetXMLParse.packetMap.containsKey(name)) {
+		if (!Old_ObjectLibrary.packetMap.containsKey(name)) {
 			ROTMGRelay.echo("Could not find packet with name '" + name + "'.");
 			return -1;
 		} else {
-			return GetXMLParse.packetMap.get(name).byteValue();
+			return Old_ObjectLibrary.packetMap.get(name).byteValue();
 		}
 
 	}

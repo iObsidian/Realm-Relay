@@ -5,19 +5,19 @@ import org.bouncycastle.crypto.engines.RC4Engine;
 import org.bouncycastle.crypto.params.KeyParameter;
 
 public class RC4 {
-	
+
 	private final StreamCipher rc4;
-	
+
 	public RC4(String key) {
 		this(hexStringToBytes(key));
 	}
-	
+
 	public RC4(byte[] bytes) {
 		this.rc4 = new RC4Engine();
 		KeyParameter keyParam = new KeyParameter(bytes);
 		this.rc4.init(true, keyParam);
 	}
-	
+
 	/**
 	 * Cipher bytes and update cipher
 	 * 
@@ -26,7 +26,7 @@ public class RC4 {
 	public void cipher(byte[] bytes) {
 		this.rc4.processBytes(bytes, 0, bytes.length, bytes, 0);
 	}
-	
+
 	private static byte[] hexStringToBytes(String key) {
 		if (key.length() % 2 != 0) {
 			throw new IllegalArgumentException("invalid hex string");
@@ -40,5 +40,5 @@ public class RC4 {
 		}
 		return bytes;
 	}
-	
+
 }

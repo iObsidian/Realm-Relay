@@ -1,14 +1,17 @@
 package realmrelay;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import realmrelay.game.objects.GameObject;
 import realmrelay.packets.Packet;
-import realmrelay.packets.client.InvSwapPacket;
-import realmrelay.packets.client.UsePortalPacket;
-import realmrelay.packets.data.WorldPosData;
+import realmrelay.packets.data.GroundTileData;
 import realmrelay.packets.data.unused.PlayerData;
 import realmrelay.packets.server.CreateSuccessPacket;
+import realmrelay.packets.server.NewTickPacket;
 import realmrelay.packets.server.TextPacket;
+import realmrelay.packets.server.UpdatePacket;
 import realmrelay.script.PacketScriptEvent;
 
 public class PacketManager {
@@ -17,32 +20,19 @@ public class PacketManager {
 
 	private static long startTime = 0;
 
-	private static Packet lastUseItemPacket;
-
-	private static boolean canGo;
-
-	private static int myQuestId;
-
-	private static WorldPosData myQuestPos;
-
-	private static boolean enteredInRealm;
-
-	private static int tryingToJoinPortalId = 0;
-
-	private static int maxPopulation = 85;
-
-	private static boolean wantToConnect = false;
-
-	private static boolean isUsingAutoCon;
-
-	private static boolean wantToBeReconnected = true;
+	public static List<GameObject> objects = new ArrayList<GameObject>();
+	public static List<GroundTileData> tiles = new ArrayList<GroundTileData>();
 
 	public static void onClientPacketEvent(final PacketScriptEvent event) throws Exception {
 		final Packet packet = event.getPacket();
 
-		if (packet instanceof UsePortalPacket) {
+		if (packet instanceof NewTickPacket) {
 
-		} else if (packet instanceof InvSwapPacket) {
+			NewTickPacket newTick = (NewTickPacket) packet;
+
+		} else if (packet instanceof UpdatePacket) {
+
+			UpdatePacket update = (UpdatePacket) packet;
 
 		}
 

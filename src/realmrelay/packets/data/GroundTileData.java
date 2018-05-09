@@ -8,9 +8,9 @@ import realmrelay.packets.data.unused.IData;
 
 public class GroundTileData implements IData {
 
-	private short x;
-	private short y;
-	private int type;
+	public short x;
+	public short y;
+	public int type;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

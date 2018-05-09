@@ -1,4 +1,4 @@
-package realmrelay.packets;
+/**package realmrelay.packets;
 
 public class RC4 {
 
@@ -22,11 +22,7 @@ public class RC4 {
 
 	private int c;
 
-	/**
-	 * Creates new RC4 cipher object with byte array key
-	 *
-	 * @param bytes
-	 */
+
 	private RC4(byte[] bytes) {
 
 		a = new byte[256];
@@ -49,21 +45,13 @@ public class RC4 {
 		}
 	}
 
-	/**
-	 * Creates new RC4 cipher object with string key
-	 *
-	 * @param key
-	 */
+
 	public RC4(String key) {
 
 		this(RC4.hexStringToBytes(key));
 	}
 
-	/**
-	 * Cipher bytes and update cipher
-	 *
-	 * @param bytes
-	 */
+
 	public void cipher(byte[] bytes) {
 
 		for (int i = 0; i < bytes.length; i++) {
@@ -78,3 +66,4 @@ public class RC4 {
 	}
 
 }
+*/

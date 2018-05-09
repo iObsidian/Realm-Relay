@@ -8,22 +8,21 @@ import java.net.Proxy;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import realmrelay.GetXMLParse;
 import realmrelay.ROTMGRelay;
 import realmrelay.User;
+import realmrelay.game.Old_ObjectLibrary;
+import realmrelay.game.objects.GameObject;
 import realmrelay.packets.Packet;
 import realmrelay.packets.data.GroundTileData;
 import realmrelay.packets.data.MoveRecord;
-import realmrelay.packets.data.ObjectData;
+import realmrelay.packets.data.ObjectStatusData;
 import realmrelay.packets.data.SlotObjectData;
 import realmrelay.packets.data.StatData;
 import realmrelay.packets.data.WorldPosData;
 import realmrelay.packets.data.unused.BitmapData;
-import realmrelay.packets.data.unused.Entity;
 import realmrelay.packets.data.unused.GroundData;
 import realmrelay.packets.data.unused.Item;
 import realmrelay.packets.data.unused.ItemData;
-import realmrelay.packets.data.unused.Status;
 
 public class ScriptEvent {
 
@@ -79,9 +78,9 @@ public class ScriptEvent {
 		return true;
 	}
 
-	public BitmapData createBitmapData() {
+	/**public BitmapData createBitmapData() {
 		return new BitmapData();
-	}
+	}*/
 
 	public Item createItem() {
 		return new Item();
@@ -95,8 +94,8 @@ public class ScriptEvent {
 		return new MoveRecord();
 	}
 
-	public Entity createEntity() {
-		return new Entity();
+	public GameObject createEntity() {
+		return new GameObject();
 	}
 
 	/**
@@ -116,8 +115,8 @@ public class ScriptEvent {
 		return new StatData();
 	}
 
-	public Status createStatus() {
-		return new Status();
+	public ObjectStatusData createStatus() {
+		return new ObjectStatusData();
 	}
 
 	public GroundTileData createTile() {
@@ -140,19 +139,19 @@ public class ScriptEvent {
 	}
 
 	public GroundData findGround(Number searchterm) {
-		return GetXMLParse.tileMap.get(searchterm);
+		return Old_ObjectLibrary.tileMap.get(searchterm);
 	}
 
 	public ItemData findItem(Object searchterm) {
-		return GetXMLParse.itemMap.get(searchterm);
+		return Old_ObjectLibrary.itemMap.get(searchterm);
 	}
 
-	public ObjectData findObject(Object searchterm) {
-		return GetXMLParse.objectMap.get(searchterm);
+	public GameObject findObject(Object searchterm) {
+		return Old_ObjectLibrary.objectMap.get(searchterm);
 	}
 
 	public byte findPacketId(String name) {
-		Integer id = (Integer) GetXMLParse.packetMap.get(name.toUpperCase());
+		Integer id = (Integer) Old_ObjectLibrary.packetMap.get(name.toUpperCase());
 		if (id == null) {
 			return -1;
 		}

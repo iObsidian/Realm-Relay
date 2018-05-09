@@ -1,11 +1,11 @@
 package realmrelay.packets.server;
 
-import realmrelay.packets.Packet;
-import realmrelay.packets.data.unused.Item;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+
+import realmrelay.packets.Packet;
+import realmrelay.packets.data.unused.Item;
 
 public class TradeStartPacket extends Packet {
 

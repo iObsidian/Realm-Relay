@@ -5,7 +5,6 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 import realmrelay.packets.Packet;
-
 import realmrelay.packets.data.SlotObjectData;
 
 public class InvDropPacket extends Packet {

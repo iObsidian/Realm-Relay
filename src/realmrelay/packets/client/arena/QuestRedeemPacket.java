@@ -3,10 +3,8 @@ package realmrelay.packets.client.arena;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.List;
 
 import realmrelay.packets.Packet;
-import realmrelay.packets.data.MoveRecord;
 import realmrelay.packets.data.SlotObjectData;
 
 public class QuestRedeemPacket extends Packet {

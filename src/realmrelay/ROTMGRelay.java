@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.Vector;
 
+import realmrelay.game.Old_ObjectLibrary;
 import realmrelay.net.ListenSocket;
 import realmrelay.packets.Packet;
 
@@ -147,7 +148,7 @@ public final class ROTMGRelay {
 
 	public static void main(String[] args) {
 		try {
-			GetXMLParse.report();
+			Old_ObjectLibrary.report();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

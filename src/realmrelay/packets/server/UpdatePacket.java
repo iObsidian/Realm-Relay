@@ -1,23 +1,23 @@
 package realmrelay.packets.server;
 
-import realmrelay.packets.Packet;
-import realmrelay.packets.data.GroundTileData;
-import realmrelay.packets.data.unused.Entity;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import realmrelay.packets.Packet;
+import realmrelay.packets.data.GroundTileData;
+import realmrelay.packets.data.ObjectData;
+
 public class UpdatePacket extends Packet {
 
-	private GroundTileData[] tiles;
-	public Entity[] newObjs;
+	public GroundTileData[] tiles;
+	public ObjectData[] newObjs;
 	public int[] drops;
 
 
 	public UpdatePacket() {
 		this.tiles = new GroundTileData[0];
-		this.newObjs = new Entity[0];
+		this.newObjs = new ObjectData[0];
 		this.drops = new int[0];
 	}
 
@@ -31,9 +31,9 @@ public class UpdatePacket extends Packet {
 			tiles[i] = tile;
 		}
 
-		newObjs = new Entity[in.readShort()];
+		newObjs = new ObjectData[in.readShort()];
 		for (int i = 0; i < newObjs.length; i++) {
-			Entity Entity = new Entity();
+			ObjectData Entity = new ObjectData();
 			Entity.parseFromInput(in);
 			newObjs[i] = Entity;
 		}
@@ -52,7 +52,7 @@ public class UpdatePacket extends Packet {
 			tile.writeToOutput(out);
 		}
 		out.writeShort(newObjs.length);
-		for (Entity obj : newObjs) {
+		for (ObjectData obj : newObjs) {
 			obj.writeToOutput(out);
 		}
 		out.writeShort(drops.length);
