@@ -3,10 +3,13 @@ package realmrelay.game.messaging.outgoing;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class Create extends OutgoingMessage {
 
-public class Create extends Packet {
+	public Create(int param1, Consumer param2) {
+		super(param1, param2);
+	}
 
 	public int classType;
 	public int skinType;

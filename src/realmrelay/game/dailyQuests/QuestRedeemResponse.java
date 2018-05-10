@@ -1,4 +1,4 @@
-package realmrelay.game.messaging.incoming;
+package realmrelay.game.dailyQuests;
 
 import java.io.DataInput;
 import java.io.DataOutput;

@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 
 import realmrelay.ROTMGRelay;
 import realmrelay.game.Old_ObjectLibrary;
+import realmrelay.game.dailyQuests.QuestRedeemResponse;
 import realmrelay.game.messaging.incoming.AccountList;
 import realmrelay.game.messaging.incoming.AllyShoot;
 import realmrelay.game.messaging.incoming.Aoe;
@@ -38,7 +39,6 @@ import realmrelay.game.messaging.incoming.PasswordPrompt;
 import realmrelay.game.messaging.incoming.Ping;
 import realmrelay.game.messaging.incoming.PlaySound;
 import realmrelay.game.messaging.incoming.QuestObjId;
-import realmrelay.game.messaging.incoming.QuestRedeemResponse;
 import realmrelay.game.messaging.incoming.Reconnect;
 import realmrelay.game.messaging.incoming.ReskinUnlock;
 import realmrelay.game.messaging.incoming.ServerPlayerShoot;
