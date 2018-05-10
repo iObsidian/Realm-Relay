@@ -3,151 +3,132 @@ package realmrelay.game.objects;
 import javafx.geometry.Point3D;
 import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
+
+import realmrelay.game.map.Map;
 import realmrelay.game.parameters.Parameters;
 import realmrelay.packets.data.unused.BitmapData;
 import realmspy.service.util.RandomUtil;
 
 import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This class is about 10% done. It requires a lot of graphics stuff.
  */
 public class Projectile extends BasicObject {
 
-    private static Map<Integer, Integer> objBullIdToObjId = new HashMap<>();
+	private static Map<Integer, Integer> objBullIdToObjId = new HashMap<>();
 
-    public ObjectProperties props;
-    public ObjectProperties containerProps;
-    public ProjectileProperties projProps;
-    public BitmapData texture;
-    public int bulletId;
-    public int ownerId;
-    public int containerType;
-    public int bulletType;
-    public boolean damagesEnemies;
-    public boolean damagesPlayers;
-    public int damage;
-    public String sound;
-    public float startX;
-    public float startY;
-    public int startTime;
-    public float angle = 0;
-    public Dictionary multiHitDict;
-    public Point3D p;
+	public ObjectProperties props;
+	public ObjectProperties containerProps;
+	public ProjectileProperties projProps;
+	public BitmapData texture;
+	public int bulletId;
+	public int ownerId;
+	public int containerType;
+	public int bulletType;
+	public boolean damagesEnemies;
+	public boolean damagesPlayers;
+	public int damage;
+	public String sound;
+	public float startX;
+	public float startY;
+	public int startTime;
+	public float angle = 0;
+	public HashMap multiHitDict;
+	public Point3D p;
 
+	public Projectile() {
 
-    public Projectile() {
+		super();
+	}
 
-        super();
-    }
+	public static int findObjId(int param1, int param2) {
+		return (objBullIdToObjId.get(((param2 << 24) | param1)));
+	}
 
+	public static int getNewObjId(int param1, int param2) {
+		int loc3 = getNextFakeObjectId();
+		objBullIdToObjId.put(((param2 << 24) | param1), loc3);
+		return loc3;
+	}
 
-    public static int findObjId(int param1, int param2) {
-        return (objBullIdToObjId.get(((param2 << 24) | param1)));
-    }
+	public static void removeObjId(int param1, int param2) {
+		objBullIdToObjId.remove(objBullIdToObjId.get(((param2 << 24) | param1)));
+	}
 
-    public static int getNewObjId(int param1, int param2) {
-        int loc3 = getNextFakeObjectId();
-        objBullIdToObjId.put(((param2 << 24) | param1), loc3);
-        return loc3;
-    }
+	@Override
+	public void dispose() {
+		objBullIdToObjId = new HashMap<Integer, Integer>();
+	}
 
-    public static void removeObjId(int param1, int param2) {
-        objBullIdToObjId.remove(objBullIdToObjId.get(((param2 << 24) | param1)));
-    }
+	public void reset(int containerType, int bulletType, int ownerId, int bulletId, float angle, int startTime) {
+		clear();
+		this.containerType = containerType;
+		this.bulletType = bulletType;
+		this.ownerId = ownerId;
+		this.bulletId = bulletId;
+		this.angle = Trig.boundToPI(angle);
+		this.startTime = startTime;
+		objectId = getNewObjId(this.ownerId, this.bulletId);
+		z = 0.5;
+		this.containerProps = ObjectLibrary.propsLibrary.get(this.containerType);
+		this.projProps = this.containerProps.projectiles.get(bulletType);
+		this.props = ObjectLibrary.getPropsFromId(this.projProps.objectId);
+		hasShadow = this.props.shadowSize > 0;
+		TextureData textureData = ObjectLibrary.typeToTextureData.get(this.props.type);
+		this.texture = textureData.getTexture(objectId);
+		this.damagesPlayers = this.containerProps.isEnemy;
+		this.damagesEnemies = !this.damagesPlayers;
+		this.sound = this.containerProps.oldSound;
+		this.multiHitDict = !!this.projProps.multiHit ? new Map<>() : null;
 
-    @Override
-    public void dispose() {
-        objBullIdToObjId = new HashMap<Integer, Integer>();
-    }
+		float size = 0F;
 
+		if (this.projProps.size >= 0) {
+			size = this.projProps.size;
+		} else {
+			size = ObjectLibrary.getSizeFromType(this.containerType);
+		}
+		this.p.setSize(8 * (size / 100));
+		this.damage = 0;
+	}
 
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
 
+	@Override
+	public boolean addTo(Map map, float x, float y) {
+		Player player = null;
+		this.startX = x;
+		this.startY = y;
+		if (!super.addTo(map, x, y)) {
+			return false;
+		}
+		if (!this.containerProps.flying && square.sink) {
+			z = 0.1;
+		} else {
+			player = (Player) map.goDict.get(this.ownerId);
+			if (player != null && player.sinkLevel > 0) {
+				z = 0.5 - 0.4 * (player.sinkLevel / Parameters.MAX_SINK_LEVEL);
+			}
+		}
+		return true;
+	}
 
+	public boolean moveTo(float x, float y) {
+		Square square = map.getSquare(x, y);
+		if (square == null) {
+			return false;
+		}
+		x = x;
+		y = y;
+		square = square;
+		return true;
+	}
 
-
-
-
-    
-
-    public void reset(int containerType, int bulletType, int ownerId, int bulletId, float angle, int startTime)
-    {
-        clear();
-        this.containerType = containerType;
-        this.bulletType = bulletType;
-        this.ownerId = ownerId;
-        this.bulletId = bulletId;
-        this.angle = Trig.boundToPI(angle);
-        this.startTime = startTime;
-        objectId = getNewObjId(this.ownerId,this.bulletId);
-        z = 0.5;
-        this.containerProps = ObjectLibrary.propsLibrary.get(this.containerType);
-        this.projProps = this.containerProps.projectiles.get(bulletType);
-        this.props = ObjectLibrary.getPropsFromId(this.projProps.objectId);
-        hasShadow = this.props.shadowSize_ > 0;
-        TextureData textureData = ObjectLibrary.typeToTextureData[this.props.type];
-        this.texture = textureData.getTexture(objectId);
-        this.damagesPlayers = this.containerProps.isEnemy_;
-        this.damagesEnemies = !this.damagesPlayers_;
-        this.sound = this.containerProps.oldSound_;
-        this.multiHitDict = !!this.projProps.multiHit_?new Dictionary():null;
-        if(this.projProps.size_ >= 0)
-        {
-            float size = this.projProps.size_;
-        }
-        else
-        {
-            size = ObjectLibrary.getSizeFromType(this.containerType);
-        }
-        this.p.setSize(8 * (size / 100));
-        this.damage = 0;
-    }
-
-    public function setDamage(damage:int) : void
-    {
-        this.damage = damage;
-    }
-
-    override public function addTo(map:Map, x:float, y:float) : boolean
-    {
-        Player player = null;
-        this.startX = x;
-        this.startY = y;
-        if(!super.addTo(map,x,y))
-        {
-            return false;
-        }
-        if(!this.containerProps.flying_ && square.sink_)
-        {
-            z = 0.1;
-        }
-        else
-        {
-            player = map.goDict[this.ownerId_] as Player;
-            if(player != null && player.sinkLevel_ > 0)
-            {
-                z = 0.5 - 0.4 * (player.sinkLevel_ / Parameters.MAX_SINK_LEVEL);
-            }
-        }
-        return true;
-    }
-
-    public function moveTo(x:float, y:float) : boolean
-    {
-        Square square = map.getSquare(x,y);
-        if(square == null)
-        {
-            return false;
-        }
-        x = x;
-        y = y;
-        square = square;
-        return true;
-    }
-
-    override public function removeFromMap() : void
+	public void removeFromMap()
     {
         super.removeFromMap();
         removeObjId(this.ownerId,this.bulletId);
@@ -155,7 +136,7 @@ public class Projectile extends BasicObject {
         FreeList.deleteObject(this);
     }
 
-    private function positionAt(elapsed:int, p:Point) : void
+	private void positionAt(elapsed:int, p:Point) : void
     {
         float periodFactor = NaN;
         float amplitudeFactor = NaN;
@@ -191,9 +172,9 @@ public class Projectile extends BasicObject {
         }
         else
         {
-            if(this.projProps.boomerang_)
+            if(this.projProps.boomerang)
             {
-                halfway = this.projProps.lifetime_ * (this.projProps.speed_ / 10000) / 2;
+                halfway = this.projProps.lifetime * (this.projProps.speed_ / 10000) / 2;
                 if(dist > halfway)
                 {
                     dist = halfway - (dist - halfway);
@@ -210,7 +191,9 @@ public class Projectile extends BasicObject {
         }
     }
 
-    override public function update(time:int, dt:int) : boolean
+    override
+
+	public function update(time:int, dt:int) : boolean
     {
         List<int> colors = null;
         Player player = null;
@@ -298,7 +281,7 @@ public class Projectile extends BasicObject {
         return true;
     }
 
-    public function getHit(pX:float, pY:float) : GameObject
+	public function getHit(pX:float, pY:float) : GameObject
     {
         GameObject go = null;
         float xDiff = NaN;
@@ -342,7 +325,9 @@ public class Projectile extends BasicObject {
         return minGO;
     }
 
-    override public function draw(graphicsData:List<IGraphicsData>, camera:Camera, time:int) : void
+    override
+
+	public function draw(graphicsData:List<IGraphicsData>, camera:Camera, time:int) : void
     {
         int outlineColor = 0;
         int glowColor = 0;
@@ -394,7 +379,9 @@ public class Projectile extends BasicObject {
         }
     }
 
-    override public function drawShadow(graphicsData:List<IGraphicsData>, camera:Camera, time:int) : void
+    override
+
+	public function drawShadow(graphicsData:List<IGraphicsData>, camera:Camera, time:int) : void
     {
         if(!Parameters.drawProj_)
         {

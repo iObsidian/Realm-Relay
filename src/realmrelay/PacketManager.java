@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import realmrelay.game.messaging.data.GroundTileData;
-import realmrelay.game.messaging.incoming.CreateSuccessPacket;
-import realmrelay.game.messaging.incoming.NewTickPacket;
-import realmrelay.game.messaging.incoming.TextPacket;
-import realmrelay.game.messaging.incoming.UpdatePacket;
+import realmrelay.game.messaging.incoming.CreateSuccess;
+import realmrelay.game.messaging.incoming.NewTick;
+import realmrelay.game.messaging.incoming.Text;
+import realmrelay.game.messaging.incoming.Update;
 import realmrelay.game.objects.GameObject;
 import realmrelay.packets.Packet;
 import realmrelay.packets.data.unused.PlayerData;
@@ -26,13 +26,13 @@ public class PacketManager {
 	public static void onClientPacketEvent(final PacketScriptEvent event) throws Exception {
 		final Packet packet = event.getPacket();
 
-		if (packet instanceof NewTickPacket) {
+		if (packet instanceof NewTick) {
 
-			NewTickPacket newTick = (NewTickPacket) packet;
+			NewTick newTick = (NewTick) packet;
 
-		} else if (packet instanceof UpdatePacket) {
+		} else if (packet instanceof Update) {
 
-			UpdatePacket update = (UpdatePacket) packet;
+			Update update = (Update) packet;
 
 		}
 
@@ -50,14 +50,14 @@ public class PacketManager {
 	public static void onServerPacketEvent(PacketScriptEvent event) throws Exception {
 		Packet packet = event.getPacket();
 
-		if (packet instanceof CreateSuccessPacket) {
+		if (packet instanceof CreateSuccess) {
 
 		}
 
 	}
 
 	public static void tellToPlayer(final PacketScriptEvent event, String text) throws IOException {
-		TextPacket notificationPacket = new TextPacket();
+		Text notificationPacket = new Text();
 		notificationPacket.bubbleTime = -1;
 		notificationPacket.cleanText = "";
 		notificationPacket.name = "";
