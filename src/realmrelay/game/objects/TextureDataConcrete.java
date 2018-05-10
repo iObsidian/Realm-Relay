@@ -4,14 +4,11 @@ import realmrelay.game.XML;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.util.AnimatedChars;
 import realmrelay.game.util.AssetLibrary;
-import realmrelay.game.util.AssetLoader;
 import realmrelay.game.util.MaskedImage;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import org.w3c.dom.NodeList;
 
 /**
  * This class is a 25% match. Removed the use of remote textures. Parse only works for textures.

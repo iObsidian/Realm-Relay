@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import realmrelay.game.messaging.data.GroundTileData;
+import realmrelay.game.messaging.incoming.CreateSuccessPacket;
+import realmrelay.game.messaging.incoming.NewTickPacket;
+import realmrelay.game.messaging.incoming.TextPacket;
+import realmrelay.game.messaging.incoming.UpdatePacket;
 import realmrelay.game.objects.GameObject;
 import realmrelay.packets.Packet;
-import realmrelay.packets.data.GroundTileData;
 import realmrelay.packets.data.unused.PlayerData;
-import realmrelay.packets.server.CreateSuccessPacket;
-import realmrelay.packets.server.NewTickPacket;
-import realmrelay.packets.server.TextPacket;
-import realmrelay.packets.server.UpdatePacket;
 import realmrelay.script.PacketScriptEvent;
 
 public class PacketManager {

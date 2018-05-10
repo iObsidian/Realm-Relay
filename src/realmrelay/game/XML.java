@@ -1,11 +1,13 @@
 package realmrelay.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.util.ArrayList;
-import java.util.List;
+import realmrelay.game.objects.animation.AnimationData;
 
 public class XML {
 
@@ -97,6 +99,8 @@ public class XML {
 			return Integer.parseInt(textContent);
 		}
 	}
+
+	public List<AnimationData> animations;
 
 	public List<XML> getChilds() {
 		List<XML> xmls = new ArrayList<>();

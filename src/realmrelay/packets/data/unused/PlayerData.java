@@ -1,7 +1,7 @@
 package realmrelay.packets.data.unused;
 
-import realmrelay.packets.data.StatData;
-import realmrelay.packets.data.WorldPosData;
+import realmrelay.game.messaging.data.StatData;
+import realmrelay.game.messaging.data.WorldPosData;
 
 public class PlayerData extends StatData {
 

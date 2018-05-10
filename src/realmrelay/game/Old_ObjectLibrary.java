@@ -69,18 +69,18 @@ public class Old_ObjectLibrary {
     private static void xmlToMap(NodeList node, int xmlType) {
         /**for (int j = 0; j < node.getLength(); j++) {
             Element el = (Element) node.item(j);
-            String idtemp = el.getAttribute("id").replace(" ", "").toUpperCase();
+            String idtemp = el.attribute("id").replace(" ", "").toUpperCase();
 
             switch (xmlType) {
                 case XML_PACKETS:
-                    String typetemp = el.getAttribute("type");
+                    String typetemp = el.attribute("type");
                     int packetType = Integer.parseInt(typetemp);
                     packetMap.put(idtemp, packetType);
                     break;
                 case XML_TILES: {
                     GroundData groundData = new GroundData();
-                    groundData.id = el.getAttribute("id");
-                    groundData.type = Integer.decode(el.getAttribute("type"));
+                    groundData.id = el.attribute("id");
+                    groundData.type = Integer.decode(el.attribute("type"));
                     NodeList nodeList = null;
 
                     if ((nodeList = el.getElementsByTagName("File")).getLength() > 0) {
@@ -113,8 +113,8 @@ public class Old_ObjectLibrary {
                 }
                 case XML_ITEMS: {
                     ItemData itemData = new ItemData();
-                    itemData.id = el.getAttribute("id");
-                    itemData.type = Integer.decode(el.getAttribute("type"));
+                    itemData.id = el.attribute("id");
+                    itemData.type = Integer.decode(el.attribute("type"));
                     NodeList nodeList = null;
 
                     if ((nodeList = el.getElementsByTagName("File")).getLength() > 0) {
@@ -202,8 +202,8 @@ public class Old_ObjectLibrary {
                 }
                 case XML_OBJECTS: {
                     GameObject objectData = new GameObject();
-                    objectData.id = el.getAttribute("id");
-                    objectData.type = Integer.decode(el.getAttribute("type"));
+                    objectData.id = el.attribute("id");
+                    objectData.type = Integer.decode(el.attribute("type"));
                     NodeList nodeList = null;
 
                     if ((nodeList = el.getElementsByTagName("AnimatedTexture")).getLength() > 0) {

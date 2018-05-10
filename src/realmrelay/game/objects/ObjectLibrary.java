@@ -8,10 +8,10 @@ import java.util.Map;
 import realmrelay.game.XML;
 import realmrelay.game.constants.GeneralConstants;
 import realmrelay.game.constants.ItemConstants;
+import realmrelay.game.messaging.data.StatData;
 import realmrelay.game.objects.animation.AnimationsData;
 import realmrelay.game.util.AssetLibrary;
 import realmrelay.game.util.ConversionUtil;
-import realmrelay.packets.data.StatData;
 import realmrelay.packets.data.unused.BitmapData;
 
 /**
@@ -87,10 +87,6 @@ public class ObjectLibrary {
 	private static String currentDungeon = "";
 
 	public static void parseDungeonXML(String param1, XML objectXML) {
-		/**int _loc3 = param1.indexOf("_") + 1;
-		int _loc4 = param1.indexOf("CXML");
-		currentDungeon = param1.substring(_loc3, _loc4 - _loc3);*/
-
 		currentDungeon = param1;
 
 		dungeonsXMLLibrary.put(currentDungeon, new HashMap<>());
