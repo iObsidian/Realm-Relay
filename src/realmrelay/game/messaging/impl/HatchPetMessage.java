@@ -1,6 +1,7 @@
 package realmrelay.game.messaging.impl;
 
 import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
@@ -16,8 +17,14 @@ public class HatchPetMessage extends IncomingMessage {
 	public int petSkin;
 
 	@Override
-	public void parseFromInput(DataInput param1) throws IOException {
-		this.petName = param1.readUTF();
-		this.petSkin = param1.readInt();
+	public void parseFromInput(DataInput in) throws IOException {
+		this.petName = in.readUTF();
+		this.petSkin = in.readInt();
+	}
+
+	@Override
+	public void writeToOutput(DataOutput out) throws IOException {
+		out.writeUTF(petName);
+		out.writeInt(petSkin);
 	}
 }

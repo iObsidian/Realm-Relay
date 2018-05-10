@@ -3,10 +3,13 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class GlobalNotification extends IncomingMessage {
 
-public class GlobalNotification extends Packet {
+	public GlobalNotification(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	private int type;
 	private String text;

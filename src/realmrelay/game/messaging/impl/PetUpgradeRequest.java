@@ -1,5 +1,6 @@
 package realmrelay.game.messaging.impl;
 
+import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -25,13 +26,23 @@ public class PetUpgradeRequest extends OutgoingMessage {
 	public int paymentTransType;
 
 	@Override
-	public void writeToOutput(DataOutput param1) throws IOException {
-		param1.writeByte(this.petTransType);
-		param1.writeInt(this.PIDOne);
-		param1.writeInt(this.PIDTwo);
-		param1.writeInt(this.objectId);
-		this.slotObject.writeToOutput(param1);
-		param1.writeByte(this.paymentTransType);
+	public void writeToOutput(DataOutput in) throws IOException {
+		in.writeByte(this.petTransType);
+		in.writeInt(this.PIDOne);
+		in.writeInt(this.PIDTwo);
+		in.writeInt(this.objectId);
+		this.slotObject.writeToOutput(in);
+		in.writeByte(this.paymentTransType);
+	}
+
+	@Override
+	public void parseFromInput(DataInput in) throws IOException {
+		this.petTransType = in.readByte();
+		this.PIDOne = in.readInt();
+		this.PIDTwo = in.readInt();
+		this.objectId = in.readInt();
+		this.slotObject.parseFromInput(in);
+		this.paymentTransType = in.readByte();
 	}
 
 }

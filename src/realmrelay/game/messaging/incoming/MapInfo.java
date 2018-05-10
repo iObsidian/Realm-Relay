@@ -3,15 +3,12 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.function.Consumer;
-
-import realmrelay.packets.Packet;
 
 public class MapInfo extends IncomingMessage {
 
-	public MapInfo(int param1, Consumer param2) {
-		super(param1, param2);
+	public MapInfo(int id, Consumer callback) {
+		super(id, callback);
 		this.clientXML = new String[0];
 		this.extraXML = new String[0];
 	}

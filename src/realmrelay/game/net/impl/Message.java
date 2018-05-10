@@ -5,6 +5,8 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+import realmrelay.packets.data.unused.IData;
+
 /**
  * WIP to replace RR's 'Packet'
  * 
@@ -13,10 +15,9 @@ import java.util.function.Consumer;
  * This is a close match, exception that parseFromInput and ouput throw exceptions (because stream.read() methods cause errors)
  * 
  */
-public class Message {
+public abstract class Message implements IData {
 
 	public Message(int param1, Consumer param2) {
-
 	}
 
 	//public MessagePool pool;
@@ -26,11 +27,5 @@ public class Message {
 
 	public Consumer callback;
 	private boolean isCallback;
-
-	public void parseFromInput(DataInput in) throws IOException {
-	}
-
-	public void writeToOutput(DataOutput out) throws IOException {
-	}
 
 }

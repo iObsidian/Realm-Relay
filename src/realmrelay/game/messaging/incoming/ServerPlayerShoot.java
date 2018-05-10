@@ -3,11 +3,16 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.WorldPosData;
-import realmrelay.packets.Packet;
 
-public class ServerPlayerShoot extends Packet {
+public class ServerPlayerShoot extends IncomingMessage {
+
+	public ServerPlayerShoot(int id, Consumer callback) {
+		super(id, callback);
+		startingLoc = new WorldPosData();
+	}
 
 	private int bulletId;
 	private int ownerId;
@@ -15,10 +20,6 @@ public class ServerPlayerShoot extends Packet {
 	private WorldPosData startingLoc;
 	private float angle;
 	private short damage;
-
-	public ServerPlayerShoot() {
-		startingLoc = new WorldPosData();
-	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

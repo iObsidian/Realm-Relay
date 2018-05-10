@@ -3,16 +3,21 @@ package realmrelay.game.messaging.outgoing.arena;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.SlotObjectData;
-import realmrelay.packets.Packet;
+import realmrelay.game.messaging.outgoing.OutgoingMessage;
 
-public class QuestRedeem extends Packet {
+public class QuestRedeem extends OutgoingMessage {
 
 	String questID;
 	SlotObjectData[] slots;
 	int item;
 
+	public QuestRedeem(int id, Consumer callback) {
+		super(id, callback);
+	}
+	
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		questID = in.readUTF();

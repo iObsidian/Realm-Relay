@@ -3,11 +3,15 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.ObjectStatusData;
-import realmrelay.packets.Packet;
 
-public class NewTick extends Packet {
+public class NewTick extends IncomingMessage {
+
+	public NewTick(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	public int tickId;
 	public int tickTime;

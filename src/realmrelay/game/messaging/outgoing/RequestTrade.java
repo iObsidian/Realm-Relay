@@ -3,13 +3,16 @@ package realmrelay.game.messaging.outgoing;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
-
-public class RequestTrade extends Packet {
+public class RequestTrade extends OutgoingMessage {
 
 	private String name;
 
+	public RequestTrade(int id, Consumer callback) {
+		super(id, callback);
+	}
+	
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		name = in.readUTF();

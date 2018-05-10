@@ -3,15 +3,18 @@ package realmrelay.game.messaging.outgoing;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
-
-public class EditAccountList extends Packet {
+public class EditAccountList extends OutgoingMessage {
 
 	public int accountListId;
 	public boolean add;
 	public int objectId;
 
+	public EditAccountList(int id, Consumer callback) {
+		super(id, callback);
+	}
+	
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		accountListId = in.readInt();

@@ -1,4 +1,4 @@
-package realmrelay.packets;
+package realmrelay.packets.old;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -55,17 +55,17 @@ import realmrelay.game.messaging.incoming.arena.ArenaDeath;
 import realmrelay.game.messaging.incoming.arena.ImminentArenaWave;
 import realmrelay.game.messaging.incoming.pets.DeletePetMessage;
 import realmrelay.game.messaging.incoming.pets.Hatch_PetMessage;
-import realmrelay.game.messaging.outgoing.AcceptTrade;
-import realmrelay.game.messaging.outgoing.ActivePetUpdateRequest;
-import realmrelay.game.messaging.outgoing.AoeAck;
-import realmrelay.game.messaging.outgoing.Buy;
-import realmrelay.game.messaging.outgoing.CancelTrade;
-import realmrelay.game.messaging.outgoing.ChangeGuildRank;
-import realmrelay.game.messaging.outgoing.ChangeTrade;
-import realmrelay.game.messaging.outgoing.CheckCredits;
+import realmrelay.game.messaging.outgoing.AcceptTradePacket;
+import realmrelay.game.messaging.outgoing.ActivePetUpdateRequestPacket;
+import realmrelay.game.messaging.outgoing.AoeAckPacket;
+import realmrelay.game.messaging.outgoing.BuyPacket;
+import realmrelay.game.messaging.outgoing.CancelTradePacket;
+import realmrelay.game.messaging.outgoing.ChangeGuildRankPacket;
+import realmrelay.game.messaging.outgoing.ChangeTradePacket;
+import realmrelay.game.messaging.outgoing.CheckCreditsPacket;
 import realmrelay.game.messaging.outgoing.ChooseName;
-import realmrelay.game.messaging.outgoing.CreateGuild;
 import realmrelay.game.messaging.outgoing.Create;
+import realmrelay.game.messaging.outgoing.CreateGuild;
 import realmrelay.game.messaging.outgoing.EditAccountList;
 import realmrelay.game.messaging.outgoing.EnemyHit;
 import realmrelay.game.messaging.outgoing.Escape;
@@ -148,14 +148,14 @@ public abstract class Packet implements IData {
 			Packet.packetIdtoClassMap.add(null);
 		}
 		List<Class<? extends Packet>> list = new LinkedList<Class<? extends Packet>>();
-		list.add(AcceptTrade.class);
-		list.add(ActivePetUpdateRequest.class);
-		list.add(AoeAck.class);
-		list.add(Buy.class);
-		list.add(CancelTrade.class);
-		list.add(ChangeGuildRank.class);
-		list.add(ChangeTrade.class);
-		list.add(CheckCredits.class);
+		list.add(AcceptTradePacket.class);
+		list.add(ActivePetUpdateRequestPacket.class);
+		list.add(AoeAckPacket.class);
+		list.add(BuyPacket.class);
+		list.add(CancelTradePacket.class);
+		list.add(ChangeGuildRankPacket.class);
+		list.add(ChangeTradePacket.class);
+		list.add(CheckCreditsPacket.class);
 		list.add(ChooseName.class);
 		list.add(CreateGuild.class);
 		list.add(Create.class);
@@ -271,7 +271,7 @@ public abstract class Packet implements IData {
 	//Can cause Index Out Of Bound Exception if packet name doesnt contain Packet
 	public String getName() {
 		String simpleName = this.getClass().getSimpleName();
-		//simpleName = simpleName.substring(0, simpleName.indexOf("Packet")); Ditched 'Packet' from name
+		simpleName = simpleName.substring(0, simpleName.indexOf("Packet"));
 		return simpleName.toUpperCase();
 	}
 

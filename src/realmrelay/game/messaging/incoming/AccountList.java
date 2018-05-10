@@ -3,18 +3,18 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class AccountList extends IncomingMessage {
 
-public class AccountList extends Packet {
+	public AccountList(int param1, Consumer param2) {
+		super(param1, param2);
+		accountIds = new String[0];
+	}
 
 	public int accountListId;
 	private String[] accountIds;
 	private int lockAction = -1;
-
-	public AccountList() {
-		accountIds = new String[0];
-	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

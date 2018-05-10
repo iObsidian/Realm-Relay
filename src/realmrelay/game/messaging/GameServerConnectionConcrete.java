@@ -1,6 +1,5 @@
 package realmrelay.game.messaging;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import realmrelay.game.api.MessageProvider;
@@ -369,6 +368,16 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		create.classType = selectedClass.id;
 		create.skinType = selectedClass.skins.getSelectedSkin().id;
 		serverConnection.sendMessage(create);
+	}
+
+	private void load() {
+		Load _loc1 = (Load) this.messages.require(LOAD);
+		_loc1_.charId = charId_;
+		_loc1_.isFromArena = isFromArena_;
+		serverConnection.sendMessage(_loc1_);
+		if (isFromArena_) {
+			this.openDialog.dispatch(new BattleSummaryDialog());
+		}
 	}
 
 }

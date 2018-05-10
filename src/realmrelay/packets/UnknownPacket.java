@@ -8,7 +8,7 @@ import java.util.List;
 
 
 
-public class UnknownPacket extends Packet {
+public class UnknownPacket extends IncomingMessage {
 	
 	private byte id;
 	private final List<Byte> bytes = new LinkedList<Byte>();

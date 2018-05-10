@@ -3,10 +3,13 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class ReskinUnlock extends IncomingMessage {
 
-public class ReskinUnlock extends Packet {
+	public ReskinUnlock(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	private int skinID;
 

@@ -3,10 +3,13 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class Reconnect extends IncomingMessage {
 
-public class Reconnect extends Packet {
+	public Reconnect(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	private String name;
 	public String host;
@@ -16,7 +19,6 @@ public class Reconnect extends Packet {
 	public byte[] key = new byte[0];
 	private boolean isFromArena;
 	private String stats;
-
 
 	public void parseFromInput(DataInput in) throws IOException {
 		this.name = in.readUTF();

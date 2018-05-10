@@ -3,11 +3,13 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class TradeRequested extends IncomingMessage {
 
-
-public class TradeRequested extends Packet {
+	public TradeRequested(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	private String name;
 

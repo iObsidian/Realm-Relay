@@ -3,10 +3,9 @@ package realmrelay.game.messaging.outgoing;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
-
-public class Hello extends Packet {
+public class Hello extends OutgoingMessage {
 
 	public String buildVersion = "";
 	public int gameId = 0;
@@ -24,6 +23,10 @@ public class Hello extends Packet {
 	public String playPlatform = "";
 	public String platformToken = "";
 	public String userToken = "";
+
+	public Hello(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {

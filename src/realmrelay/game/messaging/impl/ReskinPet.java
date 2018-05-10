@@ -1,5 +1,6 @@
 package realmrelay.game.messaging.impl;
 
+import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -19,9 +20,16 @@ public class ReskinPet extends OutgoingMessage {
 	public SlotObjectData item;
 
 	@Override
-	public void writeToOutput(DataOutput param1) throws IOException {
-		param1.writeInt(this.petInstanceId);
-		param1.writeInt(this.pickedNewPetType);
-		this.item.writeToOutput(param1);
+	public void writeToOutput(DataOutput in) throws IOException {
+		in.writeInt(this.petInstanceId);
+		in.writeInt(this.pickedNewPetType);
+		item.writeToOutput(in);
+	}
+
+	@Override
+	public void parseFromInput(DataInput in) throws IOException {
+		this.petInstanceId = in.readInt();
+		this.pickedNewPetType = in.readInt();
+		item.parseFromInput(in);
 	}
 }

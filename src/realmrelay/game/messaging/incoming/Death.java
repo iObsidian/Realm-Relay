@@ -3,10 +3,13 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class Death extends IncomingMessage {
 
-public class Death extends Packet {
+	public Death(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	private String accountId;
 	private int charId;

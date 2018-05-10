@@ -3,23 +3,23 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.GroundTileData;
 import realmrelay.game.messaging.data.ObjectData;
-import realmrelay.packets.Packet;
 
-public class Update extends Packet {
+public class Update extends IncomingMessage {
 
-	public GroundTileData[] tiles;
-	public ObjectData[] newObjs;
-	public int[] drops;
-
-
-	public Update() {
+	public Update(int id, Consumer callback) {
+		super(id, callback);
 		this.tiles = new GroundTileData[0];
 		this.newObjs = new ObjectData[0];
 		this.drops = new int[0];
 	}
+
+	public GroundTileData[] tiles;
+	public ObjectData[] newObjs;
+	public int[] drops;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

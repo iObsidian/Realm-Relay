@@ -3,14 +3,17 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class PasswordPrompt extends IncomingMessage {
 
-public class PasswordPrompt extends Packet {
-
-	/**public final int SIGN_IN = 2;
+	public final int SIGN_IN = 2;
 	public final int SEND_EMAIL_AND_SIGN_IN = 3;
-	public final int REGISTER = 4;**/
+	public final int REGISTER = 4;
+
+	public PasswordPrompt(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	private int cleanPasswordStatus;
 

@@ -1,6 +1,7 @@
 package realmrelay.game.messaging.impl;
 
 import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
@@ -14,8 +15,13 @@ public class PetYard extends IncomingMessage {
 
 	public int type;
 
-	public void parseFromInput(DataInput param1) throws IOException {
-		this.type = param1.readInt();
+	public void parseFromInput(DataInput in) throws IOException {
+		this.type = in.readInt();
+	}
+
+	@Override
+	public void writeToOutput(DataOutput out) throws IOException {
+		out.writeInt(type);
 	}
 
 }

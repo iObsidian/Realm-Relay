@@ -14,7 +14,7 @@ public class Move extends OutgoingMessage {
 	public int time;
 	public WorldPosData newPosition;
 	public MoveRecord[] records;
-
+	
 	public Move(int param1, Consumer param2) {
 		super(param1, param2);
 		newPosition = new WorldPosData();

@@ -3,11 +3,11 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.WorldPosData;
-import realmrelay.packets.Packet;
 
-public class ShowEffect extends Packet {
+public class ShowEffect extends IncomingMessage {
 
 	public static final int UNKNOWN_EFFECT_TYPE = 0;
 	public static final int HEAL_EFFECT_TYPE = 1;
@@ -31,18 +31,19 @@ public class ShowEffect extends Packet {
 	public static final int RISING_FURY_EFFECT_TYPE = 19;
 	public static final int NOVA_NO_AOE_EFFECT_TYPE = 20;
 
+	public ShowEffect(int id, Consumer callback) {
+		super(id, callback);
+
+		this.pos1 = new WorldPosData();
+		this.pos2 = new WorldPosData();
+	}
+
 	private int effectType;
 	private int targetObjectId;
 	private WorldPosData pos1;
 	private WorldPosData pos2;
 	private int color;
 	private float duration;
-
-
-	public ShowEffect() {
-		this.pos1 = new WorldPosData();
-		this.pos2 = new WorldPosData();
-	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

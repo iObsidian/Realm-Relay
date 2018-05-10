@@ -1,8 +1,10 @@
 package realmrelay.game.classes.model;
 
+import realmrelay.game.Signal;
+
 public class CharacterSkin {
 
-	public const Signal changed = new Signal(CharacterSkin);
+	public final Signal<CharacterSkin> changed = new Signal();
 
     public int id = 0;
 

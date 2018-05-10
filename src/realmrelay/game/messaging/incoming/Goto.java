@@ -3,18 +3,19 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.WorldPosData;
-import realmrelay.packets.Packet;
 
-public class Goto extends Packet {
+public class Goto extends IncomingMessage {
+
+	public Goto(int id, Consumer callback) {
+		super(id, callback);
+		pos = new WorldPosData();
+	}
 
 	public int objectId;
 	public WorldPosData pos;
-
-	public Goto() {
-		pos = new WorldPosData();
-	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

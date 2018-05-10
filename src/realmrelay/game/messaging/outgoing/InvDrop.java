@@ -3,15 +3,16 @@ package realmrelay.game.messaging.outgoing;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.SlotObjectData;
-import realmrelay.packets.Packet;
 
-public class InvDrop extends Packet {
+public class InvDrop extends OutgoingMessage {
 
 	private SlotObjectData slotObject;
 
-	public InvDrop() {
+	public InvDrop(int id, Consumer callback) {
+		super(id, callback);
 		slotObject = new SlotObjectData();
 	}
 

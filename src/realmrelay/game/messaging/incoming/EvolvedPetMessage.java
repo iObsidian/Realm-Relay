@@ -3,10 +3,14 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class EvolvedPetMessage extends IncomingMessage {
 
-public class EvolvedPetMessage extends Packet {
+	public EvolvedPetMessage(int id, Consumer callback) {
+		super(id, callback);
+	}
+
 	int petID;
 	int initialSkin;
 	int finalSkin;

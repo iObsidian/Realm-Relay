@@ -1,5 +1,7 @@
 package realmrelay.game.messaging;
 
+import java.util.List;
+
 import realmrelay.game.game.AGameSprite;
 import realmrelay.game.messaging.data.SlotObjectData;
 import realmrelay.game.net.Server;
@@ -7,8 +9,6 @@ import realmrelay.game.net.SocketServer;
 import realmrelay.game.objects.GameObject;
 import realmrelay.game.objects.Player;
 import realmrelay.game.objects.Projectile;
-
-import java.util.List;
 
 public class GameServerConnection {
 

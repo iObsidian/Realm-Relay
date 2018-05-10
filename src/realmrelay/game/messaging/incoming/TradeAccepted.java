@@ -3,10 +3,13 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+public class TradeAccepted extends IncomingMessage {
 
-public class TradeAccepted extends Packet {
+	public TradeAccepted(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	private boolean[] myOffer = new boolean[0];
 	private boolean[] yourOffer = new boolean[0];

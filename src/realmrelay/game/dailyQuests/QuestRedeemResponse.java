@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import realmrelay.packets.Packet;
 
-public class QuestRedeemResponse extends Packet {
+public class QuestRedeemResponse extends IncomingMessage {
 
 	private boolean ok;
 	private String message;

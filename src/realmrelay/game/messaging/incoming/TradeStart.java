@@ -3,20 +3,21 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
 import realmrelay.packets.data.unused.Item;
 
-public class TradeStart extends Packet {
+public class TradeStart extends IncomingMessage {
+
+	public TradeStart(int id, Consumer callback) {
+		super(id, callback);
+		this.myItems = new Item[0];
+		this.yourItems = new Item[0];
+	}
 
 	private Item[] myItems;
 	private String yourName;
 	private Item[] yourItems;
-
-	public TradeStart() {
-		this.myItems = new Item[0];
-		this.yourItems = new Item[0];
-	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

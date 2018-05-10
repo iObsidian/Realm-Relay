@@ -3,19 +3,20 @@ package realmrelay.game.messaging.outgoing;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.SlotObjectData;
 import realmrelay.game.messaging.data.WorldPosData;
-import realmrelay.packets.Packet;
 
-public class InvSwap extends Packet {
+public class InvSwap extends OutgoingMessage {
 
 	private int time;
 	private WorldPosData position;
 	private SlotObjectData slotObject1;
 	private SlotObjectData slotObject2;
 
-	public InvSwap() {
+	public InvSwap(int id, Consumer callback) {
+		super(id, callback);
 		position = new WorldPosData();
 		slotObject1 = new SlotObjectData();
 		slotObject2 = new SlotObjectData();

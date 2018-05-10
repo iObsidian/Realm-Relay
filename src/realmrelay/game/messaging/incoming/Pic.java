@@ -1,18 +1,13 @@
 package realmrelay.game.messaging.incoming;
 
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
-
-import realmrelay.packets.Packet;
-import realmrelay.packets.data.unused.BitmapData;
-
-
-
 /** This implementation was dropped due to the removed of IData from BitmapData
-public class PicPacket extends Packet {
+public class PicPacket extends IncomingMessage {
 
 	private BitmapData bitmapData;
+
+	public ArenaDeath(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	public PicPacket() {
 		this.bitmapData = new BitmapData(0, 0);
