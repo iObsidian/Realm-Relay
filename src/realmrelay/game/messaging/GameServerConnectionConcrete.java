@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import realmrelay.game.api.MessageProvider;
 import realmrelay.game.classes.model.CharacterClass;
+import realmrelay.game.classes.model.ClassesModel;
 import realmrelay.game.dailyQuests.QuestFetchResponse;
 import realmrelay.game.dailyQuests.QuestRedeemResponse;
 import realmrelay.game.game.AGameSprite;
@@ -98,6 +99,7 @@ import realmrelay.game.messaging.outgoing.UsePortal;
 import realmrelay.game.messaging.outgoing.arena.EnterArena;
 import realmrelay.game.messaging.outgoing.arena.QuestRedeem;
 import realmrelay.game.net.Server;
+import realmrelay.game.net.SocketServer;
 import realmrelay.game.net.api.MessageMap;
 import realmrelay.game.net.impl.Message;
 import realmrelay.game.net.impl.MessageCenter;
@@ -133,14 +135,14 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private QuestRedeemCompleteSignal questRedeemComplete;
 	private KeyInfoResponseSignal keyInfoResponse;
 	private ClaimDailyRewardResponseSignal claimDailyRewardResponse;
-	private CurrentArenaRunModel currentArenaRun;
+	private CurrentArenaRunModel currentArenaRun;**/
 	private ClassesModel classesModel;
-	private Injector injector;
+	/*private Injector injector;
 	private GameModel model;
 	private UpdateActivePet updateActivePet;
 	private PetsModel petsModel;
 	private FriendModel friendModel;
-	private CharactersMetricsTracker statsTracker;**/
+	private CharactersMetricsTracker statsTracker;*/
 
 	//public function GameServerConnection(gs:GameSprite, server:Server, gameId:int, createCharacter:Boolean, charId:int, keyTime:int, key:ByteArray, mapJSON:String)
 
@@ -171,9 +173,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.logger = this.injector.getInstance(ILogger);
 		this.handleDeath = this.injector.getInstance(HandleDeathSignal);
 		this.zombify = this.injector.getInstance(ZombifySignal);
-		this.setGameFocus = this.injector.getInstance(SetGameFocusSignal);
-		this.classesModel = this.injector.getInstance(ClassesModel);
-		serverConnection = this.injector.getInstance(SocketServer);*/
+		this.setGameFocus = this.injector.getInstance(SetGameFocusSignal);*/
+		this.classesModel = ClassesModel.getInstance();
+		serverConnection = SocketServer.getInstance();
 		this.messages = MessageCenter.getInstance();
 		/*this.model = this.injector.getInstance(GameModel);
 		this.currentArenaRun = this.injector.getInstance(CurrentArenaRunModel);*/
@@ -362,12 +364,11 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void create() {
-
-		CharacterClass _loc1 = this.classesModel.getSelected();
-		Create _loc2 = (Create) this.messages.require(CREATE);
-		_loc2.classType = _loc1.id;
-		_loc2.skinType = _loc1.skins.getSelectedSkin().id;
-		serverConnection.sendMessage(_loc2);
+		CharacterClass selectedClass = this.classesModel.getSelected();
+		Create create = (Create) this.messages.require(CREATE);
+		create.classType = selectedClass.id;
+		create.skinType = selectedClass.skins.getSelectedSkin().id;
+		serverConnection.sendMessage(create);
 	}
 
 }

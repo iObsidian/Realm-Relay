@@ -3,7 +3,11 @@ package realmrelay.game.classes.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import realmrelay.game.Signal;
+
 public class CharacterClass {
+
+	public final Signal<CharacterClass> selected = new Signal<>();
 
 	public final List<CharacterClassUnlock> unlocks = new ArrayList<CharacterClassUnlock>(0);
 	public final CharacterSkins skins = new CharacterSkins();
@@ -31,5 +35,25 @@ public class CharacterClass {
 	public int unlockCost;
 	private int maxLevelAchieved;
 	private boolean isSelected;
+
+	public boolean getIsSelected() {
+		return this.isSelected;
+	}
+
+	public void setIsSelected(boolean param1) {
+		if (this.isSelected != param1) {
+			this.isSelected = param1;
+			this.selected.dispatch(this);
+		}
+	}
+
+	public int getMaxLevelAchieved() {
+		return this.maxLevelAchieved;
+	}
+
+	public void setMaxLevelAchieved(int param1) {
+		this.maxLevelAchieved = param1;
+		this.skins.updateSkins(this.maxLevelAchieved);
+	}
 
 }
