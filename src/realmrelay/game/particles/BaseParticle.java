@@ -2,9 +2,10 @@ package realmrelay.game.particles;
 
 import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
+import realmrelay.game.objects.BasicObject;
 import realmrelay.packets.data.unused.BitmapData;
 
-public class BaseParticle {
+public class BaseParticle extends BasicObject {
 
 	public float timeLeft = 0;
 
@@ -14,7 +15,7 @@ public class BaseParticle {
 
 	public float spdZ;
 
-	protected List<float> vS;
+	protected float[] vS;
 
 	protected Matrix fillMatrix;
 
@@ -22,19 +23,16 @@ public class BaseParticle {
 
 	protected GraphicsBitmapFill bitmapFill;
 
-	public function BaseParticle(bitmapData:BitmapData)
-	{
-		this.vS = new List<float>(8);
+	public function BaseParticle(BitmapData bitmapData) {
+		this.vS = new float[8];
 		this.fillMatrix = new Matrix();
-		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS,null);
-		this.bitmapFill = new GraphicsBitmapFill(null,null,false,false);
-		super();
-		this.bitmapFill_.bitmapData = bitmapData;
+		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
+		this.bitmapFill = new GraphicsBitmapFill(null, null, false, false);
+		this.bitmapFill.bitmapData = bitmapData;
 		objectId = getNextFakeObjectId();
 	}
 
-	public function initialize(totalTime:float, speedX:float, speedY:float, speedZ:float, zPos:int) : void
-	{
+	public void initialize(float totalTime, float speedX, float speedY, float speedZ, int zPos) {
 		this.timeLeft = totalTime;
 		this.spdX = speedX;
 		this.spdY = speedY;
@@ -42,25 +40,25 @@ public class BaseParticle {
 		z = zPos;
 	}
 
-	override public function draw(graphicsData:List<IGraphicsData>, camera:Camera, time:int) : void
-	{
-		float halfW = this.bitmapFill_.bitmapData.width / 2;
-		float halfH = this.bitmapFill_.bitmapData.height / 2;
-		this.vS_[6] = this.vS_[0] = posS_[3] - halfW;
-		this.vS_[3] = this.vS_[1] = posS_[4] - halfH;
-		this.vS_[4] = this.vS_[2] = posS_[3] + halfW;
-		this.vS_[7] = this.vS_[5] = posS_[4] + halfH;
-		this.path_.data = this.vS_;
-		this.fillMatrix_.identity();
-		this.fillMatrix_.translate(this.vS_[0],this.vS_[1]);
-		this.bitmapFill_.matrix = this.fillMatrix_;
+	@Override
+	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
+		float halfW = this.bitmapFill.bitmapData.width / 2;
+		float halfH = this.bitmapFill.bitmapData.height / 2;
+		this.vS[6] = this.vS[0] = posS[3] - halfW;
+		this.vS[3] = this.vS[1] = posS[4] - halfH;
+		this.vS[4] = this.vS[2] = posS[3] + halfW;
+		this.vS[7] = this.vS[5] = posS[4] + halfH;
+		this.path.data = this.vS;
+		this.fillMatrix.identity();
+		this.fillMatrix.translate(this.vS[0], this.vS_[1]);
+		this.bitmapFill.matrix = this.fillMatrix;
 		graphicsData.add(this.bitmapFill_);
 		graphicsData.add(this.path_);
 		graphicsData.add(GraphicsUtil.END_FILL);
 	}
 
-	override public function removeFromMap() : void
-	{
+	@Override
+	public void removeFromMap() {
 		map = null;
 		square = null;
 	}

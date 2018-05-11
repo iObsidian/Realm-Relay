@@ -1,5 +1,6 @@
 package realmrelay.game.objects;
 
+import org.bouncycastle.pqc.math.linearalgebra.Matrix;
 import realmrelay.game.XML;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.particles.ParticleEffect;
@@ -84,7 +85,7 @@ public class GameObject extends BasicObject {
 	public ShockerEffect shockEffect;
 	public ObjectProperties props;
 	public String name;
-	public float radius = 0.5;
+	public float radius = 0.5F;
 	public float facing = 0;
 	public boolean flying = false;
 	public float attackAngle = 0;

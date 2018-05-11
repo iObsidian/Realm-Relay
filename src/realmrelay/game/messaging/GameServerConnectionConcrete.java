@@ -2,16 +2,29 @@ package realmrelay.game.messaging;
 
 import realmrelay.game.XML;
 import realmrelay.game.api.MessageProvider;
+import realmrelay.game.arena.model.ArenaDeathSignal;
+import realmrelay.game.arena.model.ImminentArenaWaveSignal;
 import realmrelay.game.classes.model.CharacterClass;
 import realmrelay.game.classes.model.ClassesModel;
 import realmrelay.game.constants.GeneralConstants;
 import realmrelay.game.constants.ItemConstants;
+import realmrelay.game.dailyLogin.signal.ClaimDailyRewardResponseSignal;
 import realmrelay.game.dailyQuests.QuestFetchResponse;
 import realmrelay.game.dailyQuests.QuestRedeemResponse;
+import realmrelay.game.dailyQuests.signal.QuestFetchCompleteSignal;
+import realmrelay.game.dailyQuests.signal.QuestRedeemCompleteSignal;
+import realmrelay.game.death.control.HandleDeathSignal;
+import realmrelay.game.death.control.ZombifySignal;
+import realmrelay.game.dialogs.CloseDialogsSignal;
 import realmrelay.game.dialogs.OpenDialogSignal;
+import realmrelay.game.events.KeyInfoResponseSignal;
+import realmrelay.game.focus.control.SetGameFocusSignal;
+import realmrelay.game.focus.control.UpdateGroundTileSignal;
 import realmrelay.game.game.AGameSprite;
+import realmrelay.game.map.AbstractMap;
 import realmrelay.game.map.GroundLibrary;
 import realmrelay.game.map.Map;
+import realmrelay.game.maploading.signals.ChangeMapSignal;
 import realmrelay.game.messaging.data.GroundTileData;
 import realmrelay.game.messaging.data.ObjectData;
 import realmrelay.game.messaging.data.ObjectStatusData;
@@ -24,6 +37,7 @@ import realmrelay.game.messaging.incoming.pets.DeletePetMessage;
 import realmrelay.game.messaging.outgoing.*;
 import realmrelay.game.messaging.outgoing.arena.EnterArena;
 import realmrelay.game.messaging.outgoing.arena.QuestRedeem;
+import realmrelay.game.minimap.control.UpdateGameObjectTileSignal;
 import realmrelay.game.model.PotionInventoryModel;
 import realmrelay.game.net.Server;
 import realmrelay.game.net.SocketServer;
@@ -32,13 +46,17 @@ import realmrelay.game.net.impl.Message;
 import realmrelay.game.net.impl.MessageCenter;
 import realmrelay.game.objects.*;
 import realmrelay.game.parameters.Parameters;
+import realmrelay.game.pets.controller.PetFeedResultSignal;
+import realmrelay.game.signals.AddSpeechBalloonSignal;
+import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;
 import realmrelay.game.sound.SoundEffectLibrary;
 import realmrelay.game.ui.model.Key;
 import realmrelay.game.ui.signals.ShowKeySignal;
+import realmrelay.game.ui.signals.UpdateBackpackTabSignal;
 import realmrelay.packets.data.unused.BitmapData;
 
-import java.awt.Event;
+import java.awt.*;
 import java.security.interfaces.RSAKey;
 import java.util.Currency;
 import java.util.List;
@@ -81,43 +99,41 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private UpdateActivePet updateActivePet;
 	private PetsModel petsModel;
 	private FriendModel friendModel;
-	private CharactersMetricsTracker statsTracker;*/
-
-	//public function GameServerConnection(gs:GameSprite, server:Server, gameId:int, createCharacter:Boolean, charId:int, keyTime:int, key:ByteArray, mapJSON:String)
+	private CharactersMetricsTracker statsTracker;
 
 	public GameServerConnectionConcrete(AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
-			int keyTime, Byte[] key, String mapJSON, boolean isFromArena) {
+	                                    int keyTime, Byte[] key, String mapJSON, boolean isFromArena) {
 		super();
 
 		this.giftChestUpdateSignal = GiftStatusUpdateSignal.getInstance();
-		/**this.addTextLine = this.injector.getInstance(AddTextLineSignal);
-		 this.addSpeechBalloon = this.injector.getInstance(AddSpeechBalloonSignal);
-		 this.updateGroundTileSignal = this.injector.getInstance(UpdateGroundTileSignal);
-		 this.updateGameObjectTileSignal = this.injector.getInstance(UpdateGameObjectTileSignal);
-		 this.petFeedResult = this.injector.getInstance(PetFeedResultSignal);
-		 this.updateBackpackTab = StaticInjectorContext.getInjector().getInstance(UpdateBackpackTabSignal);
-		 this.updateActivePet = this.injector.getInstance(UpdateActivePet);
-		 this.petsModel = this.injector.getInstance(PetsModel);
-		 this.friendModel = this.injector.getInstance(FriendModel);
-		 this.closeDialogs = this.injector.getInstance(CloseDialogsSignal);
-		 changeMapSignal = this.injector.getInstance(ChangeMapSignal);
-		 this.openDialog = this.injector.getInstance(OpenDialogSignal);
-		 this.arenaDeath = this.injector.getInstance(ArenaDeathSignal);
-		 this.imminentWave = this.injector.getInstance(ImminentArenaWaveSignal);
-		 this.questFetchComplete = this.injector.getInstance(QuestFetchCompleteSignal);
-		 this.questRedeemComplete = this.injector.getInstance(QuestRedeemCompleteSignal);
-		 this.keyInfoResponse = this.injector.getInstance(KeyInfoResponseSignal);
-		 this.claimDailyRewardResponse = this.injector.getInstance(ClaimDailyRewardResponseSignal);
-		 this.statsTracker = this.injector.getInstance(CharactersMetricsTracker);
-		 this.logger = this.injector.getInstance(ILogger);
-		 this.handleDeath = this.injector.getInstance(HandleDeathSignal);
-		 this.zombify = this.injector.getInstance(ZombifySignal);
-		 this.setGameFocus = this.injector.getInstance(SetGameFocusSignal);*/
+		this.addTextLine = AddTextLineSignal.getInstance();
+		this.addSpeechBalloon = AddSpeechBalloonSignal.getInstance();
+		this.updateGroundTileSignal = UpdateGroundTileSignal.getInstance();
+		this.updateGameObjectTileSignal = UpdateGameObjectTileSignal.getInstance();
+		this.petFeedResult = PetFeedResultSignal.getInstance();
+		this.updateBackpackTab = UpdateBackpackTabSignal.getInstance();
+		 /*this.updateActivePet = UpdateActivePet;
+		 this.petsModel = PetsModel;
+		 this.friendModel =  FriendModel*/
+		this.closeDialogs = CloseDialogsSignal.getInstance();
+		changeMapSignal =  ChangeMapSignal.getInstance();
+		this.openDialog = OpenDialogSignal.getInstance();
+		this.arenaDeath = ArenaDeathSignal.getInstance();
+		this.imminentWave = ImminentArenaWaveSignal.getInstance();
+		this.questFetchComplete = QuestFetchCompleteSignal.getInstance();
+		this.questRedeemComplete = QuestRedeemCompleteSignal.getInstance();
+		this.keyInfoResponse = KeyInfoResponseSignal.getInstance();
+		this.claimDailyRewardResponse = ClaimDailyRewardResponseSignal.getInstance();
+		 /*this.statsTracker =  CharactersMetricsTracker;
+		 this.logger =  ILogger;*/
+		this.handleDeath = HandleDeathSignal.getInstance();
+		this.zombify = ZombifySignal.getInstance();
+		this.setGameFocus = SetGameFocusSignal.getInstance();
 		this.classesModel = ClassesModel.getInstance();
 		serverConnection = SocketServer.getInstance();
 		this.messages = MessageCenter.getInstance();
-		/*this.model = this.injector.getInstance(GameModel);
-		this.currentArenaRun = this.injector.getInstance(CurrentArenaRunModel);*/
+		/*this.model =  GameModel
+		this.currentArenaRun =  CurrentArenaRunModel*/
 		this.gs = gs;
 		this.server = server;
 		this.gameId = gameId;
@@ -127,7 +143,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.key = key;
 		this.mapJSON = mapJSON;
 		this.isFromArena = isFromArena;/**this.friendModel.setCurrentServer(server);
-										this.getPetUpdater();*/
+		 this.getPetUpdater();*/
 		instance = this;
 	}
 
@@ -141,7 +157,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 				|| (param1 == 2793 || param1 == 5471 || param1 == 9070)
 				|| (param1 == 2794 || param1 == 5472 || param1 == 9071)
 				|| (param1 == 9724 || param1 == 9725 || param1 == 9726 || param1 == 9727 || param1 == 9728
-						|| param1 == 9729 || param1 == 9730 || param1 == 9731);
+				|| param1 == 9729 || param1 == 9730 || param1 == 9731);
 	}
 
 	//private function getPetUpdater()
@@ -394,7 +410,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	public boolean invSwap(Player player, GameObject sourceObj, int slotId1, int itemId, GameObject targetObj,
-			int slotId2, int objectType2) {
+	                       int slotId2, int objectType2) {
 		if (this.gs == null) {
 			return false;
 		}
@@ -418,7 +434,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	@Override
 	public boolean invSwapPotion(Player player, GameObject sourceObj, int slotId1, int itemId, GameObject targetObj,
-			int slotId2, int objectType2) {
+	                             int slotId2, int objectType2) {
 		if (this.gs == null) {
 			return false;
 		}
@@ -445,7 +461,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	@Override
 	public boolean invSwapRaw(Player player, int objectId1, int slotId1, int objectType1, int objectId2, int slotId2,
-			int objectType2) {
+	                          int objectType2) {
 		if (this.gs == null) {
 			return false;
 		}
@@ -883,28 +899,28 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onGlobalNotification(GlobalNotification notification) {
 		switch (notification.text) {
-		case "yellow":
-			ShowKeySignal.instance.dispatch(Key.YELLOW);
-			break;
-		case "red":
-			ShowKeySignal.instance.dispatch(Key.RED);
-			break;
-		case "green":
-			ShowKeySignal.instance.dispatch(Key.GREEN);
-			break;
-		case "purple":
-			ShowKeySignal.instance.dispatch(Key.PURPLE);
-			break;
-		case "showKeyUI":
-			ShowKeyUISignal.instance.dispatch();
-			break;
-		case "giftChestOccupied":
-			this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_GIFT);
-			break;
-		case "giftChestEmpty":
-			this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_NO_GIFT);
-			break;
-		case "beginnersPackage":
+			case "yellow":
+				ShowKeySignal.instance.dispatch(Key.YELLOW);
+				break;
+			case "red":
+				ShowKeySignal.instance.dispatch(Key.RED);
+				break;
+			case "green":
+				ShowKeySignal.instance.dispatch(Key.GREEN);
+				break;
+			case "purple":
+				ShowKeySignal.instance.dispatch(Key.PURPLE);
+				break;
+			case "showKeyUI":
+				ShowKeyUISignal.instance.dispatch();
+				break;
+			case "giftChestOccupied":
+				this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_GIFT);
+				break;
+			case "giftChestEmpty":
+				this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_NO_GIFT);
+				break;
+			case "beginnersPackage":
 		}
 	}
 
@@ -932,7 +948,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		go.onGoto(gotoPacket.pos.x, gotoPacket.pos.y, this.gs.lastUpdate);
 	}
 
-	private void updateGameObject(GameObject go, List<StatData> stats, boolean isMyObject) {
+	private void updateGameObject(GameObject go, StatData[] stats, boolean isMyObject) {
 		int index = 0;
 		Player player = (Player) go;
 		Merchant merchant = (Merchant) go;
@@ -1172,8 +1188,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		int oldExp = 0;
 		Array newUnlocks = null;
 		CharacterClass type = null;
-		Map map = this.gs.map;
-		GameObject go = map.goDict[objectStatus.objectId];
+		AbstractMap map = this.gs.map;
+		GameObject go = map.goDict.get(objectStatus.objectId);
 		if (go == null) {
 			return;
 		}
@@ -1322,16 +1338,16 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 		this.outstandingBuy = null;
 		switch (buyResult.result) {
-		case BuyResult.NOT_ENOUGH_GOLD_BRID:
-			StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughGoldDialog());
-			break;
-		case BuyResult.NOT_ENOUGH_FAME_BRID:
-			StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughFameDialog());
-			break;
-		default:
-			this.addTextLine
-					.dispatch(new AddTextLineVO(buyResult.result == BuyResult.SUCCESS_BRID ? Parameters.SERVER_CHAT_NAME
-							: Parameters.ERROR_CHAT_NAME, buyResult.resultString));
+			case BuyResult.NOT_ENOUGH_GOLD_BRID:
+				StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughGoldDialog());
+				break;
+			case BuyResult.NOT_ENOUGH_FAME_BRID:
+				StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughFameDialog());
+				break;
+			default:
+				this.addTextLine
+						.dispatch(new AddTextLineVO(buyResult.result == BuyResult.SUCCESS_BRID ? Parameters.SERVER_CHAT_NAME
+								: Parameters.ERROR_CHAT_NAME, buyResult.resultString));
 		}
 	}
 
@@ -1346,9 +1362,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	private void onQuestObjId(QuestObjId questObjId)
-
-	{
+	private void onQuestObjId(QuestObjId questObjId) {
 		this.gs.map.quest.setObject(questObjId.objectId);
 	}
 
@@ -1443,17 +1457,17 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onFailure(Failure event) {
 		switch (event.errorId) {
-		case Failure.INCORRECT_VERSION:
-			this.handleIncorrectVersionFailure(event);
-			break;
-		case Failure.BAD_KEY:
-			this.handleBadKeyFailure(event);
-			break;
-		case Failure.INVALID_TELEPORT_TARGET:
-			this.handleInvalidTeleportTarget(event);
-			break;
-		default:
-			this.handleDefaultFailure(event);
+			case Failure.INCORRECT_VERSION:
+				this.handleIncorrectVersionFailure(event);
+				break;
+			case Failure.BAD_KEY:
+				this.handleBadKeyFailure(event);
+				break;
+			case Failure.INVALID_TELEPORT_TARGET:
+				this.handleInvalidTeleportTarget(event);
+				break;
+			default:
+				this.handleDefaultFailure(event);
 		}
 	}
 

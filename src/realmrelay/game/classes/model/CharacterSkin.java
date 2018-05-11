@@ -1,10 +1,11 @@
 package realmrelay.game.classes.model;
 
 import realmrelay.game.Signal;
+import realmrelay.game.assets.model.CharacterTemplate;
 
 public class CharacterSkin {
 
-	public final Signal<CharacterSkin> changed = new Signal();
+	public final Signal<CharacterSkin> changed = new Signal<CharacterSkin>();
 
 	public int id = 0;
 
@@ -30,7 +31,6 @@ public class CharacterSkin {
 
 	public CharacterSkin() {
 		this.state = CharacterSkinState.NULL;
-		super();
 	}
 
 	public boolean getIsSelected() {

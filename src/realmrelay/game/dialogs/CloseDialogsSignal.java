@@ -4,15 +4,12 @@ import realmrelay.game.Signal;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;
 
-//<Sprite> 
+public class CloseDialogsSignal extends Signal {
+	static CloseDialogsSignal instance;
 
-public class OpenDialogSignal extends Signal {
-
-	static OpenDialogSignal instance;
-
-	public static OpenDialogSignal getInstance() {
+	public static CloseDialogsSignal getInstance() {
 		if (instance == null) {
-			instance = new OpenDialogSignal();
+			instance = new CloseDialogsSignal();
 		}
 		return instance;
 	}

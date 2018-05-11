@@ -29,15 +29,12 @@ public abstract class Message implements IData {
 	private boolean isCallback;
 
 
-
-
 	public void consume() {
 		this.isCallback && this.callback(this);
 		this.prev = null;
 		this.next = null;
 		this.pool.append(this);
 	}
-
 
 
 }

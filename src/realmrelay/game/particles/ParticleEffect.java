@@ -5,9 +5,13 @@ import realmrelay.game.objects.GameObject;
 
 public class ParticleEffect extends GameObject {
 
+	public boolean reducedDrawEnabled;
+
 	public ParticleEffect() {
+		super(null);
 		objectId = getNextFakeObjectId();
 		hasShadow = false;
+		this.reducedDrawEnabled = false;
 	}
 
 	public static ParticleEffect fromProps(EffectProperties effectProps, GameObject go) {
