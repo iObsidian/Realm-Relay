@@ -3,13 +3,18 @@ package realmrelay.game.dailyQuests;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.function.Consumer;
 
-import realmrelay.packets.Packet;
+import realmrelay.game.messaging.incoming.IncomingMessage;
 
 public class QuestRedeemResponse extends IncomingMessage {
 
 	private boolean ok;
 	private String message;
+
+	public QuestRedeemResponse(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

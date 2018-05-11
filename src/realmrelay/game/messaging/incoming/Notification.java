@@ -11,9 +11,9 @@ public class Notification extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int objectId;
-	private String message;
-	private int color;
+	public int objectId;
+	public String message;
+	public int color;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

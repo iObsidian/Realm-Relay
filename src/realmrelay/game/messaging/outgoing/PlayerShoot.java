@@ -9,11 +9,11 @@ import realmrelay.game.messaging.data.WorldPosData;
 
 public class PlayerShoot extends OutgoingMessage {
 
-	private int time;
-	private int bulletId;
-	private int containerType;
-	private WorldPosData startingPos;
-	private float angle;
+	public int time;
+	public int bulletId;
+	public int containerType;
+	public WorldPosData startingPos;
+	public float angle;
 
 	public PlayerShoot(int id, Consumer callback) {
 		super(id, callback);

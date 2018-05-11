@@ -11,22 +11,22 @@ public class ServerPlayerShoot extends IncomingMessage {
 
 	public ServerPlayerShoot(int id, Consumer callback) {
 		super(id, callback);
-		startingLoc = new WorldPosData();
+		startingPos = new WorldPosData();
 	}
 
-	private int bulletId;
-	private int ownerId;
-	private int containerType;
-	private WorldPosData startingLoc;
-	private float angle;
-	private short damage;
+	public int bulletId;
+	public int ownerId;
+	public int containerType;
+	public WorldPosData startingPos;
+	public float angle;
+	public short damage;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		bulletId = in.readUnsignedByte();
 		ownerId = in.readInt();
 		containerType = in.readInt();
-		startingLoc.parseFromInput(in);
+		startingPos.parseFromInput(in);
 		angle = in.readFloat();
 		damage = in.readShort();
 	}
@@ -36,7 +36,7 @@ public class ServerPlayerShoot extends IncomingMessage {
 		out.writeByte(bulletId);
 		out.writeInt(ownerId);
 		out.writeInt(containerType);
-		startingLoc.writeToOutput(out);
+		startingPos.writeToOutput(out);
 		out.writeFloat(angle);
 		out.writeShort(damage);
 	}

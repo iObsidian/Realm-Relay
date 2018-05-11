@@ -7,9 +7,9 @@ import java.util.function.Consumer;
 
 public class SquareHit extends OutgoingMessage {
 
-	private int time;
-	private int bulletId;
-	private int objectId;
+	public int time;
+	public int bulletId;
+	public int objectId;
 
 	public SquareHit(int id, Consumer callback) {
 		super(id, callback);

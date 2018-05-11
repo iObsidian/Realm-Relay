@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class Teleport extends OutgoingMessage {
 
-	private int objectId;
+	public int objectId;
 
 	public Teleport(int id, Consumer callback) {
 		super(id, callback);

@@ -1,13 +1,12 @@
 package realmrelay.game;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
 import realmrelay.game.objects.animation.AnimationData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class XML {
 
@@ -75,22 +74,41 @@ public class XML {
 	}
 
 	public int getIntAttribute(String name) {
+		return getIntAttribute(name, 0);
+	}
+
+	public int getIntAttribute(String name, int defaultValue) {
 		try {
 			return hexToInt(getAttribute(name));
 		} catch (Exception e) {
-			System.err.println(e.getMessage() + " with " + name + ", returning 0.");
-			return 0;
+			System.err.println(e.getMessage() + " with " + name + ", returning " + defaultValue + ".");
+			return defaultValue;
 		}
 	}
 
+
 	public float getFloatAttribute(String name) {
+		return getFloatAttribute(name, 0);
+	}
+
+	/**
+	 * Utility method to allow
+	 * <p>
+	 * xml.@attribute || Number(0)
+	 * <p>
+	 * to be replaced by
+	 * <p>
+	 * xml.getFloatAttribute("attribute", 0)
+	 */
+	public float getFloatAttribute(String name, float defaultValue) {
 		try {
 			return Float.parseFloat(getAttribute(name));
 		} catch (Exception e) {
-			System.err.println(e.getMessage() + " with " + name + ", returning 0F.");
-			return 0.0F;
+			System.err.println(e.getMessage() + " with " + name + ", returning " + defaultValue + "F.");
+			return defaultValue;
 		}
 	}
+
 
 	private static int hexToInt(String textContent) {
 		try {

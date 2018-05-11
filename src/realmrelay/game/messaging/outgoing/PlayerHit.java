@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 
 public class PlayerHit extends OutgoingMessage {
 
-	private int bulletId;
-	private int objectId;
+	public int bulletId;
+	public int objectId;
 
 	public PlayerHit(int id, Consumer callback) {
 		super(id, callback);

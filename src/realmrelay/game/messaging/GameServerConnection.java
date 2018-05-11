@@ -2,6 +2,7 @@ package realmrelay.game.messaging;
 
 import java.util.List;
 
+import realmrelay.game.Signal;
 import realmrelay.game.game.AGameSprite;
 import realmrelay.game.messaging.data.SlotObjectData;
 import realmrelay.game.net.Server;
@@ -110,7 +111,7 @@ public class GameServerConnection {
 	public static final int QUEST_ROOM_MSG = 58;
 
 	public static GameServerConnection instance;
-	//public Signal changeMapSignal;
+	public Signal changeMapSignal;
 	public AGameSprite gs;
 	public Server server;
 	public int gameId;

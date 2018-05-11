@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class GuildRemove extends OutgoingMessage {
 
-	private String name;
+	public String name;
 
 	public GuildRemove(int id, Consumer callback) {
 		super(id, callback);

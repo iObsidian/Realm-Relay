@@ -1,5 +1,7 @@
 package realmrelay.game.messaging.outgoing;
 
+import realmrelay.game.objects.Player;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
@@ -7,15 +9,22 @@ import java.util.function.Consumer;
 
 public class Reskin extends OutgoingMessage {
 
-	private int skinID;
-
 	public Reskin(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
+	public int skinID;
+	public Player player;
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		skinID = in.readInt();
+	}
+
+	@Override
+	 public void consume() {
+		super.consume();
+		this.player = null;
 	}
 
 	@Override

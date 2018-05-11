@@ -10,10 +10,10 @@ import realmrelay.game.messaging.data.WorldPosData;
 
 public class InvSwap extends OutgoingMessage {
 
-	private int time;
-	private WorldPosData position;
-	private SlotObjectData slotObject1;
-	private SlotObjectData slotObject2;
+	public int time;
+	public WorldPosData position;
+	public SlotObjectData slotObject1;
+	public SlotObjectData slotObject2;
 
 	public InvSwap(int id, Consumer callback) {
 		super(id, callback);

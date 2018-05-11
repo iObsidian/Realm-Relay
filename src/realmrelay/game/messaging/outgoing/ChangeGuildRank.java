@@ -7,15 +7,13 @@ import java.util.function.Consumer;
 
 public class ChangeGuildRank extends OutgoingMessage {
 
-	private String name;
-	private int guildRank;
+	public String name;
+	public int guildRank;
 
-	
 	public ChangeGuildRank(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		name = in.readUTF();

@@ -38,12 +38,12 @@ public class ShowEffect extends IncomingMessage {
 		this.pos2 = new WorldPosData();
 	}
 
-	private int effectType;
-	private int targetObjectId;
-	private WorldPosData pos1;
-	private WorldPosData pos2;
-	private int color;
-	private float duration;
+	public int effectType;
+	public int targetObjectId;
+	public WorldPosData pos1;
+	public WorldPosData pos2;
+	public int color;
+	public float duration;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

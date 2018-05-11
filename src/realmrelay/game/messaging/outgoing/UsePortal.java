@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class UsePortal extends OutgoingMessage {
 
-	private int objectId;
+	public int objectId;
 
 	public UsePortal(int id, Consumer callback) {
 		super(id, callback);

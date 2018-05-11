@@ -1,108 +1,49 @@
 package realmrelay.game.messaging;
 
-import java.util.concurrent.ThreadLocalRandom;
-
+import realmrelay.game.XML;
 import realmrelay.game.api.MessageProvider;
 import realmrelay.game.classes.model.CharacterClass;
 import realmrelay.game.classes.model.ClassesModel;
+import realmrelay.game.constants.GeneralConstants;
+import realmrelay.game.constants.ItemConstants;
 import realmrelay.game.dailyQuests.QuestFetchResponse;
 import realmrelay.game.dailyQuests.QuestRedeemResponse;
+import realmrelay.game.dialogs.OpenDialogSignal;
 import realmrelay.game.game.AGameSprite;
-import realmrelay.game.messaging.impl.ActivePet;
-import realmrelay.game.messaging.impl.HatchPetMessage;
-import realmrelay.game.messaging.impl.PetUpgradeRequest;
-import realmrelay.game.messaging.impl.PetYard;
-import realmrelay.game.messaging.impl.ReskinPet;
-import realmrelay.game.messaging.incoming.AccountList;
-import realmrelay.game.messaging.incoming.AllyShoot;
-import realmrelay.game.messaging.incoming.Aoe;
-import realmrelay.game.messaging.incoming.BuyResult;
-import realmrelay.game.messaging.incoming.ClaimDailyRewardResponse;
-import realmrelay.game.messaging.incoming.ClientStat;
-import realmrelay.game.messaging.incoming.CreateSuccess;
-import realmrelay.game.messaging.incoming.Damage;
-import realmrelay.game.messaging.incoming.Death;
-import realmrelay.game.messaging.incoming.EnemyShoot;
-import realmrelay.game.messaging.incoming.EvolvedPetMessage;
-import realmrelay.game.messaging.incoming.Failure;
-import realmrelay.game.messaging.incoming.File;
-import realmrelay.game.messaging.incoming.GlobalNotification;
-import realmrelay.game.messaging.incoming.Goto;
-import realmrelay.game.messaging.incoming.GuildResult;
-import realmrelay.game.messaging.incoming.InvResult;
-import realmrelay.game.messaging.incoming.InvitedToGuild;
-import realmrelay.game.messaging.incoming.KeyInfoResponse;
-import realmrelay.game.messaging.incoming.MapInfo;
-import realmrelay.game.messaging.incoming.NameResult;
-import realmrelay.game.messaging.incoming.NewAbilityMessage;
-import realmrelay.game.messaging.incoming.NewTick;
-import realmrelay.game.messaging.incoming.Notification;
-import realmrelay.game.messaging.incoming.PasswordPrompt;
-import realmrelay.game.messaging.incoming.Ping;
-import realmrelay.game.messaging.incoming.PlaySound;
-import realmrelay.game.messaging.incoming.QuestObjId;
-import realmrelay.game.messaging.incoming.Reconnect;
-import realmrelay.game.messaging.incoming.ReskinUnlock;
-import realmrelay.game.messaging.incoming.ServerPlayerShoot;
-import realmrelay.game.messaging.incoming.ShowEffect;
-import realmrelay.game.messaging.incoming.TradeAccepted;
-import realmrelay.game.messaging.incoming.TradeChanged;
-import realmrelay.game.messaging.incoming.TradeDone;
-import realmrelay.game.messaging.incoming.TradeRequested;
-import realmrelay.game.messaging.incoming.TradeStart;
-import realmrelay.game.messaging.incoming.Update;
-import realmrelay.game.messaging.incoming.VerifyEmail;
+import realmrelay.game.map.GroundLibrary;
+import realmrelay.game.map.Map;
+import realmrelay.game.messaging.data.GroundTileData;
+import realmrelay.game.messaging.data.ObjectData;
+import realmrelay.game.messaging.data.ObjectStatusData;
+import realmrelay.game.messaging.data.StatData;
+import realmrelay.game.messaging.impl.*;
+import realmrelay.game.messaging.incoming.*;
 import realmrelay.game.messaging.incoming.arena.ArenaDeath;
 import realmrelay.game.messaging.incoming.arena.ImminentArenaWave;
 import realmrelay.game.messaging.incoming.pets.DeletePetMessage;
-import realmrelay.game.messaging.outgoing.AcceptTrade;
-import realmrelay.game.messaging.outgoing.ActivePetUpdateRequest;
-import realmrelay.game.messaging.outgoing.AoeAck;
-import realmrelay.game.messaging.outgoing.Buy;
-import realmrelay.game.messaging.outgoing.CancelTrade;
-import realmrelay.game.messaging.outgoing.ChangeGuildRank;
-import realmrelay.game.messaging.outgoing.ChangeTrade;
-import realmrelay.game.messaging.outgoing.CheckCredits;
-import realmrelay.game.messaging.outgoing.ChooseName;
-import realmrelay.game.messaging.outgoing.ClaimDailyRewardMessage;
-import realmrelay.game.messaging.outgoing.Create;
-import realmrelay.game.messaging.outgoing.CreateGuild;
-import realmrelay.game.messaging.outgoing.EditAccountList;
-import realmrelay.game.messaging.outgoing.EnemyHit;
-import realmrelay.game.messaging.outgoing.Escape;
-import realmrelay.game.messaging.outgoing.GoToQuestRoom;
-import realmrelay.game.messaging.outgoing.GotoAck;
-import realmrelay.game.messaging.outgoing.GroundDamage;
-import realmrelay.game.messaging.outgoing.GuildInvite;
-import realmrelay.game.messaging.outgoing.GuildRemove;
-import realmrelay.game.messaging.outgoing.Hello;
-import realmrelay.game.messaging.outgoing.InvDrop;
-import realmrelay.game.messaging.outgoing.InvSwap;
-import realmrelay.game.messaging.outgoing.JoinGuild;
-import realmrelay.game.messaging.outgoing.KeyInfoRequest;
-import realmrelay.game.messaging.outgoing.Load;
-import realmrelay.game.messaging.outgoing.Move;
-import realmrelay.game.messaging.outgoing.OtherHit;
-import realmrelay.game.messaging.outgoing.OutgoingMessage;
-import realmrelay.game.messaging.outgoing.PlayerHit;
-import realmrelay.game.messaging.outgoing.PlayerShoot;
-import realmrelay.game.messaging.outgoing.PlayerText;
-import realmrelay.game.messaging.outgoing.Pong;
-import realmrelay.game.messaging.outgoing.RequestTrade;
-import realmrelay.game.messaging.outgoing.SetCondition;
-import realmrelay.game.messaging.outgoing.ShootAck;
-import realmrelay.game.messaging.outgoing.SquareHit;
-import realmrelay.game.messaging.outgoing.Teleport;
-import realmrelay.game.messaging.outgoing.UseItem;
-import realmrelay.game.messaging.outgoing.UsePortal;
+import realmrelay.game.messaging.outgoing.*;
 import realmrelay.game.messaging.outgoing.arena.EnterArena;
 import realmrelay.game.messaging.outgoing.arena.QuestRedeem;
+import realmrelay.game.model.PotionInventoryModel;
 import realmrelay.game.net.Server;
 import realmrelay.game.net.SocketServer;
 import realmrelay.game.net.api.MessageMap;
 import realmrelay.game.net.impl.Message;
 import realmrelay.game.net.impl.MessageCenter;
-import realmrelay.game.objects.Player;
+import realmrelay.game.objects.*;
+import realmrelay.game.parameters.Parameters;
+import realmrelay.game.signals.GiftStatusUpdateSignal;
+import realmrelay.game.sound.SoundEffectLibrary;
+import realmrelay.game.ui.model.Key;
+import realmrelay.game.ui.signals.ShowKeySignal;
+import realmrelay.packets.data.unused.BitmapData;
+
+import java.awt.Event;
+import java.security.interfaces.RSAKey;
+import java.util.Currency;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameServerConnectionConcrete extends GameServerConnection {
 
@@ -112,9 +53,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private int playerId = -1;
 	private Player player;
 	private boolean retryConnection = true;
-	//private GiftStatusUpdateSignal giftChestUpdateSignal;
+	private GiftStatusUpdateSignal giftChestUpdateSignal;
 	private Death death;
-	/*private Timer retryTimer;
+	private Timer retryTimer;
 	private int delayBeforeReconnect = 2;
 	private AddTextLineSignal addTextLine;
 	private AddSpeechBalloonSignal addSpeechBalloon;
@@ -134,9 +75,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private QuestRedeemCompleteSignal questRedeemComplete;
 	private KeyInfoResponseSignal keyInfoResponse;
 	private ClaimDailyRewardResponseSignal claimDailyRewardResponse;
-	private CurrentArenaRunModel currentArenaRun;**/
+	private CurrentArenaRunModel currentArenaRun;
 	private ClassesModel classesModel;
-	/*private Injector injector;
 	private GameModel model;
 	private UpdateActivePet updateActivePet;
 	private PetsModel petsModel;
@@ -148,31 +88,31 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	public GameServerConnectionConcrete(AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
 			int keyTime, Byte[] key, String mapJSON, boolean isFromArena) {
 		super();
-		/**this.injector = StaticInjectorContext.getInjector();
-		this.giftChestUpdateSignal = this.injector.getInstance(GiftStatusUpdateSignal);
-		this.addTextLine = this.injector.getInstance(AddTextLineSignal);
-		this.addSpeechBalloon = this.injector.getInstance(AddSpeechBalloonSignal);
-		this.updateGroundTileSignal = this.injector.getInstance(UpdateGroundTileSignal);
-		this.updateGameObjectTileSignal = this.injector.getInstance(UpdateGameObjectTileSignal);
-		this.petFeedResult = this.injector.getInstance(PetFeedResultSignal);
-		this.updateBackpackTab = StaticInjectorContext.getInjector().getInstance(UpdateBackpackTabSignal);
-		this.updateActivePet = this.injector.getInstance(UpdateActivePet);
-		this.petsModel = this.injector.getInstance(PetsModel);
-		this.friendModel = this.injector.getInstance(FriendModel);
-		this.closeDialogs = this.injector.getInstance(CloseDialogsSignal);
-		changeMapSignal = this.injector.getInstance(ChangeMapSignal);
-		this.openDialog = this.injector.getInstance(OpenDialogSignal);
-		this.arenaDeath = this.injector.getInstance(ArenaDeathSignal);
-		this.imminentWave = this.injector.getInstance(ImminentArenaWaveSignal);
-		this.questFetchComplete = this.injector.getInstance(QuestFetchCompleteSignal);
-		this.questRedeemComplete = this.injector.getInstance(QuestRedeemCompleteSignal);
-		this.keyInfoResponse = this.injector.getInstance(KeyInfoResponseSignal);
-		this.claimDailyRewardResponse = this.injector.getInstance(ClaimDailyRewardResponseSignal);
-		this.statsTracker = this.injector.getInstance(CharactersMetricsTracker);
-		this.logger = this.injector.getInstance(ILogger);
-		this.handleDeath = this.injector.getInstance(HandleDeathSignal);
-		this.zombify = this.injector.getInstance(ZombifySignal);
-		this.setGameFocus = this.injector.getInstance(SetGameFocusSignal);*/
+
+		this.giftChestUpdateSignal = GiftStatusUpdateSignal.getInstance();
+		/**this.addTextLine = this.injector.getInstance(AddTextLineSignal);
+		 this.addSpeechBalloon = this.injector.getInstance(AddSpeechBalloonSignal);
+		 this.updateGroundTileSignal = this.injector.getInstance(UpdateGroundTileSignal);
+		 this.updateGameObjectTileSignal = this.injector.getInstance(UpdateGameObjectTileSignal);
+		 this.petFeedResult = this.injector.getInstance(PetFeedResultSignal);
+		 this.updateBackpackTab = StaticInjectorContext.getInjector().getInstance(UpdateBackpackTabSignal);
+		 this.updateActivePet = this.injector.getInstance(UpdateActivePet);
+		 this.petsModel = this.injector.getInstance(PetsModel);
+		 this.friendModel = this.injector.getInstance(FriendModel);
+		 this.closeDialogs = this.injector.getInstance(CloseDialogsSignal);
+		 changeMapSignal = this.injector.getInstance(ChangeMapSignal);
+		 this.openDialog = this.injector.getInstance(OpenDialogSignal);
+		 this.arenaDeath = this.injector.getInstance(ArenaDeathSignal);
+		 this.imminentWave = this.injector.getInstance(ImminentArenaWaveSignal);
+		 this.questFetchComplete = this.injector.getInstance(QuestFetchCompleteSignal);
+		 this.questRedeemComplete = this.injector.getInstance(QuestRedeemCompleteSignal);
+		 this.keyInfoResponse = this.injector.getInstance(KeyInfoResponseSignal);
+		 this.claimDailyRewardResponse = this.injector.getInstance(ClaimDailyRewardResponseSignal);
+		 this.statsTracker = this.injector.getInstance(CharactersMetricsTracker);
+		 this.logger = this.injector.getInstance(ILogger);
+		 this.handleDeath = this.injector.getInstance(HandleDeathSignal);
+		 this.zombify = this.injector.getInstance(ZombifySignal);
+		 this.setGameFocus = this.injector.getInstance(SetGameFocusSignal);*/
 		this.classesModel = ClassesModel.getInstance();
 		serverConnection = SocketServer.getInstance();
 		this.messages = MessageCenter.getInstance();
@@ -186,7 +126,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.keyTime = keyTime;
 		this.key = key;
 		this.mapJSON = mapJSON;
-		this.isFromArena = isFromArena;/**this.friendModel.setCurrentServer(server_);
+		this.isFromArena = isFromArena;/**this.friendModel.setCurrentServer(server);
 										this.getPetUpdater();*/
 		instance = this;
 	}
@@ -222,7 +162,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 		loc2 = LineBuilder.getLocalizedStringFromKey(loc2);
 		_loc1_.tokens = {"serverName": loc2};
-		this.addTextLine.dispatch(_loc1_);
+		this.addTextLine.dispatch(_loc1);
 		serverConnection.connect(server_.address, server_.port);
 	}**/
 
@@ -371,13 +311,1180 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void load() {
-		Load _loc1 = (Load) this.messages.require(LOAD);
-		_loc1_.charId = charId_;
-		_loc1_.isFromArena = isFromArena_;
-		serverConnection.sendMessage(_loc1_);
-		if (isFromArena_) {
-			this.openDialog.dispatch(new BattleSummaryDialog());
+		Load load = (Load) this.messages.require(LOAD);
+		load.charId = charId;
+		load.isFromArena = isFromArena;
+		serverConnection.sendMessage(load);
+
+		/**if (isFromArena) {
+		 this.openDialog.dispatch(new BattleSummaryDialog());
+		 }*/
+	}
+
+	public void playerShoot(int time, Projectile proj) {
+		PlayerShoot playerShoot = (PlayerShoot) this.messages.require(PLAYERSHOOT);
+		playerShoot.time = time;
+		playerShoot.bulletId = proj.bulletId;
+		playerShoot.containerType = proj.containerType;
+		playerShoot.startingPos.x = proj.x;
+		playerShoot.startingPos.y = proj.y;
+		playerShoot.angle = proj.angle;
+		this.serverConnection.sendMessage(playerShoot);
+	}
+
+	public void playerHit(int bulletId, int objectId) {
+		PlayerHit playerHit = (PlayerHit) this.messages.require(PLAYERHIT);
+		playerHit.bulletId = bulletId;
+		playerHit.objectId = objectId;
+		this.serverConnection.sendMessage(playerHit);
+	}
+
+	public void enemyHit(int time, int bulletId, int targetId, boolean kill) {
+		EnemyHit enemyHit = (EnemyHit) this.messages.require(ENEMYHIT);
+		enemyHit.time = time;
+		enemyHit.bulletId = bulletId;
+		enemyHit.targetId = targetId;
+		enemyHit.kill = kill;
+		this.serverConnection.sendMessage(enemyHit);
+	}
+
+	public void otherHit(int time, int bulletId, int objectId, int targetId) {
+		OtherHit otherHit = (OtherHit) this.messages.require(OTHERHIT);
+		otherHit.time = time;
+		otherHit.bulletId = bulletId;
+		otherHit.objectId = objectId;
+		otherHit.targetId = targetId;
+		this.serverConnection.sendMessage(otherHit);
+	}
+
+	public void squareHit(int time, int bulletId, int objectId) {
+		SquareHit squareHit = (SquareHit) this.messages.require(SQUAREHIT);
+		squareHit.time = time;
+		squareHit.bulletId = bulletId;
+		squareHit.objectId = objectId;
+		this.serverConnection.sendMessage(squareHit);
+	}
+
+	public void aoeAck(int time, float x, float y) {
+		AoeAck aoeAck = (AoeAck) this.messages.require(AOEACK);
+		aoeAck.time = time;
+		aoeAck.position.x = x;
+		aoeAck.position.y = y;
+		this.serverConnection.sendMessage(aoeAck);
+	}
+
+	public void groundDamage(int time, float x, float y) {
+		GroundDamage groundDamage = (GroundDamage) this.messages.require(GROUNDDAMAGE);
+		groundDamage.time = time;
+		groundDamage.position.x = x;
+		groundDamage.position.y = y;
+		this.serverConnection.sendMessage(groundDamage);
+	}
+
+	public void shootAck(int time) {
+		ShootAck shootAck = (ShootAck) this.messages.require(SHOOTACK);
+		shootAck.time = time;
+		this.serverConnection.sendMessage(shootAck);
+	}
+
+	public void playerText(String textStr) {
+		PlayerText playerTextMessage = (PlayerText) this.messages.require(PLAYERTEXT);
+		playerTextMessage.text = textStr;
+		this.serverConnection.sendMessage(playerTextMessage);
+	}
+
+	public boolean invSwap(Player player, GameObject sourceObj, int slotId1, int itemId, GameObject targetObj,
+			int slotId2, int objectType2) {
+		if (this.gs == null) {
+			return false;
 		}
+		InvSwap invSwap = (InvSwap) this.messages.require(INVSWAP);
+		invSwap.time = this.gs.lastUpdate;
+		invSwap.position.x = player.x;
+		invSwap.position.y = player.y;
+		invSwap.slotObject1.objectId = sourceObj.objectId;
+		invSwap.slotObject1.slotId = slotId1;
+		invSwap.slotObject1.objectType = itemId;
+		invSwap.slotObject2.objectId = targetObj.objectId;
+		invSwap.slotObject2.slotId = slotId2;
+		invSwap.slotObject2.objectType = objectType2;
+		this.serverConnection.sendMessage(invSwap);
+		int tempType = sourceObj.equipment[slotId1];
+		sourceObj.equipment[slotId1] = targetObj.equipment[slotId2];
+		targetObj.equipment[slotId2] = tempType;
+		SoundEffectLibrary.play("inventory_move_item");
+		return true;
+	}
+
+	@Override
+	public boolean invSwapPotion(Player player, GameObject sourceObj, int slotId1, int itemId, GameObject targetObj,
+			int slotId2, int objectType2) {
+		if (this.gs == null) {
+			return false;
+		}
+		InvSwap invSwap = (InvSwap) this.messages.require(INVSWAP);
+		invSwap.time = this.gs.lastUpdate;
+		invSwap.position.x = player.x;
+		invSwap.position.y = player.y;
+		invSwap.slotObject1.objectId = sourceObj.objectId;
+		invSwap.slotObject1.slotId = slotId1;
+		invSwap.slotObject1.objectType = itemId;
+		invSwap.slotObject2.objectId = targetObj.objectId;
+		invSwap.slotObject2.slotId = slotId2;
+		invSwap.slotObject2.objectType = objectType2;
+		sourceObj.equipment[slotId1] = ItemConstants.NO_ITEM;
+		if (itemId == PotionInventoryModel.HEALTH_POTION_ID) {
+			player.healthPotionCount++;
+		} else if (itemId == PotionInventoryModel.MAGIC_POTION_ID) {
+			player.magicPotionCount++;
+		}
+		this.serverConnection.sendMessage(invSwap);
+		SoundEffectLibrary.play("inventory_move_item");
+		return true;
+	}
+
+	@Override
+	public boolean invSwapRaw(Player player, int objectId1, int slotId1, int objectType1, int objectId2, int slotId2,
+			int objectType2) {
+		if (this.gs == null) {
+			return false;
+		}
+		InvSwap loc8 = (InvSwap) this.messages.require(INVSWAP);
+		loc8.time = gs.lastUpdate;
+		loc8.position.x = player.x;
+		loc8.position.y = player.y;
+		loc8.slotObject1.objectId = objectId1;
+		loc8.slotObject1.slotId = slotId1;
+		loc8.slotObject1.objectType = objectType1;
+		loc8.slotObject2.objectId = objectId2;
+		loc8.slotObject2.slotId = slotId2;
+		loc8.slotObject2.objectType = objectType2;
+		//this.addTextLine.dispatch(ChatMessage.make("",  "INVSWAP;
+		serverConnection.sendMessage(loc8);
+		SoundEffectLibrary.play("inventory_move_item");
+		return true;
+	}
+
+	public void invDrop(GameObject object, int slotId, int objectType) {
+		InvDrop invDrop = (InvDrop) this.messages.require(INVDROP);
+		invDrop.slotObject.objectId = object.objectId;
+		invDrop.slotObject.slotId = slotId;
+		invDrop.slotObject.objectType = objectType;
+		this.serverConnection.sendMessage(invDrop);
+		if (slotId != PotionInventoryModel.HEALTH_POTION_SLOT && slotId != PotionInventoryModel.MAGIC_POTION_SLOT) {
+			object.equipment[slotId] = ItemConstants.NO_ITEM;
+		}
+	}
+
+	public void useItem(int time, int objectId, int slotId, int objectType, float posX, float posY, int useType)
+
+	{
+		UseItem useItemMess = (UseItem) this.messages.require(USEITEM);
+		useItemMess.time = time;
+		useItemMess.slotObject.objectId = objectId;
+		useItemMess.slotObject.slotId = slotId;
+		useItemMess.slotObject.objectType = objectType;
+		useItemMess.itemUsePos.x = posX;
+		useItemMess.itemUsePos.y = posY;
+		useItemMess.useType = useType;
+		this.serverConnection.sendMessage(useItemMess);
+	}
+
+	public boolean useItem_new(GameObject itemOwner, int slotId)
+
+	{
+		int itemId = itemOwner.equipment[slotId];
+		XML objectXML = ObjectLibrary.xmlLibrary[itemId];
+		if (objectXML && !itemOwner.isPaused()
+				&& (objectXML.hasOwnProperty("Consumable") || objectXML.hasOwnProperty("InvUse"))) {
+			this.applyUseItem(itemOwner, slotId, itemId, objectXML);
+			SoundEffectLibrary.play("use_potion");
+			return true;
+		}
+		SoundEffectLibrary.play("error");
+		return false;
+	}
+
+	private void applyUseItem(GameObject owner, int slotId, int objectType, XML itemData)
+
+	{
+		UseItem useItemMess = (UseItem) this.messages.require(USEITEM);
+		useItemMess.time = getTimer();
+		useItemMess.slotObject.objectId = owner.objectId;
+		useItemMess.slotObject.slotId = slotId;
+		useItemMess.slotObject.objectType = objectType;
+		useItemMess.itemUsePos.x = 0;
+		useItemMess.itemUsePos.y = 0;
+		this.serverConnection.sendMessage(useItemMess);
+		if (itemData.hasOwnProperty("Consumable")) {
+			owner.equipment[slotId] = -1;
+		}
+	}
+
+	public void setCondition(int conditionEffect, float conditionDuration)
+
+	{
+		SetCondition setCondition = this.messages.require(SETCONDITION) as SetCondition;
+		setCondition.conditionEffect = conditionEffect;
+		setCondition.conditionDuration = conditionDuration;
+		this.serverConnection.sendMessage(setCondition);
+	}
+
+	public void move(int tickId, Player player) {
+		int len = 0;
+		int i = 0;
+		float x = -1;
+		float y = -1;
+		if (player && !player.isPaused()) {
+			x = player.x;
+			y = player.y;
+		}
+		Move move = (Move) this.messages.require(MOVE);
+		move.tickId = tickId;
+		move.time = this.gs.lastUpdate;
+		move.newPosition.x = x;
+		move.newPosition.y = y;
+		int lastMove = this.gs.moveRecords.lastClearTime;
+		move.records.length = 0;
+		if (lastMove >= 0 && move.time - lastMove > 125) {
+			len = Math.min(10, this.gs.moveRecords.records.length);
+			for (i = 0; i < len; i++) {
+				if (this.gs.moveRecords.records[i].time >= move.time - 25) {
+					break;
+				}
+				move.records.add(this.gs.moveRecords.records[i]);
+			}
+		}
+		this.gs.moveRecords.clear(move.time);
+		this.serverConnection.sendMessage(move);
+		player && player.onMove();
+	}
+
+	public void teleport(int objectId)
+
+	{
+		Teleport teleport = (Teleport) this.messages.require(TELEPORT);
+		teleport.objectId = objectId;
+		this.serverConnection.sendMessage(teleport);
+	}
+
+	public void usePortal(int objectId)
+
+	{
+		UsePortal usePortalMess = (UsePortal) this.messages.require(USEPORTAL);
+		usePortalMess.objectId = objectId;
+		this.serverConnection.sendMessage(usePortalMess);
+	}
+
+	public void buy(int sellableObjectId, int currencyType) {
+		if (this.outstandingBuy) {
+			return;
+		}
+		SellableObject sObj = this.gs.map.goDict[sellableObjectId];
+		if (sObj == null) {
+			return;
+		}
+		boolean converted = false;
+		if (sObj.currency_ == Currency.GOLD) {
+			converted = this.gs.model.getConverted() || this.player.credits_ > 100 || sObj.price_ > this.player.credits;
+		}
+		this.outstandingBuy = new OutstandingBuy(sObj.soldObjectInternalName(), sObj.price, sObj.currency, converted);
+		Buy buyMesssage = (Buy) this.messages.require(BUY);
+		buyMesssage.objectId = sellableObjectId;
+		if (currencyType == Currency.FAME) {
+			buyMesssage.multiplier = this.playerModel.getFamePriceMultiplier();
+		} else {
+			buyMesssage.multiplier = -1;
+		}
+		this.serverConnection.sendMessage(buyMesssage);
+	}
+
+	public void gotoAck(int time) {
+		GotoAck gotoAck = this.messages.require(GOTOACK) as GotoAck;
+		gotoAck.time = time;
+		this.serverConnection.sendMessage(gotoAck);
+	}
+
+	public void editAccountList(int accountListId, boolean add, int objectId) {
+		EditAccountList eal = (EditAccountList) this.messages.require(EDITACCOUNTLIST);
+		eal.accountListId = accountListId;
+		eal.add = add;
+		eal.objectId = objectId;
+		this.serverConnection.sendMessage(eal);
+	}
+
+	public void chooseName(String name) {
+		ChooseName chooseName = (ChooseName) this.messages.require(CHOOSENAME);
+		chooseName.name = name;
+		this.serverConnection.sendMessage(chooseName);
+	}
+
+	public void createGuild(String name) {
+		CreateGuild createGuild = (CreateGuild) this.messages.require(CREATEGUILD);
+		createGuild.name = name;
+		this.serverConnection.sendMessage(createGuild);
+	}
+
+	public void guildRemove(String name) {
+		GuildRemove guildRemove = (GuildRemove) this.messages.require(GUILDREMOVE);
+		guildRemove.name = name;
+		this.serverConnection.sendMessage(guildRemove);
+	}
+
+	public void guildInvite(String name) {
+		GuildInvite guildInvite = (GuildInvite) this.messages.require(GUILDINVITE);
+		guildInvite.name = name;
+		this.serverConnection.sendMessage(guildInvite);
+	}
+
+	public void requestTrade(String name) {
+		RequestTrade requestTrade = (RequestTrade) this.messages.require(REQUESTTRADE);
+		requestTrade.name = name;
+		this.serverConnection.sendMessage(requestTrade);
+	}
+
+	public void changeTrade(boolean[] offer) {
+		ChangeTrade changeTrade = (ChangeTrade) this.messages.require(CHANGETRADE);
+		changeTrade.offer = offer;
+		this.serverConnection.sendMessage(changeTrade);
+	}
+
+	public void acceptTrade(boolean[] myOffer, boolean[] yourOffer) {
+		AcceptTrade acceptTrade = (AcceptTrade) this.messages.require(ACCEPTTRADE);
+		acceptTrade.myOffer = myOffer;
+		acceptTrade.yourOffer = yourOffer;
+		this.serverConnection.sendMessage(acceptTrade);
+	}
+
+	public void cancelTrade() {
+		this.serverConnection.sendMessage(this.messages.require(CANCELTRADE));
+	}
+
+	public void checkCredits() {
+		this.serverConnection.sendMessage(this.messages.require(CHECKCREDITS));
+	}
+
+	public void escape() {
+		if (this.playerId == -1) {
+			return;
+		}
+		this.serverConnection.sendMessage(this.messages.require(ESCAPE));
+	}
+
+	public void joinGuild(String guildName) {
+		JoinGuild joinGuild = this.messages.require(JOINGUILD) as JoinGuild;
+		joinGuild.guildName = guildName;
+		this.serverConnection.sendMessage(joinGuild);
+	}
+
+	public void changeGuildRank(String name, int rank) {
+		ChangeGuildRank changeGuildRank = this.messages.require(CHANGEGUILDRANK) as ChangeGuildRank;
+		changeGuildRank.name = name;
+		changeGuildRank.guildRank = rank;
+		this.serverConnection.sendMessage(changeGuildRank);
+	}
+
+	private String rsaEncrypt(String data) {
+		RSAKey rsaKey = PEM.readRSAPublicKey(Parameters.RSA_PUBLIC_KEY);
+		ByteArray byteArray = new ByteArray();
+		byteArray.writeUTFBytes(data);
+		ByteArray encryptedByteArray = new ByteArray();
+		rsaKey.encrypt(byteArray, encryptedByteArray, byteArray.length);
+		return Base64.encodeByteArray(encryptedByteArray);
+	}
+
+	private void onConnected() {
+		Account account = StaticInjectorContext.getInjector().getInstance(Account);
+		this.addTextLine.dispatch(new AddTextLineVO(Parameters.CLIENT_CHAT_NAME, "Connected!"));
+		Hello hello = (Hello) this.messages.require(HELLO);
+		hello.buildVersion = Parameters.BUILD_VERSION;
+		hello.gameId = this.gameId;
+		hello.guid = this.rsaEncrypt(account.getUserId());
+		hello.password = this.rsaEncrypt(account.getPassword());
+		hello.secret = this.rsaEncrypt(account.getSecret());
+		hello.keyTime = this.keyTime;
+		hello.key.length = 0;
+		this.key_ != null && hello.key.writeBytes(this.key);
+		hello.mapJSON = this.mapJSON_ == null ? "" : this.mapJSON;
+		hello.entrytag = account.getEntryTag();
+		hello.gameNet = account.gameNetwork();
+		hello.gameNetUserId = account.gameNetworkUserId();
+		hello.playPlatform = account.playPlatform();
+		hello.platformToken = account.getPlatformToken();
+		this.serverConnection.sendMessage(hello);
+	}
+
+	private void onCreateSuccess(CreateSuccess createSuccess)
+
+	{
+		this.playerId = createSuccess.objectId;
+		this.charId = createSuccess.charId;
+		this.gs.initialize();
+		this.createCharacter = false;
+	}
+
+	private void onDamage(Damage damage)
+
+	{
+		int projId = 0;
+		Map map = this.gs.map;
+		Projectile proj = null;
+		if (damage.objectId_ >= 0 && damage.bulletId_ > 0) {
+			projId = Projectile.findObjId(damage.objectId, damage.bulletId);
+			proj = map.boDict[projId] as Projectile;
+			if (proj != null && !proj.projProps.multiHit) {
+				map.removeObj(projId);
+			}
+		}
+		GameObject target = map.goDict[damage.targetId];
+		if (target != null) {
+			target.damage(-1, damage.damageAmount, damage.effects, damage.kill, proj);
+		}
+	}
+
+	private void onServerPlayerShoot(ServerPlayerShoot serverPlayerShoot) {
+		boolean needsAck = serverPlayerShoot.ownerId == this.playerId;
+		GameObject owner = this.gs.map.goDict.get(serverPlayerShoot.ownerId);
+		if (owner == null || owner.dead) {
+			if (needsAck) {
+				this.shootAck(-1);
+			}
+			return;
+		}
+		Projectile proj = new Projectile();
+		proj.reset(serverPlayerShoot.containerType, 0, serverPlayerShoot.ownerId, serverPlayerShoot.bulletId,
+				serverPlayerShoot.angle, this.gs.lastUpdate);
+		proj.setDamage(serverPlayerShoot.damage);
+		this.gs.map.addObj(proj, serverPlayerShoot.startingPos.x, serverPlayerShoot.startingPos.y);
+		if (needsAck) {
+			this.shootAck(this.gs.lastUpdate);
+		}
+	}
+
+	private void onAllyShoot(AllyShoot allyShoot) {
+		GameObject owner = this.gs.map.goDict.get(allyShoot.ownerId);
+		if (owner == null || owner.dead) {
+			return;
+		}
+		Projectile proj = (Projectile) FreeList.newObject(Projectile);
+		proj.reset(allyShoot.containerType, 0, allyShoot.ownerId, allyShoot.bulletId, allyShoot.angle,
+				this.gs.lastUpdate);
+		this.gs.map.addObj(proj, owner.x, owner.y);
+		owner.setAttack(allyShoot.containerType, allyShoot.angle);
+	}
+
+	private void onEnemyShoot(EnemyShoot enemyShoot)
+
+	{
+		Projectile proj = null;
+		float angle = NaN;
+		GameObject owner = this.gs.map.goDict[enemyShoot.ownerId];
+		if (owner == null || owner.dead) {
+			this.shootAck(-1);
+			return;
+		}
+		for (int i = 0; i < enemyShoot.numShots; i++) {
+			proj = (Projectile) FreeList.newObject(Projectile);
+			angle = enemyShoot.angle + enemyShoot.angleInc * i;
+			proj.reset(owner.objectType, enemyShoot.bulletType, enemyShoot.ownerId, (enemyShoot.bulletId + i) % 256,
+					angle, this.gs.lastUpdate);
+			proj.setDamage(enemyShoot.damage);
+			this.gs.map.addObj(proj, enemyShoot.startingPos.x, enemyShoot.startingPos.y);
+		}
+		this.shootAck(this.gs.lastUpdate);
+		owner.setAttack(owner.objectType, enemyShoot.angle + enemyShoot.angleInc * ((enemyShoot.numShots - 1) / 2));
+	}
+
+	private void onTradeRequested(TradeRequested tradeRequested) {
+		if (Parameters.data.showTradePopup) {
+			this.gs.hudView.interactPanel.setOverride(new TradeRequestPanel(this.gs, tradeRequested.name));
+		}
+		this.addTextLine.dispatch(new AddTextLineVO("", tradeRequested.name + " wants to "
+				+ "trade with you.  Type \"/trade " + tradeRequested.name_ + "\" to trade."));
+	}
+
+	private void onTradeStart(TradeStart tradeStart) {
+		this.gs.hudView.startTrade(this.gs, tradeStart);
+	}
+
+	private void onTradeChanged(TradeChanged tradeChanged) {
+		this.gs.hudView.tradeChanged(tradeChanged);
+	}
+
+	private void onTradeDone(TradeDone tradeDone) {
+		this.gs.hudView.tradeDone();
+		this.addTextLine.dispatch(new AddTextLineVO("", tradeDone.description));
+	}
+
+	private void onTradeAccepted(TradeAccepted tradeAccepted) {
+		this.gs.hudView.tradeAccepted(tradeAccepted);
+	}
+
+	private void addObject(ObjectData obj) {
+		Map map = this.gs.map;
+		GameObject go = ObjectLibrary.getObjectFromType(obj.objectType);
+		if (go == null) {
+			return;
+		}
+		ObjectStatusData status = obj.status;
+		go.setObjectId(status.objectId);
+		map.addObj(go, status.pos.x, status.pos.y);
+		if (go instanceof Player) {
+			this.handleNewPlayer((Player) go, map);
+		}
+		this.processObjectStatus(status, 0, -1);
+		if (go.props.static_ && go.props.occupySquare_ && !go.props.noMiniMap) {
+			this.updateGameObjectTileSignal.dispatch(new UpdateGameObjectTileVO(go.x, go.y, go));
+		}
+	}
+
+	private void handleNewPlayer(Player player, Map map)
+
+	{
+		this.setPlayerSkinTemplate(player, 0);
+		if (player.objectId == this.playerId) {
+			this.player = player;
+			this.model.player = player;
+			map.player = player;
+			this.gs.setFocus(player);
+			this.setGameFocus.dispatch(this.playerId.toString());
+		}
+	}
+
+	private void onUpdate(Update update) {
+		int i = 0;
+		GroundTileData tile = null;
+		Message updateAck = this.messages.require(UPDATEACK);
+		this.serverConnection.sendMessage(updateAck);
+		for (i = 0; i < update.tiles.length; i++) {
+			tile = update.tiles[i];
+			this.gs.map.setGroundTile(tile.x, tile.y, tile.type);
+			this.updateGroundTileSignal.dispatch(new UpdateGroundTileVO(tile.x, tile.y, tile.type));
+		}
+		for (i = 0; i < update.newObjs.length; i++) {
+			this.addObject(update.newObjs[i]);
+		}
+		for (i = 0; i < update.drops.length; i++) {
+			this.gs.map.removeObj(update.drops[i]);
+		}
+	}
+
+	private void onNotification(Notification notification) {
+		QueuedStatusText text = null;
+		GameObject go = this.gs.map.goDict.get(notification.objectId);
+		if (go != null) {
+			text = new QueuedStatusText(go, notification.message, notification.color, 2000);
+			this.gs.map.mapOverlay.addQueuedText(text);
+			if (go == this.player && notification.message.equals("Quest Complete!")) {
+				this.gs.map.quest.completed();
+			}
+		}
+	}
+
+	private void onGlobalNotification(GlobalNotification notification) {
+		switch (notification.text) {
+		case "yellow":
+			ShowKeySignal.instance.dispatch(Key.YELLOW);
+			break;
+		case "red":
+			ShowKeySignal.instance.dispatch(Key.RED);
+			break;
+		case "green":
+			ShowKeySignal.instance.dispatch(Key.GREEN);
+			break;
+		case "purple":
+			ShowKeySignal.instance.dispatch(Key.PURPLE);
+			break;
+		case "showKeyUI":
+			ShowKeyUISignal.instance.dispatch();
+			break;
+		case "giftChestOccupied":
+			this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_GIFT);
+			break;
+		case "giftChestEmpty":
+			this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_NO_GIFT);
+			break;
+		case "beginnersPackage":
+		}
+	}
+
+	private void onNewTick(NewTick newTick) {
+		this.move(newTick.tickId, this.player);
+		for (ObjectStatusData objectStatus : newTick.statuses) {
+			this.processObjectStatus(objectStatus, newTick.tickTime, newTick.tickId);
+		}
+		this.lastTickId = newTick.tickId;
+	}
+
+	private void onShowEffect(ShowEffect showEffect) {
+		//System.out.println("Show effect : " + showEffect);
+	}
+
+	/**
+	 * In Java goto is a reserved keyword
+	 */
+	private void onGoto(Goto gotoPacket) {
+		this.gotoAck(this.gs.lastUpdate);
+		GameObject go = this.gs.map.goDict.get(gotoPacket.objectId);
+		if (go == null) {
+			return;
+		}
+		go.onGoto(gotoPacket.pos.x, gotoPacket.pos.y, this.gs.lastUpdate);
+	}
+
+	private void updateGameObject(GameObject go, List<StatData> stats, boolean isMyObject) {
+		int index = 0;
+		Player player = (Player) go;
+		Merchant merchant = (Merchant) go;
+		for (StatData stat : stats) {
+			int value = stat.statValue;
+			String strStatValue = stat.strStatValue;
+			switch (stat.statType) {
+				case StatData.MAX_HP_STAT:
+					go.maxHP = value;
+					continue;
+				case StatData.HP_STAT:
+					go.hp = value;
+					continue;
+				case StatData.SIZE_STAT:
+					go.size = value;
+					continue;
+				case StatData.MAX_MP_STAT:
+					player.maxMP = value;
+					continue;
+				case StatData.MP_STAT:
+					player.mp = value;
+					continue;
+				case StatData.NEXT_LEVEL_EXP_STAT:
+					player.nextLevelExp = value;
+					continue;
+				case StatData.EXP_STAT:
+					player.exp = value;
+					continue;
+				case StatData.LEVEL_STAT:
+					go.level = value;
+					continue;
+				case StatData.ATTACK_STAT:
+					player.attack = value;
+					continue;
+				case StatData.DEFENSE_STAT:
+					go.defense = value;
+					continue;
+				case StatData.SPEED_STAT:
+					player.speed = value;
+					continue;
+				case StatData.DEXTERITY_STAT:
+					player.dexterity = value;
+					continue;
+				case StatData.VITALITY_STAT:
+					player.vitality = value;
+					continue;
+				case StatData.WISDOM_STAT:
+					player.wisdom = value;
+					continue;
+				case StatData.CONDITION_STAT:
+					go.condition = value;
+					continue;
+				case StatData.INVENTORY_0_STAT:
+				case StatData.INVENTORY_1_STAT:
+				case StatData.INVENTORY_2_STAT:
+				case StatData.INVENTORY_3_STAT:
+				case StatData.INVENTORY_4_STAT:
+				case StatData.INVENTORY_5_STAT:
+				case StatData.INVENTORY_6_STAT:
+				case StatData.INVENTORY_7_STAT:
+				case StatData.INVENTORY_8_STAT:
+				case StatData.INVENTORY_9_STAT:
+				case StatData.INVENTORY_10_STAT:
+				case StatData.INVENTORY_11_STAT:
+					go.equipment[stat.statType - StatData.INVENTORY_0_STAT] = value;
+					continue;
+				case StatData.NUM_STARS_STAT:
+					player.numStars = value;
+					continue;
+				case StatData.NAME_STAT:
+					if (go.name != stat.strStatValue) {
+						go.name = stat.strStatValue;
+						go.nameBitmapData = null;
+					}
+					continue;
+				case StatData.TEX1_STAT:
+					go.setTex1(value);
+					continue;
+				case StatData.TEX2_STAT:
+					go.setTex2(value);
+					continue;
+				case StatData.MERCHANDISE_TYPE_STAT:
+					merchant.setMerchandiseType(value);
+					continue;
+				case StatData.CREDITS_STAT:
+					player.setCredits(value);
+					continue;
+				case StatData.MERCHANDISE_PRICE_STAT:
+					(SellableObject) go.setPrice(value);
+					continue;
+				case StatData.ACTIVE_STAT:
+					(Portal) go.active = value != 0;
+					continue;
+				case StatData.ACCOUNT_ID_STAT:
+					player.accountId = stat.strStatValue;
+					continue;
+				case StatData.FAME_STAT:
+					player.fame = value;
+					continue;
+				case StatData.MERCHANDISE_CURRENCY_STAT:
+					(SellableObject) go.setCurrency(value);
+					continue;
+				case StatData.CONNECT_STAT:
+					go.connectType = value;
+					continue;
+				case StatData.MERCHANDISE_COUNT_STAT:
+					merchant.count = value;
+					merchant.untilNextMessage = 0;
+					continue;
+				case StatData.MERCHANDISE_MINS_LEFT_STAT:
+					merchant.minsLeft = value;
+					merchant.untilNextMessage = 0;
+					continue;
+				case StatData.MERCHANDISE_DISCOUNT_STAT:
+					merchant.discount = value;
+					merchant.untilNextMessage = 0;
+					continue;
+				case StatData.MERCHANDISE_RANK_REQ_STAT:
+					(SellableObject) go.setRankReq(value);
+					continue;
+				case StatData.MAX_HP_BOOST_STAT:
+					player.maxHPBoost = value;
+					continue;
+				case StatData.MAX_MP_BOOST_STAT:
+					player.maxMPBoost = value;
+					continue;
+				case StatData.ATTACK_BOOST_STAT:
+					player.attackBoost = value;
+					continue;
+				case StatData.DEFENSE_BOOST_STAT:
+					player.defenseBoost = value;
+					continue;
+				case StatData.SPEED_BOOST_STAT:
+					player.speedBoost = value;
+					continue;
+				case StatData.VITALITY_BOOST_STAT:
+					player.vitalityBoost = value;
+					continue;
+				case StatData.WISDOM_BOOST_STAT:
+					player.wisdomBoost = value;
+					continue;
+				case StatData.DEXTERITY_BOOST_STAT:
+					player.dexterityBoost = value;
+					continue;
+				case StatData.OWNER_ACCOUNT_ID_STAT:
+					(Container) go.setOwnerId(value);
+					continue;
+				case StatData.RANK_REQUIRED_STAT:
+					(NameChanger) go.setRankRequired(value);
+					continue;
+				case StatData.NAME_CHOSEN_STAT:
+					player.nameChosen = value != 0;
+					go.nameBitmapData = null;
+					continue;
+				case StatData.CURR_FAME_STAT:
+					player.currFame = value;
+					continue;
+				case StatData.NEXT_CLASS_QUEST_FAME_STAT:
+					player.nextClassQuestFame = value;
+					continue;
+				case StatData.LEGENDARY_RANK_STAT:
+					player.legendaryRank = value;
+					continue;
+				case StatData.SINK_LEVEL_STAT:
+					if (!isMyObject) {
+						player.sinkLevel = value;
+					}
+					continue;
+				case StatData.ALT_TEXTURE_STAT:
+					go.setAltTexture(value);
+					continue;
+				case StatData.GUILD_NAME_STAT:
+					player.setGuildName(stat.strStatValue);
+					continue;
+				case StatData.GUILD_RANK_STAT:
+					player.guildRank = value;
+					continue;
+				case StatData.BREATH_STAT:
+					player.breath = value;
+					continue;
+				case StatData.XP_BOOSTED_STAT:
+					player.xpBoost = value;
+					continue;
+				case StatData.XP_TIMER_STAT:
+					player.xpTimer = value * TO_MILLISECONDS;
+					continue;
+				case StatData.LD_TIMER_STAT:
+					player.dropBoost = value * TO_MILLISECONDS;
+					continue;
+				case StatData.LT_TIMER_STAT:
+					player.tierBoost = value * TO_MILLISECONDS;
+					continue;
+				case StatData.HEALTH_POTION_STACK_STAT:
+					player.healthPotionCount = value;
+					continue;
+				case StatData.MAGIC_POTION_STACK_STAT:
+					player.magicPotionCount = value;
+					continue;
+				case StatData.TEXTURE_STAT:
+					player.skinId != value && this.setPlayerSkinTemplate(player, value);
+					continue;
+				case StatData.HASBACKPACK_STAT:
+					(Player) go.hasBackpack = value;
+					if (isMyObject) {
+						this.updateBackpackTab.dispatch(value);
+					}
+					continue;
+				case StatData.BACKPACK_0_STAT:
+				case StatData.BACKPACK_1_STAT:
+				case StatData.BACKPACK_2_STAT:
+				case StatData.BACKPACK_3_STAT:
+				case StatData.BACKPACK_4_STAT:
+				case StatData.BACKPACK_5_STAT:
+				case StatData.BACKPACK_6_STAT:
+				case StatData.BACKPACK_7_STAT:
+					index = stat.statType - StatData.BACKPACK_0_STAT + GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS;
+					Player o = (Player) go;
+					o.equipment[index] = value;
+					continue;
+				default:
+					continue;
+			}
+		}
+	}
+
+	private void setPlayerSkinTemplate(Player player, int skinId) {
+		Reskin message = (Reskin) this.messages.require(RESKIN);
+		message.skinID = skinId;
+		message.player = player;
+		message.consume();
+	}
+
+	private void processObjectStatus(ObjectStatusData objectStatus, int tickTime, int tickId)
+
+	{
+		int oldLevel = 0;
+		int oldExp = 0;
+		Array newUnlocks = null;
+		CharacterClass type = null;
+		Map map = this.gs.map;
+		GameObject go = map.goDict[objectStatus.objectId];
+		if (go == null) {
+			return;
+		}
+		boolean isMyObject = objectStatus.objectId == this.playerId;
+		if (tickTime != 0 && !isMyObject) {
+			go.onTickPos(objectStatus.pos.x, objectStatus.pos.y, tickTime, tickId);
+		}
+		Player player = (Player) go;
+		if (player != null) {
+			oldLevel = player.level;
+			oldExp = player.exp;
+		}
+		this.updateGameObject(go, objectStatus.stats, isMyObject);
+		if (player != null && oldLevel != -1) {
+			if (player.level > oldLevel) {
+				if (isMyObject) {
+					newUnlocks = this.gs.model.getNewUnlocks(player.objectType, player.level);
+					player.handleLevelUp(newUnlocks.length != 0);
+					type = this.classesModel.getCharacterClass(player.objectType);
+					if (type.getMaxLevelAchieved() < player.level) {
+						type.setMaxLevelAchieved(player.level);
+					}
+				} else {
+					player.levelUpEffect("Level Up!");
+				}
+			} else if (player.exp > oldExp) {
+				player.handleExpUp(player.exp - oldExp);
+			}
+		}
+	}
+
+	private void onText(Text text)
+
+	{
+		GameObject go = null;
+		List<int> colors = null;
+		AddSpeechBalloonVO speechBalloonvo = null;
+		String textString = text.text;
+		if (text.cleanText.length > 0 && text.objectId_ != this.playerId_ && Parameters.data.filterLanguage) {
+			textString = text.cleanText;
+		}
+		if (text.objectId_ >= 0) {
+			go = this.gs.map.goDict[text.objectId];
+			if (go != null) {
+				colors = NORMAL_SPEECH_COLORS;
+				if (go.props.isEnemy) {
+					colors = ENEMY_SPEECH_COLORS;
+				} else if (text.recipient_ == Parameters.GUILD_CHAT_NAME) {
+					colors = GUILD_SPEECH_COLORS;
+				} else if (text.recipient_ != "") {
+					colors = TELL_SPEECH_COLORS;
+				}
+				speechBalloonvo = new AddSpeechBalloonVO(go, textString, colors[0], 1, colors[1], 1, colors[2], text.bubbleTime, false, true);
+				this.addSpeechBalloon.dispatch(speechBalloonvo);
+			}
+		}
+		this.addTextLine.dispatch(new AddTextLineVO(text.name, textString, text.objectId, text.numStars, text.recipient));
+	}
+
+	private void onInvResult(InvResult invResult)
+
+	{
+		if (invResult.result_ != 0) {
+			this.handleInvFailure();
+		}
+	}
+
+	private void handleInvFailure()
+
+	{
+		SoundEffectLibrary.play("error");
+		this.gs.hudView.interactPanel.redraw();
+	}
+
+	private void onReconnect(Reconnect reconnect)
+
+	{
+		this.disconnect();
+		var server:
+		Server = new Server().setName(reconnect.name).setAddress(reconnect.host_ != "" ? reconnect.host : this.server.address).setPort(reconnect.host_ != "" ?int
+		(reconnect.port):int(this.server.port));
+		int gameID = reconnect.gameId;
+		boolean createChar = this.createCharacter;
+		int charId = this.charId;
+		int keyTime = reconnect.keyTime;
+		ByteArray key = reconnect.key;
+		ReconnectEvent reconnectEvent = new ReconnectEvent(server, gameID, createChar, charId, keyTime, key);
+		this.gs.dispatchEvent(reconnectEvent);
+	}
+
+	private void onPing(Ping ping)
+
+	{
+		Pong pong = (Pong) this.messages.require(PONG);
+		pong.serial = ping.serial;
+		pong.time = getTimer();
+		this.serverConnection.sendMessage(pong);
+	}
+
+	private void parseXML(String xmlString)
+
+	{
+		XML extraXML = XML(xmlString);
+		GroundLibrary.parseFromXML(extraXML);
+		ObjectLibrary.parseFromXML(extraXML);
+		ObjectLibrary.parseFromXML(extraXML);
+	}
+
+	private void onMapInfo(MapInfo mapInfo)
+
+	{
+		for (String clientXMLString : mapInfo.clientXML) {
+			this.parseXML(clientXMLString);
+		}
+		for (String extraXMLString : mapInfo.extraXML) {
+			this.parseXML(extraXMLString);
+		}
+		this.gs.applyMapInfo(mapInfo);
+		this.rand = new Random(mapInfo.fp);
+		if (this.createCharacter) {
+			this.create();
+		} else {
+			this.load();
+		}
+	}
+
+	private void onPic(Pic pic) {
+		this.gs.addChild(new PicView(pic.bitmapData));
+	}
+
+	private void onDeath(Death death) {
+		this.death = death;
+		BitmapData data = new BitmapData(this.gs.stage.stageWidth, this.gs.stage.stageHeight);
+		data.draw(this.gs);
+		death.background = data;
+		if (!this.gs.isEditor) {
+			this.handleDeath.dispatch(death);
+		}
+	}
+
+	private void onBuyResult(BuyResult buyResult) {
+		if (buyResult.result == BuyResult.SUCCESS_BRID) {
+			if (this.outstandingBuy) {
+				this.outstandingBuy.record();
+			}
+		}
+		this.outstandingBuy = null;
+		switch (buyResult.result) {
+		case BuyResult.NOT_ENOUGH_GOLD_BRID:
+			StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughGoldDialog());
+			break;
+		case BuyResult.NOT_ENOUGH_FAME_BRID:
+			StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughFameDialog());
+			break;
+		default:
+			this.addTextLine
+					.dispatch(new AddTextLineVO(buyResult.result == BuyResult.SUCCESS_BRID ? Parameters.SERVER_CHAT_NAME
+							: Parameters.ERROR_CHAT_NAME, buyResult.resultString));
+		}
+	}
+
+	private void onAccountList(AccountList accountList)
+
+	{
+		if (accountList.accountListId == 0) {
+			this.gs.map.party.setStars(accountList);
+		}
+		if (accountList.accountListId == 1) {
+			this.gs.map.party.setIgnores(accountList);
+		}
+	}
+
+	private void onQuestObjId(QuestObjId questObjId)
+
+	{
+		this.gs.map.quest.setObject(questObjId.objectId);
+	}
+
+	private void onAoe(Aoe aoe)
+
+	{
+		int d = 0;
+		List<int> effects = null;
+		if (this.player == null) {
+			this.aoeAck(this.gs.lastUpdate, 0, 0);
+			return;
+		}
+		AOEEffect e = new AOEEffect(aoe.pos.toPoint(), aoe.radius, 16711680);
+		this.gs.map.addObj(e, aoe.pos.x, aoe.pos.y);
+		if (this.player.isInvincible() || this.player.isPaused()) {
+			this.aoeAck(this.gs.lastUpdate, this.player.x, this.player.y);
+			return;
+		}
+		boolean hit = this.player.distTo(aoe.pos) < aoe.radius;
+		if (hit) {
+			d = GameObject.damageWithDefense(aoe.damage, this.player.defense, false, this.player.condition);
+			effects = null;
+			if (aoe.effect_ != 0) {
+				effects = new List<int>();
+				effects.add(aoe.effect);
+			}
+			this.player.damage(aoe.origType, d, effects, false, null);
+		}
+		this.aoeAck(this.gs.lastUpdate, this.player.x, this.player.y);
+	}
+
+	private void onNameResult(NameResult nameResult) {
+		this.gs.dispatchEvent(new NameResultEvent(nameResult));
+	}
+
+	private void onGuildResult(GuildResult guildResult) {
+		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, guildResult.errorText));
+		this.gs.dispatchEvent(new GuildResultEvent(guildResult.success, guildResult.errorText));
+	}
+
+	private void onClientStat(ClientStat clientStat) {
+		Account account = StaticInjectorContext.getInjector().getInstance(Account);
+		account.reportIntStat(clientStat.name, clientStat.value);
+	}
+
+	private void onFile(File file) {
+		new FileReference().save(file.file, file.filename);
+	}
+
+	private void onInvitedToGuild(InvitedToGuild invitedToGuild) {
+		if (Parameters.data.showGuildInvitePopup) {
+			this.gs.hudView.interactPanel
+					.setOverride(new GuildInvitePanel(this.gs, invitedToGuild.name, invitedToGuild.guildName));
+		}
+		this.addTextLine.dispatch(new AddTextLineVO("",
+				"You have been invited by " + invitedToGuild.name + " to join the guild " + invitedToGuild.guildName
+						+ ".\n  If you wish to join type \"/join " + invitedToGuild.guildName + "\""));
+	}
+
+	private void onPlaySound(PlaySound playSound) {
+		GameObject obj = this.gs.map.goDict.get(playSound.ownerId);
+		obj && obj.playSound(playSound.soundId);
+	}
+
+	private void onClosed() {
+		if (this.playerId != -1) {
+			this.gs.closed.dispatch();
+		} else if (this.retryConnection) {
+			if (this.delayBeforeReconect < 10) {
+				this.retry(this.delayBeforeReconect++);
+				this.addTextLine
+						.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, "Connection failed!  Retrying..."));
+			} else {
+				this.gs.closed.dispatch();
+			}
+		}
+	}
+
+	private void retry(int time) {
+		this.retryTimer = new Timer(time * 1000, 1);
+		this.retryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, this.onRetryTimer);
+		this.retryTimer.start();
+	}
+
+	private void onRetryTimer(TimerEvent event) {
+		this.serverConnection.connect(this.server.address, this.server.port);
+	}
+
+	private void onError(String error) {
+		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, error));
+	}
+
+	private void onFailure(Failure event) {
+		switch (event.errorId) {
+		case Failure.INCORRECT_VERSION:
+			this.handleIncorrectVersionFailure(event);
+			break;
+		case Failure.BAD_KEY:
+			this.handleBadKeyFailure(event);
+			break;
+		case Failure.INVALID_TELEPORT_TARGET:
+			this.handleInvalidTeleportTarget(event);
+			break;
+		default:
+			this.handleDefaultFailure(event);
+		}
+	}
+
+	private void handleInvalidTeleportTarget(Failure event) {
+		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, event.errorDescription));
+		this.player.nextTeleportAt = 0;
+	}
+
+	private void handleBadKeyFailure(Failure event) {
+		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, event.errorDescription));
+		this.retryConnection = false;
+		this.gs.closed.dispatch();
+	}
+
+	private void handleIncorrectVersionFailure(Failure event) {
+		Dialog dialog = new Dialog(
+				"Client version: " + Parameters.BUILD_VERSION + "\nServer version: " + event.errorDescription,
+				"Client Update Needed", "Ok", null, "/clientUpdate");
+		dialog.addEventListener(Dialog.BUTTON1_EVENT, this.onDoClientUpdate);
+		this.gs.stage.addChild(dialog);
+		this.retryConnection = false;
+	}
+
+	private void handleDefaultFailure(Failure event) {
+		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, event.errorDescription));
+	}
+
+	private void onDoClientUpdate(Event event) {
+		Dialog dialog = (Dialog) event.currentTarget;
+		dialog.parent.removeChild(dialog);
+		this.gs.closed.dispatch();
 	}
 
 }

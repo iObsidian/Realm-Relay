@@ -8,8 +8,8 @@ import java.util.function.Consumer;
 
 public class Buy extends OutgoingMessage {
 
-	private int objectId;
-	private int quantity;
+	public int objectId;
+	public int quantity;
 
 	public Buy(int id, Consumer callback) {
 		super(id, callback);

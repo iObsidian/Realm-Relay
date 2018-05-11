@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 public class Load extends OutgoingMessage {
 
 	public int charId;
-	private boolean isFromArena;
+	public boolean isFromArena;
 
 	public Load(int id, Consumer callback) {
 		super(id, callback);

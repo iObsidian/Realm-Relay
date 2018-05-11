@@ -13,6 +13,10 @@ public class SoundEffectLibrary {
         System.out.println("Request to load " + name);
     }
 
+	public static void play(String string) {
+		
+	}
+
     /**public static Sound load(String name) {
         return nameMap.get(name) = nameMap.get(name) || makeSound(param1);
     }

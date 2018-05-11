@@ -11,8 +11,8 @@ public class PlaySound extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int ownerId;
-	private int soundId;
+	public int ownerId;
+	public int soundId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

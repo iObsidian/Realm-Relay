@@ -7,8 +7,7 @@ import java.util.function.Consumer;
 
 public class ChangeTrade extends OutgoingMessage {
 
-	private boolean[] offer;
-
+	public boolean[] offer;
 
 	public ChangeTrade(int id, Consumer callback) {
 		super(id, callback);

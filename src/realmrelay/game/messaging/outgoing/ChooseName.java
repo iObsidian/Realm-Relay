@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class ChooseName extends OutgoingMessage {
 
-	private String name;
+	public String name;
 
 	public ChooseName(int id, Consumer callback) {
 		super(id, callback);

@@ -1,6 +1,7 @@
 package realmrelay.game.dailyQuests;
 
 import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
@@ -17,13 +18,18 @@ public class QuestFetchResponse extends IncomingMessage {
 	}
 
 	public void parseFromInput(DataInput param1) throws IOException {
-		int loc2 = param1.readShort();
-		int loc3 = 0;
-		while (loc3 < loc2) {
-			this.quests[loc3] = new QuestData();
-			this.quests[loc3].parseFromInput(param1);
-			loc3++;
+		this.quests = new QuestData[param1.readShort()];
+
+		for (int i = 0; i < quests.length; i++) {
+			this.quests[i] = new QuestData();
+			this.quests[i].parseFromInput(param1);
 		}
 	}
 
+	@Override
+	public void writeToOutput(DataOutput out) throws IOException {
+		for (QuestData q : quests) {
+			q.writeToOutput(out);
+		}
+	}
 }

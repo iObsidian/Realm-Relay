@@ -9,9 +9,9 @@ import realmrelay.packets.data.unused.IData;
 
 public class SlotObjectData implements IData {
 
-	private int objectId; // the name of what holds it
-	private int slotId; // the slot of the item
-	private int objectType; // the ID of the item
+	public int objectId; // the name of what holds it
+	public int slotId; // the slot of the item
+	public int objectType; // the ID of the item
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

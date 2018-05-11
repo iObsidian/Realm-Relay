@@ -11,8 +11,8 @@ public class GlobalNotification extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int type;
-	private String text;
+	public int type;
+	public String text;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

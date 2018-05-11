@@ -7,10 +7,10 @@ import java.util.function.Consumer;
 
 public class OtherHit extends OutgoingMessage {
 
-	private int time;
-	private int bulletId;
-	private int objectId;
-	private int targetId;
+	public int time;
+	public int bulletId;
+	public int objectId;
+	public int targetId;
 
 	public OtherHit(int id, Consumer callback) {
 		super(id, callback);

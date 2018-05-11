@@ -6,56 +6,53 @@ public class CharacterSkin {
 
 	public final Signal<CharacterSkin> changed = new Signal();
 
-    public int id = 0;
+	public int id = 0;
 
-    public String name = "";
+	public String name = "";
 
-    public int unlockLevel;
+	public int unlockLevel;
 
-    public String unlockSpecial;
+	public String unlockSpecial;
 
-    public CharacterTemplate template;
+	public CharacterTemplate template;
 
-    public int cost;
+	public int cost;
 
-    public boolean limited = false;
+	public boolean limited = false;
 
-    public boolean skinSelectEnabled = true;
+	public boolean skinSelectEnabled = true;
 
-    public boolean is16x16 = false;
+	public boolean is16x16 = false;
 
-    private CharacterSkinState state;
+	private CharacterSkinState state;
 
-    private boolean isSelected;
+	private boolean isSelected;
 
-    public  CharacterSkin()  {
-        this.state = CharacterSkinState.NULL;
-        super();
-    }
+	public CharacterSkin() {
+		this.state = CharacterSkinState.NULL;
+		super();
+	}
 
-    public boolean  getIsSelected()  {
-        return this.isSelected;
-    }
+	public boolean getIsSelected() {
+		return this.isSelected;
+	}
 
-    public void  setIsSelected(boolean param1)  {
-        if (this.isSelected != param1) {
-            this.isSelected = param1;
-            this.changed.dispatch(this);
-        }
-    }
+	public void setIsSelected(boolean param1) {
+		if (this.isSelected != param1) {
+			this.isSelected = param1;
+			this.changed.dispatch(this);
+		}
+	}
 
-    public CharacterSkinState  getState()  {
-        return this.state;
-    }
+	public CharacterSkinState getState() {
+		return this.state;
+	}
 
-    public void  setState(CharacterSkinState param1)  {
-        if (this.state != param1) {
-            this.state = param1;
-            this.changed.dispatch(this);
-        }
-    }
+	public void setState(CharacterSkinState param1) {
+		if (this.state != param1) {
+			this.state = param1;
+			this.changed.dispatch(this);
+		}
+	}
 
-	
-	
-	
 }

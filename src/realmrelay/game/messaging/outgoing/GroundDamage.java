@@ -9,8 +9,8 @@ import realmrelay.game.messaging.data.WorldPosData;
 
 public class GroundDamage extends OutgoingMessage {
 
-	private int time;
-	private WorldPosData position;
+	public int time;
+	public WorldPosData position;
 
 	public GroundDamage(int id, Consumer callback) {
 		super(id, callback);

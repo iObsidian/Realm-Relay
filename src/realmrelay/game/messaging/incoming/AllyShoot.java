@@ -12,7 +12,7 @@ public class AllyShoot extends IncomingMessage {
 	}
 
 	private int bulletId;
-	private int ownerId;
+	public int ownerId;
 	private short containerType;
 	private float angle;
 

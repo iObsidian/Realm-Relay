@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class CreateGuild extends OutgoingMessage {
 
-	private String name;
+	public String name;
 
 	public CreateGuild(int id, Consumer callback) {
 		super(id, callback);

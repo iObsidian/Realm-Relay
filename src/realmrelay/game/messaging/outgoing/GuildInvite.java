@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class GuildInvite extends OutgoingMessage {
 
-	private String name;
+	public String name;
 
 	public GuildInvite(int id, Consumer callback) {
 		super(id, callback);
