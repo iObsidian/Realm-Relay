@@ -11,8 +11,8 @@ public class ClientStat extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private String name;
-	private int value;
+	public String name;
+	public int value;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

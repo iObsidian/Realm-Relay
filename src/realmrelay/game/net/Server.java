@@ -2,11 +2,68 @@ package realmrelay.game.net;
 
 public class Server {
 
-    public String name;
-    public String address;
-    public int port;
-    public LatLong latLong;
-    public float usage;
-    public Boolean isAdminOnly;
+	public String name;
+	public String address;
+	public int port;
+	public LatLong latLong;
+	public float usage;
+	public Boolean isAdminOnly;
+
+	public Server() {
+		super();
+	}
+
+	public Server setName(String param1) {
+		this.name = param1;
+		return this;
+	}
+
+	public Server setAddress(String param1) {
+		this.address = param1;
+		return this;
+	}
+
+	public Server setPort(int param1) {
+		this.port = param1;
+		return this;
+	}
+
+	public Server setLatLong(float param1, float param2) {
+		this.latLong = new LatLong(param1, param2);
+		return this;
+	}
+
+	public Server setUsage(float param1) {
+		this.usage = param1;
+		return this;
+	}
+
+	public Server setIsAdminOnly(boolean param1) {
+		this.isAdminOnly = param1;
+		return this;
+	}
+
+	public int priority() {
+		if (this.isAdminOnly) {
+			return 2;
+		}
+		if (this.isCrowded()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public boolean isCrowded() {
+		return this.usage >= 0.66;
+	}
+
+	public boolean isFull() {
+		return this.usage >= 1;
+	}
+
+	public String toString() {
+		return "[" + this.name + ";
+	}
+
 
 }

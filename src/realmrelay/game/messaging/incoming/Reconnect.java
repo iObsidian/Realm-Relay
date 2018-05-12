@@ -11,14 +11,14 @@ public class Reconnect extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private String name;
+	public String name;
 	public String host;
 	public int port;
 	public int gameId;
 	public int keyTime;
 	public byte[] key = new byte[0];
-	private boolean isFromArena;
-	private String stats;
+	public boolean isFromArena;
+	public String stats;
 
 	public void parseFromInput(DataInput in) throws IOException {
 		this.name = in.readUTF();

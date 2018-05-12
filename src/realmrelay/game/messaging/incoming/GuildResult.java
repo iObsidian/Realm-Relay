@@ -11,8 +11,8 @@ public class GuildResult extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private boolean success;
-	private String lineBuilderJSON;
+	public boolean success;
+	public String lineBuilderJSON;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

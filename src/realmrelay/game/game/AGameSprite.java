@@ -1,10 +1,12 @@
 package realmrelay.game.game;
 
 import javafx.scene.Camera;
+import realmrelay.game.core.model.PlayerModel;
 import realmrelay.game.map.AbstractMap;
 import realmrelay.game.messaging.GameServerConnection;
 import realmrelay.game.messaging.incoming.MapInfo;
 import realmrelay.game.objects.GameObject;
+import realmrelay.game.ui.HUDView;
 
 public class AGameSprite {
 
@@ -20,8 +22,8 @@ public class AGameSprite {
 	public int lastUpdate;
 	public MoveRecords moveRecords;
 	public AbstractMap map;
-	//public PlayerModel model;
-	//public HUDView hudView;
+	public PlayerModel model;
+	public HUDView hudView;
 	public Camera camera;
 	public GameServerConnection gsc;
 	public boolean isSafeMap = false;

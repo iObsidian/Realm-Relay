@@ -65,10 +65,10 @@ public class CharacterSkins {
 	}
 
 	public List<CharacterSkin> getListedSkins() {
-		List<CharacterSkin> _loc1 = new List<CharacterSkin>();
+		List<CharacterSkin> _loc1 = new ArrayList<CharacterSkin>();
 		for (CharacterSkin _loc2 : this.skins) {
 			if (_loc2.getState() != CharacterSkinState.UNLISTED) {
-				_loc1.add(_loc2_);
+				_loc1.add(_loc2);
 			}
 		}
 		return _loc1;

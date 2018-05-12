@@ -1,9 +1,11 @@
 package realmrelay.game.messaging;
 
 import realmrelay.game.XML;
+import realmrelay.game.account.core.Account;
 import realmrelay.game.api.MessageProvider;
 import realmrelay.game.arena.model.ArenaDeathSignal;
 import realmrelay.game.arena.model.ImminentArenaWaveSignal;
+import realmrelay.game.chat.model.ChatMessage;
 import realmrelay.game.classes.model.CharacterClass;
 import realmrelay.game.classes.model.ClassesModel;
 import realmrelay.game.constants.GeneralConstants;
@@ -54,11 +56,14 @@ import realmrelay.game.sound.SoundEffectLibrary;
 import realmrelay.game.ui.model.Key;
 import realmrelay.game.ui.signals.ShowKeySignal;
 import realmrelay.game.ui.signals.UpdateBackpackTabSignal;
+import realmrelay.game.ui.view.NotEnoughFameDialog;
+import realmrelay.game.ui.view.NotEnoughGoldDialog;
+import realmrelay.game.util.Currency;
+import realmrelay.game.util.TextKey;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.awt.*;
 import java.security.interfaces.RSAKey;
-import java.util.Currency;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -79,7 +84,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private AddSpeechBalloonSignal addSpeechBalloon;
 	private UpdateGroundTileSignal updateGroundTileSignal;
 	private UpdateGameObjectTileSignal updateGameObjectTileSignal;
-	private ILogger logger;
 	private HandleDeathSignal handleDeath;
 	private ZombifySignal zombify;
 	private SetGameFocusSignal setGameFocus;
@@ -101,6 +105,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private FriendModel friendModel;
 	private CharactersMetricsTracker statsTracker;
 
+	private long startTime = 0; // this is currently not set
+
 	public GameServerConnectionConcrete(AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
 	                                    int keyTime, Byte[] key, String mapJSON, boolean isFromArena) {
 		super();
@@ -116,7 +122,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		 this.petsModel = PetsModel;
 		 this.friendModel =  FriendModel*/
 		this.closeDialogs = CloseDialogsSignal.getInstance();
-		changeMapSignal =  ChangeMapSignal.getInstance();
+		changeMapSignal = ChangeMapSignal.getInstance();
 		this.openDialog = OpenDialogSignal.getInstance();
 		this.arenaDeath = ArenaDeathSignal.getInstance();
 		this.imminentWave = ImminentArenaWaveSignal.getInstance();
@@ -124,16 +130,15 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.questRedeemComplete = QuestRedeemCompleteSignal.getInstance();
 		this.keyInfoResponse = KeyInfoResponseSignal.getInstance();
 		this.claimDailyRewardResponse = ClaimDailyRewardResponseSignal.getInstance();
-		 /*this.statsTracker =  CharactersMetricsTracker;
-		 this.logger =  ILogger;*/
+		/*this.statsTracker =  CharactersMetricsTracker;*/
 		this.handleDeath = HandleDeathSignal.getInstance();
 		this.zombify = ZombifySignal.getInstance();
 		this.setGameFocus = SetGameFocusSignal.getInstance();
 		this.classesModel = ClassesModel.getInstance();
 		serverConnection = SocketServer.getInstance();
 		this.messages = MessageCenter.getInstance();
-		/*this.model =  GameModel
-		this.currentArenaRun =  CurrentArenaRunModel*/
+		this.model = GameModel.getInstance();
+		this.currentArenaRun = CurrentArenaRunModel.getInstance();
 		this.gs = gs;
 		this.server = server;
 		this.gameId = gameId;
@@ -142,7 +147,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.keyTime = keyTime;
 		this.key = key;
 		this.mapJSON = mapJSON;
-		this.isFromArena = isFromArena;/**this.friendModel.setCurrentServer(server);
+		this.isFromArena = isFromArena;/*this.friendModel.setCurrentServer(server);
 		 this.getPetUpdater();*/
 		instance = this;
 	}
@@ -166,21 +171,21 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	// removeServerConnectionListeners()
 
-	/*public void  connect()  {
+	public void connect() {
 		this.addServerConnectionListeners();
 		this.mapMessages();
-		ChatMessage _loc1 = new ChatMessage();
-		_loc1_.name = Parameters.CLIENT_CHAT_NAME;
-		_loc1_.text = TextKey.CHAT_CONNECTING_TO;
-		String loc2 = server_.name;
+		ChatMessage chatMessage = new ChatMessage();
+		chatMessage.name = Parameters.CLIENT_CHAT_NAME;
+		chatMessage.text = TextKey.CHAT_CONNECTING_TO;
+		String loc2 = server.name;
 		if (loc2 == "{\"text\":\"server.vault\"}") {
 			loc2 = "server.vault";
 		}
 		loc2 = LineBuilder.getLocalizedStringFromKey(loc2);
-		_loc1_.tokens = {"serverName": loc2};
-		this.addTextLine.dispatch(_loc1);
-		serverConnection.connect(server_.address, server_.port);
-	}**/
+		chatMessage.tokens = {"serverName":loc2};
+		this.addTextLine.dispatch(chatMessage);
+		serverConnection.connect(server.address, server.port);
+	}
 
 	public void mapMessages() {
 		MessageMap _loc1 = MessageCenter.getInstance();
@@ -510,7 +515,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	{
 		int itemId = itemOwner.equipment[slotId];
-		XML objectXML = ObjectLibrary.xmlLibrary[itemId];
+		XML objectXML = ObjectLibrary.xmlLibrary.get(itemId);
 		if (objectXML && !itemOwner.isPaused()
 				&& (objectXML.hasOwnProperty("Consumable") || objectXML.hasOwnProperty("InvUse"))) {
 			this.applyUseItem(itemOwner, slotId, itemId, objectXML);
@@ -561,14 +566,14 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		move.newPosition.x = x;
 		move.newPosition.y = y;
 		int lastMove = this.gs.moveRecords.lastClearTime;
-		move.records.length = 0;
+		move.records.clear();
 		if (lastMove >= 0 && move.time - lastMove > 125) {
-			len = Math.min(10, this.gs.moveRecords.records.length);
+			len = Math.min(10, this.gs.moveRecords.records.size());
 			for (i = 0; i < len; i++) {
-				if (this.gs.moveRecords.records[i].time >= move.time - 25) {
+				if (this.gs.moveRecords.records.get(i).time >= move.time - 25) {
 					break;
 				}
-				move.records.add(this.gs.moveRecords.records[i]);
+				move.records.add(this.gs.moveRecords.records.get(i));
 			}
 		}
 		this.gs.moveRecords.clear(move.time);
@@ -576,9 +581,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		player && player.onMove();
 	}
 
-	public void teleport(int objectId)
-
-	{
+	public void teleport(int objectId) {
 		Teleport teleport = (Teleport) this.messages.require(TELEPORT);
 		teleport.objectId = objectId;
 		this.serverConnection.sendMessage(teleport);
@@ -593,30 +596,25 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	public void buy(int sellableObjectId, int currencyType) {
-		if (this.outstandingBuy) {
+		if (this.outstandingBuy != null) {
 			return;
 		}
-		SellableObject sObj = this.gs.map.goDict[sellableObjectId];
+		SellableObject sObj = (SellableObject) this.gs.map.goDict.get(sellableObjectId);
 		if (sObj == null) {
 			return;
 		}
 		boolean converted = false;
-		if (sObj.currency_ == Currency.GOLD) {
-			converted = this.gs.model.getConverted() || this.player.credits_ > 100 || sObj.price_ > this.player.credits;
+		if (sObj.currency == Currency.GOLD) {
+			converted = this.gs.model.getConverted() || this.player.credits > 100 || sObj.price > this.player.credits;
 		}
 		this.outstandingBuy = new OutstandingBuy(sObj.soldObjectInternalName(), sObj.price, sObj.currency, converted);
 		Buy buyMesssage = (Buy) this.messages.require(BUY);
 		buyMesssage.objectId = sellableObjectId;
-		if (currencyType == Currency.FAME) {
-			buyMesssage.multiplier = this.playerModel.getFamePriceMultiplier();
-		} else {
-			buyMesssage.multiplier = -1;
-		}
 		this.serverConnection.sendMessage(buyMesssage);
 	}
 
 	public void gotoAck(int time) {
-		GotoAck gotoAck = this.messages.require(GOTOACK) as GotoAck;
+		GotoAck gotoAck = (GotoAck) this.messages.require(GOTOACK);
 		gotoAck.time = time;
 		this.serverConnection.sendMessage(gotoAck);
 	}
@@ -688,13 +686,13 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	public void joinGuild(String guildName) {
-		JoinGuild joinGuild = this.messages.require(JOINGUILD) as JoinGuild;
+		JoinGuild joinGuild = (JoinGuild) this.messages.require(JOINGUILD);
 		joinGuild.guildName = guildName;
 		this.serverConnection.sendMessage(joinGuild);
 	}
 
 	public void changeGuildRank(String name, int rank) {
-		ChangeGuildRank changeGuildRank = this.messages.require(CHANGEGUILDRANK) as ChangeGuildRank;
+		ChangeGuildRank changeGuildRank = (ChangeGuildRank) this.messages.require(CHANGEGUILDRANK);
 		changeGuildRank.name = name;
 		changeGuildRank.guildRank = rank;
 		this.serverConnection.sendMessage(changeGuildRank);
@@ -710,8 +708,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onConnected() {
-		Account account = StaticInjectorContext.getInjector().getInstance(Account);
-		this.addTextLine.dispatch(new AddTextLineVO(Parameters.CLIENT_CHAT_NAME, "Connected!"));
+		Account account = StaticInjectorContext.getInjector().getInstance();
+		this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Connected!"));
 		Hello hello = (Hello) this.messages.require(HELLO);
 		hello.buildVersion = Parameters.BUILD_VERSION;
 		hello.gameId = this.gameId;
@@ -720,8 +718,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		hello.secret = this.rsaEncrypt(account.getSecret());
 		hello.keyTime = this.keyTime;
 		hello.key.length = 0;
-		this.key_ != null && hello.key.writeBytes(this.key);
-		hello.mapJSON = this.mapJSON_ == null ? "" : this.mapJSON;
+		this.key != null && hello.key.writeBytes(this.key);
+		hello.mapJSON = this.mapJSON == null ? "" : this.mapJSON;
 		hello.entrytag = account.getEntryTag();
 		hello.gameNet = account.gameNetwork();
 		hello.gameNetUserId = account.gameNetworkUserId();
@@ -745,7 +743,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		int projId = 0;
 		Map map = this.gs.map;
 		Projectile proj = null;
-		if (damage.objectId_ >= 0 && damage.bulletId_ > 0) {
+		if (damage.objectId >= 0 && damage.bulletId > 0) {
 			projId = Projectile.findObjId(damage.objectId, damage.bulletId);
 			proj = map.boDict[projId] as Projectile;
 			if (proj != null && !proj.projProps.multiHit) {
@@ -789,19 +787,15 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		owner.setAttack(allyShoot.containerType, allyShoot.angle);
 	}
 
-	private void onEnemyShoot(EnemyShoot enemyShoot)
-
-	{
-		Projectile proj = null;
-		float angle = NaN;
-		GameObject owner = this.gs.map.goDict[enemyShoot.ownerId];
+	private void onEnemyShoot(EnemyShoot enemyShoot) {
+		GameObject owner = this.gs.map.goDict.get(enemyShoot.ownerId);
 		if (owner == null || owner.dead) {
 			this.shootAck(-1);
 			return;
 		}
 		for (int i = 0; i < enemyShoot.numShots; i++) {
-			proj = (Projectile) FreeList.newObject(Projectile);
-			angle = enemyShoot.angle + enemyShoot.angleInc * i;
+			Projectile proj = new Projectile();
+			float angle = enemyShoot.angle + enemyShoot.angleInc * i;
 			proj.reset(owner.objectType, enemyShoot.bulletType, enemyShoot.ownerId, (enemyShoot.bulletId + i) % 256,
 					angle, this.gs.lastUpdate);
 			proj.setDamage(enemyShoot.damage);
@@ -815,8 +809,10 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		if (Parameters.data.showTradePopup) {
 			this.gs.hudView.interactPanel.setOverride(new TradeRequestPanel(this.gs, tradeRequested.name));
 		}
-		this.addTextLine.dispatch(new AddTextLineVO("", tradeRequested.name + " wants to "
-				+ "trade with you.  Type \"/trade " + tradeRequested.name_ + "\" to trade."));
+		this.addTextLine.dispatch(ChatMessage.make("", tradeRequested.name + " wants to "
+				+ "trade with you.  Type \"/trade " + tradeRequested.name + "\" to trade."));
+
+
 	}
 
 	private void onTradeStart(TradeStart tradeStart) {
@@ -829,7 +825,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onTradeDone(TradeDone tradeDone) {
 		this.gs.hudView.tradeDone();
-		this.addTextLine.dispatch(new AddTextLineVO("", tradeDone.description));
+		this.addTextLine.dispatch(ChatMessage.make("", tradeDone.description));
 	}
 
 	private void onTradeAccepted(TradeAccepted tradeAccepted) {
@@ -849,7 +845,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			this.handleNewPlayer((Player) go, map);
 		}
 		this.processObjectStatus(status, 0, -1);
-		if (go.props.static_ && go.props.occupySquare_ && !go.props.noMiniMap) {
+		if (go.props. static&&go.props.occupySquare && !go.props.noMiniMap){
 			this.updateGameObjectTileSignal.dispatch(new UpdateGameObjectTileVO(go.x, go.y, go));
 		}
 	}
@@ -1221,86 +1217,76 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	private void onText(Text text)
-
-	{
+	/**
+	 * Important : This method is not in the new version of the client
+	 * <p>
+	 * It's not in ChatConfig
+	 */
+	private void onText(Text text) {
 		GameObject go = null;
 		List<int> colors = null;
 		AddSpeechBalloonVO speechBalloonvo = null;
 		String textString = text.text;
-		if (text.cleanText.length > 0 && text.objectId_ != this.playerId_ && Parameters.data.filterLanguage) {
+		if (text.cleanText.length > 0 && text.objectId != this.playerId && Parameters.data.filterLanguage) {
 			textString = text.cleanText;
 		}
-		if (text.objectId_ >= 0) {
-			go = this.gs.map.goDict[text.objectId];
+		if (text.objectId >= 0) {
+			go = this.gs.map.goDict.get(text.objectId);
 			if (go != null) {
 				colors = NORMAL_SPEECH_COLORS;
 				if (go.props.isEnemy) {
 					colors = ENEMY_SPEECH_COLORS;
-				} else if (text.recipient_ == Parameters.GUILD_CHAT_NAME) {
+				} else if (text.recipient.equals(Parameters.GUILD_CHAT_NAME)) {
 					colors = GUILD_SPEECH_COLORS;
-				} else if (text.recipient_ != "") {
+				} else if (!text.recipient.equals("")) {
 					colors = TELL_SPEECH_COLORS;
 				}
 				speechBalloonvo = new AddSpeechBalloonVO(go, textString, colors[0], 1, colors[1], 1, colors[2], text.bubbleTime, false, true);
 				this.addSpeechBalloon.dispatch(speechBalloonvo);
 			}
 		}
-		this.addTextLine.dispatch(new AddTextLineVO(text.name, textString, text.objectId, text.numStars, text.recipient));
+		this.addTextLine.dispatch(ChatMessage.make(text.name, textString, text.objectId, text.numStars, text.recipient));
 	}
 
-	private void onInvResult(InvResult invResult)
-
-	{
-		if (invResult.result_ != 0) {
+	private void onInvResult(InvResult invResult) {
+		if (invResult.result != 0) {
 			this.handleInvFailure();
 		}
 	}
 
-	private void handleInvFailure()
-
-	{
+	private void handleInvFailure() {
 		SoundEffectLibrary.play("error");
 		this.gs.hudView.interactPanel.redraw();
 	}
 
-	private void onReconnect(Reconnect reconnect)
-
-	{
+	private void onReconnect(Reconnect reconnect) {
 		this.disconnect();
-		var server:
-		Server = new Server().setName(reconnect.name).setAddress(reconnect.host_ != "" ? reconnect.host : this.server.address).setPort(reconnect.host_ != "" ?int
-		(reconnect.port):int(this.server.port));
+		Server server = new Server().setName(reconnect.name).setAddress(reconnect.host.equals("") ? reconnect.host : this.server.address).setPort(!reconnect.host.equals("") ?
+				reconnect.port : this.server.port);
 		int gameID = reconnect.gameId;
 		boolean createChar = this.createCharacter;
 		int charId = this.charId;
 		int keyTime = reconnect.keyTime;
-		ByteArray key = reconnect.key;
+		byte[] key = reconnect.key;
 		ReconnectEvent reconnectEvent = new ReconnectEvent(server, gameID, createChar, charId, keyTime, key);
 		this.gs.dispatchEvent(reconnectEvent);
 	}
 
-	private void onPing(Ping ping)
-
-	{
+	private void onPing(Ping ping) {
 		Pong pong = (Pong) this.messages.require(PONG);
 		pong.serial = ping.serial;
 		pong.time = getTimer();
 		this.serverConnection.sendMessage(pong);
 	}
 
-	private void parseXML(String xmlString)
-
-	{
+	private void parseXML(String xmlString) {
 		XML extraXML = XML(xmlString);
 		GroundLibrary.parseFromXML(extraXML);
 		ObjectLibrary.parseFromXML(extraXML);
 		ObjectLibrary.parseFromXML(extraXML);
 	}
 
-	private void onMapInfo(MapInfo mapInfo)
-
-	{
+	private void onMapInfo(MapInfo mapInfo) {
 		for (String clientXMLString : mapInfo.clientXML) {
 			this.parseXML(clientXMLString);
 		}
@@ -1316,9 +1302,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	private void onPic(Pic pic) {
-		this.gs.addChild(new PicView(pic.bitmapData));
-	}
+	//private void onPic(Pic pic) { this.gs.addChild(new PicView(pic.bitmapData)); }
 
 	private void onDeath(Death death) {
 		this.death = death;
@@ -1332,44 +1316,40 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onBuyResult(BuyResult buyResult) {
 		if (buyResult.result == BuyResult.SUCCESS_BRID) {
-			if (this.outstandingBuy) {
+			if (this.outstandingBuy != null) {
 				this.outstandingBuy.record();
 			}
 		}
 		this.outstandingBuy = null;
 		switch (buyResult.result) {
 			case BuyResult.NOT_ENOUGH_GOLD_BRID:
-				StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughGoldDialog());
+				OpenDialogSignal.getInstance().dispatch(new NotEnoughGoldDialog());
 				break;
 			case BuyResult.NOT_ENOUGH_FAME_BRID:
-				StaticInjectorContext.getInjector().getInstance(OpenDialogSignal).dispatch(new NotEnoughFameDialog());
+				OpenDialogSignal.getInstance().dispatch(new NotEnoughFameDialog());
 				break;
 			default:
 				this.addTextLine
-						.dispatch(new AddTextLineVO(buyResult.result == BuyResult.SUCCESS_BRID ? Parameters.SERVER_CHAT_NAME
+						.dispatch(ChatMessage.make(buyResult.result == BuyResult.SUCCESS_BRID ? Parameters.SERVER_CHAT_NAME
 								: Parameters.ERROR_CHAT_NAME, buyResult.resultString));
 		}
 	}
 
-	private void onAccountList(AccountList accountList)
-
-	{
-		if (accountList.accountListId == 0) {
+	private void onAccountList(AccountList accountList) {
+		/**if (accountList.accountListId == 0) {
 			this.gs.map.party.setStars(accountList);
 		}
 		if (accountList.accountListId == 1) {
 			this.gs.map.party.setIgnores(accountList);
-		}
+		}*/
 	}
 
 	private void onQuestObjId(QuestObjId questObjId) {
 		this.gs.map.quest.setObject(questObjId.objectId);
 	}
 
-	private void onAoe(Aoe aoe)
-
-	{
-		int d = 0;
+	private void onAoe(Aoe aoe) {
+		/*int d = 0;
 		List<int> effects = null;
 		if (this.player == null) {
 			this.aoeAck(this.gs.lastUpdate, 0, 0);
@@ -1385,12 +1365,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		if (hit) {
 			d = GameObject.damageWithDefense(aoe.damage, this.player.defense, false, this.player.condition);
 			effects = null;
-			if (aoe.effect_ != 0) {
+			if (aoe.effect!= 0) {
 				effects = new List<int>();
 				effects.add(aoe.effect);
 			}
 			this.player.damage(aoe.origType, d, effects, false, null);
-		}
+		}**/
 		this.aoeAck(this.gs.lastUpdate, this.player.x, this.player.y);
 	}
 
@@ -1399,7 +1379,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onGuildResult(GuildResult guildResult) {
-		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, guildResult.errorText));
+		this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, guildResult.errorText));
 		this.gs.dispatchEvent(new GuildResultEvent(guildResult.success, guildResult.errorText));
 	}
 
@@ -1417,7 +1397,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			this.gs.hudView.interactPanel
 					.setOverride(new GuildInvitePanel(this.gs, invitedToGuild.name, invitedToGuild.guildName));
 		}
-		this.addTextLine.dispatch(new AddTextLineVO("",
+		this.addTextLine.dispatch(ChatMessage.make("",
 				"You have been invited by " + invitedToGuild.name + " to join the guild " + invitedToGuild.guildName
 						+ ".\n  If you wish to join type \"/join " + invitedToGuild.guildName + "\""));
 	}
@@ -1434,7 +1414,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			if (this.delayBeforeReconect < 10) {
 				this.retry(this.delayBeforeReconect++);
 				this.addTextLine
-						.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, "Connection failed!  Retrying..."));
+						.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Connection failed!  Retrying..."));
 			} else {
 				this.gs.closed.dispatch();
 			}
@@ -1443,7 +1423,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void retry(int time) {
 		this.retryTimer = new Timer(time * 1000, 1);
-		this.retryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, this.onRetryTimer);
+		this.retryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, this::onRetryTimer);
 		this.retryTimer.start();
 	}
 
@@ -1452,7 +1432,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onError(String error) {
-		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, error));
+		this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, error));
 	}
 
 	private void onFailure(Failure event) {
@@ -1472,27 +1452,29 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void handleInvalidTeleportTarget(Failure event) {
-		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, event.errorDescription));
+		this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, event.errorDescription));
 		this.player.nextTeleportAt = 0;
 	}
 
 	private void handleBadKeyFailure(Failure event) {
-		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, event.errorDescription));
+		this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, event.errorDescription));
 		this.retryConnection = false;
 		this.gs.closed.dispatch();
 	}
 
 	private void handleIncorrectVersionFailure(Failure event) {
-		Dialog dialog = new Dialog(
-				"Client version: " + Parameters.BUILD_VERSION + "\nServer version: " + event.errorDescription,
+		System.out.println("Client version " + Parameters.BUILD_VERSION + " Server version: " + event.errorDescription
+				+ "Client Update Needed.");
+
+		/*Dialog dialog = new Dialog("Client version: " + Parameters.BUILD_VERSION + "\nServer version: " + event.errorDescription,
 				"Client Update Needed", "Ok", null, "/clientUpdate");
 		dialog.addEventListener(Dialog.BUTTON1_EVENT, this.onDoClientUpdate);
 		this.gs.stage.addChild(dialog);
-		this.retryConnection = false;
+		this.retryConnection = false;**/
 	}
 
 	private void handleDefaultFailure(Failure event) {
-		this.addTextLine.dispatch(new AddTextLineVO(Parameters.ERROR_CHAT_NAME, event.errorDescription));
+		this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, event.errorDescription));
 	}
 
 	private void onDoClientUpdate(Event event) {
@@ -1501,4 +1483,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.gs.closed.dispatch();
 	}
 
+	public int getTimer() {
+		return (int) (System.currentTimeMillis() - startTime);
+
+	}
 }

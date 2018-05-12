@@ -14,14 +14,14 @@ public class EnemyShoot extends IncomingMessage {
 		startingPos = new WorldPosData();
 	}
 
-	private int bulletId;
-	private int ownerId;
-	private int bulletType;
-	private WorldPosData startingPos;
-	private float angle;
-	private short damage;
-	private int numShots;
-	private float angleInc;
+	public int bulletId;
+	public int ownerId;
+	public int bulletType;
+	public WorldPosData startingPos;
+	public float angle;
+	public short damage;
+	public int numShots;
+	public float angleInc;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

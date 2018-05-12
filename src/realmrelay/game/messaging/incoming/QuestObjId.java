@@ -11,7 +11,7 @@ public class QuestObjId extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int objectId;
+	public int objectId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

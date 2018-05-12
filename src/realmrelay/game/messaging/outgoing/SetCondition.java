@@ -7,8 +7,8 @@ import java.util.function.Consumer;
 
 public class SetCondition extends OutgoingMessage {
 
-	private int conditionEffect;
-	private float conditionDuration;
+	public int conditionEffect;
+	public float conditionDuration;
 
 	public SetCondition(int id, Consumer callback) {
 		super(id, callback);

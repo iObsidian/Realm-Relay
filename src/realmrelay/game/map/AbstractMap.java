@@ -1,41 +1,61 @@
 package realmrelay.game.map;
 
-import java.awt.Point;
-import java.util.HashMap;
-
 import javafx.scene.Camera;
+import realmrelay.game.game.AGameSprite;
 import realmrelay.game.objects.BasicObject;
 import realmrelay.game.objects.GameObject;
+import realmrelay.game.objects.Player;
 import realmrelay.game.objects.Square;
+
+import java.awt.*;
+import java.util.HashMap;
 
 public abstract class AbstractMap {
 
-    //GameObject dictionary
-    public HashMap<Integer, GameObject> goDict;
+	//GameObject dictionary
+	public HashMap<Integer, GameObject> goDict;
 
-    public HashMap<Integer, Square> squareList_;
-    public HashMap<Integer, Square> squares;
+	public AGameSprite gs;
 
-    //BasicObject dictionary
-    public HashMap<Integer, BasicObject> boDict;
+	public String name;
 
-    public String name;
+	public HashMap<Integer, Square> squareList_;
+	public HashMap<Integer, Square> squares;
 
-    public int width;
-    public int height;
+	public Player player = null;
 
-    public abstract void setProps(int width, int height, String name);
+	public boolean showDisplays;
 
-    public abstract void addObj(BasicObject go, float x, float y);
+	public int width;
+	public int height;
 
-    public abstract void setGroundTile(float x, float y, int type);
+	//BasicObject dictionary
+	public HashMap<Integer, BasicObject> boDict;
 
-    public abstract Square getSquare(float x, float y);
+	public Object merchLookup;
 
-    public abstract Point pSTopW(Number param1, Number param2);
+	//public Party party = null;
 
-    public abstract void removeObj(int id);
+	public Quest quest = null;
 
-    public abstract void draw(Camera camera, int param2);
+	//public Signal signalRenderSwitch;
+
+	protected boolean wasLastFrameGpu = false;
+
+	public boolean isPetYard = false;
+
+	public abstract void setProps(int width, int height, String name);
+
+	public abstract void addObj(BasicObject go, float x, float y);
+
+	public abstract void setGroundTile(float x, float y, int type);
+
+	public abstract Square getSquare(float x, float y);
+
+	public abstract Point pSTopW(Number param1, Number param2);
+
+	public abstract void removeObj(int id);
+
+	public abstract void draw(Camera camera, int param2);
 
 }

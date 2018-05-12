@@ -11,7 +11,7 @@ public class TradeRequested extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private String name;
+	public String name;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

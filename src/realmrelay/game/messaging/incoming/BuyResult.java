@@ -21,8 +21,8 @@ public class BuyResult extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int result;
-	private String resultString;
+	public int result;
+	public String resultString;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

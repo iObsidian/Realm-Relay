@@ -7,7 +7,7 @@ import java.util.function.Consumer;
 
 public class RequestTrade extends OutgoingMessage {
 
-	private String name;
+	public String name;
 
 	public RequestTrade(int id, Consumer callback) {
 		super(id, callback);

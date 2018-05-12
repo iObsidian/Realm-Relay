@@ -10,10 +10,10 @@ import realmrelay.game.messaging.data.WorldPosData;
 
 public class UseItem extends OutgoingMessage {
 
-	private int time;
-	private SlotObjectData slotObject;
-	private WorldPosData itemUsePos;
-	private int useType;
+	public int time;
+	public SlotObjectData slotObject;
+	public WorldPosData itemUsePos;
+	public int useType;
 
 	public UseItem(int id, Consumer callback) {
 		super(id, callback);

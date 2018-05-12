@@ -3,6 +3,8 @@ package realmrelay.game.messaging.outgoing;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.MoveRecord;
@@ -13,12 +15,12 @@ public class Move extends OutgoingMessage {
 	public int tickId;
 	public int time;
 	public WorldPosData newPosition;
-	public MoveRecord[] records;
+	public List<MoveRecord> records;
 	
 	public Move(int param1, Consumer param2) {
 		super(param1, param2);
 		newPosition = new WorldPosData();
-		records = new MoveRecord[0];
+		records = new ArrayList<MoveRecord>();
 	}
 
 	@Override
@@ -26,11 +28,10 @@ public class Move extends OutgoingMessage {
 		tickId = in.readInt();
 		time = in.readInt();
 		newPosition.parseFromInput(in);
-		records = new MoveRecord[in.readShort()];
-		for (int i = 0; i < records.length; i++) {
+		for (int i = 0; i < in.readShort(); i++) {
 			MoveRecord record = new MoveRecord();
 			record.parseFromInput(in);
-			records[i] = record;
+			records.add(record);
 		}
 	}
 
@@ -39,7 +40,7 @@ public class Move extends OutgoingMessage {
 		out.writeInt(tickId);
 		out.writeInt(time);
 		newPosition.writeToOutput(out);
-		out.writeShort(records.length);
+		out.writeShort(records.size());
 		for (MoveRecord record : records) {
 			record.writeToOutput(out);
 		}

@@ -9,7 +9,7 @@ import realmrelay.game.messaging.data.SlotObjectData;
 
 public class InvDrop extends OutgoingMessage {
 
-	private SlotObjectData slotObject;
+	public SlotObjectData slotObject;
 
 	public InvDrop(int id, Consumer callback) {
 		super(id, callback);
