@@ -1086,6 +1086,8 @@ public class Player extends Character {
 			this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, TextKey.PLAYER_NO_WEAPON_EQUIPPED));
 			return;
 		}
+		
+
 		XML loc3 = ObjectLibrary.xmlLibrary.get(loc2);
 		int loc4 = getTimer();
 		double loc5 = loc3.getDoubleValue("RateOfFire");
