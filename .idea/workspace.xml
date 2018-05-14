@@ -2,70 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d7f704-e69a-4440-8dcc-6c4214922787" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/res/xml/items.xml" afterPath="$PROJECT_DIR$/res/xml/items.xml" />
-      <change beforePath="$PROJECT_DIR$/script_help.txt" afterPath="$PROJECT_DIR$/script_help.txt" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/GameSprite.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/GameSprite.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/WebMain.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/WebMain.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/_as3/Point.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/_as3/Point.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/_as3/XML.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/_as3/XML.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/appengine/SavedCharacter.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/appengine/SavedCharacter.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/appengine/SavedCharactersList.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/appengine/SavedCharactersList.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/assets/services/CharacterFactory.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/assets/services/CharacterFactory.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/classes/model/CharacterClass.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/classes/model/CharacterClass.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/engine3d/Point3D.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/engine3d/Point3D.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/game/MoveRecords.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/game/MoveRecords.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/map/AbstractMap.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/map/AbstractMap.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/map/AnimateProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/map/AnimateProperties.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/map/GroundProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/map/GroundProperties.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/map/Map.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/map/Map.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnection.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnection.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/data/MoveRecord.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/data/MoveRecord.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/data/WorldPosData.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/data/WorldPosData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/AllyShoot.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/AllyShoot.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Aoe.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Aoe.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/EnemyShoot.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/EnemyShoot.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/ServerPlayerShoot.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/ServerPlayerShoot.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/ShowEffect.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/ShowEffect.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/outgoing/PlayerShoot.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/outgoing/PlayerShoot.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/outgoing/SetCondition.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/outgoing/SetCondition.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/net/LatLong.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/net/LatLong.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/net/Server.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/net/Server.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/BasicObject.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/BasicObject.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/Container.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Container.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/EffectProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/EffectProperties.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/Merchant.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Merchant.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectLibrary.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectLibrary.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectProperties.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/Player.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Player.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/Projectile.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Projectile.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/ProjectileProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/ProjectileProperties.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/Square.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Square.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/animation/AnimatedChar.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/animation/AnimatedChar.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/animation/AnimationData.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/animation/AnimationData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/parameters/Parameters.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/parameters/Parameters.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/particles/BaseParticle.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/particles/BaseParticle.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/particles/ParticleGenerator.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/particles/ParticleGenerator.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/particles/ParticleProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/particles/ParticleProperties.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/particles/ShockerEffect.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/particles/ShockerEffect.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/particles/XMLEffect.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/particles/XMLEffect.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/particles/XMLParticle.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/particles/XMLParticle.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/promotions/model/BeginnersPackageModel.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/promotions/model/BeginnersPackageModel.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/sound/Music.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/sound/Music.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/util/AssetLibrary.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/util/AssetLibrary.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/util/TextKey.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/util/TextKey.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/util/TextureRedrawer.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/util/TextureRedrawer.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/ByteArrayDataInput.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/ByteArrayDataInput.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/ByteArrayDataOutput.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/ByteArrayDataOutput.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/EnemyData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/EnemyData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/EnemyProjectileData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/EnemyProjectileData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/GroundData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/GroundData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ItemData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ItemData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ItemProjectileData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ItemProjectileData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ProjectileData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ProjectileData.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ProjectileStorage.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/ProjectileStorage.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,12 +15,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="256">
-                <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <first_editor relative-caret-position="201">
+                <caret line="69" column="11" lean-forward="true" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -110,7 +48,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseParticle.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BaseParticle.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/realmrelay/game/particles/BaseParticle.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="358">
@@ -256,9 +194,9 @@
         <option value="$PROJECT_DIR$/src/realmrelay/game/ui/signals/UpdateHUDSignal.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/view/GameSpriteMediator.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/net/impl/MessageCenter.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/_as3/XML.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/particles/BaseParticle.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -549,12 +487,12 @@
       <workItem from="1525992208812" duration="20700000" />
       <workItem from="1526066497288" duration="958000" />
       <workItem from="1526073957420" duration="5616000" />
-      <workItem from="1526231318669" duration="26550000" />
+      <workItem from="1526231318669" duration="26615000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63224000" />
+    <option name="totallyTimeSpent" value="63289000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1016,17 +954,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="256">
-            <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/events/KeyInfoResponseSignal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
@@ -1056,6 +983,17 @@
         <state relative-caret-position="358">
           <caret line="50" column="27" lean-forward="false" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="201">
+            <caret line="69" column="11" lean-forward="true" selection-start-line="69" selection-start-column="11" selection-end-line="69" selection-end-column="11" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

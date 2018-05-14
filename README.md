@@ -1,19 +1,7 @@
 TODO : 
 
     Reorganise files to match client
-
-
-
-
-'get' keyword
------------
-
-
-Sometimes, you'll find 
-
-   
-
-
+    Add 'get' awareness in README (replaced get value() with getValue())
 
 
 Vectors
@@ -81,7 +69,7 @@ Number
     
    **Java**
    
-    double num = 3.0F;
+    double num = 3.0;
     
 
 Dictionary
