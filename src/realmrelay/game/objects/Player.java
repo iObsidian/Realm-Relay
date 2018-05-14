@@ -2,14 +2,17 @@ package realmrelay.game.objects;
 
 import realmrelay.game._as3.Signal;
 import realmrelay.game._as3.XML;
+import realmrelay.game.assets.services.CharacterFactory;
 import realmrelay.game.constants.GeneralConstants;
 import realmrelay.game.messaging.data.StatData;
 import realmrelay.game.objects.animation.AnimatedChar;
+import realmrelay.game.particles.HealingEffect;
+import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.util.ConversionUtil;
+import realmrelay.game.util.IntPoint;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.awt.*;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,10 +22,10 @@ public class Player extends Character {
 	public static final int MS_REALM_TELEPORT = 120000;
 
 	private static final double MOVE_THRESHOLD = 0.4;
-	private static final Point[] NEARBY = new Point[] { new Point(0, 0), new Point(1, 0), new Point(0, 1),
-			new Point(1, 1) };
-	private static final int[] RANK_OFFSET_MATRIX = new int[] { 1, 0, 0, 1, 2, 2 };
-	private static final int[] NAME_OFFSET_MATRIX = new int[] { 1, 0, 0, 1, 20, 1 };
+	private static final Point[] NEARBY = new Point[]{new Point(0, 0), new Point(1, 0), new Point(0, 1),
+			new Point(1, 1)};
+	private static final int[] RANK_OFFSET_MATRIX = new int[]{1, 0, 0, 1, 2, 2};
+	private static final int[] NAME_OFFSET_MATRIX = new int[]{1, 0, 0, 1, 20, 1};
 	private static final double MIN_MOVE_SPEED = 0.004;
 	private static final double MAX_MOVE_SPEED = 0.0096;
 	private static final double MIN_ATTACK_FREQ = 0.0015;
@@ -121,17 +124,20 @@ public class Player extends Character {
 	protected Point relMoveVec = null;
 	protected double moveMultiplier = 1;
 
+
+	protected HealingEffect healingEffect = null;
+	public Merchant nearestMerchant = null;
+	private AddTextLineSignal addTextLine;
+	private CharacterFactory factory;
+
 	/**
-	 * protected HealingEffect healingEffect = null;
-	 * public Merchant nearestMerchant = null;
-	 * private AddTextLineSignal addTextLine;
-	 * private CharacterFactory factory;
 	 * private IntPoint ip;
 	 * private GraphicsSolidFill breathBackFill = null;
 	 * private GraphicsPath breathBackPath = null;
 	 * private GraphicsSolidFill breathFill = null;
 	 * private GraphicsPath breathPath = null;
 	 */
+
 
 	public static Player fromPlayerXML(String name, XML objectXML) {
 		int objectType = objectXML.getIntValue("ObjectType");
@@ -179,32 +185,32 @@ public class Player extends Character {
 							int loc5 = loc4.getIntAttribute("stat");
 							int loc6 = loc4.getIntAttribute("amount");
 							switch (loc5) {
-							case StatData.MAX_HP_STAT:
-								this.maxHPBoost = this.maxHPBoost + loc6;
-								continue;
-							case StatData.MAX_MP_STAT:
-								this.maxMPBoost = this.maxMPBoost + loc6;
-								continue;
-							case StatData.ATTACK_STAT:
-								this.attackBoost = this.attackBoost + loc6;
-								continue;
-							case StatData.DEFENSE_STAT:
-								this.defenseBoost = this.defenseBoost + loc6;
-								continue;
-							case StatData.SPEED_STAT:
-								this.speedBoost = this.speedBoost + loc6;
-								continue;
-							case StatData.VITALITY_STAT:
-								this.vitalityBoost = this.vitalityBoost + loc6;
-								continue;
-							case StatData.WISDOM_STAT:
-								this.wisdomBoost = this.wisdomBoost + loc6;
-								continue;
-							case StatData.DEXTERITY_STAT:
-								this.dexterityBoost = this.dexterityBoost + loc6;
-								continue;
-							default:
-								continue;
+								case StatData.MAX_HP_STAT:
+									this.maxHPBoost = this.maxHPBoost + loc6;
+									continue;
+								case StatData.MAX_MP_STAT:
+									this.maxMPBoost = this.maxMPBoost + loc6;
+									continue;
+								case StatData.ATTACK_STAT:
+									this.attackBoost = this.attackBoost + loc6;
+									continue;
+								case StatData.DEFENSE_STAT:
+									this.defenseBoost = this.defenseBoost + loc6;
+									continue;
+								case StatData.SPEED_STAT:
+									this.speedBoost = this.speedBoost + loc6;
+									continue;
+								case StatData.VITALITY_STAT:
+									this.vitalityBoost = this.vitalityBoost + loc6;
+									continue;
+								case StatData.WISDOM_STAT:
+									this.wisdomBoost = this.wisdomBoost + loc6;
+									continue;
+								case StatData.DEXTERITY_STAT:
+									this.dexterityBoost = this.dexterityBoost + loc6;
+									continue;
+								default:
+									continue;
 							}
 						} else {
 							continue;
@@ -233,5 +239,14 @@ public class Player extends Character {
 		this.maxMPMax = param1.getChild("MaxMagicPoints").getIntAttribute("max");
 		texturingCache = new HashMap<>();
 	}
+
+	public int getTex1() {
+		return tex1Id;
+	}
+
+	public int getTex2() {
+		return tex2Id;
+	}
+
 
 }

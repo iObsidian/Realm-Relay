@@ -52,15 +52,14 @@ public class PlayerModel {
 	}
 
 	public boolean getIsAgeVerified() {
-		return (this.isAgeVerified) || this.account instanceof KongregateAccount || this.charList.isAgeVerified;
+		return (this.isAgeVerified) || this.charList.isAgeVerified;
 	}
-
 	public void setIsAgeVerified(boolean param1) {
 		this.isAgeVerified = true;
 	}
 
 	public boolean isNewPlayer() {
-		return Parameters.data.needsTutorial && this.charList.nextCharId == 1;
+		return this.charList.nextCharId == 1;
 	}
 
 	public int getMaxCharacters() {

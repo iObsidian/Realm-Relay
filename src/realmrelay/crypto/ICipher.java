@@ -4,18 +4,22 @@ import org.bouncycastle.crypto.StreamCipher;
 import org.bouncycastle.crypto.engines.RC4Engine;
 import org.bouncycastle.crypto.params.KeyParameter;
 
-public class RC4 {
 
-	private final StreamCipher rc4;
+/**
+ * Formelly known as ICipher
+ */
+public class ICipher {
 
-	public RC4(String key) {
+	private final StreamCipher cipher;
+
+	public ICipher(String key) {
 		this(hexStringToBytes(key));
 	}
 
-	public RC4(byte[] bytes) {
-		this.rc4 = new RC4Engine();
+	public ICipher(byte[] bytes) {
+		this.cipher = new RC4Engine();
 		KeyParameter keyParam = new KeyParameter(bytes);
-		this.rc4.init(true, keyParam);
+		this.cipher.init(true, keyParam);
 	}
 
 	/**
@@ -24,7 +28,7 @@ public class RC4 {
 	 * @param bytes
 	 */
 	public void cipher(byte[] bytes) {
-		this.rc4.processBytes(bytes, 0, bytes.length, bytes, 0);
+		this.cipher.processBytes(bytes, 0, bytes.length, bytes, 0);
 	}
 
 	private static byte[] hexStringToBytes(String key) {

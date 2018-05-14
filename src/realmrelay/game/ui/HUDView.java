@@ -3,7 +3,7 @@ package realmrelay.game.ui;
 import java.awt.*;
 
 /**
- * The trade and items panel
+ * The minimap, trade and items panel
  * TODO implement
  *
  */

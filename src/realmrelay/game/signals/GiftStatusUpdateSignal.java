@@ -17,5 +17,4 @@ public class GiftStatusUpdateSignal extends Signal<Boolean> {
 
 	public static boolean HAS_NO_GIFT = false;
 
-
 }

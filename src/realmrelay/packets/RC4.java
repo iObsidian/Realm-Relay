@@ -1,6 +1,6 @@
 /**package realmrelay.packets;
 
-public class RC4 {
+public class ICipher {
 
 	private static byte[] hexStringToBytes(String key) {
 
@@ -23,7 +23,7 @@ public class RC4 {
 	private int c;
 
 
-	private RC4(byte[] bytes) {
+	private ICipher(byte[] bytes) {
 
 		a = new byte[256];
 		for (int i = 0; i < a.length; i++) {
@@ -46,9 +46,9 @@ public class RC4 {
 	}
 
 
-	public RC4(String key) {
+	public ICipher(String key) {
 
-		this(RC4.hexStringToBytes(key));
+		this(ICipher.hexStringToBytes(key));
 	}
 
 

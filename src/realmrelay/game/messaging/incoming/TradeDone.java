@@ -14,8 +14,8 @@ public class TradeDone extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int code;
-	private String description;
+	public int code;
+	public String description;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -1,6 +1,7 @@
 package realmrelay.game.signals;
 
 import realmrelay.game._as3.Signal;
+import realmrelay.game.model.AddSpeechBalloonVO;
 
 public class AddSpeechBalloonSignal extends Signal<AddSpeechBalloonVO> {
 
@@ -13,16 +14,4 @@ public class AddSpeechBalloonSignal extends Signal<AddSpeechBalloonVO> {
 		return instance;
 	}
 
-	public static class GiftStatusUpdateSignal extends Signal {
-
-		private static GiftStatusUpdateSignal instance;
-
-		public static GiftStatusUpdateSignal getInstance() {
-			if (instance == null) {
-				instance = new GiftStatusUpdateSignal();
-			}
-			return instance;
-		}
-
-	}
 }

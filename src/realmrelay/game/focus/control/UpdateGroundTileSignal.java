@@ -1,5 +1,7 @@
 package realmrelay.game.focus.control;
 
+import realmrelay.game._as3.Signal;
+import realmrelay.game.minimap.model.UpdateGroundTileVO;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;
 

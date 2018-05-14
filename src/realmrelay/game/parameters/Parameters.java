@@ -52,7 +52,7 @@ public class Parameters {
 	public static boolean sendLogin = true;
 
 	public static void load() {
-		System.out.println("Request to load parameters";
+		System.out.println("Request to load parameters");
 
 		//load parameters heres
 	}

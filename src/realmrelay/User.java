@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.nio.ByteBuffer;
 
-import realmrelay.crypto.RC4;
+import realmrelay.crypto.ICipher;
 import realmrelay.packets.Packet;
 import realmrelay.script.PacketScriptEvent;
 import realmrelay.script.ScriptManager;
@@ -16,12 +16,12 @@ public class User {
 
 	public final byte[] localBuffer = new byte[bufferLength];
 	public int localBufferIndex = 0;
-	public final RC4 localRecvRC4;
-	public final RC4 localSendRC4;
+	public final ICipher localRecvRC4;
+	public final ICipher localSendRC4;
 	public byte[] remoteBuffer = new byte[bufferLength];
 	public int remoteBufferIndex = 0;
-	public final RC4 remoteRecvRC4;
-	public final RC4 remoteSendRC4;
+	public final ICipher remoteRecvRC4;
+	public final ICipher remoteSendRC4;
 	public final Socket localSocket;
 	public Socket remoteSocket = null;
 	public final ScriptManager scriptManager = new ScriptManager(this);
@@ -33,10 +33,10 @@ public class User {
 			throw new NullPointerException();
 		}
 		this.localSocket = localSocket;
-		this.localRecvRC4 = new RC4(ROTMGRelay.instance.key0);
-		this.localSendRC4 = new RC4(ROTMGRelay.instance.key1);
-		this.remoteRecvRC4 = new RC4(ROTMGRelay.instance.key1);
-		this.remoteSendRC4 = new RC4(ROTMGRelay.instance.key0);
+		this.localRecvRC4 = new ICipher(ROTMGRelay.instance.key0);
+		this.localSendRC4 = new ICipher(ROTMGRelay.instance.key1);
+		this.remoteRecvRC4 = new ICipher(ROTMGRelay.instance.key1);
+		this.remoteSendRC4 = new ICipher(ROTMGRelay.instance.key0);
 	}
 
 	public void disconnect() {

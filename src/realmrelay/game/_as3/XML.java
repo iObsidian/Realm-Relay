@@ -96,6 +96,26 @@ public class XML {
 		//return element.getElementsByTagName(tag).item(0).getTextContent();
 	}
 
+	public boolean getBooleanValue(String tag) {
+		return getBooleanValue(tag, false);
+	}
+
+	public boolean getBooleanValue(String tag, boolean defaultValue) {
+		int value = getIntValue(tag, -1);
+
+		if (value == -1) {
+			System.err.println("Error : Could not get boolean value '" + tag + "' from int value.");
+
+			//TODO attempt with String 'True'?
+
+			return defaultValue;
+		} else if (value == 1) {
+			return false;
+		} else {
+			return false;
+		}
+	}
+
 	public int getIntValue(String tag) {
 		return getIntValue(tag, 0);
 	}
@@ -177,5 +197,6 @@ public class XML {
 		}
 		return xmls;
 	}
+
 
 }

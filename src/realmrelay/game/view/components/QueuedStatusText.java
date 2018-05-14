@@ -11,6 +11,11 @@ public class QueuedStatusText extends Sprite {
 
 	public StringBuilder stringBuilder;
 
+
+	public QueuedStatusText(GameObject param1, StringBuilder param2, int param3, int param4) {
+		this(param1, param2, param3, param4, 0);
+	}
+
 	public QueuedStatusText(GameObject param1, StringBuilder param2, int param3, int param4, int param5) {
 		this.stringBuilder = param2;
 		super(param1, param3, param4, param5);

@@ -1,6 +1,7 @@
 package realmrelay.game.messaging;
 
 import java.util.List;
+import java.util.Random;
 
 import realmrelay.game._as3.Signal;
 import realmrelay.game.game.AGameSprite;
@@ -118,14 +119,15 @@ public class GameServerConnection {
 	public boolean createCharacter;
 	public int charId;
 	public int keyTime;
-	public Byte[] key;
-	public String mapJSON;
+	public byte[] key;
+	public byte[] mapJSON; // is a String in AS3's client TODO
 	public boolean isFromArena = false;
 	public int lastTickId = -1;
 	//public JitterWatcher jitterWatcher;
 	public SocketServer serverConnection;
 
 	public OutstandingBuy outstandingBuy = null;
+	public Random rand;
 
 	public GameServerConnection() {
 		super();

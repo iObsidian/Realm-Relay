@@ -26,6 +26,13 @@ public class Hello extends OutgoingMessage {
 
 	public Hello(int id, Consumer callback) {
 		super(id, callback);
+
+		this.buildVersion = new String();
+		this.guid = new String();
+		this.password = new String();
+		this.secret = new String();
+		this.key = new byte[0];
+		this.mapJSON = new byte[0];
 	}
 
 	@Override

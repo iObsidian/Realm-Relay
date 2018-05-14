@@ -1,3 +1,12 @@
+NOTES :
+
+
+    Important files :
+    
+    MapUserInput handles Input
+    GameSprite handles drawing
+    Map handles object drawing
+
 TODO : 
 
     Reorganise files to match client

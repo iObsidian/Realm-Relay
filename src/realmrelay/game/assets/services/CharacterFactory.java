@@ -6,12 +6,20 @@ import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.util.AnimatedChars;
 import realmrelay.game.util.BitmapUtil;
 import realmrelay.game.util.MaskedImage;
+import realmrelay.game.util.TextureRedrawer;
 import realmrelay.packets.data.unused.BitmapData;
 
 public class CharacterFactory {
 
-	
-	
+	public static CharacterFactory instance;
+
+	public static CharacterFactory getInstance() {
+		if (instance == null) {
+			instance = new CharacterFactory();
+		}
+		return instance;
+	}
+
 	private int texture1;
 
 	private int texture2;

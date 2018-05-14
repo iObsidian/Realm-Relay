@@ -41,4 +41,16 @@ public class Text extends IncomingMessage {
 		out.writeUTF(cleanText);
 	}
 
+	@Override
+	public String toString() {
+		return "Text{" +
+				"name='" + name + '\'' +
+				", objectId=" + objectId +
+				", numStars=" + numStars +
+				", bubbleTime=" + bubbleTime +
+				", recipient='" + recipient + '\'' +
+				", text='" + text + '\'' +
+				", cleanText='" + cleanText + '\'' +
+				'}';
+	}
 }

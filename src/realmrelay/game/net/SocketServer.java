@@ -1,6 +1,7 @@
 package realmrelay.game.net;
 
-import realmrelay.crypto.RC4;
+import realmrelay.crypto.ICipher;
+import realmrelay.game._as3.Event;
 import realmrelay.game.api.MessageProvider;
 import realmrelay.game.net.impl.Message;
 import realmrelay.game.net.impl.MessageCenter;
@@ -10,6 +11,9 @@ import realmrelay.game.net.impl.MessageCenter;
  * it is more closely related to The Force 2477's RealmClient
  */
 public class SocketServer {
+
+
+
 
 	public static SocketServer instance;
 
@@ -23,18 +27,18 @@ public class SocketServer {
 
 	public MessageProvider messages = MessageCenter.getInstance();
 
-	private RC4 outgoingCipher; //Renamed from 'ICipher'.
-	private RC4 incomingCipher;
+	private ICipher outgoingCipher; //Renamed from 'ICipher'.
+	private ICipher incomingCipher;
 
 	private String server;
 	private int port;
 
-	public SocketServer setOutgoingCipher(RC4 param1) {
+	public SocketServer setOutgoingCipher(ICipher param1) {
 		this.outgoingCipher = param1;
 		return this;
 	}
 
-	public SocketServer setIncomingCipher(RC4 param1) {
+	public SocketServer setIncomingCipher(ICipher param1) {
 		this.incomingCipher = param1;
 		return this;
 	}

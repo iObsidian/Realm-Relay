@@ -1,11 +1,13 @@
 package realmrelay.game.messaging;
 
+import realmrelay.game._as3.Event;
 import realmrelay.game._as3.Timer;
 import realmrelay.game._as3.TimerEvent;
 import realmrelay.game._as3.XML;
 import realmrelay.game.account.core.Account;
 import realmrelay.game.api.MessageProvider;
 import realmrelay.game.arena.model.ArenaDeathSignal;
+import realmrelay.game.arena.model.CurrentArenaRunModel;
 import realmrelay.game.arena.model.ImminentArenaWaveSignal;
 import realmrelay.game.chat.model.ChatMessage;
 import realmrelay.game.classes.model.CharacterClass;
@@ -21,7 +23,9 @@ import realmrelay.game.death.control.HandleDeathSignal;
 import realmrelay.game.death.control.ZombifySignal;
 import realmrelay.game.dialogs.CloseDialogsSignal;
 import realmrelay.game.dialogs.OpenDialogSignal;
+import realmrelay.game.events.GuildResultEvent;
 import realmrelay.game.events.KeyInfoResponseSignal;
+import realmrelay.game.events.NameResultEvent;
 import realmrelay.game.events.ReconnectEvent;
 import realmrelay.game.focus.control.SetGameFocusSignal;
 import realmrelay.game.focus.control.UpdateGroundTileSignal;
@@ -43,6 +47,8 @@ import realmrelay.game.messaging.outgoing.*;
 import realmrelay.game.messaging.outgoing.arena.EnterArena;
 import realmrelay.game.messaging.outgoing.arena.QuestRedeem;
 import realmrelay.game.minimap.control.UpdateGameObjectTileSignal;
+import realmrelay.game.minimap.model.UpdateGroundTileVO;
+import realmrelay.game.model.GameModel;
 import realmrelay.game.model.PotionInventoryModel;
 import realmrelay.game.net.Server;
 import realmrelay.game.net.SocketServer;
@@ -52,12 +58,14 @@ import realmrelay.game.net.impl.MessageCenter;
 import realmrelay.game.objects.*;
 import realmrelay.game.parameters.Parameters;
 import realmrelay.game.pets.controller.PetFeedResultSignal;
+import realmrelay.game.pets.controller.UpdateActivePet;
 import realmrelay.game.pets.data.PetsModel;
 import realmrelay.game.signals.AddSpeechBalloonSignal;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;
 import realmrelay.game.sound.SoundEffectLibrary;
 import realmrelay.game.ui.model.Key;
+import realmrelay.game.ui.model.UpdateGameObjectTileVO;
 import realmrelay.game.ui.signals.ShowKeySignal;
 import realmrelay.game.ui.signals.ShowKeyUISignal;
 import realmrelay.game.ui.signals.UpdateBackpackTabSignal;
@@ -108,13 +116,11 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private GameModel model;
 	private UpdateActivePet updateActivePet;
 	private PetsModel petsModel;
-	private FriendModel friendModel;
-	private CharactersMetricsTracker statsTracker;
 
 	private long startTime = 0; // this is currently not set
 
 	public GameServerConnectionConcrete(AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
-	                                    int keyTime, Byte[] key, String mapJSON, boolean isFromArena) {
+	                                    int keyTime, byte[] key, byte[] mapJSON, boolean isFromArena) {
 		super();
 
 		this.giftChestUpdateSignal = GiftStatusUpdateSignal.getInstance();
@@ -124,9 +130,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.updateGameObjectTileSignal = UpdateGameObjectTileSignal.getInstance();
 		this.petFeedResult = PetFeedResultSignal.getInstance();
 		this.updateBackpackTab = UpdateBackpackTabSignal.getInstance();
-		 /*this.updateActivePet = UpdateActivePet;
-		 this.petsModel = PetsModel;
-		 this.friendModel =  FriendModel*/
 		this.closeDialogs = CloseDialogsSignal.getInstance();
 		changeMapSignal = ChangeMapSignal.getInstance();
 		this.openDialog = OpenDialogSignal.getInstance();
@@ -136,7 +139,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.questRedeemComplete = QuestRedeemCompleteSignal.getInstance();
 		this.keyInfoResponse = KeyInfoResponseSignal.getInstance();
 		this.claimDailyRewardResponse = ClaimDailyRewardResponseSignal.getInstance();
-		/*this.statsTracker =  CharactersMetricsTracker;*/
 		this.handleDeath = HandleDeathSignal.getInstance();
 		this.zombify = ZombifySignal.getInstance();
 		this.setGameFocus = SetGameFocusSignal.getInstance();
@@ -144,7 +146,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		serverConnection = SocketServer.getInstance();
 		this.messages = MessageCenter.getInstance();
 		this.model = GameModel.getInstance();
-		this.currentArenaRun = CurrentArenaRunModel.getInstance();
+		/*this.currentArenaRun = CurrentArenaRunModel.getInstance();*/
 		this.gs = gs;
 		this.server = server;
 		this.gameId = gameId;
@@ -184,13 +186,16 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		chatMessage.name = Parameters.CLIENT_CHAT_NAME;
 		chatMessage.text = TextKey.CHAT_CONNECTING_TO;
 		String loc2 = server.name;
-		if (loc2 == "{\"text\":\"server.vault\"}") {
-			loc2 = "server.vault";
-		}
-		loc2 = LineBuilder.getLocalizedStringFromKey(loc2);
-		chatMessage.tokens = {"serverName":loc2};
-		this.addTextLine.dispatch(chatMessage);
+
+		System.out.println("Connecting to " + server.name + ".");
+
 		serverConnection.connect(server.address, server.port);
+	}
+
+	private void addServerConnectionListeners() {
+		serverConnection.connected.add(this::onConnected);
+		serverConnection.closed.add(this::onClosed);
+		serverConnection.error.add(this::onError);
 	}
 
 	public void mapMessages() {
@@ -707,36 +712,47 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		return Base64.encodeByteArray(encryptedByteArray);
 	}
 
+	/**
+	 * This method needs verification (mapJSON is a String, not a byte[])
+	 */
 	private void onConnected() {
-		Account account = StaticInjectorContext.getInjector().getInstance();
-		this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Connected!"));
-		Hello hello = (Hello) this.messages.require(HELLO);
-		hello.buildVersion = Parameters.BUILD_VERSION;
-		hello.gameId = this.gameId;
-		hello.guid = this.rsaEncrypt(account.getUserId());
-		hello.password = this.rsaEncrypt(account.getPassword());
-		hello.secret = this.rsaEncrypt(account.getSecret());
-		hello.keyTime = this.keyTime;
-		hello.key.length = 0;
-		this.key != null && hello.key.writeBytes(this.key);
-		hello.mapJSON = this.mapJSON == null ? "" : this.mapJSON;
-		hello.entrytag = account.getEntryTag();
-		hello.gameNet = account.gameNetwork();
-		hello.gameNetUserId = account.gameNetworkUserId();
-		hello.playPlatform = account.playPlatform();
-		hello.platformToken = account.getPlatformToken();
-		this.serverConnection.sendMessage(hello);
+		Account loc1 = Account.getInstance();
+		this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, TextKey.CHAT_CONNECTED));
+		this.encryptConnection();
+		Hello loc2 = (Hello) this.messages.require(HELLO);
+		loc2.buildVersion = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
+		loc2.gameId = gameId;
+		loc2.guid = this.rsaEncrypt(loc1.getUserId());
+		loc2.password = this.rsaEncrypt(loc1.getPassword());
+		loc2.secret = this.rsaEncrypt(loc1.getSecret());
+		loc2.keyTime = keyTime;
+		if (key != null) {
+			loc2.key = key;
+		} else {
+			loc2.key = new byte[0];
+		}
+		if (mapJSON != null) {
+			loc2.mapJSON = mapJSON;
+		} else {
+			loc2.mapJSON = new byte[0];
+		}
+		loc2.entrytag = loc1.getEntryTag();
+		loc2.gameNet = loc1.gameNetwork();
+		loc2.gameNetUserId = loc1.gameNetworkUserId();
+		loc2.playPlatform = loc1.playPlatform();
+		loc2.platformToken = loc1.getPlatformToken();
+		loc2.userToken = loc1.getToken();
+		serverConnection.sendMessage(loc2);
 	}
 
-	private void onCreateSuccess(CreateSuccess createSuccess)
-	{
+	public void onCreateSuccess(CreateSuccess createSuccess) {
 		this.playerId = createSuccess.objectId;
 		this.charId = createSuccess.charId;
 		this.gs.initialize();
 		this.createCharacter = false;
 	}
 
-	private void onDamage(Damage damage) {
+	public void onDamage(Damage damage) {
 		int projId = 0;
 		Map map = (Map) this.gs.map;
 		Projectile proj = null;
@@ -753,7 +769,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	private void onServerPlayerShoot(ServerPlayerShoot serverPlayerShoot) {
+	public void onServerPlayerShoot(ServerPlayerShoot serverPlayerShoot) {
 		boolean needsAck = serverPlayerShoot.ownerId == this.playerId;
 		GameObject owner = this.gs.map.goDict.get(serverPlayerShoot.ownerId);
 		if (owner == null || owner.dead) {
@@ -772,7 +788,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	private void onAllyShoot(AllyShoot allyShoot) {
+	void onAllyShoot(AllyShoot allyShoot) {
 		GameObject owner = this.gs.map.goDict.get(allyShoot.ownerId);
 		if (owner == null || owner.dead) {
 			return;
@@ -784,7 +800,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		owner.setAttack(allyShoot.containerType, allyShoot.angle);
 	}
 
-	private void onEnemyShoot(EnemyShoot enemyShoot) {
+	void onEnemyShoot(EnemyShoot enemyShoot) {
 		GameObject owner = this.gs.map.goDict.get(enemyShoot.ownerId);
 		if (owner == null || owner.dead) {
 			this.shootAck(-1);
@@ -803,31 +819,31 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onTradeRequested(TradeRequested tradeRequested) {
-		if (Parameters.data.showTradePopup) {
-			this.gs.hudView.interactPanel.setOverride(new TradeRequestPanel(this.gs, tradeRequested.name));
-		}
 		this.addTextLine.dispatch(ChatMessage.make("", tradeRequested.name + " wants to "
 				+ "trade with you.  Type \"/trade " + tradeRequested.name + "\" to trade."));
 
 	}
 
 	private void onTradeStart(TradeStart tradeStart) {
-		this.gs.hudView.startTrade(this.gs, tradeStart);
+		//this.gs.hudView.startTrade(this.gs, tradeStart);
 	}
 
 	private void onTradeChanged(TradeChanged tradeChanged) {
-		this.gs.hudView.tradeChanged(tradeChanged);
+		//this.gs.hudView.tradeChanged(tradeChanged);
 	}
 
 	private void onTradeDone(TradeDone tradeDone) {
-		this.gs.hudView.tradeDone();
+		//this.gs.hudView.tradeDone();
 		this.addTextLine.dispatch(ChatMessage.make("", tradeDone.description));
 	}
 
 	private void onTradeAccepted(TradeAccepted tradeAccepted) {
-		this.gs.hudView.tradeAccepted(tradeAccepted);
+		//this.gs.hudView.tradeAccepted(tradeAccepted);
 	}
 
+	/**
+	 * The cast from double to int is a workaround for Number
+	 */
 	private void addObject(ObjectData obj) {
 		Map map = (Map) this.gs.map;
 		GameObject go = ObjectLibrary.getObjectFromType(obj.objectType);
@@ -842,20 +858,21 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 		this.processObjectStatus(status, 0, -1);
 		if (go.props.isStatic && go.props.occupySquare && !go.props.noMiniMap) {
-			this.updateGameObjectTileSignal.dispatch(new UpdateGameObjectTileVO(go.x, go.y, go));
+			this.updateGameObjectTileSignal.dispatch(new UpdateGameObjectTileVO((int) go.x, (int) go.y, go));
 		}
 	}
 
-	private void handleNewPlayer(Player player, Map map)
-
-	{
+	/**
+	 * From addObject(ObjectData param1)
+	 */
+	private void handleNewPlayer(Player player, Map map) {
 		this.setPlayerSkinTemplate(player, 0);
 		if (player.objectId == this.playerId) {
 			this.player = player;
 			this.model.player = player;
 			map.player = player;
 			this.gs.setFocus(player);
-			this.setGameFocus.dispatch(this.playerId.toString());
+			this.setGameFocus.dispatch(String.valueOf(this.playerId));
 		}
 	}
 
@@ -881,7 +898,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		QueuedStatusText text = null;
 		GameObject go = this.gs.map.goDict.get(notification.objectId);
 		if (go != null) {
-			text = new QueuedStatusText(go, notification.message, notification.color, 2000);
+			StringBuilder b = new StringBuilder(notification.message); // Workaround
+			text = new QueuedStatusText(go, b, notification.color, 2000);
 			this.gs.map.mapOverlay.addQueuedText(text);
 			if (go == this.player && notification.message.equals("Quest Complete!")) {
 				this.gs.map.quest.completed();
@@ -925,7 +943,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onShowEffect(ShowEffect showEffect) {
-		//System.out.println("Show effect : " + showEffect);
+		System.out.println("Show effect : " + showEffect);
 	}
 
 	/**
@@ -946,7 +964,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		Merchant merchant = (Merchant) go;
 		for (StatData stat : stats) {
 			int value = stat.statValue;
-			String strStatValue = stat.strStatValue;
 			switch (stat.statType) {
 				case StatData.MAX_HP_STAT:
 					go.maxHP = value;
@@ -1140,7 +1157,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 					player.magicPotionCount = value;
 					continue;
 				case StatData.TEXTURE_STAT:
-					player.skinId != value && this.setPlayerSkinTemplate(player, value);
+					if (player.skinId != value) {
+						this.setPlayerSkinTemplate(player, value);
+					}
 					continue;
 				case StatData.HASBACKPACK_STAT:
 					(Player) go.hasBackpack = value;
@@ -1173,12 +1192,10 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		message.consume();
 	}
 
-	private void processObjectStatus(ObjectStatusData objectStatus, int tickTime, int tickId)
-
-	{
+	private void processObjectStatus(ObjectStatusData objectStatus, int tickTime, int tickId) {
 		int oldLevel = 0;
 		int oldExp = 0;
-		Array newUnlocks = null;
+		List newUnlocks = null;
 		CharacterClass type = null;
 		AbstractMap map = this.gs.map;
 		GameObject go = map.goDict.get(objectStatus.objectId);
@@ -1199,7 +1216,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			if (player.level > oldLevel) {
 				if (isMyObject) {
 					newUnlocks = this.gs.model.getNewUnlocks(player.objectType, player.level);
-					player.handleLevelUp(newUnlocks.length != 0);
+					player.handleLevelUp(newUnlocks.size() != 0);
 					type = this.classesModel.getCharacterClass(player.objectType);
 					if (type.getMaxLevelAchieved() < player.level) {
 						type.setMaxLevelAchieved(player.level);
@@ -1219,29 +1236,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	 * It's now in ChatConfig
 	 */
 	private void onText(Text text) {
-		GameObject go = null;
-		List<int> colors = null;
-		AddSpeechBalloonVO speechBalloonvo = null;
-		String textString = text.text;
-		if (text.cleanText.length > 0 && text.objectId != this.playerId && Parameters.data.filterLanguage) {
-			textString = text.cleanText;
-		}
-		if (text.objectId >= 0) {
-			go = this.gs.map.goDict.get(text.objectId);
-			if (go != null) {
-				colors = NORMAL_SPEECH_COLORS;
-				if (go.props.isEnemy) {
-					colors = ENEMY_SPEECH_COLORS;
-				} else if (text.recipient.equals(Parameters.GUILD_CHAT_NAME)) {
-					colors = GUILD_SPEECH_COLORS;
-				} else if (!text.recipient.equals("")) {
-					colors = TELL_SPEECH_COLORS;
-				}
-				speechBalloonvo = new AddSpeechBalloonVO(go, textString, colors[0], 1, colors[1], 1, colors[2], text.bubbleTime, false, true);
-				this.addSpeechBalloon.dispatch(speechBalloonvo);
-			}
-		}
-		this.addTextLine.dispatch(ChatMessage.make(text.name, textString, text.objectId, text.numStars, text.recipient));
+		System.out.println("Received text : " + text.toString());
 	}
 
 	private void onInvResult(InvResult invResult) {
@@ -1350,25 +1345,26 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.aoeAck(this.gs.lastUpdate, this.player.x, this.player.y);
 	}
 
-	private void onNameResult(NameResult nameResult) {
+	 void onNameResult(NameResult nameResult) {
 		this.gs.dispatchEvent(new NameResultEvent(nameResult));
 	}
 
-	private void onGuildResult(GuildResult guildResult) {
+	 void onGuildResult(GuildResult guildResult) {
 		this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, guildResult.errorText));
 		this.gs.dispatchEvent(new GuildResultEvent(guildResult.success, guildResult.errorText));
 	}
 
-	private void onClientStat(ClientStat clientStat) {
-		Account account = StaticInjectorContext.getInjector().getInstance(Account);
+	 void onClientStat(ClientStat clientStat) {
+		Account account = Account.getInstance();
 		account.reportIntStat(clientStat.name, clientStat.value);
 	}
 
-	private void onFile(File file) {
-		new FileReference().save(file.file, file.filename);
+	 void onFile(File file) {
+		System.out.println("Received file : " + file);
+		//new FileReference().save(file.file, file.filename);
 	}
 
-	private void onInvitedToGuild(InvitedToGuild invitedToGuild) {
+	 void onInvitedToGuild(InvitedToGuild invitedToGuild) {
 		if (Parameters.data.showGuildInvitePopup) {
 			this.gs.hudView.interactPanel
 					.setOverride(new GuildInvitePanel(this.gs, invitedToGuild.name, invitedToGuild.guildName));
@@ -1378,7 +1374,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 						+ ".\n  If you wish to join type \"/join " + invitedToGuild.guildName + "\""));
 	}
 
-	private void onPlaySound(PlaySound playSound) {
+	 void onPlaySound(PlaySound playSound) {
 		GameObject obj = this.gs.map.goDict.get(playSound.ownerId);
 		obj && obj.playSound(playSound.soundId);
 	}
@@ -1411,7 +1407,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, error));
 	}
 
-	private void onFailure(Failure event) {
+	public void onFailure(Failure event) {
 		switch (event.errorId) {
 			case Failure.INCORRECT_VERSION:
 				this.handleIncorrectVersionFailure(event);
@@ -1454,13 +1450,15 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onDoClientUpdate(Event event) {
-		Dialog dialog = (Dialog) event.currentTarget;
+
+		System.out.println("Update Event");
+
+		/*Dialog dialog = (Dialog) event.currentTarget;
 		dialog.parent.removeChild(dialog);
-		this.gs.closed.dispatch();
+		this.gs.closed.dispatch();**/
 	}
 
 	public int getTimer() {
 		return (int) (System.currentTimeMillis() - startTime);
-
 	}
 }
