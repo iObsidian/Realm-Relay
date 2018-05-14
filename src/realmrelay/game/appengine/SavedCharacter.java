@@ -41,7 +41,7 @@ public class SavedCharacter {
 		}
 	}
 
-	public static BitmapData getImage(SavedCharacter param1, XML param2, int param3, int param4, float param5,
+	public static BitmapData getImage(SavedCharacter param1, XML param2, int param3, int param4, double param5,
 			boolean param6, boolean param7) {
 		AnimatedChar loc8 = AnimatedChars.getAnimatedChar(param2.getChild("AnimatedTexture").getValue("File"),
 				param2.getChild("AnimatedTexture").getIntValue("Index"));
@@ -59,11 +59,11 @@ public class SavedCharacter {
 		return loc12;
 	}
 
-	public static float compare(SavedCharacter param1, SavedCharacter param2) {
-		float loc3 = !!Parameters.data.charIdUseMap.hasOwnProperty(param1.charId())
+	public static double compare(SavedCharacter param1, SavedCharacter param2) {
+		double loc3 = !!Parameters.data.charIdUseMap.hasOwnProperty(param1.charId())
 				? Number(Parameters.data.charIdUseMap[param1.charId()])
 				: 0F;
-		float loc4 = !!Parameters.data.charIdUseMap.hasOwnProperty(param2.charId())
+		double loc4 = !!Parameters.data.charIdUseMap.hasOwnProperty(param2.charId())
 				? Number(Parameters.data.charIdUseMap[param2.charId()])
 				: 0F;
 		if (loc3 != loc4) {

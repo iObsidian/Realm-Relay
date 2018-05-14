@@ -21,10 +21,10 @@ public class GroundProperties {
 	public AnimateProperties animate;
 	public int blendPriority = -1;
 	public int compositePriority = 0;
-	public float speed = 1.0F;
-	public float xOffset = 0;
-	public float yOffset = 0;
-	public float slideAmount = 0;
+	public double speed = 1.0F;
+	public double xOffset = 0;
+	public double yOffset = 0;
+	public double slideAmount = 0;
 	public boolean push = false;
 	public boolean sink = false;
 	public boolean sinking = false;

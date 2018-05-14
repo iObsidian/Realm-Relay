@@ -31,13 +31,13 @@ public class ObjectProperties {
 	public int healthBar = 0;
 	public boolean protectFromGroundDamage = false;
 	public boolean protectFromSink = false;
-	public float z = 0;
+	public double z = 0;
 	public boolean flying = false;
 	public int color = -1;
 	public boolean showName = false;
 	public boolean dontFaceAttacks = false;
 	public boolean dontFaceMovement = false;
-	public float bloodProb = 0.0F;
+	public double bloodProb = 0.0F;
 	public int bloodColor = 16711680;
 	public int shadowColor = 0;
 	public HashMap<Integer, String> sounds; // ID, Sound name
@@ -49,8 +49,8 @@ public class ObjectProperties {
 	public String belonedDungeon = "";
 	public String oldSound = null;
 	public HashMap<Integer, ProjectileProperties> projectiles; // ID, Properties
-	public float angleCorrection = 0;
-	public float rotation = 0;
+	public double angleCorrection = 0;
+	public double rotation = 0;
 
 	public ObjectProperties(XML param1) {
 
@@ -114,7 +114,7 @@ public class ObjectProperties {
 			this.projectiles.put(projectile.getIntAttribute("id"), new ProjectileProperties(projectile));
 		}
 		this.angleCorrection = param1.hasOwnProperty("AngleCorrection")
-				? (float) (param1.getFloatValue("AngleCorrection") * Math.PI / 4)
+				? (double) (param1.getFloatValue("AngleCorrection") * Math.PI / 4)
 				: 0;
 				
 		this.rotation = param1.hasOwnProperty("Rotation") ? param1.getFloatValue("Rotation") : 0;
@@ -166,7 +166,7 @@ public class ObjectProperties {
 
 class WhileMovingProperties {
 
-	public float z = 0.0F;
+	public double z = 0.0F;
 
 	public boolean flying = false;
 

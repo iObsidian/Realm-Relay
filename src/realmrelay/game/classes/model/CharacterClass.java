@@ -21,7 +21,7 @@ public class CharacterClass {
 	public String description;
 	public String hitSound;
 	public String deathSound;
-	public float bloodProb;
+	public double bloodProb;
 	public int[] slotTypes;
 	public int[] defaultEquipment;
 	public CharacterClassStat hp;

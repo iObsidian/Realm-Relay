@@ -27,7 +27,7 @@ public class AnimationData {
 		}
 	}
 
-	public float prob = 1.0F;
+	public double prob = 1.0F;
 
 	public int period;
 

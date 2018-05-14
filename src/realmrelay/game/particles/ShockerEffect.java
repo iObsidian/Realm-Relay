@@ -23,11 +23,11 @@ public class ShockerEffect extends ParticleEffect {
 
 	public GameObject go;
 
-	private float innerRadius;
+	private double innerRadius;
 
-	private float outerRadius;
+	private double outerRadius;
 
-	private float radians;
+	private double radians;
 
 	private int particleScale;
 

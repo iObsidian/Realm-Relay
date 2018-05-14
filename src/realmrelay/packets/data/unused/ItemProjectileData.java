@@ -3,9 +3,9 @@ package realmrelay.packets.data.unused;
 public class ItemProjectileData {
 
 	public String objectId = ""; // element ObjectId
-	public float speed = 0; // element Speed
-	public float maxDamage = 0; // element MaxDamage
-	public float minDamage = 0; // element MinDamage
-	public float lifetimeMS = 0; // element LifetimeMS
+	public double speed = 0; // element Speed
+	public double maxDamage = 0; // element MaxDamage
+	public double minDamage = 0; // element MinDamage
+	public double lifetimeMS = 0; // element LifetimeMS
 
 }

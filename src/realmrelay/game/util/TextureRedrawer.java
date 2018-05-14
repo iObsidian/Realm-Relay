@@ -40,7 +40,7 @@ public class TextureRedrawer {
 
 	}
 
-	public static BitmapData  redraw(BitmapData param1, int param2, boolean param3, int param4, boolean param5, float param6, int param7)  {
+	public static BitmapData  redraw(BitmapData param1, int param2, boolean param3, int param4, boolean param5, double param6, int param7)  {
 		String loc8 = getHash(param2, param3, param4, param6, param7);
 		if (param5 && isCached(param1, loc8)) {
 			return redrawCaches[param1][loc8];
@@ -53,7 +53,7 @@ public class TextureRedrawer {
 		return loc9;
 	}
 
-	private static String  getHash(int param1, boolean param2, int param3, float param4, int param5)  {
+	private static String  getHash(int param1, boolean param2, int param3, double param4, int param5)  {
 		return param1.toString() + "," + param3.toString() + "," + param2 + "," + param4 + "," + param5;
 	}
 
@@ -73,7 +73,7 @@ public class TextureRedrawer {
 		return false;
 	}
 
-	public static BitmapData  resize(BitmapData param1, BitmapData param2, int param3, boolean param4, int param5, int param6, float = 5 param7)  {
+	public static BitmapData  resize(BitmapData param1, BitmapData param2, int param3, boolean param4, int param5, int param6, double = 5 param7)  {
 		if (param2 != null && (param5 != 0 || param6 != 0)) {
 			param1 = retexture(param1, param2, param5, param6);
 			param3 = param3 / 5;
@@ -123,7 +123,7 @@ public class TextureRedrawer {
 		faceCache = new Dictionary();
 	}
 
-	public static BitmapData  redrawFace(BitmapData param1, float param2)  {
+	public static BitmapData  redrawFace(BitmapData param1, double param2)  {
 		if (param2 == 1) {
 			return param1;
 		}

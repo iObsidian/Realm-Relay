@@ -17,21 +17,21 @@ public class BasicObject {
 	}
 
 	public BasicObject() {
-		this.posW = new float[0];
-		this.posS = new float[0];
+		this.posW = new double[0];
+		this.posS = new double[0];
 	}
 
 	public Map map;
 	public Square square;
 	public int objectId;
-	public float x;
-	public float y;
-	public float z;
+	public double x;
+	public double y;
+	public double z;
 	public boolean hasShadow;
 	public boolean drawn;
-	public float posW[];
-	public float posS[];
-	public float sortVal;
+	public double posW[];
+	public double posS[];
+	public double sortVal;
 
 	public void clear() {
 		this.map = null;
@@ -42,8 +42,8 @@ public class BasicObject {
 		this.z = 0;
 		this.hasShadow = false;
 		this.drawn = false;
-		this.posW = new float[0];
-		this.posS = new float[0];
+		this.posW = new double[0];
+		this.posS = new double[0];
 		this.sortVal = 0;
 	}
 
@@ -76,7 +76,7 @@ public class BasicObject {
 		this.sortVal = this.posS[1];
 	}
 
-	public void computeSortValNoCamera(float param1) {
+	public void computeSortValNoCamera(double param1) {
 		this.posW.length = 0;
 		this.posW.add(this.x, this.y, 0, this.x, this.y, this.z);
 		this.posS.length = 0;
@@ -84,7 +84,7 @@ public class BasicObject {
 		this.sortVal = this.posS[1];
 	}
 
-	public boolean addTo(Map map, float x, float y) {
+	public boolean addTo(Map map, double x, double y) {
 		this.map = map;
 		this.square = this.map.getSquare(x, y);
 		if (this.square == null) {

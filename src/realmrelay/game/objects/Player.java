@@ -78,7 +78,7 @@ public class Player extends Character {
 	public boolean isFellowGuild = false;
 	public int breath = -1;
 	public int maxMP = 200;
-	public float mp = 0;
+	public double mp = 0;
 	public int nextLevelExp = 1000;
 	public int exp = 0;
 	public int attack = 0;
@@ -108,7 +108,7 @@ public class Player extends Character {
 	public boolean hasBackpack = false;
 	public boolean starred = false;
 	public boolean ignored = false;
-	public float distSqFromThisPlayer = 0;
+	public double distSqFromThisPlayer = 0;
 	public int attackPeriod = 0;
 	public int nextAltAttack = 0;
 	public int nextTeleportAt = 0;
@@ -117,9 +117,9 @@ public class Player extends Character {
 	public boolean isDefaultAnimatedChar = true;
 	public String projectileIdSetOverrideNew = "";
 	public String projectileIdSetOverrideOld = "";
-	protected float rotate = 0;
+	protected double rotate = 0;
 	protected Point relMoveVec = null;
-	protected float moveMultiplier = 1;
+	protected double moveMultiplier = 1;
 
 	/**
 	 * protected HealingEffect healingEffect = null;

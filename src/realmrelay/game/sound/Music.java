@@ -10,7 +10,7 @@ public class Music {
     private static Sound music = null;
     /*private static SoundTransform musicVolumeTransform;
     private static SoundChannel musicChannel = null;**/
-    private static float volume = 0.3F;
+    private static double volume = 0.3F;
 
 
     public static void load() {
@@ -21,7 +21,7 @@ public class Music {
         // set weither or not to play the music
     }
 
-    public static void setMusicVolume(float param1) {
+    public static void setMusicVolume(double param1) {
         // set volume
     }
 

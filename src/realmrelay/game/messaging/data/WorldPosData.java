@@ -18,15 +18,15 @@ public class WorldPosData implements IData {
 	// - y = left
 	// + y = right
 
-	public float x;
-	public float y;
+	public double x;
+	public double y;
 
 	public WorldPosData() {
 		this.x = 0;
 		this.y = 0;
 	}
 
-	public WorldPosData(float x, float y) {
+	public WorldPosData(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
@@ -41,14 +41,14 @@ public class WorldPosData implements IData {
 		return new WorldPosData(x, y);
 	}
 
-	public float distanceSquaredTo(WorldPosData location) {
-		float dx = location.x - x;
-		float dy = location.y - y;
+	public double distanceSquaredTo(WorldPosData location) {
+		double dx = location.x - x;
+		double dy = location.y - y;
 		return dx * dx + dy * dy;
 	}
 
-	public float distanceTo(WorldPosData location) {
-		return (float) Math.sqrt(distanceSquaredTo(location));
+	public double distanceTo(WorldPosData location) {
+		return (double) Math.sqrt(distanceSquaredTo(location));
 	}
 
 	@Override

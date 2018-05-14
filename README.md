@@ -71,7 +71,7 @@ XML handling
 Number
 -----------
 
-   Java doesn't have the 'Number' object. Use 'float' instead.
+   Java doesn't have the 'Number' object. Use 'double' instead.
 
     3.0
     
@@ -81,7 +81,7 @@ Number
     
    **Java**
    
-    float num = 3.0F;
+    double num = 3.0F;
     
 
 Dictionary

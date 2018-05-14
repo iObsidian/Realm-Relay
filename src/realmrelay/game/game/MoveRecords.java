@@ -17,7 +17,7 @@ public class MoveRecords {
 	public int lastClearTime = -1;
 	public List<MoveRecord> records;
 
-	public void addRecord(int time, float x, float y) {
+	public void addRecord(int time, double x, double y) {
 		if (this.lastClearTime < 0) {
 			return;
 		}

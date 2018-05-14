@@ -1,7 +1,7 @@
 package realmrelay.game.net;
 
 /**
- * This is almost a complete match, except that Number was changed to float instead of double
+ * This is almost a complete match, except that Number was changed to double instead of double
  */
 public class LatLong {
 
@@ -20,14 +20,14 @@ public class LatLong {
         return dist;
     }
 
-    public LatLong(float param1, float param2) {
+    public LatLong(double param1, double param2) {
         super();
         this.latitude = param1;
         this.longitude = param2;
     }
 
-    public float latitude;
-    public float longitude;
+    public double latitude;
+    public double longitude;
 
     public String toString() {
         return "(" + this.latitude + ", " + this.longitude + ")";

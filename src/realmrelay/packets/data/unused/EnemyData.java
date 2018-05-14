@@ -32,8 +32,8 @@ public class EnemyData {
 	public int shadowSize = 0;
 	public int level = 0;
 
-	public float z;
-	public float xpMult = 0;
+	public double z;
+	public double xpMult = 0;
 
 	public ArrayList<EnemyProjectileData> projectiles = new ArrayList<EnemyProjectileData>();
 

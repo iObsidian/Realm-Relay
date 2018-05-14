@@ -150,7 +150,7 @@ public class SavedCharactersList extends Event {
 	private void parseBeginnersPackageData(XML param1) {
 		BeginnersPackageModel loc3 = null;
 		if (param1.hasOwnProperty("BeginnerPackageTimeLeft")) {
-			float loc2 = param1.BeginnerPackageTimeLeft;
+			double loc2 = param1.BeginnerPackageTimeLeft;
 			loc3 = this.getBeginnerModel();
 			loc3.setBeginnersOfferSecondsLeft(loc2);
 		}

@@ -244,7 +244,7 @@ public class ObjectLibrary {
 		return AssetLibrary.getImageFromSet(IMAGE_SET_NAME, IMAGE_ID);
 	}
 
-	/*public static BitmapData getRedrawnTextureFromType(int param1, int param2, boolean param3, boolean =true param4, float =5param5) {
+	/*public static BitmapData getRedrawnTextureFromType(int param1, int param2, boolean param3, boolean =true param4, double =5param5) {
 	    BitmapData _loc6 = getBitmapData(param1);
 	    if (Parameters.itemTypes16.indexOf(param1) != -1 || _loc6_.height == 16) {
 	        param2 = param2 * 0.5;

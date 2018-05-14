@@ -88,9 +88,9 @@ public class ProjectileProperties {
 	public boolean wavy;
 	public boolean parametric;
 	public boolean boomerang;
-	public float amplitude;
-	public float frequency;
-	public float magnitude;
+	public double amplitude;
+	public double frequency;
+	public double magnitude;
 	public HashMap<Integer, Boolean> isPetEffect;
 	public boolean faceDir;
 	public boolean noRotation;

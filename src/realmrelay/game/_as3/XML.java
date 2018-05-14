@@ -109,8 +109,8 @@ public class XML {
 		}
 	}
 
-	public float getFloatValue(String tag) {
-		return Float.parseFloat(getValue(tag));
+	public double getDoubleValue(String tag) {
+		return Double.parseDouble(getValue(tag));
 	}
 
 	public String getAttribute(String name) {
@@ -131,8 +131,8 @@ public class XML {
 		}
 	}
 
-	public float getFloatAttribute(String name) {
-		return getFloatAttribute(name, 0);
+	public double getDoubleAttribute(String name) {
+		return getDoubleAttribute(name, 0);
 	}
 
 	/**
@@ -142,11 +142,11 @@ public class XML {
 	 * <p>
 	 * to be replaced by
 	 * <p>
-	 * xml.getFloatAttribute("attribute", 0)
+	 * xml.getDoubleAttribute("attribute", 0)
 	 */
-	public float getFloatAttribute(String name, float defaultValue) {
+	public double getDoubleAttribute(String name, double defaultValue) {
 		try {
-			return Float.parseFloat(getAttribute(name));
+			return Double.parseDouble(getAttribute(name));
 		} catch (Exception e) {
 			System.err.println("Value : " + getAttribute(name) + " Error : " + e.getMessage() + " with " + name
 					+ ", returning " + defaultValue + "F.");

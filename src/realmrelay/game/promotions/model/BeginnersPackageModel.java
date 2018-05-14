@@ -17,9 +17,9 @@ public class BeginnersPackageModel {
 
 	public Signal markedAsPurchased;
 
-	private float beginnersOfferSecondsLeft;
+	private double beginnersOfferSecondsLeft;
 
-	private float beginnersOfferSetTimestamp;
+	private double beginnersOfferSetTimestamp;
 
 	public BeginnersPackageModel() {
 		this.markedAsPurchased = new Signal();
@@ -29,25 +29,25 @@ public class BeginnersPackageModel {
 		return this.getBeginnersOfferSecondsLeft() > 0;
 	}
 
-	public void setBeginnersOfferSecondsLeft(float param1) {
+	public void setBeginnersOfferSecondsLeft(double param1) {
 		this.beginnersOfferSecondsLeft = param1;
 		this.beginnersOfferSetTimestamp = this.getNowTimeSeconds();
 	}
 
-	private float getNowTimeSeconds() {
+	private double getNowTimeSeconds() {
 		Date loc1 = new Date();
 		return Math.round(loc1.time * 0.001);
 	}
 
-	public float getBeginnersOfferSecondsLeft() {
+	public double getBeginnersOfferSecondsLeft() {
 		return this.beginnersOfferSecondsLeft - (this.getNowTimeSeconds() - this.beginnersOfferSetTimestamp);
 	}
 
-	public float getUserCreatedAt() {
+	public double getUserCreatedAt() {
 		return this.getNowTimeSeconds() + this.getBeginnersOfferSecondsLeft() - ONE_WEEK_IN_SECONDS;
 	}
 
-	public float getDaysRemaining() {
+	public double getDaysRemaining() {
 		return Math.ceil(TimeUtil.secondsToDays(this.getBeginnersOfferSecondsLeft()));
 	}
 

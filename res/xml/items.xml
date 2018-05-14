@@ -20842,7 +20842,7 @@
   </Texture>
   <Usable />
   <SlotType>19</SlotType>
-  <Description>I found a great spectre floating above me. He reached out and granted me his cranium.</Description>
+  <Description>I found a great spectre doubleing above me. He reached out and granted me his cranium.</Description>
   <MpCost>120</MpCost>
   <Activate radius="3.5" totalDamage="400" ignoreDef="400" healRange="0" color="1a4a6b">VampireBlast</Activate>
   <Activate effect="Damaging" duration="3" color="-1">ConditionEffectSelf</Activate>

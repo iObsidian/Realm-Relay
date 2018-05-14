@@ -11,7 +11,7 @@ public class MoveRecord implements IData {
 	public MoveRecord() {
 	}
 	
-	public MoveRecord(int time, float x, float y) {
+	public MoveRecord(int time, double x, double y) {
 		super();
 		this.time = time;
 		this.x = x;
@@ -19,8 +19,8 @@ public class MoveRecord implements IData {
 	}
 
 	public int time;
-	public float x;
-	public float y;
+	public double x;
+	public double y;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

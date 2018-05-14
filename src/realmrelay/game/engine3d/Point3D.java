@@ -9,11 +9,11 @@ public class Point3D {
     private static final List<int> commands = new <int>[GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO,GraphicsPathCommand.LINE_TO,GraphicsPathCommand.LINE_TO];
 
     private static final GraphicsEndFill END_FILL = new GraphicsEndFill();
-    private final float[] data = new float[0];
+    private final double[] data = new double[0];
     private final GraphicsBitmapFill bitmapFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
     private final GraphicsSolidFill solidFill = new GraphicsSolidFill(0, 1);
 
-    public Point3D(float param1) {
+    public Point3D(double param1) {
         path = new GraphicsPath(commands, this.data);
         this.size = param1;
     }
@@ -22,7 +22,7 @@ public class Point3D {
     public Vector3D posS;
     private GraphicsPath path;
 
-    public void setSize(float param1) {
+    public void setSize(double param1) {
         this.size = param1;
     }
 
@@ -31,13 +31,13 @@ public class Point3D {
 
     }
 
-    public void draw(List<IGraphicsData> graphicsData, Vector3D posL, float angle, Matrix3D lToS, Camera camera, BitmapData bitmapData, int color) {
+    public void draw(List<IGraphicsData> graphicsData, Vector3D posL, double angle, Matrix3D lToS, Camera camera, BitmapData bitmapData, int color) {
         this.posS = Utils3D.projectVector(lToS, posL);
         if (this.posS.w < 0) {
             return;
         }
-        float o = this.posS.w * Math.sin(camera.pp.fieldOfView / 2 * Trig.toRadians);
-        float s = this.size / o;
+        double o = this.posS.w * Math.sin(camera.pp.fieldOfView / 2 * Trig.toRadians);
+        double s = this.size / o;
         this.data.length = 0;
         if (angle == 0) {
             this.data.add(this.posS.x - s, this.posS.y - s, this.posS.x + s, this.posS_.y - s, this.posS_.x + s, this.posS_.y + s, this.posS_.x - s, this.posS_.y + s);

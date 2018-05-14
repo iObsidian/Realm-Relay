@@ -43,7 +43,7 @@ public class ShowEffect extends IncomingMessage {
 	public WorldPosData pos1;
 	public WorldPosData pos2;
 	public int color;
-	public float duration;
+	public double duration;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

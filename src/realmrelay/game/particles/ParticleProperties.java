@@ -13,9 +13,9 @@ public class ParticleProperties {
 
 	public int size = 100;
 
-	public float z = 0.0F;
+	public double z = 0.0F;
 
-	public float duration = 0.0F;
+	public double duration = 0.0F;
 
 	public AnimationsData animationsData = null;
 

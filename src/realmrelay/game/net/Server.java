@@ -6,7 +6,7 @@ public class Server {
 	public String address;
 	public int port;
 	public LatLong latLong;
-	public float usage;
+	public double usage;
 	public Boolean isAdminOnly;
 
 	public Server() {
@@ -28,12 +28,12 @@ public class Server {
 		return this;
 	}
 
-	public Server setLatLong(float param1, float param2) {
+	public Server setLatLong(double param1, double param2) {
 		this.latLong = new LatLong(param1, param2);
 		return this;
 	}
 
-	public Server setUsage(float param1) {
+	public Server setUsage(double param1) {
 		this.usage = param1;
 		return this;
 	}

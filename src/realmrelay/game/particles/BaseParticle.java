@@ -7,15 +7,15 @@ import realmrelay.packets.data.unused.BitmapData;
 
 public class BaseParticle extends BasicObject {
 
-	public float timeLeft = 0;
+	public double timeLeft = 0;
 
-	public float spdX;
+	public double spdX;
 
-	public float spdY;
+	public double spdY;
 
-	public float spdZ;
+	public double spdZ;
 
-	protected float[] vS;
+	protected double[] vS;
 
 	protected Matrix fillMatrix;
 
@@ -24,7 +24,7 @@ public class BaseParticle extends BasicObject {
 	protected GraphicsBitmapFill bitmapFill;
 
 	public function BaseParticle(BitmapData bitmapData) {
-		this.vS = new float[8];
+		this.vS = new double[8];
 		this.fillMatrix = new Matrix();
 		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
 		this.bitmapFill = new GraphicsBitmapFill(null, null, false, false);
@@ -32,7 +32,7 @@ public class BaseParticle extends BasicObject {
 		objectId = getNextFakeObjectId();
 	}
 
-	public void initialize(float totalTime, float speedX, float speedY, float speedZ, int zPos) {
+	public void initialize(double totalTime, double speedX, double speedY, double speedZ, int zPos) {
 		this.timeLeft = totalTime;
 		this.spdX = speedX;
 		this.spdY = speedY;
@@ -42,8 +42,8 @@ public class BaseParticle extends BasicObject {
 
 	@Override
 	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
-		float halfW = this.bitmapFill.bitmapData.width / 2;
-		float halfH = this.bitmapFill.bitmapData.height / 2;
+		double halfW = this.bitmapFill.bitmapData.width / 2;
+		double halfH = this.bitmapFill.bitmapData.height / 2;
 		this.vS[6] = this.vS[0] = posS[3] - halfW;
 		this.vS[3] = this.vS[1] = posS[4] - halfH;
 		this.vS[4] = this.vS[2] = posS[3] + halfW;

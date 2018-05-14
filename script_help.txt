@@ -159,7 +159,7 @@ GroundData
 	boolean noWalk
 	boolean push
 	boolean sink
-	float speed
+	double speed
 	
 Item
 	int item
@@ -180,7 +180,7 @@ ItemData
 	boolean usable
 	int bagType
 	int feedPower
-	float rateOfFire
+	double rateOfFire
 	int fameBonus
 	int mpCost
 	int mpEndCost
@@ -189,17 +189,17 @@ ItemData
 	ProjectileData[] projectiles
 	
 Location
-	float x
-	float y
-	float distanceSquaredTo(Location location)
-	float distanceTo(Location location)
+	double x
+	double y
+	double distanceSquaredTo(Location location)
+	double distanceTo(Location location)
 	
 LocationRecord
 	int time
-	float x
-	float y
-	float distanceSquaredTo(Location location)
-	float distanceTo(Location location)
+	double x
+	double y
+	double distanceSquaredTo(Location location)
+	double distanceTo(Location location)
 	
 ObjectData
 	string id
@@ -211,8 +211,8 @@ ObjectData
 	int sizeStep
 	int shadowSize
 	int color
-	float xpMult
-	float rotation
+	double xpMult
+	double rotation
 	boolean drawOnGround
 	boolean enemy
 	boolean fullOccupy
@@ -224,7 +224,7 @@ ObjectData
 	boolean protectFromGroundDamage
 	boolean protectFromSink
 	boolean connects
-	float z
+	double z
 	
 Packet
 	byte id()
@@ -232,7 +232,7 @@ Packet
 	
 ProjectileData
 	string objectId
-	float speed
+	double speed
 	int maxDamage
 	int minDamage
 	int lifetimeMS
@@ -372,7 +372,7 @@ PLAYERSHOOT
 	int bulletId
 	int containerType
 	Location startingPos
-	float angle
+	double angle
 	
 PLAYERTEXT
 	string text
@@ -389,7 +389,7 @@ RESKIN
 	
 SETCONDITION
 	int conditionEffect
-	float conditionDuration
+	double conditionDuration
 	
 SHOOTACK
 	int time
@@ -423,14 +423,14 @@ ALLYSHOOT
 	int bulletId
 	int ownerId
 	short containerId
-	float angle
+	double angle
 	
 AOE
 	Location pos
-	float radius
+	double radius
 	int damage
 	int effect
-	float duration
+	double duration
 	int origType
 	
 BUY
@@ -541,7 +541,7 @@ SHOOT2
 	int ownerId
 	int containerId
 	Location startingPos
-	float angle
+	double angle
 	short damage
 	
 SHOOT
@@ -549,10 +549,10 @@ SHOOT
 	int ownerId
 	int bulletType
 	Location startingPos
-	float angle
+	double angle
 	short damage
 	int numShots
-	float angleInc
+	double angleInc
 	
 SHOW_EFFECT
 	int effectType

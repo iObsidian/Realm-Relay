@@ -14,7 +14,7 @@ public class XMLParticle extends BasicObject {
 
 	public int size;
 
-	public float durationLeft;
+	public double durationLeft;
 
 	public Vector3D moveVec;
 
@@ -22,9 +22,9 @@ public class XMLParticle extends BasicObject {
 
 	protected GraphicsPath path;
 
-	protected float[] vS;
+	protected double[] vS;
 
-	protected  float[] uvt;
+	protected  double[] uvt;
 
 	protected Matrix fillMatrix;
 
@@ -32,8 +32,8 @@ public class XMLParticle extends BasicObject {
 	{
 		this.bitmapFill = new GraphicsBitmapFill(null,null,false,false);
 		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS,null);
-		this.vS = new List<float>();
-		this.uvt = new List<float>();
+		this.vS = new List<double>();
+		this.uvt = new List<double>();
 		this.fillMatrix = new Matrix();
 		super();
 		objectId = getNextFakeObjectId();
@@ -46,12 +46,12 @@ public class XMLParticle extends BasicObject {
 			this.animations = new Animations(props.animationsData);
 		}
 		this.moveVec = new Vector3D();
-		float moveAngle = Math.PI * 2 * Math.random();
+		double moveAngle = Math.PI * 2 * Math.random();
 		this.moveVec_.x = Math.cos(moveAngle) * 0.1 * 5;
 		this.moveVec_.y = Math.sin(moveAngle) * 0.1 * 5;
 	}
 
-	public boolean moveTo(float x,float y)
+	public boolean moveTo(double x,double y)
 	{
 		Square square = null;
 		square = map.getSquare(x,y);
@@ -67,7 +67,7 @@ public class XMLParticle extends BasicObject {
 
 	 public boolean update(int time, int dt)
 	{
-		float fdt = dt / 1000;
+		double fdt = dt / 1000;
 		this.durationLeft = this.durationLeft - fdt;
 		if(this.durationLeft <= 0)
 		{

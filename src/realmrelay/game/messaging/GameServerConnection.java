@@ -149,7 +149,7 @@ public class GameServerConnection {
 	public void escape() {
 	}
 
-	public void useItem(int time, int objectId, int slotId, int itemId, float x, float y, int useType) {
+	public void useItem(int time, int objectId, int slotId, int itemId, double x, double y, int useType) {
 	}
 
 	public boolean useItem_new(GameObject itemOwner, int slotId) {
@@ -203,7 +203,7 @@ public class GameServerConnection {
 		return 0;
 	}
 
-	public void groundDamage(int param1, float param2, float param3) {
+	public void groundDamage(int param1, double param2, double param3) {
 	}
 
 	public void playerShoot(int param1, Projectile param2) {
@@ -242,7 +242,7 @@ public class GameServerConnection {
 	public void invDrop(GameObject param1, int param2, int param3) {
 	}
 
-	public void setCondition(int param1, float param2) {
+	public void setCondition(int param1, double param2) {
 	}
 
 	public void buy(int param1, int param2) {

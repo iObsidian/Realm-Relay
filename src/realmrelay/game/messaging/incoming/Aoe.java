@@ -15,10 +15,10 @@ public class Aoe extends IncomingMessage {
 	}
 
 	public WorldPosData pos;
-	public float radius;
+	public double radius;
 	private int damage;
 	private int effect;
-	private float duration;
+	private double duration;
 	private int origType;
 	private int color;
 

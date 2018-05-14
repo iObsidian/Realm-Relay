@@ -107,7 +107,7 @@ public class AssetLibrary {
 	 * This method is not a 100% match
 	 * Removed 'SoundTransform'
 	 */
-	public static void playSound(String name, float volume) {
+	public static void playSound(String name, double volume) {
 		Sound sound = getSound(name);
 		sound.play(0, 0);
 	}

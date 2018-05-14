@@ -15,8 +15,8 @@ public class AnimateProperties {
 	}
 
 	public int type = 0;
-	public float dx = 0;
-	public float dy = 0;
+	public double dx = 0;
+	public double dy = 0;
 
 	public void parseXML(XML param1) {
 		switch (param1.name()) {

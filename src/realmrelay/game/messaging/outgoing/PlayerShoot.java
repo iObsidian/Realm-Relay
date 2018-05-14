@@ -13,7 +13,7 @@ public class PlayerShoot extends OutgoingMessage {
 	public int bulletId;
 	public int containerType;
 	public WorldPosData startingPos;
-	public float angle;
+	public double angle;
 
 	public PlayerShoot(int id, Consumer callback) {
 		super(id, callback);

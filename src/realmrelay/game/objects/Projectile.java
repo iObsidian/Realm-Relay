@@ -31,10 +31,10 @@ public class Projectile extends BasicObject {
 	public boolean damagesPlayers;
 	public int damage;
 	public String sound;
-	public float startX;
-	public float startY;
+	public double startX;
+	public double startY;
 	public int startTime;
-	public float angle = 0;
+	public double angle = 0;
 	public HashMap multiHitDict;
 	public Point3D p;
 
@@ -62,7 +62,7 @@ public class Projectile extends BasicObject {
 		objBullIdToObjId = new HashMap<Integer, Integer>();
 	}
 
-	public void reset(int containerType, int bulletType, int ownerId, int bulletId, float angle, int startTime) {
+	public void reset(int containerType, int bulletType, int ownerId, int bulletId, double angle, int startTime) {
 		clear();
 		this.containerType = containerType;
 		this.bulletType = bulletType;
@@ -83,7 +83,7 @@ public class Projectile extends BasicObject {
 		this.sound = this.containerProps.oldSound;
 		this.multiHitDict = !!this.projProps.multiHit ? new Map<>() : null;
 
-		float size = 0F;
+		double size = 0F;
 
 		if (this.projProps.size >= 0) {
 			size = this.projProps.size;
@@ -99,7 +99,7 @@ public class Projectile extends BasicObject {
 	}
 
 	@Override
-	public boolean addTo(Map map, float x, float y) {
+	public boolean addTo(Map map, double x, double y) {
 		Player player = null;
 		this.startX = x;
 		this.startY = y;
@@ -117,7 +117,7 @@ public class Projectile extends BasicObject {
 		return true;
 	}
 
-	public boolean moveTo(float x, float y) {
+	public boolean moveTo(double x, double y) {
 		Square square = map.getSquare(x, y);
 		if (square == null) {
 			return false;
@@ -138,20 +138,20 @@ public class Projectile extends BasicObject {
 
 	private void positionAt(elapsed:int, p:Point) : void
     {
-        float periodFactor = NaN;
-        float amplitudeFactor = NaN;
-        float theta = NaN;
-        float t = NaN;
-        float x = NaN;
-        float y = NaN;
-        float sin = NaN;
-        float cos = NaN;
-        float halfway = NaN;
-        float deflection = NaN;
+        double periodFactor = NaN;
+        double amplitudeFactor = NaN;
+        double theta = NaN;
+        double t = NaN;
+        double x = NaN;
+        double y = NaN;
+        double sin = NaN;
+        double cos = NaN;
+        double halfway = NaN;
+        double deflection = NaN;
         p.x = this.startX_;
         p.y = this.startY_;
-        float dist = elapsed * (this.projProps.speed_ / 10000);
-        var phase:float = this.bulletId_ % 2 == 0?0:Math.PI;
+        double dist = elapsed * (this.projProps.speed_ / 10000);
+        var phase:double = this.bulletId_ % 2 == 0?0:Math.PI;
         if(this.projProps.wavy_)
         {
             periodFactor = 6 * Math.PI;
@@ -281,13 +281,13 @@ public class Projectile extends BasicObject {
         return true;
     }
 
-	public function getHit(pX:float, pY:float) : GameObject
+	public function getHit(pX:double, pY:double) : GameObject
     {
         GameObject go = null;
-        float xDiff = NaN;
-        float yDiff = NaN;
-        float dist = NaN;
-        float minDist = float.MAX_VALUE;
+        double xDiff = NaN;
+        double yDiff = NaN;
+        double dist = NaN;
+        double minDist = double.MAX_VALUE;
         GameObject minGO = null;
         for(go in map.goDict_)
         {
@@ -366,7 +366,7 @@ public class Projectile extends BasicObject {
             }
             texture = TextureRedrawer.redraw(texture,120,true,outlineColor,glowColor);
         }
-        var r:float = this.props.rotation_ == 0?0:time / this.props.rotation_;
+        var r:double = this.props.rotation_ == 0?0:time / this.props.rotation_;
         this.staticVector3D.x = x_;
         this.staticVector3D.y = y_;
         this.staticVector3D.z = z_;
@@ -387,9 +387,9 @@ public class Projectile extends BasicObject {
         {
             return;
         }
-        float s = this.props.shadowSize_ / 400;
-        float w = 30 * s;
-        float h = 15 * s;
+        double s = this.props.shadowSize_ / 400;
+        double w = 30 * s;
+        double h = 15 * s;
         this.shadowGradientFill.matrix.createGradientBox(w * 2,h * 2,0,posS[0] - w,posS[1] - h);
         graphicsData.add(this.shadowGradientFill);
         this.shadowPath.data.length = 0;

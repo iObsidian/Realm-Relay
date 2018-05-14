@@ -9,7 +9,7 @@ public class Square {
 	public int y;
 	public int tileType = 255;
 
-	public Square(Map map, float x, float y) {
+	public Square(Map map, double x, double y) {
 	}
 
 	public void setTileType(int type) {

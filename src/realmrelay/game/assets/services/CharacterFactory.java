@@ -63,7 +63,7 @@ public class CharacterFactory {
 		return loc8;
 	}
 
-	private BitmapData makeFrame(AnimatedChar param1, int param2, float param3) {
+	private BitmapData makeFrame(AnimatedChar param1, int param2, double param3) {
 		MaskedImage loc4 = param1.imageFromDir(AnimatedChar.RIGHT, param2, param3);
 		return TextureRedrawer.resize(loc4.image, loc4.mask, this.size, false, this.texture1, this.texture2);
 	}

@@ -391,7 +391,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.serverConnection.sendMessage(squareHit);
 	}
 
-	public void aoeAck(int time, float x, float y) {
+	public void aoeAck(int time, double x, double y) {
 		AoeAck aoeAck = (AoeAck) this.messages.require(AOEACK);
 		aoeAck.time = time;
 		aoeAck.position.x = x;
@@ -399,7 +399,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.serverConnection.sendMessage(aoeAck);
 	}
 
-	public void groundDamage(int time, float x, float y) {
+	public void groundDamage(int time, double x, double y) {
 		GroundDamage groundDamage = (GroundDamage) this.messages.require(GROUNDDAMAGE);
 		groundDamage.time = time;
 		groundDamage.position.x = x;
@@ -502,7 +502,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	public void useItem(int time, int objectId, int slotId, int objectType, float posX, float posY, int useType)
+	public void useItem(int time, int objectId, int slotId, int objectType, double posX, double posY, int useType)
 
 	{
 		UseItem useItemMess = (UseItem) this.messages.require(USEITEM);
@@ -545,7 +545,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	public void setCondition(int conditionEffect, float conditionDuration)
+	public void setCondition(int conditionEffect, double conditionDuration)
 
 	{
 		SetCondition setCondition = this.messages.require(SETCONDITION) as SetCondition;
@@ -557,8 +557,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	public void move(int tickId, Player player) {
 		int len = 0;
 		int i = 0;
-		float x = -1;
-		float y = -1;
+		double x = -1;
+		double y = -1;
 		if (player != null && !player.isPaused()) {
 			x = player.x;
 			y = player.y;
@@ -795,7 +795,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 		for (int i = 0; i < enemyShoot.numShots; i++) {
 			Projectile proj = new Projectile();
-			float angle = enemyShoot.angle + enemyShoot.angleInc * i;
+			double angle = enemyShoot.angle + enemyShoot.angleInc * i;
 			proj.reset(owner.objectType, enemyShoot.bulletType, enemyShoot.ownerId, (enemyShoot.bulletId + i) % 256,
 					angle, this.gs.lastUpdate);
 			proj.setDamage(enemyShoot.damage);

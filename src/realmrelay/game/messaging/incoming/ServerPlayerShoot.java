@@ -18,7 +18,7 @@ public class ServerPlayerShoot extends IncomingMessage {
 	public int ownerId;
 	public int containerType;
 	public WorldPosData startingPos;
-	public float angle;
+	public double angle;
 	public short damage;
 
 	@Override

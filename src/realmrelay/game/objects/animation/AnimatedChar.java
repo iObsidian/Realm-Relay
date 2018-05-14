@@ -34,7 +34,7 @@ public class AnimatedChar {
 	private static final int SEC_TO_DIRS[][] = { { LEFT, UP, DOWN }, { UP, LEFT, DOWN }, { UP, RIGHT, DOWN },
 			{ RIGHT, UP, DOWN }, { RIGHT, DOWN }, { DOWN, RIGHT }, { DOWN, LEFT }, { LEFT, DOWN } };
 
-	private static float PIOVER4 = (float) Math.PI / 4;
+	private static double PIOVER4 = (double) Math.PI / 4;
 
 	public MaskedImage origImage;
 	private int width;
@@ -146,7 +146,7 @@ public class AnimatedChar {
 		return dirDict;
 	}
 
-	public MaskedImage imageFromDir(float angle, int action, float p) {
+	public MaskedImage imageFromDir(double angle, int action, double p) {
 		int sec = (int) (angle / PIOVER4 + 4 % 8);
 		int[] dirs = SEC_TO_DIRS[sec];
 		HashMap<Integer, List<MaskedImage>> actionDict = this.dict.get(dirs[0]);
@@ -157,7 +157,7 @@ public class AnimatedChar {
 			}
 		}
 		List<MaskedImage> texVec = actionDict.get(action);
-		p = (float) Math.max(0, Math.min(0.99999, p));
+		p = (double) Math.max(0, Math.min(0.99999, p));
 		int i = (int) (p * texVec.size());
 		return texVec.get(i);
 	}

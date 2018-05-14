@@ -21,7 +21,7 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 
 	private static int DISCOUNT_MESSAGE = 4;
 
-	private static float T = 1;
+	private static double T = 1;
 
 	/*
 	 *private static const DOSE_MATRIX:Matrix = function():Matrix
@@ -44,7 +44,7 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 
 	public int untilNextMessage = 0;
 
-	public float alpha = 1.0F;
+	public double alpha = 1.0F;
 
 	private AddSpeechBalloonSignal addSpeechBalloon;
 
@@ -74,7 +74,7 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 	}
 
 	@Override
-	public boolean addTo(Map map, float x, float y) {
+	public boolean addTo(Map map, double x, double y) {
 		if (!super.addTo(map, x, y)) {
 			return false;
 		}

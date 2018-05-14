@@ -16,15 +16,15 @@ public class ParticleGenerator extends ParticleEffect {
 
 	private GameObject targetGO;
 
-	private float generatedParticles = 0;
+	private double generatedParticles = 0;
 
-	private float totalTime = 0;
+	private double totalTime = 0;
 
 	private EffectProperties effectProps;
 
 	private BitmapData bitmapData;
 
-	private float friction;
+	private double friction;
 
 	public ParticleGenerator(EffectProperties effectProperties, GameObject go) {
 		super();
@@ -47,10 +47,10 @@ public class ParticleGenerator extends ParticleEffect {
 	@Override
 	public boolean update(int time, int dt)
 	{
-		float tDelta = 0F;
+		double tDelta = 0F;
 		BaseParticle newParticle = null;
 		BaseParticle particle = null;
-		float t = time / 1000;
+		double t = time / 1000;
 		tDelta = dt / 1000;
 		if (this.targetGO.map == null) {
 			return false;
@@ -59,7 +59,7 @@ public class ParticleGenerator extends ParticleEffect {
 		y = this.targetGO.y;
 		z = this.targetGO.z + this.effectProps.zOffset;
 		this.totalTime = this.totalTime + tDelta;
-		float projectedTotal = this.effectProps.rate * this.totalTime;
+		double projectedTotal = this.effectProps.rate * this.totalTime;
 		int particlesToGen = projectedTotal - this.generatedParticles;
 		for (int i = 0; i < particlesToGen; i++) {
 			if (this.particlePool.length) {

@@ -17,7 +17,7 @@ public class ItemData {
 	public boolean usable = false; // element Usable
 	public int bagType = -1; // element BagType
 	public int feedPower = -1; // element feedPower
-	public float rateOfFire = -1; // element RateOfFire
+	public double rateOfFire = -1; // element RateOfFire
 	public int fameBonus = 0; // element FameBonus
 	public int mpCost = -1; // element MpCost
 	public int mpEndCost = -1; // element MpEndCost

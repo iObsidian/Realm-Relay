@@ -26,8 +26,8 @@ public class GameObject extends BasicObject {
 	 * protected static Matrix IDENTITY_MATRIX = new Matrix();
 	 */
 
-	private static float ZERO_LIMIT = 0.00001F;
-	private static float NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
+	private static double ZERO_LIMIT = 0.00001F;
+	private static double NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
 	public static int ATTACK_PERIOD = 300;
 	private static int DEFAULT_HP_BAR_Y_OFFSET = 6;
 
@@ -38,8 +38,8 @@ public class GameObject extends BasicObject {
 		/*this.moveVec = new Vector3D();
 		this.bitmapFill = new GraphicsBitmapFill(null, null, false, false);
 		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
-		this.vS = new float[0];
-		this.uvt = new float[0];
+		this.vS = new double[0];
+		this.uvt = new double[0];
 		this.fillMatrix = new Matrix();
 		super();*/
 		if (objectXML == null) {
@@ -94,10 +94,10 @@ public class GameObject extends BasicObject {
 	public ShockerEffect shockEffect;
 	public ObjectProperties props;
 	public String name;
-	public float radius = 0.5F;
-	public float facing = 0;
+	public double radius = 0.5F;
+	public double facing = 0;
 	public boolean flying = false;
-	public float attackAngle = 0;
+	public double attackAngle = 0;
 	public int attackStart = 0;
 	public AnimatedChar animatedChar = null;
 	public BitmapData texture = null;
@@ -135,8 +135,8 @@ public class GameObject extends BasicObject {
 	public Vector3D moveVec;
 	protected GraphicsBitmapFill bitmapFill;
 	protected GraphicsPath path;
-	protected float[] vS;
-	protected float[] uvt;
+	protected double[] vS;
+	protected double[] uvt;
 	protected Matrix fillMatrix;
 	protected GraphicsGradientFill shadowGradientFill = null;
 	protected GraphicsPath shadowPath = null;
@@ -147,7 +147,7 @@ public class GameObject extends BasicObject {
 	private boolean isCharging;
 	private boolean isChargingTransformSet = false;
 	private int nextBulletId = 1;
-	private float sizeMult = 1;
+	private double sizeMult = 1;
 	private boolean isStunImmune = false;
 	private boolean isStasisImmune = false;
 	private boolean isParalyzeImmune = false;
@@ -329,15 +329,15 @@ public class GameObject extends BasicObject {
 		return ret;
 	}
 
-	public float distTo(WorldPosData pos) {
-		float dx = pos.x - x;
-		float dy = pos.y - y;
-		return (float) Math.sqrt(dx * dx + dy * dy);
+	public double distTo(WorldPosData pos) {
+		double dx = pos.x - x;
+		double dy = pos.y - y;
+		return (double) Math.sqrt(dx * dx + dy * dy);
 	}
 
 	@Override
 
-	public boolean addTo(Map map, float x, float y) {
+	public boolean addTo(Map map, double x, double y) {
 		map = map;
 		this.posAtTick.x = this.tickPosition.x = x;
 		this.posAtTick.y = this.tickPosition.y = y;
@@ -367,7 +367,7 @@ public class GameObject extends BasicObject {
 		this.dispose();
 	}
 
-	public boolean moveTo(float x, float y) {
+	public boolean moveTo(double x, double y) {
 		Square square = map.getSquare(x, y);
 		if (square == null) {
 			return false;
@@ -391,8 +391,8 @@ public class GameObject extends BasicObject {
 
 	public boolean update(int time, int dt) {
 		int tickDT = 0;
-		float pX = NaN;
-		float pY = NaN;
+		double pX = NaN;
+		double pY = NaN;
 		boolean moving = false;
 		if (!(this.moveVec.x == 0 && this.moveVec.y == 0)) {
 			if (this.myLastTickId < map.gs.gsc.lastTickId) {
@@ -419,7 +419,7 @@ public class GameObject extends BasicObject {
 		return true;
 	}
 
-	public void onGoto(float x, float y, int time) {
+	public void onGoto(double x, double y, int time) {
 		this.moveTo(x, y);
 		this.lastTickUpdateTime = time;
 		this.tickPosition.x = x;
@@ -430,7 +430,7 @@ public class GameObject extends BasicObject {
 		this.moveVec.y = 0;
 	}
 
-	public void onTickPos(float x, float y, int tickTime, int tickId) {
+	public void onTickPos(double x, double y, int tickTime, int tickId) {
 		if (this.myLastTickId < map.gs.gsc.lastTickId) {
 			this.moveTo(this.tickPosition.x, this.tickPosition.y);
 		}
@@ -528,11 +528,11 @@ public class GameObject extends BasicObject {
 			this.nameText = this.generateNameText(this.name);
 			this.nameBitmapData = this.generateNameBitmapData(this.nameText);
 			this.nameFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
-			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<float>());
+			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<double>());
 		}
 		int w = this.nameBitmapData.width / 2 + 1;
 		int h = 30;
-		List<float> nameVSs = this.namePath.data;
+		List<double> nameVSs = this.namePath.data;
 		nameVSs.length = 0;
 		nameVSs.add(posS[0] - w, posS[1], posS[0] + w, posS[1], posS[0] + w, posS[1] + h, posS[0] - w, posS[1] + h);
 		this.nameFill.bitmapData = this.nameBitmapData;
@@ -552,7 +552,7 @@ public class GameObject extends BasicObject {
 	}
 
 	protected BitmapData getTexture(Camera camera, int time) {
-		float p = NaN;
+		double p = NaN;
 		int action = 0;
 		MaskedImage image = null;
 		int walkPer = 0;
@@ -646,7 +646,7 @@ public class GameObject extends BasicObject {
 		return this.portrait;
 	}
 
-	public void setAttack(int containerType, float attackAngle) {
+	public void setAttack(int containerType, double attackAngle) {
 		this.attackAngle = attackAngle;
 		this.attackStart = getTimer();
 	}

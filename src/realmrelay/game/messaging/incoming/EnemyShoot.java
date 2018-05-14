@@ -18,10 +18,10 @@ public class EnemyShoot extends IncomingMessage {
 	public int ownerId;
 	public int bulletType;
 	public WorldPosData startingPos;
-	public float angle;
+	public double angle;
 	public short damage;
 	public int numShots;
-	public float angleInc;
+	public double angleInc;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -28,7 +28,7 @@ public class Map extends AbstractMap {
 	}
 
 	@Override
-	public Square getSquare(float x, float y) {
+	public Square getSquare(double x, double y) {
 
 		if (x < 0 || x >= width || y < 0 || y >= height) {
 			return null;
@@ -57,7 +57,7 @@ public class Map extends AbstractMap {
 	}
 
 	@Override
-	public void addObj(BasicObject object, float x, float y) {
+	public void addObj(BasicObject object, double x, double y) {
 		object.x = x;
 		object.y = y;
 
@@ -99,7 +99,7 @@ public class Map extends AbstractMap {
 	}
 
 	@Override
-	public void setGroundTile(float x, float y, int type) {
+	public void setGroundTile(double x, double y, int type) {
 		Square square = this.getSquare(x, y);
 		square.setTileType(type);
 	}

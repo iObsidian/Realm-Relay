@@ -46,11 +46,11 @@ public abstract class AbstractMap {
 
 	public abstract void setProps(int width, int height, String name);
 
-	public abstract void addObj(BasicObject go, float x, float y);
+	public abstract void addObj(BasicObject go, double x, double y);
 
-	public abstract void setGroundTile(float x, float y, int type);
+	public abstract void setGroundTile(double x, double y, int type);
 
-	public abstract Square getSquare(float x, float y);
+	public abstract Square getSquare(double x, double y);
 
 	public abstract Point pSTopW(Number param1, Number param2);
 

@@ -9,9 +9,9 @@ public class XMLEffect extends ParticleEffect {
 
 	private ParticleProperties partProps;
 
-	private float cooldown;
+	private double cooldown;
 
-	private float cooldownLeft;
+	private double cooldownLeft;
 
 	public XMLEffect(GameObject go, EffectProperties effectProps) {
 		super();
@@ -26,7 +26,7 @@ public class XMLEffect extends ParticleEffect {
 		if (this.go.map == null) {
 			return false;
 		}
-		float fdt = dt / 1000;
+		double fdt = dt / 1000;
 		this.cooldownLeft = this.cooldownLeft - fdt;
 		if (this.cooldownLeft >= 0) {
 			return true;

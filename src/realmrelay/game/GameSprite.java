@@ -90,7 +90,7 @@ public class GameSprite extends AGameSprite {
 
 	private DisplayObject currentPackage;
 
-	private float packageY;
+	private double packageY;
 
 	public GameSprite(Server server, int gameId, boolean createCharacter, int charId, int keyTime, ByteArray key, PlayerModel model, String mapJSON) {
 		this.camera = new Camera();
@@ -282,17 +282,17 @@ public class GameSprite extends AGameSprite {
 	private function updateNearestInteractive() :void
 
 	{
-		float dist = NaN;
+		double dist = NaN;
 		GameObject go = null;
 		IInteractiveObject iObj = null;
 		if (!this.map || !this.map.player_) {
 			return;
 		}
 		Player player = this.map.player_;
-		float minDist = GeneralConstants.MAXIMUM_INTERACTION_DISTANCE;
+		double minDist = GeneralConstants.MAXIMUM_INTERACTION_DISTANCE;
 		IInteractiveObject closestInteractive = null;
-		float playerX = player.x_;
-		float playerY = player.y_;
+		double playerX = player.x_;
+		double playerY = player.y_;
 		for (go in this.map.goDict_) {
 			iObj = go as IInteractiveObject;
 			if (iObj) {
@@ -353,7 +353,7 @@ public class GameSprite extends AGameSprite {
 	private function onEnterFrame(event:Event) :void
 
 	{
-		float avgFrameRate = NaN;
+		double avgFrameRate = NaN;
 		int time = getTimer();
 		int dt = time - this.lastUpdate_;
 		if (this.idleWatcher.update(dt)) {

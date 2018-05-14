@@ -950,7 +950,7 @@ public class TextKey {
 
     public static final String LIGHTNING = "EquipmentToolTip.lightning";
 
-    public static final String DAMAGE_TO_TARGETS = "EquipmentToolTip.damagefloatTargets";
+    public static final String DAMAGE_TO_TARGETS = "EquipmentToolTip.damagedoubleTargets";
 
     public static final String RATE_OF_FIRE = "EquipmentToolTip.rateOfFire";
 
@@ -1348,7 +1348,7 @@ public class TextKey {
 
     public static final String CONTINUE_OR_QUIT_CONTINUE_SUBTITLE = "ContinueOrQuitDialog.continueSubtitle";
 
-    public static final String ARENA_LEADERBOARD_LIST_ITEM_WAVENUMBER = "ArenaLeaderboardListItem.wavefloat";
+    public static final String ARENA_LEADERBOARD_LIST_ITEM_WAVENUMBER = "ArenaLeaderboardListItem.wavedouble";
 
     public static final String ARENA_WEEKLY_RESET_LABEL = "LeaderboardWeeklyResetTime.label";
 
@@ -1376,7 +1376,7 @@ public class TextKey {
 
     public static final String BATTLE_SUMMARY_BEST_SUBTITLE = "BattleSummaryDialog.bestSubtitle";
 
-    public static final String BATTLE_SUMMARY_WAVENUMBER = "BattleSummaryText.wavefloat";
+    public static final String BATTLE_SUMMARY_WAVENUMBER = "BattleSummaryText.wavedouble";
 
     public static final String MUST_BE_NAMED_TITLE = "MustBeNamed.title";
 
