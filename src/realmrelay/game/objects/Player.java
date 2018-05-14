@@ -5,7 +5,9 @@ import realmrelay.game._as3.Signal;
 import realmrelay.game._as3.XML;
 import realmrelay.game.assets.services.CharacterFactory;
 import realmrelay.game.chat.model.ChatMessage;
+import realmrelay.game.constants.ActivationType;
 import realmrelay.game.constants.GeneralConstants;
+import realmrelay.game.constants.UseType;
 import realmrelay.game.messaging.data.StatData;
 import realmrelay.game.model.PotionInventoryModel;
 import realmrelay.game.objects.animation.AnimatedChar;
@@ -981,21 +983,20 @@ public class Player extends Character {
 		return this.famePortrait_;
 	}
 
-	public boolean useAltWeapon(double param1, double param2, int param3) {
+	public boolean useAltWeapon(double param1, double param2, int useType) {
 		Point loc7 = null;
-		XML loc11 = null;
 		int loc13 = 0;
 		String loc14 = null;
-		double loc15 = NaN;
+		double loc15 = 0;
 		int loc16 = 0;
 		if (map == null || isPaused()) {
 			return false;
 		}
-		var loc4:int =equipment_[1];
+		int loc4 = equipment[1];
 		if (loc4 == -1) {
 			return false;
 		}
-		var loc5:XML = ObjectLibrary.xmlLibrary_[loc4];
+		XML loc5 = ObjectLibrary.xmlLibrary.get(loc4);
 		if (loc5 == null || !loc5.hasOwnProperty("Usable")) {
 			return false;
 		}
@@ -1007,16 +1008,16 @@ public class Player extends Character {
 		boolean loc8 = false;
 		boolean loc9 = false;
 		boolean loc10 = false;
-		for (loc11 in loc5.Activate) {
+		for (XML loc11 : loc5.getChilds("Activate")) {
 			loc14 = loc11.toString();
-			if (loc14 == ActivationType.TELEPORT) {
+			if (loc14.equals(ActivationType.TELEPORT)) {
 				loc8 = true;
 				loc10 = true;
 			}
-			if (loc14 == ActivationType.BULLET_NOVA || loc14 == ActivationType.POISON_GRENADE || loc14 == ActivationType.VAMPIRE_BLAST || loc14 == ActivationType.TRAP || loc14 == ActivationType.STASIS_BLAST || loc14 == ActivationType.OBJECT_TOSS) {
+			if (loc14.equals(ActivationType.BULLET_NOVA) || loc14.equals(ActivationType.POISON_GRENADE) || loc14.equals(ActivationType.VAMPIRE_BLAST) || loc14.equals(ActivationType.TRAP) || loc14.equals(ActivationType.STASIS_BLAST) || loc14.equals(ActivationType.OBJECT_TOSS)) {
 				loc8 = true;
 			}
-			if (loc14 == ActivationType.SHOOT) {
+			if (loc14.equals(ActivationType.SHOOT)) {
 				loc9 = true;
 			}
 		}
@@ -1031,28 +1032,28 @@ public class Player extends Character {
 			loc7 = new Point(x + loc15 * Math.cos(loc6), y + loc15 * Math.sin(loc6));
 		}
 		int loc12 = getTimer();
-		if (param3 == UseType.START_USE) {
-			if (loc12 < this.nextAltAttack_) {
+		if (useType == UseType.START_USE) {
+			if (loc12 < this.nextAltAttack) {
 				SoundEffectLibrary.play("error");
 				return false;
 			}
-			loc13 = loc5.MpCost;
+			loc13 = loc5.getIntValue("MpCost");
 			if (loc13 > this.mp) {
 				SoundEffectLibrary.play("no_mana");
 				return false;
 			}
 			loc16 = 500;
 			if (loc5.hasOwnProperty("Cooldown")) {
-				loc16 = loc5.Cooldown * 1000;
+				loc16 = loc5.getIntValue("Cooldown") * 1000;
 			}
 			this.nextAltAttack = loc12 + loc16;
-			map.gs.gsc.useItem(loc12, objectId. 1, loc4, loc7.x, loc7.y, param3);
+			map.gs.gsc.useItem(loc12, objectId. 1, loc4, loc7.x, loc7.y, useType);
 			if (loc9) {
 				this.doShoot(loc12, loc4, loc5, loc6, false);
 			}
 		} else if (loc5.hasOwnProperty("MultiPhase")) {
-			map.gs.gsc.useItem(loc12, objectId. 1, loc4, loc7.x, loc7.y, param3);
-			loc13 = loc5.MpEndCost;
+			map.gs.gsc.useItem(loc12, objectId, 1, loc4, loc7.x, loc7.y, useType);
+			loc13 = loc5.getIntValue("MpEndCost");
 			if (loc13 <= this.mp) {
 				this.doShoot(loc12, loc4, loc5, loc6, false);
 			}
@@ -1071,7 +1072,7 @@ public class Player extends Character {
 		if (loc3 == null || !loc3.hasOwnProperty("RateOfFire")) {
 			return;
 		}
-		double loc4 = loc3.RateOfFire;
+		double loc4 = loc3.getDoubleValue("RateOfFire");
 		this.attackPeriod = 1 / this.attackFrequency() * (1 / loc4);
 		super.setAttack(param1, param2);
 	}
@@ -1085,7 +1086,7 @@ public class Player extends Character {
 			this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, TextKey.PLAYER_NO_WEAPON_EQUIPPED));
 			return;
 		}
-		XML loc3 = ObjectLibrary.xmlLibrary_[loc2];
+		XML loc3 = ObjectLibrary.xmlLibrary[loc2];
 		int loc4 = getTimer();
 		double loc5 = loc3.getDoubleValue("RateOfFire");
 		this.attackPeriod = 1 / this.attackFrequency() * (1 / loc5);
@@ -1103,10 +1104,10 @@ public class Player extends Character {
 		Projectile loc12 = null;
 		int loc13 = 0;
 		int loc14 = 0;
-		double loc15 = NaN;
+		double loc15 = 0;
 		int loc16 = 0;
 		int loc6 = param3.hasOwnProperty("NumProjectiles") ? param3.getIntValue("NumProjectiles") : 1;
-		double loc7 = (param3.hasOwnProperty("ArcGap") ? param3.ArcGap : 11.25 * Trig.toRadians);
+		double loc7 = (param3.hasOwnProperty("ArcGap") ? param3.getDoubleValue("ArcGap") : 11.25 * Trig.toRadians);
 		double loc8 = loc7 * (loc6 - 1);
 		double loc9 = param4 - loc8 / 2;
 		this.isShooting = param5;
@@ -1119,8 +1120,8 @@ public class Player extends Character {
 			} else {
 				loc12.reset(param2, 0, objectId, loc11, loc9, param1);
 			}
-			loc13 = int(loc12.projProps.minDamage.;
-			loc14 = int(loc12.projProps.maxDamage.;
+			loc13 = loc12.projProps.minDamage;
+			loc14 = loc12.projProps.maxDamage;
 			loc15 = !!param5 ? this.attackMultiplier( : 1;
 			loc16 = map.gs.gsc.getNextDamage(loc13, loc14) * loc15;
 			if (param1 > map.gs.moveRecords.lastClearTime + 600) {
@@ -1128,7 +1129,7 @@ public class Player extends Character {
 			}
 			loc12.setDamage(loc16);
 			if (loc10 == 0 && loc12.sound != null) {
-				SoundEffectLibrary.play(loc12.sound_, 0.75, false);
+				SoundEffectLibrary.play(loc12.sound, 0.75, false);
 			}
 			map.addObj(loc12, x + Math.cos(param4) * 0.3, y + Math.sin(param4) * 0.3);
 			map.gs.gsc.playerShoot(param1, loc12);
@@ -1187,7 +1188,7 @@ public class Player extends Character {
 		if (!this.hasBackpack) {
 			return -1;
 		}
-		if (param1 == TabStripModel.BACKPACK) {
+		if (param1.equals(TabStripModel.BACKPACK)) {
 			loc2 = GeneralConstants.NUM_EQUIPMENT_SLOTS;
 			loc3 = GeneralConstants.NUM_EQUIPMENT_SLOTS + GeneralConstants.NUM_INVENTORY_SLOTS;
 		} else {
