@@ -41,8 +41,10 @@ public class SavedCharacter {
 		}
 	}
 
-	public static BitmapData getImage(SavedCharacter param1, XML param2, int param3, int param4, float param5, boolean param6, boolean param7) {
-		AnimatedChar loc8 = AnimatedChars.getAnimatedChar(param2.getChild("AnimatedTexture").getValue("File"), param2.getChild("AnimatedTexture").getIntValue("Index"));
+	public static BitmapData getImage(SavedCharacter param1, XML param2, int param3, int param4, float param5,
+			boolean param6, boolean param7) {
+		AnimatedChar loc8 = AnimatedChars.getAnimatedChar(param2.getChild("AnimatedTexture").getValue("File"),
+				param2.getChild("AnimatedTexture").getIntValue("Index"));
 		MaskedImage loc9 = loc8.imageFromDir(param3, param4, param5);
 		int loc10 = param1 != null ? param1.tex1() : null;
 		int loc11 = param1 != null ? param1.tex2() : null;
@@ -51,14 +53,19 @@ public class SavedCharacter {
 		if (!param6) {
 			loc12 = CachingColorTransformer.transformBitmapData(loc12, new ColorTransform(0, 0, 0, 0.5, 0, 0, 0, 0));
 		} else if (!param7) {
-			loc12 = CachingColorTransformer.transformBitmapData(loc12, new ColorTransform(0.75, 0.75, 0.75, 1, 0, 0, 0, 0));
+			loc12 = CachingColorTransformer.transformBitmapData(loc12,
+					new ColorTransform(0.75, 0.75, 0.75, 1, 0, 0, 0, 0));
 		}
 		return loc12;
 	}
 
 	public static float compare(SavedCharacter param1, SavedCharacter param2) {
-		float loc3 = !!Parameters.data.charIdUseMap.hasOwnProperty(param1.charId()) ? Number(Parameters.data.charIdUseMap[param1.charId()]) : 0F;
-		float loc4 = !!Parameters.data.charIdUseMap.hasOwnProperty(param2.charId()) ? Number(Parameters.data.charIdUseMap[param2.charId()]) : 0F;
+		float loc3 = !!Parameters.data.charIdUseMap.hasOwnProperty(param1.charId())
+				? Number(Parameters.data.charIdUseMap[param1.charId()])
+				: 0F;
+		float loc4 = !!Parameters.data.charIdUseMap.hasOwnProperty(param2.charId())
+				? Number(Parameters.data.charIdUseMap[param2.charId()])
+				: 0F;
 		if (loc3 != loc4) {
 			return loc4 - loc3;
 		}
@@ -189,6 +196,5 @@ public class SavedCharacter {
 	public void setPetVO(PetVO param1) {
 		this.pet = param1;
 	}
-
 
 }

@@ -32,13 +32,11 @@ public class MessageCenter implements MessageProvider, MessageMap {
 
 	@Override
 	public MessageMapping map(int param1) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void unmap(int param1) {
-		// TODO Auto-generated method stub
 	}
 
 

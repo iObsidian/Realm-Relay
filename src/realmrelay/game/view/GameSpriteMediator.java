@@ -16,6 +16,9 @@ import realmrelay.game.promotions.model.BeginnersPackageModel;
 import realmrelay.game.signals.GameClosedSignal;
 import realmrelay.game.signals.PlayGameSignal;
 import realmrelay.game.signals.SetWorldInteractionSignal;
+import realmrelay.game.ui.signals.HUDModelInitialized;
+import realmrelay.game.ui.signals.HUDSetupStarted;
+import realmrelay.game.ui.signals.UpdateHUDSignal;
 
 public class GameSpriteMediator {
 
