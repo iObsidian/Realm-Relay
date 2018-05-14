@@ -2,24 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d7f704-e69a-4440-8dcc-6c4214922787" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/character_hit.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/death_screen.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/error.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/inventory_move_item.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/item_use.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/level_up.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/loot_appears.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/monster_death.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/res/sfx/old/monster_hit.mp3" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/Timer.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/animation/Animations.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/GameSprite.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/Point.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/_as3/Sprite.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Container.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/IInteractiveObject.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/ui/panels/Panel.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowKeyUISignal.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/assets/model/Animation.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/assets/model/Animation.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/AllyShoot.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/AllyShoot.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Damage.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Damage.java" />
       <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectLibrary.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectLibrary.java" />
       <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectProperties.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectProperties.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/BitmapData.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/data/unused/BitmapData.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/pets/data/PetsModel.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/pets/data/PetsModel.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/AddTextLineSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/AddTextLineSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/DeferredQueueSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/DeferredQueueSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/ExitGameSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/ExitGameSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/GameClosedSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/GameClosedSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/PlayGameSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/PlayGameSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/SetTextBoxVisibilitySignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/SetTextBoxVisibilitySignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/SetWorldInteractionSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/SetWorldInteractionSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/TextPanelMessageUpdateSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/TextPanelMessageUpdateSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/UpdateGiftStatusDisplaySignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/UpdateGiftStatusDisplaySignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/signals/UseBuyPotionSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/signals/UseBuyPotionSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/GiftStatusUpdateSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/GiftStatusUpdateSignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowHideKeyUISignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowHideKeyUISignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowKeySignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowKeySignal.java" />
+      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/UpdateBackpackTabSignal.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/ui/signals/UpdateBackpackTabSignal.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,86 +42,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AssetLoader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/AssetLoader.java">
+      <file leaf-file-name="GameServerConnection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="184" column="44" lean-forward="true" selection-start-line="184" selection-start-column="44" selection-end-line="184" selection-end-column="44" />
+            <state relative-caret-position="2310">
+              <caret line="114" column="19" lean-forward="false" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AGameSprite.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/game/AGameSprite.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-112">
+              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameServerConnectionConcrete.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-520">
+              <caret line="1426" column="0" lean-forward="true" selection-start-line="1426" selection-start-column="0" selection-end-line="1426" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#937#938#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#13081#13082#0" expanded="true" />
-                <element signature="e#13147#13148#0" expanded="true" />
-                <element signature="e#13183#13184#0" expanded="true" />
-                <element signature="e#13244#13245#0" expanded="true" />
-                <element signature="e#16204#16205#0" expanded="true" />
-                <element signature="e#16268#16269#0" expanded="true" />
-                <element signature="e#16310#16311#0" expanded="true" />
-                <element signature="e#16372#16373#0" expanded="true" />
-                <element signature="e#16416#16417#0" expanded="true" />
-                <element signature="e#16480#16481#0" expanded="true" />
-                <element signature="e#16522#16523#0" expanded="true" />
-                <element signature="e#16584#16585#0" expanded="true" />
-                <element signature="e#16629#16630#0" expanded="true" />
-                <element signature="e#16697#16698#0" expanded="true" />
-                <element signature="e#16739#16740#0" expanded="true" />
-                <element signature="e#16803#16804#0" expanded="true" />
+                <element signature="e#51702#51703#0" expanded="true" />
+                <element signature="e#51777#51778#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Animation.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/assets/model/Animation.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1346">
-              <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
-              <folding>
-                <element signature="e#710#711#0" expanded="true" />
-                <element signature="e#724#725#0" expanded="true" />
-                <element signature="e#902#903#0" expanded="true" />
-                <element signature="e#932#933#0" expanded="true" />
-                <element signature="e#969#970#0" expanded="true" />
-                <element signature="e#1001#1002#0" expanded="true" />
-                <element signature="e#1960#1961#0" expanded="true" />
-                <element signature="e#1986#1987#0" expanded="true" />
-                <element signature="e#2018#2019#0" expanded="true" />
-                <element signature="e#2045#2046#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AtomicInteger.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/atomic/AtomicInteger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="130" column="0" lean-forward="true" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BitmapData.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/data/unused/BitmapData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-              <folding>
-                <element signature="e#995#996#0" expanded="true" />
-                <element signature="e#1014#1015#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/WebMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -118,41 +79,12 @@
       <file leaf-file-name="Timer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Timer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+            <state relative-caret-position="268">
+              <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#299#300#0" expanded="true" />
-                <element signature="e#321#322#0" expanded="true" />
                 <element signature="e#422#423#0" expanded="true" />
                 <element signature="e#447#448#0" expanded="true" />
-                <element signature="e#471#472#0" expanded="true" />
-                <element signature="e#490#491#0" expanded="true" />
-                <element signature="e#564#724#0" expanded="true" />
-                <element signature="e#723#724#0" expanded="true" />
-                <element signature="e#768#769#0" expanded="true" />
-                <element signature="e#807#808#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Void.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Void.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Supplier.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/function/Supplier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -160,9 +92,70 @@
       <file leaf-file-name="TimerEvent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="132">
+              <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Container.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/Container.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-9">
+              <caret line="49" column="36" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#768#769#0" expanded="true" />
+                <element signature="e#823#824#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameSprite.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/GameSprite.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Account.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/account/core/Account.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Map.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/map/Map.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-9">
+              <caret line="52" column="16" lean-forward="false" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+              <folding>
+                <element signature="e#970#971#0" expanded="true" />
+                <element signature="e#1022#1023#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Signal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Signal.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="329">
+              <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+              <folding>
+                <element signature="e#507#508#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -174,18 +167,13 @@
       <list>
         <option value="Enum" />
         <option value="Arquillian JUnit Test Class" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>accountId</find>
-      <find>effect</find>
-      <find>int(</find>
-      <find>onGoto</find>
-      <find>fromPlayerXML</find>
-      <find>onGlobalNotification</find>
       <find>giftChestUpdateSignal</find>
       <find>notification.text</find>
       <find>onNotification</find>
@@ -210,12 +198,20 @@
       <find>_[</find>
       <find>imageFromDir</find>
       <find>Animations</find>
+      <find>stage</find>
+      <find>_[Co</find>
+      <find>onMove</find>
+      <find>_.</find>
+      <find>getInsta</find>
+      <find>container</find>
     </findStrings>
     <replaceStrings>
       <replace>:</replace>
       <replace />
       <replace>;</replace>
       <replace>[</replace>
+      <replace>[Co</replace>
+      <replace>.</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -235,30 +231,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/TradeRequested.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/game/HUDView.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/HUDView.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/chat/model/ChatMessage.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/net/Server.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Reconnect.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/view/NotEnoughFameDialog.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/BuyResult.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/map/AbstractMap.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/map/Quest.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/QuestObjId.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/GuildResult.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/ClientStat.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/game/AGameSprite.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/game/PlayerModel.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/view/NotEnoughGoldDialog.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/Signal.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/pets/data/PetRarityEnum.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/pets/data/AbilityVO.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/appengine/CharacterStats.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/util/FameUtil.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/pets/data/PetYardEnum.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/pets/data/PetsModel.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/appengine/SavedNewsItem.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/XML.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectLibrary.java" />
@@ -281,11 +253,35 @@
         <option value="$PROJECT_DIR$/src/realmrelay/game/util/AssetLoader.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/objects/ObjectProperties.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/objects/animation/Animations.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java" />
-        <option value="$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/packets/data/unused/BitmapData.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/Timer.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/assets/model/Animation.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/Point.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Damage.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/AllyShoot.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/AddTextLineSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/DeferredQueueSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/ExitGameSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/GameClosedSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/PlayGameSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/SetTextBoxVisibilitySignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/SetWorldInteractionSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/TextPanelMessageUpdateSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/UpdateGiftStatusDisplaySignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/signals/UseBuyPotionSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/signals/GiftStatusUpdateSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowHideKeyUISignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowKeySignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/signals/UpdateBackpackTabSignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowKeyUISignal.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/objects/IInteractiveObject.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/ui/panels/Panel.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/pets/data/PetsModel.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/objects/Container.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/GameSprite.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java" />
+        <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" />
       </list>
     </option>
   </component>
@@ -357,7 +353,31 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="realmrelay" type="462c0819:PsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="_as3" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="realmrelay" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="appengine" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="realmrelay" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Realm-Relay" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Realm-Relay" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="realmrelay" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -369,14 +389,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Oryx2D" />
-    <property name="SearchEverywhereHistoryKey" value="GameObject&#9;FILE&#9;file://C:/Users/Alde/Documents/GitHub/Realm-Relay/src/realmrelay/game/objects/GameObject.java&#10;Objectprop&#9;PSI&#9;JAVA://realmrelay.game.objects.ObjectProperties&#10;ConditionEf&#9;PSI&#9;JAVA://realmrelay.game.util.ConditionEffect&#10;ObjectL&#9;FILE&#9;file://C:/Users/Alde/Documents/GitHub/Realm-Relay/src/realmrelay/game/objects/ObjectLibrary.java&#10;CharacterSkin&#9;PSI&#9;JAVA://realmrelay.game.classes.model.CharacterSkin&#10;Object&#9;FILE&#9;file://C:/Users/Alde/Documents/GitHub/Realm-Relay/src/realmrelay/game/objects/GameObject.java&#10;GameServer&#9;PSI&#9;JAVA://realmrelay.game.messaging.GameServerConnectionConcrete&#10;PotionInv&#9;PSI&#9;JAVA://realmrelay.game.model.PotionInventoryModel" />
+    <property name="SearchEverywhereHistoryKey" value="GameServerConnection&#9;PSI&#9;JAVA://realmrelay.game.messaging.GameServerConnection&#10;GameObject&#9;FILE&#9;file://C:/Users/Alde/Documents/GitHub/Realm-Relay/src/realmrelay/game/objects/GameObject.java&#10;Objectprop&#9;PSI&#9;JAVA://realmrelay.game.objects.ObjectProperties&#10;ConditionEf&#9;PSI&#9;JAVA://realmrelay.game.util.ConditionEffect&#10;ObjectL&#9;FILE&#9;file://C:/Users/Alde/Documents/GitHub/Realm-Relay/src/realmrelay/game/objects/ObjectLibrary.java&#10;CharacterSkin&#9;PSI&#9;JAVA://realmrelay.game.classes.model.CharacterSkin&#10;Object&#9;FILE&#9;file://C:/Users/Alde/Documents/GitHub/Realm-Relay/src/realmrelay/game/objects/GameObject.java&#10;GameServer&#9;PSI&#9;JAVA://realmrelay.game.messaging.GameServerConnectionConcrete&#10;PotionInv&#9;PSI&#9;JAVA://realmrelay.game.model.PotionInventoryModel" />
     <property name="create.test.in.the.same.root" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
   </component>
@@ -392,10 +412,10 @@
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="realmrelay.game" />
+      <recent name="realmrelay.game.ui.panels" />
+      <recent name="realmrelay.game.objects" />
+      <recent name="realmrelay.game.ui.signals" />
       <recent name="realmrelay.game.objects.animation" />
-      <recent name="realmrelay.game.map" />
-      <recent name="realmrelay.game.engine3d" />
-      <recent name="realmrelay.game.assets.services" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -536,12 +556,12 @@
       <workItem from="1525992208812" duration="20700000" />
       <workItem from="1526066497288" duration="958000" />
       <workItem from="1526073957420" duration="5616000" />
-      <workItem from="1526231318669" duration="13253000" />
+      <workItem from="1526231318669" duration="16306000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49927000" />
+    <option name="totallyTimeSpent" value="52980000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -558,7 +578,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1492865" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.013172338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.013172338" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -569,10 +589,10 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32395834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22552083" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13830955" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -600,580 +620,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/dialogs/OpenDialogSignal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/pets/data/PetYardEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/pets/data/PetsModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1109#1110#0" expanded="false" />
-            <element signature="e#1144#1145#0" expanded="false" />
-            <element signature="e#1180#1181#0" expanded="false" />
-            <element signature="e#1203#1204#0" expanded="false" />
-            <element signature="e#1240#1241#0" expanded="false" />
-            <element signature="e#1268#1269#0" expanded="false" />
-            <element signature="e#1566#1567#0" expanded="false" />
-            <element signature="e#1594#1595#0" expanded="false" />
-            <element signature="e#2405#2406#0" expanded="false" />
-            <element signature="e#2496#2497#0" expanded="false" />
-            <element signature="e#2866#2867#0" expanded="false" />
-            <element signature="e#2916#2917#0" expanded="false" />
-            <element signature="e#2960#2961#0" expanded="false" />
-            <element signature="e#3011#3012#0" expanded="false" />
-            <element signature="e#3047#3048#0" expanded="false" />
-            <element signature="e#3070#3071#0" expanded="false" />
-            <element signature="e#3107#3108#0" expanded="false" />
-            <element signature="e#3155#3156#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/MaskedImage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="22" lean-forward="false" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Signal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="26" column="16" lean-forward="false" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-          <folding>
-            <element signature="e#549#550#0" expanded="false" />
-            <element signature="e#579#580#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.xml/javax/xml/parsers/DocumentBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2417">
-          <caret line="114" column="20" lean-forward="false" selection-start-line="114" selection-start-column="20" selection-end-line="114" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Old_ObjectLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.xml/javax/xml/parsers/DocumentBuilderFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="197" column="36" lean-forward="false" selection-start-line="197" selection-start-column="36" selection-end-line="197" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/constants/GeneralConstants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/ObjectLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-362">
-          <caret line="290" column="36" lean-forward="false" selection-start-line="290" selection-start-column="35" selection-end-line="290" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/pets/data/AbilityVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="15" column="25" lean-forward="false" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#488#489#0" expanded="false" />
-            <element signature="e#502#503#0" expanded="false" />
-            <element signature="e#905#906#0" expanded="false" />
-            <element signature="e#934#935#0" expanded="false" />
-            <element signature="e#967#968#0" expanded="false" />
-            <element signature="e#994#995#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/pets/data/PetVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="54" column="21" lean-forward="false" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1575#1576#0" expanded="false" />
-            <element signature="e#1605#1606#0" expanded="false" />
-            <element signature="e#2662#2663#0" expanded="false" />
-            <element signature="e#2710#2711#0" expanded="false" />
-            <element signature="e#2744#2745#0" expanded="false" />
-            <element signature="e#2767#2768#0" expanded="false" />
-            <element signature="e#2790#2791#0" expanded="false" />
-            <element signature="e#2811#2812#0" expanded="false" />
-            <element signature="e#2958#2959#0" expanded="false" />
-            <element signature="e#2981#2982#0" expanded="false" />
-            <element signature="e#3448#3449#0" expanded="false" />
-            <element signature="e#3473#3474#0" expanded="false" />
-            <element signature="e#3757#3758#0" expanded="false" />
-            <element signature="e#3780#3781#0" expanded="false" />
-            <element signature="e#3926#3927#0" expanded="false" />
-            <element signature="e#3960#3961#0" expanded="false" />
-            <element signature="e#4077#4078#0" expanded="false" />
-            <element signature="e#4102#4103#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/classes/model/CharacterSkins.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#540#541#0" expanded="false" />
-            <element signature="e#570#571#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/appengine/SavedCharactersList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="276" column="16" lean-forward="false" selection-start-line="276" selection-start-column="16" selection-end-line="276" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#4410#4411#0" expanded="false" />
-            <element signature="e#4459#4460#0" expanded="false" />
-            <element signature="e#6376#6377#0" expanded="false" />
-            <element signature="e#6431#6432#0" expanded="false" />
-            <element signature="e#7463#7464#0" expanded="false" />
-            <element signature="e#7509#7510#0" expanded="false" />
-            <element signature="e#7551#7552#0" expanded="false" />
-            <element signature="e#7597#7598#0" expanded="false" />
-            <element signature="e#8333#8334#0" expanded="false" />
-            <element signature="e#8385#8386#0" expanded="false" />
-            <element signature="e#8425#8426#0" expanded="false" />
-            <element signature="e#8519#8520#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/core/model/PlayerModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="250" column="0" lean-forward="false" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
-          <folding>
-            <element signature="e#1399#1400#0" expanded="false" />
-            <element signature="e#1431#1432#0" expanded="false" />
-            <element signature="e#1464#1465#0" expanded="false" />
-            <element signature="e#1540#1541#0" expanded="false" />
-            <element signature="e#1574#1575#0" expanded="false" />
-            <element signature="e#1613#1614#0" expanded="false" />
-            <element signature="e#1658#1659#0" expanded="false" />
-            <element signature="e#1699#1700#0" expanded="false" />
-            <element signature="e#1727#1728#0" expanded="false" />
-            <element signature="e#1762#1763#0" expanded="false" />
-            <element signature="e#1800#1801#0" expanded="false" />
-            <element signature="e#1842#1843#0" expanded="false" />
-            <element signature="e#2188#2189#0" expanded="false" />
-            <element signature="e#2220#2221#0" expanded="false" />
-            <element signature="e#2398#2399#0" expanded="false" />
-            <element signature="e#2432#2433#0" expanded="false" />
-            <element signature="e#2626#2627#0" expanded="false" />
-            <element signature="e#2662#2663#0" expanded="false" />
-            <element signature="e#2712#2713#0" expanded="false" />
-            <element signature="e#2759#2760#0" expanded="false" />
-            <element signature="e#3046#3047#0" expanded="false" />
-            <element signature="e#3083#3084#0" expanded="false" />
-            <element signature="e#3115#3116#0" expanded="false" />
-            <element signature="e#3158#3159#0" expanded="false" />
-            <element signature="e#3187#3188#0" expanded="false" />
-            <element signature="e#3223#3224#0" expanded="false" />
-            <element signature="e#3256#3257#0" expanded="false" />
-            <element signature="e#3293#3294#0" expanded="false" />
-            <element signature="e#3323#3324#0" expanded="false" />
-            <element signature="e#3360#3361#0" expanded="false" />
-            <element signature="e#3557#3558#0" expanded="false" />
-            <element signature="e#3594#3595#0" expanded="false" />
-            <element signature="e#3625#3626#0" expanded="false" />
-            <element signature="e#3663#3664#0" expanded="false" />
-            <element signature="e#3911#3912#0" expanded="false" />
-            <element signature="e#3961#3962#0" expanded="false" />
-            <element signature="e#3990#3991#0" expanded="false" />
-            <element signature="e#4025#4026#0" expanded="false" />
-            <element signature="e#4056#4057#0" expanded="false" />
-            <element signature="e#4094#4095#0" expanded="false" />
-            <element signature="e#4135#4136#0" expanded="false" />
-            <element signature="e#4167#4168#0" expanded="false" />
-            <element signature="e#4197#4198#0" expanded="false" />
-            <element signature="e#4230#4231#0" expanded="false" />
-            <element signature="e#4294#4295#0" expanded="false" />
-            <element signature="e#4352#4353#0" expanded="false" />
-            <element signature="e#4380#4381#0" expanded="false" />
-            <element signature="e#4412#4413#0" expanded="false" />
-            <element signature="e#4446#4447#0" expanded="false" />
-            <element signature="e#4483#4484#0" expanded="false" />
-            <element signature="e#4522#4523#0" expanded="false" />
-            <element signature="e#4556#4557#0" expanded="false" />
-            <element signature="e#4590#4591#0" expanded="false" />
-            <element signature="e#4628#4629#0" expanded="false" />
-            <element signature="e#4682#4683#0" expanded="false" />
-            <element signature="e#4736#4737#0" expanded="false" />
-            <element signature="e#4778#4779#0" expanded="false" />
-            <element signature="e#4828#4829#0" expanded="false" />
-            <element signature="e#4867#4868#0" expanded="false" />
-            <element signature="e#4915#4916#0" expanded="false" />
-            <element signature="e#4968#4969#0" expanded="false" />
-            <element signature="e#5006#5007#0" expanded="false" />
-            <element signature="e#5039#5040#0" expanded="false" />
-            <element signature="e#5076#5077#0" expanded="false" />
-            <element signature="e#5293#5294#0" expanded="false" />
-            <element signature="e#5349#5350#0" expanded="false" />
-            <element signature="e#5388#5389#0" expanded="false" />
-            <element signature="e#5432#5433#0" expanded="false" />
-            <element signature="e#5472#5473#0" expanded="false" />
-            <element signature="e#5517#5518#0" expanded="false" />
-            <element signature="e#5550#5551#0" expanded="false" />
-            <element signature="e#5590#5591#0" expanded="false" />
-            <element signature="e#5651#5652#0" expanded="false" />
-            <element signature="e#5680#5681#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/appengine/SavedNewsItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#909#910#0" expanded="false" />
-            <element signature="e#976#977#0" expanded="false" />
-            <element signature="e#1009#1010#0" expanded="false" />
-            <element signature="e#1049#1050#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/classes/model/ClassesModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-683">
-          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="336">
-            <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.graphics/javafx/animation/Animation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="91" column="22" lean-forward="false" selection-start-line="91" selection-start-column="22" selection-end-line="91" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/animation/AnimatedChar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="147" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/assets/services/CharacterFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1281">
-          <caret line="61" column="29" lean-forward="false" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#502#503#0" expanded="false" />
-            <element signature="e#516#517#0" expanded="false" />
-            <element signature="e#1413#1414#0" expanded="false" />
-            <element signature="e#1466#1467#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/BitmapUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/XML.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="100" column="18" lean-forward="false" selection-start-line="100" selection-start-column="18" selection-end-line="100" selection-end-column="18" />
-          <folding>
-            <element signature="e#584#585#0" expanded="false" />
-            <element signature="e#608#609#0" expanded="false" />
-            <element signature="e#2387#2388#0" expanded="false" />
-            <element signature="e#2420#2421#0" expanded="false" />
-            <element signature="e#2728#2729#0" expanded="false" />
-            <element signature="e#2773#2774#0" expanded="false" />
-            <element signature="e#2817#2818#0" expanded="false" />
-            <element signature="e#2857#2858#0" expanded="false" />
-            <element signature="e#2901#2902#0" expanded="false" />
-            <element signature="e#2939#2940#0" expanded="false" />
-            <element signature="e#3273#3274#0" expanded="false" />
-            <element signature="e#3313#3314#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/xml/particles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="808">
-          <caret line="167" column="0" lean-forward="true" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/io/PrintStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="800" column="16" lean-forward="false" selection-start-line="800" selection-start-column="16" selection-end-line="800" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/particles/ParticleLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="20" column="27" lean-forward="false" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/particles/ParticleProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="37" column="0" lean-forward="true" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/ConditionEffect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/net/impl/MessageCenterMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/Projectile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="249" column="17" lean-forward="false" selection-start-line="249" selection-start-column="17" selection-end-line="249" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/engine3d/Model3DTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/engine3d/Model3D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/map/RegionLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#402#403#0" expanded="false" />
-            <element signature="e#416#417#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/xml/regions.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1792">
-          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/sound/SoundEffectLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="11" column="23" lean-forward="false" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="e#330#331#0" expanded="false" />
-            <element signature="e#391#392#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/ObjectProperties.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="128" column="17" lean-forward="true" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/TextureData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="29" column="31" lean-forward="false" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/animation/Animations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="474" column="11" lean-forward="false" selection-start-line="474" selection-start-column="11" selection-end-line="474" selection-end-column="11" />
-          <folding>
-            <element signature="e#19292#19293#0" expanded="true" />
-            <element signature="e#19375#19376#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/appengine/SavedCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="39" column="9" lean-forward="true" selection-start-line="39" selection-start-column="9" selection-end-line="39" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="101" column="32" lean-forward="false" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/WebMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/function/Supplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="47" column="6" lean-forward="false" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Void.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="36" column="6" lean-forward="false" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Timer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#299#300#0" expanded="true" />
-            <element signature="e#321#322#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#471#472#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#564#724#0" expanded="true" />
-            <element signature="e#723#724#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-            <element signature="e#807#808#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/packets/data/unused/BitmapData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
-          <folding>
-            <element signature="e#995#996#0" expanded="true" />
-            <element signature="e#1014#1015#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/FameUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2016">
@@ -1220,8 +666,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/assets/model/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1346">
-          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+        <state relative-caret-position="460">
+          <caret line="87" column="54" lean-forward="true" selection-start-line="87" selection-start-column="54" selection-end-line="87" selection-end-column="54" />
           <folding>
             <element signature="e#710#711#0" expanded="true" />
             <element signature="e#724#725#0" expanded="true" />
@@ -1233,6 +679,445 @@
             <element signature="e#1986#1987#0" expanded="true" />
             <element signature="e#2018#2019#0" expanded="true" />
             <element signature="e#2045#2046#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/BasicObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/map/AbstractMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/Point.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Point.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1183">
+          <caret line="97" column="27" lean-forward="false" selection-start-line="97" selection-start-column="27" selection-end-line="97" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/BitmapDataSpy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/ConditionEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Damage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/AllyShoot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/parameters/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="41" column="25" lean-forward="false" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/ui/HUDView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/ObjectLibrary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2832">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/focus/control/UpdateGroundTileSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="5" column="54" lean-forward="true" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/AddSpeechBalloonSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="13" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/DeferredQueueSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/ExitGameSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="41" lean-forward="false" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/GameClosedSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="9" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/GiftStatusUpdateSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/PlayGameSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/SetTextBoxVisibilitySignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/SetWorldInteractionSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="52" lean-forward="false" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/UseBuyPotionSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/UpdateGiftStatusDisplaySignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/TextPanelMessageUpdateSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/ui/signals/GiftStatusUpdateSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="49" lean-forward="false" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/ui/signals/UpdateBackpackTabSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/signals/AddTextLineSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowHideKeyUISignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="46" lean-forward="false" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowKeySignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="12" column="40" lean-forward="false" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/ui/signals/ShowKeyUISignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.desktop/java/awt/Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="90" column="13" lean-forward="false" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/IInteractiveObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="32" lean-forward="false" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/ui/panels/Panel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/_as3/Sprite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/appengine/SavedCharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="36" column="25" lean-forward="false" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/pets/data/PetsModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="21" column="9" lean-forward="false" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+          <folding>
+            <element signature="e#1257#1258#0" expanded="true" />
+            <element signature="e#1292#1293#0" expanded="true" />
+            <element signature="e#1328#1329#0" expanded="true" />
+            <element signature="e#1351#1352#0" expanded="true" />
+            <element signature="e#1388#1389#0" expanded="true" />
+            <element signature="e#1416#1417#0" expanded="true" />
+            <element signature="e#1714#1715#0" expanded="true" />
+            <element signature="e#1742#1743#0" expanded="true" />
+            <element signature="e#2553#2554#0" expanded="true" />
+            <element signature="e#2644#2645#0" expanded="true" />
+            <element signature="e#3014#3015#0" expanded="true" />
+            <element signature="e#3064#3065#0" expanded="true" />
+            <element signature="e#3108#3109#0" expanded="true" />
+            <element signature="e#3159#3160#0" expanded="true" />
+            <element signature="e#3195#3196#0" expanded="true" />
+            <element signature="e#3218#3219#0" expanded="true" />
+            <element signature="e#3255#3256#0" expanded="true" />
+            <element signature="e#3303#3304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5852#5853#0" expanded="true" />
+            <element signature="e#5947#5948#0" expanded="true" />
+            <element signature="e#5975#5976#0" expanded="true" />
+            <element signature="e#6069#6070#0" expanded="true" />
+            <element signature="e#6223#6224#0" expanded="true" />
+            <element signature="e#6317#6318#0" expanded="true" />
+            <element signature="e#6346#6347#0" expanded="true" />
+            <element signature="e#6441#6442#0" expanded="true" />
+            <element signature="e#6598#6599#0" expanded="true" />
+            <element signature="e#6693#6694#0" expanded="true" />
+            <element signature="e#6722#6723#0" expanded="true" />
+            <element signature="e#6817#6818#0" expanded="true" />
+            <element signature="e#10980#10981#0" expanded="true" />
+            <element signature="e#11034#11035#0" expanded="true" />
+            <element signature="e#25146#25147#0" expanded="true" />
+            <element signature="e#25201#25202#0" expanded="true" />
+            <element signature="e#25230#25231#0" expanded="true" />
+            <element signature="e#25254#25255#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/Container.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="49" column="36" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#768#769#0" expanded="true" />
+            <element signature="e#823#824#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/map/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="52" column="16" lean-forward="false" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
+          <folding>
+            <element signature="e#970#971#0" expanded="true" />
+            <element signature="e#1022#1023#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/account/core/Account.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/GameSprite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Signal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding>
+            <element signature="e#507#508#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/game/AGameSprite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-112">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2310">
+          <caret line="114" column="19" lean-forward="false" selection-start-line="114" selection-start-column="19" selection-end-line="114" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/TimerEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="34" lean-forward="true" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/Timer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="24" column="11" lean-forward="false" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+          <folding>
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-520">
+          <caret line="1426" column="0" lean-forward="true" selection-start-line="1426" selection-start-column="0" selection-end-line="1426" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#51702#51703#0" expanded="true" />
+            <element signature="e#51777#51778#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1254,7 +1139,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
+          <last-edited>JavaEE Application</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

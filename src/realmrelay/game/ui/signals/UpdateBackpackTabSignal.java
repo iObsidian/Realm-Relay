@@ -6,8 +6,7 @@ import realmrelay.game.signals.GiftStatusUpdateSignal;
 
 public class UpdateBackpackTabSignal extends Signal<Boolean> {
 
-
-	static UpdateBackpackTabSignal instance;
+	private static UpdateBackpackTabSignal instance;
 
 	public static UpdateBackpackTabSignal getInstance() {
 		if (instance == null) {

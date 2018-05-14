@@ -2,14 +2,17 @@ package realmrelay.game.ui.signals;
 
 
 import realmrelay.game.Signal;
+import realmrelay.game.signals.AddTextLineSignal;
 
 public class ShowHideKeyUISignal extends Signal<GiftStatusUpdateSignal> {
 
-	public static ShowHideKeyUISignal instance;
+	private static ShowHideKeyUISignal instance;
 
-	public ShowHideKeyUISignal() {
-		super();
-		instance = this;
+	public static ShowHideKeyUISignal getInstance() {
+		if (instance == null) {
+			instance = new ShowHideKeyUISignal();
+		}
+		return instance;
 	}
 
 }

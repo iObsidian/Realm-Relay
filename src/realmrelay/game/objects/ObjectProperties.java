@@ -116,7 +116,7 @@ public class ObjectProperties {
 		this.angleCorrection = param1.hasOwnProperty("AngleCorrection")
 				? (float) (param1.getFloatValue("AngleCorrection") * Math.PI / 4)
 				: 0;
-
+				
 		this.rotation = param1.hasOwnProperty("Rotation") ? param1.getFloatValue("Rotation") : 0;
 
 		if (param1.hasOwnProperty("BloodProb")) {

@@ -1,5 +1,7 @@
 package realmrelay.game.messaging;
 
+import realmrelay.game.Timer;
+import realmrelay.game.TimerEvent;
 import realmrelay.game.XML;
 import realmrelay.game.account.core.Account;
 import realmrelay.game.api.MessageProvider;
@@ -49,20 +51,22 @@ import realmrelay.game.net.impl.MessageCenter;
 import realmrelay.game.objects.*;
 import realmrelay.game.parameters.Parameters;
 import realmrelay.game.pets.controller.PetFeedResultSignal;
+import realmrelay.game.pets.data.PetsModel;
 import realmrelay.game.signals.AddSpeechBalloonSignal;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;
 import realmrelay.game.sound.SoundEffectLibrary;
 import realmrelay.game.ui.model.Key;
 import realmrelay.game.ui.signals.ShowKeySignal;
+import realmrelay.game.ui.signals.ShowKeyUISignal;
 import realmrelay.game.ui.signals.UpdateBackpackTabSignal;
 import realmrelay.game.ui.view.NotEnoughFameDialog;
 import realmrelay.game.ui.view.NotEnoughGoldDialog;
+import realmrelay.game.util.ConditionEffect;
 import realmrelay.game.util.Currency;
 import realmrelay.game.util.TextKey;
 import realmrelay.packets.data.unused.BitmapData;
 
-import java.awt.*;
 import java.security.interfaces.RSAKey;
 import java.util.List;
 import java.util.Random;
@@ -516,7 +520,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	{
 		int itemId = itemOwner.equipment[slotId];
 		XML objectXML = ObjectLibrary.xmlLibrary.get(itemId);
-		if (objectXML && !itemOwner.isPaused()
+		if ((objectXML != null) && !itemOwner.isPaused()
 				&& (objectXML.hasOwnProperty("Consumable") || objectXML.hasOwnProperty("InvUse"))) {
 			this.applyUseItem(itemOwner, slotId, itemId, objectXML);
 			SoundEffectLibrary.play("use_potion");
@@ -526,9 +530,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		return false;
 	}
 
-	private void applyUseItem(GameObject owner, int slotId, int objectType, XML itemData)
-
-	{
+	private void applyUseItem(GameObject owner, int slotId, int objectType, XML itemData) {
 		UseItem useItemMess = (UseItem) this.messages.require(USEITEM);
 		useItemMess.time = getTimer();
 		useItemMess.slotObject.objectId = owner.objectId;
@@ -556,7 +558,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		int i = 0;
 		float x = -1;
 		float y = -1;
-		if (player && !player.isPaused()) {
+		if (player != null && !player.isPaused()) {
 			x = player.x;
 			y = player.y;
 		}
@@ -587,9 +589,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.serverConnection.sendMessage(teleport);
 	}
 
-	public void usePortal(int objectId)
-
-	{
+	public void usePortal(int objectId) {
 		UsePortal usePortalMess = (UsePortal) this.messages.require(USEPORTAL);
 		usePortalMess.objectId = objectId;
 		this.serverConnection.sendMessage(usePortalMess);
@@ -738,19 +738,18 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onDamage(Damage damage)
-
 	{
 		int projId = 0;
-		Map map = this.gs.map;
+		Map map = (Map) this.gs.map;
 		Projectile proj = null;
 		if (damage.objectId >= 0 && damage.bulletId > 0) {
 			projId = Projectile.findObjId(damage.objectId, damage.bulletId);
-			proj = map.boDict[projId] as Projectile;
+			proj = (Projectile) map.boDict.get(projId);
 			if (proj != null && !proj.projProps.multiHit) {
 				map.removeObj(projId);
 			}
 		}
-		GameObject target = map.goDict[damage.targetId];
+		GameObject target = map.goDict.get(damage.targetId);
 		if (target != null) {
 			target.damage(-1, damage.damageAmount, damage.effects, damage.kill, proj);
 		}
@@ -780,7 +779,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		if (owner == null || owner.dead) {
 			return;
 		}
-		Projectile proj = (Projectile) FreeList.newObject(Projectile);
+		Projectile proj = new Projectile();
 		proj.reset(allyShoot.containerType, 0, allyShoot.ownerId, allyShoot.bulletId, allyShoot.angle,
 				this.gs.lastUpdate);
 		this.gs.map.addObj(proj, owner.x, owner.y);
@@ -812,7 +811,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.addTextLine.dispatch(ChatMessage.make("", tradeRequested.name + " wants to "
 				+ "trade with you.  Type \"/trade " + tradeRequested.name + "\" to trade."));
 
-
 	}
 
 	private void onTradeStart(TradeStart tradeStart) {
@@ -833,7 +831,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void addObject(ObjectData obj) {
-		Map map = this.gs.map;
+		Map map = (Map) this.gs.map;
 		GameObject go = ObjectLibrary.getObjectFromType(obj.objectType);
 		if (go == null) {
 			return;
@@ -896,19 +894,19 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private void onGlobalNotification(GlobalNotification notification) {
 		switch (notification.text) {
 			case "yellow":
-				ShowKeySignal.instance.dispatch(Key.YELLOW);
+				ShowKeySignal.getInstance().dispatch(Key.YELLOW);
 				break;
 			case "red":
-				ShowKeySignal.instance.dispatch(Key.RED);
+				ShowKeySignal.getInstance().dispatch(Key.RED);
 				break;
 			case "green":
-				ShowKeySignal.instance.dispatch(Key.GREEN);
+				ShowKeySignal.getInstance().dispatch(Key.GREEN);
 				break;
 			case "purple":
-				ShowKeySignal.instance.dispatch(Key.PURPLE);
+				ShowKeySignal.getInstance().dispatch(Key.PURPLE);
 				break;
 			case "showKeyUI":
-				ShowKeyUISignal.instance.dispatch();
+				ShowKeyUISignal.getInstance().dispatch();
 				break;
 			case "giftChestOccupied":
 				this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_GIFT);
@@ -995,7 +993,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 					player.wisdom = value;
 					continue;
 				case StatData.CONDITION_STAT:
-					go.condition = value;
+					go.condition[ConditionEffect.CE_FIRST_BATCH] = value;
 					continue;
 				case StatData.INVENTORY_0_STAT:
 				case StatData.INVENTORY_1_STAT:
@@ -1021,10 +1019,10 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 					}
 					continue;
 				case StatData.TEX1_STAT:
-					go.setTex1(value);
+					go.setTexture(value);
 					continue;
 				case StatData.TEX2_STAT:
-					go.setTex2(value);
+					go.setAltTexture(value);
 					continue;
 				case StatData.MERCHANDISE_TYPE_STAT:
 					merchant.setMerchandiseType(value);
@@ -1337,11 +1335,11 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onAccountList(AccountList accountList) {
 		/**if (accountList.accountListId == 0) {
-			this.gs.map.party.setStars(accountList);
-		}
-		if (accountList.accountListId == 1) {
-			this.gs.map.party.setIgnores(accountList);
-		}*/
+		 this.gs.map.party.setStars(accountList);
+		 }
+		 if (accountList.accountListId == 1) {
+		 this.gs.map.party.setIgnores(accountList);
+		 }*/
 	}
 
 	private void onQuestObjId(QuestObjId questObjId) {
@@ -1422,7 +1420,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void retry(int time) {
-		this.retryTimer = new Timer(time * 1000, 1);
+		this.retryTimer = new Timer(time * 1000);
 		this.retryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, this::onRetryTimer);
 		this.retryTimer.start();
 	}

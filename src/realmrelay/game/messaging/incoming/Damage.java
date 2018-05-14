@@ -11,13 +11,13 @@ public class Damage extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int targetId;
-	private int[] effects = new int[0];
-	private int damageAmount;
-	private boolean kill;
-	private boolean armorPierce;
-	private int bulletId;
-	private int objectId;
+	public int targetId;
+	public int[] effects = new int[0];
+	public int damageAmount;
+	public boolean kill;
+	public boolean armorPierce;
+	public int bulletId;
+	public int objectId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -1,23 +1,27 @@
 package realmrelay.game.objects;
 
+import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
+import realmrelay.game.Point;
 import realmrelay.game.XML;
+import realmrelay.game.map.Map;
+import realmrelay.game.messaging.data.WorldPosData;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.objects.animation.Animations;
 import realmrelay.game.particles.ParticleEffect;
-import realmrelay.game.util.ConversionUtil;
+import realmrelay.game.util.*;
 import realmrelay.packets.data.unused.BitmapData;
 
-import java.awt.*;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 
 public class GameObject extends BasicObject {
 
-	/**protected static ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-	protected static ColorMatrixFilter CURSED_FILTER = new ColorMatrixFilter(MoreColorUtil.redFilterMatrix);
-	protected static Matrix IDENTITY_MATRIX = new Matrix();*/
+	/**
+	 * protected static ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
+	 * protected static ColorMatrixFilter CURSED_FILTER = new ColorMatrixFilter(MoreColorUtil.redFilterMatrix);
+	 * protected static Matrix IDENTITY_MATRIX = new Matrix();
+	 */
 
 	private static float ZERO_LIMIT = 0.00001F;
 	private static float NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
@@ -158,10 +162,628 @@ public class GameObject extends BasicObject {
 	public boolean jittery = false;
 	public boolean mobInfoShown = false;
 
+
+	public boolean isQuiet() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.QUIET_BIT) != 0;
+	}
+
+	public boolean isWeak() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.WEAK_BIT) != 0;
+	}
+
+	public boolean isSlowed() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.SLOWED_BIT) != 0;
+	}
+
+	public boolean isSick() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.SICK_BIT) != 0;
+	}
+
+	public boolean isDazed() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.DAZED_BIT) != 0;
+	}
+
+	public boolean isStunned() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.STUNNED_BIT) != 0;
+	}
+
+	public boolean isBlind() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.BLIND_BIT) != 0;
+	}
+
+	public boolean isDrunk() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.DRUNK_BIT) != 0;
+	}
+
+	public boolean isConfused() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.CONFUSED_BIT) != 0;
+	}
+
+	public boolean isStunImmune() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.STUN_IMMUNE_BIT) != 0 || this.isStunImmune;
+	}
+
+	public boolean isInvisible() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.INVISIBLE_BIT) != 0;
+	}
+
+	public boolean isParalyzed() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.PARALYZED_BIT) != 0;
+	}
+
+	public boolean isSpeedy() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.SPEEDY_BIT) != 0;
+	}
+
+	public boolean isNinjaSpeedy() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.NINJA_SPEEDY_BIT) != 0;
+	}
+
+	public boolean isHallucinating() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.HALLUCINATING_BIT) != 0;
+	}
+
+	public boolean isHealing() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.HEALING_BIT) != 0;
+	}
+
+	public boolean isDamaging() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.DAMAGING_BIT) != 0;
+	}
+
+	public boolean isBerserk() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.BERSERK_BIT) != 0;
+	}
+
+	public boolean isPaused() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.PAUSED_BIT) != 0;
+	}
+
+	public boolean isStasis() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.STASIS_BIT) != 0;
+	}
+
+	public boolean isStasisImmune() {
+		return this.isStasisImmune || (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.STASIS_IMMUNE_BIT) != 0;
+	}
+
+	public boolean isInvincible() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.INVINCIBLE_BIT) != 0;
+	}
+
+	public boolean isInvulnerable() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.INVULNERABLE_BIT) != 0;
+	}
+
+	public boolean isArmored() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.ARMORED_BIT) != 0;
+	}
+
+	public boolean isArmorBroken() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.ARMORBROKEN_BIT) != 0;
+	}
+
+	public boolean isArmorBrokenImmune() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.ARMORBROKEN_IMMUNE_BIT) != 0;
+	}
+
+	public boolean isSlowedImmune() {
+		return (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.SLOWED_IMMUNE_BIT) != 0;
+	}
+
+	public boolean isUnstable() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.UNSTABLE_BIT) != 0;
+	}
+
+	public boolean isShowPetEffectIcon() {
+		return (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.PET_EFFECT_ICON) != 0;
+	}
+
+	public boolean isDarkness() {
+		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.DARKNESS_BIT) != 0;
+	}
+
+	public boolean isParalyzeImmune() {
+		return this.isParalyzeImmune || (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.PARALYZED_IMMUNE_BIT) != 0;
+	}
+
+	public boolean isDazedImmune() {
+		return this.isDazedImmune || (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.DAZED_IMMUNE_BIT) != 0;
+	}
+
+	public boolean isPetrified() {
+		return (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.PETRIFIED_BIT) != 0;
+	}
+
+	public boolean isPetrifiedImmune() {
+		return (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.PETRIFIED_IMMUNE_BIT) != 0;
+	}
+
+	public boolean isCursed() {
+		return (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.CURSE_BIT) != 0;
+	}
+
+	public boolean isCursedImmune() {
+		return (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.CURSE_IMMUNE_BIT) != 0;
+	}
+
+	public boolean isSilenced() {
+		return (this.condition[ConditionEffect.CE_SECOND_BATCH] & ConditionEffect.SILENCED_BIT) != 0;
+	}
+
+	
+
+	public String getName() {
+		return this.name == null || this.name.equals("") ? ObjectLibrary.typeToDisplayId.get(this.objectType) : this.name;
+	}
+
+	public int getColor() {
+		return BitmapUtil.mostCommonColor(this.texture);
+	}
+
+	public int getBulletId() {
+		int ret = this.nextBulletId;
+		this.nextBulletId = (this.nextBulletId + 1) % 128;
+		return ret;
+	}
+
+	public float distTo(WorldPosData pos) {
+		float dx = pos.x - x;
+		float dy = pos.y - y;
+		return (float) Math.sqrt(dx * dx + dy * dy);
+	}
+
+	@Override
+
+	public boolean addTo(Map map, float x, float y) {
+		map = map;
+		this.posAtTick.x = this.tickPosition.x = x;
+		this.posAtTick.y = this.tickPosition.y = y;
+		if (!this.moveTo(x, y)) {
+			map = null;
+			return false;
+		}
+		if (this.effect != null) {
+			map.addObj(this.effect_, x, y);
+		}
+		return true;
+	}
+
+	@Override
+
+	public void removeFromMap() {
+		if (this.props.static && square != null) {
+			if (square.obj == this) {
+				square.obj = null;
+			}
+			square = null;
+		}
+		if (this.effect != null) {
+			map.removeObj(this.effect.objectId_);
+		}
+		super.removeFromMap();
+		this.dispose();
+	}
+
+	public boolean moveTo(float x, float y) {
+		Square square = map.getSquare(x, y);
+		if (square == null) {
+			return false;
+		}
+		x = x;
+		y = y;
+		if (this.props.static_) {
+			if (square != null) {
+				square.obj = null;
+			}
+			square.obj = this;
+		}
+		square = square;
+		if (this.obj3D != null) {
+			this.obj3D.setPosition(x_, y_, 0, this.props.rotation_);
+		}
+		return true;
+	}
+
+	@Override
+
+	public boolean update(int time, int dt) {
+		int tickDT = 0;
+		float pX = NaN;
+		float pY = NaN;
+		boolean moving = false;
+		if (!(this.moveVec.x == 0 && this.moveVec.y == 0)) {
+			if (this.myLastTickId < map.gs.gsc.lastTickId_) {
+				this.moveVec.x = 0;
+				this.moveVec.y = 0;
+				this.moveTo(this.tickPosition.x, this.tickPosition.y);
+			} else {
+				tickDT = time - this.lastTickUpdateTime;
+				pX = this.posAtTick.x + tickDT * this.moveVec.x;
+				pY = this.posAtTick.y + tickDT * this.moveVec.y;
+				this.moveTo(pX, pY);
+				moving = true;
+			}
+		}
+		if (this.props.whileMoving != null) {
+			if (!moving) {
+				z = this.props.z;
+				this.flying = this.props.flying;
+			} else {
+				z = this.props.whileMoving.z;
+				this.flying = this.props.whileMoving.flying;
+			}
+		}
+		return true;
+	}
+
+	public void onGoto(float x, float y, int time) {
+		this.moveTo(x, y);
+		this.lastTickUpdateTime = time;
+		this.tickPosition.x = x;
+		this.tickPosition.y = y;
+		this.posAtTick.x = x;
+		this.posAtTick.y = y;
+		this.moveVec.x = 0;
+		this.moveVec.y = 0;
+	}
+
+	public void onTickPos(float x, float y, int tickTime, int tickId) {
+		if (this.myLastTickId < map.gs.gsc.lastTickId_) {
+			this.moveTo(this.tickPosition.x, this.tickPosition.y);
+		}
+		this.lastTickUpdateTime = map.gs.lastUpdate;
+		this.tickPosition.x = x;
+		this.tickPosition.y = y;
+		this.posAtTick.x = x;
+		this.posAtTick.y = y;
+		this.moveVec.x = (this.tickPosition.x - this.posAtTick.x) / tickTime;
+		this.moveVec.y = (this.tickPosition.y - this.posAtTick.y) / tickTime;
+		this.myLastTickId = tickId;
+	}
+
+	public void damage(int origType, int damageAmount, int[] effects, boolean kill, Projectile proj) {
+		int offsetTime = 0;
+		int conditionEffect = 0;
+		ConditionEffect ce = null;
+		boolean pierced = false;
+		if (kill) {
+			this.dead = true;
+		} else if (effects != null) {
+			offsetTime = 0;
+			for (conditionEffect in effects) {
+				ce = null;
+				switch (conditionEffect) {
+					case ConditionEffect.NOTHING:
+						break;
+					case ConditionEffect.QUIET:
+					case ConditionEffect.WEAK:
+					case ConditionEffect.SLOWED:
+					case ConditionEffect.SICK:
+					case ConditionEffect.DAZED:
+					case ConditionEffect.BLIND:
+					case ConditionEffect.HALLUCINATING:
+					case ConditionEffect.DRUNK:
+					case ConditionEffect.CONFUSED:
+					case ConditionEffect.STUN_IMMUNE:
+					case ConditionEffect.INVISIBLE:
+					case ConditionEffect.PARALYZED:
+					case ConditionEffect.SPEEDY:
+					case ConditionEffect.BLEEDING:
+					case ConditionEffect.STASIS:
+					case ConditionEffect.STASIS_IMMUNE:
+					case ConditionEffect.ARMORBROKEN:
+					case ConditionEffect.NINJA_SPEEDY:
+						ce = ConditionEffect.effects_[conditionEffect];
+						break;
+					case ConditionEffect.STUNNED:
+						if (this.isStunImmune()) {
+							map.mapOverlay.addStatusText(new CharacterStatusText(this, "Immune", 16711680, 3000));
+						} else {
+							ce = ConditionEffect.effects_[conditionEffect];
+						}
+				}
+				if (ce != null) {
+					if ((this.condition | ce.bit_) != this.condition_) {
+						this.condition = this.condition | ce.bit;
+						map.mapOverlay.addStatusText(new CharacterStatusText(this, ce.name_, 16711680, 3000, offsetTime));
+						offsetTime = offsetTime + 500;
+					}
+				}
+			}
+		}
+		List<int> colors = BloodComposition.getBloodComposition(this.objectType_, this.texture_, this.props.bloodProb_, this.props.bloodColor_);
+		if (this.dead_) {
+			map.addObj(new ExplosionEffect(colors, this.size_, 30), x_, y_);
+		} else if (proj != null) {
+			map.addObj(new HitEffect(colors, this.size_, 10, proj.angle_, proj.projProps.speed_), x_, y_);
+		} else {
+			map.addObj(new ExplosionEffect(colors, this.size_, 10), x_, y_);
+		}
+		if (damageAmount > 0) {
+			pierced = this.isArmorBroken() || proj != null && proj.projProps.armorPiercing;
+			map.mapOverlay.addStatusText(new CharacterStatusText(this, "-" + damageAmount, !!pierced ? int(9437439) : int
+			(16711680), 1000));
+		}
+	}
+
+	protected SimpleText generateNameText(String name) {
+		SimpleText nameText = new SimpleText(16, 16777215, false, 0, 0, "Myriad Pro");
+		nameText.setBold(true);
+		nameText.text = name;
+		nameText.updateMetrics();
+		return nameText;
+	}
+
+	protected BitmapData generateNameBitmapData(SimpleText nameText) {
+		BitmapData nameBitmapData = new BitmapData(nameText.width, 64, true, 0);
+		nameBitmapData.draw(nameText, null);
+		nameBitmapData.applyFilter(nameBitmapData, nameBitmapData.rect, PointUtil.ORIGIN, new GlowFilter(0, 1, 3, 3, 2, 1));
+		return nameBitmapData;
+	}
+
+	public void drawName(List<IGraphicsData> graphicsData, Camera camera) {
+		if (this.nameBitmapData == null) {
+			this.nameText = this.generateNameText(this.name_);
+			this.nameBitmapData = this.generateNameBitmapData(this.nameText_);
+			this.nameFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
+			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<float>());
+		}
+		int w = this.nameBitmapData.width / 2 + 1;
+		int h = 30;
+		List<float> nameVSs = this.namePath.data;
+		nameVSs.length = 0;
+		nameVSs.add(posS_[0] - w, posS_[1], posS_[0] + w, posS_[1], posS_[0] + w, posS_[1] + h, posS_[0] - w, posS_[1] + h);
+		this.nameFill.bitmapData = this.nameBitmapData;
+		Matrix m = this.nameFill.matrix;
+		m.identity();
+		m.translate(nameVSs[0], nameVSs[1]);
+		graphicsData.add(this.nameFill_);
+		graphicsData.add(this.namePath_);
+		graphicsData.add(GraphicsUtil.END_FILL);
+	}
+
+	protected BitmapData getHallucinatingTexture() {
+		if (this.hallucinatingTexture == null) {
+			this.hallucinatingTexture = AssetLibrary.getImageFromSet("lofiChar8x8", int(Math.random() * 239));
+		}
+		return this.hallucinatingTexture;
+	}
+
+	protected BitmapData getTexture(Camera camera, int time) {
+		float p = NaN;
+		int action = 0;
+		MaskedImage image = null;
+		int walkPer = 0;
+		BitmapData animTexture = null;
+		int w = 0;
+		BitmapData newTexture = null;
+		BitmapData texture = this.texture;
+		int size = this.size;
+		BitmapData mask = null;
+		if (this.animatedChar != null) {
+			p = 0;
+			action = AnimatedChar.STAND;
+			if (time < this.attackStart + ATTACK_PERIOD) {
+				if (!this.props.dontFaceAttacks_) {
+					this.facing = this.attackAngle;
+				}
+				p = (time - this.attackStart_) % ATTACK_PERIOD / ATTACK_PERIOD;
+				action = AnimatedChar.ATTACK;
+			} else if (this.moveVec.x != 0 || this.moveVec.y != 0) {
+				walkPer = 0.5 / this.moveVec.length;
+				walkPer = walkPer + (400 - walkPer % 400);
+				if (this.moveVec.x > ZERO_LIMIT || this.moveVec.x < NEGATIVE_ZERO_LIMIT || this.moveVec.y > ZERO_LIMIT || this.moveVec.y < NEGATIVE_ZERO_LIMIT) {
+					this.facing = Math.atan2(this.moveVec.y, this.moveVec.x);
+					action = AnimatedChar.WALK;
+				} else {
+					action = AnimatedChar.STAND;
+				}
+				p = time % walkPer / walkPer;
+			}
+			image = this.animatedChar.imageFromFacing(this.facing_, camera, action, p);
+			texture = image.image;
+			mask = image.mask;
+		} else if (this.animations != null) {
+			animTexture = this.animations.getTexture(time);
+			if (animTexture != null) {
+				texture = animTexture;
+			}
+		}
+		if (this.props.drawOnGround || this.obj3D != null) {
+			return texture;
+		}
+		if (camera.isHallucinating_) {
+			w = texture == null ? int(8) : int(texture.width);
+			texture = this.getHallucinatingTexture();
+			mask = null;
+			size = this.size * Math.min(1.5, w / texture.width);
+		}
+		if (this.isStasis()) {
+			texture = CachingColorTransformer.filterBitmapData(texture, PAUSED_FILTER);
+		}
+		if (this.flash != null) {
+			if (!this.flash.doneAt(time)) {
+				texture = this.flash.apply(texture, time);
+			} else {
+				this.flash = null;
+			}
+		}
+		if (this.tex1Id == 0 && this.tex2Id == 0) {
+			texture = TextureRedrawer.redraw(texture, size, false, 0, 0);
+		} else {
+			newTexture = null;
+			if (this.texturingCache == null) {
+				this.texturingCache = new Dictionary();
+			} else {
+				newTexture = this.texturingCache_[texture];
+			}
+			if (newTexture == null) {
+				newTexture = TextureRedrawer.resize(texture, mask, size, false, this.tex1Id_, this.tex2Id_);
+				newTexture = TextureRedrawer.outlineGlow(newTexture, 0, 0);
+				this.texturingCache_[texture] = newTexture;
+			}
+			texture = newTexture;
+		}
+		return texture;
+	}
+
+	public void useAltTexture(String file, int index) {
+		this.texture = AssetLibrary.getImageFromSet(file, index);
+		this.sizeMult = this.texture.height / 8;
+	}
+
+	public BitmapData getPortrait() {
+		BitmapData portraitTexture = null;
+		int size = 0;
+		if (this.portrait == null) {
+			portraitTexture = this.props.portrait != null ? this.props.portrait.getTexture() : this.texture;
+			size = 4 / portraitTexture.width * 100;
+			this.portrait = TextureRedrawer.resize(portraitTexture, this.mask_, size, true, this.tex1Id_, this.tex2Id_);
+			this.portrait = TextureRedrawer.outlineGlow(this.portrait_, 0, 0);
+		}
+		return this.portrait;
+	}
+
+	public void setAttack(int containerType, float attackAngle) {
+		this.attackAngle = attackAngle;
+		this.attackStart = getTimer();
+	}
+
+	@Override
+
+	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
+		BitmapData texture = this.getTexture(camera, time);
+		if (this.props.drawOnGround_) {
+			if (square.faces.length == 0) {
+				return;
+			}
+			this.path.data = square.faces_[0].face.vout;
+			this.bitmapFill.bitmapData = texture;
+			square.baseTexMatrix.calculateTextureMatrix(this.path.data);
+			this.bitmapFill.matrix = square.baseTexMatrix.tToS;
+			graphicsData.add(this.bitmapFill_);
+			graphicsData.add(this.path_);
+			graphicsData.add(GraphicsUtil.END_FILL);
+			return;
+		}
+		if (this.obj3D != null) {
+			this.obj3D.draw(graphicsData, camera, this.props.color_, texture);
+			return;
+		}
+		int w = texture.width;
+		int h = texture.height;
+		int h2 = square.sink + this.sinkLevel;
+		if (h2 > 0 && (this.flying || square.obj != null && square.obj.props.protectFromSink_)) {
+			h2 = 0;
+		}
+		this.vS.length = 0;
+		this.vS.add(posS_[3] - w / 2, posS_[4] - h + h2, posS_[3] + w / 2, posS_[4] - h + h2, posS_[3] + w / 2, posS_[4], posS_[3] - w / 2, posS_[4]);
+		this.path.data = this.vS;
+		this.bitmapFill.bitmapData = texture;
+		this.fillMatrix.identity();
+		this.fillMatrix.translate(this.vS_[0], this.vS_[1]);
+		this.bitmapFill.matrix = this.fillMatrix;
+		graphicsData.add(this.bitmapFill_);
+		graphicsData.add(this.path_);
+		graphicsData.add(GraphicsUtil.END_FILL);
+		if (!this.isPaused() && this.condition && !Parameters.screenShotMode_) {
+			this.drawConditionIcons(graphicsData, camera, time);
+		}
+		if (this.props.showName && this.name != null && this.name.length != 0) {
+			this.drawName(graphicsData, camera);
+		}
+	}
+
+	public void drawConditionIcons(List<IGraphicsData> graphicsData, Camera camera, int time) {
+		BitmapData icon = null;
+		GraphicsBitmapFill fill = null;
+		GraphicsPath path = null;
+		float x = NaN;
+		float y = NaN;
+		Matrix m = null;
+		if (this.icons == null) {
+			this.icons = new List<BitmapData>();
+			this.iconFills = new List<GraphicsBitmapFill>();
+			this.iconPaths = new List<GraphicsPath>();
+		}
+		this.icons.length = 0;
+		int index = time / 500;
+		ConditionEffect.getConditionEffectIcons(this.condition_, this.icons_, index);
+		float centerX = posS_[3];
+		float centerY = this.vS_[1];
+		int len = this.icons.length;
+		for (var i : int =0;
+		i<len ;
+		i++){
+			icon = this.icons_[i];
+			if (i >= this.iconFills.length) {
+				this.iconFills.add(new GraphicsBitmapFill(null, new Matrix(), false, false));
+				this.iconPaths.add(new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<float>()));
+			}
+			fill = this.iconFills_[i];
+			path = this.iconPaths_[i];
+			fill.bitmapData = icon;
+			x = centerX - icon.width * len / 2 + i * icon.width;
+			y = centerY - icon.height / 2;
+			path.data.length = 0;
+			path.data.add(x, y, x + icon.width, y, x + icon.width, y + icon.height, x, y + icon.height);
+			m = fill.matrix;
+			m.identity();
+			m.translate(x, y);
+			graphicsData.add(fill);
+			graphicsData.add(path);
+			graphicsData.add(GraphicsUtil.END_FILL);
+		}
+	}
+
+	@Override
+	public void drawShadow(List<IGraphicsData> graphicsData, Camera camera, int time) {
+		if (this.shadowGradientFill == null) {
+			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[this.props.shadowColor_, this.props.shadowColor_], [
+			0.5, 0],null, new Matrix());
+			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<float>());
+		}
+		float s = this.size / 100 * (this.props.shadowSize / 100) * this.sizeMult;
+		float w = 30 * s;
+		float h = 15 * s;
+		this.shadowGradientFill.matrix.createGradientBox(w * 2, h * 2, 0, posS_[0] - w, posS_[1] - h);
+		graphicsData.add(this.shadowGradientFill_);
+		this.shadowPath.data.length = 0;
+		this.shadowPath.data.add(posS_[0] - w, posS_[1] - h, posS_[0] + w, posS_[1] - h, posS_[0] + w, posS_[1] + h, posS_[0] - w, posS_[1] + h);
+		graphicsData.add(this.shadowPath_);
+		graphicsData.add(GraphicsUtil.END_FILL);
+	}
+
+	public String toString() {
+		return "[" + getQualifiedClassName(this) + "  id;
+	}
+
+
+	public boolean isSafe() {
+		return isSafe(20);
+	}
+
+	public boolean isSafe(int param1) {
+		int loc3 = 0;
+		int loc4 = 0;
+		for (GameObject loc2 : map.goDict.values()) {
+			if ((loc2 instanceof Character) && loc2.props.isEnemy) {
+				loc3 = (int) (x > loc2.x ? x - loc2.x : loc2.x - x);
+				loc4 = (int) (y > loc2.y ? y - loc2.y : loc2.y - y);
+				if (loc3 < param1 && loc4 < param1) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+
 	/**
 	 * Main dye
 	 */
-	public void setTex1(int param1) {
+	public void setTexture(int param1) {
 		if (param1 == this.tex1Id) {
 			return;
 		}
@@ -173,7 +795,7 @@ public class GameObject extends BasicObject {
 	/*
 	Secondary dye
 	 */
-	public void setTex2(int param1) {
+	public void setAltTexture(int param1) {
 		if (param1 == this.tex2Id) {
 			return;
 		}

@@ -14,6 +14,16 @@ import java.util.Map;
 // This is a 100% match, except maybe for the getInstance() [Inject]
 public class PetsModel {
 
+	public PetsModel instance;
+
+	public PetsModel getInstance() {
+		if (instance == null) {
+			instance = new PetsModel();
+		}
+		return instance;
+	}
+
+
 	public NotifyActivePetUpdated notifyActivePetUpdated = NotifyActivePetUpdated.getInstance();
 
 	public PlayerModel playerModel = PlayerModel.getInstance();

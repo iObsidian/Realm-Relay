@@ -6,7 +6,7 @@ import realmrelay.game.chat.model.ChatMessage;
 
 public class AddTextLineSignal extends DeferredQueueSignal<ChatMessage> {
 
-	static AddTextLineSignal instance;
+	private static AddTextLineSignal instance;
 
 	public static AddTextLineSignal getInstance() {
 		if (instance == null) {

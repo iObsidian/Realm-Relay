@@ -11,10 +11,10 @@ public class AllyShoot extends IncomingMessage {
 		super(id, callback);
 	}
 
-	private int bulletId;
+	public int bulletId;
 	public int ownerId;
-	private short containerType;
-	private float angle;
+	public short containerType;
+	public float angle;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
