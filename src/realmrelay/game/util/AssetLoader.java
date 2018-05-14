@@ -3,13 +3,14 @@ package realmrelay.game.util;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import realmrelay.game.WebMain;
 import realmrelay.game.XML;
 import realmrelay.game.map.GroundLibrary;
+import realmrelay.game.map.RegionLibrary;
 import realmrelay.game.objects.ObjectLibrary;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.parameters.Parameters;
+import realmrelay.game.particles.ParticleLibrary;
 import realmrelay.game.sound.IMusic;
 import realmrelay.game.sound.SFX;
 import realmrelay.game.sound.SoundEffectLibrary;
@@ -19,11 +20,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AssetLoader {
 
 	public static boolean currentXmlIsTesting = false;
+
 	public IMusic music;
 
 	public AssetLoader() {
@@ -34,11 +37,11 @@ public class AssetLoader {
 		this.addImages();
 		this.addAnimatedCharacters();
 		this.addSoundEffects();
-		//this.parse3DModels();
-		//this.parseParticleEffects();
+		this.parse3DModels();
+		this.parseParticleEffects();
 		this.parseGroundFiles();
 		this.parseObjectFiles();
-		//this.parseRegionFiles();
+		this.parseRegionFiles();
 		Parameters.load();
 		Options.refreshCursor();
 		this.music.load();
@@ -150,26 +153,26 @@ public class AssetLoader {
 		AnimatedChars.add("petsDivine", "petsDivineEmbed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 		AnimatedChars.add("playerskins16", "playersSkins16Embed_", "playersSkins16MaskEmbed_", 16, 16, 112, 48, AnimatedChar.RIGHT);
 		AnimatedChars.add("d1chars16x16r", "d1Chars16x16rEmbed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
-		AnimatedChars.add("parasiteDenChars8x8","parasiteDenChars8x8Embed_",null,8,8,56,8,AnimatedChar.RIGHT);
-		AnimatedChars.add("parasiteDenChars16x16","parasiteDenChars16x16Embed_",null,16,16,112,16,AnimatedChar.RIGHT);
+		AnimatedChars.add("parasiteDenChars8x8", "parasiteDenChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
+		AnimatedChars.add("parasiteDenChars16x16", "parasiteDenChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 		AnimatedChars.add("stPatricksChars8x8", "stPatricksChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
 		AnimatedChars.add("stPatricksChars16x16", "stPatricksChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 		AnimatedChars.add("buffedBunnyChars16x16", "buffedBunnyChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 		AnimatedChars.add("mountainTempleChars8x8", "mountainTempleChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
 		AnimatedChars.add("mountainTempleChars16x16", "mountainTempleChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
-		AnimatedChars.add("oryxHordeChars8x8","oryxHordeChars8x8Embed_",null,8,8,56,8,AnimatedChar.RIGHT);
-		AnimatedChars.add("oryxHordeChars16x16","oryxHordeChars16x16Embed_",null,16,16,112,16,AnimatedChar.RIGHT);
-		AnimatedChars.add("santaWorkshopChars8x8","santaWorkshopChars8x8Embed_",null,8,8,56,8,AnimatedChar.RIGHT);
-		AnimatedChars.add("santaWorkshopChars16x16","santaWorkshopChars16x16Embed_",null,16,16,112,16,AnimatedChar.RIGHT);
+		AnimatedChars.add("oryxHordeChars8x8", "oryxHordeChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
+		AnimatedChars.add("oryxHordeChars16x16", "oryxHordeChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
+		AnimatedChars.add("santaWorkshopChars8x8", "santaWorkshopChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
+		AnimatedChars.add("santaWorkshopChars16x16", "santaWorkshopChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 		AnimatedChars.add("Hanami8x8chars", "Hanami8x8charsEmbed_", null, 8, 8, 64, 8, AnimatedChar.RIGHT);
 		AnimatedChars.add("summerNexusChars8x8", "summerNexusChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
 		AnimatedChars.add("summerNexusChars16x16", "summerNexusChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
-		AnimatedChars.add("autumnNexusChars16x16","autumnNexusChars16x16Embed_",null,16,16,112,16,AnimatedChar.RIGHT);
-		AnimatedChars.add("autumnNexusChars8x8","autumnNexusChars8x8Embed_",null,8,8,56,8,AnimatedChar.RIGHT);
+		AnimatedChars.add("autumnNexusChars16x16", "autumnNexusChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
+		AnimatedChars.add("autumnNexusChars8x8", "autumnNexusChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
 		AnimatedChars.add("epicHiveChars8x8", "epicHiveChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
 		AnimatedChars.add("epicHiveChars16x16", "epicHiveChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
-		AnimatedChars.add("lostHallsChars16x16","lostHallsChars16x16Embed_",null,16,16,112,16,AnimatedChar.RIGHT);
-		AnimatedChars.add("lostHallsChars8x8","lostHallsChars8x8Embed_",null,8,8,56,8,AnimatedChar.RIGHT);
+		AnimatedChars.add("lostHallsChars16x16", "lostHallsChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
+		AnimatedChars.add("lostHallsChars8x8", "lostHallsChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
 	}
 	//@formatter:on
 
@@ -186,30 +189,93 @@ public class AssetLoader {
 		SoundEffectLibrary.load("use_potion");
 	}
 
+	private void parse3DModels() {
+		/**for (Object object : EmbeddedData.models.values()) {
+		 //read file as byte[]
+		 }*/
+	}
+
+	private void parseParticleEffects() {
+		ParticleLibrary.parseFromXML(EmbeddedData.particlesEmbed());
+	}
+
 	private void parseGroundFiles() {
 		GroundLibrary.parseFromXML(EmbeddedData.groundFiles());
 	}
 
 	private void parseObjectFiles() {
-		/*while (_loc1 < 25) {
-		    currentXmlIsTesting = this.checkIsTestingXML(EmbeddedData.objectFiles[_loc1]);
-		    ObjectLibrary.parseFromXML(XML(EmbeddedData.objectFiles[_loc1]));
-		    _loc1++;
-		}**/
-
-		for (XML x : EmbeddedData.objectFiles()) {
-			ObjectLibrary.parseDungeonXML(x.getAttribute("type"), x);
+		for (XML objectOBJ : EmbeddedData.objectFiles()) {
+			ObjectLibrary.parseDungeonXML(objectOBJ.getAttribute("type"), objectOBJ); //type attribute is a substitute for the class name
 		}
 
 		currentXmlIsTesting = false;
 	}
 
+	private void parseRegionFiles() {
+		for (XML loc1 : EmbeddedData.regionFiles()) {
+			RegionLibrary.parseFromXML(loc1);
+		}
+	}
+
+
 }
 
 /**
- * Utility class to represent Embeded assets (XML), images are loaded directly.
+ * Utility class to represent Embeded data (XML), images are loaded directly.
  */
 class EmbeddedData {
+
+	static HashMap<String, String> models = new HashMap<>();
+
+	static {
+		models.put("Monster Tank1", "monsterTank1Embed_");
+		models.put("Monster Tank2", "monsterTank2Embed_");
+		models.put("Monster Tank3", "monsterTank3Embed_");
+		models.put("Monster Tank4", "monsterTank4Embed_");
+		models.put("GasEmitter", "gasEmitter_");
+		models.put("Lab Tank", "labTankEmbed_");
+		models.put("Tesla", "teslaEmbed_");
+		models.put("CloningVat", "cloningVatEmbed_");
+		models.put("Crate", "crateEmbed_");
+		models.put("ThreeSideCube", "threeSideCubeEmbed_");
+		models.put("Squatty3Side", "squatty3Side_");
+		models.put("Cube", "cubeEmbed_");
+		models.put("Big Cube", "bigcubeEmbed_");
+		models.put("Ico", "icosahedronEmbed_");
+		models.put("Octa", "octahedronEmbed_");
+		models.put("Pyramid", "pyramidEmbed_");
+		models.put("Tetra", "tetrahedronEmbed_");
+		models.put("Dodec", "dodecahedronEmbed_");
+		models.put("Pillar", "pillarEmbed_");
+		models.put("Broken Pillar", "brokenPillarEmbed_");
+		models.put("Tower", "towerEmbed_");
+		models.put("Obelisk", "obeliskEmbed_");
+		models.put("Table", "tableEmbed_");
+		models.put("Table Edge", "tableEdgeEmbed_");
+		models.put("Sign", "signEmbed_");
+		models.put("Web", "webEmbed_");
+		models.put("Candy Col Broken", "candyColBrokenEmbed_");
+		models.put("Candy Col Whole", "candyColWholeEmbed_");
+		models.put("Column One and a Half", "columnOneAndHalfEmbed_");
+		models.put("Two High Wall", "twoHighWall_");
+		models.put("Candy Doughnut 1", "candyDoughnut1Embed_");
+		models.put("Candy Doughnut 2", "candyDoughnut2Embed_");
+		models.put("Candy Doughnut 3", "candyDoughnut3Embed_");
+		models.put("Candy Doughnut 4", "candyDoughnut4Embed_");
+		models.put("Gate", "newGateEmbed_");
+		models.put("Gate Entry", "newGateEntryEmbed_");
+		models.put("Gate Entry 2", "newGateEntry2Embed_");
+		models.put("Gate End 1", "newGateEnd1Embed_");
+		models.put("Gate End 2", "newGateEnd2Embed_");
+		models.put("Monument 1", "newMonument1Embed_");
+		models.put("Monument 2", "newMonument2Embed_");
+		models.put("Monument 3", "newMonument3Embed_");
+		models.put("Large Monument 1", "largeMonument1Embed_");
+		models.put("Large Monument 2", "largeMonument2Embed_");
+		models.put("Large Monument 3", "largeMonument3Embed_");
+		models.put("Jacko", "jackoEmbed_");
+		models.put("Pet Upgrader Obj", "petUpgrader_");
+	}
 
 	private static DocumentBuilderFactory dbFactory;
 	private static DocumentBuilder dBuilder;
@@ -228,6 +294,14 @@ class EmbeddedData {
 
 	public static List<XML> getAllItems() {
 		return getXMLs(getDocument("/xml/items.xml"), "Object");
+	}
+
+	public static List<XML> particlesEmbed() {
+		return getXMLs(getDocument("/xml/particles.xml"), "Particle");
+	}
+
+	public static List<XML> regionFiles() {
+		return getXMLs(getDocument("/xml/regions.xml"), "Region");
 	}
 
 	private static Document getDocument(String resourceFile) {
@@ -259,6 +333,7 @@ class EmbeddedData {
 		}
 	}
 
+	// TODO replace this with XML's GetChilds?
 	private static List<XML> getXMLs(Document doc, String elementTagName) {
 		NodeList node = doc.getElementsByTagName(elementTagName);
 

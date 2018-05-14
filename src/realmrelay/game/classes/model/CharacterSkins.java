@@ -1,5 +1,6 @@
 package realmrelay.game.classes.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -65,19 +66,19 @@ public class CharacterSkins {
 	}
 
 	public List<CharacterSkin> getListedSkins() {
-		List<CharacterSkin> _loc1 = new ArrayList<CharacterSkin>();
-		for (CharacterSkin _loc2 : this.skins) {
-			if (_loc2.getState() != CharacterSkinState.UNLISTED) {
-				_loc1.add(_loc2);
+		List<CharacterSkin> availableSkins = new ArrayList<CharacterSkin>();
+		for (CharacterSkin skin : this.skins) {
+			if (skin.getState() != CharacterSkinState.UNLISTED) {
+				availableSkins.add(skin);
 			}
 		}
-		return _loc1;
+		return availableSkins;
 	}
 
-	private void  onSkinChanged(CharacterSkin param1)  {
-        if (param1.getIsSelected() && this.selectedSkin != param1) {
-            this.selectedSkin && this.selectedSkin.setIsSelected(false);
-            this.selectedSkin = param1;
+	private void  onSkinChanged(CharacterSkin skin)  {
+        if (skin.getIsSelected() && this.selectedSkin != skin) {
+            this.selectedSkin.setIsSelected(false);
+            this.selectedSkin = skin;
         }
     }
 

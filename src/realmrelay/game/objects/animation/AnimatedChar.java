@@ -146,7 +146,7 @@ public class AnimatedChar {
 		return dirDict;
 	}
 
-	public MaskedImage imageFromAngle(float angle, int action, float p) {
+	public MaskedImage imageFromDir(float angle, int action, float p) {
 		int sec = (int) (angle / PIOVER4 + 4 % 8);
 		int[] dirs = SEC_TO_DIRS[sec];
 		HashMap<Integer, List<MaskedImage>> actionDict = this.dict.get(dirs[0]);

@@ -36,6 +36,10 @@ public class TextureDataConcrete extends TextureData {
 			this.parse(param1.getChild("Mask"));
 		}
 		if (param1.hasOwnProperty("Effect")) {
+
+			for (XML x : param1.getChilds()) {
+				System.out.println(x.name());
+			}
 			this.parse(param1.getChild("Effect"));
 		}
 
@@ -70,7 +74,7 @@ public class TextureDataConcrete extends TextureData {
 		case "AnimatedTexture":
 			animatedChar = AnimatedChars.getAnimatedChar(xml.getValue("File"), xml.getIntValue("Index"));
 			try {
-				image = animatedChar.imageFromAngle(0, AnimatedChar.STAND, 0);
+				image = animatedChar.imageFromDir(0, AnimatedChar.STAND, 0);
 				texture = image.image;
 				mask = image.mask;
 			} catch (Exception e) {

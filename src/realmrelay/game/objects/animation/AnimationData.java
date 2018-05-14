@@ -17,10 +17,10 @@ public class AnimationData {
 			this.prob = xml.getIntAttribute("prob");
 		}
 
-		System.out.println(xml.getAttribute("periodJitter"));
-
-		this.period = (int) (xml.getFloatAttribute("period") * 1000);
-		this.periodJitter = (int) (xml.getIntAttribute("periodJitter") * 1000);
+		this.period = (int) (xml.getIntAttribute("period") * 1000);
+		
+		this.periodJitter = (int) (xml.getFloatAttribute("periodJitter") * 1000);
+		
 		this.sync = xml.getAttribute("sync").equalsIgnoreCase("true");
 		for (XML frameXML : xml.getChilds("Frame")) {
 			this.frames.add(new FrameData(frameXML));

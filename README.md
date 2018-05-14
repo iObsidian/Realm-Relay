@@ -3,6 +3,28 @@ TODO :
     Reorganise files to match client
 
 
+Vectors
+---------------
+
+   We try to use arrays as much as possible
+   
+   **AS3**
+
+	public static const STARS:Vector.<int> = new <int>[20, 150, 400, 800, 2000];
+
+   **Java**
+
+	public static final int[] STARS = new int[]{20, 150, 400, 800, 2000};
+
+
+Bitmap Handling
+---------
+
+   We use the non-native to Java class Bitmap (wrapper for BufferedImage)
+   
+   .width gets replaced with .width()
+   
+
 XML handling
 --------------
 
@@ -12,13 +34,23 @@ XML handling
 
    **AS3**
    
-    XML.Hello 
-    XML.@attr
+    XML.Element 
+    XML.@attribute
     
    **Java**
    
     XML.getValue("Element");
     XML.getAttribute("attribute");
+    
+   Getting child elements as XML objects
+   
+   **AS3**
+   
+    loc2 = XML(param1.Guild);
+    
+   **Java**
+   
+    param1.getChild("Guild");
 
    Take a look at XML.java for more XML-related tasks
    

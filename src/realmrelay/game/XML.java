@@ -1,10 +1,18 @@
 package realmrelay.game;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 import realmrelay.game.objects.animation.AnimationData;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +24,39 @@ public class XML {
 		this.element = el;
 	}
 
+	public XML(String data) {
+		Document doc = null;
+
+		try {
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			InputSource src = new InputSource();
+			src.setCharacterStream(new StringReader(data));
+
+			doc = builder.parse(src);
+		} catch (SAXException | IOException | ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+
+		if (doc != null) {
+			this.element = doc.getDocumentElement();
+		} else {
+			System.err.println("Could not build XML from String '" + data + "'.");
+		}
+	}
+
 	public String name() {
 		if (element.getTagName() == null) {
 			return element.getParentNode().getNodeName();
 		} else {
 			return element.getTagName();
 		}
+	}
+
+	/**
+	 * Can be a substitute to .name()
+	 */
+	public String getTextValue() {
+		return element.getTextContent();
 	}
 
 	public List<XML> getChilds(String name) {
@@ -62,7 +97,16 @@ public class XML {
 	}
 
 	public int getIntValue(String tag) {
-		return hexToInt(getValue(tag));
+		return getIntValue(tag, 0);
+	}
+
+	public int getIntValue(String tag, int defaultValue) {
+		try {
+			return hexToInt(getValue(tag));
+		} catch (Exception e) {
+			System.err.println(e.getMessage() + " with getting value " + tag + ", returning " + defaultValue + ".");
+			return defaultValue;
+		}
 	}
 
 	public float getFloatValue(String tag) {
@@ -81,11 +125,11 @@ public class XML {
 		try {
 			return hexToInt(getAttribute(name));
 		} catch (Exception e) {
-			System.err.println(e.getMessage() + " with " + name + ", returning " + defaultValue + ".");
+			System.err
+					.println(e.getMessage() + " with getting attribute " + name + ", returning " + defaultValue + ".");
 			return defaultValue;
 		}
 	}
-
 
 	public float getFloatAttribute(String name) {
 		return getFloatAttribute(name, 0);
@@ -104,11 +148,11 @@ public class XML {
 		try {
 			return Float.parseFloat(getAttribute(name));
 		} catch (Exception e) {
-			System.err.println(e.getMessage() + " with " + name + ", returning " + defaultValue + "F.");
+			System.err.println("Value : " + getAttribute(name) + " Error : " + e.getMessage() + " with " + name
+					+ ", returning " + defaultValue + "F.");
 			return defaultValue;
 		}
 	}
-
 
 	private static int hexToInt(String textContent) {
 		try {

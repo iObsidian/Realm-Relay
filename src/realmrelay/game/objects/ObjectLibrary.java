@@ -1,10 +1,5 @@
 package realmrelay.game.objects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import realmrelay.game.XML;
 import realmrelay.game.constants.GeneralConstants;
 import realmrelay.game.constants.ItemConstants;
@@ -14,11 +9,15 @@ import realmrelay.game.util.AssetLibrary;
 import realmrelay.game.util.ConversionUtil;
 import realmrelay.packets.data.unused.BitmapData;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * This is 80% complete
- *
+ * <p>
  * A lot of objects are missing and the makeClass() function isnt implemented.
- *
  */
 public class ObjectLibrary {
 
@@ -120,6 +119,8 @@ public class ObjectLibrary {
 				propsLibrary.get(objectType).belonedDungeon = currentDungeon;
 			}
 
+
+
 			if (objectXML.hasOwnProperty("Class") && objectXML.getValue("Class").equals("Player")) {
 				playerClassAbbr.put(objectType, objectXML.getAttribute("id").substring(0, 2));
 				boolean found = false;
@@ -135,13 +136,16 @@ public class ObjectLibrary {
 					playerChars.add(objectXML);
 				}
 			}
+			
+			if (objectXML.hasOwnProperty("Animation")) {
+				typeToAnimationsData.put(objectType, new AnimationsData(objectXML));
+			}
+			
 			typeToTextureData.put(objectType, textureDataFactory.create(objectXML));
 			if (objectXML.hasOwnProperty("Top")) {
 				typeToTopTextureData.put(objectType, textureDataFactory.create(objectXML.getChild("Top")));
 			}
-			if (objectXML.hasOwnProperty("Animation")) {
-				typeToAnimationsData.put(objectType, new AnimationsData(objectXML));
-			}
+
 		}
 
 	}
@@ -177,45 +181,46 @@ public class ObjectLibrary {
 		return xmlLibrary.get(objectType);
 	}
 
-	/**public static GameObject getObjectFromType(int param1) {
-	    XML objectXML = null;
-	    String typeReference = null;
-	    int objectType = param1;
-	
-	    objectXML = xmlLibrary.get(objectType);
-	    typeReference = objectXML.getValue("Class"); //try here
-	
-	
-	    Class object = (Class) TYPE_MAP.get(typeReference);
-	
-	    if (object == null) {
-	        makeClass(typeReference);
-	    }
-	
-	    //The following code is somewhat messy
-	
-	    object = (Class) TYPE_MAP.get(typeReference);
-	
-	    try {
-	        try {
-	            return (GameObject) Class.forName(object.getName()).getConstructor(XML.class).newInstance(objectXML);
-	        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-	            e.printStackTrace();
-	        }
-	    } catch (NoSuchMethodException | ClassNotFoundException e) {
-	        e.printStackTrace();
-	    }
-	
-	    return null;
-	
-	
-	}*/
+	/**
+	 * public static GameObject getObjectFromType(int param1) {
+	 * XML objectXML = null;
+	 * String typeReference = null;
+	 * int objectType = param1;
+	 * <p>
+	 * objectXML = xmlLibrary.get(objectType);
+	 * typeReference = objectXML.getValue("Class"); //try here
+	 * <p>
+	 * <p>
+	 * Class object = (Class) TYPE_MAP.get(typeReference);
+	 * <p>
+	 * if (object == null) {
+	 * makeClass(typeReference);
+	 * }
+	 * <p>
+	 * //The following code is somewhat messy
+	 * <p>
+	 * object = (Class) TYPE_MAP.get(typeReference);
+	 * <p>
+	 * try {
+	 * try {
+	 * return (GameObject) Class.forName(object.getName()).getConstructor(XML.class).newInstance(objectXML);
+	 * } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+	 * e.printStackTrace();
+	 * }
+	 * } catch (NoSuchMethodException | ClassNotFoundException e) {
+	 * e.printStackTrace();
+	 * }
+	 * <p>
+	 * return null;
+	 * <p>
+	 * <p>
+	 * }
+	 */
 
 	/*private static Class makeClass(String param1) {
 	    String _loc2 = "com.company.assembleegameclient.objects." + param1;
 	    return getDefinitionByName.get(_loc2) as Class;
 	}**/
-
 	public static BitmapData getTextureFromType(int param1) {
 		TextureData _loc2 = typeToTextureData.get(param1);
 		if (_loc2 == null) {
@@ -275,7 +280,7 @@ public class ObjectLibrary {
 		int slotType = xml.getIntValue("SlotType");
 		int i = 0;
 		while (i < GeneralConstants.NUM_EQUIPMENT_SLOTS) {
-			if (param2.slotTypes.get(i) == slotType) {
+			if (param2.slotTypes[i] == slotType) {
 				return true;
 			}
 			i++;
@@ -283,7 +288,7 @@ public class ObjectLibrary {
 		return false;
 	}
 
-	public static int getMatchingSlotIndex(int param1, Player param2) {
+	public static int getMatchingSlotIndex(int param1, Player player) {
 		XML _loc3;
 		int _loc4;
 		int _loc5;
@@ -292,7 +297,7 @@ public class ObjectLibrary {
 			_loc4 = _loc3.getIntValue("SlotType");
 			_loc5 = 0;
 			while (_loc5 < GeneralConstants.NUM_EQUIPMENT_SLOTS) {
-				if (param2.slotTypes.get(_loc5) == _loc4) {
+				if (player.slotTypes[_loc5] == _loc4) {
 					return _loc5;
 				}
 				_loc5++;

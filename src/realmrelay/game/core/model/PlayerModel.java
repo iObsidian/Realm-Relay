@@ -2,27 +2,32 @@ package realmrelay.game.core.model;
 
 import realmrelay.game.Signal;
 import realmrelay.game.account.core.Account;
+import realmrelay.game.appengine.SavedCharacter;
+import realmrelay.game.appengine.SavedCharactersList;
+import realmrelay.game.appengine.SavedNewsItem;
 import realmrelay.game.net.LatLong;
 import realmrelay.game.parameters.Parameters;
 
+import java.util.List;
+
 public class PlayerModel {
 
-	public static final int[] CHARACTER_SLOT_PRICES = new int[]{600,800,1000};
-	
+	public static final int[] CHARACTER_SLOT_PRICES = new int[]{600, 800, 1000};
+
 	public static Signal creditsChanged = new Signal<Integer>();
 
-	public static Signal fameChanged =  new Signal<Integer>();
+	public static Signal fameChanged = new Signal<Integer>();
 
-	public static Signal tokensChanged =  new Signal<Integer>();
+	public static Signal tokensChanged = new Signal<Integer>();
 
 	public SavedCharactersList charList;
 
 	public boolean isInvalidated;
 
-	private int currentCharId;
+	public int currentCharId;
 
 	private boolean isAgeVerified;
-	
+
 	public Account account;
 
 	public PlayerModel() {
@@ -47,7 +52,7 @@ public class PlayerModel {
 	}
 
 	public boolean getIsAgeVerified() {
-		return this.isAgeVerified || this.account is KongregateAccount ||this.charList.isAgeVerified;
+		return (this.isAgeVerified) || this.account instanceof KongregateAccount || this.charList.isAgeVerified;
 	}
 
 	public void setIsAgeVerified(boolean param1) {
@@ -120,7 +125,7 @@ public class PlayerModel {
 		SavedCharacter loc2 = this.charList.getCharById(param1);
 		int loc3 = this.charList.savedChars.indexOf(loc2);
 		if (loc3 != -1) {
-			this.charList.savedChars.splice(loc3, 1);
+			this.charList.savedChars.remove(loc3);
 			this.charList.numChars--;
 		}
 	}
@@ -168,7 +173,7 @@ public class PlayerModel {
 	}
 
 	public SavedCharacter getCharacterByIndex(int param1) {
-		return this.charList.savedChars[param1];
+		return this.charList.savedChars.get(param1);
 	}
 
 	public boolean isAdmin() {
@@ -188,7 +193,7 @@ public class PlayerModel {
 	}
 
 	public void setClassAvailability(int param1, String param2) {
-		this.charList.classAvailability[param1] = param2;
+		this.charList.classAvailability.put(param1, param2);
 	}
 
 	public String getName() {
@@ -207,7 +212,7 @@ public class PlayerModel {
 		return this.charList.nameChosen;
 	}
 
-	public Array getNewUnlocks(int param1, int param2) {
+	public List getNewUnlocks(int param1, int param2) {
 		return this.charList.newUnlocks(param1, param2);
 	}
 
@@ -228,7 +233,7 @@ public class PlayerModel {
 	}
 
 	public boolean isClassAvailability(String param1, String param2) {
-		String loc3 = this.charList.classAvailability[param1];
+		String loc3 = this.charList.classAvailability.get(param1);
 		return loc3.equals(param2);
 	}
 
@@ -253,7 +258,7 @@ public class PlayerModel {
 	}
 
 	public boolean isNewToEditing() {
-		if (this.charList && !this.charList.isFirstTimeLogin()) {
+		if (this.charList != null && !this.charList.isFirstTimeLogin()) {
 			return false;
 		}
 		return true;

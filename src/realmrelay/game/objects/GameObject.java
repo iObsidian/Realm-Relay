@@ -17,6 +17,7 @@ public class GameObject extends BasicObject {
 	/**protected static ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
 	protected static ColorMatrixFilter CURSED_FILTER = new ColorMatrixFilter(MoreColorUtil.redFilterMatrix);
 	protected static Matrix IDENTITY_MATRIX = new Matrix();*/
+
 	private static float ZERO_LIMIT = 0.00001F;
 	private static float NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
 	public static int ATTACK_PERIOD = 300;

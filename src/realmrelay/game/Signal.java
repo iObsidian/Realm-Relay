@@ -34,4 +34,16 @@ public class Signal<T> {
 		}
 	}
 
+	/**
+	 * Replaces Signal.dispatch() from AS3
+	 * Consumer will accept null data.
+	 */
+	public void dispatch() {
+		for (Consumer<T> consumer : consumers) {
+			consumer.accept(null);
+		}
+	}
+
+
+
 }

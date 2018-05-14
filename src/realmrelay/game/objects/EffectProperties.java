@@ -8,6 +8,7 @@ public class EffectProperties {
 		this.id = xml.toString();
 		this.particle = xml.getAttribute("particle");
 		this.cooldown = xml.getFloatAttribute("cooldown");
+		
 		this.color = xml.getIntValue("color");
 		this.color2 = xml.getIntAttribute("color2");
 		this.rate = xml.getFloatAttribute("rate", 5F);
