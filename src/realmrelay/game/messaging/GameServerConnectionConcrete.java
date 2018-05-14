@@ -1028,7 +1028,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 					player.numStars = value;
 					continue;
 				case StatData.NAME_STAT:
-					if (go.name != stat.strStatValue) {
+					if (!go.name.equals(stat.strStatValue)) {
 						go.name = stat.strStatValue;
 						go.nameBitmapData = null;
 					}

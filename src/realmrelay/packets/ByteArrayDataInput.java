@@ -52,7 +52,7 @@ class ByteArrayDataInput implements DataInput {
     }
 
     @Override
-    public double readFloat() throws IOException {
+    public float readFloat() throws IOException {
         return Float.intBitsToFloat(readInt());
     }
 

@@ -1,6 +1,5 @@
 NOTES :
 
-
     Important files :
     
     MapUserInput handles Input
@@ -11,6 +10,18 @@ TODO :
 
     Reorganise files to match client
     Add 'get' awareness in README (replaced get value() with getValue())
+
+
+Casting
+-------
+
+   **AS3**
+
+    int(equipment.length)
+
+   **java**
+   
+    (int) equipment.length
 
 
 Vectors
