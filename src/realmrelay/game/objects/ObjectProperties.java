@@ -144,6 +144,7 @@ public class ObjectProperties {
 		}
 	}
 
+	// Load sounds from RotMG API
 	public void loadSounds() {
 		if (this.sounds == null) {
 			return;

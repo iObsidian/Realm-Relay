@@ -119,8 +119,6 @@ public class ObjectLibrary {
 				propsLibrary.get(objectType).belonedDungeon = currentDungeon;
 			}
 
-
-
 			if (objectXML.hasOwnProperty("Class") && objectXML.getValue("Class").equals("Player")) {
 				playerClassAbbr.put(objectType, objectXML.getAttribute("id").substring(0, 2));
 				boolean found = false;

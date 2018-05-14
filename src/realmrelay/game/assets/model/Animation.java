@@ -1,15 +1,22 @@
 package realmrelay.game.assets.model;
 
+import realmrelay.game.Timer;
+import realmrelay.game.TimerEvent;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * All done. Very simillar to RotMG's Animation,
+ * to the exception that bitmap is a bitmapData,
+ * and this does not extend Sprite.
+ */
 public class Animation {
 
 	private final int DEFAULT_SPEED = 200;
 
-	private final Bitmap bitmap = this.makeBitmap();
+	private BitmapData bitmapData = new BitmapData(0, 0);
 
 	private final List<BitmapData> frames = new ArrayList<BitmapData>(0);
 
@@ -23,19 +30,14 @@ public class Animation {
 
 	private boolean disposed;
 
+
 	public Animation() {
 		super();
 	}
 
-	private Bitmap makeBitmap() {
-		Bitmap loc1 = new Bitmap();
-		addChild(loc1);
-		return loc1;
-	}
-
 	private Timer makeTimer() {
 		Timer loc1 = new Timer(this.DEFAULT_SPEED);
-		loc1.addEventListener(TimerEvent.TIMER, this.iterate);
+		loc1.addEventListener(TimerEvent.TIMER, this::iterate);
 		return loc1;
 	}
 
@@ -47,14 +49,12 @@ public class Animation {
 		this.timer.delay = param1;
 	}
 
-	public function setFrames(...rest):void
-
-	{
-		BitmapData loc2 = null;
-		this.frames.length = 0;
+	public void setFrames(BitmapData[] rest) {
+		this.frames.clear();
 		this.index = 0;
-		for (loc2 in rest) {
-			this.count = this.frames.add(loc2);
+		for (BitmapData loc2 : rest) {
+			this.frames.add(loc2);
+			this.count = this.frames.size();
 		}
 		if (this.started) {
 			this.start();
@@ -64,8 +64,10 @@ public class Animation {
 	}
 
 	public void addFrame(BitmapData param1) {
-		this.count = this.frames.add(param1);
-		this.started && this.start();
+		this.frames.add(param1);
+		this.count = this.frames.size();
+		this.start();
+		this.started = true;
 	}
 
 	public void start() {
@@ -77,23 +79,22 @@ public class Animation {
 	}
 
 	public void stop() {
-		this.started && this.timer.stop();
+		this.timer.stop();
 		this.started = false;
 	}
 
-	private void iterate(TimerEvent =null param1) {
+	private void iterate() {
 		this.index = ++this.index % this.count;
-		this.bitmap.bitmapData = this.frames[this.index];
+		this.bitmapData = this.frames.get(this.index);
 	}
 
 	public void dispose() {
-		BitmapData loc1 = null;
 		this.disposed = true;
 		this.stop();
 		this.index = 0;
 		this.count = 0;
-		this.frames.length = 0;
-		for (loc1 in this.frames) {
+		this.frames.clear();
+		for (BitmapData loc1 : this.frames) {
 			loc1.dispose();
 		}
 	}

@@ -3,6 +3,7 @@ package realmrelay.game.objects;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
 import realmrelay.game.XML;
 import realmrelay.game.objects.animation.AnimatedChar;
+import realmrelay.game.objects.animation.Animations;
 import realmrelay.game.particles.ParticleEffect;
 import realmrelay.game.util.ConversionUtil;
 import realmrelay.packets.data.unused.BitmapData;
@@ -117,7 +118,7 @@ public class GameObject extends BasicObject {
 	public FlashDescription flash = null;
 	public int connectType = -1;
 	protected BitmapData portrait = null;
-	protected Dictionary texturingCache = null;
+	protected HashMap texturingCache = null;
 	protected int tex1Id = 0;
 	protected int tex2Id = 0;
 	protected int lastTickUpdateTime = 0;

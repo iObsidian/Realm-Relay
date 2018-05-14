@@ -45,4 +45,7 @@ public class BitmapData {
 		this.image = sourceImage.image;
 	}
 
+	public void dispose() {
+		image = null;
+	}
 }
