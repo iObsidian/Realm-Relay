@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d7f704-e69a-4440-8dcc-6c4214922787" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/util/Trig.java" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/Player.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="224">
@@ -35,6 +34,16 @@
                 <element signature="e#37764#37765#0" expanded="true" />
                 <element signature="e#37784#37785#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="564">
+              <caret line="271" column="18" lean-forward="false" selection-start-line="271" selection-start-column="18" selection-end-line="271" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -130,8 +139,8 @@
       <find>active</find>
       <find>statsTracker</find>
       <find>const</find>
-      <find>setCred</find>
       <find>Number</find>
+      <find>setCred</find>
     </findStrings>
     <replaceStrings>
       <replace>:</replace>
@@ -167,7 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/realmrelay/game/focus/control/UpdateGroundTileSignal.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/view/components/QueuedStatusText.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/incoming/Text.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnection.java" />
@@ -218,6 +226,7 @@
         <option value="$PROJECT_DIR$/src/realmrelay/game/constants/UseType.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/objects/Player.java" />
         <option value="$PROJECT_DIR$/src/realmrelay/game/util/Trig.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -515,12 +524,12 @@
       <workItem from="1526066497288" duration="958000" />
       <workItem from="1526073957420" duration="5616000" />
       <workItem from="1526231318669" duration="29262000" />
-      <workItem from="1526314821211" duration="12502000" />
+      <workItem from="1526314821211" duration="12637000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78438000" />
+    <option name="totallyTimeSpent" value="78573000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -579,14 +588,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/events/ReconnectEvent.as">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="31" lean-forward="false" selection-start-line="0" selection-start-column="31" selection-end-line="0" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/events/ReconnectEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
@@ -1124,6 +1125,14 @@
             <element signature="e#37764#37765#0" expanded="true" />
             <element signature="e#37784#37785#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="271" column="18" lean-forward="false" selection-start-line="271" selection-start-column="18" selection-end-line="271" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
