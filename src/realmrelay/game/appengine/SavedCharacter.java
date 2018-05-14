@@ -57,8 +57,8 @@ public class SavedCharacter {
 	}
 
 	public static float compare(SavedCharacter param1, SavedCharacter param2) {
-		float loc3 = !!Parameters.data.charIdUseMap.hasOwnProperty(param1.charId( ? Parameters.data.charIdUseMap[param1.charId(] : 0;
-		float loc4 = !!Parameters.data.charIdUseMap.hasOwnProperty(param2.charId( ? Parameters.data.charIdUseMap[param2.charId(] : 0;
+		float loc3 = !!Parameters.data.charIdUseMap.hasOwnProperty(param1.charId()) ? Number(Parameters.data.charIdUseMap[param1.charId()]) : 0F;
+		float loc4 = !!Parameters.data.charIdUseMap.hasOwnProperty(param2.charId()) ? Number(Parameters.data.charIdUseMap[param2.charId()]) : 0F;
 		if (loc3 != loc4) {
 			return loc4 - loc3;
 		}

@@ -2,9 +2,9 @@ package realmrelay.game.ui.signals;
 
 
 import realmrelay.game._as3.Signal;
-import realmrelay.game.signals.AddTextLineSignal;
+import realmrelay.game.signals.AddSpeechBalloonSignal;
 
-public class ShowHideKeyUISignal extends Signal<GiftStatusUpdateSignal> {
+public class ShowHideKeyUISignal extends Signal<AddSpeechBalloonSignal.GiftStatusUpdateSignal> {
 
 	private static ShowHideKeyUISignal instance;
 

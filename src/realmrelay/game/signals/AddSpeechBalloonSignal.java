@@ -12,4 +12,17 @@ public class AddSpeechBalloonSignal extends Signal<AddSpeechBalloonVO> {
 		}
 		return instance;
 	}
+
+	public static class GiftStatusUpdateSignal extends Signal {
+
+		private static GiftStatusUpdateSignal instance;
+
+		public static GiftStatusUpdateSignal getInstance() {
+			if (instance == null) {
+				instance = new GiftStatusUpdateSignal();
+			}
+			return instance;
+		}
+
+	}
 }

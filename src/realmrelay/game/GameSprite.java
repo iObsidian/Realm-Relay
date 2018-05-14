@@ -115,9 +115,7 @@ public class GameSprite extends AGameSprite {
 		}
 	}
 
-	public void applyMapInfo(MapInfo mapInfo)
-
-	{
+	public void applyMapInfo(MapInfo mapInfo) {
 		this.map.setProps(mapInfo.width, mapInfo.height, mapInfo.name, mapInfo.background, mapInfo.allowPlayerTeleport, mapInfo.showDisplays);
 		this.showPreloader(mapInfo);
 	}
@@ -127,9 +125,7 @@ public class GameSprite extends AGameSprite {
 		showMapLoading && showMapLoading.dispatch(mapInfo);
 	}
 
-	private void hidePreloader()
-
-	{
+	private void hidePreloader() {
 		HideMapLoadingSignal hideMapLoading = StaticInjectorContext.getInjector().getInstance(HideMapLoadingSignal);
 		hideMapLoading && hideMapLoading.dispatch();
 	}
@@ -325,8 +321,7 @@ public class GameSprite extends AGameSprite {
 		}
 	}
 
-	public void disconnect()
-	{
+	public void disconnect() {
 		if (this.isGameStarted) {
 			this.isGameStarted = false;
 			this.idleWatcher.stop();

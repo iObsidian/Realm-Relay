@@ -31,7 +31,7 @@ public class Signal<T> {
 	public void remove(Consumer<T> consumer) {
 		consumers.remove(consumer);
 	}
-	
+
 	public void dispatch(T object) {
 		for (Consumer<T> consumer : consumers) {
 			consumer.accept(object);
