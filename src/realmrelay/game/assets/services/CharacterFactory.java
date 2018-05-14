@@ -10,6 +10,8 @@ import realmrelay.packets.data.unused.BitmapData;
 
 public class CharacterFactory {
 
+	
+	
 	private int texture1;
 
 	private int texture2;

@@ -66,6 +66,7 @@ import realmrelay.game.ui.view.NotEnoughGoldDialog;
 import realmrelay.game.util.ConditionEffect;
 import realmrelay.game.util.Currency;
 import realmrelay.game.util.TextKey;
+import realmrelay.game.view.components.QueuedStatusText;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.security.interfaces.RSAKey;
@@ -545,10 +546,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 	}
 
-	public void setCondition(int conditionEffect, double conditionDuration)
-
-	{
-		SetCondition setCondition = this.messages.require(SETCONDITION) as SetCondition;
+	public void setCondition(int conditionEffect, double conditionDuration) {
+		SetCondition setCondition = (SetCondition) this.messages.require(SETCONDITION);
 		setCondition.conditionEffect = conditionEffect;
 		setCondition.conditionDuration = conditionDuration;
 		this.serverConnection.sendMessage(setCondition);
@@ -730,7 +729,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onCreateSuccess(CreateSuccess createSuccess)
-
 	{
 		this.playerId = createSuccess.objectId;
 		this.charId = createSuccess.charId;
@@ -738,8 +736,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.createCharacter = false;
 	}
 
-	private void onDamage(Damage damage)
-	{
+	private void onDamage(Damage damage) {
 		int projId = 0;
 		Map map = (Map) this.gs.map;
 		Projectile proj = null;
@@ -844,7 +841,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			this.handleNewPlayer((Player) go, map);
 		}
 		this.processObjectStatus(status, 0, -1);
-		if (go.props. static&&go.props.occupySquare && !go.props.noMiniMap){
+		if (go.props.isStatic && go.props.occupySquare && !go.props.noMiniMap) {
 			this.updateGameObjectTileSignal.dispatch(new UpdateGameObjectTileVO(go.x, go.y, go));
 		}
 	}

@@ -113,9 +113,9 @@ public class SavedCharactersList extends Event {
 			loc5.reportIntStat("NumStars", this.numStars);
 			loc5.verify(loc2.hasOwnProperty("VerifiedEmail"));
 		}
-		this.classAvailability = new Object();
-		for (XML loc4 : this.charsXML.ClassAvailabilityList.ClassAvailability) {
-			this.classAvailability[loc4.getIntAttribute("id")] = loc4.toString();
+		this.classAvailability = new HashMap<>();
+		for (XML loc4 : this.charsXML.getChild("ClassAvailabilityList").getChilds("ClassAvailability")) {
+			this.classAvailability.put(loc4.getIntAttribute("id"), loc4.toString());
 		}
 	}
 
@@ -150,7 +150,7 @@ public class SavedCharactersList extends Event {
 	private void parseBeginnersPackageData(XML param1) {
 		BeginnersPackageModel loc3 = null;
 		if (param1.hasOwnProperty("BeginnerPackageTimeLeft")) {
-			double loc2 = param1.BeginnerPackageTimeLeft;
+			double loc2 = param1.getDoubleValue("BeginnerPackageTimeLeft");
 			loc3 = this.getBeginnerModel();
 			loc3.setBeginnersOfferSecondsLeft(loc2);
 		}
@@ -163,7 +163,7 @@ public class SavedCharactersList extends Event {
 	private void parseGuildData(XML param1) {
 		XML loc2 = null;
 		if (param1.hasOwnProperty("Guild")) {
-			loc2 = XML(param1.Guild);
+			loc2 = param1.getChild("Guild");
 			this.guildName = loc2.getValue("Name");
 			this.guildRank = loc2.getIntValue("Rank");
 		}

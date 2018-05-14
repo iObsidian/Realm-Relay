@@ -9,10 +9,6 @@ public class Server {
 	public double usage;
 	public Boolean isAdminOnly;
 
-	public Server() {
-		super();
-	}
-
 	public Server setName(String param1) {
 		this.name = param1;
 		return this;
@@ -60,10 +56,5 @@ public class Server {
 	public boolean isFull() {
 		return this.usage >= 1;
 	}
-
-	public String toString() {
-		return "[" + this.name + ";
-	}
-
 
 }

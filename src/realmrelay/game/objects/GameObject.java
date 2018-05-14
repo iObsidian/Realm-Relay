@@ -2,7 +2,6 @@ package realmrelay.game.objects;
 
 import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-
 import realmrelay.game._as3.Point;
 import realmrelay.game._as3.XML;
 import realmrelay.game.map.Map;
@@ -164,7 +163,6 @@ public class GameObject extends BasicObject {
 	public GameObject aimAssistTarget = null;
 	public boolean jittery = false;
 	public boolean mobInfoShown = false;
-
 
 	public boolean isQuiet() {
 		return (this.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.QUIET_BIT) != 0;
@@ -354,7 +352,7 @@ public class GameObject extends BasicObject {
 	@Override
 
 	public void removeFromMap() {
-		if (this.props.isStatic &&square != null){
+		if (this.props.isStatic && square != null) {
 			if (square.obj == this) {
 				square.obj = null;
 			}
@@ -374,7 +372,7 @@ public class GameObject extends BasicObject {
 		}
 		x = x;
 		y = y;
-		if (this.props. static){
+		if (this.props.isStatic) {
 			if (square != null) {
 				square.obj = null;
 			}
@@ -530,9 +528,9 @@ public class GameObject extends BasicObject {
 			this.nameFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
 			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<double>());
 		}
-		int w = this.nameBitmapData.width / 2 + 1;
+		int w = this.nameBitmapData.width() / 2 + 1;
 		int h = 30;
-		List<double> nameVSs = this.namePath.data;
+		List<Double> nameVSs = this.namePath.data;
 		nameVSs.length = 0;
 		nameVSs.add(posS[0] - w, posS[1], posS[0] + w, posS[1], posS[0] + w, posS[1] + h, posS[0] - w, posS[1] + h);
 		this.nameFill.bitmapData = this.nameBitmapData;
@@ -731,6 +729,22 @@ public class GameObject extends BasicObject {
 		this.texturingCache = new HashMap<>();
 		this.portrait = null;
 	}
+
+
+	public void setObjectId(int param1) {
+		TextureData loc2 = null;
+		objectId = param1;
+		if (this.randomTextureData != null) {
+			loc2 = this.randomTextureData.objectId % this.randomTextureData.size()];
+			this.texture = loc2.texture;
+			this.mask = loc2.mask;
+			this.animatedChar = loc2.animatedChar;
+			if (this.object3d != null) {
+				this.object3d.setBitMapData(this.texture);
+			}
+		}
+	}
+
 
 	/*
 	Secondary dye
