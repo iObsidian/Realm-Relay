@@ -1,7 +1,8 @@
 package realmrelay.game.signals;
 
 import kabam.rotmg.game.model.GameInitData;
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
+import realmrelay.game.model.GameInitData;
 
 public class PlayGameSignal extends Signal<GameInitData> {
 

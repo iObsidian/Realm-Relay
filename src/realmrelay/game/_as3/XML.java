@@ -1,4 +1,4 @@
-package realmrelay.game;
+package realmrelay.game._as3;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

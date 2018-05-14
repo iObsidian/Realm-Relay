@@ -1,6 +1,6 @@
 package realmrelay.game.appengine;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.util.FameUtil;
 
 public class CharacterStats {

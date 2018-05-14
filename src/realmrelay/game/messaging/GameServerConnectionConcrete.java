@@ -1,8 +1,8 @@
 package realmrelay.game.messaging;
 
-import realmrelay.game.Timer;
-import realmrelay.game.TimerEvent;
-import realmrelay.game.XML;
+import realmrelay.game._as3.Timer;
+import realmrelay.game._as3.TimerEvent;
+import realmrelay.game._as3.XML;
 import realmrelay.game.account.core.Account;
 import realmrelay.game.api.MessageProvider;
 import realmrelay.game.arena.model.ArenaDeathSignal;
@@ -22,6 +22,7 @@ import realmrelay.game.death.control.ZombifySignal;
 import realmrelay.game.dialogs.CloseDialogsSignal;
 import realmrelay.game.dialogs.OpenDialogSignal;
 import realmrelay.game.events.KeyInfoResponseSignal;
+import realmrelay.game.events.ReconnectEvent;
 import realmrelay.game.focus.control.SetGameFocusSignal;
 import realmrelay.game.focus.control.UpdateGroundTileSignal;
 import realmrelay.game.game.AGameSprite;
@@ -1218,7 +1219,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	/**
 	 * Important : This method is not in the new version of the client
 	 * <p>
-	 * It's not in ChatConfig
+	 * It's now in ChatConfig
 	 */
 	private void onText(Text text) {
 		GameObject go = null;
@@ -1266,7 +1267,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		int charId = this.charId;
 		int keyTime = reconnect.keyTime;
 		byte[] key = reconnect.key;
-		ReconnectEvent reconnectEvent = new ReconnectEvent(server, gameID, createChar, charId, keyTime, key);
+		boolean isFromArena = reconnect.isFromArena;
+		ReconnectEvent reconnectEvent = new ReconnectEvent(server, gameID, createChar, charId, keyTime, key, isFromArena);
 		this.gs.dispatchEvent(reconnectEvent);
 	}
 
@@ -1278,7 +1280,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void parseXML(String xmlString) {
-		XML extraXML = XML(xmlString);
+		XML extraXML = new XML(xmlString);
 		GroundLibrary.parseFromXML(extraXML);
 		ObjectLibrary.parseFromXML(extraXML);
 		ObjectLibrary.parseFromXML(extraXML);
@@ -1347,28 +1349,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onAoe(Aoe aoe) {
-		/*int d = 0;
-		List<int> effects = null;
-		if (this.player == null) {
-			this.aoeAck(this.gs.lastUpdate, 0, 0);
-			return;
-		}
-		AOEEffect e = new AOEEffect(aoe.pos.toPoint(), aoe.radius, 16711680);
-		this.gs.map.addObj(e, aoe.pos.x, aoe.pos.y);
-		if (this.player.isInvincible() || this.player.isPaused()) {
-			this.aoeAck(this.gs.lastUpdate, this.player.x, this.player.y);
-			return;
-		}
-		boolean hit = this.player.distTo(aoe.pos) < aoe.radius;
-		if (hit) {
-			d = GameObject.damageWithDefense(aoe.damage, this.player.defense, false, this.player.condition);
-			effects = null;
-			if (aoe.effect!= 0) {
-				effects = new List<int>();
-				effects.add(aoe.effect);
-			}
-			this.player.damage(aoe.origType, d, effects, false, null);
-		}**/
+
 		this.aoeAck(this.gs.lastUpdate, this.player.x, this.player.y);
 	}
 
@@ -1425,7 +1406,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.retryTimer.start();
 	}
 
-	private void onRetryTimer(TimerEvent event) {
+	private void onRetryTimer() {
 		this.serverConnection.connect(this.server.address, this.server.port);
 	}
 

@@ -1,6 +1,6 @@
 package realmrelay.game.signals;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 
 public class DeferredQueueSignal<T> extends Signal<T> {
 

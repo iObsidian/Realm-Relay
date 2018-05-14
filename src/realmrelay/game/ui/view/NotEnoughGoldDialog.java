@@ -1,6 +1,6 @@
 package realmrelay.game.ui.view;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 
 public class NotEnoughGoldDialog /*extends Dialog*/ {
 

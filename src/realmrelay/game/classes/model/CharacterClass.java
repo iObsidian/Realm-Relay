@@ -3,7 +3,7 @@ package realmrelay.game.classes.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 
 public class CharacterClass {
 

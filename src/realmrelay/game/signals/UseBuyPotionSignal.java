@@ -1,7 +1,7 @@
 package realmrelay.game.signals;
 
 import kabam.rotmg.game.model.UseBuyPotionVO;
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 
 public class UseBuyPotionSignal extends Signal<UseBuyPotionVO> {
 

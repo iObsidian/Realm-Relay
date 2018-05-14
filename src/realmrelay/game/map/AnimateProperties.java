@@ -1,6 +1,6 @@
 package realmrelay.game.map;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 
 public class AnimateProperties {
 

@@ -1,6 +1,6 @@
 package realmrelay.game.appengine;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.account.core.Account;
 import realmrelay.game.dialogs.OpenDialogSignal;
 import realmrelay.game.net.LatLong;

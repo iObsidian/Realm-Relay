@@ -1,9 +1,9 @@
 package realmrelay.game.particles;
 
-import realmrelay.game.XML;
-
 import java.util.HashMap;
 import java.util.List;
+
+import realmrelay.game._as3.XML;
 
 /**
  * We parse a list of projectiles instead of a root XML.
@@ -14,9 +14,7 @@ public class ParticleLibrary {
 
 	public static final HashMap<String, ParticleProperties> propsLibrary = new HashMap<>();
 
-	public static void parseFromXML(List<XML> xmls) {
-
-		for (XML xml : xmls) {
+	public static void parseFromXML(XML xml) {
 
 			ParticleProperties p = new ParticleProperties(xml);
 
@@ -24,7 +22,7 @@ public class ParticleLibrary {
 
 			System.out.println(p.toString());
 
-		}
+
 
 	}
 

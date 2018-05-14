@@ -1,6 +1,6 @@
 package realmrelay.game.pets.data;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.appengine.SavedCharacter;
 import realmrelay.game.core.model.PlayerModel;
 import realmrelay.game.map.AbstractMap;
@@ -14,15 +14,14 @@ import java.util.Map;
 // This is a 100% match, except maybe for the getInstance() [Inject]
 public class PetsModel {
 
-	public PetsModel instance;
+	static public PetsModel instance;
 
-	public PetsModel getInstance() {
+	public static PetsModel getInstance() {
 		if (instance == null) {
 			instance = new PetsModel();
 		}
 		return instance;
 	}
-
 
 	public NotifyActivePetUpdated notifyActivePetUpdated = NotifyActivePetUpdated.getInstance();
 

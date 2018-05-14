@@ -1,6 +1,6 @@
 package realmrelay.game.death.control;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.messaging.incoming.Death;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;

@@ -1,4 +1,4 @@
-package realmrelay.game;
+package realmrelay.game._as3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,10 @@ public class Signal<T> {
 		consumers.add(consumer);
 	}
 
+	public void remove(Consumer<T> consumer) {
+		consumers.remove(consumer);
+	}
+	
 	public void dispatch(T object) {
 		for (Consumer<T> consumer : consumers) {
 			consumer.accept(object);

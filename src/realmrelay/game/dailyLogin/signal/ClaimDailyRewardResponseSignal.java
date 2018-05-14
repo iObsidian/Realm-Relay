@@ -1,6 +1,6 @@
 package realmrelay.game.dailyLogin.signal;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.messaging.incoming.ClaimDailyRewardResponse;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;

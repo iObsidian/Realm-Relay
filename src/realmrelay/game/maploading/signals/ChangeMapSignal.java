@@ -1,6 +1,6 @@
 package realmrelay.game.maploading.signals;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.focus.control.UpdateGroundTileSignal;
 
 public class ChangeMapSignal  extends Signal {

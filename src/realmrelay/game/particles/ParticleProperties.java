@@ -1,6 +1,6 @@
 package realmrelay.game.particles;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.objects.TextureData;
 import realmrelay.game.objects.TextureDataConcrete;
 import realmrelay.game.objects.animation.AnimationsData;

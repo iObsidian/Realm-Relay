@@ -1,6 +1,6 @@
 package realmrelay.game.ui.signals;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.ui.model.Key;
 

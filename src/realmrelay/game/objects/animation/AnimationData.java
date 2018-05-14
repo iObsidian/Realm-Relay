@@ -1,9 +1,9 @@
 package realmrelay.game.objects.animation;
 
-import realmrelay.game.XML;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import realmrelay.game._as3.XML;
 
 /**
  * This is a 100% match

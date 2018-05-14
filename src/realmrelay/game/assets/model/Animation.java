@@ -1,7 +1,7 @@
 package realmrelay.game.assets.model;
 
-import realmrelay.game.Timer;
-import realmrelay.game.TimerEvent;
+import realmrelay.game._as3.Timer;
+import realmrelay.game._as3.TimerEvent;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.util.ArrayList;

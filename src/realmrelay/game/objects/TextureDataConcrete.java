@@ -1,6 +1,6 @@
 package realmrelay.game.objects;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.util.AnimatedChars;
 import realmrelay.game.util.AssetLibrary;

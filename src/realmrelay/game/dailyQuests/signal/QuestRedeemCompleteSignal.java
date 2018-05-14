@@ -1,6 +1,6 @@
 package realmrelay.game.dailyQuests.signal;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.dailyQuests.QuestRedeemResponse;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;

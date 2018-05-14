@@ -2,7 +2,7 @@ package realmrelay.game.objects;
 
 import java.util.HashMap;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.sound.SoundEffectLibrary;
 
 /**
@@ -25,7 +25,7 @@ public class ObjectProperties {
 	public boolean occupySquare = false;
 	public boolean fullOccupy = false;
 	public boolean enemyOccupySquare = false;
-	public boolean isStatic = false;
+	public boolean isStatic = false; // from 'static' (java keyword)
 	public boolean noMiniMap = false;
 	public boolean noHealthBar = false;
 	public int healthBar = 0;

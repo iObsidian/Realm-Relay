@@ -2,6 +2,8 @@ package realmrelay.game.net.impl;
 
 import realmrelay.packets.data.unused.IData;
 
+import java.io.DataInput;
+import java.io.DataOutput;
 import java.util.function.Consumer;
 
 /**
@@ -13,28 +15,30 @@ import java.util.function.Consumer;
  */
 public abstract class Message implements IData {
 
-	public Message(int id, Consumer callback) {
-		super();
-		this.id = id;
-		this.isCallback = callback != null;
-		this.callback = callback;
-	}
+	public MessagePool pool;
 
-	//public MessagePool pool;
 	public Message prev;
+
 	public Message next;
+
+	private boolean isCallback;
+
 	public int id;
 
 	public Consumer callback;
-	private boolean isCallback;
 
+	public Message(int param1, Consumer param2) {
+		super();
+		this.id = param1;
+		this.isCallback = param2 != null;
+		this.callback = param2;
+	}
 
 	public void consume() {
-		this.isCallback && this.callback(this);
+		this.isCallback = false;
 		this.prev = null;
 		this.next = null;
 		this.pool.append(this);
 	}
-
 
 }

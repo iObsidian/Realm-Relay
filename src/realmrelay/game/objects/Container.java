@@ -1,7 +1,7 @@
 package realmrelay.game.objects;
 
 import realmrelay.game.GameSprite;
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.map.Map;
 import realmrelay.game.sound.SoundEffectLibrary;
 

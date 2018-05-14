@@ -1,7 +1,7 @@
 package realmrelay.game.objects;
 
 import javafx.scene.Camera;
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.map.Map;
 import realmrelay.packets.data.unused.BitmapData;
 import sun.java2d.cmm.ColorTransform;

@@ -1,4 +1,4 @@
-package realmrelay.game;
+package realmrelay.game._as3;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

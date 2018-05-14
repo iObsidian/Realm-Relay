@@ -3,7 +3,7 @@ package realmrelay.game.classes.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 
 /**
  * The Class selection model for the UI (create new character)

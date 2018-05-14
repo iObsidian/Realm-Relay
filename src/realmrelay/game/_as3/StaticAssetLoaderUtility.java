@@ -1,5 +1,6 @@
-package realmrelay.game;
+package realmrelay.game._as3;
 
+import realmrelay.game.WebMain;
 import realmrelay.packets.data.unused.BitmapData;
 
 import javax.imageio.ImageIO;
@@ -26,7 +27,7 @@ public class StaticAssetLoaderUtility {
 			System.err.println("Error with getting image from path '" + path + "'.");
 			e.printStackTrace();
 		}
-		
+
 		return new BitmapData(data);
 	}
 

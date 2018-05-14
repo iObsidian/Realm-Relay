@@ -4,7 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import realmrelay.game.WebMain;
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.map.GroundLibrary;
 import realmrelay.game.map.RegionLibrary;
 import realmrelay.game.objects.ObjectLibrary;
@@ -196,18 +196,21 @@ public class AssetLoader {
 	}
 
 	private void parseParticleEffects() {
-		ParticleLibrary.parseFromXML(EmbeddedData.particlesEmbed());
+		for (XML xml : EmbeddedData.particlesEmbed()) {
+			ParticleLibrary.parseFromXML(xml);
+		}
 	}
 
 	private void parseGroundFiles() {
-		GroundLibrary.parseFromXML(EmbeddedData.groundFiles());
+		for (XML xml : EmbeddedData.groundFiles()) {
+			GroundLibrary.parseFromXML(xml);
+		}
 	}
 
 	private void parseObjectFiles() {
 		for (XML objectOBJ : EmbeddedData.objectFiles()) {
 			ObjectLibrary.parseDungeonXML(objectOBJ.getAttribute("type"), objectOBJ); //type attribute is a substitute for the class name
 		}
-
 		currentXmlIsTesting = false;
 	}
 

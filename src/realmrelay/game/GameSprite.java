@@ -1,8 +1,11 @@
 package realmrelay.game;
 
 import javafx.scene.Camera;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.account.core.Account;
+import realmrelay.game.appengine.api.AppEngineClient;
 import realmrelay.game.constants.GeneralConstants;
+import realmrelay.game.core.model.MapModel;
 import realmrelay.game.core.model.PlayerModel;
 import realmrelay.game.game.AGameSprite;
 import realmrelay.game.game.MoveRecords;
@@ -15,7 +18,9 @@ import realmrelay.game.objects.IInteractiveObject;
 import realmrelay.game.objects.Player;
 import realmrelay.game.objects.Projectile;
 import realmrelay.game.parameters.Parameters;
+import realmrelay.game.promotions.model.BeginnersPackageModel;
 import realmrelay.game.ui.HUDView;
+import realmrelay.game.util.TextureRedrawer;
 
 public class GameSprite extends AGameSprite {
 
@@ -23,7 +28,7 @@ public class GameSprite extends AGameSprite {
 
 	public final Signal closed = new Signal();
 
-	public final Signal monitor = new Signal(String, int);
+	public final Signal monitor = new Signal<String, Integer>();
 
 	public final Signal modelInitialized = new Signal();
 
@@ -102,8 +107,7 @@ public class GameSprite extends AGameSprite {
 		this.idleWatcher = new IdleWatcher();
 	}
 
-	public void setFocus(GameObject focus)
-	{
+	public void setFocus(GameObject focus) {
 		if (focus != null) {
 			this.focus = focus;
 		} else {
@@ -118,8 +122,7 @@ public class GameSprite extends AGameSprite {
 		this.showPreloader(mapInfo);
 	}
 
-	public void showPreloader(MapInfo mapInfo)
-	{
+	public void showPreloader(MapInfo mapInfo) {
 		ShowMapLoadingSignal showMapLoading = StaticInjectorContext.getInjector().getInstance(ShowMapLoadingSignal);
 		showMapLoading && showMapLoading.dispatch(mapInfo);
 	}
@@ -139,8 +142,7 @@ public class GameSprite extends AGameSprite {
 		addChild(this.hudView);
 	}
 
-	public void initialize()
-	{
+	public void initialize() {
 		ShowProTipSignal showProTip = null;
 		this.map.initialize();
 		this.creditDisplay = new CreditDisplay(this);
@@ -160,25 +162,25 @@ public class GameSprite extends AGameSprite {
 			this.packages.numSpammed++;
 		}
 		this.isNexus = this.map.name.equals(Map.NEXUS);
-		AppEngineClient aeClient = StaticInjectorContext.getInjector().getInstance(AppEngineClient);
+		AppEngineClient aeClient = StaticInjectorContext.getInjector().getInstance();
 		Account account = StaticInjectorContext.getInjector().getInstance();
 		var params:Object = {
-			"game_net_user_id":account.gameNetworkUserId(),
-			"game_net":account.gameNetwork(),
-			"play_platform":account.playPlatform()
+				"game_net_user_id":account.gameNetworkUserId(),
+				"game_net":account.gameNetwork(),
+				"play_platform":account.playPlatform()
          };
 		MoreObjectUtil.addToObject(params, account.getCredentials());
-		if (this.map.name != "Kitchen" && this.map.name != "Tutorial" && this.map.name != "Nexus Explanation" && Parameters.data.watchForTutorialExit == true) {
+		if (!this.map.name.equals("Kitchen") && this.map.name != "Tutorial" && this.map.name != "Nexus Explanation" && Parameters.data.watchForTutorialExit == true) {
 			Parameters.data.watchForTutorialExit = false;
 			this.callTracking("rotmg.Marketing.track(\"tutorialComplete\")");
 			params["fteStepCompleted"] = 9900;
 			aeClient.sendRequest("/log/logFteStep", params);
 		}
-		if (this.map.name == "Kitchen") {
+		if (this.map.name.equals("Kitchen")) {
 			params["fteStepCompleted"] = 200;
 			aeClient.sendRequest("/log/logFteStep", params);
 		}
-		if (this.map.name == "Tutorial") {
+		if (this.map.name.equals("Tutorial")) {
 			if (Parameters.data.needsTutorial == true) {
 				Parameters.data.watchForTutorialExit = true;
 				this.callTracking("rotmg.Marketing.track(\"install\")");
@@ -194,16 +196,14 @@ public class GameSprite extends AGameSprite {
 		this.hidePreloader();
 	}
 
-	private void showSafeAreaDisplays()
-	{
+	private void showSafeAreaDisplays() {
 		this.showRankText();
 		this.showGuildText();
 		this.setYAndPositionPackage();
 		this.showGiftStatusDisplay();
 	}
 
-	private void showGiftStatusDisplay()
-	{
+	private void showGiftStatusDisplay() {
 		this.giftStatusDisplay = new GiftStatusDisplay();
 		this.giftStatusDisplay.x = 6;
 		this.giftStatusDisplay.y = this.displaysPosY;
@@ -226,8 +226,7 @@ public class GameSprite extends AGameSprite {
 		this.currentPackage.y = this.packageY;
 	}
 
-	public void showBeginnersOfferButton()
-	{
+	public void showBeginnersOfferButton() {
 		this.currentPackage = new BeginnersPackageButton();
 		this.addAndPositionPackager();
 	}
@@ -240,8 +239,7 @@ public class GameSprite extends AGameSprite {
 		this.positionPackage();
 	}
 
-	private void addAndPositionPackager()
-	{
+	private void addAndPositionPackager() {
 		addChild(this.currentPackage);
 		this.positionPackage();
 	}
@@ -314,21 +312,20 @@ public class GameSprite extends AGameSprite {
 		this.mapModel.currentInteractiveTarget = closestInteractive;
 	}
 
-	public function connect() :void
-
-	{
+	// Build GSC
+	public void connect() {
 		if (!this.isGameStarted) {
 			this.isGameStarted = true;
 			this.gsc.connect();
 			this.idleWatcher.start(this);
 			this.lastUpdate = getTimer();
-			stage.addEventListener(MoneyChangedEvent.MONEY_CHANGED, this.onMoneyChanged);
-			stage.addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
+			stage.addEventListener(MoneyChangedEvent.MONEY_CHANGED, this::onMoneyChanged);
+			stage.addEventListener(Event.ENTER_FRAME, this::onEnterFrame);
 			LoopedProcess.addProcess(new LoopedCallback(100, this.updateNearestInteractive));
 		}
 	}
 
-	public function disconnect() :void
+	public void disconnect()
 	{
 		if (this.isGameStarted) {
 			this.isGameStarted = false;

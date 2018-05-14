@@ -1,8 +1,8 @@
 package realmrelay.game.map;
 
-import realmrelay.game.XML;
-
 import java.util.HashMap;
+
+import realmrelay.game._as3.XML;
 
 /**
  * 100% match

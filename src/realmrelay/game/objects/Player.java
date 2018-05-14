@@ -1,7 +1,7 @@
 package realmrelay.game.objects;
 
-import realmrelay.game.Signal;
-import realmrelay.game.XML;
+import realmrelay.game._as3.Signal;
+import realmrelay.game._as3.XML;
 import realmrelay.game.constants.GeneralConstants;
 import realmrelay.game.messaging.data.StatData;
 import realmrelay.game.objects.animation.AnimatedChar;

@@ -1,11 +1,11 @@
 package realmrelay.game.model;
 
-import realmrelay.game.Signal;
-import realmrelay.game.XML;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import realmrelay.game._as3.Signal;
+import realmrelay.game._as3.XML;
 
 public class PotionInventoryModel {
 

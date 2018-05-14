@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.packets.data.unused.BitmapData;
 

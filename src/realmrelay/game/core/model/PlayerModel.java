@@ -1,6 +1,6 @@
 package realmrelay.game.core.model;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.account.core.Account;
 import realmrelay.game.appengine.SavedCharacter;
 import realmrelay.game.appengine.SavedCharactersList;

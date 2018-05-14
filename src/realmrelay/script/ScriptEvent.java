@@ -10,7 +10,7 @@ import java.net.SocketAddress;
 
 import realmrelay.ROTMGRelay;
 import realmrelay.User;
-import realmrelay.game.Old_ObjectLibrary;
+import realmrelay.game._as3.Old_ObjectLibrary;
 import realmrelay.game.messaging.data.GroundTileData;
 import realmrelay.game.messaging.data.MoveRecord;
 import realmrelay.game.messaging.data.ObjectStatusData;

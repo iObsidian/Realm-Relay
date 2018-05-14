@@ -1,6 +1,6 @@
 package realmrelay.game.util;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.objects.ObjectLibrary;
 import realmrelay.packets.data.unused.BitmapData;
 import sun.java2d.cmm.ColorTransform;

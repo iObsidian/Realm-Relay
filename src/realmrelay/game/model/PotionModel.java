@@ -2,7 +2,7 @@ package realmrelay.game.model;
 
 import java.util.List;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 
 public class PotionModel {
 

@@ -1,6 +1,6 @@
 package realmrelay.game.map;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.objects.TextureData;
 import realmrelay.game.objects.TextureDataConcrete;
 import realmrelay.game.util.BitmapUtil;
@@ -19,14 +19,14 @@ public class GroundLibrary {
 	public static GroundProperties defaultProps;
 	public static String GROUND_CATEGORY = "Ground";
 
-	public static void parseFromXML(List<XML> param1) {
-		for (XML xml : param1) {
+	public static void parseFromXML(XML xml) {
+
 			int objectType = xml.getIntAttribute("type");
 			propsLibrary.put(objectType, new GroundProperties(xml));
 			xmlLibrary.put(objectType, xml);
 			typeToTextureData.put(objectType, new TextureDataConcrete(xml));
 			idToType.put(xml.getAttribute("id"), objectType);
-		}
+
 		defaultProps = propsLibrary.get(255);
 	}
 

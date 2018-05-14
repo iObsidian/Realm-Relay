@@ -1,7 +1,7 @@
 package realmrelay.game.pets.data;
 
-import realmrelay.game.Signal;
-import realmrelay.game.XML;
+import realmrelay.game._as3.Signal;
+import realmrelay.game._as3.XML;
 import realmrelay.game.objects.ObjectLibrary;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.util.AnimatedChars;

@@ -1,6 +1,6 @@
 package realmrelay.game.appengine;
 
-import realmrelay.game.XML;
+import realmrelay.game._as3.XML;
 import realmrelay.game.assets.services.CharacterFactory;
 import realmrelay.game.classes.model.CharacterClass;
 import realmrelay.game.classes.model.CharacterSkin;
@@ -14,6 +14,7 @@ import realmrelay.game.pets.data.PetVO;
 import realmrelay.game.pets.data.PetsModel;
 import realmrelay.game.util.AnimatedChars;
 import realmrelay.game.util.MaskedImage;
+import realmrelay.game.util.TextureRedrawer;
 import realmrelay.packets.data.unused.BitmapData;
 import sun.java2d.cmm.ColorTransform;
 

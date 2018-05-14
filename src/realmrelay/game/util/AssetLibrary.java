@@ -1,6 +1,6 @@
 package realmrelay.game.util;
 
-import realmrelay.game.StaticAssetLoaderUtility;
+import realmrelay.game._as3.StaticAssetLoaderUtility;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.util.ArrayList;

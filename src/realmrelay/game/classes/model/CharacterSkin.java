@@ -1,6 +1,6 @@
 package realmrelay.game.classes.model;
 
-import realmrelay.game.Signal;
+import realmrelay.game._as3.Signal;
 import realmrelay.game.assets.model.CharacterTemplate;
 
 public class CharacterSkin {

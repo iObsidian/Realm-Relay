@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import realmrelay.ROTMGRelay;
-import realmrelay.game.Old_ObjectLibrary;
+import realmrelay.game._as3.Old_ObjectLibrary;
 import realmrelay.game.dailyQuests.QuestRedeemResponse;
 import realmrelay.game.messaging.incoming.AccountList;
 import realmrelay.game.messaging.incoming.AllyShoot;
