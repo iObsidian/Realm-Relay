@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b9d7f704-e69a-4440-8dcc-6c4214922787" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Portal.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java" />
       <change beforePath="$PROJECT_DIR$/src/realmrelay/game/objects/Player.java" afterPath="$PROJECT_DIR$/src/realmrelay/game/objects/Player.java" />
-      <change beforePath="$PROJECT_DIR$/src/realmrelay/packets/ByteArrayDataInput.java" afterPath="$PROJECT_DIR$/src/realmrelay/packets/ByteArrayDataInput.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,33 +47,58 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="1143" column="21" lean-forward="true" selection-start-line="1143" selection-start-column="21" selection-end-line="1143" selection-end-column="21" />
+            <state relative-caret-position="237">
+              <caret line="1115" column="20" lean-forward="true" selection-start-line="1115" selection-start-column="20" selection-end-line="1115" selection-end-column="65" />
               <folding>
-                <element signature="e#12087#12088#0" expanded="true" />
-                <element signature="e#12114#12115#0" expanded="true" />
-                <element signature="e#33318#33319#0" expanded="true" />
-                <element signature="e#33373#33374#0" expanded="true" />
-                <element signature="e#35876#35877#0" expanded="true" />
-                <element signature="e#35967#35968#0" expanded="true" />
-                <element signature="e#37659#37660#0" expanded="true" />
-                <element signature="e#37680#37681#0" expanded="true" />
-                <element signature="e#37707#37708#0" expanded="true" />
-                <element signature="e#37728#37729#0" expanded="true" />
+                <element signature="e#12077#12078#0" expanded="true" />
+                <element signature="e#12104#12105#0" expanded="true" />
+                <element signature="e#14675#14676#0" expanded="true" />
+                <element signature="e#14734#14735#0" expanded="true" />
+                <element signature="e#33250#33251#0" expanded="true" />
+                <element signature="e#33305#33306#0" expanded="true" />
+                <element signature="e#35795#35796#0" expanded="true" />
+                <element signature="e#35885#35886#0" expanded="true" />
+                <element signature="e#37559#37560#0" expanded="true" />
+                <element signature="e#37579#37580#0" expanded="true" />
+                <element signature="e#37604#37605#0" expanded="true" />
+                <element signature="e#37624#37625#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="XML.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/_as3/XML.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="84" column="19" lean-forward="false" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+              <folding>
+                <element signature="e#2400#2401#0" expanded="true" />
+                <element signature="e#2441#2442#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GeneralConstants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/constants/GeneralConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="330">
-                <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+              <first_editor relative-caret-position="353">
+                <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -117,35 +138,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NameChanger.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/NameChanger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#476#477#0" expanded="true" />
-                <element signature="e#509#510#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ParticleLibrary.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/realmrelay/game/particles/ParticleLibrary.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="202">
               <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HashMap.java" pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/HashMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="642">
-              <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -207,8 +204,8 @@
       <find>HashMa</find>
       <find>override</find>
       <find>active</find>
-      <find>setCred</find>
       <find>statsTracker</find>
+      <find>setCred</find>
     </findStrings>
     <replaceStrings>
       <replace>:</replace>
@@ -624,12 +621,12 @@
       <workItem from="1526066497288" duration="958000" />
       <workItem from="1526073957420" duration="5616000" />
       <workItem from="1526231318669" duration="29262000" />
-      <workItem from="1526314821211" duration="8757000" />
+      <workItem from="1526314821211" duration="10173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74693000" />
+    <option name="totallyTimeSpent" value="76109000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -688,17 +685,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/view/components/QueuedStatusText.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding>
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#682#683#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/BasicObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
@@ -1033,17 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/_as3/XML.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
-          <folding>
-            <element signature="e#2400#2401#0" expanded="true" />
-            <element signature="e#2441#2442#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/util/IntPoint.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -1168,17 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="330">
-            <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/messaging/GameServerConnectionConcrete.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -1209,22 +1173,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/constants/GeneralConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/realmrelay/game/_as3/XML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="84" column="19" lean-forward="false" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+          <folding>
+            <element signature="e#2400#2401#0" expanded="true" />
+            <element signature="e#2441#2442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/realmrelay/game/objects/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="1143" column="21" lean-forward="true" selection-start-line="1143" selection-start-column="21" selection-end-line="1143" selection-end-column="21" />
+        <state relative-caret-position="237">
+          <caret line="1115" column="20" lean-forward="true" selection-start-line="1115" selection-start-column="20" selection-end-line="1115" selection-end-column="65" />
           <folding>
-            <element signature="e#12087#12088#0" expanded="true" />
-            <element signature="e#12114#12115#0" expanded="true" />
-            <element signature="e#33318#33319#0" expanded="true" />
-            <element signature="e#33373#33374#0" expanded="true" />
-            <element signature="e#35876#35877#0" expanded="true" />
-            <element signature="e#35967#35968#0" expanded="true" />
-            <element signature="e#37659#37660#0" expanded="true" />
-            <element signature="e#37680#37681#0" expanded="true" />
-            <element signature="e#37707#37708#0" expanded="true" />
-            <element signature="e#37728#37729#0" expanded="true" />
+            <element signature="e#12077#12078#0" expanded="true" />
+            <element signature="e#12104#12105#0" expanded="true" />
+            <element signature="e#14675#14676#0" expanded="true" />
+            <element signature="e#14734#14735#0" expanded="true" />
+            <element signature="e#33250#33251#0" expanded="true" />
+            <element signature="e#33305#33306#0" expanded="true" />
+            <element signature="e#35795#35796#0" expanded="true" />
+            <element signature="e#35885#35886#0" expanded="true" />
+            <element signature="e#37559#37560#0" expanded="true" />
+            <element signature="e#37579#37580#0" expanded="true" />
+            <element signature="e#37604#37605#0" expanded="true" />
+            <element signature="e#37624#37625#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="353">
+            <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

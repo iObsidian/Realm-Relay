@@ -12,16 +12,41 @@ TODO :
     Add 'get' awareness in README (replaced get value() with getValue())
 
 
+
+
+
+
+
+
 Casting
 -------
 
    **AS3**
 
     int(equipment.length)
+    
+    Object as Projectile
+
 
    **java**
    
     (int) equipment.length
+
+    (Projectile) Object
+
+
+Freelist
+------
+
+   We allocated objects from memory directly
+
+   **AS3**
+    
+       FreeList.newObject(Projectile) as Projectile;
+       
+   **Java**
+
+       new Projectile();
 
 
 Vectors
