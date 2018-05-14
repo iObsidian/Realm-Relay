@@ -2,14 +2,12 @@ package realmrelay.game.objects;
 
 import javafx.geometry.Point3D;
 import javafx.scene.Camera;
-import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-
 import realmrelay.game.map.Map;
 import realmrelay.game.parameters.Parameters;
+import realmrelay.game.util.TextureRedrawer;
 import realmrelay.packets.data.unused.BitmapData;
 import realmspy.service.util.RandomUtil;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 
 /**
@@ -17,7 +15,7 @@ import java.util.HashMap;
  */
 public class Projectile extends BasicObject {
 
-	private static Map<Integer, Integer> objBullIdToObjId = new HashMap<>();
+	private static HashMap<Integer, Integer> objBullIdToObjId = new HashMap<>();
 
 	public ObjectProperties props;
 	public ObjectProperties containerProps;

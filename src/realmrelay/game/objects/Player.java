@@ -1036,8 +1036,8 @@ public class Player extends Character {
 				SoundEffectLibrary.play("error");
 				return false;
 			}
-			loc13 = int(loc5.MpCost);
-			if (loc13 > this.mp_) {
+			loc13 = loc5.MpCost;
+			if (loc13 > this.mp) {
 				SoundEffectLibrary.play("no_mana");
 				return false;
 			}
@@ -1052,8 +1052,8 @@ public class Player extends Character {
 			}
 		} else if (loc5.hasOwnProperty("MultiPhase")) {
 			map.gs.gsc.useItem(loc12, objectId. 1, loc4, loc7.x, loc7.y, param3);
-			loc13 = int(loc5.MpEndCost);
-			if (loc13 <= this.mp_) {
+			loc13 = loc5.MpEndCost;
+			if (loc13 <= this.mp) {
 				this.doShoot(loc12, loc4, loc5, loc6, false);
 			}
 		}
@@ -1064,10 +1064,10 @@ public class Player extends Character {
 		this.shoot(Parameters.data.cameraAngle + param1);
 	}
 
-	override
 
+	@Override
 	public void setAttack(int param1, double param2) {
-		var loc3:XML = ObjectLibrary.xmlLibrary_[param1];
+		XML loc3 = ObjectLibrary.xmlLibrary.get(param1);
 		if (loc3 == null || !loc3.hasOwnProperty("RateOfFire")) {
 			return;
 		}
@@ -1080,22 +1080,22 @@ public class Player extends Character {
 		if (map == null || isStunned() || isPaused() || isPetrified()) {
 			return;
 		}
-		var loc2:int =equipment_[0];
+		int loc2 = equipment[0];
 		if (loc2 == -1) {
 			this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, TextKey.PLAYER_NO_WEAPON_EQUIPPED));
 			return;
 		}
-		var loc3:XML = ObjectLibrary.xmlLibrary_[loc2];
+		XML loc3 = ObjectLibrary.xmlLibrary_[loc2];
 		int loc4 = getTimer();
-		double loc5 = loc3.RateOfFire;
+		double loc5 = loc3.getDoubleValue("RateOfFire");
 		this.attackPeriod = 1 / this.attackFrequency() * (1 / loc5);
-		if (loc4 < attackStart + this.attackPeriod_) {
+		if (loc4 < attackStart + this.attackPeriod) {
 			return;
 		}
 		doneAction(map.gs.Tutorial.ATTACK.CTION);
 		attackAngle = param1;
 		attackStart = loc4;
-		this.doShoot(attackStart_, loc2, loc3, attackAngle_, true);
+		this.doShoot(attackStart, loc2, loc3, attackAngle, true);
 	}
 
 	private void doShoot(int param1, int param2, XML param3, double param4, boolean param5) {
@@ -1113,11 +1113,11 @@ public class Player extends Character {
 		int loc10 = 0;
 		while (loc10 < loc6) {
 			loc11 = getBulletId();
-			loc12 = FreeList.newObject(Projectile) as Projectile;
+			loc12 = new Projectile();
 			if (param5 && this.projectileIdSetOverrideNew != "") {
-				loc12.reset(param2, 0, objectId_, loc11, loc9, param1, this.projectileIdSetOverrideNew, this.projectileIdSetOverrideOld);
+				loc12.reset(param2, 0, objectId, loc11, loc9, param1, this.projectileIdSetOverrideNew, this.projectileIdSetOverrideOld);
 			} else {
-				loc12.reset(param2, 0, objectId_, loc11, loc9, param1);
+				loc12.reset(param2, 0, objectId, loc11, loc9, param1);
 			}
 			loc13 = int(loc12.projProps.minDamage.;
 			loc14 = int(loc12.projProps.maxDamage.;

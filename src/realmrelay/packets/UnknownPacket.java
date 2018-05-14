@@ -9,7 +9,6 @@ import java.util.List;
 import realmrelay.game.messaging.incoming.IncomingMessage;
 
 
-
 public class UnknownPacket extends IncomingMessage {
 	
 	private byte id;
