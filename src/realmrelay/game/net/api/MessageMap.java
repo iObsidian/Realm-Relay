@@ -1,6 +1,5 @@
 package realmrelay.game.net.api;
 
-
 public interface MessageMap {
 
 	MessageMapping map(int param1);
@@ -8,3 +7,4 @@ public interface MessageMap {
 	void unmap(int param1);
 
 }
+

@@ -20,7 +20,7 @@ public interface Account {
 
 	Object getCredentials();
 
-	Boolean isRegistered();
+	boolean isRegistered();
 
 	void clear();
 
@@ -38,7 +38,7 @@ public interface Account {
 
 	void verify(Boolean aram1);
 
-	Boolean isVerified();
+	boolean isVerified();
 
 	String getMoneyUserId();
 

@@ -1,68 +1,52 @@
-package realmrelay.game.net.impl;
+package kabam.lib.net.impl;
+//import kabam.lib.net.api.MessageMap;
+//import kabam.lib.net.api.MessageMapping;
+//import kabam.lib.net.api.MessageProvider;
 
-import realmrelay.game.api.MessageProvider;
+//import org.swiftsuspenders.Injector;
+
 import realmrelay.game.net.api.MessageMap;
 import realmrelay.game.net.api.MessageMapping;
+import realmrelay.game.net.api.MessageProvider;
+import realmrelay.game.net.impl.Message;
+import realmrelay.game.net.impl.MessageCenterMapping;
+import realmrelay.game.net.impl.MessagePool;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The implementation of MessageProvider
- * used by GameServerConnectionConcrete
- * to map packets to functions and methods
- */
-public class MessageCenter implements MessageProvider, MessageMap {
+public class MessageCenter implements MessageMap, MessageProvider {
 
-	private static MessageCenter instance;
+	private static final int MAXID = 256;
 
-	// "Injector"
-	public static MessageCenter getInstance() {
-		if (instance == null) {
-			instance = new MessageCenter();
-		}
-		return instance;
+	private final List<MessageCenterMapping> maps = new Arraylist<MessageCenterMapping>(MAXID, true);
+
+	private final List<MessagePool> pools = new Arraylist<MessagePool>(MAXID, true);
+
+	public MessageCenter() {
+		super();
 	}
 
-
-	private static final int MAX_ID = 256;
-	private final List<MessageCenterMapping> maps = new ArrayList<MessageCenterMapping>(MAX_ID);
-	private final List<MessagePool> pools = new ArrayList<MessagePool>(MAX_ID);
-
-
-	@Override
 	public MessageMapping map(int param1) {
-		return null;
+		return this.maps[param1] = this.maps[param1] || this.makeMapping(param1);
 	}
 
-	@Override
 	public void unmap(int param1) {
+		this.pools[param1] && this.pools[param1].dispose();
+		this.pools[param1] = null;
+		this.maps[param1] = null;
 	}
 
+	private MessageCenterMapping makeMapping(int param1) {
+		return (MessageCenterMapping) new MessageCenterMapping().setID(param1);
+	}
 
-	@Override
 	public Message require(int param1) {
-		MessagePool loc2;
-
-		if (this.pools.get(param1) != null) {
-			loc2 = this.pools.get(param1);
-		} else {
-			loc2 = this.makePool(param1);
-		}
-
+		MessagePool loc2 = this.pools[param1] = this.pools[param1] || this.makePool(param1);
 		return loc2.require();
 	}
 
 	private MessagePool makePool(int param1) {
-		MessageCenterMapping loc2 = this.maps.get(param1);
-
-		if (loc2 == null) {
-			System.err.println("Error : null messageCenterMapping!");
-			return null;
-		}
-
-		return loc2.makePool();
+		MessageCenterMapping loc2 = this.maps[param1];
+		return !!loc2 ? loc2.makePool() : null;
 	}
-
-
 }

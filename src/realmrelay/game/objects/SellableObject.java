@@ -1,11 +1,12 @@
 package realmrelay.game.objects;
 
+import realmrelay.game.GameSprite;
 import realmrelay.game._as3.XML;
 import realmrelay.packets.data.unused.BitmapData;
 
 import java.awt.*;
 
-public class SellableObject extends GameObject implements IInteractiveObject {
+public class SellableObject extends GameObject /**implements IInteractiveObject*/ {
 
 
 	public SellableObject(XML objectXML) {
@@ -41,7 +42,7 @@ public class SellableObject extends GameObject implements IInteractiveObject {
 		return null;
 	}
 
-	public ToolTip getTooltip() {
+	//public ToolTip getTooltip() {
 		return null;
 	}
 
@@ -49,7 +50,7 @@ public class SellableObject extends GameObject implements IInteractiveObject {
 		return null;
 	}
 
-	public Panel getPanel(GameSprite gs) {
+	//public Panel getPanel(GameSprite gs) {
 		return new SellableObjectPanel(gs, this);
 	}
 
