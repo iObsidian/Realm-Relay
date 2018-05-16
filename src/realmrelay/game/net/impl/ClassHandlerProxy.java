@@ -2,6 +2,9 @@ package realmrelay.game.net.impl;
 
 import realmrelay.game.net.api.MessageHandlerProxy;
 
+import java.util.function.Consumer;
+import java.util.function.Function;
+
 public class ClassHandlerProxy implements MessageHandlerProxy {
 
 	private Class handlerType;
@@ -17,7 +20,7 @@ public class ClassHandlerProxy implements MessageHandlerProxy {
 		return this;
 	}
 
-	public Function getMethod() {
+	public Consumer getMethod() {
 		return this.handler != null ? this.handler.execute : this.makeHandlerAndReturnExecute();
 	}
 

@@ -3,6 +3,11 @@ package realmrelay.game.net.impl;
 import realmrelay.game.net.api.MessageHandlerProxy;
 import realmrelay.game.net.api.MessageMapping;
 
+import java.util.function.Consumer;
+
+/**
+ * Map between CLASS and TYPE
+ */
 public class MessageCenterMapping implements MessageMapping {
 
 	private final NullHandlerProxy nullHandler = new NullHandlerProxy();
@@ -34,7 +39,7 @@ public class MessageCenterMapping implements MessageMapping {
 		return this;
 	}
 
-	public MessageMapping toMethod(Function param1) {
+	public MessageMapping toMethod(Consumer param1) {
 		this.handler = new MethodHandlerProxy().setMethod(param1);
 		return this;
 	}
@@ -57,7 +62,7 @@ class NullHandlerProxy implements MessageHandlerProxy {
 		super();
 	}
 
-	public Function getMethod() {
+	public Consumer getMethod() {
 		return null;
 	}
 

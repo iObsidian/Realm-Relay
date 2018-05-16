@@ -1,11 +1,13 @@
  
 package realmrelay.game.net.impl;
 
-	public class MessagePool {
+import java.util.function.Consumer;
+
+public class MessagePool {
 
         public Class type;
 
-        public Function callback;
+        public Consumer callback;
 
         public int id;
 
@@ -13,7 +15,7 @@ package realmrelay.game.net.impl;
 
         private int count = 0;
 
-        public MessagePool(int param1, Class param2, Function param3) {
+        public MessagePool(int param1, Class param2, Consumer param3) {
             this.type = param2;
             this.id = param1;
             this.callback = param3;

@@ -3,6 +3,7 @@ package realmrelay.game.net.impl;
 import realmrelay.packets.data.unused.IData;
 
 import java.io.*;
+import java.util.function.Consumer;
 
 public class Message implements IData {
 
@@ -16,13 +17,13 @@ public class Message implements IData {
 
 	public int id;
 
-	public Function callback;
+	public Consumer callback;
 
 	public Message(int param1) {
 		this(param1, null);
 	}
 
-	public Message(int param1, Function param2) {
+	public Message(int param1, Consumer param2) {
 		super();
 		this.id = param1;
 		this.isCallback = param2 != null;

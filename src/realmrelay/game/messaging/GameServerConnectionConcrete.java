@@ -133,7 +133,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
         this.setGameFocus = SetGameFocusSignal.getInstance();
         this.classesModel = ClassesModel.getInstance();
         serverConnection = SocketServer.getInstance();
-        this.messages = MessageCenter.getInstance();
+        this.messages = kabam.lib.net.impl.MessageCenter.getInstance();
         this.model = GameModel.getInstance();
         /*this.currentArenaRun = CurrentArenaRunModel.getInstance();*/
         this.gs = gs;
@@ -190,109 +190,105 @@ public class GameServerConnectionConcrete extends GameServerConnection {
      */
 
     public void mapMessages() {
-        MessageCenter loc1 = MessageCenter.getInstance();
-        loc1.map(CREATE , Create.class);
-        loc1.map(PLAYERSHOOT , PlayerShoot.class);
-        loc1.map(MOVE , Move.class);
-        loc1.map(PLAYERTEXT , PlayerText.class);
-        loc1.map(UPDATEACK , Message.class);
-        loc1.map(INVSWAP , InvSwap.class);
-        loc1.map(USEITEM , UseItem.class);
-        loc1.map(HELLO , Hello.class);
-        loc1.map(INVDROP , InvDrop.class);
-        loc1.map(PONG , Pong.class);
-        loc1.map(LOAD , Load.class);
-        loc1.map(SETCONDITION , SetCondition.class);
-        loc1.map(TELEPORT , Teleport.class);
-        loc1.map(USEPORTAL , UsePortal.class);
-        loc1.map(BUY , Buy.class);
-        loc1.map(PLAYERHIT , PlayerHit.class);
-        loc1.map(ENEMYHIT , EnemyHit.class);
-        loc1.map(AOEACK , AoeAck.class);
-        loc1.map(SHOOTACK , ShootAck.class);
-        loc1.map(OTHERHIT , OtherHit.class);
-        loc1.map(SQUAREHIT , SquareHit.class);
-        loc1.map(GOTOACK , GotoAck.class);
-        loc1.map(GROUNDDAMAGE , GroundDamage.class);
-        loc1.map(CHOOSENAME , ChooseName.class);
-        loc1.map(CREATEGUILD , CreateGuild.class);
-        loc1.map(GUILDREMOVE , GuildRemove.class);
-        loc1.map(GUILDINVITE , GuildInvite.class);
-        loc1.map(REQUESTTRADE , RequestTrade.class);
-        loc1.map(CHANGETRADE , ChangeTrade.class);
-        loc1.map(ACCEPTTRADE , AcceptTrade.class);
-        loc1.map(CANCELTRADE , CancelTrade.class);
-        loc1.map(CHECKCREDITS , CheckCredits.class);
-        loc1.map(ESCAPE , Escape.class);
-        loc1.map(QUEST_ROOM_MSG , GoToQuestRoom.class);
-        loc1.map(JOINGUILD , JoinGuild.class);
-        loc1.map(CHANGEGUILDRANK , ChangeGuildRank.class);
-        loc1.map(EDITACCOUNTLIST , EditAccountList.class);
-        loc1.map(ACTIVE_PET_UPDATE_REQUEST , ActivePetUpdateRequest.class);
-        loc1.map(PETUPGRADEREQUEST , PetUpgradeRequest.class);
-        loc1.map(ENTER_ARENA , EnterArena.class);
-        loc1.map(ACCEPT_ARENA_DEATH , OutgoingMessage.class);
-        loc1.map(QUEST_FETCH_ASK , OutgoingMessage.class);
-        loc1.map(QUEST_REDEEM , QuestRedeem.class);
-        loc1.map(KEY_INFO_REQUEST , KeyInfoRequest.class);
-        loc1.map(PET_CHANGE_FORM_MSG , ReskinPet.class);
-        loc1.map(CLAIM_LOGIN_REWARD_MSG , ClaimDailyRewardMessage.class);
-        loc1.map(FAILURE , Failure.class).toMethod(this::onFailure);
-        loc1.map(CREATE_SUCCESS , CreateSuccess.class).toMethod(this::onCreateSuccess);
-        loc1.map(SERVERPLAYERSHOOT , ServerPlayerShoot.class).toMethod(this::onServerPlayerShoot);
-        loc1.map(DAMAGE , Damage.class).toMethod(this::onDamage);
-        loc1.map(UPDATE , Update.class).toMethod(this::onUpdate);
-        loc1.map(NOTIFICATION , Notification.class).toMethod(this::onNotification);
-        loc1.map(GLOBAL_NOTIFICATION , GlobalNotification.class).toMethod(this::onGlobalNotification);
-        loc1.map(NEWTICK , NewTick.class).toMethod(this::onNewTick);
-        loc1.map(SHOWEFFECT , ShowEffect.class).toMethod(this::onShowEffect);
-        loc1.map(GOTO , Goto.class).toMethod(this::onGoto);
-        loc1.map(INVRESULT , InvResult.class).toMethod(this::onInvResult);
-        loc1.map(RECONNECT , Reconnect.class).toMethod(this::onReconnect);
-        loc1.map(PING , Ping.class).toMethod(this::onPing);
-        loc1.map(MAPINFO , MapInfo.class).toMethod(this::onMapInfo);
-        //_loc1.map(PIC , Pic.class).toMethod(this::onPic);
-        loc1.map(DEATH , Death.class).toMethod(this::onDeath);
-        loc1.map(BUYRESULT , BuyResult.class).toMethod(this::onBuyResult);
-        loc1.map(AOE , Aoe.class).toMethod(this::onAoe);
-        loc1.map(ACCOUNTLIST , AccountList.class).toMethod(this::onAccountList);
-        loc1.map(QUESTOBJID , QuestObjId.class).toMethod(this::onQuestObjId);
-        loc1.map(NAMERESULT , NameResult.class).toMethod(this::onNameResult);
-        loc1.map(GUILDRESULT , GuildResult.class).toMethod(this::onGuildResult);
-        loc1.map(ALLYSHOOT , AllyShoot.class).toMethod(this::onAllyShoot);
-        loc1.map(ENEMYSHOOT , EnemyShoot.class).toMethod(this::onEnemyShoot);
-        loc1.map(TRADEREQUESTED , TradeRequested.class).toMethod(this::onTradeRequested);
-        loc1.map(TRADESTART , TradeStart.class).toMethod(this::onTradeStart);
-        loc1.map(TRADECHANGED , TradeChanged.class).toMethod(this::onTradeChanged);
-        loc1.map(TRADEDONE , TradeDone.class).toMethod(this::onTradeDone);
-        loc1.map(TRADEACCEPTED , TradeAccepted.class).toMethod(this::onTradeAccepted);
-        loc1.map(CLIENTSTAT , ClientStat.class).toMethod(this::onClientStat);
-        loc1.map(FILE , File.class).toMethod(this::onFile);
-        loc1.map(INVITEDTOGUILD , InvitedToGuild.class).toMethod(this::onInvitedToGuild);
-        loc1.map(PLAYSOUND , PlaySound.class).toMethod(this::onPlaySound);
-        loc1.map(ACTIVEPETUPDATE , ActivePet.class).toMethod(this::onActivePetUpdate);
-        loc1.map(NEW_ABILITY , NewAbilityMessage.class).toMethod(this::onNewAbility);
-        loc1.map(PETYARDUPDATE , PetYard.class).toMethod(this::onPetYardUpdate);
-        loc1.map(EVOLVE_PET , EvolvedPetMessage.class).toMethod(this::onEvolvedPet);
-        loc1.map(DELETE_PET , DeletePetMessage.class).toMethod(this::onDeletePet);
-        loc1.map(HATCH_PET , HatchPetMessage.class).toMethod(this::onHatchPet);
-		/*_loc1.map(IMMINENT_ARENA_WAVE , ImminentArenaWave.class).toMethod(this::onImminentArenaWave);
-		_loc1.map(ARENA_DEATH , ArenaDeath.class).toMethod(this::onArenaDeath);
-		_loc1.map(VERIFY_EMAIL , VerifyEmail.class).toMethod(this::onVerifyEmail);
-		_loc1.map(RESKIN_UNLOCK , ReskinUnlock.class).toMethod(this::onReskinUnlock);
-		_loc1.map(PASSWORD_PROMPT , PasswordPrompt.class).toMethod(this::onPasswordPrompt);
-		_loc1.map(QUEST_FETCH_RESPONSE , QuestFetchResponse.class).toMethod(this::onQuestFetchResponse);
-		_loc1.map(QUEST_REDEEM_RESPONSE , QuestRedeemResponse.class).toMethod(this::onQuestRedeemResponse);
-		_loc1.map(KEY_INFO_RESPONSE , KeyInfoResponse.class).toMethod(this::onKeyInfoResponse);
-		_loc1.map(LOGIN_REWARD_MSG , ClaimDailyRewardResponse.class).toMethod(this::onLoginRewardResponse);**/
+        kabam.lib.net.impl.MessageCenter loc1 = kabam.lib.net.impl.MessageCenter.getInstance();
+        loc1.map(CREATE).toMessage(Create.class);
+        loc1.map(PLAYERSHOOT).toMessage(PlayerShoot.class);
+        loc1.map(MOVE).toMessage(Move.class);
+        loc1.map(PLAYERTEXT).toMessage(PlayerText.class);
+        loc1.map(UPDATEACK).toMessage(Message.class);
+        loc1.map(INVSWAP).toMessage(InvSwap.class);
+        loc1.map(USEITEM).toMessage(UseItem.class);
+        loc1.map(HELLO).toMessage(Hello.class);
+        loc1.map(INVDROP).toMessage(InvDrop.class);
+        loc1.map(PONG).toMessage(Pong.class);
+        loc1.map(LOAD).toMessage(Load.class);
+        loc1.map(SETCONDITION).toMessage(SetCondition.class);
+        loc1.map(TELEPORT).toMessage(Teleport.class);
+        loc1.map(USEPORTAL).toMessage(UsePortal.class);
+        loc1.map(BUY).toMessage(Buy.class);
+        loc1.map(PLAYERHIT).toMessage(PlayerHit.class);
+        loc1.map(ENEMYHIT).toMessage(EnemyHit.class);
+        loc1.map(AOEACK).toMessage(AoeAck.class);
+        loc1.map(SHOOTACK).toMessage(ShootAck.class);
+        loc1.map(OTHERHIT).toMessage(OtherHit.class);
+        loc1.map(SQUAREHIT).toMessage(SquareHit.class);
+        loc1.map(GOTOACK).toMessage(GotoAck.class);
+        loc1.map(GROUNDDAMAGE).toMessage(GroundDamage.class);
+        loc1.map(CHOOSENAME).toMessage(ChooseName.class);
+        loc1.map(CREATEGUILD).toMessage(CreateGuild.class);
+        loc1.map(GUILDREMOVE).toMessage(GuildRemove.class);
+        loc1.map(GUILDINVITE).toMessage(GuildInvite.class);
+        loc1.map(REQUESTTRADE).toMessage(RequestTrade.class);
+        loc1.map(CHANGETRADE).toMessage(ChangeTrade.class);
+        loc1.map(ACCEPTTRADE).toMessage(AcceptTrade.class);
+        loc1.map(CANCELTRADE).toMessage(CancelTrade.class);
+        loc1.map(CHECKCREDITS).toMessage(CheckCredits.class);
+        loc1.map(ESCAPE).toMessage(Escape.class);
+        loc1.map(QUEST_ROOM_MSG).toMessage(GoToQuestRoom.class);
+        loc1.map(JOINGUILD).toMessage(JoinGuild.class);
+        loc1.map(CHANGEGUILDRANK).toMessage(ChangeGuildRank.class);
+        loc1.map(EDITACCOUNTLIST).toMessage(EditAccountList.class);
+        loc1.map(ACTIVE_PET_UPDATE_REQUEST).toMessage(ActivePetUpdateRequest.class);
+        loc1.map(PETUPGRADEREQUEST).toMessage(PetUpgradeRequest.class);
+        loc1.map(ENTER_ARENA).toMessage(EnterArena.class);
+        loc1.map(ACCEPT_ARENA_DEATH).toMessage(OutgoingMessage.class);
+        loc1.map(QUEST_FETCH_ASK).toMessage(OutgoingMessage.class);
+        loc1.map(QUEST_REDEEM).toMessage(QuestRedeem.class);
+        loc1.map(KEY_INFO_REQUEST).toMessage(KeyInfoRequest.class);
+        loc1.map(PET_CHANGE_FORM_MSG).toMessage(ReskinPet.class);
+        loc1.map(CLAIM_LOGIN_REWARD_MSG).toMessage(ClaimDailyRewardMessage.class);
+        loc1.map(FAILURE).toMessage(Failure.class).toMethod(this::onFailure);
+        loc1.map(CREATE_SUCCESS).toMessage(CreateSuccess.class).toMethod(this::onCreateSuccess);
+        loc1.map(SERVERPLAYERSHOOT).toMessage(ServerPlayerShoot.class).toMethod(this::onServerPlayerShoot);
+        loc1.map(DAMAGE).toMessage(Damage.class).toMethod(this::onDamage);
+        loc1.map(UPDATE).toMessage(Update.class).toMethod(this::onUpdate);
+        loc1.map(NOTIFICATION).toMessage(Notification.class).toMethod(this::onNotification);
+        loc1.map(GLOBAL_NOTIFICATION).toMessage(GlobalNotification.class).toMethod(this::onGlobalNotification);
+        loc1.map(NEWTICK).toMessage(NewTick.class).toMethod(this::onNewTick);
+        loc1.map(SHOWEFFECT).toMessage(ShowEffect.class).toMethod(this::onShowEffect);
+        loc1.map(GOTO).toMessage(Goto.class).toMethod(this::onGoto);
+        loc1.map(INVRESULT).toMessage(InvResult.class).toMethod(this::onInvResult);
+        loc1.map(RECONNECT).toMessage(Reconnect.class).toMethod(this::onReconnect);
+        loc1.map(PING).toMessage(Ping.class).toMethod(this::onPing);
+        loc1.map(MAPINFO).toMessage(MapInfo.class).toMethod(this::onMapInfo);
+        //_loc1.map(PIC).toMessage(Pic.class).toMethod(this::onPic);
+        loc1.map(DEATH).toMessage(Death.class).toMethod(this::onDeath);
+        loc1.map(BUYRESULT).toMessage(BuyResult.class).toMethod(this::onBuyResult);
+        loc1.map(AOE).toMessage(Aoe.class).toMethod(this::onAoe);
+        loc1.map(ACCOUNTLIST).toMessage(AccountList.class).toMethod(this::onAccountList);
+        loc1.map(QUESTOBJID).toMessage(QuestObjId.class).toMethod(this::onQuestObjId);
+        loc1.map(NAMERESULT).toMessage(NameResult.class).toMethod(this::onNameResult);
+        loc1.map(GUILDRESULT).toMessage(GuildResult.class).toMethod(this::onGuildResult);
+        loc1.map(ALLYSHOOT).toMessage(AllyShoot.class).toMethod(this::onAllyShoot);
+        loc1.map(ENEMYSHOOT).toMessage(EnemyShoot.class).toMethod(this::onEnemyShoot);
+        loc1.map(TRADEREQUESTED).toMessage(TradeRequested.class).toMethod(this::onTradeRequested);
+        loc1.map(TRADESTART).toMessage(TradeStart.class).toMethod(this::onTradeStart);
+        loc1.map(TRADECHANGED).toMessage(TradeChanged.class).toMethod(this::onTradeChanged);
+        loc1.map(TRADEDONE).toMessage(TradeDone.class).toMethod(this::onTradeDone);
+        loc1.map(TRADEACCEPTED).toMessage(TradeAccepted.class).toMethod(this::onTradeAccepted);
+        loc1.map(CLIENTSTAT).toMessage(ClientStat.class).toMethod(this::onClientStat);
+        loc1.map(FILE).toMessage(File.class).toMethod(this::onFile);
+        loc1.map(INVITEDTOGUILD).toMessage(InvitedToGuild.class).toMethod(this::onInvitedToGuild);
+        loc1.map(PLAYSOUND).toMessage(PlaySound.class).toMethod(this::onPlaySound);
+        loc1.map(ACTIVEPETUPDATE).toMessage(ActivePet.class).toMethod(this::onActivePetUpdate);
+        loc1.map(NEW_ABILITY).toMessage(NewAbilityMessage.class).toMethod(this::onNewAbility);
+        loc1.map(PETYARDUPDATE).toMessage(PetYard.class).toMethod(this::onPetYardUpdate);
+        loc1.map(EVOLVE_PET).toMessage(EvolvedPetMessage.class).toMethod(this::onEvolvedPet);
+        loc1.map(DELETE_PET).toMessage(DeletePetMessage.class).toMethod(this::onDeletePet);
+        loc1.map(HATCH_PET).toMessage(HatchPetMessage.class).toMethod(this::onHatchPet);
+		/*_loc1.map(IMMINENT_ARENA_WAVE).toMessage(ImminentArenaWave.class).toMethod(this::onImminentArenaWave);
+		_loc1.map(ARENA_DEATH).toMessage(ArenaDeath.class).toMethod(this::onArenaDeath);
+		_loc1.map(VERIFY_EMAIL).toMessage(VerifyEmail.class).toMethod(this::onVerifyEmail);
+		_loc1.map(RESKIN_UNLOCK).toMessage(ReskinUnlock.class).toMethod(this::onReskinUnlock);
+		_loc1.map(PASSWORD_PROMPT).toMessage(PasswordPrompt.class).toMethod(this::onPasswordPrompt);
+		_loc1.map(QUEST_FETCH_RESPONSE).toMessage(QuestFetchResponse.class).toMethod(this::onQuestFetchResponse);
+		_loc1.map(QUEST_REDEEM_RESPONSE).toMessage(QuestRedeemResponse.class).toMethod(this::onQuestRedeemResponse);
+		_loc1.map(KEY_INFO_RESPONSE).toMessage(KeyInfoResponse.class).toMethod(this::onKeyInfoResponse);
+		_loc1.map(LOGIN_REWARD_MSG).toMessage(ClaimDailyRewardResponse.class).toMethod(this::onLoginRewardResponse);**/
 
-        jesus(this::method);
 
 
     }
-
-
-
 
 
     public class MessageConsumer<T> {
@@ -305,15 +301,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
     }
 
-
     public void jesus(Consumer<? super Message> consumer) {
 
     }
-
-    public void method(IncomingMessage c) {
-
-    }
-
 
     public void onHatchPet(HatchPetMessage param1) {
 
@@ -322,10 +312,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
     private void onDeletePet(DeletePetMessage param1) {
 
     }
-
-
-
-
 
     private void onNewAbility(NewAbilityMessage param1) {
 

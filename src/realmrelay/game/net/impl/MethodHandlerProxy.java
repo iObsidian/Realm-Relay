@@ -3,20 +3,22 @@ package realmrelay.game.net.impl
 
 import realmrelay.game.net.api.MessageHandlerProxy;
 
+import java.util.function.Consumer;
+
 public class MethodHandlerProxy implements MessageHandlerProxy {
 
-    private Function method;
+    private Consumer method;
 
     public MethodHandlerProxy() {
         super();
     }
 
-    public MethodHandlerProxy setMethod(Function param1) {
+    public MethodHandlerProxy setMethod(Consumer param1) {
         this.method = param1;
         return this;
     }
 
-    public Function getMethod() {
+    public Consumer getMethod() {
         return this.method;
     }
 }
