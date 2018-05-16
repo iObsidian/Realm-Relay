@@ -1,7 +1,6 @@
 package realmrelay.game.game;
 
 
-import com.sun.org.glassfish.external.statistics.Stats;
 import javafx.stage.Stage;
 import realmrelay.game.GameSprite;
 import realmrelay.game.MiniMapZoomSignal;
@@ -26,7 +25,6 @@ import realmrelay.game.ui.popups.signals.ClosePopupByClassSignal;
 import realmrelay.game.ui.popups.signals.ShowPopupSignal;
 import realmrelay.game.view.components.StatsTabHotKeyInputSignal;
 import realmrelay.game.util.KeyCodes;
-import realmrelay.game.util.TextureRedrawer;
 
 import java.awt.event.MouseEvent;
 

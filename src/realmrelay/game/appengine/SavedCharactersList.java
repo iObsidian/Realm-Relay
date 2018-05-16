@@ -6,6 +6,7 @@ import realmrelay.game.dialogs.OpenDialogSignal;
 import realmrelay.game.net.LatLong;
 import realmrelay.game.objects.ObjectLibrary;
 import realmrelay.game.objects.Player;
+import realmrelay.game.promotions.model.BeginnersPackageModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 /**
  * Known as 'Charlist' by The Force
- */
+ *//*
 public class SavedCharactersList extends Event {
 
 	public static final String SAVED_CHARS_LIST = "SAVED_CHARS_LIST";
@@ -337,3 +338,4 @@ public class SavedCharactersList extends Event {
 
 
 }
+**/

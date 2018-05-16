@@ -8,7 +8,7 @@ import realmrelay.game.util.MoreDateUtil;
  */
 public class Parameters {
 
-	public static final String BUILD_VERSION = "X22.1";
+	public static final String BUILD_VERSION = "X25.1";
 	public static final String MINOR_VERSION = "1";
 
 	public static final boolean ENABLE_ENCRYPTION = true;

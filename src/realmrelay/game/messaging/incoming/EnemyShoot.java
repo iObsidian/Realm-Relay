@@ -47,11 +47,11 @@ public class EnemyShoot extends IncomingMessage {
 		out.writeInt(ownerId);
 		out.writeByte(bulletType);
 		startingPos.writeToOutput(out);
-		out.writeFloat(angle);
+		out.writeDouble(angle);
 		out.writeShort(damage);
 		if (numShots != 1) {
 			out.writeByte(numShots);
-			out.writeFloat(angleInc);
+			out.writeDouble(angleInc);
 		}
 	}
 

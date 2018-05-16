@@ -1,4 +1,4 @@
-package kabam.lib.net.api;
+package realmrelay.game.net.api;
 
 import realmrelay.game.net.api.MessageMapping;
 

@@ -29,7 +29,7 @@ public class AllyShoot extends IncomingMessage {
 		out.writeByte(bulletId);
 		out.writeInt(ownerId);
 		out.writeShort(containerType);
-		out.writeFloat(angle);
+		out.writeDouble(angle);
 	}
 
 }

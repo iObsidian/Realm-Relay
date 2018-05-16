@@ -23,7 +23,7 @@ public class SetCondition extends OutgoingMessage {
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeByte(conditionEffect);
-		out.writeFloat(conditionDuration);
+		out.writeDouble(conditionDuration);
 	}
 
 }

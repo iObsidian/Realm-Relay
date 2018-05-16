@@ -26,7 +26,7 @@ public class PlayerShoot extends OutgoingMessage {
 		bulletId = in.readUnsignedByte();
 		containerType = in.readUnsignedShort();
 		startingPos.parseFromInput(in);
-		angle = in.readFloat();
+		angle = in.readDouble();
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class PlayerShoot extends OutgoingMessage {
 		out.writeByte(bulletId);
 		out.writeShort(containerType);
 		startingPos.writeToOutput(out);
-		out.writeFloat(angle);
+		out.writeDouble(angle);
 	}
 
 }

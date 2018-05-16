@@ -14,7 +14,6 @@ import realmrelay.game.pets.data.PetVO;
 import realmrelay.game.pets.data.PetsModel;
 import realmrelay.game.util.AnimatedChars;
 import realmrelay.game.util.MaskedImage;
-import realmrelay.game.util.TextureRedrawer;
 import realmrelay.packets.data.unused.BitmapData;
 import sun.java2d.cmm.ColorTransform;
 

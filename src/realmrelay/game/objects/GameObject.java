@@ -10,7 +10,6 @@ import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.objects.animation.Animations;
 import realmrelay.game.parameters.Parameters;
 import realmrelay.game.particles.ParticleEffect;
-import realmrelay.game.particles.ShockerEffect;
 import realmrelay.game.util.*;
 import realmrelay.packets.data.unused.BitmapData;
 

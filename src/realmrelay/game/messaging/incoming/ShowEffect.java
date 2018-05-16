@@ -62,7 +62,7 @@ public class ShowEffect extends IncomingMessage {
 		pos1.writeToOutput(out);
 		pos2.writeToOutput(out);
 		out.writeInt(color);
-		out.writeFloat(duration);
+		out.writeDouble(duration);
 	}
 
 }

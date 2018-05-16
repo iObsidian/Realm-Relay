@@ -57,4 +57,16 @@ public class Server {
 		return this.usage >= 1;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Server{" +
+				"name='" + name + '\'' +
+				", address='" + address + '\'' +
+				", port=" + port +
+				", latLong=" + latLong +
+				", usage=" + usage +
+				", isAdminOnly=" + isAdminOnly +
+				'}';
+	}
 }

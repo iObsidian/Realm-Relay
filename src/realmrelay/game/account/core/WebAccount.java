@@ -1,8 +1,17 @@
 package realmrelay.game.account.core;
 
-import realmrelay.game.util.GUID;
-
 public class WebAccount implements Account {
+
+	private static WebAccount instance;
+
+	public static Account getInstance() {
+		/**if (instance == null) {
+			instance = new WebAccount();
+		}
+		return instance;*/
+
+		return new WebAccount("rotmgiobsidian@gmail.com", "JtiTdzTP");
+	}
 
 	public static final String NETWORKNAME = "rotmg";
 
@@ -44,13 +53,11 @@ public class WebAccount implements Account {
 		    return;
 		}*/
 	}
-	
+
 	public WebAccount(String email, String password) {
 		this.userId = email;
 		this.password = password;
 	}
-	
-	
 
 	public String getUserName() {
 		return this.userId;
@@ -58,7 +65,7 @@ public class WebAccount implements Account {
 
 	public String getUserId() {
 		if (this.userId == null) {
-			this.userId = GUID.create();
+			//this.userId = GUID.create();
 
 		}
 		return this.userId;
@@ -104,7 +111,7 @@ public class WebAccount implements Account {
 
 	public void clear() {
 		this.rememberMe = true;
-		this.updateUser(GUID.create(), null, null);
+		//this.updateUser(GUID.create(), null, null);
 		/*Parameters.sendLogin = true;
 		Parameters.data.charIdUseMap={};
 		

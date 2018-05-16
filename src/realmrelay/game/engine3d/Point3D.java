@@ -2,10 +2,12 @@ package realmrelay.game.engine3d;
 
 import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
+import realmrelay.game.util.Trig;
 import realmrelay.packets.data.unused.BitmapData;
 
 public class Point3D {
 
+    
     private static final List<int> commands = new <int>[GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO,GraphicsPathCommand.LINE_TO,GraphicsPathCommand.LINE_TO];
 
     private static final GraphicsEndFill END_FILL = new GraphicsEndFill();

@@ -6,7 +6,7 @@ import realmrelay.packets.data.unused.BitmapData;
 
 import java.awt.*;
 
-public class SellableObject extends GameObject /**implements IInteractiveObject*/ {
+public class SellableObject extends GameObject {
 
 
 	public SellableObject(XML objectXML) {
@@ -40,18 +40,6 @@ public class SellableObject extends GameObject /**implements IInteractiveObject*
 
 	public String soldObjectInternalName() {
 		return null;
-	}
-
-	//public ToolTip getTooltip() {
-		return null;
-	}
-
-	public BitmapData getIcon() {
-		return null;
-	}
-
-	//public Panel getPanel(GameSprite gs) {
-		return new SellableObjectPanel(gs, this);
 	}
 
 

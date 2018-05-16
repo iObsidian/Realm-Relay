@@ -36,10 +36,10 @@ public class Aoe extends IncomingMessage {
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		pos.writeToOutput(out);
-		out.writeFloat(radius);
+		out.writeDouble(radius);
 		out.writeShort(damage);
 		out.writeByte(effect);
-		out.writeFloat(duration);
+		out.writeDouble(duration);
 		out.writeShort(origType);
 		out.writeInt(color);
 	}

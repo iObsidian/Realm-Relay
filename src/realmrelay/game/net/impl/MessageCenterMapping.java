@@ -1,7 +1,8 @@
 package realmrelay.game.net.impl;
 
-import realmrelay.game.net.api.MessageHandlerProxy;
+import realmrelay.game.net.api.MessageConsumer;
 import realmrelay.game.net.api.MessageMapping;
+import realmrelay.game.net.api.MessageProvider;
 
 import java.util.function.Consumer;
 
@@ -10,19 +11,13 @@ import java.util.function.Consumer;
  */
 public class MessageCenterMapping implements MessageMapping {
 
-	private final NullHandlerProxy nullHandler = new NullHandlerProxy();
-
 	private int id;
 
-	private Class messageType;
+	Class messageType;
 
 	private int population = 1;
 
-	private MessageHandlerProxy handler;
-
-	public MessageCenterMapping() {
-		this.handler = this.nullHandler;
-	}
+	private MessageConsumer messageConsumer;
 
 	public MessageMapping setID(int param1) {
 		this.id = param1;
@@ -34,13 +29,8 @@ public class MessageCenterMapping implements MessageMapping {
 		return this;
 	}
 
-	public MessageMapping toHandler(Class param1) {
-		this.handler = new ClassHandlerProxy().setType(param1);
-		return this;
-	}
-
-	public MessageMapping toMethod(Consumer param1) {
-		this.handler = new MethodHandlerProxy().setMethod(param1);
+	public MessageMapping toMethod(MessageConsumer param1) {
+		this.messageConsumer = param1;
 		return this;
 	}
 
@@ -49,21 +39,10 @@ public class MessageCenterMapping implements MessageMapping {
 		return this;
 	}
 
-	public MessagePool makePool() {
-		MessagePool loc1 = new MessagePool(this.id, this.messageType, this.handler.getMethod());
-		loc1.populate(this.population);
-		return loc1;
+	public Consumer getConsumer() {
+		if (messageConsumer == null) {
+			return null;
+		}
+		return messageConsumer.getConsumer();
 	}
-}
-
-class NullHandlerProxy implements MessageHandlerProxy {
-
-	NullHandlerProxy() {
-		super();
-	}
-
-	public Consumer getMethod() {
-		return null;
-	}
-
 }

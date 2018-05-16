@@ -1,6 +1,6 @@
 package realmrelay.game.util;
 
-public class GUID {
+public class UID {
 
 	private static Number counter = 0;
 

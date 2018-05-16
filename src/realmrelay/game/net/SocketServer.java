@@ -1,13 +1,5 @@
 package realmrelay.game.net;
 
-import realmrelay.crypto.ICipher;
-import realmrelay.game._as3.SCry;
-import realmrelay.game.api.MessageProvider;
-import realmrelay.game.messaging.GameServerConnectionConcrete;
-import realmrelay.game.messaging.outgoing.Hello;
-import realmrelay.game.net.impl.Message;
-import realmrelay.game.parameters.Parameters;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,6 +8,12 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
+
+import realmrelay.crypto.ICipher;
+import realmrelay.game.messaging.GameServerConnectionConcrete;
+import realmrelay.game.net.impl.Message;
+import realmrelay.game.net.impl.MessageCenter;
+import realmrelay.game.parameters.Parameters;
 
 /**
  * This class is a very loose implementation of WildShadow's SocketServer,
@@ -35,13 +33,11 @@ public class SocketServer {
 
 	public static int MESSAGE_LENGTH_SIZE_IN_BYTES = 4;
 
-	public MessageProvider messages = MessageCenter.getInstance();
+	public MessageCenter messages = MessageCenter.getInstance();
 
 	public Socket socket = null;
 
-
 	private int bufferIndex = 0;
-
 
 	private boolean write = false;
 	private boolean read = false;
@@ -49,7 +45,6 @@ public class SocketServer {
 	private long startTime = 0;
 	public long lastTimePacketReceived = 0;
 	public long lastPingTime = 0;
-
 
 	private ICipher outgoingCipher; //Renamed from 'ICipher'.
 
@@ -59,27 +54,27 @@ public class SocketServer {
 
 	private int port;
 
-
 	private DataInputStream inputStream = null;
 	private DataOutputStream outputStream = null;
 
-
 	private byte[] buffer = new byte[100000];
-	BlockingDeque<Message> packetQueue = new LinkedBlockingDeque<Message>();
-
+	private BlockingDeque<Message> packetQueue = new LinkedBlockingDeque<Message>();
 
 	public static void main(String[] args) {
 
-		
-		SocketServer s = new SocketServer();
+		//AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
+		//                                        int keyTime, byte[] key, byte[] mapJSON, boolean isFromArena
 
-		s.setOutgoingCipher(new ICipher("6a39570cc9de4ec71d64821894"));
-		s.setIncomingCipher(new ICipher("c79332b197f92ba85ed281a023"));
+		Server s = new Server().setAddress("54.67.119.179").setPort(Parameters.PORT);
 
-		s.connect("54.153.32.11", Parameters.PORT);
+		System.out.println(s.toString());
+
+		GameServerConnectionConcrete g = new GameServerConnectionConcrete(null, s, -1, false, 404, -1, new byte[0],
+				null, false);
+
+		g.connect();
 
 	}
-
 
 	public SocketServer setOutgoingCipher(ICipher param1) {
 		this.outgoingCipher = param1;
@@ -91,9 +86,7 @@ public class SocketServer {
 		return this;
 	}
 
-
-	public void connect(String server, int host) {
-
+	public void connect(String server, int port) {
 		bufferIndex = 0;
 		buffer = new byte[100000];
 		packetQueue.clear();
@@ -101,32 +94,24 @@ public class SocketServer {
 		this.server = server;
 		this.port = port;
 
-		Hello h = (Hello) messages.require(GameServerConnectionConcrete.HELLO);
+		System.out.println("Connecting to " + server + ":" + port + ".");
 
-		h.buildVersion = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
-		h.gameId = -2; // nexus
-		h.guid = SCry.encrypt("rotmgiobsidian@gmail.com");
-		h.random1 = 0;
-		h.password = SCry.encrypt("JtiTdzTP");
-		h.random2 = 0;
-		h.secret = "";
-		h.keyTime = -1;
-		h.key = new byte[0];
-		h.mapJSON = new byte[0];
-		h.entrytag = "";
-		h.gameNet = "";
-		h.gameNetUserId = "";
-		h.playPlatform = "";
-		h.platformToken = "";
-		h.userToken = "";
+		try {
+			socket = new Socket(server, port);
+			socket.setReuseAddress(true);
 
-		packetQueue.addFirst(h);
+			inputStream = new DataInputStream(socket.getInputStream());
+			outputStream = new DataOutputStream(socket.getOutputStream());
+			startTime = System.currentTimeMillis();
+			startThreadedListener();
+			startThreadedWriter();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
-		start();
-
+		///
 
 	}
-
 
 	private void startThreadedListener() {
 
@@ -176,10 +161,10 @@ public class SocketServer {
 
 						int lastPacket = (int) ((System.currentTimeMillis() - lastTimePacketReceived));
 
-                       /* if (lastPacket > 2000 && !packetQueue.isEmpty()) {
-                            reconnect(
-                                "Timeout, nothing received in " + lastPacket + "ms.");
-                        }**/
+						/* if (lastPacket > 2000 && !packetQueue.isEmpty()) {
+						    reconnect(
+						        "Timeout, nothing received in " + lastPacket + "ms.");
+						}**/
 					}
 
 				} catch (Exception ex) {
@@ -225,32 +210,21 @@ public class SocketServer {
 		}.start();
 	}
 
-
 	protected int currentTime() {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-
-	public void start() {
-		try {
-			socket = new Socket(server, port);
-			socket.setReuseAddress(true);
-
-			inputStream = new DataInputStream(socket.getInputStream());
-			outputStream = new DataOutputStream(socket.getOutputStream());
-			startTime = System.currentTimeMillis();
-			startThreadedListener();
-			startThreadedWriter();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-
+	/**
+	 * Send directly the message
+	 * @param packet
+	 */
 	public void sendMessage(Message packet) {
 		try {
 			if (write) {
 				byte[] packetBytes = packet.getBytes();
+
+				System.out.println("Packet bytes : " + packetBytes.length + ".");
+
 				outgoingCipher.cipher(packetBytes);
 				int packetLength = packetBytes.length + 5;
 				outputStream.writeInt(packetLength);
@@ -259,9 +233,7 @@ public class SocketServer {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-
 		}
 	}
-
 
 }

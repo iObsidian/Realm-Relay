@@ -1,13 +1,12 @@
 package realmrelay.game.net.impl;
 
+import realmrelay.game.net.api.MessageConsumer;
 import realmrelay.packets.data.unused.IData;
 
 import java.io.*;
 import java.util.function.Consumer;
 
 public class Message implements IData {
-
-	public MessagePool pool;
 
 	public Message prev;
 
@@ -19,22 +18,26 @@ public class Message implements IData {
 
 	public Consumer callback;
 
-	public Message(int param1) {
+	/**public Message(int param1) {
 		this(param1, null);
+	}*/
+
+	public Message(int param1, MessageConsumer param2) {
+		this(param1, param2.getConsumer());
 	}
 
 	public Message(int param1, Consumer param2) {
-		super();
 		this.id = param1;
 		this.isCallback = param2 != null;
 		this.callback = param2;
 	}
 
 	public void consume() {
-		this.isCallback && this.callback(this);
+		if (this.isCallback) {
+			this.callback.accept(this);
+		}
 		this.prev = null;
 		this.next = null;
-		this.pool.append(this);
 	}
 
 	public byte[] getBytes() throws IOException {
@@ -43,7 +46,6 @@ public class Message implements IData {
 		writeToOutput(out);
 		return baos.toByteArray();
 	}
-
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

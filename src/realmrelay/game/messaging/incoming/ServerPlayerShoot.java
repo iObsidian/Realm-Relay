@@ -37,7 +37,7 @@ public class ServerPlayerShoot extends IncomingMessage {
 		out.writeInt(ownerId);
 		out.writeInt(containerType);
 		startingPos.writeToOutput(out);
-		out.writeFloat(angle);
+		out.writeDouble(angle);
 		out.writeShort(damage);
 	}
 

@@ -25,16 +25,16 @@ public class MoveRecord implements IData {
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		time = in.readInt();
-		x = in.readFloat();
-		y = in.readFloat();
+		x = in.readDouble();
+		y = in.readDouble();
 
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeInt(time);
-		out.writeFloat(x);
-		out.writeFloat(y);
+		out.writeDouble(x);
+		out.writeDouble(y);
 	}
 
 }

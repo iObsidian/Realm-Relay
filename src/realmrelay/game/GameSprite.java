@@ -1,6 +1,5 @@
 package realmrelay.game;
 
-import javafx.scene.Camera;
 import realmrelay.game._as3.Event;
 import realmrelay.game._as3.Signal;
 import realmrelay.game._as3.Sprite;
@@ -13,9 +12,7 @@ import realmrelay.game.dialogs.OpenDialogSignal;
 import realmrelay.game.events.MoneyChangedEvent;
 import realmrelay.game.game.AGameSprite;
 import realmrelay.game.game.MapUserInput;
-import realmrelay.game.game.MoveRecords;
 import realmrelay.game.map.Map;
-import realmrelay.game.messaging.GameServerConnection;
 import realmrelay.game.messaging.GameServerConnectionConcrete;
 import realmrelay.game.messaging.incoming.MapInfo;
 import realmrelay.game.net.Server;
@@ -26,7 +23,6 @@ import realmrelay.game.objects.Projectile;
 import realmrelay.game.parameters.Parameters;
 import realmrelay.game.promotions.model.BeginnersPackageModel;
 import realmrelay.game.ui.HUDView;
-import realmrelay.game.util.TextureRedrawer;
 
 public class GameSprite extends AGameSprite {
 
