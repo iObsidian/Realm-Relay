@@ -1,11 +1,6 @@
 package realmrelay.game.objects;
 
-import javafx.scene.Camera;
-import jdk.nashorn.internal.runtime.regexp.RegExp;
-import realmrelay.game.GameSprite;
 import realmrelay.game._as3.XML;
-import realmrelay.game.ui.panels.Panel;
-import realmrelay.packets.data.unused.BitmapData;
 
 
 public abstract class Portal extends GameObject implements IInteractiveObject {

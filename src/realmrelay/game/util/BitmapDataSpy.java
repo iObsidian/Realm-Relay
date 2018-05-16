@@ -1,6 +1,6 @@
 package realmrelay.game.util;
 
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 public class BitmapDataSpy extends BitmapData {
 	public BitmapDataSpy(int width, int height, boolean param3, int param4) {

@@ -1,12 +1,9 @@
 package realmrelay.game._as3;
 
 import realmrelay.game.WebMain;
-import realmrelay.packets.data.unused.BitmapData;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
 
 public class StaticAssetLoaderUtility {
 

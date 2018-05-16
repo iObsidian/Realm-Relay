@@ -2,7 +2,7 @@ package realmrelay.game.objects.animation;
 
 import realmrelay.game.util.MaskedImage;
 import realmrelay.game.util.MaskedImageSet;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.awt.*;
 import java.util.*;

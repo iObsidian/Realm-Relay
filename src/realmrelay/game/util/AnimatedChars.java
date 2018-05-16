@@ -2,7 +2,7 @@ package realmrelay.game.util;
 
 import realmrelay.game._as3.StaticAssetLoaderUtility;
 import realmrelay.game.objects.animation.AnimatedChar;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.util.ArrayList;
 import java.util.HashMap;

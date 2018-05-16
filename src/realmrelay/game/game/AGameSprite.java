@@ -10,6 +10,9 @@ import realmrelay.game.messaging.incoming.MapInfo;
 import realmrelay.game.objects.GameObject;
 import realmrelay.game.ui.HUDView;
 
+/**
+ * Implemented by GameSprite
+ */
 public class AGameSprite extends Sprite {
 
 	public final Signal closed = new Signal();

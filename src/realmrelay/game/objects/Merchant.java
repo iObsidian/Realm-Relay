@@ -4,7 +4,7 @@ import javafx.scene.Camera;
 import realmrelay.game._as3.XML;
 import realmrelay.game.map.Map;
 import realmrelay.game.util.IntPoint;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 import sun.java2d.cmm.ColorTransform;
 
 /**

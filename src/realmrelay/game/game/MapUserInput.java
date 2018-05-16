@@ -32,11 +32,9 @@ import static java.lang.Float.NaN;
 
 public class MapUserInput {
 
-
 	private static final int MOUSE_DOWN_WAIT_PERIOD = 175;
 
 	private static boolean arrowWarning = false;
-
 
 	public GameSprite gs;
 

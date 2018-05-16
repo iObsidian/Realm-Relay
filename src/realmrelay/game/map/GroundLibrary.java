@@ -4,10 +4,9 @@ import realmrelay.game._as3.XML;
 import realmrelay.game.objects.TextureData;
 import realmrelay.game.objects.TextureDataConcrete;
 import realmrelay.game.util.BitmapUtil;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class GroundLibrary {
 

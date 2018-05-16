@@ -2,7 +2,7 @@ package realmrelay.game.util;
 
 import realmrelay.game._as3.XML;
 import realmrelay.game.objects.ObjectLibrary;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 import sun.java2d.cmm.ColorTransform;
 
 public class FameUtil {

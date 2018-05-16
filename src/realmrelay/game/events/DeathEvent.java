@@ -2,7 +2,7 @@ package realmrelay.game.events;
 
 import realmrelay.game._as3.Event;
 import realmrelay.game.objects.Player;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 public class DeathEvent extends Event {
 

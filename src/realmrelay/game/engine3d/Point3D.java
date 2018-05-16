@@ -3,7 +3,7 @@ package realmrelay.game.engine3d;
 import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
 import realmrelay.game.util.Trig;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 public class Point3D {
 

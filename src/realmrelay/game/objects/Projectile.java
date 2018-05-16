@@ -5,7 +5,7 @@ import javafx.scene.Camera;
 import realmrelay.game.map.Map;
 import realmrelay.game.parameters.Parameters;
 import realmrelay.game.util.Trig;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 import realmspy.service.util.RandomUtil;
 
 import java.util.HashMap;

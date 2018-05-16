@@ -1,10 +1,6 @@
 package realmrelay.game.objects;
 
-import realmrelay.game.GameSprite;
 import realmrelay.game._as3.XML;
-import realmrelay.packets.data.unused.BitmapData;
-
-import java.awt.*;
 
 public class SellableObject extends GameObject {
 

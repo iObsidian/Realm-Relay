@@ -3,7 +3,7 @@ package realmrelay.game.particles;
 import realmrelay.game.objects.EffectProperties;
 import realmrelay.game.objects.GameObject;
 import realmrelay.game.util.AssetLibrary;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.util.ArrayList;
 import java.util.List;

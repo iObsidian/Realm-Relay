@@ -3,7 +3,7 @@ package realmrelay.game.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 /**
  * This is a 100% match

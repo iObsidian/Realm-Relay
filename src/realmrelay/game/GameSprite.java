@@ -24,9 +24,11 @@ import realmrelay.game.parameters.Parameters;
 import realmrelay.game.promotions.model.BeginnersPackageModel;
 import realmrelay.game.ui.HUDView;
 
+import javax.swing.*;
+
 public class GameSprite extends AGameSprite {
 
-	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
+	//protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
 
 
 	public final Signal monitor = new Signal(String, int);
@@ -35,49 +37,21 @@ public class GameSprite extends AGameSprite {
 
 	public final Signal drawCharacterWindow = new Signal(Player);
 
-	public Chat chatBox;
+
 
 	public boolean isNexus = false;
 
-	public IdleWatcher idleWatcher;
 
-	public RankText rankText;
-
-	public GuildText guildText;
-
-	public ShopDisplay shopDisplay;
-
-	public CreditDisplay creditDisplay;
-
-	public GiftStatusDisplay giftStatusDisplay;
-
-	public NewsModalButton newsModalButton;
-
-	public NewsTicker newsTicker;
-
-	public ArenaTimer arenaTimer;
-
-	public ArenaWaveCounter arenaWaveCounter;
 
 	public MapModel mapModel;
 
 	public BeginnersPackageModel beginnersPackageModel;
 
-	public DialogsModel dialogsModel;
-
-	public ShowBeginnersPackageSignal showBeginnersPackage;
-
-	public ShowDailyCalendarPopupSignal openDailyCalendarPopupSignal;
 
 	public OpenDialogSignal openDialog;
 
 	public Signal showPackage;
 
-	public PackageModel packageModel;
-
-	public AddPopupToStartupQueueSignal addToQueueSignal;
-
-	public FlushPopupStartupQueueSignal flushQueueSignal;
 
 	private GameObject focus;
 
@@ -89,28 +63,19 @@ public class GameSprite extends AGameSprite {
 
 	private int displaysPosY = 4;
 
-	private DisplayObject currentPackage;
-
 	private double packageY;
 
-	public PlayerMenu chatPlayerMenu;
 
-	private GoogleAnalytics googleAnalytics;
-
-	public  GameSprite(Server param1, int param2, boolean param3, int param4, int param5, ByteArray param6, PlayerModel param7, String param8, boolean param9)  {
+	public  GameSprite(Server param1, int param2, boolean param3, int param4, int param5, byte[] param6, PlayerModel param7, String param8, boolean param9)  {
 		this.showPackage = new Signal();
 		this.currentPackage = new Sprite();
 		super();
 		this.model = param7;
 		map = new Map(this);
-		addChild(map);
+
 		gsc = new GameServerConnectionConcrete(this, param1, param2, param3, param4, param5, param6, param8, param9);
 		mui = new MapUserInput(this);
-		this.chatBox = new Chat();
-		this.chatBox.list.addEventListener(MouseEvent.MOUSE.OWN, this.onChatDown);
-		this.chatBox.list.addEventListener(MouseEvent.MOUSE.P, this.onChatUp);
-		addChild(this.chatBox_);
-		this.idleWatcher = new IdleWatcher();
+
 	}
 
 	public static void  dispatchMapLoaded(MapInfo param1)  {

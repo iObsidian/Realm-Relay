@@ -2,11 +2,9 @@ package realmrelay.game.objects;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import realmrelay.game._as3.XML;
 import realmrelay.game.objects.animation.AnimatedChar;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 /**
  * This is a 99.9% match.

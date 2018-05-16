@@ -154,7 +154,8 @@ public class SocketServer {
 
 								Message m = messages.require(packetId);
 								m.parseFromInput(new DataInputStream(new ByteArrayInputStream(packetBytes)));
-								handlePacket(m);
+
+								m.consume();
 
 							}
 						}
@@ -174,10 +175,6 @@ public class SocketServer {
 				}
 			}
 		}.start();
-	}
-
-	protected void handlePacket(Message packet) {
-		System.out.println("New packet : " + packet);
 	}
 
 	private void startThreadedWriter() {

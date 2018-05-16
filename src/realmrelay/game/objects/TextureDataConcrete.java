@@ -5,7 +5,7 @@ import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.util.AnimatedChars;
 import realmrelay.game.util.AssetLibrary;
 import realmrelay.game.util.MaskedImage;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.util.ArrayList;
 import java.util.HashMap;

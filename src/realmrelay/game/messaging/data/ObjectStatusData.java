@@ -10,7 +10,7 @@ import java.io.IOException;
  * for the stats.
  */
 
-import realmrelay.packets.data.unused.IData;
+import realmrelay.game._as3.IData;
 
 public class ObjectStatusData implements IData {
 

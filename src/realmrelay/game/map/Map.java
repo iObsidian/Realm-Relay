@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.HashMap;
 
 import javafx.scene.Camera;
+import realmrelay.game.game.AGameSprite;
 import realmrelay.game.objects.BasicObject;
 import realmrelay.game.objects.GameObject;
 import realmrelay.game.objects.Square;
@@ -23,7 +24,7 @@ public class Map extends AbstractMap {
 	public static final String NEXUS_EXPLANATION = "Nexus_Explanation";
 	public static final String VAULT = "Vault";
 
-	public Map() {
+	public Map(AGameSprite gameSprite) {
 		this.squares = new HashMap<Integer, Square>();
 	}
 

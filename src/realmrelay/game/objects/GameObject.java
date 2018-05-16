@@ -11,7 +11,7 @@ import realmrelay.game.objects.animation.Animations;
 import realmrelay.game.parameters.Parameters;
 import realmrelay.game.particles.ParticleEffect;
 import realmrelay.game.util.*;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.util.HashMap;
 import java.util.List;

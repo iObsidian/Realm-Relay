@@ -3,6 +3,8 @@ package realmrelay.game.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import realmrelay.game.messaging.data.GroundTileData;
@@ -10,16 +12,16 @@ import realmrelay.game.messaging.data.ObjectData;
 
 public class Update extends IncomingMessage {
 
+	public GroundTileData[] tiles;
+	public ObjectData[] newObjs;
+	public int[] drops;
+
 	public Update(int id, Consumer callback) {
 		super(id, callback);
 		this.tiles = new GroundTileData[0];
 		this.newObjs = new ObjectData[0];
 		this.drops = new int[0];
 	}
-
-	public GroundTileData[] tiles;
-	public ObjectData[] newObjs;
-	public int[] drops;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
@@ -38,9 +40,14 @@ public class Update extends IncomingMessage {
 			newObjs[i] = Entity;
 		}
 
-		drops = new int[in.readShort()];
-		for (int i = 0; i < drops.length; i++) {
-			drops[i] = in.readInt();
+		try {
+			drops = new int[in.readShort()];
+			for (int i = 0; i < drops.length; i++) {
+				drops[i] = in.readInt();
+			}
+
+		} catch (Exception e) {
+
 		}
 
 	}

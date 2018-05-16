@@ -1,7 +1,7 @@
 package realmrelay.game.net.impl;
 
 import realmrelay.game.net.api.MessageConsumer;
-import realmrelay.packets.data.unused.IData;
+import realmrelay.game._as3.IData;
 
 import java.io.*;
 import java.util.function.Consumer;

@@ -17,7 +17,7 @@ import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.sound.SoundEffectLibrary;
 import realmrelay.game.ui.model.TabStripModel;
 import realmrelay.game.util.*;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 import sun.java2d.cmm.ColorTransform;
 
 import java.awt.*;

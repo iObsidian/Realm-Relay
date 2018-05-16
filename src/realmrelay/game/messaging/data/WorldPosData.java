@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import realmrelay.packets.data.unused.IData;
+import realmrelay.game._as3.IData;
 
 /**
  * Formelly known as 'Location' in RealmRelay 1.0

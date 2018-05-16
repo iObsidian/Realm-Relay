@@ -1,7 +1,7 @@
 package realmrelay.game.appengine;
 
 import realmrelay.game.util.AssetLibrary;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 public class SavedNewsItem {
 

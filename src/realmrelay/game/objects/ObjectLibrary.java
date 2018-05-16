@@ -7,7 +7,7 @@ import realmrelay.game.messaging.data.StatData;
 import realmrelay.game.objects.animation.AnimationsData;
 import realmrelay.game.util.AssetLibrary;
 import realmrelay.game.util.ConversionUtil;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

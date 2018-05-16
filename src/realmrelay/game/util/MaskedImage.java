@@ -1,6 +1,6 @@
 package realmrelay.game.util;
 
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 /**
  * Still needs mirror() and amountTransparent() methods

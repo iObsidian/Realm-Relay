@@ -6,7 +6,7 @@ import realmrelay.game.objects.ObjectLibrary;
 import realmrelay.game.objects.animation.AnimatedChar;
 import realmrelay.game.util.AnimatedChars;
 import realmrelay.game.util.MaskedImage;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 public class PetVO {
 

@@ -4,7 +4,7 @@ import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
 import realmrelay.game.objects.BasicObject;
 import realmrelay.game.objects.Square;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 public class XMLParticle extends BasicObject {
 

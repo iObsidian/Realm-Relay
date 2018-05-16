@@ -351,7 +351,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void load() {
 		System.out.println("Loading...");
-		
+
 		Load load = (Load) this.messages.require(LOAD);
 		load.charId = charId;
 		load.isFromArena = isFromArena;
@@ -759,12 +759,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	public void onCreateSuccess(CreateSuccess createSuccess) {
-		
+
 		System.out.println("Create success");
-		
+
 		this.playerId = createSuccess.objectId;
 		this.charId = createSuccess.charId;
-		this.gs.initialize();
+		//this.gs.initialize();
 		this.createCharacter = false;
 	}
 
@@ -857,9 +857,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		//this.gs.hudView.tradeAccepted(tradeAccepted);
 	}
 
-	/**
-	 * The cast from double to int is a workaround for Number
-	 */
 	private void addObject(ObjectData obj) {
 		Map map = (Map) this.gs.map;
 		GameObject go = ObjectLibrary.getObjectFromType(obj.objectType);
@@ -1302,14 +1299,14 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onMapInfo(MapInfo mapInfo) {
 		System.out.println("Map info received");
-		
+
 		for (String clientXMLString : mapInfo.clientXML) {
 			this.parseXML(clientXMLString);
 		}
 		for (String extraXMLString : mapInfo.extraXML) {
 			this.parseXML(extraXMLString);
 		}
-		this.gs.applyMapInfo(mapInfo);
+		//this.gs.applyMapInfo(mapInfo);
 		this.rand = new Random(mapInfo.fp);
 		if (this.createCharacter) {
 			this.create();

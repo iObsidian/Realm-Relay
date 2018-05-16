@@ -3,7 +3,7 @@ package realmrelay.game.map;
 import realmrelay.game._as3.XML;
 import realmrelay.game.objects.TextureData;
 import realmrelay.game.objects.TextureDataConcrete;
-import realmrelay.packets.data.unused.BitmapData;
+import realmrelay.game._as3.BitmapData;
 
 import java.util.List;
 

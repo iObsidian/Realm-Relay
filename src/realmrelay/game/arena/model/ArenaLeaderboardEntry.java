@@ -1,9 +1,7 @@
 package realmrelay.game.arena.model;
 
 import realmrelay.game.pets.data.PetVO;
-import realmrelay.packets.data.unused.BitmapData;
-
-import java.util.List;
+import realmrelay.game._as3.BitmapData;
 
 /**
  * 100% match
