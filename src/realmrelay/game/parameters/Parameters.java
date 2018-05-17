@@ -107,12 +107,12 @@ public class Parameters {
 	public Object playMusic = true;
 	public Object playSFX = true;
 	public Object playPewPew = true;
-	public Object centerOnPlayer = true;
+	public static boolean centerOnPlayer = true;
 	public Object preferredServer = null;
 	public Object bestServer = null;
 	public Object needsTutorial = true;
 	public Object needsRandomRealm = true;
-	public Object cameraAngle = 0;
+	public static double cameraAngle = 0;
 	public Object defaultCameraAngle = 0;
 	public Object showQuestPortraits = true;
 	public Object fullscreenMode = false;

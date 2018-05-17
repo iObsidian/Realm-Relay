@@ -84,6 +84,9 @@ public class Map extends AbstractMap {
 
 	}
 
+	/**
+	 * Called from GameSprite (OnEnterFrame)
+	 */
 	@Override
 	public void draw(Camera camera, int param2) {
 

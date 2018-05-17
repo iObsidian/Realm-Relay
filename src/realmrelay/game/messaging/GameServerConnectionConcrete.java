@@ -114,6 +114,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	public GameServerConnectionConcrete(AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
 			int keyTime, byte[] key, byte[] mapJSON, boolean isFromArena) {
 		super();
+		
+		System.out.println("GameSprite : " + gs);
 
 		this.giftChestUpdateSignal = GiftStatusUpdateSignal.getInstance();
 		this.addTextLine = AddTextLineSignal.getInstance();

@@ -74,13 +74,13 @@ public class GroundProperties {
 			this.compositePriority = xml.getIntValue("CompositePriority");
 		}
 		if (xml.hasOwnProperty("Speed")) {
-			this.speed = xml.getFloatValue("Speed");
+			this.speed = xml.getDoubleValue("Speed");
 		}
 		if (xml.hasOwnProperty("SlideAmount")) {
-			this.slideAmount = xml.getFloatValue("SlideAmount");
+			this.slideAmount = xml.getDoubleValue("SlideAmount");
 		}
-		this.xOffset = xml.hasOwnProperty("XOffset") ? xml.getFloatValue("XOffset") : 0;
-		this.yOffset = xml.hasOwnProperty("YOffset") ? xml.getFloatValue("YOffset") : 0;
+		this.xOffset = xml.hasOwnProperty("XOffset") ? xml.getDoubleValue("XOffset") : 0;
+		this.yOffset = xml.hasOwnProperty("YOffset") ? xml.getDoubleValue("YOffset") : 0;
 		this.push = xml.hasOwnProperty("Push");
 		this.sink = xml.hasOwnProperty("Sink");
 		this.sinking = xml.hasOwnProperty("Sinking");

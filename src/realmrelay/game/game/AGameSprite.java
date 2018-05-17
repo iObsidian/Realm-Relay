@@ -1,10 +1,10 @@
 package realmrelay.game.game;
 
-import javafx.scene.Camera;
 import realmrelay.game._as3.Signal;
 import realmrelay.game._as3.Sprite;
 import realmrelay.game.core.model.PlayerModel;
 import realmrelay.game.map.AbstractMap;
+import realmrelay.game.map.Camera;
 import realmrelay.game.messaging.GameServerConnection;
 import realmrelay.game.messaging.incoming.MapInfo;
 import realmrelay.game.objects.GameObject;

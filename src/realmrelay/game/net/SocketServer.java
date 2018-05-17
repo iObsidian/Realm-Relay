@@ -9,7 +9,9 @@ import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import realmrelay.game.GameSprite;
 import realmrelay.game._as3.ICipher;
+import realmrelay.game.game.AGameSprite;
 import realmrelay.game.messaging.GameServerConnectionConcrete;
 import realmrelay.game.net.impl.Message;
 import realmrelay.game.net.impl.MessageCenter;
@@ -69,8 +71,10 @@ public class SocketServer {
 
 		System.out.println(s.toString());
 
-		GameServerConnectionConcrete g = new GameServerConnectionConcrete(null, s, -1, false, 404, -1, new byte[0],
-				null, false);
+		AGameSprite a = new AGameSprite();
+
+		GameServerConnectionConcrete g = new GameServerConnectionConcrete(a, s, -1, false, 404, -1, new byte[0], null,
+				false);
 
 		g.connect();
 

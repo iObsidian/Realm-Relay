@@ -4,8 +4,6 @@ import realmrelay.game._as3.Signal;
 import realmrelay.game.signals.AddTextLineSignal;
 import realmrelay.game.signals.GiftStatusUpdateSignal;
 
-//<Sprite> 
-
 public class OpenDialogSignal extends Signal {
 
 	static OpenDialogSignal instance;

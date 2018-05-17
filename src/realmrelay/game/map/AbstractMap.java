@@ -1,6 +1,9 @@
 package realmrelay.game.map;
 
-import javafx.scene.Camera;
+
+import javafx.scene.layout.Background;
+import realmrelay.game._as3.Signal;
+import realmrelay.game._as3.Sprite;
 import realmrelay.game.game.AGameSprite;
 import realmrelay.game.objects.BasicObject;
 import realmrelay.game.objects.GameObject;
@@ -8,37 +11,45 @@ import realmrelay.game.objects.Player;
 import realmrelay.game.objects.Square;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class AbstractMap {
+public abstract class AbstractMap extends Sprite {
 
-	//GameObject dictionary
 	public HashMap<Integer, GameObject> goDict;
 
 	public AGameSprite gs;
 
 	public String name;
 
-	public HashMap<Integer, Square> squareList_;
-	public HashMap<Integer, Square> squares;
-
 	public Player player = null;
 
 	public boolean showDisplays;
 
 	public int width;
+
 	public int height;
 
 	//BasicObject dictionary
 	public HashMap<Integer, BasicObject> boDict;
 
-	public Object merchLookup;
+	public int back;
 
-	//public Party party = null;
+	protected boolean allowPlayerTeleport;
+
+	public Background background = null;
+
+	public Sprite map;
+
+	public ArrayList<Square> squareList;
+
+	public ArrayList<Square> squares;
+
+	public Object merchLookup;
 
 	public Quest quest = null;
 
-	//public Signal signalRenderSwitch;
+	public Signal signalRenderSwitch;
 
 	protected boolean wasLastFrameGpu = false;
 
@@ -57,5 +68,21 @@ public abstract class AbstractMap {
 	public abstract void removeObj(int id);
 
 	public abstract void draw(Camera camera, int param2);
+
+	public abstract void setProps(int param1, int param2, String param3, int param4, boolean param5, boolean param6);
+
+	public abstract void addObj(BasicObject param1, Number param2, Number param3);
+
+	public abstract void setGroundTile(int param1, int param2, int param3);
+
+	public abstract void initialize();
+
+	public abstract void dispose();
+
+	public abstract void update(int param1, int param2);
+
+	public boolean allowPlayerTeleport() {
+		return this.name != Map.NEXUS && this.allowPlayerTeleport;
+	}
 
 }

@@ -7,8 +7,15 @@ public class Sprite {
 
 	private HashMap<Consumer<Event>, String> listeners;
 
+	int startTime;
+
 	public Sprite() {
 		listeners = new HashMap<>();
+
+	}
+
+	protected int getTimer() {
+		return (int) (System.currentTimeMillis() - startTime);
 	}
 
 	public void addEventListener(String event, Consumer<Event> consumer) {
@@ -19,7 +26,6 @@ public class Sprite {
 		listeners.remove(consumer, event);
 	}
 
-
 	protected void trigger(String EVENT_TYPE) {
 		for (Consumer<Event> c : listeners.keySet()) {
 			if (listeners.get(c).equals(EVENT_TYPE)) {
@@ -27,6 +33,7 @@ public class Sprite {
 			}
 		}
 	}
+
 
 	//TODO link these methods with engine render cycle
 
