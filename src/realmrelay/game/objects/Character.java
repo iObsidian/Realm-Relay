@@ -8,6 +8,7 @@ public class Character extends GameObject {
 	public String deathSound_;
 
 	public Character(XML param) {
+		super(param);
 	}
 
 }

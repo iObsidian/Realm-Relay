@@ -1,12 +1,16 @@
 package realmrelay.game.objects.animation;
 
+import realmrelay.game._as3.Point;
+import realmrelay.game._as3.Rectangle;
 import realmrelay.game.util.MaskedImage;
 import realmrelay.game.util.MaskedImageSet;
 import realmrelay.game._as3.BitmapData;
 
-import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 /**
  * This matches the client by 90%, only the Transparency-check is not suported and mirroring is untested

@@ -14,7 +14,7 @@ public class FrameData {
 	public TextureData textureData;
 
 	public FrameData(XML xml) {
-		this.time = (int) (xml.getFloatAttribute("time") * 1000);
+		this.time = (int) (xml.getDoubleAttribute("time") * 1000);
 		this.textureData = new TextureDataConcrete(xml);
 	}
 

@@ -16,6 +16,7 @@ import realmrelay.game.messaging.GameServerConnectionConcrete;
 import realmrelay.game.net.impl.Message;
 import realmrelay.game.net.impl.MessageCenter;
 import realmrelay.game.parameters.Parameters;
+import realmrelay.game.util.AssetLoader;
 
 /**
  * This class is a very loose implementation of WildShadow's SocketServer,
@@ -64,8 +65,7 @@ public class SocketServer {
 
 	public static void main(String[] args) {
 
-		//AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
-		//                                        int keyTime, byte[] key, byte[] mapJSON, boolean isFromArena
+		new AssetLoader().load();
 
 		Server s = new Server().setAddress("54.67.119.179").setPort(Parameters.PORT);
 

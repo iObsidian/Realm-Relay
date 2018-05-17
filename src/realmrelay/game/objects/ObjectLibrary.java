@@ -40,8 +40,8 @@ public class ObjectLibrary {
 	public static final Map<Integer, XML> petXMLDataLibrary = new HashMap<>(); //ObjectType, XML
 	public static final Map<Object, Object> skinSetXMLDataLibrary = new HashMap<>();
 	public static final Map<String, HashMap<Integer, XML>> dungeonsXMLLibrary = new HashMap<>();
-	public static final String ENEMY_FILTER_LIST[] = new String[]{"None", "Hp", "Defense"};
-	public static final String TILE_FILTER_LIST[] = new String[]{"ALL", "Walkable", "Unwalkable", "Slow", "Speed=1"};
+	public static final String ENEMY_FILTER_LIST[] = new String[] { "None", "Hp", "Defense" };
+	public static final String TILE_FILTER_LIST[] = new String[] { "ALL", "Walkable", "Unwalkable", "Slow", "Speed=1" };
 	public static final ObjectProperties defaultProps = new ObjectProperties(null);
 
 	public static Map<String, Class> TYPE_MAP = new HashMap<String, Class>();
@@ -181,7 +181,6 @@ public class ObjectLibrary {
 		return xmlLibrary.get(objectType);
 	}
 
-
 	public static GameObject getObjectFromType(int param1) {
 		XML objectXML = null;
 		String typeReference = null;
@@ -189,7 +188,11 @@ public class ObjectLibrary {
 		try {
 			objectXML = xmlLibrary.get(objectType);
 			typeReference = objectXML.getValue("Class");
-		} catch (Error e) {
+
+			System.out.println("Class : " + " Object type : " + objectType + "typeReference : " + typeReference);
+			System.out.println(xmlLibrary.size());
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
@@ -210,12 +213,14 @@ public class ObjectLibrary {
 			Constructor ctor = null;
 			try {
 				ctor = typeClass.getClass().getDeclaredConstructor(XML.class);
-
 				ctor.setAccessible(true);
 				return (GameObject) ctor.newInstance(objectXML);
-			} catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+			} catch (NoSuchMethodException | InvocationTargetException | InstantiationException
+					| IllegalAccessException e) {
 				e.printStackTrace();
 			}
+		} else {
+			System.out.println("FATAL : Null typeClass!");
 		}
 
 		System.err.println("Error with instantiation of object class '" + typeReference + "'.");
@@ -224,7 +229,7 @@ public class ObjectLibrary {
 	}
 
 	private static Class makeClass(String className) {
-		return AssembleeGameClientObjects.getObjectFromName(className);
+		return TYPE_MAP.get(className);
 	}
 
 	public static BitmapData getTextureFromType(int param1) {
@@ -387,24 +392,24 @@ public class ObjectLibrary {
 		if (reqXML.toString().equals("Stat")) {
 			val = reqXML.getIntAttribute("value");
 			switch (reqXML.getIntAttribute("stat")) {
-				case StatData.MAX_HP_STAT:
-					return player.maxHP >= val;
-				case StatData.MAX_MP_STAT:
-					return player.maxMP >= val;
-				case StatData.LEVEL_STAT:
-					return player.level >= val;
-				case StatData.ATTACK_STAT:
-					return player.attack >= val;
-				case StatData.DEFENSE_STAT:
-					return player.defense >= val;
-				case StatData.SPEED_STAT:
-					return player.speed >= val;
-				case StatData.VITALITY_STAT:
-					return player.vitality >= val;
-				case StatData.WISDOM_STAT:
-					return player.wisdom >= val;
-				case StatData.DEXTERITY_STAT:
-					return player.dexterity >= val;
+			case StatData.MAX_HP_STAT:
+				return player.maxHP >= val;
+			case StatData.MAX_MP_STAT:
+				return player.maxMP >= val;
+			case StatData.LEVEL_STAT:
+				return player.level >= val;
+			case StatData.ATTACK_STAT:
+				return player.attack >= val;
+			case StatData.DEFENSE_STAT:
+				return player.defense >= val;
+			case StatData.SPEED_STAT:
+				return player.speed >= val;
+			case StatData.VITALITY_STAT:
+				return player.vitality >= val;
+			case StatData.WISDOM_STAT:
+				return player.wisdom >= val;
+			case StatData.DEXTERITY_STAT:
+				return player.dexterity >= val;
 			}
 		}
 		return false;
@@ -413,75 +418,4 @@ public class ObjectLibrary {
 	public static XML getPetDataXMLByType(int param1) {
 		return petXMLDataLibrary.get(param1);
 	}
-}
-
-
-class AssembleeGameClientObjects {
-
-	private static HashMap<String, Class> objects = new HashMap<>();
-
-
-	public static Class getObjectFromName(String name) {
-		if (objects.containsKey(name)) {
-			return objects.get(name);
-		}
-
-		System.err.println("Error : Unknown object '" + name + "'...");
-		return null;
-	}
-
-	static {
-		/*objects.put("ArenaGuard", ArenaGuard.class);
-		objects.put("ArenaPortal", ArenaPortal.class);*/
-		objects.put("BasicObject", BasicObject.class);
-		/*objects.put("CaveWall", CaveWall.class);*/
-		objects.put("Character", Character.class);
-		/*objects.put("CharacterChanger", CharacterChanger.class);
-		objects.put("ClosedGiftChest", ClosedGiftChest.class);
-		objects.put("ClosedVaultChest", ClosedVaultChest.class);
-		objects.put("ConnectedObject", ConnectedObject.class);
-		objects.put("ConnectedWall", ConnectedWall.class);
-		objects.put("Container", Container.class);
-		objects.put("DailyLoginRewards", DailyLoginRewards.class);
-		objects.put("DoubleWall", DoubleWall.class);
-		objects.put("FlashDescription", FlashDescription.class);
-		objects.put("FortuneGround", FortuneGround.class);
-		objects.put("FortuneTeller", FortuneTeller.class);*/
-		objects.put("GameObject", GameObject.class);
-		/*objects.put("GuildBoard", GuildBoard.class);
-		objects.put("GuildChronicle", GuildChronicle.class);
-		objects.put("GuildHallPortal", GuildHallPortal.class);
-		objects.put("GuildMerchant", GuildMerchant.class);
-		objects.put("GuildRegister", GuildRegister.class);
-		objects.put("IInteractiveObject", IInteractiveObject.class);
-		objects.put("ImageFactory", ImageFactory.class);
-		objects.put("Merchant", Merchant.class);
-		objects.put("MoneyChanger", MoneyChanger.class);
-		objects.put("MysteryBoxGround", MysteryBoxGround.class);
-		objects.put("NameChanger", NameChanger.class);
-		objects.put("ObjectLibrary", ObjectLibrary.class);
-		objects.put("ObjectProperties", ObjectProperties.class);
-		objects.put("OneWayContainer", OneWayContainer.class);
-		objects.put("Party", Party.class);
-		objects.put("Pet", Pet.class);
-		objects.put("PetUpgrader", PetUpgrader.class);*/
-		objects.put("Player", Player.class);
-		/*objects.put("Portal", Portal.class);
-		objects.put("PortalNameParser", PortalNameParser.class);*/
-		objects.put("Projectile", Projectile.class);
-		objects.put("ProjectileProperties", ProjectileProperties.class);
-		/*objects.put("QuestRewards", QuestRewards.class);
-		objects.put("ReskinVendor", ReskinVendor.class);*/
-		objects.put("SellableObject", SellableObject.class);
-		/*objects.put("Sign", Sign.class);
-		objects.put("SpiderWeb", SpiderWeb.class);
-		objects.put("Stalagmite", Stalagmite.class);*/
-		objects.put("TextureData", TextureData.class);
-		objects.put("TextureDataConcrete", TextureDataConcrete.class);
-		objects.put("TextureDataFactory", TextureDataFactory.class);
-		/*objects.put("Wall", Wall.class);
-		objects.put("YardUpgrader", YardUpgrader.class);*/
-	}
-
-
 }

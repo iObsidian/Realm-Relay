@@ -19,7 +19,7 @@ public class AnimationData {
 
 		this.period = (int) (xml.getIntAttribute("period") * 1000);
 		
-		this.periodJitter = (int) (xml.getFloatAttribute("periodJitter") * 1000);
+		this.periodJitter = (int) (xml.getDoubleAttribute("periodJitter") * 1000);
 		
 		this.sync = xml.getAttribute("sync").equalsIgnoreCase("true");
 		for (XML frameXML : xml.getChilds("Frame")) {

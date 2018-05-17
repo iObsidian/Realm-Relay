@@ -26,10 +26,10 @@ public class ParticleProperties {
 			this.size = particleXML.getIntValue("Size");
 		}
 		if (particleXML.hasOwnProperty("Z")) {
-			this.z = particleXML.getFloatValue("Z");
+			this.z = particleXML.getDoubleValue("Z");
 		}
 		if (particleXML.hasOwnProperty("Duration")) {
-			this.duration = particleXML.getFloatValue("Duration");
+			this.duration = particleXML.getDoubleValue("Duration");
 		}
 		if (particleXML.hasOwnProperty("Animation")) {
 			this.animationsData = new AnimationsData(particleXML);

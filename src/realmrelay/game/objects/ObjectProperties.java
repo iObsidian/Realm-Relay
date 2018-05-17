@@ -91,7 +91,7 @@ public class ObjectProperties {
 		this.dontFaceAttacks = param1.hasOwnProperty("DontFaceAttacks");
 		this.dontFaceMovement = param1.hasOwnProperty("DontFaceMovement");
 		if (param1.hasOwnProperty("Z")) {
-			this.z = param1.getFloatValue("Z");
+			this.z = param1.getDoubleValue("Z");
 		}
 		if (param1.hasOwnProperty("Color")) {
 			this.color = param1.getIntValue("Color");
@@ -114,13 +114,13 @@ public class ObjectProperties {
 			this.projectiles.put(projectile.getIntAttribute("id"), new ProjectileProperties(projectile));
 		}
 		this.angleCorrection = param1.hasOwnProperty("AngleCorrection")
-				? (double) (param1.getFloatValue("AngleCorrection") * Math.PI / 4)
+				? (double) (param1.getDoubleValue("AngleCorrection") * Math.PI / 4)
 				: 0;
 				
-		this.rotation = param1.hasOwnProperty("Rotation") ? param1.getFloatValue("Rotation") : 0;
+		this.rotation = param1.hasOwnProperty("Rotation") ? param1.getDoubleValue("Rotation") : 0;
 
 		if (param1.hasOwnProperty("BloodProb")) {
-			this.bloodProb = param1.getFloatValue("BloodProb");
+			this.bloodProb = param1.getDoubleValue("BloodProb");
 		}
 		if (param1.hasOwnProperty("BloodColor")) {
 			this.bloodColor = param1.getIntValue("BloodColor");
@@ -172,7 +172,7 @@ class WhileMovingProperties {
 
 	WhileMovingProperties(XML param1) {
 		if (param1.hasOwnProperty("Z")) {
-			this.z = param1.getFloatValue("Z");
+			this.z = param1.getDoubleValue("Z");
 		}
 		this.flying = param1.hasOwnProperty("Flying");
 	}

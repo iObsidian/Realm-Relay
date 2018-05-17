@@ -1,7 +1,5 @@
 package realmrelay.game._as3;
 
-import java.awt.*;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 public class BitmapData {

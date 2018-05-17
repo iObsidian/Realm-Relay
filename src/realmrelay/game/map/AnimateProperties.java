@@ -26,8 +26,8 @@ public class AnimateProperties {
 		case "Flow":
 			this.type = FLOW_ANIMATE;
 		}
-		this.dx = param1.getFloatAttribute("dx");
-		this.dy = param1.getFloatAttribute("dy");
+		this.dx = param1.getDoubleAttribute("dx");
+		this.dy = param1.getDoubleAttribute("dy");
 
 	}
 
