@@ -1,22 +1,45 @@
 NOTES :
-
-    Important files :
     
     MapUserInput handles Input
-    GameSprite handles drawing
+    
+    GameSprite handles map drawing
     Map handles object drawing
+        
+    Player handles camera rotation
 
 TODO : 
 
     Reorganise files to match client
     Add 'get' awareness in README (replaced get value() with getValue())
+    Add placeholder for graphic stuff (Player, GameObject)
+    
+    
+Use my side project AS3toCSharp (github.com/iObsidian) to help with convertion.
 
 
+Reflection
+-----------
 
-
-
-
-
+   **AS3**
+   
+    Class.newInstance();
+    
+    
+   **Java**
+   
+    Class toGenerate = ...;
+   
+    Class[] cArg = new Class[2]; //Our constructor has 2 arguments
+    cArg[0] = XML.class; //First argument
+    cArg[1] = Integer.TYPE; // use .TYPE for primitive integer
+    
+    try {
+    	return (GameObject) typeClass.getDeclaredConstructor(cArg).newInstance(objectXML, objectType);
+    } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+    	| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+    	e.printStackTrace();
+    }
+    
 
 Casting
 -------
@@ -28,7 +51,7 @@ Casting
     Object as Projectile
 
 
-   **java**
+   **Java**
    
     (int) equipment.length
 
