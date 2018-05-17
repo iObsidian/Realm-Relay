@@ -30,28 +30,21 @@ public class GameSprite extends AGameSprite {
 
 	//protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
 
-
 	public final Signal monitor = new Signal(String, int);
 
 	public final Signal modelInitialized = new Signal();
 
 	public final Signal drawCharacterWindow = new Signal(Player);
 
-
-
 	public boolean isNexus = false;
-
-
 
 	public MapModel mapModel;
 
 	public BeginnersPackageModel beginnersPackageModel;
 
-
 	public OpenDialogSignal openDialog;
 
 	public Signal showPackage;
-
 
 	private GameObject focus;
 
@@ -65,11 +58,10 @@ public class GameSprite extends AGameSprite {
 
 	private double packageY;
 
-
 	public  GameSprite(Server param1, int param2, boolean param3, int param4, int param5, byte[] param6, PlayerModel param7, String param8, boolean param9)  {
+		super();
 		this.showPackage = new Signal();
 		this.currentPackage = new Sprite();
-		super();
 		this.model = param7;
 		map = new Map(this);
 

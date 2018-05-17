@@ -5,6 +5,9 @@ import realmrelay.game.WebMain;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
+/**
+ * Not a part of AS3, just a lazy way of loading assets without all the stupid Embedded classes
+ */
 public class StaticAssetLoaderUtility {
 
 	public static final BufferedImage defaultImage = getImageFromResources("/assets/unknown.png").image;

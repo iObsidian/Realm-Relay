@@ -1,4 +1,4 @@
-package realmrelay.crypto;
+package realmrelay.game._as3;
 
 import org.bouncycastle.crypto.StreamCipher;
 import org.bouncycastle.crypto.engines.RC4Engine;

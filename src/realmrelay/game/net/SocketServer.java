@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
-import realmrelay.crypto.ICipher;
+import realmrelay.game._as3.ICipher;
 import realmrelay.game.messaging.GameServerConnectionConcrete;
 import realmrelay.game.net.impl.Message;
 import realmrelay.game.net.impl.MessageCenter;

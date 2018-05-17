@@ -1,10 +1,9 @@
 package realmrelay.game.messaging;
 
-import realmrelay.crypto.ICipher;
+import realmrelay.game._as3.ICipher;
 import realmrelay.game._as3.*;
 import realmrelay.game.account.core.Account;
 import realmrelay.game.account.core.WebAccount;
-import realmrelay.game.api.MessageProvider;
 import realmrelay.game.arena.model.ArenaDeathSignal;
 import realmrelay.game.arena.model.CurrentArenaRunModel;
 import realmrelay.game.arena.model.ImminentArenaWaveSignal;
