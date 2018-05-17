@@ -4,6 +4,7 @@ import realmrelay.game._as3.XML;
 import realmrelay.game.constants.GeneralConstants;
 import realmrelay.game.constants.ItemConstants;
 import realmrelay.game.messaging.data.StatData;
+import realmrelay.game.net.impl.Message;
 import realmrelay.game.objects.animation.AnimationsData;
 import realmrelay.game.util.AssetLibrary;
 import realmrelay.game.util.ConversionUtil;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * This is 80% complete
@@ -210,13 +212,13 @@ public class ObjectLibrary {
 		}
 
 		if (typeClass != null) {
-			Constructor ctor = null;
+			Class[] cArg = new Class[1]; //Our constructor has 3 arguments
+			cArg[0] = XML.class; //First argument is of *object* type Long
+
 			try {
-				ctor = typeClass.getClass().getDeclaredConstructor(XML.class);
-				ctor.setAccessible(true);
-				return (GameObject) ctor.newInstance(objectXML);
-			} catch (NoSuchMethodException | InvocationTargetException | InstantiationException
-					| IllegalAccessException e) {
+				return (GameObject) typeClass.getDeclaredConstructor(cArg).newInstance(objectXML);
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				e.printStackTrace();
 			}
 		} else {
