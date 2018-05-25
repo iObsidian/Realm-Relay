@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 import rotmg.dailyQuests.messages.data.QuestData;
-import rotmg.game.dailyQuests.messages.data.QuestData;
-import rotmg.game.messaging.incoming.IncomingMessage;
+import rotmg.messaging.incoming.IncomingMessage;
 
 public class QuestFetchResponse extends IncomingMessage {
 

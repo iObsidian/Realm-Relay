@@ -1,9 +1,10 @@
 package rotmg.particles;
 
 
-import rotmg.game.objects.EffectProperties;
+import rotmg.objects.EffectProperties;
+import rotmg.objects.GameObject;
 
-public class ParticleEffect extends com.company.assembleegameclient.objects.GameObject {
+public class ParticleEffect extends GameObject {
 
 	public boolean reducedDrawEnabled;
 

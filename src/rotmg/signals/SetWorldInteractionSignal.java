@@ -1,7 +1,5 @@
 package rotmg.signals;
 
-import rotmg.game._as3.Signal;
-
 public class SetWorldInteractionSignal extends Signal<Boolean> {
 
 	private static SetWorldInteractionSignal instance;

@@ -1,8 +1,6 @@
 package rotmg.signals;
 
-import kabam.rotmg.game.model.GameInitData;
-import rotmg.game._as3.Signal;
-import rotmg.game.model.GameInitData;
+import rotmg.model.GameInitData;
 
 public class PlayGameSignal extends Signal<GameInitData> {
 

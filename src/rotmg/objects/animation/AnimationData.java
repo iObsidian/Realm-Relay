@@ -3,7 +3,7 @@ package rotmg.objects.animation;
 import java.util.ArrayList;
 import java.util.List;
 
-import rotmg.game._as3.XML;
+import alde.flash.utils.XML;
 
 /**
  * This is a 100% match

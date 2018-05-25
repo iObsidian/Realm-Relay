@@ -1,7 +1,5 @@
 package rotmg.core.model;
 
-import rotmg.game.map.Map;
-import rotmg.game.objects.IInteractiveObject;
 import rotmg.objects.IInteractiveObject;
 
 public class MapModel {

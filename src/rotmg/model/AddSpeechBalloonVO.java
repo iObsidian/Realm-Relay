@@ -1,6 +1,5 @@
 package rotmg.model;
 
-import rotmg.game.objects.GameObject;
 import rotmg.objects.GameObject;
 
 public class AddSpeechBalloonVO {

@@ -4,7 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-import rotmg.game._as3.IData;
+import alde.flash.utils.IData;
 
 public class StatData implements IData {
 

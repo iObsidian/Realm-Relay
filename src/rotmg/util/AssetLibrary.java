@@ -1,13 +1,12 @@
 package rotmg.util;
 
-import flash.display.BitmapData;
-import rotmg.game._as3.StaticAssetLoaderUtility;
-import rotmg.game._as3.BitmapData;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import alde.flash.utils.StaticAssetLoaderUtility;
+import flash.display.BitmapData;
 
 /**
  * This class is a 80% match.

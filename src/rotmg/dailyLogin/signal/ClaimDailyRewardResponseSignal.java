@@ -1,9 +1,6 @@
 package rotmg.dailyLogin.signal;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.messaging.incoming.ClaimDailyRewardResponse;
-import rotmg.game.signals.AddTextLineSignal;
-import rotmg.game.signals.GiftStatusUpdateSignal;
+import rotmg.messaging.incoming.ClaimDailyRewardResponse;
 
 public class ClaimDailyRewardResponseSignal extends Signal<ClaimDailyRewardResponse> {
 	static ClaimDailyRewardResponseSignal instance;

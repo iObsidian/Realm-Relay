@@ -1,9 +1,7 @@
 package rotmg.events;
 
 import flash.display.BitmapData;
-import rotmg.game._as3.Event;
-import rotmg.game.objects.Player;
-import rotmg.game._as3.BitmapData;
+import rotmg.objects.Player;
 
 public class DeathEvent extends Event {
 

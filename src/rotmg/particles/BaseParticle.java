@@ -1,10 +1,14 @@
 package rotmg.particles;
 
-import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
+
 import flash.display.BitmapData;
-import rotmg.game.objects.BasicObject;
-import rotmg.game._as3.BitmapData;
+import flash.display.GraphicsBitmapFill;
+import flash.display.GraphicsPath;
+import flash.display.IGraphicsData;
+import javafx.scene.Camera;
+import rotmg.objects.BasicObject;
+import rotmg.util.GraphicsUtil;
 
 public class BaseParticle extends BasicObject {
 

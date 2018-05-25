@@ -5,7 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.incoming.IncomingMessage;
+import rotmg.messaging.incoming.IncomingMessage;
 
 public class QuestRedeemResponse extends IncomingMessage {
 

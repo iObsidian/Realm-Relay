@@ -2,8 +2,8 @@ package rotmg.objects;
 
 import java.util.HashMap;
 
-import rotmg.game._as3.XML;
-import rotmg.game.sound.SoundEffectLibrary;
+import alde.flash.utils.XML;
+import rotmg.sound.SoundEffectLibrary;
 
 /**
  * Static is a reserved keywor.d Changed to 'isStatic'.

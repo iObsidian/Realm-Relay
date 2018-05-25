@@ -1,7 +1,5 @@
 package rotmg.objects;
 
-import rotmg.game.map.Map;
-
 public class Square {
 
 	public Map map;

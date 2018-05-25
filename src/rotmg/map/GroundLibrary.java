@@ -1,17 +1,12 @@
 package rotmg.map;
 
-import flash.display.BitmapData;
+import java.util.HashMap;
+
 import alde.flash.utils.XML;
-import rotmg.game._as3.XML;
-import rotmg.game.objects.TextureData;
-import rotmg.game.objects.TextureDataConcrete;
-import rotmg.game.util.BitmapUtil;
-import rotmg.game._as3.BitmapData;
+import flash.display.BitmapData;
 import rotmg.objects.TextureData;
 import rotmg.objects.TextureDataConcrete;
 import rotmg.util.BitmapUtil;
-
-import java.util.HashMap;
 
 public class GroundLibrary {
 

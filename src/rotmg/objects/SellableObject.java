@@ -1,7 +1,6 @@
 package rotmg.objects;
 
 import alde.flash.utils.XML;
-import rotmg.game._as3.XML;
 
 public class SellableObject extends GameObject {
 

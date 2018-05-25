@@ -1,7 +1,5 @@
 package rotmg.core.service;
 
-import rotmg.game.core.service.tracking.GoogleAnalyticsTracker;
-
 public class GoogleAnalytics {
 
 

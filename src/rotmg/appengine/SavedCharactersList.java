@@ -1,18 +1,5 @@
 package rotmg.appengine;
 
-import rotmg.game._as3.XML;
-import rotmg.game.account.core.Account;
-import rotmg.game.dialogs.OpenDialogSignal;
-import rotmg.game.net.LatLong;
-import rotmg.game.objects.ObjectLibrary;
-import rotmg.game.objects.Player;
-import rotmg.promotions.model.BeginnersPackageModel;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Known as 'Charlist' by The Force
  *//*

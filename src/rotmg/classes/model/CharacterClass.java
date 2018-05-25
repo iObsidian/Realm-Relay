@@ -3,8 +3,6 @@ package rotmg.classes.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import rotmg.game._as3.Signal;
-
 public class CharacterClass {
 
 	public final Signal<CharacterClass> selected = new Signal<>();

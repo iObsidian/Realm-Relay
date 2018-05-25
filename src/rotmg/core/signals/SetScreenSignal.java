@@ -1,6 +1,6 @@
 package rotmg.core.signals;
 
-import rotmg.game._as3.Signal;
+import flash.display.Sprite;
 
 public class SetScreenSignal extends Signal<Sprite> {
 

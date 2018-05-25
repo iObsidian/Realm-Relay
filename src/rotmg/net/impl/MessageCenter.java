@@ -1,14 +1,10 @@
 package rotmg.net.impl;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-import rotmg.game.net.api.MessageConsumer;
-import rotmg.game.net.api.MessageMap;
-import rotmg.game.net.api.MessageMapping;
-import rotmg.game.net.api.MessageProvider;
+import rotmg.net.api.MessageMap;
 import rotmg.net.api.MessageMapping;
 
 public class MessageCenter implements MessageMap, MessageProvider {

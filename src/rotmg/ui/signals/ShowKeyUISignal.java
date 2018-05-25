@@ -1,8 +1,6 @@
 package rotmg.ui.signals;
 
 import org.osflash.signals.Signal;
-import rotmg.game._as3.Signal;
-import rotmg.game.signals.AddTextLineSignal;
 
 public class ShowKeyUISignal extends Signal {
 

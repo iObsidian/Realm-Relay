@@ -1,8 +1,6 @@
 package rotmg.core.signals;
 
-import rotmg.game._as3.Signal;
-import rotmg.game._as3.XML;
-import rotmg.game.signals.AddSpeechBalloonSignal;
+import alde.flash.utils.XML;
 
 public class AppInitDataReceivedSignal extends Signal<XML> {
 

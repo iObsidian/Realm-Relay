@@ -1,16 +1,14 @@
 package rotmg.objects;
 
-import flash.display.BitmapData;
-import rotmg.game._as3.XML;
-import rotmg.game.objects.animation.AnimatedChar;
-import rotmg.game.util.AnimatedChars;
-import rotmg.game.util.AssetLibrary;
-import rotmg.game.util.MaskedImage;
-import rotmg.game._as3.BitmapData;
-import rotmg.objects.animation.AnimatedChar;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import alde.flash.utils.XML;
+import flash.display.BitmapData;
+import rotmg.objects.animation.AnimatedChar;
+import rotmg.util.AnimatedChars;
+import rotmg.util.AssetLibrary;
+import rotmg.util.MaskedImage;
 
 /**
  * This class is a 25% match. Removed the use of remote textures. Parse only works for textures.

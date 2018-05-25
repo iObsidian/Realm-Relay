@@ -1,12 +1,14 @@
 package rotmg.net.impl;
 
-import alde.flash.utils.IData;
-import rotmg.game.net.api.MessageConsumer;
-import rotmg.game._as3.IData;
-import rotmg.net.api.MessageConsumer;
-
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.function.Consumer;
+
+import alde.flash.utils.IData;
+import rotmg.net.api.MessageConsumer;
 
 public class Message implements IData {
 

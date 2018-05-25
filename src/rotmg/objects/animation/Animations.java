@@ -1,10 +1,9 @@
 package rotmg.objects.animation;
 
-import flash.display.BitmapData;
-import rotmg.game._as3.BitmapData;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import flash.display.BitmapData;
 
 public class Animations {
 

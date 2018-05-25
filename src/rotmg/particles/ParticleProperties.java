@@ -1,9 +1,9 @@
 package rotmg.particles;
 
-import rotmg.game._as3.XML;
-import rotmg.game.objects.TextureData;
-import rotmg.game.objects.TextureDataConcrete;
-import rotmg.game.objects.animation.AnimationsData;
+import alde.flash.utils.XML;
+import rotmg.objects.TextureData;
+import rotmg.objects.TextureDataConcrete;
+import rotmg.objects.animation.AnimationsData;
 
 public class ParticleProperties {
 

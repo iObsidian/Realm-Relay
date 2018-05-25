@@ -1,7 +1,5 @@
 package rotmg.dialogs;
 
-import rotmg.game._as3.Signal;
-
 public class PopDialogSignal extends Signal {
 
     static PopDialogSignal instance;

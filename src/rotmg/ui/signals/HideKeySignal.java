@@ -1,8 +1,6 @@
 package rotmg.ui.signals;
 
 import org.osflash.signals.Signal;
-import rotmg.game._as3.Signal;
-import rotmg.game.ui.model.Key;
 
 public class HideKeySignal extends Signal<Key> {
 

@@ -1,7 +1,5 @@
 package rotmg.dailyLogin.signal;
 
-import rotmg.game._as3.Signal;
-
 public class ShowDailyCalendarPopupSignal extends Signal {
 	static ShowDailyCalendarPopupSignal instance;
 

@@ -1,7 +1,5 @@
 package rotmg.maploading.signals;
 
-import rotmg.game._as3.Signal;
-
 public class HideMapLoadingSignal extends Signal {
 
 	static HideMapLoadingSignal instance;

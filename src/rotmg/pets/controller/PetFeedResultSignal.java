@@ -1,9 +1,5 @@
 package rotmg.pets.controller;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.signals.AddTextLineSignal;
-import rotmg.game.signals.GiftStatusUpdateSignal;
-
 public class PetFeedResultSignal extends Signal {
 	static PetFeedResultSignal instance;
 

@@ -1,9 +1,6 @@
 package rotmg.dailyQuests.signal;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.dailyQuests.QuestFetchResponse;
-import rotmg.game.signals.AddTextLineSignal;
-import rotmg.game.signals.GiftStatusUpdateSignal;
+import rotmg.dailyQuests.QuestFetchResponse;
 
 public class QuestFetchCompleteSignal extends Signal<QuestFetchResponse> {
 	static QuestFetchCompleteSignal instance;

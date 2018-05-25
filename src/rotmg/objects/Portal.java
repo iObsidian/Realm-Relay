@@ -1,6 +1,6 @@
 package rotmg.objects;
 
-import rotmg.game._as3.XML;
+import alde.flash.utils.XML;
 
 
 public abstract class Portal extends GameObject implements IInteractiveObject {

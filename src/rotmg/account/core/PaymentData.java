@@ -1,6 +1,6 @@
 package rotmg.account.core;
 
-import rotmg.game.util.Offer;
+import rotmg.util.Offer;
 
 public class PaymentData {
 

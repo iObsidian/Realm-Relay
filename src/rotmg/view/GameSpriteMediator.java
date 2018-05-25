@@ -1,32 +1,30 @@
 package rotmg.view;
 
+import rotmg.GameSprite;
+import rotmg.core.model.MapModel;
+import rotmg.core.model.PlayerModel;
+import rotmg.core.signals.InvalidateDataSignal;
+import rotmg.core.signals.SetScreenSignal;
+import rotmg.core.signals.SetScreenWithValidDataSignal;
+import rotmg.core.signals.TrackPageViewSignal;
+import rotmg.dailyLogin.signal.ShowDailyCalendarPopupSignal;
+import rotmg.dialogs.AddPopupToStartupQueueSignal;
 import rotmg.dialogs.CloseDialogsSignal;
+import rotmg.dialogs.FlushPopupStartupQueueSignal;
 import rotmg.dialogs.OpenDialogSignal;
 import rotmg.events.ReconnectEvent;
-import rotmg.game.GameSprite;
-import rotmg.game.core.model.MapModel;
-import rotmg.game.core.model.PlayerModel;
-import rotmg.game.core.signals.InvalidateDataSignal;
-import rotmg.game.core.signals.SetScreenSignal;
-import rotmg.game.core.signals.SetScreenWithValidDataSignal;
-import rotmg.game.core.signals.TrackPageViewSignal;
-import rotmg.game.dialogs.CloseDialogsSignal;
-import rotmg.game.dialogs.OpenDialogSignal;
-import rotmg.game.events.ReconnectEvent;
-import rotmg.game.model.GameInitData;
-import rotmg.game.objects.Player;
-import rotmg.game.promotions.model.BeginnersPackageModel;
-import rotmg.game.signals.GameClosedSignal;
-import rotmg.game.signals.PlayGameSignal;
-import rotmg.game.signals.SetWorldInteractionSignal;
-import rotmg.game.ui.signals.HUDModelInitialized;
-import rotmg.game.ui.signals.HUDSetupStarted;
-import rotmg.game.ui.signals.UpdateHUDSignal;
+import rotmg.maploading.signals.HideMapLoadingSignal;
+import rotmg.maploading.signals.ShowLoadingViewSignal;
 import rotmg.model.GameInitData;
 import rotmg.objects.Player;
+import rotmg.promotions.signals.ShowBeginnersPackageSignal;
 import rotmg.signals.GameClosedSignal;
 import rotmg.signals.PlayGameSignal;
 import rotmg.signals.SetWorldInteractionSignal;
+import rotmg.ui.popups.signals.ShowPopupSignal;
+import rotmg.ui.signals.HUDModelInitialized;
+import rotmg.ui.signals.HUDSetupStarted;
+import rotmg.ui.signals.UpdateHUDSignal;
 
 public class GameSpriteMediator {
 

@@ -1,10 +1,6 @@
 
 package rotmg.events;
 
-//import flash.events.Event;
-
-import rotmg.game._as3.Event;
-
 public class GuildResultEvent extends Event {
 
 	public static final String EVENT = "GUILDRESULTEVENT";

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import flash.display.BitmapData;
-import rotmg.game._as3.BitmapData;
 
 /**
  * This is a 100% match

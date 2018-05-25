@@ -1,8 +1,7 @@
 package rotmg.appengine;
 
 import flash.display.BitmapData;
-import rotmg.game.util.AssetLibrary;
-import rotmg.game._as3.BitmapData;
+import rotmg.util.AssetLibrary;
 
 public class SavedNewsItem {
 

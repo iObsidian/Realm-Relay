@@ -1,9 +1,10 @@
 package flash.display;
 
+import java.awt.image.BufferedImage;
+
+import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
-
-import java.awt.image.BufferedImage;
 
 public class BitmapData {
 
@@ -49,5 +50,8 @@ public class BitmapData {
 
 	public void dispose() {
 		image = null;
+	}
+
+	public void draw(BitmapData param1, Matrix loc4, Object o, Object o1, Object o2, boolean b) {
 	}
 }

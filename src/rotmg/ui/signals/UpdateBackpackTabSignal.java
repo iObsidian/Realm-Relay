@@ -1,9 +1,6 @@
 package rotmg.ui.signals;
 
 import org.osflash.signals.Signal;
-import rotmg.game._as3.Signal;
-import rotmg.game.signals.AddTextLineSignal;
-import rotmg.game.signals.GiftStatusUpdateSignal;
 
 public class UpdateBackpackTabSignal extends Signal<Boolean> {
 

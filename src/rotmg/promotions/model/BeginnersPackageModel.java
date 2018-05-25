@@ -1,8 +1,5 @@
 package rotmg.promotions.model;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.account.core.Account;
-
 public class BeginnersPackageModel {
 
 	/*private static final int REALM_GOLD_FOR_BEGINNERS_PKG = 2600;

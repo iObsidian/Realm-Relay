@@ -1,7 +1,5 @@
 package rotmg.minimap.model;
 
-import rotmg.game._as3.Signal;
-
 public class UpdateGroundTileVO extends Signal {
 	public int tileX;
 

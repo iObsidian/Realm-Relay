@@ -1,6 +1,6 @@
 package rotmg.signals;
 
-import rotmg.game.chat.model.ChatMessage;
+import rotmg.chat.model.ChatMessage;
 
 public class AddTextLineSignal extends DeferredQueueSignal<ChatMessage> {
 

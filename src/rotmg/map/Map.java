@@ -5,10 +5,6 @@ import java.util.HashMap;
 
 import javafx.scene.Camera;
 import rotmg.game.AGameSprite;
-import rotmg.game.game.AGameSprite;
-import rotmg.game.objects.BasicObject;
-import rotmg.game.objects.GameObject;
-import rotmg.game.objects.Square;
 import rotmg.objects.BasicObject;
 import rotmg.objects.GameObject;
 import rotmg.objects.Square;

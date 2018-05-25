@@ -1,8 +1,8 @@
 package rotmg.objects.animation;
 
-import rotmg.game._as3.XML;
-import rotmg.game.objects.TextureData;
-import rotmg.game.objects.TextureDataConcrete;
+import alde.flash.utils.XML;
+import rotmg.objects.TextureData;
+import rotmg.objects.TextureDataConcrete;
 
 /**
  * This is a 100% match.

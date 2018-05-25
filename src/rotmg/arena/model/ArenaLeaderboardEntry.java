@@ -1,8 +1,7 @@
 package rotmg.arena.model;
 
 import flash.display.BitmapData;
-import rotmg.game.pets.data.PetVO;
-import rotmg.game._as3.BitmapData;
+import rotmg.pets.data.PetVO;
 
 /**
  * 100% match

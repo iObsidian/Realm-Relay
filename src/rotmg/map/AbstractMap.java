@@ -1,25 +1,19 @@
 package rotmg.map;
 
 
-import javafx.scene.layout.Background;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.osflash.signals.Signal;
+
 import flash.display.Sprite;
+import javafx.scene.layout.Background;
 import rotmg.game.AGameSprite;
-import rotmg.game._as3.Signal;
-import rotmg.game._as3.Sprite;
-import rotmg.game.game.AGameSprite;
-import rotmg.game.objects.BasicObject;
-import rotmg.game.objects.GameObject;
-import rotmg.game.objects.Player;
-import rotmg.game.objects.Square;
 import rotmg.objects.BasicObject;
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;
 import rotmg.objects.Square;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public abstract class AbstractMap extends Sprite {
 

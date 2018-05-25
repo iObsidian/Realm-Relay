@@ -3,13 +3,8 @@ package rotmg.arena.model;
 import rotmg.assets.services.CharacterFactory;
 import rotmg.classes.model.CharacterSkin;
 import rotmg.classes.model.ClassesModel;
-import rotmg.game._as3.Signal;
-import rotmg.game.assets.services.CharacterFactory;
-import rotmg.game.classes.model.CharacterSkin;
-import rotmg.game.classes.model.ClassesModel;
-import rotmg.game.model.GameModel;
-import rotmg.game.pets.data.PetsModel;
 import rotmg.model.GameModel;
+import rotmg.pets.data.PetsModel;
 
 public class CurrentArenaRunModel {
 

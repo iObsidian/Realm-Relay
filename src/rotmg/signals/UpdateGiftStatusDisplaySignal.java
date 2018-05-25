@@ -1,5 +1,4 @@
 package rotmg.signals;
-import rotmg.game._as3.Signal;
 
 public class UpdateGiftStatusDisplaySignal extends Signal {
 

@@ -1,7 +1,6 @@
 package rotmg.classes.model;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.assets.model.CharacterTemplate;
+import rotmg.assets.model.CharacterTemplate;
 
 public class CharacterSkin {
 

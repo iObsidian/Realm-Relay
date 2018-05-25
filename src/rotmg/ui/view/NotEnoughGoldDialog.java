@@ -1,7 +1,6 @@
 package rotmg.ui.view;
 
 import org.osflash.signals.Signal;
-import rotmg.game._as3.Signal;
 
 public class NotEnoughGoldDialog /*extends Dialog*/ {
 

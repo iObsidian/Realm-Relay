@@ -1,9 +1,6 @@
 package rotmg.dailyQuests.signal;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.dailyQuests.QuestRedeemResponse;
-import rotmg.game.signals.AddTextLineSignal;
-import rotmg.game.signals.GiftStatusUpdateSignal;
+import rotmg.dailyQuests.QuestRedeemResponse;
 
 public class QuestRedeemCompleteSignal extends Signal<QuestRedeemResponse> {
 	static QuestRedeemCompleteSignal instance;

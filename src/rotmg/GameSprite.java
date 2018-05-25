@@ -1,30 +1,14 @@
 package rotmg;
 
-import flash.events.Event;
+import static java.lang.Float.NaN;
+
 import org.osflash.signals.Signal;
+
+import flash.events.Event;
 import rotmg.core.model.MapModel;
 import rotmg.core.model.PlayerModel;
 import rotmg.game.AGameSprite;
 import rotmg.game.MapUserInput;
-import rotmg.game._as3.Event;
-import rotmg.game._as3.Signal;
-import rotmg.game.account.core.Account;
-import rotmg.game.core.model.MapModel;
-import rotmg.game.core.model.PlayerModel;
-import rotmg.game.core.service.GoogleAnalytics;
-import rotmg.game.game.AGameSprite;
-import rotmg.game.game.MapUserInput;
-import rotmg.game.map.Map;
-import rotmg.game.maploading.signals.HideMapLoadingSignal;
-import rotmg.game.maploading.signals.MapLoadedSignal;
-import rotmg.game.messaging.GameServerConnectionConcrete;
-import rotmg.game.messaging.incoming.MapInfo;
-import rotmg.game.net.Server;
-import rotmg.game.objects.GameObject;
-import rotmg.game.objects.Player;
-import rotmg.game.promotions.model.BeginnersPackageModel;
-import rotmg.game.stage3d.Renderer;
-import rotmg.game.ui.GuildText;
 import rotmg.map.Map;
 import rotmg.maploading.signals.HideMapLoadingSignal;
 import rotmg.maploading.signals.MapLoadedSignal;
@@ -36,8 +20,6 @@ import rotmg.objects.Player;
 import rotmg.promotions.model.BeginnersPackageModel;
 import rotmg.stage3d.Renderer;
 import rotmg.ui.GuildText;
-
-import static java.lang.Float.NaN;
 
 
 public class GameSprite extends AGameSprite {

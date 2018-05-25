@@ -5,7 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.data.ObjectStatusData;
+import rotmg.messaging.data.ObjectStatusData;
 
 public class NewTick extends IncomingMessage {
 

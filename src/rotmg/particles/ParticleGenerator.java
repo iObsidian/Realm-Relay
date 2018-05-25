@@ -1,13 +1,12 @@
 package rotmg.particles;
 
-import flash.display.BitmapData;
-import rotmg.game.objects.EffectProperties;
-import rotmg.game.objects.GameObject;
-import rotmg.game.util.AssetLibrary;
-import rotmg.game._as3.BitmapData;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import flash.display.BitmapData;
+import rotmg.objects.EffectProperties;
+import rotmg.objects.GameObject;
+import rotmg.util.AssetLibrary;
 
 public class ParticleGenerator extends ParticleEffect {
 

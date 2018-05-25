@@ -1,7 +1,7 @@
 package rotmg.parameters;
 
-import rotmg.game.util.KeyCodes;
-import rotmg.game.util.MoreDateUtil;
+import rotmg.util.KeyCodes;
+import rotmg.util.MoreDateUtil;
 
 /**
  * This class is about 20% done

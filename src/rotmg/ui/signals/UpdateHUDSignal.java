@@ -1,8 +1,8 @@
 package rotmg.ui.signals;
 
 import org.osflash.signals.Signal;
-import rotmg.game._as3.Signal;
-import rotmg.game.objects.Player;
+
+import rotmg.objects.Player;
 
 public class UpdateHUDSignal extends Signal<Player> {
 

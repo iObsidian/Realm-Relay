@@ -1,6 +1,5 @@
 package rotmg;
 
-import rotmg.game.util.AssetLoader;
 import rotmg.util.AssetLoader;
 
 public class WebMain {

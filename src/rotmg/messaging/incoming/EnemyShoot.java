@@ -5,7 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.data.WorldPosData;
+import rotmg.messaging.data.WorldPosData;
 
 public class EnemyShoot extends IncomingMessage {
 

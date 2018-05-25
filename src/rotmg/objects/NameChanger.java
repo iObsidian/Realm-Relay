@@ -1,10 +1,7 @@
 package rotmg.objects;
 
-import rotmg.game.GameSprite;
-import rotmg.game._as3.XML;
-import rotmg.game.objects.GameObject;
-import rotmg.game.objects.IInteractiveObject;
-import rotmg.game.objects.NameChangerPanel;
+import alde.flash.utils.XML;
+import rotmg.GameSprite;
 
 
 public class NameChanger extends GameObject implements IInteractiveObject {

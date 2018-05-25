@@ -1,7 +1,5 @@
 package rotmg.core.signals;
 
-import rotmg.game._as3.Signal;
-
 public class TrackPageViewSignal extends Signal<String> {
 
 	private static TrackPageViewSignal instance;

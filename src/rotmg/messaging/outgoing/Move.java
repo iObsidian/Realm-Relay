@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.data.MoveRecord;
-import rotmg.game.messaging.data.WorldPosData;
+import rotmg.messaging.data.MoveRecord;
+import rotmg.messaging.data.WorldPosData;
 
 public class Move extends OutgoingMessage {
 

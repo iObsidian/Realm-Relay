@@ -2,8 +2,6 @@ package rotmg.model;
 
 import java.util.List;
 
-import rotmg.game._as3.Signal;
-
 public class PotionModel {
 
 	public int objectId;

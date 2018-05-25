@@ -1,7 +1,5 @@
 package rotmg.signals;
 
-import rotmg.game._as3.Signal;
-
 public class GiftStatusUpdateSignal extends Signal<Boolean> {
 
 	public static GiftStatusUpdateSignal instance;

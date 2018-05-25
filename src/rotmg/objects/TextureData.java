@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import flash.display.BitmapData;
-import rotmg.game.objects.animation.AnimatedChar;
-import rotmg.game._as3.BitmapData;
 import rotmg.objects.animation.AnimatedChar;
 
 /**

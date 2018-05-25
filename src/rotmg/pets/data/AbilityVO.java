@@ -1,8 +1,6 @@
 package rotmg.pets.data;
 
-import rotmg.game._as3.Signal;
-import rotmg.game._as3.XML;
-import rotmg.game.objects.ObjectLibrary;
+import alde.flash.utils.XML;
 import rotmg.objects.ObjectLibrary;
 
 /**

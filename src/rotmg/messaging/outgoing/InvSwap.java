@@ -5,8 +5,8 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.data.SlotObjectData;
-import rotmg.game.messaging.data.WorldPosData;
+import rotmg.messaging.data.SlotObjectData;
+import rotmg.messaging.data.WorldPosData;
 
 public class InvSwap extends OutgoingMessage {
 

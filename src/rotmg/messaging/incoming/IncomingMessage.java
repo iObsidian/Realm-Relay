@@ -5,8 +5,6 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import rotmg.game.net.impl.Message;
-
 public class IncomingMessage extends Message {
 
 	public IncomingMessage(int param1, Consumer param2) {

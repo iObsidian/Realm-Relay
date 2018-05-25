@@ -1,7 +1,6 @@
 package rotmg.signals;
 
 import kabam.rotmg.game.model.UseBuyPotionVO;
-import rotmg.game._as3.Signal;
 
 public class UseBuyPotionSignal extends Signal<UseBuyPotionVO> {
 

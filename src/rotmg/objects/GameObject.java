@@ -1,77 +1,22 @@
 package rotmg.objects;
 
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.List;
-import java.util.Map;
-
 import alde.flash.utils.XML;
-import flash.display.BitmapData;
-import flash.display.GraphicsBitmapFill;
-import flash.display.GraphicsGradientFill;
-import flash.display.GraphicsPath;
+import flash.display.*;
 import flash.geom.Point;
 import flash.geom.Vector3D;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-
-import rotmg.game.map.Camera;
-import rotmg.game.messaging.data.WorldPosData;
-import rotmg.game.objects.animation.AnimatedChar;
-import rotmg.game.objects.animation.Animations;
-import rotmg.game.objects.animation.AnimationsData;
-import rotmg.game.parameters.Parameters;
-import rotmg.game.particles.ParticleEffect;
-import rotmg.game.sound.SoundEffectLibrary;
-import rotmg.map.Camera;
 import rotmg.messaging.data.WorldPosData;
+import rotmg.objects.*;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.objects.animation.Animations;
 import rotmg.objects.animation.AnimationsData;
 import rotmg.parameters.Parameters;
 import rotmg.particles.ParticleEffect;
+import rotmg.sound.SoundEffectLibrary;
+import rotmg.ui.SimpleText;
 import rotmg.util.*;
-{
-//   import com.company.assembleegameclient.engine3d.Model3D;
-//   import com.company.assembleegameclient.engine3d.Object3D;
-//   import com.company.assembleegameclient.map.Camera;
-//   import com.company.assembleegameclient.map.Map;
-//   import com.company.assembleegameclient.map.Square;
-//   import com.company.assembleegameclient.map.mapoverlay.CharacterStatusText;
-//   import com.company.assembleegameclient.objects.animation.Animations;
-//   import com.company.assembleegameclient.objects.animation.AnimationsData;
-//   import com.company.assembleegameclient.objects.particles.ExplosionEffect;
-//   import com.company.assembleegameclient.objects.particles.HitEffect;
-//   import com.company.assembleegameclient.objects.particles.ParticleEffect;
-//   import com.company.assembleegameclient.parameters.Parameters;
-//   import com.company.assembleegameclient.sound.SoundEffectLibrary;
-//   import com.company.assembleegameclient.util.AnimatedChar;
-//   import com.company.assembleegameclient.util.BloodComposition;
-//   import com.company.assembleegameclient.util.ConditionEffect;
-//   import com.company.assembleegameclient.util.MaskedImage;
-//   import com.company.assembleegameclient.util.TextureRedrawer;
-//   import com.company.ui.SimpleText;
-//   import com.company.util.AssetLibrary;
-//   import com.company.util.BitmapUtil;
-//   import com.company.util.CachingColorTransformer;
-//   import com.company.util.ConversionUtil;
-//   import com.company.util.GraphicsUtil;
-//   import com.company.util.MoreColorUtil;
-//   import com.company.util.PointUtil;
-//   import flash.display.BitmapData;
-//   import flash.display.GradientType;
-//   import flash.display.GraphicsBitmapFill;
-//   import flash.display.GraphicsGradientFill;
-//   import flash.display.GraphicsPath;
-//   import flash.display.IGraphicsData;
-//   import flash.filters.ColorMatrixFilter;
-//   import flash.filters.GlowFilter;
-//   import flash.geom.Matrix;
-//   import flash.geom.Point;
-//   import flash.geom.Vector3D;
-//   import flash.utils.Dictionary;
-//   import flash.utils.getQualifiedClassName;
-//   import flash.utils.getTimer;
-//   import kabam.rotmg.messaging.impl.data.WorldPosData;
+
+import java.util.List;
 
 public class GameObject extends BasicObject {
 
@@ -79,7 +24,7 @@ public class GameObject extends BasicObject {
 
 	private static final double NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
 
-	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
+	//protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(com.company.util.MoreColorUtil.greyscaleFilterMatrix);
 
 	public static final int ATTACK_PERIOD = 300;
 
@@ -105,8 +50,6 @@ public class GameObject extends BasicObject {
 
 	public List<TextureData> randomTextureData = null;
 
-	public Object3D obj3D = null;
-
 	public ParticleEffect effect = null;
 
 	public Animations animations = null;
@@ -114,8 +57,6 @@ public class GameObject extends BasicObject {
 	public boolean dead = false;
 
 	protected BitmapData portrait = null;
-
-	protected Dictionary texturingCache = null;
 
 	public int maxHP = 200;
 
@@ -148,8 +89,6 @@ public class GameObject extends BasicObject {
 	public int sinkLevel = 0;
 
 	public BitmapData hallucinatingTexture = null;
-
-	public FlashDescription flash = null;
 
 	public int connectType = -1;
 
@@ -191,23 +130,22 @@ public class GameObject extends BasicObject {
 
 	protected GraphicsPath shadowPath = null;
 
-	public  GameObject(XML objectXML)
-	{
+	public GameObject(XML objectXML) {
 		int i = 0;
 		this.props = ObjectLibrary.defaultProps;
 		this.posAtTick = new Point();
 		this.tickPosition = new Point();
 		this.moveVec = new Vector3D();
-		this.bitmapFill = new GraphicsBitmapFill(null,null,false,false);
-		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS,null);
-		this.vS = new ArrayList<Double>();
-		this.uvt = new ArrayList<Double>();
+		this.bitmapFill = new GraphicsBitmapFill(null, null, false, false);
+		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
+		this.vS = new List<Double>();
+		this.uvt = new List<Double>();
 		this.fillMatrix = new Matrix();
-		if(objectXML == null)
-		{
+		super();
+		if (objectXML == null) {
 			return;
 		}
-		this.objectType = int(objectXML.@type);
+		this.objectType = int(objectXML. @type);
 		this.props = ObjectLibrary.propsLibrary[this.objectType];
 		hasShadow = this.props.shadowSize > 0;
 		TextureData textureData = ObjectLibrary.typeToTextureData[this.objectType];
@@ -215,49 +153,39 @@ public class GameObject extends BasicObject {
 		this.mask = textureData.mask;
 		this.animatedChar = textureData.animatedChar;
 		this.randomTextureData = textureData.randomTextureData;
-		if(textureData.effectProps != null)
-		{
-			this.effect = ParticleEffect.fromProps(textureData.effectProps,this);
+		if (textureData.effectProps != null) {
+			this.effect = ParticleEffect.fromProps(textureData.effectProps, this);
 		}
-		if(this.texture != null)
-		{
+		if (this.texture != null) {
 			this.sizeMult = this.texture.height / 8;
 		}
-		if(objectXML.hasOwnProperty("Model"))
-		{
+		if (objectXML.hasOwnProperty("Model")) {
 			this.obj3D = Model3D.getObject3D(String(objectXML.Model));
 		}
 		AnimationsData animationsData = ObjectLibrary.typeToAnimationsData[this.objectType];
-		if(animationsData != null)
-		{
+		if (animationsData != null) {
 			this.animations = new Animations(animationsData);
 		}
 		z = this.props.z;
 		this.flying = this.props.flying;
-		if(objectXML.hasOwnProperty("MaxHitPoints"))
-		{
-			this.hp = this.maxHP = int(objectXML.MaxHitPoints);
+		if (objectXML.hasOwnProperty("MaxHitPoints")) {
+			this.hp = this.maxHP = objectXML.MaxHitPoints;
 		}
-		if(objectXML.hasOwnProperty("Defense"))
-		{
-			this.defense = int(objectXML.Defense);
+		if (objectXML.hasOwnProperty("Defense")) {
+			this.defense = objectXML.Defense;
 		}
-		if(objectXML.hasOwnProperty("SlotTypes"))
-		{
+		if (objectXML.hasOwnProperty("SlotTypes")) {
 			this.slotTypes = ConversionUtil.toIntVector(objectXML.SlotTypes);
 			this.equipment = new List<Integer>(this.slotTypes.length);
-			for(i = 0; i < this.equipment.length; i++)
-			{
+			for (i = 0; i < this.equipment.length; i++) {
 				this.equipment[i] = -1;
 			}
 		}
-		if(objectXML.hasOwnProperty("Tex1"))
-		{
-			this.tex1Id = int(objectXML.Tex1);
+		if (objectXML.hasOwnProperty("Tex1")) {
+			this.tex1Id = objectXML.Tex1;
 		}
-		if(objectXML.hasOwnProperty("Tex2"))
-		{
-			this.tex2Id = int(objectXML.Tex2);
+		if (objectXML.hasOwnProperty("Tex2")) {
+			this.tex2Id = objectXML.Tex2;
 		}
 		this.props.loadSounds();
 	}
@@ -281,7 +209,7 @@ public class GameObject extends BasicObject {
 		TextureData textureData = null;
 		objectId = objectId;
 		if (this.randomTextureData != null) {
-			textureData = this.randomTextureData[objectId % this.randomTextureData.length];
+			textureData = this.randomTextureData.get(objectId % this.randomTextureData.size());
 			this.texture = textureData.texture;
 			this.mask = textureData.mask;
 			this.animatedChar = textureData.animatedChar;
@@ -290,7 +218,7 @@ public class GameObject extends BasicObject {
 
 	public void setAltTexture(int altTextureId) {
 		TextureData altTextureData = null;
-		TextureData textureData = ObjectLibrary.typeToTextureData[this.objectType];
+		TextureData textureData = ObjectLibrary.typeToTextureData.get(this.objectType);
 		if (altTextureId == 0) {
 			altTextureData = textureData;
 		} else {
@@ -336,8 +264,7 @@ public class GameObject extends BasicObject {
 		SoundEffectLibrary.play(this.props.sounds[id]);
 	}
 
-	public void dispose()
-	{
+	public void dispose() {
 		Object obj = null;
 		BitmapData bitmapData = null;
 		Dictionary dict = null;
@@ -345,28 +272,22 @@ public class GameObject extends BasicObject {
 		BitmapData bitmapData2 = null;
 		super.dispose();
 		this.texture = null;
-		if(this.portrait != null)
-		{
+		if (this.portrait != null) {
 			this.portrait.dispose();
 			this.portrait = null;
 		}
-		if(this.texturingCache != null)
-		{
-			for(obj : this.texturingCache)
-			{
+		if (this.texturingCache != null) {
+			for (obj:
+			     this.texturingCache) {
 				bitmapData = obj as BitmapData;
-				if(bitmapData != null)
-				{
+				if (bitmapData != null) {
 					bitmapData.dispose();
-				}
-				else
-				{
+				} else {
 					dict = obj as Dictionary;
-					for(obj2 : dict)
-					{
+					for (obj2:
+					     dict) {
 						bitmapData2 = obj2 as BitmapData;
-						if(bitmapData2 != null)
-						{
+						if (bitmapData2 != null) {
 							bitmapData2.dispose();
 						}
 					}
@@ -374,16 +295,14 @@ public class GameObject extends BasicObject {
 			}
 			this.texturingCache = null;
 		}
-		if(this.obj3D != null)
-		{
+		if (this.obj3D != null) {
 			this.obj3D.dispose();
 			this.obj3D = null;
 		}
 		this.slotTypes = null;
 		this.equipment = null;
 		this.nameText = null;
-		if(this.nameBitmapData != null)
-		{
+		if (this.nameBitmapData != null) {
 			this.nameBitmapData.dispose();
 			this.nameBitmapData = null;
 		}
@@ -399,8 +318,7 @@ public class GameObject extends BasicObject {
 		this.iconFills = null;
 		this.iconPaths = null;
 		this.shadowGradientFill = null;
-		if(this.shadowPath != null)
-		{
+		if (this.shadowPath != null) {
 			this.shadowPath.commands = null;
 			this.shadowPath.data = null;
 			this.shadowPath = null;
@@ -503,20 +421,20 @@ public class GameObject extends BasicObject {
 		return (this.condition & ConditionEffect.ARMORBROKEN_BIT) != 0;
 	}
 
-	public function isSafe(size:int = 20) : boolean
+	public function isSafe(size:int=20) :boolean
+
 	{
 		GameObject go = null;
 		int dx = 0;
 		int dy = 0;
-		for(go : map.goDict)
-		{
-			if(go is Character && go.props.isEnemy)
+		for (go:
+		     map.goDict) {
+			if (go is Character &&go.props.isEnemy)
 			{
-				dx = x > go.x_?int(x - go.x):int(go.x - x);
-				dy = y > go.y_?int(y - go.y):int(go.y - y);
-				trace((go as Character).objectType,dx,dy);
-				if(dx < size && dy < size)
-				{
+				dx = x > go.x_ ?int(x - go.x):int(go.x - x);
+				dy = y > go.y_ ?int(y - go.y):int(go.y - y);
+				trace((go as Character).objectType, dx, dy);
+				if (dx < size && dy < size) {
 					return false;
 				}
 			}
@@ -558,45 +476,38 @@ public class GameObject extends BasicObject {
 		return true;
 	}
 
-	public void removeFromMap()
-	{
-		if(this.props.static && square != null)
+	public void removeFromMap() {
+		if (this.props. static &&square != null)
 		{
-			if(square.obj == this)
-			{
+			if (square.obj == this) {
 				square.obj = null;
 			}
 			square = null;
 		}
-		if(this.effect != null)
-		{
+		if (this.effect != null) {
 			map.removeObj(this.effect.objectId);
 		}
 		super.removeFromMap();
 		this.dispose();
 	}
 
-	public boolean moveTo(Number x, Number y)
-	{
-		Square square = map.getSquare(x,y);
-		if(square == null)
-		{
+	public boolean moveTo(Number x, Number y) {
+		Square square = map.getSquare(x, y);
+		if (square == null) {
 			return false;
 		}
 		x = x;
 		y = y;
-		if(this.props.static)
+		if (this.props. static)
 		{
-			if(square != null)
-			{
+			if (square != null) {
 				square.obj = null;
 			}
 			square.obj = this;
 		}
 		square = square;
-		if(this.obj3D != null)
-		{
-			this.obj3D.setPosition(x,y,0,this.props.rotation);
+		if (this.obj3D != null) {
+			this.obj3D.setPosition(x, y, 0, this.props.rotation);
 		}
 		return true;
 	}
@@ -656,24 +567,19 @@ public class GameObject extends BasicObject {
 		this.myLastTickId = tickId;
 	}
 
-	public void damage(int origType, int damageAmount, List<Integer> effects, boolean kill, Projectile proj)
-	{
+	public void damage(int origType, int damageAmount, List<Integer> effects, boolean kill, Projectile proj) {
 		int offsetTime = 0;
 		int conditionEffect = 0;
 		ConditionEffect ce = null;
 		boolean pierced = false;
-		if(kill)
-		{
+		if (kill) {
 			this.dead = true;
-		}
-		else if(effects != null)
-		{
+		} else if (effects != null) {
 			offsetTime = 0;
-			for(conditionEffect : effects)
-			{
+			for (conditionEffect:
+			     effects) {
 				ce = null;
-				switch(conditionEffect)
-				{
+				switch (conditionEffect) {
 					case ConditionEffect.NOTHING:
 						break;
 					case ConditionEffect.QUIET:
@@ -697,43 +603,33 @@ public class GameObject extends BasicObject {
 						ce = ConditionEffect.effects[conditionEffect];
 						break;
 					case ConditionEffect.STUNNED:
-						if(this.isStunImmune())
-						{
-							map.mapOverlay.addStatusText(new CharacterStatusText(this,"Immune",16711680,3000));
-						}
-						else
-						{
+						if (this.isStunImmune()) {
+							map.mapOverlay.addStatusText(new CharacterStatusText(this, "Immune", 16711680, 3000));
+						} else {
 							ce = ConditionEffect.effects[conditionEffect];
 						}
 				}
-				if(ce != null)
-				{
-					if((this.condition | ce.bit) != this.condition)
-					{
+				if (ce != null) {
+					if ((this.condition | ce.bit) != this.condition) {
 						this.condition = this.condition | ce.bit;
-						map.mapOverlay.addStatusText(new CharacterStatusText(this,ce.name,16711680,3000,offsetTime));
+						map.mapOverlay.addStatusText(new CharacterStatusText(this, ce.name, 16711680, 3000, offsetTime));
 						offsetTime = offsetTime + 500;
 					}
 				}
 			}
 		}
-		List<Integer> colors = BloodComposition.getBloodComposition(this.objectType,this.texture,this.props.bloodProb,this.props.bloodColor);
-		if(this.dead)
-		{
-			map.addObj(new ExplosionEffect(colors,this.size,30),x,y);
+		List<Integer> colors = BloodComposition.getBloodComposition(this.objectType, this.texture, this.props.bloodProb, this.props.bloodColor);
+		if (this.dead) {
+			map.addObj(new ExplosionEffect(colors, this.size, 30), x, y);
+		} else if (proj != null) {
+			map.addObj(new HitEffect(colors, this.size, 10, proj.angle, proj.projProps.speed), x, y);
+		} else {
+			map.addObj(new ExplosionEffect(colors, this.size, 10), x, y);
 		}
-		else if(proj != null)
-		{
-			map.addObj(new HitEffect(colors,this.size,10,proj.angle,proj.projProps.speed),x,y);
-		}
-		else
-		{
-			map.addObj(new ExplosionEffect(colors,this.size,10),x,y);
-		}
-		if(damageAmount > 0)
-		{
+		if (damageAmount > 0) {
 			pierced = this.isArmorBroken() || proj != null && proj.projProps.armorPiercing;
-			map.mapOverlay.addStatusText(new CharacterStatusText(this,"-" + damageAmount,!!pierced?int(9437439):int(16711680),1000));
+			map.mapOverlay.addStatusText(new CharacterStatusText(this, "-" + damageAmount, !!pierced ?int(9437439):int
+			(16711680), 1000));
 		}
 	}
 
@@ -748,8 +644,7 @@ public class GameObject extends BasicObject {
 	protected BitmapData generateNameBitmapData(SimpleText nameText) {
 		BitmapData nameBitmapData = new BitmapData(nameText.width, 64, true, 0);
 		nameBitmapData.draw(nameText, null);
-		nameBitmapData.applyFilter(nameBitmapData, nameBitmapData.rect, PointUtil.ORIGIN,
-				new GlowFilter(0, 1, 3, 3, 2, 1));
+		nameBitmapData.applyFilter(nameBitmapData, nameBitmapData.rect, PointUtil.ORIGIN, new GlowFilter(0, 1, 3, 3, 2, 1));
 		return nameBitmapData;
 	}
 
@@ -774,17 +669,14 @@ public class GameObject extends BasicObject {
 		graphicsData.add(GraphicsUtil.END_FILL);
 	}
 
-	protected BitmapData getHallucinatingTexture()
-	{
-		if(this.hallucinatingTexture == null)
-		{
+	protected BitmapData getHallucinatingTexture() {
+		if (this.hallucinatingTexture == null) {
 			this.hallucinatingTexture = AssetLibrary.getImageFromSet("lofiChar8x8",int(Math.random() * 239));
 		}
 		return this.hallucinatingTexture;
 	}
 
-	protected BitmapData getTexture(Camera camera, int time)
-	{
+	protected BitmapData getTexture(Camera camera, int time) {
 		double p = NaN;
 		int action = 0;
 		MaskedImage image = null;
@@ -795,91 +687,66 @@ public class GameObject extends BasicObject {
 		BitmapData texture = this.texture;
 		int size = this.size;
 		BitmapData mask = null;
-		if(this.animatedChar != null)
-		{
+		if (this.animatedChar != null) {
 			p = 0;
 			action = AnimatedChar.STAND;
-			if(time < this.attackStart + ATTACK_PERIOD)
-			{
-				if(!this.props.dontFaceAttacks)
-				{
+			if (time < this.attackStart + ATTACK_PERIOD) {
+				if (!this.props.dontFaceAttacks) {
 					this.facing = this.attackAngle;
 				}
 				p = (time - this.attackStart) % ATTACK_PERIOD / ATTACK_PERIOD;
 				action = AnimatedChar.ATTACK;
-			}
-			else if(this.moveVec.x != 0 || this.moveVec.y != 0)
-			{
+			} else if (this.moveVec.x != 0 || this.moveVec.y != 0) {
 				walkPer = 0.5 / this.moveVec.length;
 				walkPer = walkPer + (400 - walkPer % 400);
-				if(this.moveVec.x > ZERO_LIMIT || this.moveVec.x < NEGATIVE_ZERO_LIMIT || this.moveVec.y > ZERO_LIMIT || this.moveVec.y < NEGATIVE_ZERO_LIMIT)
-				{
-					this.facing = Math.atan2(this.moveVec.y,this.moveVec.x);
+				if (this.moveVec.x > ZERO_LIMIT || this.moveVec.x < NEGATIVE_ZERO_LIMIT || this.moveVec.y > ZERO_LIMIT || this.moveVec.y < NEGATIVE_ZERO_LIMIT) {
+					this.facing = Math.atan2(this.moveVec.y, this.moveVec.x);
 					action = AnimatedChar.WALK;
-				}
-				else
-				{
+				} else {
 					action = AnimatedChar.STAND;
 				}
 				p = time % walkPer / walkPer;
 			}
-			image = this.animatedChar.imageFromFacing(this.facing,camera,action,p);
+			image = this.animatedChar.imageFromFacing(this.facing, camera, action, p);
 			texture = image.image;
 			mask = image.mask;
-		}
-		else if(this.animations != null)
-		{
+		} else if (this.animations != null) {
 			animTexture = this.animations.getTexture(time);
-			if(animTexture != null)
-			{
+			if (animTexture != null) {
 				texture = animTexture;
 			}
 		}
-		if(this.props.drawOnGround || this.obj3D != null)
-		{
+		if (this.props.drawOnGround || this.obj3D != null) {
 			return texture;
 		}
-		if(camera.isHallucinating)
-		{
-			w = texture == null?int(8):int(texture.width);
+		if (camera.isHallucinating) {
+			w = texture == null ?int(8):int(texture.width);
 			texture = this.getHallucinatingTexture();
 			mask = null;
-			size = this.size * Math.min(1.5,w / texture.width);
+			size = this.size * Math.min(1.5, w / texture.width);
 		}
-		if(this.isStasis())
-		{
-			texture = CachingColorTransformer.filterBitmapData(texture,PAUSED_FILTER);
+		if (this.isStasis()) {
+			texture = CachingColorTransformer.filterBitmapData(texture, PAUSED_FILTER);
 		}
-		if(this.flash != null)
-		{
-			if(!this.flash.doneAt(time))
-			{
-				texture = this.flash.apply(texture,time);
-			}
-			else
-			{
+		if (this.flash != null) {
+			if (!this.flash.doneAt(time)) {
+				texture = this.flash.apply(texture, time);
+			} else {
 				this.flash = null;
 			}
 		}
-		if(this.tex1Id == 0 && this.tex2Id == 0)
-		{
-			texture = TextureRedrawer.redraw(texture,size,false,0,0);
-		}
-		else
-		{
+		if (this.tex1Id == 0 && this.tex2Id == 0) {
+			texture = TextureRedrawer.redraw(texture, size, false, 0, 0);
+		} else {
 			newTexture = null;
-			if(this.texturingCache == null)
-			{
+			if (this.texturingCache == null) {
 				this.texturingCache = new Dictionary();
-			}
-			else
-			{
+			} else {
 				newTexture = this.texturingCache[texture];
 			}
-			if(newTexture == null)
-			{
-				newTexture = TextureRedrawer.resize(texture,mask,size,false,this.tex1Id,this.tex2Id);
-				newTexture = TextureRedrawer.outlineGlow(newTexture,0,0);
+			if (newTexture == null) {
+				newTexture = TextureRedrawer.resize(texture, mask, size, false, this.tex1Id, this.tex2Id);
+				newTexture = TextureRedrawer.outlineGlow(newTexture, 0, 0);
 				this.texturingCache[texture] = newTexture;
 			}
 			texture = newTexture;
@@ -935,8 +802,7 @@ public class GameObject extends BasicObject {
 			h2 = 0;
 		}
 		this.vS.length = 0;
-		this.vS.add(posS[3] - w / 2, posS[4] - h + h2, posS[3] + w / 2, posS[4] - h + h2, posS[3] + w / 2, posS[4],
-				posS[3] - w / 2, posS[4]);
+		this.vS.add(posS[3] - w / 2, posS[4] - h + h2, posS[3] + w / 2, posS[4] - h + h2, posS[3] + w / 2, posS[4], posS[3] - w / 2, posS[4]);
 		this.path.data = this.vS;
 		this.bitmapFill.bitmapData = texture;
 		this.fillMatrix.identity();
@@ -993,26 +859,25 @@ public class GameObject extends BasicObject {
 		}
 	}
 
-	public void drawShadow(List<IGraphicsData> graphicsData, Camera camera, int time)
-	{
-		if(this.shadowGradientFill == null)
-		{
-			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[this.props.shadowColor,this.props.shadowColor],[0.5,0],null,new Matrix());
-			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS,new List<Double>());
+	public void drawShadow(List<IGraphicsData> graphicsData, Camera camera, int time) {
+		if (this.shadowGradientFill == null) {
+			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[this.props.shadowColor, this.props.shadowColor],[
+			0.5, 0],null, new Matrix());
+			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<Double>());
 		}
 		double s = this.size / 100 * (this.props.shadowSize / 100) * this.sizeMult;
 		double w = 30 * s;
 		double h = 15 * s;
-		this.shadowGradientFill.matrix.createGradientBox(w * 2,h * 2,0,posS[0] - w,posS[1] - h);
+		this.shadowGradientFill.matrix.createGradientBox(w * 2, h * 2, 0, posS[0] - w, posS[1] - h);
 		graphicsData.add(this.shadowGradientFill);
 		this.shadowPath.data.length = 0;
-		this.shadowPath.data.add(posS[0] - w,posS[1] - h,posS[0] + w,posS[1] - h,posS[0] + w,posS[1] + h,posS[0] - w,posS[1] + h);
+		this.shadowPath.data.add(posS[0] - w, posS[1] - h, posS[0] + w, posS[1] - h, posS[0] + w, posS[1] + h, posS[0] - w, posS[1] + h);
 		graphicsData.add(this.shadowPath);
 		graphicsData.add(GraphicsUtil.END_FILL);
 	}
 
 	public String toString() {
-		return "[" + getQualifiedClassName(this) + " id: " + objectId + " type: "
-				+ ObjectLibrary.typeToDisplayId[this.objectType] + " pos: " + x + ", " + y + "]";
+		return "[" + getQualifiedClassName(this) + " id: " + objectId + " type: " + ObjectLibrary.typeToDisplayId[this.objectType] + " pos: " + x + ", " + y + "]";
 	}
-}}
+}
+}

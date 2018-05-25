@@ -1,7 +1,5 @@
 package rotmg.model;
 
-import rotmg.game.net.Server;
-
 public class GameInitData {
 
 	public Server server;

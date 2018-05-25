@@ -1,7 +1,5 @@
 package rotmg.util;
 
-import rotmg.game.sound.IMusic;
-import rotmg.game.sound.Music;
 import rotmg.sound.IMusic;
 import rotmg.sound.Music;
 

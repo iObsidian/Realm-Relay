@@ -2,13 +2,7 @@ package rotmg.map;
 
 import flash.geom.Matrix3D;
 import flash.geom.Rectangle;
-import rotmg.game._as3.Matrix3D;
-import rotmg.game._as3.Rectangle;
-import rotmg.game._as3.Vector3D;
-import rotmg.game.objects.GameObject;
-import rotmg.game.parameters.Parameters;
-import rotmg.game.util.RandomUtil;
-import rotmg.game.util.Trig;
+import flash.geom.Vector3D;
 import rotmg.parameters.Parameters;
 import rotmg.util.RandomUtil;
 
@@ -92,7 +86,7 @@ public class Camera {
 		this.f.z = -1;
 	}
 
-	public void configureCamera(GameObject object, boolean isHallucinating) {
+	public void configureCamera(com.company.assembleegameclient.objects.GameObject object, boolean isHallucinating) {
 		Rectangle screenRect = Parameters.centerOnPlayer ? CENTERSCREENRECT : OFFSETSCREENRECT;
 		if (Parameters.screenShotMode) {
 			if (!Parameters.screenShotSlimMode) {

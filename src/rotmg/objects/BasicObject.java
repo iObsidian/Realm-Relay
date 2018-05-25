@@ -1,7 +1,11 @@
 package rotmg.objects;
 
-import javafx.scene.Camera;
-import rotmg.game.map.Map;
+import java.util.ArrayList;
+import java.util.List;
+
+import flash.display.IGraphicsData;
+import rotmg.map.Camera;
+import rotmg.map.Map;
 
 /**
  * This class matches 100%
@@ -17,8 +21,8 @@ public class BasicObject {
 	}
 
 	public BasicObject() {
-		this.posW = new double[0];
-		this.posS = new double[0];
+		this.posW = new ArrayList<>();
+		this.posS = new ArrayList<>();
 	}
 
 	public Map map;
@@ -29,8 +33,8 @@ public class BasicObject {
 	public double z;
 	public boolean hasShadow;
 	public boolean drawn;
-	public double posW[];
-	public double posS[];
+	public List<Double> posW;
+	public List<Double> posS;
 	public double sortVal;
 
 	public void clear() {
@@ -42,8 +46,8 @@ public class BasicObject {
 		this.z = 0;
 		this.hasShadow = false;
 		this.drawn = false;
-		this.posW = new double[0];
-		this.posS = new double[0];
+		this.posW.clear();
+		this.posS.clear();
 		this.sortVal = 0;
 	}
 
@@ -59,8 +63,8 @@ public class BasicObject {
 		return true;
 	}
 
-	public void draw3d(List<Object3DStage3D> param1) {
-	}
+	/**public void draw3d(List<Object3DStage3D> param1) {
+	}*/
 
 	public void draw(List<IGraphicsData> param1, Camera param2, int param3) {
 	}
@@ -69,19 +73,38 @@ public class BasicObject {
 	}
 
 	public void computeSortVal(Camera param1) {
-		this.posW.length = 0;
-		this.posW.add(this.x, this.y, 0, this.x, this.y, this.z);
-		this.posS.length = 0;
+		this.posW.clear();
+		this.posW.add(this.x);
+		this.posW.add(this.y);
+		this.posW.add(0.0);
+		this.posW.add(this.x);
+		this.posW.add(this.y);
+		this.posW.add(this.z);
+
+		this.posS.clear();
 		param1.wToS.transformVectors(this.posW, this.posS);
-		this.sortVal = this.posS[1];
+		this.sortVal = this.posS.get(1);
 	}
 
 	public void computeSortValNoCamera(double param1) {
-		this.posW.length = 0;
-		this.posW.add(this.x, this.y, 0, this.x, this.y, this.z);
-		this.posS.length = 0;
-		this.posS.add(this.x * param1, this.y * param1, 0, this.x * param1, this.y * param1, 0);
-		this.sortVal = this.posS[1];
+		this.posW.clear();
+		this.posW.add(this.x);
+		this.posW.add(this.y);
+		this.posW.add(0.0);
+		this.posW.add(this.x);
+		this.posW.add(this.y);
+		this.posW.add(this.z);
+
+		this.posS.clear();
+		this.posS.add(this.x * param1);
+		this.posS.add(this.y * param1);
+		this.posS.add(0.0);
+		this.posS.add(this.x * param1);
+		this.posS.add(this.y * param1);
+		this.posS.add(0.0);
+
+
+		this.sortVal = this.posS.get(1);
 	}
 
 	public boolean addTo(Map map, double x, double y) {

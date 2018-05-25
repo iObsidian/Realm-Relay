@@ -1,8 +1,5 @@
 package rotmg.events;
 
-import rotmg.game._as3.Event;
-import rotmg.game.net.Server;
-
 public class ReconnectEvent extends Event {
 
 	public static final String RECONNECT = "RECONNECT_EVENT";

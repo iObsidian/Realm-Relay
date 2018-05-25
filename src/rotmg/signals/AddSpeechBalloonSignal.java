@@ -1,7 +1,6 @@
 package rotmg.signals;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.model.AddSpeechBalloonVO;
+import rotmg.model.AddSpeechBalloonVO;
 
 public class AddSpeechBalloonSignal extends Signal<AddSpeechBalloonVO> {
 

@@ -1,7 +1,5 @@
 package rotmg.dialogs;
 
-import rotmg.game._as3.Signal;
-
 public class AddPopupToStartupQueueSignal<AddPopupToStartupQueue> extends Signal {
 
     static AddPopupToStartupQueueSignal instance;

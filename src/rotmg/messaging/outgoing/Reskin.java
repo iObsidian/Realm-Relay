@@ -1,11 +1,11 @@
 package rotmg.messaging.outgoing;
 
-import rotmg.game.objects.Player;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
+
+import rotmg.objects.Player;
 
 public class Reskin extends OutgoingMessage {
 

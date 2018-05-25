@@ -1,5 +1,7 @@
 package flash.geom;
 
+import java.util.List;
+
 public class Matrix3D {
 	public double[] rawData;
 
@@ -7,5 +9,14 @@ public class Matrix3D {
 	}
 
 	public void append(Matrix3D wToV) {
+	}
+
+	public void appendRotation(double i, Vector3D zAxis) {
+	}
+
+	public void appendTranslation(double x, double y, int i) {
+	}
+
+	public void transformVectors(List<Double> posW, List<Double> posS) {
 	}
 }

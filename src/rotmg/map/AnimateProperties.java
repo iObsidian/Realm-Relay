@@ -1,7 +1,6 @@
 package rotmg.map;
 
 import alde.flash.utils.XML;
-import rotmg.game._as3.XML;
 
 public class AnimateProperties {
 

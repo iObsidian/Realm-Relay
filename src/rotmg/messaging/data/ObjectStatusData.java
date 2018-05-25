@@ -4,13 +4,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-/**
- * I have taken the right to
- * use HashMap<> (instead of Vector)
- * for the stats.
- */
-
-import rotmg.game._as3.IData;
+import alde.flash.utils.IData;
 
 public class ObjectStatusData implements IData {
 

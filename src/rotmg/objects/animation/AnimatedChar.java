@@ -1,17 +1,14 @@
 package rotmg.objects.animation;
 
-import flash.display.BitmapData;
-import flash.geom.Rectangle;
-import rotmg.game._as3.Point;
-import rotmg.game._as3.Rectangle;
-import rotmg.game.util.MaskedImage;
-import rotmg.game.util.MaskedImageSet;
-import rotmg.game._as3.BitmapData;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import flash.display.BitmapData;
+import flash.geom.Rectangle;
+import rotmg.util.MaskedImage;
+import rotmg.util.MaskedImageSet;
 
 
 /**

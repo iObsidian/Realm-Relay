@@ -1,7 +1,5 @@
 package rotmg.core.signals;
 
-import rotmg.game._as3.Signal;
-
 public class TrackEventSignal extends Signal<TrackingData> {
 
 	private static TrackEventSignal instance;

@@ -1,27 +1,18 @@
 package rotmg.objects;
 
+import java.util.HashMap;
+import java.util.List;
+
+import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.assets.services.CharacterFactory;
 import rotmg.constants.GeneralConstants;
-import rotmg.game._as3.BitmapData;
-import rotmg.game._as3.Point;
-import rotmg.game._as3.Signal;
-import rotmg.game._as3.XML;
-import rotmg.game.assets.services.CharacterFactory;
-import rotmg.game.constants.GeneralConstants;
-import rotmg.game.messaging.data.StatData;
-import rotmg.game.objects.animation.AnimatedChar;
-import rotmg.game.particles.HealingEffect;
-import rotmg.game.signals.AddTextLineSignal;
-import rotmg.game.util.ConversionUtil;
-import rotmg.game.util.IntPoint;
 import rotmg.messaging.data.StatData;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.particles.HealingEffect;
 import rotmg.signals.AddTextLineSignal;
-
-import java.util.HashMap;
-import java.util.List;
+import rotmg.util.ConversionUtil;
+import rotmg.util.IntPoint;
 
 public class Player extends Character {
 

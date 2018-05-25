@@ -5,7 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.data.SlotObjectData;
+import rotmg.messaging.data.SlotObjectData;
 
 public class InvDrop extends OutgoingMessage {
 

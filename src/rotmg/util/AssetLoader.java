@@ -1,21 +1,21 @@
 package rotmg.util;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import rotmg.game.WebMain;
-import rotmg.game._as3.XML;
-import rotmg.game.map.GroundLibrary;
-import rotmg.game.map.RegionLibrary;
-import rotmg.game.objects.ObjectLibrary;
-import rotmg.game.objects.animation.AnimatedChar;
-import rotmg.game.parameters.Parameters;
-import rotmg.game.particles.ParticleLibrary;
-import rotmg.game.sound.IMusic;
-import rotmg.game.sound.SFX;
-import rotmg.game.sound.SoundEffectLibrary;
-import rotmg.game.ui.Options;
+import alde.flash.utils.XML;
+import rotmg.WebMain;
+import rotmg.map.GroundLibrary;
+import rotmg.map.RegionLibrary;
 import rotmg.objects.ObjectLibrary;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.parameters.Parameters;
@@ -23,13 +23,6 @@ import rotmg.particles.ParticleLibrary;
 import rotmg.sound.IMusic;
 import rotmg.sound.SFX;
 import rotmg.sound.SoundEffectLibrary;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class AssetLoader {
 

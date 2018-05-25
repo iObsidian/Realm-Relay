@@ -5,7 +5,6 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.outgoing.OutgoingMessage;
 import rotmg.messaging.outgoing.OutgoingMessage;
 
 public class DeletePetMessage extends OutgoingMessage {

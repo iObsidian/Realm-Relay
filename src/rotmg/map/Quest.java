@@ -1,6 +1,5 @@
 package rotmg.map;
 
-import rotmg.game.objects.GameObject;
 import rotmg.objects.GameObject;
 
 public class Quest {

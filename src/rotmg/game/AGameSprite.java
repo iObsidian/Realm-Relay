@@ -1,18 +1,12 @@
 package rotmg.game;
 
-import rotmg.game._as3.Signal;
-import rotmg.game._as3.Sprite;
-import rotmg.game.core.model.PlayerModel;
-import rotmg.game.map.AbstractMap;
-import rotmg.game.map.Camera;
-import rotmg.game.messaging.GameServerConnection;
-import rotmg.game.messaging.incoming.MapInfo;
-import rotmg.game.objects.GameObject;
-import rotmg.game.ui.HUDView;
+import flash.display.Sprite;
+import rotmg.core.model.PlayerModel;
 import rotmg.map.Camera;
 import rotmg.messaging.GameServerConnection;
 import rotmg.messaging.incoming.MapInfo;
 import rotmg.objects.GameObject;
+import rotmg.ui.HUDView;
 
 /**
  * Implemented by GameSprite

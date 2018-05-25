@@ -1,13 +1,7 @@
 package rotmg.pets.data;
 
+import alde.flash.utils.XML;
 import flash.display.BitmapData;
-import rotmg.game._as3.Signal;
-import rotmg.game._as3.XML;
-import rotmg.game.objects.ObjectLibrary;
-import rotmg.game.objects.animation.AnimatedChar;
-import rotmg.game.util.AnimatedChars;
-import rotmg.game.util.MaskedImage;
-import rotmg.game._as3.BitmapData;
 import rotmg.objects.ObjectLibrary;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.util.AnimatedChars;

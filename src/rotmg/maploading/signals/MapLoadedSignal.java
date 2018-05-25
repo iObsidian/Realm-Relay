@@ -1,7 +1,5 @@
 package rotmg.maploading.signals;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.messaging.incoming.MapInfo;
 import rotmg.messaging.incoming.MapInfo;
 
 public class MapLoadedSignal extends Signal<MapInfo> {

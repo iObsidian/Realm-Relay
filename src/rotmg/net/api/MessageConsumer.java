@@ -1,7 +1,5 @@
 package rotmg.net.api;
 
-import rotmg.game.net.impl.Message;
-
 import java.util.function.Consumer;
 
 /**

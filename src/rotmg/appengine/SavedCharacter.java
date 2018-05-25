@@ -1,23 +1,20 @@
 package rotmg.appengine;
 
+import alde.flash.utils.XML;
 import flash.display.BitmapData;
+import rotmg.assets.services.CharacterFactory;
+import rotmg.classes.model.CharacterClass;
+import rotmg.classes.model.CharacterSkin;
+import rotmg.classes.model.ClassesModel;
 import rotmg.constants.GeneralConstants;
-import rotmg.game._as3.XML;
-import rotmg.game.assets.services.CharacterFactory;
-import rotmg.game.classes.model.CharacterClass;
-import rotmg.game.classes.model.CharacterSkin;
-import rotmg.game.classes.model.ClassesModel;
-import rotmg.game.constants.GeneralConstants;
-import rotmg.game.objects.ObjectLibrary;
-import rotmg.game.objects.Player;
-import rotmg.game.objects.animation.AnimatedChar;
-import rotmg.game.parameters.Parameters;
-import rotmg.game.pets.data.PetVO;
-import rotmg.game.pets.data.PetsModel;
-import rotmg.game.util.AnimatedChars;
-import rotmg.game.util.MaskedImage;
-import rotmg.game._as3.BitmapData;
+import rotmg.objects.ObjectLibrary;
+import rotmg.objects.Player;
+import rotmg.objects.animation.AnimatedChar;
 import rotmg.parameters.Parameters;
+import rotmg.pets.data.PetVO;
+import rotmg.pets.data.PetsModel;
+import rotmg.util.AnimatedChars;
+import rotmg.util.MaskedImage;
 import sun.java2d.cmm.ColorTransform;
 
 public class SavedCharacter {

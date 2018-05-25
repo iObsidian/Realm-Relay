@@ -2,8 +2,6 @@ package rotmg.ui.panels;
 
 import flash.display.Sprite;
 import rotmg.game.AGameSprite;
-import rotmg.game._as3.Sprite;
-import rotmg.game.game.AGameSprite;
 
 public class Panel extends Sprite {
 

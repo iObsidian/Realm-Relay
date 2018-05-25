@@ -1,6 +1,6 @@
 package rotmg.ui;
 
-import java.awt.*;
+import java.awt.Point;
 
 /**
  * The minimap, trade and items panel

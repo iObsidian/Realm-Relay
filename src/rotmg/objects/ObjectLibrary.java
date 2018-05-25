@@ -1,24 +1,18 @@
 package rotmg.objects;
 
-import flash.display.BitmapData;
-import rotmg.constants.GeneralConstants;
-import rotmg.constants.ItemConstants;
-import rotmg.game._as3.XML;
-import rotmg.game.constants.GeneralConstants;
-import rotmg.game.constants.ItemConstants;
-import rotmg.game.messaging.data.StatData;
-import rotmg.game.net.impl.Message;
-import rotmg.game.objects.animation.AnimationsData;
-import rotmg.game.util.AssetLibrary;
-import rotmg.game.util.ConversionUtil;
-import rotmg.game._as3.BitmapData;
-import rotmg.messaging.data.StatData;
-import rotmg.objects.animation.AnimationsData;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import alde.flash.utils.XML;
+import flash.display.BitmapData;
+import rotmg.constants.GeneralConstants;
+import rotmg.constants.ItemConstants;
+import rotmg.messaging.data.StatData;
+import rotmg.objects.animation.AnimationsData;
+import rotmg.util.AssetLibrary;
+import rotmg.util.ConversionUtil;
 
 /**
  * This is 80% complete

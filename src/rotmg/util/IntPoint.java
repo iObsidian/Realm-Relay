@@ -1,6 +1,6 @@
 package rotmg.util;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class IntPoint {
 

@@ -10,16 +10,11 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
 import com.hurlant.crypto.symmetric.ICipher;
+
 import rotmg.game.AGameSprite;
-import rotmg.game.GameSprite;
-import rotmg.game._as3.ICipher;
-import rotmg.game.game.AGameSprite;
-import rotmg.game.messaging.GameServerConnectionConcrete;
-import rotmg.game.net.impl.Message;
-import rotmg.game.net.impl.MessageCenter;
-import rotmg.game.parameters.Parameters;
-import rotmg.game.util.AssetLoader;
+import rotmg.messaging.GameServerConnectionConcrete;
 import rotmg.net.impl.Message;
+import rotmg.net.impl.MessageCenter;
 import rotmg.parameters.Parameters;
 import rotmg.util.AssetLoader;
 

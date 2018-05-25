@@ -3,7 +3,6 @@ package rotmg.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import rotmg.game.messaging.data.MoveRecord;
 import rotmg.messaging.data.MoveRecord;
 
 /**

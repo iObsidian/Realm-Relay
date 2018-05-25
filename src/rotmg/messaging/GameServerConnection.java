@@ -3,15 +3,12 @@ package rotmg.messaging;
 import java.util.List;
 import java.util.Random;
 
-import rotmg.game._as3.Signal;
-import rotmg.game.game.AGameSprite;
-import rotmg.game.messaging.data.SlotObjectData;
-import rotmg.game.net.Server;
-import rotmg.game.net.SocketServer;
-import rotmg.game.objects.GameObject;
-import rotmg.game.objects.Player;
-import rotmg.game.objects.Projectile;
+import rotmg.game.AGameSprite;
 import rotmg.messaging.data.SlotObjectData;
+import rotmg.net.SocketServer;
+import rotmg.objects.GameObject;
+import rotmg.objects.Player;
+import rotmg.objects.Projectile;
 
 public class GameServerConnection {
 

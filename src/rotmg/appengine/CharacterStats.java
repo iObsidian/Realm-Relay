@@ -1,7 +1,7 @@
 package rotmg.appengine;
 
-import rotmg.game._as3.XML;
-import rotmg.game.util.FameUtil;
+import alde.flash.utils.XML;
+import rotmg.util.FameUtil;
 
 public class CharacterStats {
 

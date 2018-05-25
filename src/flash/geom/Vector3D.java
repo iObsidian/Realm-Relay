@@ -2,6 +2,10 @@ package flash.geom;
 
 public class Vector3D {
 
+	static public final Vector3D X_AXIS = null;
+	static public final Vector3D Y_AXIS = null;
+	static public final Vector3D Z_AXIS = null;
+
 	public double x;
 	public double y;
 	public double z;

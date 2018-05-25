@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import rotmg.game._as3.Signal;
-import rotmg.game._as3.XML;
+import alde.flash.utils.XML;
 
 public class PotionInventoryModel {
 

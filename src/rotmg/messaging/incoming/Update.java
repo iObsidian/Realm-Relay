@@ -3,12 +3,10 @@ package rotmg.messaging.incoming;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
-import rotmg.game.messaging.data.GroundTileData;
-import rotmg.game.messaging.data.ObjectData;
+import rotmg.messaging.data.GroundTileData;
+import rotmg.messaging.data.ObjectData;
 
 public class Update extends IncomingMessage {
 
