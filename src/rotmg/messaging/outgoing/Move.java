@@ -1,0 +1,49 @@
+package rotmg.messaging.outgoing;
+
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
+import rotmg.game.messaging.data.MoveRecord;
+import rotmg.game.messaging.data.WorldPosData;
+
+public class Move extends OutgoingMessage {
+
+	public int tickId;
+	public int time;
+	public WorldPosData newPosition;
+	public List<MoveRecord> records;
+	
+	public Move(int param1, Consumer param2) {
+		super(param1, param2);
+		newPosition = new WorldPosData();
+		records = new ArrayList<MoveRecord>();
+	}
+
+	@Override
+	public void parseFromInput(DataInput in) throws IOException {
+		tickId = in.readInt();
+		time = in.readInt();
+		newPosition.parseFromInput(in);
+		for (int i = 0; i < in.readShort(); i++) {
+			MoveRecord record = new MoveRecord();
+			record.parseFromInput(in);
+			records.add(record);
+		}
+	}
+
+	@Override
+	public void writeToOutput(DataOutput out) throws IOException {
+		out.writeInt(tickId);
+		out.writeInt(time);
+		newPosition.writeToOutput(out);
+		out.writeShort(records.size());
+		for (MoveRecord record : records) {
+			record.writeToOutput(out);
+		}
+	}
+
+}

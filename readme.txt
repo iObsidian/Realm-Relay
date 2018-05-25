@@ -26,6 +26,6 @@ Installation:
 Usage:
 	Open Terminal.app
 	Type the following text, with the correct filepath replaced:
-		sudo java -jar "path/to/realmrelay.jar"
+		sudo java -jar "path/to/rotmg.jar"
 		
 ________________________________________________________________
