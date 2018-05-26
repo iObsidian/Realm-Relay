@@ -1,12 +1,12 @@
 package rotmg.core.model;
 
-import java.util.List;
-
 import rotmg.account.core.Account;
 import rotmg.appengine.SavedCharacter;
 import rotmg.appengine.SavedNewsItem;
 import rotmg.net.LatLong;
 import scripts.appengine.SavedCharactersList;
+
+import java.util.List;
 
 public class PlayerModel {
 

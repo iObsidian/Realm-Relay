@@ -1,8 +1,5 @@
 package rotmg.objects;
 
-import java.util.HashMap;
-import java.util.List;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.assets.services.CharacterFactory;
@@ -13,6 +10,9 @@ import rotmg.particles.HealingEffect;
 import rotmg.signals.AddTextLineSignal;
 import rotmg.util.ConversionUtil;
 import rotmg.util.IntPoint;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class Player extends Character {
 

@@ -2,8 +2,6 @@ package rotmg.util;
 
 import flash.display.BitmapData;
 import rotmg.game._as3.XML;
-import rotmg.game.objects.ObjectLibrary;
-import rotmg.game._as3.BitmapData;
 import rotmg.objects.ObjectLibrary;
 import sun.java2d.cmm.ColorTransform;
 

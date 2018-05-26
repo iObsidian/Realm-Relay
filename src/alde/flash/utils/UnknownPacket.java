@@ -1,13 +1,13 @@
 package alde.flash.utils;
 
+import rotmg.messaging.incoming.IncomingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
-
-import rotmg.messaging.incoming.IncomingMessage;
 
 
 public class UnknownPacket extends IncomingMessage {

@@ -1,18 +1,9 @@
 package rotmg.util;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import alde.flash.utils.XML;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-import alde.flash.utils.XML;
 import rotmg.WebMain;
 import rotmg.map.GroundLibrary;
 import rotmg.map.RegionLibrary;
@@ -23,6 +14,13 @@ import rotmg.particles.ParticleLibrary;
 import rotmg.sound.IMusic;
 import rotmg.sound.SFX;
 import rotmg.sound.SoundEffectLibrary;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class AssetLoader {
 

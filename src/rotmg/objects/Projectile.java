@@ -1,14 +1,12 @@
 package rotmg.objects;
 
+import flash.display.BitmapData;
 import javafx.geometry.Point3D;
 import javafx.scene.Camera;
-import flash.display.BitmapData;
-import rotmg.game.map.Map;
-import rotmg.game.parameters.Parameters;
-import rotmg.game.util.Trig;
-import rotmg.game._as3.BitmapData;
-import rotmg.parameters.Parameters;
 import realmspy.service.util.RandomUtil;
+import rotmg.game.map.Map;
+import rotmg.game.util.Trig;
+import rotmg.parameters.Parameters;
 
 import java.util.HashMap;
 

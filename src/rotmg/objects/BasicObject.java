@@ -1,41 +1,48 @@
 package rotmg.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import flash.display.IGraphicsData;
 import rotmg.map.Camera;
 import rotmg.map.Map;
 
-/**
- * This class matches 100%
- *
- * @author Alde
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class BasicObject {
 
-	private static int nextFakeObjectId_ = 0;
-
-	public static int getNextFakeObjectId() {
-		return 2130706432 | nextFakeObjectId_++;
-	}
-
-	public BasicObject() {
-		this.posW = new ArrayList<>();
-		this.posS = new ArrayList<>();
-	}
+	private static int nextFakeObjectId = 0;
 
 	public Map map;
+
 	public Square square;
+
 	public int objectId;
+
 	public double x;
+
 	public double y;
+
 	public double z;
+
 	public boolean hasShadow;
+
 	public boolean drawn;
+
 	public List<Double> posW;
+
 	public List<Double> posS;
+
 	public double sortVal;
+
+	public BasicObject() {
+		super();
+		this.posW = new ArrayList<Double>();
+		this.posS = new ArrayList<Double>();
+		this.clear();
+	}
+
+	public int getNextFakeObjectId() {
+		return 2130706432 | nextFakeObjectId++;
+	}
 
 	public void clear() {
 		this.map = null;
@@ -58,21 +65,17 @@ public class BasicObject {
 		this.posS = null;
 	}
 
-
-	public boolean update(int param1, int param2) {
+	public boolean update(int time, int dt) {
 		return true;
 	}
 
-	/**public void draw3d(List<Object3DStage3D> param1) {
-	}*/
-
-	public void draw(List<IGraphicsData> param1, Camera param2, int param3) {
+	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
 	}
 
-	public void drawShadow(List<IGraphicsData> param1, Camera param2, int param3) {
+	public void drawShadow(List<IGraphicsData> graphicsData, Camera camera, int time) {
 	}
 
-	public void computeSortVal(Camera param1) {
+	public void computeSortVal(Camera camera) {
 		this.posW.clear();
 		this.posW.add(this.x);
 		this.posW.add(this.y);
@@ -80,30 +83,8 @@ public class BasicObject {
 		this.posW.add(this.x);
 		this.posW.add(this.y);
 		this.posW.add(this.z);
-
 		this.posS.clear();
-		param1.wToS.transformVectors(this.posW, this.posS);
-		this.sortVal = this.posS.get(1);
-	}
-
-	public void computeSortValNoCamera(double param1) {
-		this.posW.clear();
-		this.posW.add(this.x);
-		this.posW.add(this.y);
-		this.posW.add(0.0);
-		this.posW.add(this.x);
-		this.posW.add(this.y);
-		this.posW.add(this.z);
-
-		this.posS.clear();
-		this.posS.add(this.x * param1);
-		this.posS.add(this.y * param1);
-		this.posS.add(0.0);
-		this.posS.add(this.x * param1);
-		this.posS.add(this.y * param1);
-		this.posS.add(0.0);
-
-
+		camera.wToS.transformVectors(this.posW, this.posS);
 		this.sortVal = this.posS.get(1);
 	}
 
@@ -123,5 +104,4 @@ public class BasicObject {
 		this.map = null;
 		this.square = null;
 	}
-
 }

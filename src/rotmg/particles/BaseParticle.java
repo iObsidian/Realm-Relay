@@ -1,12 +1,11 @@
 package rotmg.particles;
 
-import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-
 import flash.display.BitmapData;
 import flash.display.GraphicsBitmapFill;
 import flash.display.GraphicsPath;
 import flash.display.IGraphicsData;
 import javafx.scene.Camera;
+import org.bouncycastle.pqc.math.linearalgebra.Matrix;
 import rotmg.objects.BasicObject;
 import rotmg.util.GraphicsUtil;
 

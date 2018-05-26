@@ -1,10 +1,9 @@
 package rotmg.engine3d;
 
+import flash.display.BitmapData;
 import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-import flash.display.BitmapData;
 import rotmg.game.util.Trig;
-import rotmg.game._as3.BitmapData;
 
 public class Point3D {
 

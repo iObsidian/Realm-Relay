@@ -1,15 +1,9 @@
 package rotmg.messaging;
 
-import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Consumer;
-
-import com.hurlant.crypto.symmetric.ICipher;
-
 import alde.flash.utils.RSA;
 import alde.flash.utils.Timer;
 import alde.flash.utils.XML;
+import com.hurlant.crypto.symmetric.ICipher;
 import flash.events.Event;
 import flash.events.TimerEvent;
 import rotmg.account.core.Account;
@@ -42,88 +36,10 @@ import rotmg.messaging.data.GroundTileData;
 import rotmg.messaging.data.ObjectData;
 import rotmg.messaging.data.ObjectStatusData;
 import rotmg.messaging.data.StatData;
-import rotmg.messaging.impl.ActivePet;
-import rotmg.messaging.impl.HatchPetMessage;
-import rotmg.messaging.impl.PetUpgradeRequest;
-import rotmg.messaging.impl.PetYard;
-import rotmg.messaging.impl.ReskinPet;
-import rotmg.messaging.incoming.AccountList;
-import rotmg.messaging.incoming.AllyShoot;
-import rotmg.messaging.incoming.Aoe;
-import rotmg.messaging.incoming.BuyResult;
-import rotmg.messaging.incoming.ClientStat;
-import rotmg.messaging.incoming.CreateSuccess;
-import rotmg.messaging.incoming.Damage;
-import rotmg.messaging.incoming.Death;
-import rotmg.messaging.incoming.EnemyShoot;
-import rotmg.messaging.incoming.EvolvedPetMessage;
-import rotmg.messaging.incoming.Failure;
-import rotmg.messaging.incoming.File;
-import rotmg.messaging.incoming.GlobalNotification;
-import rotmg.messaging.incoming.Goto;
-import rotmg.messaging.incoming.GuildResult;
-import rotmg.messaging.incoming.InvResult;
-import rotmg.messaging.incoming.InvitedToGuild;
-import rotmg.messaging.incoming.MapInfo;
-import rotmg.messaging.incoming.NameResult;
-import rotmg.messaging.incoming.NewAbilityMessage;
-import rotmg.messaging.incoming.NewTick;
-import rotmg.messaging.incoming.Notification;
-import rotmg.messaging.incoming.Ping;
-import rotmg.messaging.incoming.PlaySound;
-import rotmg.messaging.incoming.QuestObjId;
-import rotmg.messaging.incoming.Reconnect;
-import rotmg.messaging.incoming.ServerPlayerShoot;
-import rotmg.messaging.incoming.ShowEffect;
-import rotmg.messaging.incoming.Text;
-import rotmg.messaging.incoming.TradeAccepted;
-import rotmg.messaging.incoming.TradeChanged;
-import rotmg.messaging.incoming.TradeDone;
-import rotmg.messaging.incoming.TradeRequested;
-import rotmg.messaging.incoming.TradeStart;
-import rotmg.messaging.incoming.Update;
+import rotmg.messaging.impl.*;
+import rotmg.messaging.incoming.*;
 import rotmg.messaging.incoming.pets.DeletePetMessage;
-import rotmg.messaging.outgoing.AcceptTrade;
-import rotmg.messaging.outgoing.ActivePetUpdateRequest;
-import rotmg.messaging.outgoing.AoeAck;
-import rotmg.messaging.outgoing.Buy;
-import rotmg.messaging.outgoing.CancelTrade;
-import rotmg.messaging.outgoing.ChangeGuildRank;
-import rotmg.messaging.outgoing.ChangeTrade;
-import rotmg.messaging.outgoing.CheckCredits;
-import rotmg.messaging.outgoing.ChooseName;
-import rotmg.messaging.outgoing.ClaimDailyRewardMessage;
-import rotmg.messaging.outgoing.Create;
-import rotmg.messaging.outgoing.CreateGuild;
-import rotmg.messaging.outgoing.EditAccountList;
-import rotmg.messaging.outgoing.EnemyHit;
-import rotmg.messaging.outgoing.Escape;
-import rotmg.messaging.outgoing.GoToQuestRoom;
-import rotmg.messaging.outgoing.GotoAck;
-import rotmg.messaging.outgoing.GroundDamage;
-import rotmg.messaging.outgoing.GuildInvite;
-import rotmg.messaging.outgoing.GuildRemove;
-import rotmg.messaging.outgoing.Hello;
-import rotmg.messaging.outgoing.InvDrop;
-import rotmg.messaging.outgoing.InvSwap;
-import rotmg.messaging.outgoing.JoinGuild;
-import rotmg.messaging.outgoing.KeyInfoRequest;
-import rotmg.messaging.outgoing.Load;
-import rotmg.messaging.outgoing.Move;
-import rotmg.messaging.outgoing.OtherHit;
-import rotmg.messaging.outgoing.OutgoingMessage;
-import rotmg.messaging.outgoing.PlayerHit;
-import rotmg.messaging.outgoing.PlayerShoot;
-import rotmg.messaging.outgoing.PlayerText;
-import rotmg.messaging.outgoing.Pong;
-import rotmg.messaging.outgoing.RequestTrade;
-import rotmg.messaging.outgoing.Reskin;
-import rotmg.messaging.outgoing.SetCondition;
-import rotmg.messaging.outgoing.ShootAck;
-import rotmg.messaging.outgoing.SquareHit;
-import rotmg.messaging.outgoing.Teleport;
-import rotmg.messaging.outgoing.UseItem;
-import rotmg.messaging.outgoing.UsePortal;
+import rotmg.messaging.outgoing.*;
 import rotmg.messaging.outgoing.arena.EnterArena;
 import rotmg.messaging.outgoing.arena.QuestRedeem;
 import rotmg.minimap.control.UpdateGameObjectTileSignal;
@@ -135,12 +51,7 @@ import rotmg.net.SocketServer;
 import rotmg.net.api.MessageConsumer;
 import rotmg.net.impl.Message;
 import rotmg.net.impl.MessageCenter;
-import rotmg.objects.GameObject;
-import rotmg.objects.Merchant;
-import rotmg.objects.ObjectLibrary;
-import rotmg.objects.Player;
-import rotmg.objects.Projectile;
-import rotmg.objects.SellableObject;
+import rotmg.objects.*;
 import rotmg.parameters.Parameters;
 import rotmg.pets.controller.PetFeedResultSignal;
 import rotmg.pets.controller.UpdateActivePet;
@@ -149,6 +60,7 @@ import rotmg.signals.AddSpeechBalloonSignal;
 import rotmg.signals.AddTextLineSignal;
 import rotmg.signals.GiftStatusUpdateSignal;
 import rotmg.sound.SoundEffectLibrary;
+import rotmg.ui.model.Key;
 import rotmg.ui.model.UpdateGameObjectTileVO;
 import rotmg.ui.signals.ShowKeySignal;
 import rotmg.ui.signals.ShowKeyUISignal;
@@ -159,6 +71,11 @@ import rotmg.util.ConditionEffect;
 import rotmg.util.Currency;
 import rotmg.util.TextKey;
 import rotmg.view.components.QueuedStatusText;
+
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
 
 public class GameServerConnectionConcrete extends GameServerConnection {
 
@@ -201,7 +118,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	public GameServerConnectionConcrete(AGameSprite gs, Server server, int gameId, boolean createCharacter, int charId,
 	                                    int keyTime, byte[] key, byte[] mapJSON, boolean isFromArena) {
 		super();
-		
+
 		System.out.println("GameSprite : " + gs);
 
 		this.giftChestUpdateSignal = GiftStatusUpdateSignal.getInstance();
@@ -212,7 +129,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.petFeedResult = PetFeedResultSignal.getInstance();
 		this.updateBackpackTab = UpdateBackpackTabSignal.getInstance();
 		this.closeDialogs = CloseDialogsSignal.getInstance();
-		changeMapSignal = ChangeMapSignal.getInstance();
+		this.changeMapSignal = ChangeMapSignal.getInstance();
 		this.openDialog = OpenDialogSignal.getInstance();
 		this.arenaDeath = ArenaDeathSignal.getInstance();
 		this.imminentWave = ImminentArenaWaveSignal.getInstance();
@@ -251,7 +168,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 				|| (param1 == 2793 || param1 == 5471 || param1 == 9070)
 				|| (param1 == 2794 || param1 == 5472 || param1 == 9071)
 				|| (param1 == 9724 || param1 == 9725 || param1 == 9726 || param1 == 9727 || param1 == 9728
-						|| param1 == 9729 || param1 == 9730 || param1 == 9731);
+				|| param1 == 9729 || param1 == 9730 || param1 == 9731);
 	}
 
 	//private function getPetUpdater()
@@ -273,7 +190,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		serverConnection.connect(server.address, server.port);
 
 		onConnected();
-
 	}
 
 	/**
@@ -538,16 +454,16 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		invSwap.slotObject2.slotId = slotId2;
 		invSwap.slotObject2.objectType = objectType2;
 		this.serverConnection.sendMessage(invSwap);
-		int tempType = sourceObj.equipment[slotId1];
-		sourceObj.equipment[slotId1] = targetObj.equipment[slotId2];
-		targetObj.equipment[slotId2] = tempType;
+		int tempType = sourceObj.equipment.get(slotId1);
+		sourceObj.equipment.set(slotId1, targetObj.equipment.get(slotId2));
+		targetObj.equipment.set(slotId2, tempType);
 		SoundEffectLibrary.play("inventory_move_item");
 		return true;
 	}
 
 	@Override
 	public boolean invSwapPotion(Player player, GameObject sourceObj, int slotId1, int itemId, GameObject targetObj,
-			int slotId2, int objectType2) {
+	                             int slotId2, int objectType2) {
 		if (this.gs == null) {
 			return false;
 		}
@@ -561,7 +477,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		invSwap.slotObject2.objectId = targetObj.objectId;
 		invSwap.slotObject2.slotId = slotId2;
 		invSwap.slotObject2.objectType = objectType2;
-		sourceObj.equipment[slotId1] = ItemConstants.NO_ITEM;
+		sourceObj.equipment.set(slotId1, ItemConstants.NO_ITEM);
 		if (itemId == PotionInventoryModel.HEALTH_POTION_ID) {
 			player.healthPotionCount++;
 		} else if (itemId == PotionInventoryModel.MAGIC_POTION_ID) {
@@ -574,7 +490,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	@Override
 	public boolean invSwapRaw(Player player, int objectId1, int slotId1, int objectType1, int objectId2, int slotId2,
-			int objectType2) {
+	                          int objectType2) {
 		if (this.gs == null) {
 			return false;
 		}
@@ -601,7 +517,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		invDrop.slotObject.objectType = objectType;
 		this.serverConnection.sendMessage(invDrop);
 		if (slotId != PotionInventoryModel.HEALTH_POTION_SLOT && slotId != PotionInventoryModel.MAGIC_POTION_SLOT) {
-			object.equipment[slotId] = ItemConstants.NO_ITEM;
+			object.equipment.put(slotId, ItemConstants.NO_ITEM);
 		}
 	}
 
@@ -622,7 +538,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	public boolean useItem_new(GameObject itemOwner, int slotId)
 
 	{
-		int itemId = itemOwner.equipment[slotId];
+		int itemId = itemOwner.equipment.get(slotId);
 		XML objectXML = ObjectLibrary.xmlLibrary.get(itemId);
 		if ((objectXML != null) && !itemOwner.isPaused()
 				&& (objectXML.hasOwnProperty("Consumable") || objectXML.hasOwnProperty("InvUse"))) {
@@ -644,7 +560,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		useItemMess.itemUsePos.y = 0;
 		this.serverConnection.sendMessage(useItemMess);
 		if (itemData.hasOwnProperty("Consumable")) {
-			owner.equipment[slotId] = -1;
+			owner.equipment.set(slotId, -1);
 		}
 	}
 
@@ -802,15 +718,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private String rsaEncrypt(String data) {
-
 		return RSA.encrypt(data);
-
-		/**RSAKey rsaKey = PEM.readRSAPublicKey(Parameters.RSA_PUBLIC_KEY);
-		 ByteArray byteArray = new ByteArray();
-		 byteArray.writeUTFBytes(data);
-		 ByteArray encryptedByteArray = new ByteArray();
-		 rsaKey.encrypt(byteArray, encryptedByteArray, byteArray.length);
-		 return Base64.encodeByteArray(encryptedByteArray);*/
 	}
 
 	/**
@@ -1010,28 +918,28 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onGlobalNotification(GlobalNotification notification) {
 		switch (notification.text) {
-		case "yellow":
-			ShowKeySignal.getInstance().dispatch(Key.YELLOW);
-			break;
-		case "red":
-			ShowKeySignal.getInstance().dispatch(Key.RED);
-			break;
-		case "green":
-			ShowKeySignal.getInstance().dispatch(Key.GREEN);
-			break;
-		case "purple":
-			ShowKeySignal.getInstance().dispatch(Key.PURPLE);
-			break;
-		case "showKeyUI":
-			ShowKeyUISignal.getInstance().dispatch();
-			break;
-		case "giftChestOccupied":
-			this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_GIFT);
-			break;
-		case "giftChestEmpty":
-			this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_NO_GIFT);
-			break;
-		case "beginnersPackage":
+			case "yellow":
+				ShowKeySignal.getInstance().dispatch(Key.YELLOW);
+				break;
+			case "red":
+				ShowKeySignal.getInstance().dispatch(Key.RED);
+				break;
+			case "green":
+				ShowKeySignal.getInstance().dispatch(Key.GREEN);
+				break;
+			case "purple":
+				ShowKeySignal.getInstance().dispatch(Key.PURPLE);
+				break;
+			case "showKeyUI":
+				ShowKeyUISignal.getInstance().dispatch();
+				break;
+			case "giftChestOccupied":
+				this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_GIFT);
+				break;
+			case "giftChestEmpty":
+				this.giftChestUpdateSignal.dispatch(GiftStatusUpdateSignal.HAS_NO_GIFT);
+				break;
+			case "beginnersPackage":
 		}
 	}
 
@@ -1066,223 +974,223 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		for (StatData stat : stats) {
 			int value = stat.statValue;
 			switch (stat.statType) {
-			case StatData.MAX_HP_STAT:
-				go.maxHP = value;
-				continue;
-			case StatData.HP_STAT:
-				go.hp = value;
-				continue;
-			case StatData.SIZE_STAT:
-				go.size = value;
-				continue;
-			case StatData.MAX_MP_STAT:
-				player.maxMP = value;
-				continue;
-			case StatData.MP_STAT:
-				player.mp = value;
-				continue;
-			case StatData.NEXT_LEVEL_EXP_STAT:
-				player.nextLevelExp = value;
-				continue;
-			case StatData.EXP_STAT:
-				player.exp = value;
-				continue;
-			case StatData.LEVEL_STAT:
-				go.level = value;
-				continue;
-			case StatData.ATTACK_STAT:
-				player.attack = value;
-				continue;
-			case StatData.DEFENSE_STAT:
-				go.defense = value;
-				continue;
-			case StatData.SPEED_STAT:
-				player.speed = value;
-				continue;
-			case StatData.DEXTERITY_STAT:
-				player.dexterity = value;
-				continue;
-			case StatData.VITALITY_STAT:
-				player.vitality = value;
-				continue;
-			case StatData.WISDOM_STAT:
-				player.wisdom = value;
-				continue;
-			case StatData.CONDITION_STAT:
-				go.condition[ConditionEffect.CE_FIRST_BATCH] = value;
-				continue;
-			case StatData.INVENTORY_0_STAT:
-			case StatData.INVENTORY_1_STAT:
-			case StatData.INVENTORY_2_STAT:
-			case StatData.INVENTORY_3_STAT:
-			case StatData.INVENTORY_4_STAT:
-			case StatData.INVENTORY_5_STAT:
-			case StatData.INVENTORY_6_STAT:
-			case StatData.INVENTORY_7_STAT:
-			case StatData.INVENTORY_8_STAT:
-			case StatData.INVENTORY_9_STAT:
-			case StatData.INVENTORY_10_STAT:
-			case StatData.INVENTORY_11_STAT:
-				go.equipment[stat.statType - StatData.INVENTORY_0_STAT] = value;
-				continue;
-			case StatData.NUM_STARS_STAT:
-				player.numStars = value;
-				continue;
-			case StatData.NAME_STAT:
-				if (!go.name.equals(stat.strStatValue)) {
-					go.name = stat.strStatValue;
+				case StatData.MAX_HP_STAT:
+					go.maxHP = value;
+					continue;
+				case StatData.HP_STAT:
+					go.hp = value;
+					continue;
+				case StatData.SIZE_STAT:
+					go.size = value;
+					continue;
+				case StatData.MAX_MP_STAT:
+					player.maxMP = value;
+					continue;
+				case StatData.MP_STAT:
+					player.mp = value;
+					continue;
+				case StatData.NEXT_LEVEL_EXP_STAT:
+					player.nextLevelExp = value;
+					continue;
+				case StatData.EXP_STAT:
+					player.exp = value;
+					continue;
+				case StatData.LEVEL_STAT:
+					go.level = value;
+					continue;
+				case StatData.ATTACK_STAT:
+					player.attack = value;
+					continue;
+				case StatData.DEFENSE_STAT:
+					go.defense = value;
+					continue;
+				case StatData.SPEED_STAT:
+					player.speed = value;
+					continue;
+				case StatData.DEXTERITY_STAT:
+					player.dexterity = value;
+					continue;
+				case StatData.VITALITY_STAT:
+					player.vitality = value;
+					continue;
+				case StatData.WISDOM_STAT:
+					player.wisdom = value;
+					continue;
+				case StatData.CONDITION_STAT:
+					go.condition[ConditionEffect.CE_FIRST_BATCH] = value;
+					continue;
+				case StatData.INVENTORY_0_STAT:
+				case StatData.INVENTORY_1_STAT:
+				case StatData.INVENTORY_2_STAT:
+				case StatData.INVENTORY_3_STAT:
+				case StatData.INVENTORY_4_STAT:
+				case StatData.INVENTORY_5_STAT:
+				case StatData.INVENTORY_6_STAT:
+				case StatData.INVENTORY_7_STAT:
+				case StatData.INVENTORY_8_STAT:
+				case StatData.INVENTORY_9_STAT:
+				case StatData.INVENTORY_10_STAT:
+				case StatData.INVENTORY_11_STAT:
+					go.equipment[stat.statType - StatData.INVENTORY_0_STAT] = value;
+					continue;
+				case StatData.NUM_STARS_STAT:
+					player.numStars = value;
+					continue;
+				case StatData.NAME_STAT:
+					if (!go.name.equals(stat.strStatValue)) {
+						go.name = stat.strStatValue;
+						go.nameBitmapData = null;
+					}
+					continue;
+				case StatData.TEX1_STAT:
+					go.setTexture(value);
+					continue;
+				case StatData.TEX2_STAT:
+					go.setAltTexture(value);
+					continue;
+				case StatData.MERCHANDISE_TYPE_STAT:
+					merchant.setMerchandiseType(value);
+					continue;
+				case StatData.CREDITS_STAT:
+					player.setCredits(value);
+					continue;
+				case StatData.MERCHANDISE_PRICE_STAT:
+					//(SellableObject) go.setPrice(value);
+					continue;
+				case StatData.ACTIVE_STAT:
+					//(Portal) go.active = value != 0;
+					continue;
+				case StatData.ACCOUNT_ID_STAT:
+					player.accountId = stat.strStatValue;
+					continue;
+				case StatData.FAME_STAT:
+					player.fame = value;
+					continue;
+				case StatData.MERCHANDISE_CURRENCY_STAT:
+					//(SellableObject) go.setCurrency(value);
+					continue;
+				case StatData.CONNECT_STAT:
+					go.connectType = value;
+					continue;
+				case StatData.MERCHANDISE_COUNT_STAT:
+					merchant.count = value;
+					merchant.untilNextMessage = 0;
+					continue;
+				case StatData.MERCHANDISE_MINS_LEFT_STAT:
+					merchant.minsLeft = value;
+					merchant.untilNextMessage = 0;
+					continue;
+				case StatData.MERCHANDISE_DISCOUNT_STAT:
+					merchant.discount = value;
+					merchant.untilNextMessage = 0;
+					continue;
+				case StatData.MERCHANDISE_RANK_REQ_STAT:
+					//(SellableObject) go.setRankReq(value);
+					continue;
+				case StatData.MAX_HP_BOOST_STAT:
+					player.maxHPBoost = value;
+					continue;
+				case StatData.MAX_MP_BOOST_STAT:
+					player.maxMPBoost = value;
+					continue;
+				case StatData.ATTACK_BOOST_STAT:
+					player.attackBoost = value;
+					continue;
+				case StatData.DEFENSE_BOOST_STAT:
+					player.defenseBoost = value;
+					continue;
+				case StatData.SPEED_BOOST_STAT:
+					player.speedBoost = value;
+					continue;
+				case StatData.VITALITY_BOOST_STAT:
+					player.vitalityBoost = value;
+					continue;
+				case StatData.WISDOM_BOOST_STAT:
+					player.wisdomBoost = value;
+					continue;
+				case StatData.DEXTERITY_BOOST_STAT:
+					player.dexterityBoost = value;
+					continue;
+				case StatData.OWNER_ACCOUNT_ID_STAT:
+					//(Container) go.setOwnerId(value);
+					continue;
+				case StatData.RANK_REQUIRED_STAT:
+					//(NameChanger) go.setRankRequired(value);
+					continue;
+				case StatData.NAME_CHOSEN_STAT:
+					player.nameChosen = value != 0;
 					go.nameBitmapData = null;
-				}
-				continue;
-			case StatData.TEX1_STAT:
-				go.setTexture(value);
-				continue;
-			case StatData.TEX2_STAT:
-				go.setAltTexture(value);
-				continue;
-			case StatData.MERCHANDISE_TYPE_STAT:
-				merchant.setMerchandiseType(value);
-				continue;
-			case StatData.CREDITS_STAT:
-				player.setCredits(value);
-				continue;
-			case StatData.MERCHANDISE_PRICE_STAT:
-				//(SellableObject) go.setPrice(value);
-				continue;
-			case StatData.ACTIVE_STAT:
-				//(Portal) go.active = value != 0;
-				continue;
-			case StatData.ACCOUNT_ID_STAT:
-				player.accountId = stat.strStatValue;
-				continue;
-			case StatData.FAME_STAT:
-				player.fame = value;
-				continue;
-			case StatData.MERCHANDISE_CURRENCY_STAT:
-				//(SellableObject) go.setCurrency(value);
-				continue;
-			case StatData.CONNECT_STAT:
-				go.connectType = value;
-				continue;
-			case StatData.MERCHANDISE_COUNT_STAT:
-				merchant.count = value;
-				merchant.untilNextMessage = 0;
-				continue;
-			case StatData.MERCHANDISE_MINS_LEFT_STAT:
-				merchant.minsLeft = value;
-				merchant.untilNextMessage = 0;
-				continue;
-			case StatData.MERCHANDISE_DISCOUNT_STAT:
-				merchant.discount = value;
-				merchant.untilNextMessage = 0;
-				continue;
-			case StatData.MERCHANDISE_RANK_REQ_STAT:
-				//(SellableObject) go.setRankReq(value);
-				continue;
-			case StatData.MAX_HP_BOOST_STAT:
-				player.maxHPBoost = value;
-				continue;
-			case StatData.MAX_MP_BOOST_STAT:
-				player.maxMPBoost = value;
-				continue;
-			case StatData.ATTACK_BOOST_STAT:
-				player.attackBoost = value;
-				continue;
-			case StatData.DEFENSE_BOOST_STAT:
-				player.defenseBoost = value;
-				continue;
-			case StatData.SPEED_BOOST_STAT:
-				player.speedBoost = value;
-				continue;
-			case StatData.VITALITY_BOOST_STAT:
-				player.vitalityBoost = value;
-				continue;
-			case StatData.WISDOM_BOOST_STAT:
-				player.wisdomBoost = value;
-				continue;
-			case StatData.DEXTERITY_BOOST_STAT:
-				player.dexterityBoost = value;
-				continue;
-			case StatData.OWNER_ACCOUNT_ID_STAT:
-				//(Container) go.setOwnerId(value);
-				continue;
-			case StatData.RANK_REQUIRED_STAT:
-				//(NameChanger) go.setRankRequired(value);
-				continue;
-			case StatData.NAME_CHOSEN_STAT:
-				player.nameChosen = value != 0;
-				go.nameBitmapData = null;
-				continue;
-			case StatData.CURR_FAME_STAT:
-				player.currFame = value;
-				continue;
-			case StatData.NEXT_CLASS_QUEST_FAME_STAT:
-				player.nextClassQuestFame = value;
-				continue;
-			case StatData.LEGENDARY_RANK_STAT:
-				player.legendaryRank = value;
-				continue;
-			case StatData.SINK_LEVEL_STAT:
-				if (!isMyObject) {
-					player.sinkLevel = value;
-				}
-				continue;
-			case StatData.ALT_TEXTURE_STAT:
-				go.setAltTexture(value);
-				continue;
-			case StatData.GUILD_NAME_STAT:
-				player.setGuildName(stat.strStatValue);
-				continue;
-			case StatData.GUILD_RANK_STAT:
-				player.guildRank = value;
-				continue;
-			case StatData.BREATH_STAT:
-				player.breath = value;
-				continue;
-			case StatData.XP_BOOSTED_STAT:
-				player.xpBoost = value;
-				continue;
-			case StatData.XP_TIMER_STAT:
-				player.xpTimer = value * TO_MILLISECONDS;
-				continue;
-			case StatData.LD_TIMER_STAT:
-				player.dropBoost = value * TO_MILLISECONDS;
-				continue;
-			case StatData.LT_TIMER_STAT:
-				player.tierBoost = value * TO_MILLISECONDS;
-				continue;
-			case StatData.HEALTH_POTION_STACK_STAT:
-				player.healthPotionCount = value;
-				continue;
-			case StatData.MAGIC_POTION_STACK_STAT:
-				player.magicPotionCount = value;
-				continue;
-			case StatData.TEXTURE_STAT:
-				if (player.skinId != value) {
-					this.setPlayerSkinTemplate(player, value);
-				}
-				continue;
-			case StatData.HASBACKPACK_STAT:
-				//(Player) go.hasBackpack = value;
-				if (isMyObject) {
-					//this.updateBackpackTab.dispatch(value);
-				}
-				continue;
-			case StatData.BACKPACK_0_STAT:
-			case StatData.BACKPACK_1_STAT:
-			case StatData.BACKPACK_2_STAT:
-			case StatData.BACKPACK_3_STAT:
-			case StatData.BACKPACK_4_STAT:
-			case StatData.BACKPACK_5_STAT:
-			case StatData.BACKPACK_6_STAT:
-			case StatData.BACKPACK_7_STAT:
-				index = stat.statType - StatData.BACKPACK_0_STAT + GeneralConstants.NUM_EQUIPMENT_SLOTS
-						+ GeneralConstants.NUM_INVENTORY_SLOTS;
-				Player o = (Player) go;
-				o.equipment[index] = value;
-				continue;
-			default:
-				continue;
+					continue;
+				case StatData.CURR_FAME_STAT:
+					player.currFame = value;
+					continue;
+				case StatData.NEXT_CLASS_QUEST_FAME_STAT:
+					player.nextClassQuestFame = value;
+					continue;
+				case StatData.LEGENDARY_RANK_STAT:
+					player.legendaryRank = value;
+					continue;
+				case StatData.SINK_LEVEL_STAT:
+					if (!isMyObject) {
+						player.sinkLevel = value;
+					}
+					continue;
+				case StatData.ALT_TEXTURE_STAT:
+					go.setAltTexture(value);
+					continue;
+				case StatData.GUILD_NAME_STAT:
+					player.setGuildName(stat.strStatValue);
+					continue;
+				case StatData.GUILD_RANK_STAT:
+					player.guildRank = value;
+					continue;
+				case StatData.BREATH_STAT:
+					player.breath = value;
+					continue;
+				case StatData.XP_BOOSTED_STAT:
+					player.xpBoost = value;
+					continue;
+				case StatData.XP_TIMER_STAT:
+					player.xpTimer = value * TO_MILLISECONDS;
+					continue;
+				case StatData.LD_TIMER_STAT:
+					player.dropBoost = value * TO_MILLISECONDS;
+					continue;
+				case StatData.LT_TIMER_STAT:
+					player.tierBoost = value * TO_MILLISECONDS;
+					continue;
+				case StatData.HEALTH_POTION_STACK_STAT:
+					player.healthPotionCount = value;
+					continue;
+				case StatData.MAGIC_POTION_STACK_STAT:
+					player.magicPotionCount = value;
+					continue;
+				case StatData.TEXTURE_STAT:
+					if (player.skinId != value) {
+						this.setPlayerSkinTemplate(player, value);
+					}
+					continue;
+				case StatData.HASBACKPACK_STAT:
+					//(Player) go.hasBackpack = value;
+					if (isMyObject) {
+						//this.updateBackpackTab.dispatch(value);
+					}
+					continue;
+				case StatData.BACKPACK_0_STAT:
+				case StatData.BACKPACK_1_STAT:
+				case StatData.BACKPACK_2_STAT:
+				case StatData.BACKPACK_3_STAT:
+				case StatData.BACKPACK_4_STAT:
+				case StatData.BACKPACK_5_STAT:
+				case StatData.BACKPACK_6_STAT:
+				case StatData.BACKPACK_7_STAT:
+					index = stat.statType - StatData.BACKPACK_0_STAT + GeneralConstants.NUM_EQUIPMENT_SLOTS
+							+ GeneralConstants.NUM_INVENTORY_SLOTS;
+					Player o = (Player) go;
+					o.equipment[index] = value;
+					continue;
+				default:
+					continue;
 			}
 		}
 	}
@@ -1425,16 +1333,16 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 		this.outstandingBuy = null;
 		switch (buyResult.result) {
-		case BuyResult.NOT_ENOUGH_GOLD_BRID:
-			OpenDialogSignal.getInstance().dispatch(new NotEnoughGoldDialog());
-			break;
-		case BuyResult.NOT_ENOUGH_FAME_BRID:
-			OpenDialogSignal.getInstance().dispatch(new NotEnoughFameDialog());
-			break;
-		default:
-			this.addTextLine
-					.dispatch(ChatMessage.make(buyResult.result == BuyResult.SUCCESS_BRID ? Parameters.SERVER_CHAT_NAME
-							: Parameters.ERROR_CHAT_NAME, buyResult.resultString));
+			case BuyResult.NOT_ENOUGH_GOLD_BRID:
+				OpenDialogSignal.getInstance().dispatch(new NotEnoughGoldDialog());
+				break;
+			case BuyResult.NOT_ENOUGH_FAME_BRID:
+				OpenDialogSignal.getInstance().dispatch(new NotEnoughFameDialog());
+				break;
+			default:
+				this.addTextLine
+						.dispatch(ChatMessage.make(buyResult.result == BuyResult.SUCCESS_BRID ? Parameters.SERVER_CHAT_NAME
+								: Parameters.ERROR_CHAT_NAME, buyResult.resultString));
 		}
 	}
 
@@ -1526,17 +1434,17 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	public void onFailure(Failure event) {
 		switch (event.errorId) {
-		case Failure.INCORRECT_VERSION:
-			this.handleIncorrectVersionFailure(event);
-			break;
-		case Failure.BAD_KEY:
-			this.handleBadKeyFailure(event);
-			break;
-		case Failure.INVALID_TELEPORT_TARGET:
-			this.handleInvalidTeleportTarget(event);
-			break;
-		default:
-			this.handleDefaultFailure(event);
+			case Failure.INCORRECT_VERSION:
+				this.handleIncorrectVersionFailure(event);
+				break;
+			case Failure.BAD_KEY:
+				this.handleBadKeyFailure(event);
+				break;
+			case Failure.INVALID_TELEPORT_TARGET:
+				this.handleInvalidTeleportTarget(event);
+				break;
+			default:
+				this.handleDefaultFailure(event);
 		}
 	}
 

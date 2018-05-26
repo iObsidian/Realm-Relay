@@ -1,14 +1,15 @@
 package rotmg.objects.animation;
 
+import flash.display.BitmapData;
+import flash.geom.Rectangle;
+import rotmg.map.Camera;
+import rotmg.util.MaskedImage;
+import rotmg.util.MaskedImageSet;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import flash.display.BitmapData;
-import flash.geom.Rectangle;
-import rotmg.util.MaskedImage;
-import rotmg.util.MaskedImageSet;
 
 
 /**
@@ -169,4 +170,6 @@ public class AnimatedChar {
 		return this.height;
 	}
 
+	public MaskedImage imageFromFacing(double facing, Camera camera, int action, double p) {
+	}
 }

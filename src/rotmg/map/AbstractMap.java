@@ -1,19 +1,17 @@
 package rotmg.map;
 
 
-import java.awt.Point;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.osflash.signals.Signal;
-
 import flash.display.Sprite;
 import javafx.scene.layout.Background;
+import org.osflash.signals.Signal;
 import rotmg.game.AGameSprite;
 import rotmg.objects.BasicObject;
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;
 import rotmg.objects.Square;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class AbstractMap extends Sprite {
 
@@ -44,7 +42,7 @@ public abstract class AbstractMap extends Sprite {
 
 	public ArrayList<Square> squareList;
 
-	public ArrayList<Square> squares;
+	public HashMap<Integer, Square> squares;
 
 	public Object merchLookup;
 
@@ -64,7 +62,7 @@ public abstract class AbstractMap extends Sprite {
 
 	public abstract Square getSquare(double x, double y);
 
-	public abstract Point pSTopW(Number param1, Number param2);
+	public abstract flash.geom.Point pSTopW(Number param1, Number param2);
 
 	public abstract void removeObj(int id);
 

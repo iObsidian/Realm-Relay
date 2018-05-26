@@ -1,6 +1,8 @@
 package rotmg.maploading.signals;
 
-public class ChangeMapSignal  extends Signal {
+import org.osflash.signals.Signal;
+
+public class ChangeMapSignal extends Signal {
 
 	static ChangeMapSignal instance;
 

@@ -1,5 +1,8 @@
 package rotmg.events;
 
+import flash.events.Event;
+import rotmg.net.Server;
+
 public class ReconnectEvent extends Event {
 
 	public static final String RECONNECT = "RECONNECT_EVENT";

@@ -1,10 +1,10 @@
 package rotmg.objects;
 
-import java.awt.Panel;
-
 import alde.flash.utils.XML;
 import rotmg.GameSprite;
 import rotmg.sound.SoundEffectLibrary;
+
+import java.awt.*;
 
 public class Container extends GameObject implements IInteractiveObject {
 

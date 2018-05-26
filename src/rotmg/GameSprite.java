@@ -1,10 +1,7 @@
 package rotmg;
 
-import static java.lang.Float.NaN;
-
-import org.osflash.signals.Signal;
-
 import flash.events.Event;
+import org.osflash.signals.Signal;
 import rotmg.core.model.MapModel;
 import rotmg.core.model.PlayerModel;
 import rotmg.game.AGameSprite;
@@ -20,6 +17,8 @@ import rotmg.objects.Player;
 import rotmg.promotions.model.BeginnersPackageModel;
 import rotmg.stage3d.Renderer;
 import rotmg.ui.GuildText;
+
+import static java.lang.Float.NaN;
 
 
 public class GameSprite extends AGameSprite {

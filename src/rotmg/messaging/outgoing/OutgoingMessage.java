@@ -1,5 +1,7 @@
 package rotmg.messaging.outgoing;
 
+import rotmg.net.impl.Message;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;

@@ -1,5 +1,13 @@
 package rotmg.net;
 
+import com.hurlant.crypto.symmetric.ICipher;
+import rotmg.game.AGameSprite;
+import rotmg.messaging.GameServerConnectionConcrete;
+import rotmg.net.impl.Message;
+import rotmg.net.impl.MessageCenter;
+import rotmg.parameters.Parameters;
+import rotmg.util.AssetLoader;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -8,15 +16,6 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
-
-import com.hurlant.crypto.symmetric.ICipher;
-
-import rotmg.game.AGameSprite;
-import rotmg.messaging.GameServerConnectionConcrete;
-import rotmg.net.impl.Message;
-import rotmg.net.impl.MessageCenter;
-import rotmg.parameters.Parameters;
-import rotmg.util.AssetLoader;
 
 /**
  * This class is a very loose implementation of WildShadow's SocketServer,

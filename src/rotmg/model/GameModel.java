@@ -1,9 +1,9 @@
 package rotmg.model;
 
-import java.util.HashMap;
-
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;
+
+import java.util.HashMap;
 
 public class GameModel {
 

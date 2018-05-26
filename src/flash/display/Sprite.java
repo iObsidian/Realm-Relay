@@ -1,9 +1,9 @@
 package flash.display;
 
+import flash.events.Event;
+
 import java.util.HashMap;
 import java.util.function.Consumer;
-
-import flash.events.Event;
 
 public class Sprite {
 

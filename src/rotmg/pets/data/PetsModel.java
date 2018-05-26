@@ -1,14 +1,14 @@
 package rotmg.pets.data;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import alde.flash.utils.XML;
 import rotmg.appengine.SavedCharacter;
 import rotmg.core.model.PlayerModel;
 import rotmg.objects.ObjectLibrary;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // This is a 100% match, except maybe for the getInstance() [Inject]
 public class PetsModel {

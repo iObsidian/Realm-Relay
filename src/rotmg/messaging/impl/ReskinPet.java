@@ -1,12 +1,12 @@
 package rotmg.messaging.impl;
 
+import rotmg.messaging.data.SlotObjectData;
+import rotmg.messaging.outgoing.OutgoingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
-
-import rotmg.messaging.data.SlotObjectData;
-import rotmg.messaging.outgoing.OutgoingMessage;
 
 public class ReskinPet extends OutgoingMessage {
 

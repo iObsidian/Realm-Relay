@@ -1,11 +1,11 @@
 package rotmg.objects;
 
+import alde.flash.utils.XML;
+import rotmg.util.ConditionEffect;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import alde.flash.utils.XML;
-import rotmg.util.ConditionEffect;
 
 /**
  * This is a VERY close match to the client.

@@ -1,11 +1,10 @@
 package rotmg.objects;
 
-import javafx.scene.Camera;
 import flash.display.BitmapData;
+import javafx.scene.Camera;
 import rotmg.game._as3.XML;
 import rotmg.game.map.Map;
 import rotmg.game.util.IntPoint;
-import rotmg.game._as3.BitmapData;
 import sun.java2d.cmm.ColorTransform;
 
 /**

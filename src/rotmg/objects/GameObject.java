@@ -1,10 +1,11 @@
 package rotmg.objects;
 
+import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.*;
+import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
-import org.bouncycastle.pqc.math.linearalgebra.Matrix;
 import rotmg.messaging.data.WorldPosData;
 import rotmg.objects.*;
 import rotmg.objects.animation.AnimatedChar;
@@ -16,7 +17,8 @@ import rotmg.sound.SoundEffectLibrary;
 import rotmg.ui.SimpleText;
 import rotmg.util.*;
 
-import java.util.List;
+import java.util.HashMap;
+
 
 public class GameObject extends BasicObject {
 
@@ -24,9 +26,10 @@ public class GameObject extends BasicObject {
 
 	private static final double NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
 
-	//protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(com.company.util.MoreColorUtil.greyscaleFilterMatrix);
+	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
 
 	public static final int ATTACK_PERIOD = 300;
+
 
 	public ObjectProperties props;
 
@@ -48,7 +51,9 @@ public class GameObject extends BasicObject {
 
 	public BitmapData mask = null;
 
-	public List<TextureData> randomTextureData = null;
+	public Vector<TextureData> randomTextureData = null;
+
+	public Object3D obj3D = null;
 
 	public ParticleEffect effect = null;
 
@@ -57,6 +62,8 @@ public class GameObject extends BasicObject {
 	public boolean dead = false;
 
 	protected BitmapData portrait = null;
+
+	protected Dictionary texturingCache = null;
 
 	public int maxHP = 200;
 
@@ -68,9 +75,9 @@ public class GameObject extends BasicObject {
 
 	public int defense = 0;
 
-	public List<Integer> slotTypes = null;
+	public Vector<Integer> slotTypes = null;
 
-	public List<Integer> equipment = null;
+	public Vector<Integer> equipment = null;
 
 	public int condition = 0;
 
@@ -89,6 +96,8 @@ public class GameObject extends BasicObject {
 	public int sinkLevel = 0;
 
 	public BitmapData hallucinatingTexture = null;
+
+	//public FlashDescription flash = null;
 
 	public int connectType = -1;
 
@@ -114,17 +123,17 @@ public class GameObject extends BasicObject {
 
 	protected GraphicsPath path;
 
-	protected List<Double> vS;
+	protected Vector<Double> vS;
 
-	protected List<Double> uvt;
+	protected Vector<Double> uvt;
 
 	protected Matrix fillMatrix;
 
-	private List<BitmapData> icons = null;
+	private Vector<BitmapData> icons = null;
 
-	private List<GraphicsBitmapFill> iconFills = null;
+	private Vector<GraphicsBitmapFill> iconFills = null;
 
-	private List<GraphicsPath> iconPaths = null;
+	private Vector<GraphicsPath> iconPaths = null;
 
 	protected GraphicsGradientFill shadowGradientFill = null;
 
@@ -137,18 +146,18 @@ public class GameObject extends BasicObject {
 		this.tickPosition = new Point();
 		this.moveVec = new Vector3D();
 		this.bitmapFill = new GraphicsBitmapFill(null, null, false, false);
-		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
-		this.vS = new List<Double>();
-		this.uvt = new List<Double>();
+		//this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
+		this.vS = new Vector<>();
+		this.uvt = new Vector<>();
 		this.fillMatrix = new Matrix();
-		super();
+		//super();
 		if (objectXML == null) {
 			return;
 		}
-		this.objectType = int(objectXML. @type);
-		this.props = ObjectLibrary.propsLibrary[this.objectType];
+		this.objectType = objectXML.getIntAttribute("type");
+		this.props = ObjectLibrary.propsLibrary.get(this.objectType);
 		hasShadow = this.props.shadowSize > 0;
-		TextureData textureData = ObjectLibrary.typeToTextureData[this.objectType];
+		TextureData textureData = ObjectLibrary.typeToTextureData.get(this.objectType);
 		this.texture = textureData.texture;
 		this.mask = textureData.mask;
 		this.animatedChar = textureData.animatedChar;
@@ -157,35 +166,35 @@ public class GameObject extends BasicObject {
 			this.effect = ParticleEffect.fromProps(textureData.effectProps, this);
 		}
 		if (this.texture != null) {
-			this.sizeMult = this.texture.height / 8;
+			this.sizeMult = this.texture.height() / 8;
 		}
-		if (objectXML.hasOwnProperty("Model")) {
+		/**if (objectXML.hasOwnProperty("Model")) {
 			this.obj3D = Model3D.getObject3D(String(objectXML.Model));
-		}
-		AnimationsData animationsData = ObjectLibrary.typeToAnimationsData[this.objectType];
+		}*/
+		AnimationsData animationsData = ObjectLibrary.typeToAnimationsData.get(this.objectType);
 		if (animationsData != null) {
 			this.animations = new Animations(animationsData);
 		}
 		z = this.props.z;
 		this.flying = this.props.flying;
 		if (objectXML.hasOwnProperty("MaxHitPoints")) {
-			this.hp = this.maxHP = objectXML.MaxHitPoints;
+			this.hp = this.maxHP = objectXML.getIntValue("MaxHitPoints");
 		}
 		if (objectXML.hasOwnProperty("Defense")) {
-			this.defense = objectXML.Defense;
+			this.defense = objectXML.getIntValue("Defense");
 		}
 		if (objectXML.hasOwnProperty("SlotTypes")) {
-			this.slotTypes = ConversionUtil.toIntVector(objectXML.SlotTypes);
-			this.equipment = new List<Integer>(this.slotTypes.length);
+			this.slotTypes = ConversionUtil.toIntVector(objectXML.getValue("SlotTypes"));
+			this.equipment = new Vector<>(this.slotTypes.length);
 			for (i = 0; i < this.equipment.length; i++) {
-				this.equipment[i] = -1;
+				this.equipment.put(i, -1);
 			}
 		}
 		if (objectXML.hasOwnProperty("Tex1")) {
-			this.tex1Id = objectXML.Tex1;
+			this.tex1Id = objectXML.getIntValue("Tex1");
 		}
 		if (objectXML.hasOwnProperty("Tex2")) {
-			this.tex2Id = objectXML.Tex2;
+			this.tex2Id = objectXML.getIntValue("Tex2");
 		}
 		this.props.loadSounds();
 	}
@@ -209,7 +218,7 @@ public class GameObject extends BasicObject {
 		TextureData textureData = null;
 		objectId = objectId;
 		if (this.randomTextureData != null) {
-			textureData = this.randomTextureData.get(objectId % this.randomTextureData.size());
+			textureData = this.randomTextureData.get(objectId % this.randomTextureData.length);
 			this.texture = textureData.texture;
 			this.mask = textureData.mask;
 			this.animatedChar = textureData.animatedChar;
@@ -247,7 +256,7 @@ public class GameObject extends BasicObject {
 			return;
 		}
 		this.tex1Id = tex1Id;
-		this.texturingCache = new Dictionary();
+		this.texturingCache = new HashMap<>();
 		this.portrait = null;
 	}
 
@@ -256,12 +265,12 @@ public class GameObject extends BasicObject {
 			return;
 		}
 		this.tex2Id = tex2Id;
-		this.texturingCache = new Dictionary();
+		this.texturingCache = new HashMap<>();
 		this.portrait = null;
 	}
 
 	public void playSound(int id) {
-		SoundEffectLibrary.play(this.props.sounds[id]);
+		SoundEffectLibrary.play(this.props.sounds.get(id));
 	}
 
 	public void dispose() {
@@ -279,14 +288,14 @@ public class GameObject extends BasicObject {
 		if (this.texturingCache != null) {
 			for (obj:
 			     this.texturingCache) {
-				bitmapData = obj as BitmapData;
+				bitmapData = (BitmapData) obj;
 				if (bitmapData != null) {
 					bitmapData.dispose();
 				} else {
-					dict = obj as Dictionary;
+					dict = (Dictionary) obj;
 					for (obj2:
 					     dict) {
-						bitmapData2 = obj2 as BitmapData;
+						bitmapData2 = (BitmapData) obj2;
 						if (bitmapData2 != null) {
 							bitmapData2.dispose();
 						}
@@ -421,19 +430,16 @@ public class GameObject extends BasicObject {
 		return (this.condition & ConditionEffect.ARMORBROKEN_BIT) != 0;
 	}
 
-	public function isSafe(size:int=20) :boolean
-
-	{
+	public boolean isSafe(int size =20) {
 		GameObject go = null;
 		int dx = 0;
 		int dy = 0;
 		for (go:
 		     map.goDict) {
-			if (go is Character &&go.props.isEnemy)
-			{
+			if (go instanceof Character && go.props.isEnemy) {
 				dx = x > go.x_ ?int(x - go.x):int(go.x - x);
 				dy = y > go.y_ ?int(y - go.y):int(go.y - y);
-				trace((go as Character).objectType, dx, dy);
+				trace((Character) (go).objectType, dx, dy);
 				if (dx < size && dy < size) {
 					return false;
 				}
@@ -456,13 +462,13 @@ public class GameObject extends BasicObject {
 		return ret;
 	}
 
-	public Number distTo(WorldPosData pos) {
+	public double distTo(WorldPosData pos) {
 		double dx = pos.x - x;
 		double dy = pos.y - y;
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-	public boolean addTo(Map map, Number x, Number y) {
+	public boolean addTo(Map map, double x, double y) {
 		map = map;
 		this.posAtTick.x = this.tickPosition.x = x;
 		this.posAtTick.y = this.tickPosition.y = y;
@@ -491,7 +497,7 @@ public class GameObject extends BasicObject {
 		this.dispose();
 	}
 
-	public boolean moveTo(Number x, Number y) {
+	public boolean moveTo(double x, double y) {
 		Square square = map.getSquare(x, y);
 		if (square == null) {
 			return false;
@@ -514,8 +520,8 @@ public class GameObject extends BasicObject {
 
 	public boolean update(int time, int dt) {
 		int tickDT = 0;
-		double pX = NaN;
-		double pY = NaN;
+		double pX = 0;
+		double pY = 0;
 		boolean moving = false;
 		if (!(this.moveVec.x == 0 && this.moveVec.y == 0)) {
 			if (this.myLastTickId < map.gs.gsc.lastTickId) {
@@ -542,7 +548,7 @@ public class GameObject extends BasicObject {
 		return true;
 	}
 
-	public void onGoto(Number x, Number y, int time) {
+	public void onGoto(double x, double y, int time) {
 		this.moveTo(x, y);
 		this.lastTickUpdateTime = time;
 		this.tickPosition.x = x;
@@ -553,7 +559,7 @@ public class GameObject extends BasicObject {
 		this.moveVec.y = 0;
 	}
 
-	public void onTickPos(Number x, Number y, int tickTime, int tickId) {
+	public void onTickPos(double x, double y, int tickTime, int tickId) {
 		if (this.myLastTickId < map.gs.gsc.lastTickId) {
 			this.moveTo(this.tickPosition.x, this.tickPosition.y);
 		}
@@ -567,7 +573,7 @@ public class GameObject extends BasicObject {
 		this.myLastTickId = tickId;
 	}
 
-	public void damage(int origType, int damageAmount, List<Integer> effects, boolean kill, Projectile proj) {
+	public void damage(int origType, int damageAmount, Vector<Integer> effects, boolean kill, Projectile proj) {
 		int offsetTime = 0;
 		int conditionEffect = 0;
 		ConditionEffect ce = null;
@@ -618,7 +624,7 @@ public class GameObject extends BasicObject {
 				}
 			}
 		}
-		List<Integer> colors = BloodComposition.getBloodComposition(this.objectType, this.texture, this.props.bloodProb, this.props.bloodColor);
+		Vector<Integer> colors = BloodComposition.getBloodComposition(this.objectType, this.texture, this.props.bloodProb, this.props.bloodColor);
 		if (this.dead) {
 			map.addObj(new ExplosionEffect(colors, this.size, 30), x, y);
 		} else if (proj != null) {
@@ -648,16 +654,16 @@ public class GameObject extends BasicObject {
 		return nameBitmapData;
 	}
 
-	public void drawName(List<IGraphicsData> graphicsData, Camera camera) {
+	public void drawName(Vector<IGraphicsData> graphicsData, Camera camera) {
 		if (this.nameBitmapData == null) {
 			this.nameText = this.generateNameText(this.name);
 			this.nameBitmapData = this.generateNameBitmapData(this.nameText);
 			this.nameFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
-			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<Double>());
+			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<double>());
 		}
 		int w = this.nameBitmapData.width / 2 + 1;
 		int h = 30;
-		List<Double> nameVSs = this.namePath.data;
+		Vector<double> nameVSs = this.namePath.data;
 		nameVSs.length = 0;
 		nameVSs.add(posS[0] - w, posS[1], posS[0] + w, posS[1], posS[0] + w, posS[1] + h, posS[0] - w, posS[1] + h);
 		this.nameFill.bitmapData = this.nameBitmapData;
@@ -677,7 +683,7 @@ public class GameObject extends BasicObject {
 	}
 
 	protected BitmapData getTexture(Camera camera, int time) {
-		double p = NaN;
+		double p = 0;
 		int action = 0;
 		MaskedImage image = null;
 		int walkPer = 0;
@@ -771,12 +777,12 @@ public class GameObject extends BasicObject {
 		return this.portrait;
 	}
 
-	public void setAttack(int containerType, Number attackAngle) {
+	public void setAttack(int containerType, double attackAngle) {
 		this.attackAngle = attackAngle;
 		this.attackStart = getTimer();
 	}
 
-	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
+	public void draw(Vector<IGraphicsData> graphicsData, Camera camera, int time) {
 		BitmapData texture = this.getTexture(camera, time);
 		if (this.props.drawOnGround) {
 			if (square.faces.length == 0) {
@@ -819,17 +825,17 @@ public class GameObject extends BasicObject {
 		}
 	}
 
-	public void drawConditionIcons(List<IGraphicsData> graphicsData, Camera camera, int time) {
+	public void drawConditionIcons(Vector<IGraphicsData> graphicsData, Camera camera, int time) {
 		BitmapData icon = null;
 		GraphicsBitmapFill fill = null;
 		GraphicsPath path = null;
-		double x = NaN;
-		double y = NaN;
+		double x = 0;
+		double y = 0;
 		Matrix m = null;
 		if (this.icons == null) {
-			this.icons = new List<BitmapData>();
-			this.iconFills = new List<GraphicsBitmapFill>();
-			this.iconPaths = new List<GraphicsPath>();
+			this.icons = new Vector<BitmapData>();
+			this.iconFills = new Vector<GraphicsBitmapFill>();
+			this.iconPaths = new Vector<GraphicsPath>();
 		}
 		this.icons.length = 0;
 		int index = time / 500;
@@ -841,7 +847,7 @@ public class GameObject extends BasicObject {
 			icon = this.icons[i];
 			if (i >= this.iconFills.length) {
 				this.iconFills.add(new GraphicsBitmapFill(null, new Matrix(), false, false));
-				this.iconPaths.add(new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<Double>()));
+				this.iconPaths.add(new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<double>()));
 			}
 			fill = this.iconFills[i];
 			path = this.iconPaths[i];
@@ -859,11 +865,11 @@ public class GameObject extends BasicObject {
 		}
 	}
 
-	public void drawShadow(List<IGraphicsData> graphicsData, Camera camera, int time) {
+	public void drawShadow(Vector<IGraphicsData> graphicsData, Camera camera, int time) {
 		if (this.shadowGradientFill == null) {
 			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[this.props.shadowColor, this.props.shadowColor],[
 			0.5, 0],null, new Matrix());
-			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new List<Double>());
+			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<double>());
 		}
 		double s = this.size / 100 * (this.props.shadowSize / 100) * this.sizeMult;
 		double w = 30 * s;
@@ -879,5 +885,4 @@ public class GameObject extends BasicObject {
 	public String toString() {
 		return "[" + getQualifiedClassName(this) + " id: " + objectId + " type: " + ObjectLibrary.typeToDisplayId[this.objectType] + " pos: " + x + ", " + y + "]";
 	}
-}
 }

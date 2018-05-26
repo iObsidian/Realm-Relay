@@ -1,9 +1,9 @@
 package alde.flash.utils;
 
+import flash.events.TimerEvent;
+
 import java.util.HashMap;
 import java.util.TimerTask;
-
-import flash.events.TimerEvent;
 
 /**
  * Representing AS3's Timer
@@ -15,10 +15,10 @@ public class Timer {
 
 	TimerTask t = null;
 
-	HashMap<Runnable, Integer> runnablesAndCondition = new HashMap<>();
+	HashMap<Runnable, String> runnablesAndCondition = new HashMap<>();
 
-	public void addEventListener(Integer i, Runnable method) {
-		runnablesAndCondition.put(method, i);
+	public void addEventListener(String s, Runnable method) {
+		runnablesAndCondition.put(method, s);
 	}
 
 	/**

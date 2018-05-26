@@ -1,11 +1,10 @@
 package rotmg.particles;
 
+import flash.display.BitmapData;
 import javafx.scene.Camera;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-import flash.display.BitmapData;
 import rotmg.game.objects.BasicObject;
 import rotmg.game.objects.Square;
-import rotmg.game._as3.BitmapData;
 
 public class XMLParticle extends BasicObject {
 

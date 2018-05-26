@@ -1,12 +1,12 @@
 package rotmg.dailyQuests;
 
+import rotmg.dailyQuests.messages.data.QuestData;
+import rotmg.messaging.incoming.IncomingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
-
-import rotmg.dailyQuests.messages.data.QuestData;
-import rotmg.messaging.incoming.IncomingMessage;
 
 public class QuestFetchResponse extends IncomingMessage {
 

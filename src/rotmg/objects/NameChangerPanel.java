@@ -5,7 +5,6 @@ import rotmg.game.GameSprite;
 import rotmg.game._as3.Event;
 import rotmg.game._as3.Signal;
 import rotmg.game._as3.Sprite;
-import rotmg.game.parameters.Parameters;
 import rotmg.game.ui.panels.Panel;
 import rotmg.game.util.Currency;
 import rotmg.game.util.TextKey;

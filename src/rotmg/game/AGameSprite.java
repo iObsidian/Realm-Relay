@@ -1,7 +1,9 @@
 package rotmg.game;
 
 import flash.display.Sprite;
+import org.osflash.signals.Signal;
 import rotmg.core.model.PlayerModel;
+import rotmg.map.AbstractMap;
 import rotmg.map.Camera;
 import rotmg.messaging.GameServerConnection;
 import rotmg.messaging.incoming.MapInfo;

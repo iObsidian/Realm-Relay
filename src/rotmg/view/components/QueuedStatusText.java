@@ -1,7 +1,6 @@
 package rotmg.view.components;
 
 import rotmg.game._as3.Sprite;
-import rotmg.game.objects.GameObject;
 import rotmg.objects.GameObject;
 
 public class QueuedStatusText extends Sprite {

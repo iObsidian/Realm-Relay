@@ -1,13 +1,12 @@
 package rotmg.map;
 
-import java.awt.Point;
-import java.util.HashMap;
-
-import javafx.scene.Camera;
+import flash.geom.Point;
 import rotmg.game.AGameSprite;
 import rotmg.objects.BasicObject;
 import rotmg.objects.GameObject;
 import rotmg.objects.Square;
+
+import java.util.HashMap;
 
 public class Map extends AbstractMap {
 
@@ -44,9 +43,8 @@ public class Map extends AbstractMap {
 		return square;
 
 	}
-
-	@Override
-	public Point pSTopW(Number param1, Number param2) {
+	
+	public Point pSTopW(Number param1, double param2) {
 		return null;
 	}
 

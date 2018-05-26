@@ -1,9 +1,9 @@
 package rotmg.net.impl;
 
-import java.util.function.Consumer;
-
 import rotmg.net.api.MessageConsumer;
 import rotmg.net.api.MessageMapping;
+
+import java.util.function.Consumer;
 
 /**
  * Map between CLASS and TYPE

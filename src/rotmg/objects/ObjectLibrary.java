@@ -1,10 +1,5 @@
 package rotmg.objects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.constants.GeneralConstants;
@@ -13,6 +8,11 @@ import rotmg.messaging.data.StatData;
 import rotmg.objects.animation.AnimationsData;
 import rotmg.util.AssetLibrary;
 import rotmg.util.ConversionUtil;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This is 80% complete
@@ -281,7 +281,7 @@ public class ObjectLibrary {
 		int slotType = xml.getIntValue("SlotType");
 		int i = 0;
 		while (i < GeneralConstants.NUM_EQUIPMENT_SLOTS) {
-			if (param2.slotTypes[i] == slotType) {
+			if (param2.slotTypes.get(i) == slotType) {
 				return true;
 			}
 			i++;
@@ -298,7 +298,7 @@ public class ObjectLibrary {
 			_loc4 = _loc3.getIntValue("SlotType");
 			_loc5 = 0;
 			while (_loc5 < GeneralConstants.NUM_EQUIPMENT_SLOTS) {
-				if (player.slotTypes[_loc5] == _loc4) {
+				if (player.slotTypes.get(_loc5) == _loc4) {
 					return _loc5;
 				}
 				_loc5++;

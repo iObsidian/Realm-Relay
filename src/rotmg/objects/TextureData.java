@@ -1,10 +1,11 @@
 package rotmg.objects;
 
-import java.util.HashMap;
-import java.util.List;
-
+import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import rotmg.objects.animation.AnimatedChar;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * This is a 99.9% match.
@@ -15,7 +16,7 @@ public abstract class TextureData {
     public BitmapData texture = null;
     public BitmapData mask = null;
     public AnimatedChar animatedChar = null;
-    public List<TextureData> randomTextureData = null;
+    public Vector<TextureData> randomTextureData = null;
     public HashMap<Integer, TextureData> altTextures = null; //ID, XML
     public int remoteTextureDir;
     public EffectProperties effectProps = null;

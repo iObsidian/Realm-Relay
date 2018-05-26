@@ -1,10 +1,10 @@
 package rotmg.assets.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import flash.display.BitmapData;
 import flash.events.TimerEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * All done. Very simillar to RotMG's Animation,
