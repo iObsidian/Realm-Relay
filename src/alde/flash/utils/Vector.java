@@ -13,12 +13,11 @@ public class Vector<T> implements Iterable<T> {
 	public int length;
 
 	public Vector() {
-		map = new HashMap<Integer, T>();
-		length = 0;
+		this(0);
 	}
 
 	public Vector(int initialCapacity) {
-		map = new HashMap<Integer, T>();
+		map = new HashMap<>();
 
 		for (int i = 0; i < initialCapacity; i++) {
 			push(null);
@@ -26,16 +25,14 @@ public class Vector<T> implements Iterable<T> {
 	}
 
 	public void push(T t) {
-		map.put(map.size() + 1, t);
-		length = map.size();
-	}
-
-	public void put(int index, T t) {
-		map.put(index, t);
-		length = map.size();
+		put(map.size() + 1, t);
 	}
 
 	public void set(int index, T t) {
+		put(index, t);
+	}
+
+	public void put(int index, T t) {
 		map.put(index, t);
 		length = map.size();
 	}
@@ -48,6 +45,5 @@ public class Vector<T> implements Iterable<T> {
 	public Iterator<T> iterator() {
 		return map.values().iterator();
 	}
-
 
 }
