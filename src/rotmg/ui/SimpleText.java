@@ -55,6 +55,10 @@ public class SimpleText extends TextField {
 		}*/
 	}
 
+	public SimpleText(int i, int i1, boolean b, int i2, int i3, String myriad_pro) {
+
+	}
+
 	public void setFont(String param1) {
 
 	}

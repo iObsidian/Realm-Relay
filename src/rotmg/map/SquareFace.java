@@ -1,7 +1,9 @@
 package rotmg.map;
 
+import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
+import rotmg.objects.Square;
 import rotmg.parameters.Parameters;
 
 import java.util.List;
@@ -20,9 +22,9 @@ public class SquareFace {
 
 	public double animateDy = 0;
 
-	public SquareFace(BitmapData param1, List<Double> param2, double param3, double param4, int param5, double param6, double param7) {
+	public SquareFace(BitmapData param1, Vector<Double> param2, double param3, double param4, int param5, double param6, double param7) {
 		super();
-		this.face = new Face3D(param1, param2, com.company.assembleegameclient.map.Square.UVT.concat());
+		this.face = new Face3D(param1, param2, Square.UVT.concat());
 		this.xOffset = param3;
 		this.yOffset = param4;
 		if (this.xOffset != 0 || this.yOffset != 0) {
@@ -67,5 +69,4 @@ public class SquareFace {
 		this.face.setUVT(this.face.uvt);
 		return this.face.draw(param1, param2);
 	}
-}
 }

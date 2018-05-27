@@ -1,4 +1,4 @@
 package flash.display;
 
-public class IGraphicsData {
+public interface IGraphicsData {
 }

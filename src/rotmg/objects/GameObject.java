@@ -6,8 +6,9 @@ import flash.display.*;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
+import rotmg.map.Camera;
+import rotmg.map.Map;
 import rotmg.messaging.data.WorldPosData;
-import rotmg.objects.*;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.objects.animation.Animations;
 import rotmg.objects.animation.AnimationsData;
@@ -16,6 +17,7 @@ import rotmg.particles.ParticleEffect;
 import rotmg.sound.SoundEffectLibrary;
 import rotmg.ui.SimpleText;
 import rotmg.util.*;
+import spark.filter.GlowFilter;
 
 import java.util.HashMap;
 
@@ -26,7 +28,7 @@ public class GameObject extends BasicObject {
 
 	private static final double NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
 
-	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
+	//protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
 
 	public static final int ATTACK_PERIOD = 300;
 
@@ -53,7 +55,7 @@ public class GameObject extends BasicObject {
 
 	public Vector<TextureData> randomTextureData = null;
 
-	public Object3D obj3D = null;
+	//public Object3D obj3D = null;
 
 	public ParticleEffect effect = null;
 
@@ -63,7 +65,7 @@ public class GameObject extends BasicObject {
 
 	protected BitmapData portrait = null;
 
-	protected Dictionary texturingCache = null;
+	protected HashMap<BitmapData, BitmapData> texturingCache = null;
 
 	public int maxHP = 200;
 
@@ -169,8 +171,8 @@ public class GameObject extends BasicObject {
 			this.sizeMult = this.texture.height() / 8;
 		}
 		/**if (objectXML.hasOwnProperty("Model")) {
-			this.obj3D = Model3D.getObject3D(String(objectXML.Model));
-		}*/
+		 this.obj3D = Model3D.getObject3D(String(objectXML.Model));
+		 }*/
 		AnimationsData animationsData = ObjectLibrary.typeToAnimationsData.get(this.objectType);
 		if (animationsData != null) {
 			this.animations = new Animations(animationsData);
@@ -274,64 +276,7 @@ public class GameObject extends BasicObject {
 	}
 
 	public void dispose() {
-		Object obj = null;
-		BitmapData bitmapData = null;
-		Dictionary dict = null;
-		Object obj2 = null;
-		BitmapData bitmapData2 = null;
-		super.dispose();
-		this.texture = null;
-		if (this.portrait != null) {
-			this.portrait.dispose();
-			this.portrait = null;
-		}
-		if (this.texturingCache != null) {
-			for (obj:
-			     this.texturingCache) {
-				bitmapData = (BitmapData) obj;
-				if (bitmapData != null) {
-					bitmapData.dispose();
-				} else {
-					dict = (Dictionary) obj;
-					for (obj2:
-					     dict) {
-						bitmapData2 = (BitmapData) obj2;
-						if (bitmapData2 != null) {
-							bitmapData2.dispose();
-						}
-					}
-				}
-			}
-			this.texturingCache = null;
-		}
-		if (this.obj3D != null) {
-			this.obj3D.dispose();
-			this.obj3D = null;
-		}
-		this.slotTypes = null;
-		this.equipment = null;
-		this.nameText = null;
-		if (this.nameBitmapData != null) {
-			this.nameBitmapData.dispose();
-			this.nameBitmapData = null;
-		}
-		this.nameFill = null;
-		this.namePath = null;
-		this.bitmapFill = null;
-		this.path.commands = null;
-		this.path.data = null;
-		this.vS = null;
-		this.uvt = null;
-		this.fillMatrix = null;
-		this.icons = null;
-		this.iconFills = null;
-		this.iconPaths = null;
-		this.shadowGradientFill = null;
-		if (this.shadowPath != null) {
-			this.shadowPath.commands = null;
-			this.shadowPath.data = null;
-			this.shadowPath = null;
-		}
+		System.out.println("Disposed");
 	}
 
 	public boolean isQuiet() {
@@ -430,16 +375,17 @@ public class GameObject extends BasicObject {
 		return (this.condition & ConditionEffect.ARMORBROKEN_BIT) != 0;
 	}
 
-	public boolean isSafe(int size =20) {
-		GameObject go = null;
+	public boolean isSafe() {
+		return isSafe(20);
+	}
+
+	public boolean isSafe(int size) {
 		int dx = 0;
 		int dy = 0;
-		for (go:
-		     map.goDict) {
+		for (GameObject go : map.goDict) {
 			if (go instanceof Character && go.props.isEnemy) {
-				dx = x > go.x_ ?int(x - go.x):int(go.x - x);
-				dy = y > go.y_ ?int(y - go.y):int(go.y - y);
-				trace((Character) (go).objectType, dx, dy);
+				dx = (int) (x > go.x ? x - go.x : go.x - x);
+				dy = (int) (y > go.y ? y - go.y : go.y - y);
 				if (dx < size && dy < size) {
 					return false;
 				}
@@ -449,7 +395,7 @@ public class GameObject extends BasicObject {
 	}
 
 	public String getName() {
-		return this.name == null || this.name == "" ? ObjectLibrary.typeToDisplayId[this.objectType] : this.name;
+		return this.name == null || this.name.equals("") ? ObjectLibrary.typeToDisplayId.get(this.objectType) : this.name;
 	}
 
 	public int getColor() {
@@ -483,8 +429,7 @@ public class GameObject extends BasicObject {
 	}
 
 	public void removeFromMap() {
-		if (this.props. static &&square != null)
-		{
+		if (this.props.isStatic && square != null) {
 			if (square.obj == this) {
 				square.obj = null;
 			}
@@ -504,17 +449,16 @@ public class GameObject extends BasicObject {
 		}
 		x = x;
 		y = y;
-		if (this.props. static)
-		{
+		if (this.props.isStatic) {
 			if (square != null) {
 				square.obj = null;
 			}
 			square.obj = this;
 		}
 		square = square;
-		if (this.obj3D != null) {
-			this.obj3D.setPosition(x, y, 0, this.props.rotation);
-		}
+		/**if (this.obj3D != null) {
+		 this.obj3D.setPosition(x, y, 0, this.props.rotation);
+		 }*/
 		return true;
 	}
 
@@ -575,15 +519,13 @@ public class GameObject extends BasicObject {
 
 	public void damage(int origType, int damageAmount, Vector<Integer> effects, boolean kill, Projectile proj) {
 		int offsetTime = 0;
-		int conditionEffect = 0;
 		ConditionEffect ce = null;
 		boolean pierced = false;
 		if (kill) {
 			this.dead = true;
 		} else if (effects != null) {
 			offsetTime = 0;
-			for (conditionEffect:
-			     effects) {
+			for (int conditionEffect : effects) {
 				ce = null;
 				switch (conditionEffect) {
 					case ConditionEffect.NOTHING:
@@ -624,19 +566,19 @@ public class GameObject extends BasicObject {
 				}
 			}
 		}
-		Vector<Integer> colors = BloodComposition.getBloodComposition(this.objectType, this.texture, this.props.bloodProb, this.props.bloodColor);
-		if (this.dead) {
-			map.addObj(new ExplosionEffect(colors, this.size, 30), x, y);
-		} else if (proj != null) {
-			map.addObj(new HitEffect(colors, this.size, 10, proj.angle, proj.projProps.speed), x, y);
-		} else {
-			map.addObj(new ExplosionEffect(colors, this.size, 10), x, y);
-		}
-		if (damageAmount > 0) {
-			pierced = this.isArmorBroken() || proj != null && proj.projProps.armorPiercing;
-			map.mapOverlay.addStatusText(new CharacterStatusText(this, "-" + damageAmount, !!pierced ?int(9437439):int
-			(16711680), 1000));
-		}
+		/**Vector<Integer> colors = BloodComposition.getBloodComposition(this.objectType, this.texture, this.props.bloodProb, this.props.bloodColor);
+		 if (this.dead) {
+		 map.addObj(new ExplosionEffect(colors, this.size, 30), x, y);
+		 } else if (proj != null) {
+		 map.addObj(new HitEffect(colors, this.size, 10, proj.angle, proj.projProps.speed), x, y);
+		 } else {
+		 map.addObj(new ExplosionEffect(colors, this.size, 10), x, y);
+		 }
+		 if (damageAmount > 0) {
+		 pierced = this.isArmorBroken() || proj != null && proj.projProps.armorPiercing;
+		 map.mapOverlay.addStatusText(new CharacterStatusText(this, "-" + damageAmount, !!pierced ?int(9437439):int
+		 (16711680), 1000));
+		 }*/
 	}
 
 	protected SimpleText generateNameText(String name) {
@@ -659,17 +601,17 @@ public class GameObject extends BasicObject {
 			this.nameText = this.generateNameText(this.name);
 			this.nameBitmapData = this.generateNameBitmapData(this.nameText);
 			this.nameFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
-			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<double>());
+			this.namePath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<Double>());
 		}
-		int w = this.nameBitmapData.width / 2 + 1;
+		int w = this.nameBitmapData.width() / 2 + 1;
 		int h = 30;
-		Vector<double> nameVSs = this.namePath.data;
+		Vector<Double> nameVSs = this.namePath.data;
 		nameVSs.length = 0;
-		nameVSs.add(posS[0] - w, posS[1], posS[0] + w, posS[1], posS[0] + w, posS[1] + h, posS[0] - w, posS[1] + h);
+		nameVSs.add(posS.get(0) - w, posS.get(1), posS.get(0) + w, posS.get(1), posS.get(0) + w, posS.get(1) + h, posS.get(0) - w, posS.get(1) + h);
 		this.nameFill.bitmapData = this.nameBitmapData;
 		Matrix m = this.nameFill.matrix;
 		m.identity();
-		m.translate(nameVSs[0], nameVSs[1]);
+		m.translate(nameVSs.get(0), nameVSs.get(1));
 		graphicsData.add(this.nameFill);
 		graphicsData.add(this.namePath);
 		graphicsData.add(GraphicsUtil.END_FILL);
@@ -677,7 +619,7 @@ public class GameObject extends BasicObject {
 
 	protected BitmapData getHallucinatingTexture() {
 		if (this.hallucinatingTexture == null) {
-			this.hallucinatingTexture = AssetLibrary.getImageFromSet("lofiChar8x8",int(Math.random() * 239));
+			this.hallucinatingTexture = AssetLibrary.getImageFromSet("lofiChar8x8", (int) (Math.random() * 239));
 		}
 		return this.hallucinatingTexture;
 	}
@@ -703,7 +645,7 @@ public class GameObject extends BasicObject {
 				p = (time - this.attackStart) % ATTACK_PERIOD / ATTACK_PERIOD;
 				action = AnimatedChar.ATTACK;
 			} else if (this.moveVec.x != 0 || this.moveVec.y != 0) {
-				walkPer = 0.5 / this.moveVec.length;
+				walkPer = (int) (0.5 / this.moveVec.length);
 				walkPer = walkPer + (400 - walkPer % 400);
 				if (this.moveVec.x > ZERO_LIMIT || this.moveVec.x < NEGATIVE_ZERO_LIMIT || this.moveVec.y > ZERO_LIMIT || this.moveVec.y < NEGATIVE_ZERO_LIMIT) {
 					this.facing = Math.atan2(this.moveVec.y, this.moveVec.x);
@@ -722,16 +664,16 @@ public class GameObject extends BasicObject {
 				texture = animTexture;
 			}
 		}
-		if (this.props.drawOnGround || this.obj3D != null) {
+		/*if (this.props.drawOnGround || this.obj3D != null) {
 			return texture;
-		}
+		}*/
 		if (camera.isHallucinating) {
-			w = texture == null ?int(8):int(texture.width);
+			w = texture == null ? 8 : texture.width();
 			texture = this.getHallucinatingTexture();
 			mask = null;
-			size = this.size * Math.min(1.5, w / texture.width);
+			size = (int) (this.size * Math.min(1.5, w / texture.width()));
 		}
-		if (this.isStasis()) {
+		/*if (this.isStasis()) {
 			texture = CachingColorTransformer.filterBitmapData(texture, PAUSED_FILTER);
 		}
 		if (this.flash != null) {
@@ -740,20 +682,20 @@ public class GameObject extends BasicObject {
 			} else {
 				this.flash = null;
 			}
-		}
+		}*/
 		if (this.tex1Id == 0 && this.tex2Id == 0) {
 			texture = TextureRedrawer.redraw(texture, size, false, 0, 0);
 		} else {
 			newTexture = null;
 			if (this.texturingCache == null) {
-				this.texturingCache = new Dictionary();
+				this.texturingCache = new HashMap<>();
 			} else {
-				newTexture = this.texturingCache[texture];
+				newTexture = this.texturingCache.get(texture);
 			}
 			if (newTexture == null) {
 				newTexture = TextureRedrawer.resize(texture, mask, size, false, this.tex1Id, this.tex2Id);
 				newTexture = TextureRedrawer.outlineGlow(newTexture, 0, 0);
-				this.texturingCache[texture] = newTexture;
+				this.texturingCache.put(texture, newTexture);
 			}
 			texture = newTexture;
 		}
@@ -762,7 +704,7 @@ public class GameObject extends BasicObject {
 
 	public void useAltTexture(String file, int index) {
 		this.texture = AssetLibrary.getImageFromSet(file, index);
-		this.sizeMult = this.texture.height / 8;
+		this.sizeMult = this.texture.height() / 8;
 	}
 
 	public BitmapData getPortrait() {
@@ -770,7 +712,7 @@ public class GameObject extends BasicObject {
 		int size = 0;
 		if (this.portrait == null) {
 			portraitTexture = this.props.portrait != null ? this.props.portrait.getTexture() : this.texture;
-			size = 4 / portraitTexture.width * 100;
+			size = 4 / portraitTexture.width() * 100;
 			this.portrait = TextureRedrawer.resize(portraitTexture, this.mask, size, true, this.tex1Id, this.tex2Id);
 			this.portrait = TextureRedrawer.outlineGlow(this.portrait, 0, 0);
 		}
@@ -788,7 +730,7 @@ public class GameObject extends BasicObject {
 			if (square.faces.length == 0) {
 				return;
 			}
-			this.path.data = square.faces[0].face.vout;
+			this.path.data = square.faces.get(0).face.vout;
 			this.bitmapFill.bitmapData = texture;
 			square.baseTexMatrix.calculateTextureMatrix(this.path.data);
 			this.bitmapFill.matrix = square.baseTexMatrix.tToS;
@@ -797,30 +739,30 @@ public class GameObject extends BasicObject {
 			graphicsData.add(GraphicsUtil.END_FILL);
 			return;
 		}
-		if (this.obj3D != null) {
+		/**if (this.obj3D != null) {
 			this.obj3D.draw(graphicsData, camera, this.props.color, texture);
 			return;
-		}
-		int w = texture.width;
-		int h = texture.height;
+		}*/
+		int w = texture.width();
+		int h = texture.height();
 		int h2 = square.sink + this.sinkLevel;
 		if (h2 > 0 && (this.flying || square.obj != null && square.obj.props.protectFromSink)) {
 			h2 = 0;
 		}
 		this.vS.length = 0;
-		this.vS.add(posS[3] - w / 2, posS[4] - h + h2, posS[3] + w / 2, posS[4] - h + h2, posS[3] + w / 2, posS[4], posS[3] - w / 2, posS[4]);
+		this.vS.add(posS.get(3) - w / 2, posS.get(4) - h + h2, posS.get(3) + w / 2, posS.get(4) - h + h2, posS.get(3) + w / 2, posS.get(4), posS.get(3) - w / 2, posS.get(4));
 		this.path.data = this.vS;
 		this.bitmapFill.bitmapData = texture;
 		this.fillMatrix.identity();
-		this.fillMatrix.translate(this.vS[0], this.vS[1]);
+		this.fillMatrix.translate(this.vS.get(0), this.vS.get(1));
 		this.bitmapFill.matrix = this.fillMatrix;
 		graphicsData.add(this.bitmapFill);
 		graphicsData.add(this.path);
 		graphicsData.add(GraphicsUtil.END_FILL);
-		if (!this.isPaused() && this.condition && !Parameters.screenShotMode) {
+		if (!this.isPaused() && (this.condition != 0) && !Parameters.screenShotMode) {
 			this.drawConditionIcons(graphicsData, camera, time);
 		}
-		if (this.props.showName && this.name != null && this.name.length != 0) {
+		if (this.props.showName && this.name != null && this.name.length() != 0) {
 			this.drawName(graphicsData, camera);
 		}
 	}
@@ -840,22 +782,22 @@ public class GameObject extends BasicObject {
 		this.icons.length = 0;
 		int index = time / 500;
 		ConditionEffect.getConditionEffectIcons(this.condition, this.icons, index);
-		double centerX = posS[3];
-		double centerY = this.vS[1];
+		double centerX = posS.get(3);
+		double centerY = this.vS.get(1);
 		int len = this.icons.length;
 		for (int i = 0; i < len; i++) {
-			icon = this.icons[i];
+			icon = this.icons.get(i);
 			if (i >= this.iconFills.length) {
 				this.iconFills.add(new GraphicsBitmapFill(null, new Matrix(), false, false));
-				this.iconPaths.add(new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<double>()));
+				this.iconPaths.add(new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<Double>()));
 			}
-			fill = this.iconFills[i];
-			path = this.iconPaths[i];
+			fill = this.iconFills.get(i);
+			path = this.iconPaths.get(i);
 			fill.bitmapData = icon;
-			x = centerX - icon.width * len / 2 + i * icon.width;
-			y = centerY - icon.height / 2;
+			x = centerX - icon.width() * len / 2 + i * icon.width();
+			y = centerY - icon.height() / 2;
 			path.data.length = 0;
-			path.data.add(x, y, x + icon.width, y, x + icon.width, y + icon.height, x, y + icon.height);
+			path.data.add(x, y, x + icon.width(), y, x + icon.width(), y + icon.height(), x, y + icon.height());
 			m = fill.matrix;
 			m.identity();
 			m.translate(x, y);
@@ -865,24 +807,24 @@ public class GameObject extends BasicObject {
 		}
 	}
 
-	public void drawShadow(Vector<IGraphicsData> graphicsData, Camera camera, int time) {
+	public void  drawShadow(Vector<IGraphicsData> param1, Camera param2, int param3)  {
 		if (this.shadowGradientFill == null) {
-			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[this.props.shadowColor, this.props.shadowColor],[
-			0.5, 0],null, new Matrix());
-			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<double>());
+
+			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL, new Vector<Integer>(this.props.shadowColor, this.props.shadowColor), new Vector<Double>(0.5, 0.0), null, new Matrix());
+			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<Double>());
 		}
-		double s = this.size / 100 * (this.props.shadowSize / 100) * this.sizeMult;
-		double w = 30 * s;
-		double h = 15 * s;
-		this.shadowGradientFill.matrix.createGradientBox(w * 2, h * 2, 0, posS[0] - w, posS[1] - h);
-		graphicsData.add(this.shadowGradientFill);
+		double loc4 = this.size / 100 * (this.props.shadowSize / 100) * this.sizeMult;
+		double loc5 = 30 * loc4;
+		double loc6 = 15 * loc4;
+		this.shadowGradientFill.matrix.createGradientBox(loc5 * 2, loc6 * 2, 0, posS.get(0) - loc5, posS.get(1) - loc6);
+		param1.add(this.shadowGradientFill);
 		this.shadowPath.data.length = 0;
-		this.shadowPath.data.add(posS[0] - w, posS[1] - h, posS[0] + w, posS[1] - h, posS[0] + w, posS[1] + h, posS[0] - w, posS[1] + h);
-		graphicsData.add(this.shadowPath);
-		graphicsData.add(GraphicsUtil.END_FILL);
+		this.shadowPath.data.add(posS.get(0) - loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) + loc6, posS.get(0) - loc5, posS.get(1) + loc6);
+		param1.add(this.shadowPath);
+		param1.add(GraphicsUtil.END_FILL);
 	}
 
-	public String toString() {
-		return "[" + getQualifiedClassName(this) + " id: " + objectId + " type: " + ObjectLibrary.typeToDisplayId[this.objectType] + " pos: " + x + ", " + y + "]";
-	}
+	/**public String toString() {
+	 return "[" + getQualifiedClassName(this) + " id: " + objectId + " type: " + ObjectLibrary.typeToDisplayId.get(this.objectType) + " pos: " + x + ", " + y + "]";
+	 }*/
 }

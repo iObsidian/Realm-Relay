@@ -2,6 +2,8 @@ package rotmg.objects;
 
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
+import flash.geom.Point;
+import org.osflash.signals.Signal;
 import rotmg.assets.services.CharacterFactory;
 import rotmg.constants.GeneralConstants;
 import rotmg.messaging.data.StatData;
@@ -145,7 +147,7 @@ public class Player extends Character {
 		playerXML.exp = objectXML.getIntValue("Exp");
 		playerXML.equipment = ConversionUtil.toIntVector(objectXML.getValue("Equipment"));
 		playerXML.calculateStatBoosts();
-		playerXML.lockedSlot = new int[playerXML.equipment.length];
+		//playerXML.lockedSlot = new int[playerXML.equipment.length];
 		playerXML.maxHP = playerXML.maxHPBoost + objectXML.getIntValue("MaxHitPoints");
 		playerXML.hp = objectXML.getIntValue("HitPoints");
 		playerXML.maxMP = playerXML.maxMPBoost + objectXML.getIntValue("MaxMagicPoints");
@@ -187,7 +189,7 @@ public class Player extends Character {
 		int loc2 = 0;
 		while (loc2 < GeneralConstants.NUM_EQUIPMENT_SLOTS) {
 			if (equipment != null && equipment.length > loc2) {
-				loc3 = equipment[loc2];
+				loc3 = equipment.get(loc2);
 				if (loc3 != -1) {
 					loc4 = ObjectLibrary.xmlLibrary.get(loc3);
 					if (loc4 != null && loc4.hasOwnProperty("FameBonus")) {
@@ -211,7 +213,7 @@ public class Player extends Character {
 		this.dexterityBoost = 0;
 		int i = 0;
 		while (i < GeneralConstants.NUM_EQUIPMENT_SLOTS) {
-			int equipment = this.equipment[i];
+			int equipment = this.equipment.get(i);
 			if (equipment != -1) {
 				XML objectXML = ObjectLibrary.xmlLibrary.get(equipment);
 				if (objectXML != null && objectXML.hasOwnProperty("ActivateOnEquip")) {

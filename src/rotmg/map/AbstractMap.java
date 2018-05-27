@@ -1,6 +1,7 @@
 package rotmg.map;
 
 
+import alde.flash.utils.Dictionary;
 import flash.display.Sprite;
 import javafx.scene.layout.Background;
 import org.osflash.signals.Signal;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 
 public abstract class AbstractMap extends Sprite {
 
-	public HashMap<Integer, GameObject> goDict;
+	public Dictionary<Integer, GameObject> goDict;
 
 	public AGameSprite gs;
 

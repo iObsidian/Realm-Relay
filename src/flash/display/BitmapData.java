@@ -3,6 +3,7 @@ package flash.display;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import rotmg.ui.SimpleText;
 
 import java.awt.image.BufferedImage;
 
@@ -53,5 +54,8 @@ public class BitmapData {
 	}
 
 	public void draw(BitmapData param1, Matrix loc4, Object o, Object o1, Object o2, boolean b) {
+	}
+
+	public void draw(SimpleText nameText, Object o) {
 	}
 }

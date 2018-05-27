@@ -1,5 +1,8 @@
 package rotmg.util;
 
+import alde.flash.utils.Vector;
+import flash.display.BitmapData;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -204,4 +207,6 @@ public class ConditionEffect {
 		return conditionEffectFromName.get(param1);
 	}
 
+	public static void getConditionEffectIcons(int condition, Vector<BitmapData> icons, int index) {
+	}
 }

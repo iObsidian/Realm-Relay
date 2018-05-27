@@ -7,17 +7,18 @@ package rotmg.objects;
 //import flash.display.IGraphicsData;
 //import flash.geom.Vector3D;
 
+import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import flash.geom.Vector3D;
+import rotmg.engine3d.TextureMatrix;
 import rotmg.map.*;
-import rotmg.objects.GameObject;
 
 import java.util.List;
 
 public class Square {
 
-	public static final double[] UVT = new double[]{0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0};
+	public static final Vector<Double> UVT = new Vector<>(0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0);
 
 	private static final int[] LOOKUP = new int[]{26171, 44789, 20333, 70429, 98257, 59393, 33961};
 
@@ -43,7 +44,7 @@ public class Square {
 
 	public int lastDamage = 0;
 
-	public List<SquareFace> faces;
+	public Vector<SquareFace> faces;
 
 	public SquareFace topFace = null;
 
@@ -52,9 +53,9 @@ public class Square {
 	public int lastVisible;
 
 	public Square(Map param1, int param2, int param3) {
-		this.props = GroundLibrary.defaultProps;
-		this.faces = new List<SquareFace>();
 		super();
+		this.props = GroundLibrary.defaultProps;
+		this.faces = new Vector<SquareFace>();
 		this.map = param1;
 		this.x = param2;
 		this.y = param3;
@@ -63,8 +64,8 @@ public class Square {
 	}
 
 	private int hash(int param1, int param2) {
-		int loc3 = LOOKUP[(param1 + param2) % 7];
-         *loc4 = (param1 << 16 | param2) ^ 81397550;
+		var loc3:int =LOOKUP[(param1 + param2) % 7];
+		var loc4:* =(param1 << 16 | param2) ^ 81397550;
 		loc4 = int(loc4 * loc3 % 65535);
 		return loc4;
 	}
@@ -76,7 +77,8 @@ public class Square {
 		this.vin = null;
 		this.obj = null;
 		this.texture = null;
-		for (loc1: this.faces) {
+		for (loc1:
+		     this.faces) {
 			loc1.dispose();
 		}
 		this.faces.length = 0;

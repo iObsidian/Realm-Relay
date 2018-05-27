@@ -1,6 +1,14 @@
 package flash.display;
 
-public class GraphicsPath {
+import alde.flash.utils.Vector;
+
+public class GraphicsPath implements IGraphicsData {
+
+	public Vector<Double> data;
+
+	public GraphicsPath(Vector<Integer> quadCommands, Vector<Double> doubles) {
+
+	}
 
 	public void moveTo(int param1, int param2) {
 	}

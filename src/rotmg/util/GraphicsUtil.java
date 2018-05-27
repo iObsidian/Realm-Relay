@@ -1,6 +1,9 @@
 package rotmg.util;
 
+import alde.flash.utils.Vector;
+import flash.display.GraphicsEndFill;
 import flash.display.GraphicsPath;
+import flash.display.GraphicsPathCommand;
 
 /**
  * About 10% done
@@ -9,11 +12,9 @@ public class GraphicsUtil {
 
 	private static final double TWO_PI = 2 * Math.PI;
 
+	public static final GraphicsEndFill END_FILL = new GraphicsEndFill();
 
-	public GraphicsUtil() {
-		super();
-	}
-
+	public static Vector<Integer> QUAD_COMMANDS = new Vector(GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
 
 	public void drawRect(int x, int y, int width, int height, GraphicsPath path) {
 		path.moveTo(x, y);

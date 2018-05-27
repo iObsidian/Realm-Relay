@@ -24,6 +24,11 @@ public class Vector<T> implements Iterable<T> {
 		}
 	}
 
+	public Vector(T... addAll) {
+		add(addAll);
+	}
+
+
 	public void push(T t) {
 		put(map.size() + 1, t);
 	}
@@ -46,4 +51,17 @@ public class Vector<T> implements Iterable<T> {
 		return map.values().iterator();
 	}
 
+
+	public void add(T t) {
+		push(t);
+	}
+
+	public void add(T... list) {
+		for (T t : list) {
+			push(t);
+		}
+	}
+
+	public T concat() {
+	}
 }
