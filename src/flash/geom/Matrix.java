@@ -30,4 +30,7 @@ public class Matrix {
 
 	public void invert() {
 	}
+
+	public void scale(int i, int i1) {
+	}
 }

@@ -1,25 +1,20 @@
 package rotmg.game;
 
+import static java.lang.Float.NaN;
 
+import java.awt.event.MouseEvent;
+
+import alde.flash.utils.XML;
+import flash.events.Event;
 import javafx.stage.Stage;
+import rotmg.GameSprite;
+import rotmg.MiniMapZoomSignal;
+import rotmg.api.ApplicationSetup;
+import rotmg.chat.model.ChatMessage;
 import rotmg.constants.GeneralConstants;
+import rotmg.constants.UseType;
 import rotmg.dialogs.CloseDialogsSignal;
 import rotmg.dialogs.OpenDialogSignal;
-import rotmg.game.GameSprite;
-import rotmg.game.MiniMapZoomSignal;
-import rotmg.game._as3.Event;
-import rotmg.game._as3.XML;
-import rotmg.game.api.ApplicationSetup;
-import rotmg.game.chat.model.ChatMessage;
-import rotmg.game.dialogs.CloseDialogsSignal;
-import rotmg.game.dialogs.OpenDialogSignal;
-import rotmg.game.model.PotionInventoryModel;
-import rotmg.game.objects.Player;
-import rotmg.game.pets.controller.reskin.ReskinPetFlowStartSignal;
-import rotmg.game.ui.model.TabStripModel;
-import rotmg.game.ui.popups.signals.ClosePopupByClassSignal;
-import rotmg.game.ui.popups.signals.ShowPopupSignal;
-import rotmg.game.view.components.StatsTabHotKeyInputSignal;
 import rotmg.messaging.GameServerConnection;
 import rotmg.model.PotionInventoryModel;
 import rotmg.objects.GameObject;
@@ -28,13 +23,18 @@ import rotmg.objects.Player;
 import rotmg.objects.Square;
 import rotmg.parameters.Parameters;
 import rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
-import rotmg.signals.*;
+import rotmg.signals.AddTextLineSignal;
+import rotmg.signals.ExitGameSignal;
+import rotmg.signals.GiftStatusUpdateSignal;
+import rotmg.signals.SetTextBoxVisibilitySignal;
+import rotmg.signals.UseBuyPotionSignal;
+import rotmg.ui.Options;
+import rotmg.ui.model.TabStripModel;
+import rotmg.ui.popups.signals.ClosePopupByClassSignal;
+import rotmg.ui.popups.signals.ShowPopupSignal;
 import rotmg.util.KeyCodes;
+import rotmg.util.TextureRedrawer;
 import rotmg.view.components.StatsTabHotKeyInputSignal;
-
-import java.awt.event.MouseEvent;
-
-import static java.lang.Float.NaN;
 
 public class MapUserInput {
 
@@ -121,7 +121,7 @@ public class MapUserInput {
 		this.gs.map.signalRenderSwitch.add(this.onRenderSwitch);
 	}
 
-	public void  onRenderSwitch(boolean param1)  {
+	public void onRenderSwitch(boolean param1) {
 		if (param1) {
 			this.gs.stage.removeEventListener(MouseEvent.MOUSE.OWN, this::onMouseDown);
 			this.gs.stage.removeEventListener(MouseEvent.MOUSE.P, this.onMouseUp);
@@ -135,7 +135,7 @@ public class MapUserInput {
 		}
 	}
 
-	public void  clearInput()  {
+	public void clearInput() {
 		this.moveLeft = false;
 		this.moveRight = false;
 		this.moveUp = false;
@@ -147,14 +147,14 @@ public class MapUserInput {
 		this.setPlayerMovement();
 	}
 
-	public void  setEnablePlayerInput(boolean param1)  {
+	public void setEnablePlayerInput(boolean param1) {
 		if (this.enablePlayerInput != param1) {
 			this.enablePlayerInput = param1;
 			this.clearInput();
 		}
 	}
 
-	private void  onAddedToStage(Event param1)  {
+	private void onAddedToStage(Event param1) {
 		Stage loc2 = this.gs.stage;
 		loc2.addEventListener(Event.ACTIVATE, this.onActivate);
 		loc2.addEventListener(Event.DEACTIVATE, this.onDeactivate);
@@ -172,10 +172,10 @@ public class MapUserInput {
 		loc2.addEventListener(MouseEvent.RIGHT_CLICK, this.disableRightClick);
 	}
 
-	public void  disableRightClick(MouseEvent param1)  {
+	public void disableRightClick(MouseEvent param1) {
 	}
 
-	private void  onRemovedFromStage(Event param1)  {
+	private void onRemovedFromStage(Event param1) {
 		Stage loc2 = this.gs.stage;
 		loc2.removeEventListener(Event.ACTIVATE, this.onActivate);
 		loc2.removeEventListener(Event.DEACTIVATE, this.onDeactivate);
@@ -193,10 +193,10 @@ public class MapUserInput {
 		loc2.removeEventListener(MouseEvent.RIGHT_CLICK, this.disableRightClick);
 	}
 
-	private void  onActivate(Event param1)  {
+	private void onActivate(Event param1) {
 	}
 
-	private void  onDeactivate(Event param1)  {
+	private void onDeactivate(Event param1) {
 		this.clearInput();
 	}
 
@@ -265,7 +265,7 @@ public class MapUserInput {
 		loc2.isShooting = false;
 	}
 
-	private void  onMouseWheel(MouseEvent param1)  {
+	private void onMouseWheel(MouseEvent param1) {
 		if (param1.delta > 0) {
 			this.miniMapZoom.dispatch(MiniMapZoomSignal.IN);
 		} else {
@@ -547,40 +547,40 @@ public class MapUserInput {
 		this.setPlayerMovement();
 	}
 
-	private void  onKeyUp(KeyboardEvent param1)  {
+	private void onKeyUp(KeyboardEvent param1) {
 		double loc2 = NaN;
 		double loc3 = NaN;
 		switch (param1.keyCode) {
-			case Parameters.data.moveUp:
-				this.moveUp = false;
-				break;
-			case Parameters.data.moveDown:
-				this.moveDown = false;
-				break;
-			case Parameters.data.moveLeft:
-				this.moveLeft = false;
-				break;
-			case Parameters.data.moveRight:
-				this.moveRight = false;
-				break;
-			case Parameters.data.rotateLeft:
-				this.rotateLeft = false;
-				break;
-			case Parameters.data.rotateRight:
-				this.rotateRight = false;
-				break;
-			case Parameters.data.useSpecial:
-				if (this.specialKeyDown_) {
-					this.specialKeyDown = false;
-					if (this.gs.map.player.isUnstable()) {
-						loc2 = Math.random() * 600 - 300;
-						loc3 = Math.random() * 600 - 325;
-					} else {
-						loc2 = this.gs.map.mouseX;
-						loc3 = this.gs.map.mouseY;
-					}
-					this.gs.map.player.useAltWeapon(this.gs.map.mouseX, this.gs.map.mouseY, UseType.END.SE);
+		case Parameters.data.moveUp:
+			this.moveUp = false;
+			break;
+		case Parameters.data.moveDown:
+			this.moveDown = false;
+			break;
+		case Parameters.data.moveLeft:
+			this.moveLeft = false;
+			break;
+		case Parameters.data.moveRight:
+			this.moveRight = false;
+			break;
+		case Parameters.data.rotateLeft:
+			this.rotateLeft = false;
+			break;
+		case Parameters.data.rotateRight:
+			this.rotateRight = false;
+			break;
+		case Parameters.data.useSpecial:
+			if (this.specialKeyDown_) {
+				this.specialKeyDown = false;
+				if (this.gs.map.player.isUnstable()) {
+					loc2 = Math.random() * 600 - 300;
+					loc3 = Math.random() * 600 - 325;
+				} else {
+					loc2 = this.gs.map.mouseX;
+					loc3 = this.gs.map.mouseY;
 				}
+				this.gs.map.player.useAltWeapon(this.gs.map.mouseX, this.gs.map.mouseY, UseType.END.SE);
+			}
 		}
 		this.setPlayerMovement();
 	}
@@ -596,11 +596,11 @@ public class MapUserInput {
 		}
 	}
 
-	private void  useItem(int param1)  {
+	private void useItem(int param1) {
 		if (this.tabStripModel.currentSelection == TabStripModel.BACKPACK) {
 			param1 = param1 + GeneralConstants.NUM_INVENTORY_SLOTS;
 		}
-		GameServerConnection.instance.useItem.ew(this.gs.map.player. param1);
+		GameServerConnection.instance.useItem.ew(this.gs.map.player.param1);
 	}
 
 	private void  togglePerformanceStats()  {
@@ -616,7 +616,7 @@ public class MapUserInput {
 		}
 	}
 
-	private void  toggleScreenShotMode()  {
+	private void toggleScreenShotMode() {
 		Parameters.screenShotMode = !Parameters.screenShotMode_;
 		if (Parameters.screenShotMode_) {
 			this.gs.hudView.visible = false;
@@ -626,7 +626,5 @@ public class MapUserInput {
 			this.setTextBoxVisibility.dispatch(true);
 		}
 	}
-
-
 
 }

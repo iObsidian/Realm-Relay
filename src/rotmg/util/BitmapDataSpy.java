@@ -7,6 +7,10 @@ public class BitmapDataSpy extends BitmapData {
 		super(width, height, param3, param4);
 	}
 
+	public BitmapDataSpy(int i, int i1, boolean b) {
+		super(i, i1);
+	}
+
 	@Override
 	public BitmapData clone() {
 		return super.clone();

@@ -13,6 +13,7 @@ import flash.display.IGraphicsData;
 import flash.geom.Vector3D;
 import rotmg.engine3d.TextureMatrix;
 import rotmg.map.*;
+import rotmg.util.TileRedrawer;
 
 import java.util.List;
 
@@ -71,14 +72,12 @@ public class Square {
 	}
 
 	public void dispose() {
-		SquareFace loc1 = null;
 		this.map = null;
 		this.center = null;
 		this.vin = null;
 		this.obj = null;
 		this.texture = null;
-		for (loc1:
-		     this.faces) {
+		for (SquareFace loc1 : this.faces) {
 			loc1.dispose();
 		}
 		this.faces.length = 0;
@@ -103,17 +102,15 @@ public class Square {
 	}
 
 	public void draw(List<IGraphicsData> param1, Camera param2, int param3) {
-		SquareFace loc4 = null;
 		if (this.texture == null) {
 			return;
 		}
 		if (this.faces.length == 0) {
 			this.rebuild3D();
 		}
-		for (loc4:
-		     this.faces) {
+		for (SquareFace loc4: this.faces) {
 			if (!loc4.draw(param1, param2, param3)) {
-				if (loc4.face.vout[1] < param2.clipRect.bottom) {
+				if (loc4.face.vout.get(1) < param2.clipRect.bottom) {
 					this.lastVisible = 0;
 				}
 				return;

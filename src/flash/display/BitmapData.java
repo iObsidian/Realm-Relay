@@ -4,10 +4,13 @@ import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import rotmg.ui.SimpleText;
+import spark.filter.GlowFilter;
 
 import java.awt.image.BufferedImage;
 
 public class BitmapData {
+
+	public Object rect;
 
 	public int width() {
 		return image.getWidth();
@@ -56,6 +59,12 @@ public class BitmapData {
 	public void draw(BitmapData param1, Matrix loc4, Object o, Object o1, Object o2, boolean b) {
 	}
 
-	public void draw(SimpleText nameText, Object o) {
+	public void draw(BitmapData nameText, Object o) {
+	}
+
+	public void setPixel(int i, int i1, double loc5) {
+	}
+
+	public void applyFilter(BitmapData loc4, Object rect, Point origin, GlowFilter outlineFilter) {
 	}
 }

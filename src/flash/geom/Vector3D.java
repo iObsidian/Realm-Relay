@@ -25,4 +25,7 @@ public class Vector3D {
 	public double dotProduct(Vector3D r) {
 		return 0;
 	}
+
+	public void normalize() {
+	}
 }

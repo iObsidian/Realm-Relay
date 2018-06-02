@@ -172,6 +172,9 @@ public class Parameters {
 	public Object curseIndication = false;
 
 
+	public static boolean isGpuRender() {
+		return true;
+	}
 }
 
 

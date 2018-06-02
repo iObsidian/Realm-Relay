@@ -5,6 +5,7 @@ import alde.flash.utils.Vector;
 public class GraphicsPath implements IGraphicsData {
 
 	public Vector<Double> data;
+	public Vector<Integer> commands;
 
 	public GraphicsPath(Vector<Integer> quadCommands, Vector<Double> doubles) {
 

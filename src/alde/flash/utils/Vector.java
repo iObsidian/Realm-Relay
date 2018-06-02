@@ -62,6 +62,8 @@ public class Vector<T> implements Iterable<T> {
 		}
 	}
 
-	public T concat() {
+	public Vector<T> concat() {
+		return null;
 	}
+
 }

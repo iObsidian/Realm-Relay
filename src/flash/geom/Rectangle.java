@@ -1,13 +1,15 @@
 package flash.geom;
 
 public class Rectangle {
-	public int x;
-	public int y;
+	public double x;
+	public double y;
 
-	public int width;
-	public int height;
+	public double width;
+	public double height;
+	public double right;
+	public double bottom;
 
-	public Rectangle(int x, int y, int width, int height) {
+	public Rectangle(double x, double y, double width, double height) {
 		this.x = x;
 		this.y = y;
 		this.width = width;
