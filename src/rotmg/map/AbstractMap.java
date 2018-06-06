@@ -2,21 +2,22 @@ package rotmg.map;
 
 
 import alde.flash.utils.Dictionary;
+import alde.flash.utils.Vector;
 import flash.display.Sprite;
+import flash.geom.Point;
 import javafx.scene.layout.Background;
 import org.osflash.signals.Signal;
 import rotmg.game.AGameSprite;
 import rotmg.objects.BasicObject;
-import rotmg.objects.GameObject;
 import rotmg.objects.Player;
 import rotmg.objects.Square;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+/**
+ * 100% match
+ */
+public class AbstractMap extends Sprite {
 
-public abstract class AbstractMap extends Sprite {
-
-	public Dictionary<Integer, GameObject> goDict;
+	public Dictionary goDict;
 
 	public AGameSprite gs;
 
@@ -30,9 +31,6 @@ public abstract class AbstractMap extends Sprite {
 
 	public int height;
 
-	//BasicObject dictionary
-	public HashMap<Integer, BasicObject> boDict;
-
 	public int back;
 
 	protected boolean allowPlayerTeleport;
@@ -41,45 +39,69 @@ public abstract class AbstractMap extends Sprite {
 
 	public Sprite map;
 
-	public ArrayList<Square> squareList;
+	public HurtOverlay hurtOverlay = null;
 
-	public HashMap<Integer, Square> squares;
+	public GradientOverlay gradientOverlay = null;
+
+	public MapOverlay mapOverlay = null;
+
+	public PartyOverlay partyOverlay = null;
+
+	public Vector<Square> squareList;
+
+	public Vector<Square> squares;
+
+	public Dictionary boDict;
 
 	public Object merchLookup;
 
+	public Party party = null;
+
 	public Quest quest = null;
 
-	public Signal signalRenderSwitch;
+	public Signal<Boolean> signalRenderSwitch;
 
 	protected boolean wasLastFrameGpu = false;
 
 	public boolean isPetYard = false;
 
-	public abstract void setProps(int width, int height, String name);
+	public AbstractMap() {
+		this.goDict = new Dictionary();
+		this.map = new Sprite();
+		this.squareList = new Vector<Square>();
+		this.squares = new Vector<Square>();
+		this.boDict = new Dictionary();
+		this.merchLookup = new Object();
+		this.signalRenderSwitch = new Signal<Boolean>();
+	}
 
-	public abstract void addObj(BasicObject go, double x, double y);
+	public void setProps(int param1, int param2, String param3, int param4, boolean param5, boolean param6) {
+	}
 
-	public abstract void setGroundTile(double x, double y, int type);
+	public void addObj(BasicObject param1, double param2, double param3) {
+	}
 
-	public abstract Square getSquare(double x, double y);
+	public void setGroundTile(int param1, int param2, int param3) {
+	}
 
-	public abstract flash.geom.Point pSTopW(Number param1, Number param2);
+	public void initialize() {
+	}
 
-	public abstract void removeObj(int id);
+	public void dispose() {
+	}
 
-	public abstract void draw(Camera camera, int param2);
+	public void update(int param1, int param2) {
+	}
 
-	public abstract void setProps(int param1, int param2, String param3, int param4, boolean param5, boolean param6);
+	public Point pSTopW(double param1, double param2) {
+		return null;
+	}
 
-	public abstract void addObj(BasicObject param1, Number param2, Number param3);
+	public void removeObj(int param1) {
+	}
 
-	public abstract void setGroundTile(int param1, int param2, int param3);
-
-	public abstract void initialize();
-
-	public abstract void dispose();
-
-	public abstract void update(int param1, int param2);
+	public void draw(Camera param1, int param2) {
+	}
 
 	public boolean allowPlayerTeleport() {
 		return this.name != Map.NEXUS && this.allowPlayerTeleport;

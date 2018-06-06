@@ -1,13 +1,16 @@
 package rotmg.particles;
 
+import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.GraphicsBitmapFill;
 import flash.display.GraphicsPath;
 import flash.display.IGraphicsData;
-import javafx.scene.Camera;
-import org.bouncycastle.pqc.math.linearalgebra.Matrix;
+import flash.geom.Matrix;
+import rotmg.map.Camera;
 import rotmg.objects.BasicObject;
 import rotmg.util.GraphicsUtil;
+
+import java.util.List;
 
 public class BaseParticle extends BasicObject {
 
@@ -19,7 +22,7 @@ public class BaseParticle extends BasicObject {
 
 	public double spdZ;
 
-	protected double[] vS;
+	protected Vector<Double> vS;
 
 	protected Matrix fillMatrix;
 
@@ -27,8 +30,8 @@ public class BaseParticle extends BasicObject {
 
 	protected GraphicsBitmapFill bitmapFill;
 
-	public function BaseParticle(BitmapData bitmapData) {
-		this.vS = new double[8];
+	public BaseParticle(BitmapData bitmapData) {
+		this.vS = new Vector<>(8);
 		this.fillMatrix = new Matrix();
 		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
 		this.bitmapFill = new GraphicsBitmapFill(null, null, false, false);
@@ -46,18 +49,27 @@ public class BaseParticle extends BasicObject {
 
 	@Override
 	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
-		double halfW = this.bitmapFill.bitmapData.width / 2;
-		double halfH = this.bitmapFill.bitmapData.height / 2;
-		this.vS[6] = this.vS[0] = posS[3] - halfW;
-		this.vS[3] = this.vS[1] = posS[4] - halfH;
-		this.vS[4] = this.vS[2] = posS[3] + halfW;
-		this.vS[7] = this.vS[5] = posS[4] + halfH;
+		double halfW = this.bitmapFill.bitmapData.width() / 2;
+		double halfH = this.bitmapFill.bitmapData.height() / 2;
+
+		this.vS.put(6, posS.get(3) - halfW);
+		this.vS.put(0, posS.get(3) - halfW);
+
+		this.vS.put(3, posS.get(4) - halfH);
+		this.vS.put(1, posS.get(4) - halfH);
+
+		this.vS.put(4, posS.get(3) + halfW);
+		this.vS.put(2, posS.get(3) + halfW);
+
+		this.vS.put(7, posS.get(4) + halfH);
+		this.vS.put(5, posS.get(4) + halfH);
+
 		this.path.data = this.vS;
 		this.fillMatrix.identity();
-		this.fillMatrix.translate(this.vS[0], this.vS_[1]);
+		this.fillMatrix.translate(this.vS.get(0), this.vS.get(1));
 		this.bitmapFill.matrix = this.fillMatrix;
-		graphicsData.add(this.bitmapFill_);
-		graphicsData.add(this.path_);
+		graphicsData.add(this.bitmapFill);
+		graphicsData.add(this.path);
 		graphicsData.add(GraphicsUtil.END_FILL);
 	}
 

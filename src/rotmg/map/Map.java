@@ -79,7 +79,6 @@ public class Map extends AbstractMap {
 		if (boDict.containsKey(id)) {
 			boDict.remove(id);
 		}
-
 	}
 
 	/**

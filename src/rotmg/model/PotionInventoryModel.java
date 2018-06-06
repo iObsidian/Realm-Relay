@@ -1,12 +1,24 @@
 package rotmg.model;
 
 import alde.flash.utils.XML;
+import org.osflash.signals.Signal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class PotionInventoryModel {
+
+	public static PotionInventoryModel instance;
+
+	public static PotionInventoryModel getInstance() {
+		if (instance == null) {
+			instance = new PotionInventoryModel();
+		}
+
+		return instance;
+	}
+
 
 	public static final int HEALTH_POTION_ID = 2594;
 

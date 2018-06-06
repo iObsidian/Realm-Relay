@@ -7,14 +7,7 @@ public class Event {
 
 	static public final String REMOVED_FROM_STAGE = "removedFromStage";
 
-	public Event(String name) {
-
-	}
-
-}
-
-/*
-static public final String ACTIVATE = "activate";
+	static public final String ACTIVATE = "activate";
 
 	static public final String ADDED = "added";
 
@@ -72,4 +65,11 @@ static public final String ACTIVATE = "activate";
 	static public final String HTML_RENDER = "htmlRender";
 	static public final String HTML_DOM_INITIALIZE = "htmlDOMInitialize";
 	static public final String LOCATION_CHANGE = "locationChange";
- */
+
+
+	public Event(String name) {
+
+	}
+
+
+}

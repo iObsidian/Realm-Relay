@@ -9,4 +9,10 @@ public class Graphics {
 
 	public void endFill() {
 	}
+
+	public void clear() {
+	}
+
+	public void beginFill(int param1, double v) {
+	}
 }

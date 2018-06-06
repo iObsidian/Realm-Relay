@@ -73,7 +73,11 @@ public class TextureRedrawer {
 		return false;
 	}
 
-	public static BitmapData resize(BitmapData param1, BitmapData param2, int param3, boolean param4, int param5, int param6, double param7 =5) {
+	public static BitmapData resize(BitmapData param1, BitmapData param2, int param3, boolean param4, int param5, int param6) {
+		return resize(param1, param2, param3, param4, param5, param6, 5);
+	}
+
+	public static BitmapData resize(BitmapData param1, BitmapData param2, int param3, boolean param4, int param5, int param6, double param7) {
 		if (param2 != null && (param5 != 0 || param6 != 0)) {
 			param1 = retexture(param1, param2, param5, param6);
 			param3 = param3 / 5;
@@ -83,7 +87,7 @@ public class TextureRedrawer {
 		Matrix loc10 = new Matrix();
 		loc10.scale(loc8 / param1.width(), loc9 / param1.height());
 		loc10.translate(magic, magic);
-		BitmapData loc11 = new BitmapDataSpy(loc8 + minSize, loc9 + (!!param4 ? magic : 1) + magic, true, 0);
+		BitmapData loc11 = new BitmapDataSpy(loc8 + minSize, loc9 + (param4 ? magic : 1) + magic, true, 0);
 		loc11.draw(param1, loc10);
 		return loc11;
 	}

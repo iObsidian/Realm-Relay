@@ -1,55 +1,42 @@
 package flash.display;
 
+import flash.airglobal.Graphics;
 import flash.events.Event;
+import flash.geom.Rectangle;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-public class Sprite {
+public class Sprite extends DisplayObjectContainer {
 
-	private HashMap<Consumer<Event>, String> listeners;
+	public abstract Graphics getGraphics();
+	public abstract Boolean getButtonMode();
 
-	int startTime;
+	public abstract void setButtonMode(Boolean value);
 
-	public Sprite() {
-		listeners = new HashMap<>();
+	public abstract void startDrag(Boolean lockCenter, Rectangle bounds);
 
-	}
+	public abstract void stopDrag();
 
-	protected int getTimer() {
-		return (int) (System.currentTimeMillis() - startTime);
-	}
+	public abstract void startTouchDrag(int touchPointID, Boolean lockCenter, Rectangle bounds);
 
-	public void addEventListener(String event, Consumer<Event> consumer) {
-		listeners.put(consumer, event);
-	}
+	public abstract void stopTouchDrag(int touchPointID);
 
-	public void removeEventListener(String event, Consumer<Event> consumer) {
-		listeners.remove(consumer, event);
-	}
+	public abstract DisplayObject getDropTarget();
 
-	protected void trigger(String EVENT_TYPE) {
-		for (Consumer<Event> c : listeners.keySet()) {
-			if (listeners.get(c).equals(EVENT_TYPE)) {
-				c.accept(new Event(EVENT_TYPE));
-			}
-		}
-	}
+	private void constructChildren();
 
+	public abstract Sprite getHitArea();
 
-	//TODO link these methods with engine render cycle
+	public abstract void setHitArea(Sprite value);
 
-	void onAddedToStage(Integer param1) {
-		trigger(Event.ADDED_TO_STAGE);
-	}
+	public abstract Boolean getUseHandCursor();
 
-	void onRemovedFromStage(Integer param1) {
-		trigger(Event.REMOVED_FROM_STAGE);
-	}
+	public abstract void setUseHandCursor(Boolean value);
 
-	void onEnterFrame(Integer param1) {
-		trigger(Event.ENTER_FRAME);
-	}
+	public abstract SoundTransform getSoundTransform();
+
+	public abstract void setSoundTransform(SoundTransform sndTransform);
 
 
 }

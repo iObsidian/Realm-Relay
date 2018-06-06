@@ -1,18 +1,20 @@
 package rotmg.particles;
 
+import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import rotmg.objects.EffectProperties;
 import rotmg.objects.GameObject;
 import rotmg.util.AssetLibrary;
+import rotmg.util.TextureRedrawer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ParticleGenerator extends ParticleEffect {
 
-	private List<BaseParticle> particlePool;
+	private Vector<BaseParticle> particlePool;
 
-	private List<BaseParticle> liveParticles;
+	private Vector<BaseParticle> liveParticles;
 
 	private GameObject targetGO;
 
@@ -29,12 +31,12 @@ public class ParticleGenerator extends ParticleEffect {
 	public ParticleGenerator(EffectProperties effectProperties, GameObject go) {
 		super();
 		this.targetGO = go;
-		this.particlePool = new ArrayList<BaseParticle>();
-		this.liveParticles = new ArrayList<BaseParticle>();
+		this.particlePool = new Vector<BaseParticle>();
+		this.liveParticles = new Vector<BaseParticle>();
 		this.effectProps = effectProperties;
-		if (this.effectProps.bitmapFile) {
+		if (this.effectProps.bitmapFile != null) {
 			this.bitmapData = AssetLibrary.getImageFromSet(this.effectProps.bitmapFile, this.effectProps.bitmapIndex);
-			this.bitmapData = TextureRedrawer.redraw(this.bitmapData, this.effectProps.size, true, 0, 0);
+			this.bitmapData = TextureRedrawer.redraw(this.bitmapData, this.effectProps.size, true, 0, false);
 		} else {
 			this.bitmapData = TextureRedrawer.redrawSolidSquare(this.effectProps.color, this.effectProps.size);
 		}
@@ -49,7 +51,6 @@ public class ParticleGenerator extends ParticleEffect {
 	{
 		double tDelta = 0F;
 		BaseParticle newParticle = null;
-		BaseParticle particle = null;
 		double t = time / 1000;
 		tDelta = dt / 1000;
 		if (this.targetGO.map == null) {
@@ -60,24 +61,23 @@ public class ParticleGenerator extends ParticleEffect {
 		z = this.targetGO.z + this.effectProps.zOffset;
 		this.totalTime = this.totalTime + tDelta;
 		double projectedTotal = this.effectProps.rate * this.totalTime;
-		int particlesToGen = projectedTotal - this.generatedParticles;
+		double particlesToGen = projectedTotal - this.generatedParticles;
 		for (int i = 0; i < particlesToGen; i++) {
-			if (this.particlePool.length) {
+			if (this.particlePool.length != 0) {
 				newParticle = this.particlePool.pop();
 			} else {
 				newParticle = new BaseParticle(this.bitmapData);
 			}
-			newParticle.initialize(this.effectProps.life + this.effectProps.lifeVariance * (2 * Math.random() - 1), this.effectProps.speed + this.effectProps.speedVariance * (2 * Math.random() - 1), this.effectProps.speed + this.effectProps.speedVariance * (2 * Math.random() - 1), this.effectProps.rise + this.effectProps.riseVariance * (2 * Math.random() - 1), z_);
-			map.addObj(newParticle, x + this.effectProps.rangeX * (2 * Math.random() - 1), y_ + this.effectProps.rangeY * (2 * Math.random() - 1));
+			newParticle.initialize(this.effectProps.life + this.effectProps.lifeVariance * (2 * Math.random() - 1), this.effectProps.speed + this.effectProps.speedVariance * (2 * Math.random() - 1), this.effectProps.speed + this.effectProps.speedVariance * (2 * Math.random() - 1), this.effectProps.rise + this.effectProps.riseVariance * (2 * Math.random() - 1), (int) z);
+			map.addObj(newParticle, x + this.effectProps.rangeX * (2 * Math.random() - 1), y + this.effectProps.rangeY * (2 * Math.random() - 1));
 			this.liveParticles.add(newParticle);
 		}
 		this.generatedParticles = this.generatedParticles + particlesToGen;
 		for (BaseParticle particle : this.liveParticles) {
 			particle.timeLeft = particle.timeLeft - tDelta;
 			if (particle.timeLeft <= 0) {
-				this.liveParticles.splice(j, 1);
+				this.liveParticles.remove(particle);
 				map.removeObj(particle.objectId);
-				j--;
 				this.particlePool.add(particle);
 			} else {
 				particle.spdZ = particle.spdZ + this.effectProps.riseAcc * tDelta;

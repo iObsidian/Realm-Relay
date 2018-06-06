@@ -10,10 +10,15 @@ import java.util.function.Consumer;
  * AS3 :
  * 		public const selected:Signal = new Signal(CharacterClass);
  * 		select.add(this.method);
+ *
  * 
  * Java : 
  * 		public final Signal<CharacterClass> selected = new Signal();
  * 		select.add(this::method);
+ *
+ *
+ * 	Note :
+ * 	    Instead of using StaticInjector, use SignalName.getInstance();
  * 
  */
 public class Signal<T> {

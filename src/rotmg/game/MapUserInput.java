@@ -1,12 +1,12 @@
 package rotmg.game;
 
-import static java.lang.Float.NaN;
-
-import java.awt.event.MouseEvent;
-
 import alde.flash.utils.XML;
 import flash.events.Event;
+import flash.events.KeyboardEvent;
+import flash.events.MouseEvent;
+import flash.system.Capabilities;
 import javafx.stage.Stage;
+import net.hires.debug.Stats;
 import rotmg.GameSprite;
 import rotmg.MiniMapZoomSignal;
 import rotmg.api.ApplicationSetup;
@@ -15,6 +15,7 @@ import rotmg.constants.GeneralConstants;
 import rotmg.constants.UseType;
 import rotmg.dialogs.CloseDialogsSignal;
 import rotmg.dialogs.OpenDialogSignal;
+import rotmg.game.ui.UIUtils;
 import rotmg.messaging.GameServerConnection;
 import rotmg.model.PotionInventoryModel;
 import rotmg.objects.GameObject;
@@ -23,12 +24,8 @@ import rotmg.objects.Player;
 import rotmg.objects.Square;
 import rotmg.parameters.Parameters;
 import rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
-import rotmg.signals.AddTextLineSignal;
-import rotmg.signals.ExitGameSignal;
-import rotmg.signals.GiftStatusUpdateSignal;
-import rotmg.signals.SetTextBoxVisibilitySignal;
-import rotmg.signals.UseBuyPotionSignal;
-import rotmg.ui.Options;
+import rotmg.signals.*;
+import rotmg.tutorial.Tutorial;
 import rotmg.ui.model.TabStripModel;
 import rotmg.ui.popups.signals.ClosePopupByClassSignal;
 import rotmg.ui.popups.signals.ShowPopupSignal;
@@ -36,11 +33,16 @@ import rotmg.util.KeyCodes;
 import rotmg.util.TextureRedrawer;
 import rotmg.view.components.StatsTabHotKeyInputSignal;
 
+
+
 public class MapUserInput {
+
+	private static Stats stats = new Stats();
 
 	private static final int MOUSE_DOWN_WAIT_PERIOD = 175;
 
 	private static boolean arrowWarning = false;
+
 
 	public GameSprite gs;
 
@@ -96,42 +98,41 @@ public class MapUserInput {
 
 	private ReskinPetFlowStartSignal reskinPetFlowStart;
 
-	public  MapUserInput(GameSprite param1)  {
+	public MapUserInput(GameSprite param1) {
 		super();
 		this.gs = param1;
-		this.gs.addEventListener(Event.ADDED.O.TAGE, this.onAddedToStage);
-		this.gs.addEventListener(Event.REMOVED.ROM.TAGE, this.onRemovedFromStage);
-		Injector loc2 = StaticInjectorContext.getInjector();
-		this.giftStatusUpdateSignal = loc2.getInstance(GiftStatusUpdateSignal);
-		this.reskinPetFlowStart = loc2.getInstance(ReskinPetFlowStartSignal);
-		this.addTextLine = loc2.getInstance(AddTextLineSignal);
-		this.setTextBoxVisibility = loc2.getInstance(SetTextBoxVisibilitySignal);
-		this.miniMapZoom = loc2.getInstance(MiniMapZoomSignal);
-		this.useBuyPotionSignal = loc2.getInstance(UseBuyPotionSignal);
-		this.potionInventoryModel = loc2.getInstance(PotionInventoryModel);
-		this.tabStripModel = loc2.getInstance(TabStripModel);
-		this.layers = loc2.getInstance(Layers);
-		this.statsTabHotKeyInputSignal = loc2.getInstance(StatsTabHotKeyInputSignal);
-		this.exitGame = loc2.getInstance(ExitGameSignal.);
-		this.openDialogSignal = loc2.getInstance(OpenDialogSignal);
-		this.closeDialogSignal = loc2.getInstance(CloseDialogsSignal);
-		this.closePopupByClassSignal = loc2.getInstance(ClosePopupByClassSignal);
-		ApplicationSetup loc3 = loc2.getInstance(ApplicationSetup);
+		this.gs.addEventListener(Event.ADDED_TO_STAGE, this::onAddedToStage);
+		this.gs.addEventListener(Event.REMOVED_FROM_STAGE, this::onRemovedFromStage);
+		this.giftStatusUpdateSignal = GiftStatusUpdateSignal.getInstance();
+		this.reskinPetFlowStart = ReskinPetFlowStartSignal.getInstance();
+		this.addTextLine = AddTextLineSignal.getInstance();
+		this.setTextBoxVisibility = SetTextBoxVisibilitySignal.getInstance();
+		this.miniMapZoom = MiniMapZoomSignal.getInstance();
+		this.useBuyPotionSignal = UseBuyPotionSignal.getInstance();
+		this.potionInventoryModel = PotionInventoryModel.getInstance();
+		this.tabStripModel = TabStripModel.getInstance();
+		this.layers = Layers.getInstance();
+		this.statsTabHotKeyInputSignal = StatsTabHotKeyInputSignal.getInstance();
+		this.exitGame = ExitGameSignal.getInstance();
+		this.openDialogSignal = OpenDialogSignal.getInstance();
+		this.closeDialogSignal = CloseDialogsSignal.getInstance();
+		this.closePopupByClassSignal = ClosePopupByClassSignal.getInstance();
+		ApplicationSetup loc3 = ApplicationSetup.getInstance();
 		this.areFKeysAvailable = loc3.areDeveloperHotkeysEnabled();
-		this.gs.map.signalRenderSwitch.add(this.onRenderSwitch);
+		this.gs.map.signalRenderSwitch.add(this::onRenderSwitch);
 	}
 
 	public void onRenderSwitch(boolean param1) {
 		if (param1) {
-			this.gs.stage.removeEventListener(MouseEvent.MOUSE.OWN, this::onMouseDown);
-			this.gs.stage.removeEventListener(MouseEvent.MOUSE.P, this.onMouseUp);
-			this.gs.map.addEventListener(MouseEvent.MOUSE.OWN, this.onMouseDown);
-			this.gs.map.addEventListener(MouseEvent.MOUSE.P, this.onMouseUp);
+			this.gs.stage.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			this.gs.stage.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			this.gs.map.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			this.gs.map.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
 		} else {
-			this.gs.map.removeEventListener(MouseEvent.MOUSE.OWN, this.onMouseDown);
-			this.gs.map.removeEventListener(MouseEvent.MOUSE.P, this.onMouseUp);
-			this.gs.stage.addEventListener(MouseEvent.MOUSE.OWN, this.onMouseDown);
-			this.gs.stage.addEventListener(MouseEvent.MOUSE.P, this.onMouseUp);
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			this.gs.stage.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			this.gs.stage.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
 		}
 	}
 
@@ -156,20 +157,20 @@ public class MapUserInput {
 
 	private void onAddedToStage(Event param1) {
 		Stage loc2 = this.gs.stage;
-		loc2.addEventListener(Event.ACTIVATE, this.onActivate);
-		loc2.addEventListener(Event.DEACTIVATE, this.onDeactivate);
-		loc2.addEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
-		loc2.addEventListener(KeyboardEvent.KEY_UP, this.onKeyUp);
-		loc2.addEventListener(MouseEvent.MOUSE_WHEEL, this.onMouseWheel);
+		loc2.addEventListener(Event.ACTIVATE, this::onActivate);
+		loc2.addEventListener(Event.DEACTIVATE, this::onDeactivate);
+		loc2.addEventListener(KeyboardEvent.KEY_DOWN, this::onKeyDown);
+		loc2.addEventListener(KeyboardEvent.KEY_UP, this::onKeyUp);
+		loc2.addEventListener(MouseEvent.MOUSE_WHEEL, this::onMouseWheel);
 		if (Parameters.isGpuRender()) {
-			loc2.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
-			loc2.addEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
+			loc2.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			loc2.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
 		} else {
-			this.gs.map.addEventListener(MouseEvent.MOUSE.OWN, this.onMouseDown);
-			this.gs.map.addEventListener(MouseEvent.MOUSE.P, this.onMouseUp);
+			this.gs.map.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			this.gs.map.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
 		}
-		loc2.addEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-		loc2.addEventListener(MouseEvent.RIGHT_CLICK, this.disableRightClick);
+		loc2.addEventListener(Event.ENTER_FRAME, this::onEnterFrame);
+		loc2.addEventListener(MouseEvent.RIGHT_CLICK, this::disableRightClick);
 	}
 
 	public void disableRightClick(MouseEvent param1) {
@@ -177,20 +178,20 @@ public class MapUserInput {
 
 	private void onRemovedFromStage(Event param1) {
 		Stage loc2 = this.gs.stage;
-		loc2.removeEventListener(Event.ACTIVATE, this.onActivate);
-		loc2.removeEventListener(Event.DEACTIVATE, this.onDeactivate);
-		loc2.removeEventListener(KeyboardEvent.KEY_DOWN, this.onKeyDown);
-		loc2.removeEventListener(KeyboardEvent.KEY_UP, this.onKeyUp);
-		loc2.removeEventListener(MouseEvent.MOUSE_WHEEL, this.onMouseWheel);
+		loc2.removeEventListener(Event.ACTIVATE, this::onActivate);
+		loc2.removeEventListener(Event.DEACTIVATE, this::onDeactivate);
+		loc2.removeEventListener(KeyboardEvent.KEY_DOWN, this::onKeyDown);
+		loc2.removeEventListener(KeyboardEvent.KEY_UP, this::onKeyUp);
+		loc2.removeEventListener(MouseEvent.MOUSE_WHEEL, this::onMouseWheel);
 		if (Parameters.isGpuRender()) {
-			loc2.removeEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
-			loc2.removeEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
+			loc2.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			loc2.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
 		} else {
-			this.gs.map.removeEventListener(MouseEvent.MOUSE.OWN, this.onMouseDown);
-			this.gs.map.removeEventListener(MouseEvent.MOUSE.P, this.onMouseUp);
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
 		}
-		loc2.removeEventListener(Event.ENTER_FRAME, this.onEnterFrame);
-		loc2.removeEventListener(MouseEvent.RIGHT_CLICK, this.disableRightClick);
+		loc2.removeEventListener(Event.ENTER_FRAME, this::onEnterFrame);
+		loc2.removeEventListener(MouseEvent.RIGHT_CLICK, this::disableRightClick);
 	}
 
 	private void onActivate(Event param1) {
@@ -200,25 +201,25 @@ public class MapUserInput {
 		this.clearInput();
 	}
 
-	public void  onMouseDown(MouseEvent param1)  {
-		double loc3 = NaN;
+	public void onMouseDown(MouseEvent param1) {
+		double loc3 = 0;
 		int loc4 = 0;
 		XML loc5 = null;
-		double loc6 = NaN;
-		double loc7 = NaN;
+		double loc6 = 0;
+		double loc7 = 0;
 		Player loc2 = this.gs.map.player;
 		if (loc2 == null) {
 			return;
 		}
-		if (!this.enablePlayerInput_) {
+		if (!this.enablePlayerInput) {
 			return;
 		}
 		if (param1.shiftKey) {
-			loc4 = loc2.equipment_[1];
+			loc4 = loc2.equipment[1];
 			if (loc4 == -1) {
 				return;
 			}
-			loc5 = ObjectLibrary.xmlLibrary_[loc4];
+			loc5 = ObjectLibrary.xmlLibrary[loc4];
 			if (loc5 == null || loc5.hasOwnProperty("EndMpCost")) {
 				return;
 			}
@@ -230,7 +231,7 @@ public class MapUserInput {
 				loc7 = this.gs.map.mouseY;
 			}
 			if (Parameters.isGpuRender()) {
-				if (param1.currentTarget == param1.target || param1.target == this.gs.map || param1.target == this.gs. {
+				if (param1.currentTarget == param1.target || param1.target == this.gs.map || param1.target == this.gs) {
 					loc2.useAltWeapon(loc6, loc7, UseType.START_USE);
 				}
 			} else {
@@ -247,7 +248,7 @@ public class MapUserInput {
 		} else {
 			loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
 		}
-		doneAction(this.gs_, Tutorial.ATTACK_ACTION);
+		doneAction(this.gs, Tutorial.ATTACK_ACTION);
 		if (loc2.isUnstable()) {
 			loc2.attemptAttackAngle(Math.random() * 360);
 		} else {
@@ -256,9 +257,9 @@ public class MapUserInput {
 		this.mouseDown = true;
 	}
 
-	public void  onMouseUp(MouseEvent param1)  {
+	public void onMouseUp(MouseEvent param1) {
 		this.mouseDown = false;
-		var loc2:Player = this.gs.map.player.
+		Player loc2 = this.gs.map.player;
 		if (loc2 == null) {
 			return;
 		}
@@ -273,12 +274,12 @@ public class MapUserInput {
 		}
 	}
 
-	private void  onEnterFrame(Event param1)  {
+	private void onEnterFrame(Event param1) {
 		Player loc2 = null;
-		double loc3 = NaN;
+		double loc3 = 0;
 		doneAction(this.gs, Tutorial.UPDATE_ACTION);
-		if (this.enablePlayerInput && (this.mouseDown || this.autofire_)) {
-			loc2 = this.gs.map.player.
+		if (this.enablePlayerInput && (this.mouseDown || this.autofire)) {
+			loc2 = this.gs.map.player;
 			if (loc2 != null) {
 				if (loc2.isUnstable()) {
 					loc2.attemptAttackAngle(Math.random() * 360);
@@ -290,13 +291,13 @@ public class MapUserInput {
 		}
 	}
 
-	private void  onKeyDown(KeyboardEvent param1)  {
+	private void onKeyDown(KeyboardEvent param1) {
 		CloseAllPopupsSignal loc4 = null;
 		AddTextLineSignal loc5 = null;
 		ChatMessage loc6 = null;
 		GameObject loc7 = null;
-		double loc8 = NaN;
-		double loc9 = NaN;
+		double loc8 = 0;
+		double loc9 = 0;
 		boolean loc10 = false;
 		ShowPopupSignal loc11 = null;
 		FriendModel loc12 = null;
@@ -304,9 +305,9 @@ public class MapUserInput {
 		Square loc14 = null;
 		Stage loc2 = this.gs.stage;
 		this.currentString = this.currentString + String.fromCharCode(param1.keyCode).toLowerCase();
-		if (this.currentString == UIUtils.EXPERIMENTAL_MENU_PASSWORD.slice(0, this.currentString.length)) {
-			if (this.currentString.length == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length) {
-				loc5 = StaticInjectorContext.getInjector().getInstance(AddTextLineSignal);
+		if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
+			if (this.currentString.length() == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length()) {
+				loc5 = AddTextLineSignal.getInstance();
 				loc6 = new ChatMessage();
 				loc6.name = Parameters.SERVER_CHAT_NAME;
 				this.currentString = "";
@@ -339,36 +340,36 @@ public class MapUserInput {
 				}
 				break;
 		}
-		var loc3:Player = this.gs.map.player.
+		Player loc3 = this.gs.map.player;
 		switch (param1.keyCode) {
 			case Parameters.data.moveUp:
-				doneAction(this.gs_, Tutorial.MOVE_FORWARD_ACTION);
+				doneAction(this.gs, Tutorial.MOVE_FORWARD_ACTION);
 				this.moveUp = true;
 				break;
 			case Parameters.data.moveDown:
-				doneAction(this.gs_, Tutorial.MOVE_BACKWARD_ACTION);
+				doneAction(this.gs, Tutorial.MOVE_BACKWARD_ACTION);
 				this.moveDown = true;
 				break;
 			case Parameters.data.moveLeft:
-				doneAction(this.gs_, Tutorial.MOVE_LEFT_ACTION);
+				doneAction(this.gs, Tutorial.MOVE_LEFT_ACTION);
 				this.moveLeft = true;
 				break;
 			case Parameters.data.moveRight:
-				doneAction(this.gs_, Tutorial.MOVE_RIGHT_ACTION);
+				doneAction(this.gs, Tutorial.MOVE_RIGHT_ACTION);
 				this.moveRight = true;
 				break;
 			case Parameters.data.rotateLeft:
 				if (!Parameters.data.allowRotation) {
 					break;
 				}
-				doneAction(this.gs_, Tutorial.ROTATE_LEFT_ACTION);
+				doneAction(this.gs, Tutorial.ROTATE_LEFT_ACTION);
 				this.rotateLeft = true;
 				break;
 			case Parameters.data.rotateRight:
 				if (!Parameters.data.allowRotation) {
 					break;
 				}
-				doneAction(this.gs_, Tutorial.ROTATE_RIGHT_ACTION);
+				doneAction(this.gs, Tutorial.ROTATE_RIGHT_ACTION);
 				this.rotateRight = true;
 				break;
 			case Parameters.data.resetToDefaultCameraAngle:
@@ -376,11 +377,11 @@ public class MapUserInput {
 				Parameters.save();
 				break;
 			case Parameters.data.useSpecial:
-				loc7 = this.gs.map.player.
+				loc7 = this.gs.map.player;
 				if (loc7 == null) {
 					break;
 				}
-				if (!this.specialKeyDown_) {
+				if (!this.specialKeyDown) {
 					if (loc3.isUnstable()) {
 						loc8 = Math.random() * 600 - 300;
 						loc9 = Math.random() * 600 - 325;
@@ -395,7 +396,7 @@ public class MapUserInput {
 				}
 				break;
 			case Parameters.data.autofireToggle:
-				this.gs.map.player.isShooting = this.autofire = !this.autofire.
+				this.gs.map.player.isShooting = this.autofire = !this.autofire;
 				break;
 			case Parameters.data.toggleHPBar:
 				Parameters.data.HPBar = Parameters.data.HPBar != 0 ? 0 : 1;
@@ -481,7 +482,7 @@ public class MapUserInput {
 				loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
 				loc4.dispatch();
 				this.clearInput();
-				this.layers.overlay.addChild(new Options(this.gs_));
+				this.layers.overlay.addChild(new Options(this.gs));
 				break;
 			case Parameters.data.toggleCentering:
 				Parameters.data.centerOnPlayer = !Parameters.data.centerOnPlayer;
@@ -511,7 +512,7 @@ public class MapUserInput {
 					this.toggleScreenShotMode();
 					break;
 				case KeyCodes.F3:
-					Parameters.screenShotSlimMode = !Parameters.screenShotSlimMode_;
+					Parameters.screenShotSlimMode = !Parameters.screenShotSlimMode;
 					break;
 				case KeyCodes.F4:
 					this.gs.map.mapOverlay.visible = !this.gs.map.mapOverlay.visible;
@@ -526,14 +527,15 @@ public class MapUserInput {
 					this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Projectile Color  Type;
 					break;
 				case KeyCodes.F7:
-					for(loc14 in this.gs.map.squares. {
-					if (loc14 != null) {
-						loc14.faces.length = 0;
+					for (loc14:
+					     this.gs.map.squares) {
+						if (loc14 != null) {
+							loc14.faces.length = 0;
+						}
 					}
-				}
-				Parameters.blendType = (Parameters.blendType + 1) % 2;
-				this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend  type;
-				break;
+					Parameters.blendType = (Parameters.blendType + 1) % 2;
+					this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend  type;
+					break;
 				case KeyCodes.F8:
 					Parameters.data.surveyDate = 0;
 					Parameters.data.needsSurvey = true;
@@ -541,54 +543,54 @@ public class MapUserInput {
 					Parameters.data.surveyGroup = "testing";
 					break;
 				case KeyCodes.F9:
-					Parameters.drawProj = !Parameters.drawProj_;
+					Parameters.drawProj = !Parameters.drawProj;
 			}
 		}
 		this.setPlayerMovement();
 	}
 
 	private void onKeyUp(KeyboardEvent param1) {
-		double loc2 = NaN;
-		double loc3 = NaN;
+		double loc2 = 0;
+		double loc3 = 0;
 		switch (param1.keyCode) {
-		case Parameters.data.moveUp:
-			this.moveUp = false;
-			break;
-		case Parameters.data.moveDown:
-			this.moveDown = false;
-			break;
-		case Parameters.data.moveLeft:
-			this.moveLeft = false;
-			break;
-		case Parameters.data.moveRight:
-			this.moveRight = false;
-			break;
-		case Parameters.data.rotateLeft:
-			this.rotateLeft = false;
-			break;
-		case Parameters.data.rotateRight:
-			this.rotateRight = false;
-			break;
-		case Parameters.data.useSpecial:
-			if (this.specialKeyDown_) {
-				this.specialKeyDown = false;
-				if (this.gs.map.player.isUnstable()) {
-					loc2 = Math.random() * 600 - 300;
-					loc3 = Math.random() * 600 - 325;
-				} else {
-					loc2 = this.gs.map.mouseX;
-					loc3 = this.gs.map.mouseY;
+			case Parameters.data.moveUp:
+				this.moveUp = false;
+				break;
+			case Parameters.data.moveDown:
+				this.moveDown = false;
+				break;
+			case Parameters.data.moveLeft:
+				this.moveLeft = false;
+				break;
+			case Parameters.data.moveRight:
+				this.moveRight = false;
+				break;
+			case Parameters.data.rotateLeft:
+				this.rotateLeft = false;
+				break;
+			case Parameters.data.rotateRight:
+				this.rotateRight = false;
+				break;
+			case Parameters.data.useSpecial:
+				if (this.specialKeyDown) {
+					this.specialKeyDown = false;
+					if (this.gs.map.player.isUnstable()) {
+						loc2 = Math.random() * 600 - 300;
+						loc3 = Math.random() * 600 - 325;
+					} else {
+						loc2 = this.gs.map.mouseX;
+						loc3 = this.gs.map.mouseY;
+					}
+					this.gs.map.player.useAltWeapon(this.gs.map.mouseX, this.gs.map.mouseY, UseType.END_USE);
 				}
-				this.gs.map.player.useAltWeapon(this.gs.map.mouseX, this.gs.map.mouseY, UseType.END.SE);
-			}
 		}
 		this.setPlayerMovement();
 	}
 
-	private void  setPlayerMovement()  {
-		var loc1:Player = this.gs.map.player.
+	private void setPlayerMovement() {
+		Player loc1 = this.gs.map.player;
 		if (loc1 != null) {
-			if (this.enablePlayerInput_) {
+			if (this.enablePlayerInput) {
 				loc1.setRelativeMovement((!!this.rotateRight ? 1 : 0) - (!!this.rotateLeft ? 1 : 0), (!!this.moveRight ? 1 : 0) - (!!this.moveLeft ? 1 : 0), (!!this.moveDown ? 1 : 0) - (!!this.moveUp ? 1 : 0));
 			} else {
 				loc1.setRelativeMovement(0, 0, 0);
@@ -597,28 +599,28 @@ public class MapUserInput {
 	}
 
 	private void useItem(int param1) {
-		if (this.tabStripModel.currentSelection == TabStripModel.BACKPACK) {
+		if (this.tabStripModel.currentSelection.equals(TabStripModel.BACKPACK)) {
 			param1 = param1 + GeneralConstants.NUM_INVENTORY_SLOTS;
 		}
-		GameServerConnection.instance.useItem.ew(this.gs.map.player.param1);
+		GameServerConnection.instance.useItem_new(this.gs.map.player, param1);
 	}
 
-	private void  togglePerformanceStats()  {
-		if (this.gs.contains(stats.) {
-			this.gs.removeChild(stats.;
-			this.gs.removeChild(this.gs.gsc.jitterWatcher.;
+	private void togglePerformanceStats() {
+		if (this.gs.contains(stats)) {
+			this.gs.removeChild(stats);
+			this.gs.removeChild(this.gs.gsc.jitterWatcher);
 			this.gs.gsc.disableJitterWatcher();
 		} else {
-			this.gs.addChild(stats.;
+			this.gs.addChild(stats);
 			this.gs.gsc.enableJitterWatcher();
 			this.gs.gsc.jitterWatcher.y = stats.height;
-			this.gs.addChild(this.gs.gsc.jitterWatcher.;
+			this.gs.addChild(this.gs.gsc.jitterWatcher);
 		}
 	}
 
 	private void toggleScreenShotMode() {
-		Parameters.screenShotMode = !Parameters.screenShotMode_;
-		if (Parameters.screenShotMode_) {
+		Parameters.screenShotMode = !Parameters.screenShotMode;
+		if (Parameters.screenShotMode) {
 			this.gs.hudView.visible = false;
 			this.setTextBoxVisibility.dispatch(false);
 		} else {
@@ -626,5 +628,5 @@ public class MapUserInput {
 			this.setTextBoxVisibility.dispatch(true);
 		}
 	}
-
+}
 }
