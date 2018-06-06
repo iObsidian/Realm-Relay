@@ -1,146 +1,145 @@
 package flash.display;
 
 import com.sun.prism.ps.Shader;
+import flash.events.EventDispatcher;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.geom.Vector3D;
-import javafx.event.EventDispatcher;
 import javafx.stage.Stage;
 
-public interface DisplayObject extends EventDispatcher {
+public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
-	public DisplayObject getRoot();
+	native public DisplayObject getRoot();
 
-	public Stage getStage();
+	native public Stage getStage();
 
-	public String getName();
+	native public String getName();
 
-	public void setName(String value);
+	native public void setName(String value);
 
-	public DisplayObjectContainer getParent();
+	native public DisplayObjectContainer getParent();
 
-	public DisplayObject getMask();
+	native public DisplayObject getMask();
 
-	public void setMask(DisplayObject value);
+	native public void setMask(DisplayObject value);
 
-	public Boolean getVisible();
+	native public Boolean getVisible();
 
-	public void setVisible(Boolean value);
+	native public void setVisible(Boolean value);
 
-	public Number getX();
+	native public Number getX();
 
-	public void setX(Number value);
+	native public void setX(Number value);
 
-	public Number getY();
+	native public Number getY();
 
-	public void setY(Number value);
+	native public void setY(Number value);
 
-	public Number getZ();
+	native public Number getZ();
 
-	public void setZ(Number value);
+	native public void setZ(Number value);
 
-	public Number getScaleX();
+	native public Number getScaleX();
 
-	public void setScaleX(Number value);
+	native public void setScaleX(Number value);
 
-	public Number getScaleY();
+	native public Number getScaleY();
 
-	public void setScaleY(Number value);
+	native public void setScaleY(Number value);
 
-	public Number getScaleZ();
+	native public Number getScaleZ();
 
-	public void setScaleZ(Number value);
+	native public void setScaleZ(Number value);
 
-	public Number getMouseX();
+	native public Number getMouseX();
 
-	public Number getMouseY();
+	native public Number getMouseY();
 
-	public Number getRotation();
+	native public Number getRotation();
 
-	public void setRotation(Number value);
+	native public void setRotation(Number value);
 
-	public Number getRotationX();
+	native public Number getRotationX();
 
-	public void setRotationX(Number value);
+	native public void setRotationX(Number value);
 
-	public Number getRotationY();
+	native public Number getRotationY();
 
-	public void setRotationY(Number value);
+	native public void setRotationY(Number value);
 
-	public Number getRotationZ();
+	native public Number getRotationZ();
 
-	public void setRotationZ(Number value);
+	native public void setRotationZ(Number value);
 
-	public Number getAlpha();
+	native public Number getAlpha();
 
-	public void setAlpha(Number value);
+	native public void setAlpha(Number value);
 
-	public Number getWidth();
+	native public Number getWidth();
 
-	public void setWidth(Number value);
+	native public void setWidth(Number value);
 
-	public Number getHeight();
+	native public Number getHeight();
 
-	public void setHeight(Number value);
+	native public void setHeight(Number value);
 
-	public Boolean getCacheAsBitmap();
+	native public Boolean getCacheAsBitmap();
 
-	public void setCacheAsBitmap(Boolean value);
+	native public void setCacheAsBitmap(Boolean value);
 
-	public Object getOpaqueBackground();
+	native public Object getOpaqueBackground();
 
-	public void setOpaqueBackground(Object value);
+	native public void setOpaqueBackground(Object value);
 
-	public Rectangle getScrollRect();
+	native public Rectangle getScrollRect();
 
-	public void setScrollRect(Rectangle value);
+	native public void setScrollRect(Rectangle value);
 
-	public Array getFilters();
+	native public Array getFilters();
 
-	public void setFilters(Array value);
+	native public void setFilters(Array value);
 
-	public String getBlendMode();
+	native public String getBlendMode();
 
-	public void setBlendMode(String value);
+	native public void setBlendMode(String value);
 
-	public Transform getTransform();
+	native public Transform getTransform();
 
-	public void setTransform(Transform value);
+	native public void setTransform(Transform value);
 
-	public Rectangle getScale9Grid();
+	native public Rectangle getScale9Grid();
 
-	public void setScale9Grid(Rectangle innerRectangle);
+	native public void setScale9Grid(Rectangle innerRectangle);
 
-	public Point globalToLocal(Point point);
+	native public Point globalToLocal(Point point);
 
-	public Point localToGlobal(Point point);
+	native public Point localToGlobal(Point point);
 
-	public Rectangle getBounds(DisplayObject targetCoordinateSpace);
+	native public Rectangle getBounds(DisplayObject targetCoordinateSpace);
 
-	public Rectangle getRect(DisplayObject targetCoordinateSpace);
+	native public Rectangle getRect(DisplayObject targetCoordinateSpace);
 
-	public LoaderInfo getLoaderInfo();
+	native public LoaderInfo getLoaderInfo();
 
-	public Boolean hitTestObject(DisplayObject obj);
+	native public Boolean hitTestObject(DisplayObject obj);
 
-	public function hitTestPoint(Number x, Number y, Boolean shapeFlag);
+	native public function hitTestPoint(Number x, Number y, Boolean shapeFlag);
 
-	private Boolean _hitTest(Boolean use_xy, Number x, Number y, Boolean useShape, DisplayObject hitTestObject);
+	native private Boolean _hitTest(Boolean use_xy, Number x, Number y, Boolean useShape, DisplayObject hitTestObject);
 
-	public AccessibilityProperties getAccessibilityProperties();
+	native public AccessibilityProperties getAccessibilityProperties();
 
-	public void setAccessibilityProperties(AccessibilityProperties value);
+	native public void setAccessibilityProperties(AccessibilityProperties value);
 
-	public Vector3D globalToLocal3D(flash.geom.Point point);
+	native public Vector3D globalToLocal3D(flash.geom.Point point);
 
-	public Point local3DToGlobal(flash.geom.Vector3D point3d);
+	native public Point local3DToGlobal(flash.geom.Vector3D point3d);
 
-	public void setBlendShader(Shader value);
+	native public void setBlendShader(Shader value);
 
-	public Matrix getCacheAsBitmapMatrix();
+	native public Matrix getCacheAsBitmapMatrix();
 
-	public void setCacheAsBitmapMatrix(Matrix value);
-
+	native public void setCacheAsBitmapMatrix(Matrix value);
 
 }

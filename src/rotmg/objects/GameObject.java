@@ -8,6 +8,7 @@ import flash.geom.Point;
 import flash.geom.Vector3D;
 import rotmg.map.Camera;
 import rotmg.map.Map;
+import rotmg.map.mapoverlay.CharacterStatusText;
 import rotmg.messaging.data.WorldPosData;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.objects.animation.Animations;
@@ -17,6 +18,7 @@ import rotmg.particles.ParticleEffect;
 import rotmg.sound.SoundEffectLibrary;
 import rotmg.ui.SimpleText;
 import rotmg.util.*;
+import rotmg.util.redrawers.GlowRedrawer;
 import spark.filter.GlowFilter;
 
 import java.util.HashMap;
@@ -714,7 +716,7 @@ public class GameObject extends BasicObject {
 			portraitTexture = this.props.portrait != null ? this.props.portrait.getTexture() : this.texture;
 			size = 4 / portraitTexture.width() * 100;
 			this.portrait = TextureRedrawer.resize(portraitTexture, this.mask, size, true, this.tex1Id, this.tex2Id);
-			this.portrait = TextureRedrawer.outlineGlow(this.portrait, 0, 0);
+			this.portrait = GlowRedrawer.outlineGlow(this.portrait, 0, 0);
 		}
 		return this.portrait;
 	}
@@ -740,9 +742,9 @@ public class GameObject extends BasicObject {
 			return;
 		}
 		/**if (this.obj3D != null) {
-			this.obj3D.draw(graphicsData, camera, this.props.color, texture);
-			return;
-		}*/
+		 this.obj3D.draw(graphicsData, camera, this.props.color, texture);
+		 return;
+		 }*/
 		int w = texture.width();
 		int h = texture.height();
 		int h2 = square.sink + this.sinkLevel;
@@ -807,7 +809,7 @@ public class GameObject extends BasicObject {
 		}
 	}
 
-	public void  drawShadow(Vector<IGraphicsData> param1, Camera param2, int param3)  {
+	public void drawShadow(Vector<IGraphicsData> param1, Camera param2, int param3) {
 		if (this.shadowGradientFill == null) {
 
 			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL, new Vector<Integer>(this.props.shadowColor, this.props.shadowColor), new Vector<Double>(0.5, 0.0), null, new Matrix());

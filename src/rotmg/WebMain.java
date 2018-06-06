@@ -1,12 +1,15 @@
 package rotmg;
 
 import flash.display.Sprite;
+import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.system.Capabilities;
 import javafx.stage.Stage;
 import jdk.jfr.internal.LogLevel;
+import robotlegs.bender.framework.api.IContext;
 import rotmg.game.ui.UIUtils;
 import rotmg.parameters.Parameters;
+import rotmg.startup.control.StartupSignal;
 import rotmg.util.AssetLoader;
 
 public class WebMain extends Sprite {
@@ -37,7 +40,8 @@ public class WebMain extends Sprite {
 		this.createContext();
 		new AssetLoader().load();
 		stage.scaleMode = StageScaleMode.EXACT_FIT;
-		this.context.injector.getInstance(StartupSignal).dispatch();
+		StartupSignal.getInstance().dispatch();
+
 		this.configureForAirIfDesktopPlayer();
 		UIUtils.toggleQuality(Parameters.data.uiQuality);
 	}

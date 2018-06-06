@@ -9,34 +9,34 @@ import java.util.function.Consumer;
 
 public class Sprite extends DisplayObjectContainer {
 
-	public abstract Graphics getGraphics();
-	public abstract Boolean getButtonMode();
+	native public Graphics getGraphics();
+	native public Boolean getButtonMode();
 
-	public abstract void setButtonMode(Boolean value);
+	native public void setButtonMode(Boolean value);
 
-	public abstract void startDrag(Boolean lockCenter, Rectangle bounds);
+	native public void startDrag(Boolean lockCenter, Rectangle bounds);
 
-	public abstract void stopDrag();
+	native public void stopDrag();
 
-	public abstract void startTouchDrag(int touchPointID, Boolean lockCenter, Rectangle bounds);
+	native public void startTouchDrag(int touchPointID, Boolean lockCenter, Rectangle bounds);
 
-	public abstract void stopTouchDrag(int touchPointID);
+	native public void stopTouchDrag(int touchPointID);
 
-	public abstract DisplayObject getDropTarget();
+	native public DisplayObject getDropTarget();
 
 	private void constructChildren();
 
-	public abstract Sprite getHitArea();
+	native public Sprite getHitArea();
 
-	public abstract void setHitArea(Sprite value);
+	native public void setHitArea(Sprite value);
 
-	public abstract Boolean getUseHandCursor();
+	native public Boolean getUseHandCursor();
 
-	public abstract void setUseHandCursor(Boolean value);
+	native public void setUseHandCursor(Boolean value);
 
-	public abstract SoundTransform getSoundTransform();
+	native public SoundTransform getSoundTransform();
 
-	public abstract void setSoundTransform(SoundTransform sndTransform);
+	native public void setSoundTransform(SoundTransform sndTransform);
 
 
 }

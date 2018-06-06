@@ -7,6 +7,7 @@ import flash.display.BitmapData;
 import flash.display.GradientType;
 import flash.geom.Matrix;
 import javafx.scene.effect.BlendMode;
+import rotmg.parameters.Parameters;
 import rotmg.util.PointUtil;
 import rotmg.util.TextureRedrawer;
 import spark.filter.GlowFilter;
@@ -29,14 +30,18 @@ public class GlowRedrawer {
 		super();
 	}
 
-	public static BitmapData outlineGlow(BitmapData param1, int param2, double param3 =1.4, boolean param4 =false, int param5 =0) {
+	public static BitmapData outlineGlow(BitmapData param1, int param2) {
+		return outlineGlow(param1, param2, 1.4, false, 0);
+	}
+
+	public static BitmapData outlineGlow(BitmapData param1, int param2, double param3, boolean param4, int param5) {
 		String loc6 = getHash(param2, param3, param5);
 		if (param4 && isCached(param1, loc6)) {
-			return glowHashes[param1][loc6];
+			return glowHashes.get(param1).get(loc6);
 		}
 		BitmapData loc7 = param1.clone();
 		tempMatrix.identity();
-		tempMatrix.scale(param1.width / 256, param1.height / 256);
+		tempMatrix.scale(param1.width() / 256, param1.height() / 256);
 		loc7.draw(gradient, tempMatrix, null, BlendMode.SUBTRACT);
 		Bitmap loc8 = new Bitmap(param1);
 		loc7.draw(loc8, null, null, BlendMode.ALPHA);
