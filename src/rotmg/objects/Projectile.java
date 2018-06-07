@@ -10,9 +10,12 @@ import rotmg.engine3d.Point3D;
 import rotmg.map.Camera;
 import rotmg.map.Map;
 import rotmg.objects.particles.HitEffect;
+import rotmg.objects.particles.SparkParticle;
 import rotmg.parameters.Parameters;
 import rotmg.tutorial.Tutorial;
 import rotmg.util.*;
+
+import static rotmg.tutorial.doneAction.doneAction;
 
 /**
  * This class is about 10% done. It requires a lot of graphics stuff.
@@ -70,7 +73,7 @@ public class Projectile extends BasicObject {
 		this.p = new Point3D(100);
 		this.staticPoint = new Point();
 		this.staticVector3D = new Vector3D();
-		this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[0, 0], [0.5, 0],null, new Matrix());
+		this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL, new Vector<Integer>(0, 0), new Vector<Double>(0.5, 0.0), null, new Matrix());
 		this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<Double>());
 	}
 
@@ -88,7 +91,7 @@ public class Projectile extends BasicObject {
 		objBullIdToObjId.remove(param2 << 24 | param1);
 	}
 
-	public static void dispose() {
+	public void dispose() {
 		objBullIdToObjId = new Dictionary();
 	}
 
@@ -371,7 +374,7 @@ public class Projectile extends BasicObject {
 	}
 
 	private double getDirectionAngle(double param1) {
-		int loc2 = param1 - this.startTime;
+		int loc2 = (int) (param1 - this.startTime);
 		Point loc3 = new Point();
 		this.positionAt(loc2 + 16, loc3);
 		double loc4 = loc3.x - x;
@@ -386,11 +389,10 @@ public class Projectile extends BasicObject {
 		double loc4 = this.props.shadowSize / 400;
 		double loc5 = 30 * loc4;
 		double loc6 = 15 * loc4;
-		this.shadowGradientFill.matrix.createGradientBox(loc5 * 2, loc6 * 2, 0, posS[0] - loc5, posS[1] - loc6);
+		this.shadowGradientFill.matrix.createGradientBox(loc5 * 2, loc6 * 2, 0, posS.get(0) - loc5, posS.get(1) - loc6);
 		param1.add(this.shadowGradientFill);
 		this.shadowPath.data.length = 0;
-		Vector<Double>
-		(this.shadowPath.data).add(posS[0] - loc5, posS[1] - loc6, posS[0] + loc5, posS[1] - loc6, posS[0] + loc5, posS[1] + loc6, posS[0] - loc5, posS[1] + loc6);
+		this.shadowPath.data.add(posS.get(0) - loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) + loc6, posS.get(0) - loc5, posS.get(1) + loc6);
 		param1.add(this.shadowPath);
 		param1.add(GraphicsUtil.END_FILL);
 	}
