@@ -1,13 +1,11 @@
 package rotmg;
 
 import flash.display.Sprite;
+import flash.display.Stage;
 import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.system.Capabilities;
-import javafx.stage.Stage;
-import jdk.jfr.internal.LogLevel;
 import robotlegs.bender.framework.api.IContext;
-import rotmg.game.ui.UIUtils;
 import rotmg.parameters.Parameters;
 import rotmg.startup.control.StartupSignal;
 import rotmg.util.AssetLoader;
@@ -22,7 +20,7 @@ public class WebMain extends Sprite {
 
 	public WebMain() {
 		super();
-		if (stage) {
+		if (stage != null) {
 			this.setup();
 		} else {
 			addEventListener(Event.ADDED_TO_STAGE, this::onAddedToStage);
@@ -43,7 +41,7 @@ public class WebMain extends Sprite {
 		StartupSignal.getInstance().dispatch();
 
 		this.configureForAirIfDesktopPlayer();
-		UIUtils.toggleQuality(Parameters.data.uiQuality);
+		//UIUtils.toggleQuality(Parameters.data.uiQuality);
 	}
 
 	private void hackParameters() {
@@ -51,20 +49,18 @@ public class WebMain extends Sprite {
 	}
 
 	private void createContext() {
-		this.context = new StaticInjectorContext();
+		/*this.context = new StaticInjectorContext();
 		this.context.injector.map(LoaderInfo).toValue(root.stage.root.loaderInfo);
 		StageProxy loc1 = new StageProxy(this);
 		this.context.injector.map(StageProxy).toValue(loc1);
 		this.context.extend(MVCSBundle).extend(SignalCommandMapExtension).configure(BuildConfig).configure(StartupConfig).configure(NetConfig).configure(AssetsConfig).configure(DialogsConfig).configure(EnvironmentConfig).configure(ApplicationConfig).configure(LanguageConfig).configure(TextConfig).configure(AppEngineConfig).configure(AccountConfig).configure(ErrorConfig).configure(CoreConfig).configure(ApplicationSpecificConfig).configure(DeathConfig).configure(CharactersConfig).configure(ServersConfig).configure(GameConfig).configure(UIConfig).configure(MiniMapConfig).configure(LegendsConfig).configure(NewsConfig).configure(FameConfig).configure(TooltipsConfig).configure(PromotionsConfig).configure(ProTipConfig).configure(MapLoadingConfig).configure(ClassesConfig).configure(PackageConfig).configure(PetsConfig).configure(DailyLoginConfig).configure(Stage3DConfig).configure(ArenaConfig).configure(ExternalConfig).configure(MysteryBoxConfig).configure(FortuneConfig).configure(DailyQuestsConfig).configure(FriendsConfig).configure(this);
-		this.context.logLevel = LogLevel.DEBUG;
+		this.context.logLevel = LogLevel.DEBUG;**/
 	}
 
 	private void configureForAirIfDesktopPlayer() {
 		if (Capabilities.playerType.equals("Desktop")) {
-			Parameters.data.fullscreenMode = false;
+			//Parameters.data.fullscreenMode = false;
 			Parameters.save();
 		}
 	}
-
-
 }

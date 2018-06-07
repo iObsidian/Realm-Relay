@@ -1,13 +1,21 @@
 package rotmg.parameters;
 
 import alde.flash.utils.Dictionary;
+import alde.flash.utils.Vector;
 import flash.display.DisplayObject;
+import flash.events.Event;
 import flash.net.SharedObject;
 import flash.system.Capabilities;
 import rotmg.map.Map;
 import rotmg.util.KeyCodes;
 import rotmg.util.MoreDateUtil;
 
+/**
+ * The AS3 version uses Parameters.data.value (Object)
+ *
+ * use Parameters.data.get("value") instead (Dictionary)
+ *
+ */
 public class Parameters {
 
 	public static final String BUILD_VERSION = "X25.1";
@@ -48,7 +56,7 @@ public class Parameters {
 
 	public static final int GUILD_CREATION_PRICE = 1000;
 
-	public static Object data = null;
+	public static Dictionary<String, Object> data = null;
 
 	public static boolean GPURenderError = false;
 
@@ -127,30 +135,24 @@ public class Parameters {
 	}
 
 	private static void setDefaultKey(String param1, int param2) {
-		if (!data.hasOwnProperty(param1)) {
-			data[param1] = param2;
+		if (!data.contains(param1)) {
+			data.put(param1, param2);
 		}
-		keyNames[param1] = true;
+		keyNames.put(param1, true);
 	}
 
 	public static void setKey(String param1, int param2) {
-         *loc3 = null;
-		for (keyNames.contains(loc3)) {
-			if (data[loc3] == param2) {
-				data[loc3] = KeyCodes.UNSET;
-			}
-		}
-		data[param1] = param2;
+		data.put(param1, param2);
 	}
 
 	private static void setDefault(String param1, Object param2) {
-		if (!data.hasOwnProperty(param1)) {
-			data[param1] = param2;
+		if (!data.contains(param1)) {
+			data.put(param1, param2);
 		}
 	}
 
 	public static boolean isGpuRender() {
-		return !GPURenderError && data.GPURender && !Map.forceSoftwareRender;
+		return !GPURenderError && (boolean) data.get("GPURender") && !Map.forceSoftwareRender;
 	}
 
 	public static void clearGpuRenderEvent(Event param1) {
@@ -223,7 +225,7 @@ public class Parameters {
 		setDefault("lastDailyAnalytics", null);
 		setDefault("allowRotation", true);
 		setDefault("allowMiniMapRotation", false);
-		setDefault("charIdUseMap", {});
+		setDefault("charIdUseMap", new Vector<>());
 		setDefault("drawShadows", true);
 		setDefault("textBubbles", true);
 		setDefault("showTradePopup", true);
@@ -260,12 +262,12 @@ public class Parameters {
 		setDefault("toggleBarText", 0);
 		setDefault("toggleToMaxText", false);
 		setDefault("particleEffect", true);
-		if (data.hasOwnProperty("playMusic") && data.playMusic == true) {
+		if (data.contains("playMusic") && (boolean) data.get("playMusic")) {
 			setDefault("musicVolume", 1);
 		} else {
 			setDefault("musicVolume", 0);
 		}
-		if (data.hasOwnProperty("playSFX") && data.playMusic == true) {
+		if (data.contains("playSFX") && (boolean) data.get("playMusic")) {
 			setDefault("SFXVolume", 1);
 		} else {
 			setDefault("SFXVolume", 0);

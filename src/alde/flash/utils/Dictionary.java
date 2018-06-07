@@ -10,5 +10,7 @@ public class Dictionary<K, V> extends HashMap<K, V> implements Iterable<V> {
 		return values().iterator();
 	}
 
-
+	public boolean contains(Object param1) {
+		return containsKey(param1);
+	}
 }

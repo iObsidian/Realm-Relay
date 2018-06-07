@@ -14,6 +14,7 @@ import rotmg.particles.ParticleLibrary;
 import rotmg.sound.IMusic;
 import rotmg.sound.SFX;
 import rotmg.sound.SoundEffectLibrary;
+import rotmg.ui.Options;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

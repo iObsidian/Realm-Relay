@@ -1,5 +1,6 @@
 package rotmg.map;
 
+import alde.flash.utils.Vector;
 import flash.geom.Point;
 import rotmg.game.AGameSprite;
 import rotmg.objects.BasicObject;
@@ -23,8 +24,10 @@ public class Map extends AbstractMap {
 	public static final String NEXUS_EXPLANATION = "Nexus_Explanation";
 	public static final String VAULT = "Vault";
 
+	public static Boolean forceSoftwareRender = false;
+
 	public Map(AGameSprite gameSprite) {
-		this.squares = new HashMap<Integer, Square>();
+		this.squares = new Vector<Square>();
 	}
 
 	@Override

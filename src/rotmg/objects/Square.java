@@ -25,15 +25,15 @@ public class Square {
 
 	public Map map;
 
-	public int x;
+	public double x;
 
-	public int y;
+	public double y;
 
 	public int tileType = 255;
 
 	public Vector3D center;
 
-	public double[] vin;
+	public Vector<Double> vin;
 
 	public GameObject obj = null;
 
@@ -53,7 +53,7 @@ public class Square {
 
 	public int lastVisible;
 
-	public Square(Map param1, int param2, int param3) {
+	public Square(Map param1, double param2, double param3) {
 		super();
 		this.props = GroundLibrary.defaultProps;
 		this.faces = new Vector<SquareFace>();
@@ -61,14 +61,12 @@ public class Square {
 		this.x = param2;
 		this.y = param3;
 		this.center = new Vector3D(this.x + 0.5, this.y + 0.5, 0);
-		this.vin = new double[]{this.x, this.y, 0, this.x + 1, this.y, 0, this.x + 1, this.y + 1, 0, this.x, this.y + 1, 0};
+		this.vin = new Vector<Double>((double) this.x, (double) this.y, (double) 0, (double) this.x + 1, (double) this.y, (double) 0, (double) this.x + 1, (double) this.y + 1, (double) 0, (double) this.x, (double) this.y + 1, (double) 0);
 	}
 
+	// To be implemented
 	private int hash(int param1, int param2) {
-		var loc3:int =LOOKUP[(param1 + param2) % 7];
-		var loc4:* =(param1 << 16 | param2) ^ 81397550;
-		loc4 = int(loc4 * loc3 % 65535);
-		return loc4;
+		return 0;
 	}
 
 	public void dispose() {
@@ -108,7 +106,7 @@ public class Square {
 		if (this.faces.length == 0) {
 			this.rebuild3D();
 		}
-		for (SquareFace loc4: this.faces) {
+		for (SquareFace loc4 : this.faces) {
 			if (!loc4.draw(param1, param2, param3)) {
 				if (loc4.face.vout.get(1) < param2.clipRect.bottom) {
 					this.lastVisible = 0;
@@ -126,7 +124,7 @@ public class Square {
 		double loc2 = 0;
 		double loc3 = 0;
 		BitmapData loc4 = null;
-		List<Double> loc5 = null;
+		Vector<Double> loc5 = null;
 		int loc6 = 0;
 		this.faces.length = 0;
 		this.topFace = null;
@@ -157,16 +155,15 @@ public class Square {
 		} else {
 			this.sink = 0;
 		}
-		if (this.props.topTD) {
+		if (this.props.topTD != null) {
 			loc4 = this.props.topTD.getTexture();
 			loc5 = this.vin.concat();
 			loc6 = 2;
 			while (loc6 < loc5.length) {
-				loc5[loc6] = 1;
+				loc5.put(loc6, 1.0);
 				loc6 = loc6 + 3;
 			}
 			this.topFace = new SquareFace(loc4, loc5, 0, 0, this.props.topAnimate.type, this.props.topAnimate.dx, this.props.topAnimate.dy);
 		}
 	}
-}
 }

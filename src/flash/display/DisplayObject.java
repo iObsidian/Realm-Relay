@@ -1,18 +1,18 @@
 package flash.display;
 
 import com.sun.prism.ps.Shader;
+import flash.accessibility.AccessibilityProperties;
 import flash.events.EventDispatcher;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.geom.Vector3D;
-import javafx.stage.Stage;
 
 public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
 	native public DisplayObject getRoot();
 
-	native public Stage getStage();
+	public Stage stage;
 
 	native public String getName();
 

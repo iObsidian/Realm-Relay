@@ -3,6 +3,7 @@ package flash.display;
 import flash.airglobal.Graphics;
 import flash.events.Event;
 import flash.geom.Rectangle;
+import flash.media.SoundTransform;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
