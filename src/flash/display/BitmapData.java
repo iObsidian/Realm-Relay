@@ -73,4 +73,7 @@ public class BitmapData {
 	public int getPixel32(int loc3, int loc4) {
 		return 0;
 	}
+
+	public void copyPixels(BitmapData bitmapData, Rectangle param2, Point param3, BitmapData random, Point p0, boolean b) {
+	}
 }

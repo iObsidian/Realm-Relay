@@ -18,7 +18,5 @@ public class Dictionary<K, V> extends HashMap<K, V> implements Iterable<V> {
 		return true;
 	}
 
-	public boolean hasOwnProperty(V v) {
-		return contains(v);
-	}
+
 }
