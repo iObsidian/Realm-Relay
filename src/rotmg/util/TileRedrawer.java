@@ -43,7 +43,7 @@ public class TileRedrawer {
 
 	private static final Vector<Vector<ImageSet>> mlist = getMasks();
 
-	private static Vector cache = new Vector<Dictionary<Object, Object>>();
+	private static Vector<Dictionary<Object, Dictionary<Integer, BitmapData>>> cache = new Vector<>();
 
 	private static final Rectangle RECT01 = new Rectangle(0, 0, 8, 4);
 
@@ -75,7 +75,7 @@ public class TileRedrawer {
 	}
 
 	public static BitmapData redraw(Square param1, boolean param2) {
-		Array loc3 = null;
+		Vector loc3 = null;
 		BitmapData loc5 = null;
 		if (Parameters.blendType == 0) {
 			return null;
@@ -90,7 +90,7 @@ public class TileRedrawer {
 		if (loc3 == null) {
 			return null;
 		}
-		Dictionary loc4 = cache.get(Parameters.blendType);
+		Dictionary<Integer, BitmapData> loc4 = cache.get(Parameters.blendType);
 		if (loc4.hasOwnProperty(loc3)) {
 			return loc4.get(loc3);
 		}
@@ -108,7 +108,7 @@ public class TileRedrawer {
 		boolean loc7 = false;
 		boolean loc8 = false;
 		boolean loc9 = false;
-		if (loc3[1] != loc3[4]) {
+		if (loc3.get(1) != loc3.get(4)) {
 			loc6 = true;
 			loc7 = true;
 		}
@@ -186,20 +186,20 @@ public class TileRedrawer {
 		param1.copyPixels(loc9, param2, param3, loc10, p0, true);
 	}
 
-	private static Array getSig(Square param1) {
+	private static Vector getSig(Square param1) {
 		int loc6 = 0;
 		Square loc7 = null;
-		Array loc2 = new Array();
+		Vector loc2 = new Vector();
 		Map loc3 = param1.map;
 		int loc4 = param1.tileType;
-		int loc5 = param1.y - 1;
+		int loc5 = (int) (param1.y - 1);
 		while (loc5 <= param1.y + 1) {
-			loc6 = param1.x - 1;
+			loc6 = (int) (param1.x - 1);
 			while (loc6 <= param1.x + 1) {
 				if (loc6 < 0 || loc6 >= loc3.width || loc5 < 0 || loc5 >= loc3.height || loc6 == param1.x && loc5 == param1.y) {
 					loc2.add(loc4);
 				} else {
-					loc7 = loc3.squares[loc6 + loc5 * loc3.width];
+					loc7 = loc3.squares.get(loc6 + loc5 * loc3.width);
 					if (loc7 == null || loc7.props.blendPriority <= param1.props.blendPriority) {
 						loc2.add(loc4);
 					} else {
@@ -219,7 +219,7 @@ public class TileRedrawer {
 		return loc1;
 	}
 
-	private static void addMasks(Vector<Vector<ImageSet>> param1, ImageSet param2, ImageSet param3, ImageSet param4, ImageSet param5, ImageSet param6) {
+	private static void addMasks(Vector<ImageSet> param1, ImageSet param2, ImageSet param3, ImageSet param4, ImageSet param5, ImageSet param6) {
 
 		int[] i7 = new int[]{-1, 0, 2, 1};
 
@@ -229,21 +229,19 @@ public class TileRedrawer {
 	}
 
 	private static ImageSet rotateImageSet(ImageSet param1, int param2) {
-		BitmapData loc4 = null;
 		ImageSet loc3 = new ImageSet();
-		for (loc4:
-		     param1.images) {
+		for (BitmapData loc4: param1.images) {
 			loc3.add(BitmapUtil.rotateBitmapData(loc4, param2));
 		}
 		return loc3;
 	}
 
-	private static Array getCompositeSig(Square param1) {
+	private static Vector getCompositeSig(Square param1) {
 		Square loc14 = null;
 		Square loc15 = null;
 		Square loc16 = null;
 		Square loc17 = null;
-		Array loc2 = new Array();
+		Vector loc2 = new Vector();
 		loc2.length = 4;
 		Map loc3 = param1.map;
 		int loc4 = param1.x;
@@ -252,17 +250,17 @@ public class TileRedrawer {
 		Square loc7 = loc3.lookupSquare(loc4 - 1, loc5);
 		Square loc8 = loc3.lookupSquare(loc4 + 1, loc5);
 		Square loc9 = loc3.lookupSquare(loc4, loc5 + 1);
-		var loc10:int =loc6 != null ? int(loc6.props.compositePriority) :-1;
-		var loc11:int =loc7 != null ? int(loc7.props.compositePriority) :-1;
-		var loc12:int =loc8 != null ? int(loc8.props.compositePriority) :-1;
-		var loc13:int =loc9 != null ? int(loc9.props.compositePriority) :-1;
+		int loc10 = loc6 != null ? loc6.props.compositePriority : -1;
+		int loc11 = loc7 != null ? loc7.props.compositePriority : -1;
+		int loc12 = loc8 != null ? loc8.props.compositePriority : -1;
+		int loc13 = loc9 != null ? loc9.props.compositePriority : -1;
 		if (loc10 < 0 && loc11 < 0) {
 			loc14 = loc3.lookupSquare(loc4 - 1, loc5 - 1);
-			loc2[0] = loc14 == null || loc14.props.compositePriority < 0 ? 255 : loc14.tileType;
+			loc2.put(0, loc14 == null || loc14.props.compositePriority < 0 ? 255 : loc14.tileType);
 		} else if (loc10 < loc11) {
-			loc2[0] = loc7.tileType;
+			loc2.put(0, loc7.tileType);
 		} else {
-			loc2[0] = loc6.tileType;
+			loc2.put(0, loc6.tileType);
 		}
 		if (loc10 < 0 && loc12 < 0) {
 			loc15 = loc3.lookupSquare(loc4 + 1, loc5 - 1);
@@ -291,39 +289,39 @@ public class TileRedrawer {
 		return loc2;
 	}
 
-	private static BitmapData buildComposite(Array param1) {
+	private static BitmapData buildComposite(Vector<Integer> param1) {
 		BitmapData loc3 = null;
 		BitmapData loc2 = new BitmapDataSpy(8, 8, false, 0);
-		if (param1[0] != 255) {
-			loc3 = GroundLibrary.getBitmapData(param1[0]);
+		if (param1.get(0) != 255) {
+			loc3 = GroundLibrary.getBitmapData(param1.get(0));
 			loc2.copyPixels(loc3, RECT0, POINT0);
 		}
-		if (param1[1] != 255) {
-			loc3 = GroundLibrary.getBitmapData(param1[1]);
+		if (param1.get(1) != 255) {
+			loc3 = GroundLibrary.getBitmapData(param1.get(1));
 			loc2.copyPixels(loc3, RECT1, POINT1);
 		}
-		if (param1[2] != 255) {
-			loc3 = GroundLibrary.getBitmapData(param1[2]);
+		if (param1.get(2) != 255) {
+			loc3 = GroundLibrary.getBitmapData(param1.get(2));
 			loc2.copyPixels(loc3, RECT2, POINT2);
 		}
-		if (param1[3] != 255) {
-			loc3 = GroundLibrary.getBitmapData(param1[3]);
+		if (param1.get(3) != 255) {
+			loc3 = GroundLibrary.getBitmapData(param1.get(3));
 			loc2.copyPixels(loc3, RECT3, POINT3);
 		}
 		return loc2;
 	}
 
-	private static Array getEdgeSig(Square param1) {
+	private static Vector getEdgeSig(Square param1) {
 		int loc7 = 0;
 		Square loc8 = null;
 		boolean loc9 = false;
-		Array loc2 = new Array();
+		Vector loc2 = new Vector();
 		Map loc3 = param1.map;
 		boolean loc4 = false;
 		boolean loc5 = param1.props.sameTypeEdgeMode;
-		int loc6 = param1.y - 1;
+		int loc6 = (int) (param1.y - 1);
 		while (loc6 <= param1.y + 1) {
-			loc7 = param1.x - 1;
+			loc7 = (int) (param1.x - 1);
 			while (loc7 <= param1.x + 1) {
 				loc8 = loc3.lookupSquare(loc7, loc6);
 				if (loc7 == param1.x && loc6 == param1.y) {
@@ -341,50 +339,13 @@ public class TileRedrawer {
 			}
 			loc6++;
 		}
-		return !!loc4 ? loc2 : null;
+		return loc4 ? loc2 : null;
 	}
 
-	private static BitmapData drawEdges(Array param1) {
-		BitmapData loc2 = GroundLibrary.getBitmapData(param1[4]);
+	// TODO implement this
+	private static BitmapData drawEdges(Vector<Integer> param1) {
+		BitmapData loc2 = GroundLibrary.getBitmapData(param1.get(4));
 		BitmapData loc3 = loc2.clone();
-		GroundProperties loc4 = GroundLibrary.propsLibrary[param1[4]];
-		Vector<BitmapData> loc5 = loc4.getEdges();
-		Vector<BitmapData> loc6 = loc4.getInnerCorners();
-		int loc7 = 1;
-		while (loc7 < 8) {
-			if (!param1[loc7]) {
-				loc3.copyPixels(loc5[loc7], loc5[loc7].rect, PointUtil.ORIGIN, null, null, true);
-			}
-			loc7 = loc7 + 2;
-		}
-		if (loc5[0] != null) {
-			if (param1[3] && param1[1] && !param1[0]) {
-				loc3.copyPixels(loc5[0], loc5[0].rect, PointUtil.ORIGIN, null, null, true);
-			}
-			if (param1[1] && param1[5] && !param1[2]) {
-				loc3.copyPixels(loc5[2], loc5[2].rect, PointUtil.ORIGIN, null, null, true);
-			}
-			if (param1[5] && param1[7] && !param1[8]) {
-				loc3.copyPixels(loc5[8], loc5[8].rect, PointUtil.ORIGIN, null, null, true);
-			}
-			if (param1[3] && param1[7] && !param1[6]) {
-				loc3.copyPixels(loc5[6], loc5[6].rect, PointUtil.ORIGIN, null, null, true);
-			}
-		}
-		if (loc6 != null) {
-			if (!param1[3] && !param1[1]) {
-				loc3.copyPixels(loc6[0], loc6[0].rect, PointUtil.ORIGIN, null, null, true);
-			}
-			if (!param1[1] && !param1[5]) {
-				loc3.copyPixels(loc6[2], loc6[2].rect, PointUtil.ORIGIN, null, null, true);
-			}
-			if (!param1[5] && !param1[7]) {
-				loc3.copyPixels(loc6[8], loc6[8].rect, PointUtil.ORIGIN, null, null, true);
-			}
-			if (!param1[3] && !param1[7]) {
-				loc3.copyPixels(loc6[6], loc6[6].rect, PointUtil.ORIGIN, null, null, true);
-			}
-		}
 		return loc3;
 	}
 

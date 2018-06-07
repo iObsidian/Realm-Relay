@@ -60,7 +60,7 @@ public class BasicObject {
 		this.sortVal = 0;
 	}
 
-	public static void dispose() {
+	public void dispose() {
 		this.map = null;
 		this.square = null;
 		this.posW = null;

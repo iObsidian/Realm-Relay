@@ -12,7 +12,6 @@ import rotmg.util.MoreDateUtil;
 
 /**
  * The AS3 version uses Parameters.data.value (Object)
- *
  */
 public class Parameters {
 
@@ -21,21 +20,121 @@ public class Parameters {
 	 */
 	public static class Data {
 
-		public boolean GPURender;
-		public boolean playMusic;
-		public boolean noParticlesMaster;
-		public boolean disableEnemyParticles;
-		public boolean noEnemyDamage;
-		public boolean noAllyDamage;
+		public static int moveLeft = KeyCodes.A;
+		public static int moveRight = KeyCodes.D;
+		public static int moveUp = KeyCodes.W;
+		public static int moveDown = KeyCodes.S;
+		public static int rotateLeft = KeyCodes.Q;
+		public static int rotateRight = KeyCodes.E;
+		public static int useSpecial = KeyCodes.SPACE;
+		public static int interact = KeyCodes.NUMBER_0;
+		public static int useInvSlot1 = KeyCodes.NUMBER_1;
+		public static int useInvSlot2 = KeyCodes.NUMBER_2;
+		public static int useInvSlot3 = KeyCodes.NUMBER_3;
+		public static int useInvSlot4 = KeyCodes.NUMBER_4;
+		public static int useInvSlot5 = KeyCodes.NUMBER_5;
+		public static int useInvSlot6 = KeyCodes.NUMBER_6;
+		public static int useInvSlot7 = KeyCodes.NUMBER_7;
+		public static int useInvSlot8 = KeyCodes.NUMBER_8;
+		public static int escapeToNexus2 = KeyCodes.F5;
+		public static int escapeToNexus = KeyCodes.R;
+		public static int autofireToggle = KeyCodes.I;
+		public static int scrollChatUp = KeyCodes.PAGE_UP;
+		public static int scrollChatDown = KeyCodes.PAGE_DOWN;
+		public static int miniMapZoomOut = KeyCodes.MINUS;
+		public static int miniMapZoomIn = KeyCodes.EQUAL;
+		public static int resetToDefaultCameraAngle = KeyCodes.Z;
+		public static int togglePerformanceStats = KeyCodes.UNSET;
+		public static int options = KeyCodes.O;
+		public static int toggleCentering = KeyCodes.X;
+		public static int chat = KeyCodes.ENTER;
+		public static int chatCommand = KeyCodes.SLASH;
+		public static int tell = KeyCodes.TAB;
+		public static int guildChat = KeyCodes.G;
+		public static int testOne = KeyCodes.PERIOD;
+		public static int toggleFullscreen = KeyCodes.UNSET;
+		public static int useHealthPotion = KeyCodes.F;
+		public static int GPURenderToggle = KeyCodes.UNSET;
+		public static int useMagicPotion = KeyCodes.V;
+		public static int switchTabs = KeyCodes.B;
+		public static int particleEffect = KeyCodes.P;
+		public static int toggleHPBar = KeyCodes.H;
+		public static int toggleProjectiles = KeyCodes.N;
+		public static int toggleMasterParticles = KeyCodes.M;
+		public static int playerObjectType = 782;
+		public static boolean playMusic = true;
+		public static boolean playSFX = true;
+		public static boolean playPewPew = true;
+		public static boolean centerOnPlayer = true;
+		public static String preferredServer = null;
+		public static String bestServer = null;
+		public static boolean needsTutorial = true;
+		public static boolean needsRandomRealm = true;
+		public static int cameraAngle = 0;
+		public static int defaultCameraAngle = 0;
+		public static boolean showQuestPortraits = true;
+		public static boolean fullscreenMode = false;
+		public static boolean showProtips = true;
+		public static int protipIndex = 0;
+		public static String joinDate = MoreDateUtil.getDayStringInPT();
+		public static String lastDailyAnalytics = null;
+		public static boolean allowRotation = true;
+		public static boolean allowMiniMapRotation = false;
+		public static Object charIdUseMap = null;
+		public static boolean drawShadows = true;
+		public static boolean textBubbles = true;
+		public static boolean showTradePopup = true;
+		public static String paymentMethod = null;
+		public static boolean filterLanguage = true;
+		public static boolean showGuildInvitePopup = true;
+		public static boolean showBeginnersOffer = false;
+		public static int beginnersOfferTimeLeft = 0;
+		public static boolean beginnersOfferShowNow = false;
+		public static int beginnersOfferShowNowTime = 0;
+		public static boolean watchForTutorialExit = false;
+		public static boolean clickForGold = false;
+		public static boolean contextualPotionBuy = false;
+		public static boolean inventorySwap = true;
+		public static boolean uiQuality = true;
+		public static boolean disableEnemyParticles = false;
+		public static boolean disableAllyParticles = false;
+		public static boolean disablePlayersHitParticles = false;
+		public static String cursorSelect = "4";
+		public static boolean friendListDisplayFlag = false;
+		public static boolean GPURender = false;
+		public static boolean forceChatQuality = false;
+		public static boolean hidePlayerChat = false;
+		public static int chatStarRequirement = 2;
+		public static boolean chatAll = true;
+		public static boolean chatWhisper = true;
+		public static boolean chatGuild = true;
+		public static boolean chatTrade = true;
+		public static int toggleBarText = 0;
+		public static boolean toggleToMaxText = false;
+		public static int musicVolume = 0;
+		public static int SFXVolume = 1;
+		public static int friendList = KeyCodes.UNSET;
+		public static boolean tradeWithFriends = false;
+		public static boolean chatFriend = false;
+		public static int friendStarRequirement = 0;
+		public static int HPBar = 1;
+		public static boolean newMiniMapColors = false;
+		public static boolean noParticlesMaster = false;
+		public static boolean noAllyNotifications = false;
+		public static boolean noAllyDamage = false;
+		public static boolean noEnemyDamage = false;
+		public static int forceEXP = 0;
+		public static boolean showFameGain = false;
+		public static boolean curseIndication = false;
+
 
 		public boolean contains(String param1) {
 			return true;
 		}
 
-		public void put(String param1, int param2) {
+		public void put(String param1, Object param2) {
 		}
 	}
-
 
 	public static final String BUILD_VERSION = "X25.1";
 

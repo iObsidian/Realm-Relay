@@ -2,11 +2,10 @@ package rotmg.engine3d;
 
 import alde.flash.utils.Vector;
 import flash.display.*;
+import flash.geom.Matrix;
 import flash.geom.Matrix3D;
 import flash.geom.Utils3D;
 import flash.geom.Vector3D;
-import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-import rotmg.game.util.Trig;
 import rotmg.map.Camera;
 import rotmg.util.Trig;
 

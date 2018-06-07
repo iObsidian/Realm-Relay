@@ -1,5 +1,6 @@
 package flash.display;
 
+import alde.flash.utils.Vector;
 import com.sun.prism.ps.Shader;
 import flash.accessibility.AccessibilityProperties;
 import flash.events.EventDispatcher;
@@ -23,35 +24,35 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
 	public Boolean visible;
 
-	public Number x;
+	public double x;
 
-	public Number y;
+	public double y;
 
-	public Number z;
+	public double z;
 
-	public Number scaleX;
+	public double scaleX;
 
-	public Number scaleY;
+	public double scaleY;
 
-	public Number scaleZ;
+	public double scaleZ;
 
-	public Number mouseX;
+	public double mouseX;
 
-	public Number mouseY;
+	public double mouseY;
 
-	public Number rotation;
+	public double rotation;
 
-	public Number rotationX;
+	public double rotationX;
 
-	public Number rotationY;
+	public double rotationY;
 
-	public Number rotationZ;
+	public double rotationZ;
 
-	public Number alpha;
+	public double alpha;
 
-	public Number width;
+	public double width;
 
-	public Number height;
+	public double height;
 
 	public Boolean cacheAsBitmap;
 
@@ -59,7 +60,7 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
 	public Rectangle scrollRect;
 
-	public Array filters;
+	public Vector filters;
 
 	public String blendMode;
 
@@ -89,10 +90,10 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 		return null;
 	}
 
-	public void hitTestPoint(Number x, Number y, Boolean shapeFlag) {
+	public void hitTestPoint(double x, double y, Boolean shapeFlag) {
 	}
 
-	private Boolean _hitTest(Boolean use_xy, Number x, Number y, Boolean useShape, DisplayObject hitTestObject) {
+	private Boolean _hitTest(Boolean use_xy, double x, double y, Boolean useShape, DisplayObject hitTestObject) {
 		return null;
 	}
 

@@ -1,8 +1,6 @@
 package alde.flash.utils;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * A wrapper for HashMap that simulates AS3's Vector
@@ -42,8 +40,18 @@ public class Vector<T> implements Iterable<T> {
 		}
 	}
 
+	public boolean contains(T t) {
+		return map.containsValue(t);
+	}
+
 	public Vector(T... addAll) {
 		add(addAll);
+	}
+
+	public Vector(List<T> addAll) {
+		for (T t : addAll) {
+			push(t);
+		}
 	}
 
 	public void push(T t) {
@@ -87,8 +95,20 @@ public class Vector<T> implements Iterable<T> {
 		}
 	}
 
-	public Vector<T> concat() {
-		return null;
+
+	/*
+	 * Concatenates the Vectors specified in the parameters list with the elements in this Vector and creates a new Vector.
+	 */
+	public Vector<T> concat(Vector<T>... vectors) {
+		List<T> data = new ArrayList<>();
+
+		for (Vector<T> vec : vectors) {
+			for (T t : vec) {
+				data.add(t);
+			}
+		}
+		return new Vector<T>(data);
 	}
+
 
 }

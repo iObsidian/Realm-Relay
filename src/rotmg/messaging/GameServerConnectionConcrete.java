@@ -27,7 +27,7 @@ import rotmg.events.KeyInfoResponseSignal;
 import rotmg.events.ReconnectEvent;
 import rotmg.focus.control.SetGameFocusSignal;
 import rotmg.focus.control.UpdateGroundTileSignal;
-import rotmg.game.AGameSprite;
+import rotmg.AGameSprite;
 import rotmg.map.AbstractMap;
 import rotmg.map.GroundLibrary;
 import rotmg.map.Map;

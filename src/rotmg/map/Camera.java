@@ -1,8 +1,10 @@
 package rotmg.map;
 
 import flash.geom.Matrix3D;
+import flash.geom.PerspectiveProjection;
 import flash.geom.Rectangle;
 import flash.geom.Vector3D;
+import rotmg.objects.GameObject;
 import rotmg.parameters.Parameters;
 import rotmg.util.RandomUtil;
 
@@ -29,7 +31,7 @@ public class Camera {
 
 	public Rectangle clipRect;
 
-	//public PerspectiveProjection pp;
+	public PerspectiveProjection pp;
 
 	public double maxDist;
 
@@ -77,17 +79,17 @@ public class Camera {
 		this.u = new Vector3D();
 		this.r = new Vector3D();
 		this.rd = new double[16];
-		/**this.pp.focalLength = 3;
+		this.pp.focalLength = 3;
 		this.pp.fieldOfView = 48;
 		this.ppMatrix = this.pp.toMatrix3D();
-		this.nonPPMatrix.appendScale(50, 50, 50);*/
+		this.nonPPMatrix.appendScale(50, 50, 50);
 		this.f.x = 0;
 		this.f.y = 0;
 		this.f.z = -1;
 	}
 
-	public void configureCamera(com.company.assembleegameclient.objects.GameObject object, boolean isHallucinating) {
-		Rectangle screenRect = Parameters.centerOnPlayer ? CENTERSCREENRECT : OFFSETSCREENRECT;
+	public void configureCamera(GameObject object, boolean isHallucinating) {
+		Rectangle screenRect = Parameters.Data.centerOnPlayer ? CENTERSCREENRECT : OFFSETSCREENRECT;
 		if (Parameters.screenShotMode) {
 			if (!Parameters.screenShotSlimMode) {
 				screenRect = SCREENSHOTSCREENRECT;
@@ -95,7 +97,7 @@ public class Camera {
 				screenRect = SLIMSCREENSHOTSCREENRECT;
 			}
 		}
-		double cameraAngle = Parameters.cameraAngle;
+		double cameraAngle = Parameters.Data.cameraAngle;
 		this.configure(object.x, object.y, 12, cameraAngle, screenRect, false);
 		this.isHallucinating = isHallucinating;
 	}

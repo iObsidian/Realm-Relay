@@ -1,4 +1,4 @@
-package rotmg.game;
+package rotmg;
 
 import rotmg.messaging.data.MoveRecord;
 

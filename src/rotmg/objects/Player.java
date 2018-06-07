@@ -13,7 +13,7 @@ import rotmg.signals.AddTextLineSignal;
 import rotmg.util.ConversionUtil;
 import rotmg.util.IntPoint;
 
-import java.util.HashMap;
+import java.util.Dictionary;
 import java.util.List;
 
 public class Player extends Character {
@@ -179,7 +179,7 @@ public class Player extends Character {
 		this.wisdomMax = param1.getChild("MpRegen").getIntAttribute("max");
 		this.maxHPMax = param1.getChild("MaxHitPoints").getIntAttribute("max");
 		this.maxMPMax = param1.getChild("MaxMagicPoints").getIntAttribute("max");
-		texturingCache = new HashMap<>();
+		texturingCache = new Dictionary<>();
 	}
 
 	public int getFameBonus() {

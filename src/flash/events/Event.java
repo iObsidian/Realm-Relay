@@ -2,6 +2,47 @@ package flash.events;
 
 public class Event {
 
+	public Event(String type) {
+		this(type, false, false);
+	}
+
+	public Event(String type, boolean bubbles, Boolean cancelable) {
+
+	}
+
+	public String formatToString(String... className) {
+		return "";
+	}
+
+	private void ctor(String type, Boolean bubbles, Boolean cancelable) {
+		return;
+	}
+
+	public Event clone() {
+		return null;
+	}
+
+	public String toString;
+	public String type;
+	public Boolean bubbles;
+	public Boolean cancelable;
+	public Object target;
+
+	public Object currentTarget;
+	public int eventPhase;
+
+	public void stopPropagation() {
+
+	}
+
+	public void stopImmediatePropagation() {
+
+	}
+
+	public void preventDefault() {
+
+	}
+
 	static public final String ADDED_TO_STAGE = "addedToStage";
 	static public final String ENTER_FRAME = "enterFrame";
 
@@ -31,7 +72,6 @@ public class Event {
 	static public final String OPEN = "open";
 	static public final String PASTE = "paste";
 	static public final String REMOVED = "removed";
-
 
 	static public final String RENDER = "render";
 	static public final String RESIZE = "resize";
@@ -65,11 +105,5 @@ public class Event {
 	static public final String HTML_RENDER = "htmlRender";
 	static public final String HTML_DOM_INITIALIZE = "htmlDOMInitialize";
 	static public final String LOCATION_CHANGE = "locationChange";
-
-
-	public Event(String name) {
-
-	}
-
 
 }

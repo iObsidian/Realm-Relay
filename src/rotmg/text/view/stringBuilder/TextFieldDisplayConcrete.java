@@ -237,7 +237,7 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		loc1.leading = this.leading;
 		this.setTextFormat(loc1);
 	}
-	
+
 
 	private void updateTextOfInjectedTextField(TextField param1) {
 		if (this.textField != null) {
@@ -281,11 +281,10 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 	}
 
 	public double getTextHeight() {
-		return !!this.textField ? double(this.textField.height) : double(0);
+		return this.textField != null ? this.textField.height : 0;
 	}
 
 	private void setYToMiddle() {
-		this.textField.height;
 		TextFormat loc1 = this.textField.getTextFormat();
 		double loc2 = this.getSpecificXHeight(loc1);
 		double loc3 = this.getSpecificVerticalSpace(loc1);
@@ -298,6 +297,11 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 
 	private double getSpecificVerticalSpace(TextFormat param1) {
 		return this.font.getVerticalSpace(param1.size);
+	}
+
+
+	public void setTextFormat(TextFormat param1) {
+		setTextFormat(param1, 0, 0);
 	}
 
 	public void setTextFormat(TextFormat param1, int param2, int param3) {

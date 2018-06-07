@@ -19,4 +19,7 @@ public class Matrix3D {
 
 	public void transformVectors(List<Double> posW, List<Double> posS) {
 	}
+
+	public void appendScale(int i, int i1, int i2) {
+	}
 }

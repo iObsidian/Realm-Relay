@@ -4,8 +4,6 @@ import flash.events.Event;
 import org.osflash.signals.Signal;
 import rotmg.core.model.MapModel;
 import rotmg.core.model.PlayerModel;
-import rotmg.game.AGameSprite;
-import rotmg.game.MapUserInput;
 import rotmg.map.Map;
 import rotmg.maploading.signals.HideMapLoadingSignal;
 import rotmg.maploading.signals.MapLoadedSignal;

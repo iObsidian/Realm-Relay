@@ -1,6 +1,8 @@
 package flash.display;
 
+import flash.accessibility.AccessibilityImplementation;
 import flash.geom.Rectangle;
+import flash.ui.ContextMenu;
 
 public class InteractiveObject extends DisplayObject {
 

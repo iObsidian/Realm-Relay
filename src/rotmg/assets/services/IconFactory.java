@@ -34,7 +34,7 @@ public class IconFactory {
 	}
 
 	private static BitmapData cropAndGlowIcon(BitmapData param1) {
-		param1 = GlowRedrawer.outlineGlow(param1, 4294967295);
+		param1 = GlowRedrawer.outlineGlow(param1, 4294967295.0);
 		param1 = BitmapUtil.cropToBitmapData(param1, 10, 10, param1.width - 20, param1.height - 20);
 		return param1;
 	}

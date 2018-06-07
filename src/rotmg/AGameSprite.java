@@ -1,4 +1,4 @@
-package rotmg.game;
+package rotmg;
 
 import flash.display.Sprite;
 import org.osflash.signals.Signal;
@@ -8,6 +8,7 @@ import rotmg.map.Camera;
 import rotmg.messaging.GameServerConnection;
 import rotmg.messaging.incoming.MapInfo;
 import rotmg.objects.GameObject;
+import rotmg.tutorial.Tutorial;
 import rotmg.ui.HUDView;
 
 /**
@@ -18,6 +19,8 @@ public class AGameSprite extends Sprite {
 	public final Signal closed = new Signal();
 
 	public boolean isEditor;
+
+	public Tutorial tutorial;
 
 	public MapUserInput mui;
 

@@ -42,6 +42,7 @@ public class Pet extends GameObject implements IInteractiveObject {
 
 	public Panel getPanel(GameSprite param1) {
 		//return new PetPanel(param1, this.vo);
+		return null;
 	}
 
 	public void setSkin(int param1) {

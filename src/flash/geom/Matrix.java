@@ -31,6 +31,9 @@ public class Matrix {
 	public void invert() {
 	}
 
-	public void scale(int i, int i1) {
+	public void scale(double i, double i1) {
+	}
+
+	public void rotate(double param3) {
 	}
 }

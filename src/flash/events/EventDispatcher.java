@@ -7,6 +7,8 @@ import java.util.function.Consumer;
 
 public class EventDispatcher {
 
+	public HashMap<Runnable, String> listeners;
+
 	native void removeEventListener(String type, Consumer listener, Boolean useCapture);
 
 	native Boolean dispatchEvent(Event event);
@@ -14,8 +16,6 @@ public class EventDispatcher {
 	native Boolean hasEventListener(String type);
 
 	native Boolean willTrigger(String type);
-
-	private HashMap<Consumer<Event>, String> listeners;
 
 	int startTime;
 	public boolean visible;
@@ -31,22 +31,23 @@ public class EventDispatcher {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-	public void addEventListener(String event, Consumer<Event> listener) {
+	public void addEventListener(String event, Runnable listener) {
 		addEventListener(event, listener, false, 0, false);
 	}
 
-	void addEventListener(String event, Consumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
+	void addEventListener(String event, Runnable listener, boolean useCapture, int priority, Boolean useWeakReference) {
 		listeners.put(listener, event);
 	}
 
-	public void removeEventListener(String event, Consumer<Event> consumer) {
+	public void removeEventListener(String event, Runnable consumer) {
 		listeners.remove(consumer, event);
 	}
 
 	protected void trigger(String EVENT_TYPE) {
-		for (Consumer<Event> c : listeners.keySet()) {
+		for (Runnable c : listeners.keySet()) {
 			if (listeners.get(c).equals(EVENT_TYPE)) {
-				c.accept(new Event(EVENT_TYPE));
+				//c.accept(new Event(EVENT_TYPE));
+				c.run();
 			}
 		}
 	}

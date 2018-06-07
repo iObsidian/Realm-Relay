@@ -36,6 +36,10 @@ public class TextureRedrawer {
 		super();
 	}
 
+	public static BitmapData redraw(BitmapData param1, int param2, boolean param3, int param4) {
+		return redraw(param1, param2, param3, param4, false, 5.0, 0);
+	}
+
 	public static BitmapData redraw(BitmapData param1, int param2, boolean param3, int param4, boolean param5) {
 		return redraw(param1, param2, param3, param4, param5, 5.0, 0);
 	}

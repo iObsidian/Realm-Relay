@@ -25,7 +25,9 @@ public class Sprite extends DisplayObjectContainer {
 
 	native public DisplayObject getDropTarget();
 
-	private void constructChildren();
+	private void constructChildren() {
+
+	}
 
 	native public Sprite getHitArea();
 

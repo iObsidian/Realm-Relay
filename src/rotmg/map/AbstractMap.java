@@ -7,7 +7,7 @@ import flash.display.Sprite;
 import flash.geom.Point;
 import javafx.scene.layout.Background;
 import org.osflash.signals.Signal;
-import rotmg.game.AGameSprite;
+import rotmg.AGameSprite;
 import rotmg.map.mapoverlay.MapOverlay;
 import rotmg.map.partyoverlay.PartyOverlay;
 import rotmg.objects.*;

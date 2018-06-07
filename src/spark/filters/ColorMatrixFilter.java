@@ -1,4 +1,11 @@
 package spark.filters;
 
-public class ColorMatrixFilter {
+import alde.flash.utils.Vector;
+import mx.filters.BaseFilter;
+import mx.filters.IBitmapFilter;
+
+public class ColorMatrixFilter  extends BaseFilter implements IBitmapFilter {
+	public ColorMatrixFilter(Vector greyscaleFilterMatrix) {
+
+	}
 }

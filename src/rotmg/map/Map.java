@@ -2,12 +2,10 @@ package rotmg.map;
 
 import alde.flash.utils.Vector;
 import flash.geom.Point;
-import rotmg.game.AGameSprite;
+import rotmg.AGameSprite;
 import rotmg.objects.BasicObject;
 import rotmg.objects.GameObject;
 import rotmg.objects.Square;
-
-import java.util.HashMap;
 
 public class Map extends AbstractMap {
 
@@ -108,4 +106,6 @@ public class Map extends AbstractMap {
 		square.setTileType(type);
 	}
 
+	public Square lookupSquare(int loc7, int loc6) {
+	}
 }

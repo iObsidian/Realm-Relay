@@ -1,20 +1,19 @@
-package rotmg.game;
+package rotmg;
 
 import alde.flash.utils.XML;
+import flash.display.Stage;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.system.Capabilities;
-import javafx.stage.Stage;
 import net.hires.debug.Stats;
-import rotmg.GameSprite;
-import rotmg.MiniMapZoomSignal;
-import rotmg.api.ApplicationSetup;
+import rotmg.application.api.ApplicationSetup;
 import rotmg.chat.model.ChatMessage;
 import rotmg.constants.GeneralConstants;
 import rotmg.constants.UseType;
 import rotmg.dialogs.CloseDialogsSignal;
 import rotmg.dialogs.OpenDialogSignal;
+import rotmg.friends.model.FriendModel;
 import rotmg.game.ui.UIUtils;
 import rotmg.messaging.GameServerConnection;
 import rotmg.model.PotionInventoryModel;
@@ -26,14 +25,16 @@ import rotmg.parameters.Parameters;
 import rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
 import rotmg.signals.*;
 import rotmg.tutorial.Tutorial;
+import rotmg.ui.Options;
 import rotmg.ui.model.TabStripModel;
+import rotmg.ui.popups.signals.CloseAllPopupsSignal;
 import rotmg.ui.popups.signals.ClosePopupByClassSignal;
 import rotmg.ui.popups.signals.ShowPopupSignal;
 import rotmg.util.KeyCodes;
 import rotmg.util.TextureRedrawer;
 import rotmg.view.components.StatsTabHotKeyInputSignal;
 
-
+import static rotmg.tutorial.doneAction.doneAction;
 
 public class MapUserInput {
 
@@ -42,7 +43,6 @@ public class MapUserInput {
 	private static final int MOUSE_DOWN_WAIT_PERIOD = 175;
 
 	private static boolean arrowWarning = false;
-
 
 	public GameSprite gs;
 
@@ -90,7 +90,7 @@ public class MapUserInput {
 
 	private TabStripModel tabStripModel;
 
-	private Layers layers;
+	private rotmg.game.Layers layers;
 
 	private ExitGameSignal exitGame;
 
@@ -111,7 +111,7 @@ public class MapUserInput {
 		this.useBuyPotionSignal = UseBuyPotionSignal.getInstance();
 		this.potionInventoryModel = PotionInventoryModel.getInstance();
 		this.tabStripModel = TabStripModel.getInstance();
-		this.layers = Layers.getInstance();
+		this.layers = rotmg.game.Layers.getInstance();
 		this.statsTabHotKeyInputSignal = StatsTabHotKeyInputSignal.getInstance();
 		this.exitGame = ExitGameSignal.getInstance();
 		this.openDialogSignal = OpenDialogSignal.getInstance();
@@ -215,11 +215,11 @@ public class MapUserInput {
 			return;
 		}
 		if (param1.shiftKey) {
-			loc4 = loc2.equipment[1];
+			loc4 = loc2.equipment.get(1);
 			if (loc4 == -1) {
 				return;
 			}
-			loc5 = ObjectLibrary.xmlLibrary[loc4];
+			loc5 = ObjectLibrary.xmlLibrary.get(loc4);
 			if (loc5 == null || loc5.hasOwnProperty("EndMpCost")) {
 				return;
 			}
@@ -302,7 +302,6 @@ public class MapUserInput {
 		ShowPopupSignal loc11 = null;
 		FriendModel loc12 = null;
 		OpenDialogSignal loc13 = null;
-		Square loc14 = null;
 		Stage loc2 = this.gs.stage;
 		this.currentString = this.currentString + String.fromCharCode(param1.keyCode).toLowerCase();
 		if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
@@ -312,7 +311,7 @@ public class MapUserInput {
 				loc6.name = Parameters.SERVER_CHAT_NAME;
 				this.currentString = "";
 				UIUtils.SHOW_EXPERIMENTAL_MENU = !UIUtils.SHOW_EXPERIMENTAL_MENU;
-				loc6.text = !!UIUtils.SHOW_EXPERIMENTAL_MENU ? "Experimental menu activated" : "Experimental menu deactivated";
+				loc6.text = UIUtils.SHOW_EXPERIMENTAL_MENU ? "Experimental menu activated" : "Experimental menu deactivated";
 				loc5.dispatch(loc6);
 			}
 		} else {
@@ -340,6 +339,7 @@ public class MapUserInput {
 				}
 				break;
 		}
+
 		Player loc3 = this.gs.map.player;
 		switch (param1.keyCode) {
 			case Parameters.data.moveUp:
@@ -455,7 +455,7 @@ public class MapUserInput {
 				break;
 			case Parameters.data.escapeToNexus:
 			case Parameters.data.escapeToNexus2:
-				loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
+				loc4 = CloseAllPopupsSignal.getInstance();
 				loc4.dispatch();
 				this.exitGame.dispatch();
 				this.gs.gsc.escape();
@@ -466,11 +466,11 @@ public class MapUserInput {
 				Parameters.data.friendListDisplayFlag = !Parameters.data.friendListDisplayFlag;
 				if (Parameters.data.friendListDisplayFlag) {
 					if (Parameters.USE_NEW_FRIENDS_UI) {
-						loc11 = StaticInjectorContext.getInjector().getInstance(ShowPopupSignal);
-						loc12 = StaticInjectorContext.getInjector().getInstance(FriendModel);
+						loc11 = ShowPopupSignal.getInstance();
+						loc12 = FriendModel.getInstance();
 						loc11.dispatch(new FriendsPopupView(loc12.hasInvitations));
 					} else {
-						loc13 = StaticInjectorContext.getInjector().getInstance(OpenDialogSignal);
+						loc13 = OpenDialogSignal.getInstance();
 						loc13.dispatch(new FriendListView());
 					}
 				} else {
@@ -479,8 +479,7 @@ public class MapUserInput {
 				}
 				break;
 			case Parameters.data.options:
-				loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
-				loc4.dispatch();
+				CloseAllPopupsSignal.getInstance().dispatch();
 				this.clearInput();
 				this.layers.overlay.addChild(new Options(this.gs));
 				break;
@@ -524,23 +523,22 @@ public class MapUserInput {
 				case KeyCodes.F6:
 					TextureRedrawer.clearCache();
 					Parameters.projColorType = (Parameters.projColorType + 1) % 7;
-					this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Projectile Color  Type;
+					this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Projectile Color  Type;"));
 					break;
 				case KeyCodes.F7:
-					for (loc14:
-					     this.gs.map.squares) {
+					for (Square loc14 : this.gs.map.squares) {
 						if (loc14 != null) {
 							loc14.faces.length = 0;
 						}
 					}
 					Parameters.blendType = (Parameters.blendType + 1) % 2;
-					this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend  type;
+					this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend  type;"));
 					break;
 				case KeyCodes.F8:
-					Parameters.data.surveyDate = 0;
+					/*Parameters.data.surveyDate = 0;
 					Parameters.data.needsSurvey = true;
 					Parameters.data.playTimeLeftTillSurvey = 5;
-					Parameters.data.surveyGroup = "testing";
+					Parameters.data.surveyGroup = "testing";*/
 					break;
 				case KeyCodes.F9:
 					Parameters.drawProj = !Parameters.drawProj;
@@ -591,7 +589,7 @@ public class MapUserInput {
 		Player loc1 = this.gs.map.player;
 		if (loc1 != null) {
 			if (this.enablePlayerInput) {
-				loc1.setRelativeMovement((!!this.rotateRight ? 1 : 0) - (!!this.rotateLeft ? 1 : 0), (!!this.moveRight ? 1 : 0) - (!!this.moveLeft ? 1 : 0), (!!this.moveDown ? 1 : 0) - (!!this.moveUp ? 1 : 0));
+				loc1.setRelativeMovement((this.rotateRight ? 1 : 0) - (this.rotateLeft ? 1 : 0), (this.moveRight ? 1 : 0) - (this.moveLeft ? 1 : 0), (this.moveDown ? 1 : 0) - (this.moveUp ? 1 : 0));
 			} else {
 				loc1.setRelativeMovement(0, 0, 0);
 			}

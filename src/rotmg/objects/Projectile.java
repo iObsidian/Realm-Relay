@@ -284,7 +284,7 @@ public class Projectile extends BasicObject {
 		double loc9 = 0;
 		double loc3 = Double.MAX_VALUE;
 		GameObject loc4 = null;
-		for (GameObject loc5: map.goDict) {
+		for (GameObject loc5 : map.goDict) {
 			if (!loc5.isInvincible()) {
 				if (!loc5.isStasis()) {
 					if (this.damagesEnemies && loc5.props.isEnemy || this.damagesPlayers && loc5.props.isPlayer) {
@@ -357,7 +357,7 @@ public class Projectile extends BasicObject {
 		double loc7 = !!this.projProps.noRotation ? param2.angleRad + this.props.angleCorrection : loc6 - param2.angleRad + this.props.angleCorrection + loc5;
 		this.p.draw(param1, this.staticVector3D, loc7, param2.wToS, param2, loc4);
 		if (!Parameters.data.noParticlesMaster && this.projProps.particleTrail) {
-			loc10 = this.projProps.particleTrailLifetimeMS != -1 ? int(this.projProps.particleTrailLifetimeMS) :600;
+			loc10 = this.projProps.particleTrailLifetimeMS != -1 ? this.projProps.particleTrailLifetimeMS : 600;
 			loc11 = 0;
 			for (; loc11 < 3; loc11++) {
 				if (map != null && map.player.objectId != this.ownerId) {

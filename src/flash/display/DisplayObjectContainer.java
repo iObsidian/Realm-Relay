@@ -1,6 +1,8 @@
 package flash.display;
 
+import alde.flash.utils.Vector;
 import flash.geom.Point;
+import flash.text.TextSnapshot;
 
 public class DisplayObjectContainer extends InteractiveObject {
 
@@ -41,7 +43,7 @@ public class DisplayObjectContainer extends InteractiveObject {
 		return null;
 	}
 
-	public Array getObjectsUnderPoint(Point point){
+	public Vector getObjectsUnderPoint(Point point){
 		return null;
 	}
 

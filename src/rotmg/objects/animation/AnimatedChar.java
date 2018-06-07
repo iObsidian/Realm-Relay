@@ -163,7 +163,7 @@ public class AnimatedChar {
 		}
 		Vector<MaskedImage> texVec = actionDict.get(action);
 		p = (double) Math.max(0, Math.min(0.99999, p));
-		int i = (int) (p * texVec.size());
+		int i = (int) (p * texVec.length);
 		return texVec.get(i);
 	}
 
@@ -180,7 +180,7 @@ public class AnimatedChar {
 		}
 		Vector<MaskedImage> loc7 = loc6.get(param2);
 		param3 = Math.max(0, Math.min(0.99999, param3));
-		int loc8 = param3 * loc7.length;
+		int loc8 = (int) (param3 * loc7.length);
 		return loc7.get(loc8);
 	}
 

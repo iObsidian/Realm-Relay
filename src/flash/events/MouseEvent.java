@@ -1,6 +1,41 @@
 package flash.events;
 
-public class MouseEvent {
+import flash.display.InteractiveObject;
+
+public class MouseEvent extends Event {
+
+	public MouseEvent(String type) {
+		this(type, true, false, 0, 0, null, false, false, false, false, 0);
+	}
+
+	public MouseEvent(String type, Boolean bubbles, Boolean cancelable, Number localX, Number localY, InteractiveObject relatedObject, Boolean ctrlKey, Boolean altKey, Boolean shiftKey, Boolean buttonDown, int delta) {
+		super(type);
+	}
+
+
+	public Number localX;
+
+	public Number localY;
+
+	public InteractiveObject relatedObject;
+
+	public Boolean ctrlKey;
+
+	public Boolean altKey;
+
+	public Boolean shiftKey;
+
+	public Boolean buttonDown;
+
+	public int delta;
+
+	public Number stageX;
+
+	public boolean updateAfterEvent;
+
+	private Number StageY;
+
+	public Boolean isRelatedObjectInaccessible;
 
 	static public final String CLICK = "click";
 	static public final String DOUBLE_CLICK = "doubleClick";
