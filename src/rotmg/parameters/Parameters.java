@@ -214,17 +214,13 @@ public class Parameters {
 
 	public static final String RSA_PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO" + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo" + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7" + "F3yWYqUbZd/HCBtawwIDAQAB\n" + "-----END PUBLIC KEY-----";
 
-	private static SharedObject savedOptions = null;
+	public static final Vector<Integer> skinTypes16 = new Vector<Integer>(1027, 1028, 1029, 1030, 10973, 19494, 19531);
 
-	public static final int[] skinTypes16 = new int[]{
-			1027, 1028, 1029, 1030, 10973, 19494, 19531
-	};
-
-	public static final int[] itemTypes16 = new int[]{
-			5473, 5474, 5475, 5476, 10939, 19494, 19531
-	};
+	public static final Vector<Integer> itemTypes16 = new Vector<Integer>(5473, 5474, 5475, 5476, 10939, 19494, 19531);
 
 	private static Dictionary keyNames = new Dictionary();
+
+	private static SharedObject savedOptions = null;
 
 	public Parameters() {
 		super();

@@ -11,6 +11,7 @@ import rotmg.AGameSprite;
 import rotmg.map.mapoverlay.MapOverlay;
 import rotmg.map.partyoverlay.PartyOverlay;
 import rotmg.objects.*;
+import rotmg.util.IntPoint;
 
 /**
  * 100% match
@@ -53,7 +54,7 @@ public class AbstractMap extends Sprite {
 
 	public Dictionary boDict;
 
-	public Object merchLookup;
+	public Dictionary<IntPoint, Merchant> merchLookup;
 
 	public Party party = null;
 
@@ -66,12 +67,12 @@ public class AbstractMap extends Sprite {
 	public boolean isPetYard = false;
 
 	public AbstractMap() {
-		this.goDict = new Dictionary();
+		this.goDict = new Dictionary<>();
 		this.map = new Sprite();
 		this.squareList = new Vector<Square>();
 		this.squares = new Vector<Square>();
 		this.boDict = new Dictionary();
-		this.merchLookup = new Object();
+		this.merchLookup = new Dictionary<>();
 		this.signalRenderSwitch = new Signal<Boolean>();
 	}
 

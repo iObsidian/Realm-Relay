@@ -6,8 +6,11 @@ import rotmg.constants.GeneralConstants;
 import rotmg.constants.ItemConstants;
 import rotmg.messaging.data.StatData;
 import rotmg.objects.animation.AnimationsData;
+import rotmg.parameters.Parameters;
 import rotmg.util.AssetLibrary;
 import rotmg.util.ConversionUtil;
+import rotmg.util.TextureRedrawer;
+import rotmg.util.redrawers.GlowRedrawer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,8 +41,8 @@ public class ObjectLibrary {
 	public static final Map<Integer, XML> petXMLDataLibrary = new HashMap<>(); //ObjectType, XML
 	public static final Map<Object, Object> skinSetXMLDataLibrary = new HashMap<>();
 	public static final Map<String, HashMap<Integer, XML>> dungeonsXMLLibrary = new HashMap<>();
-	public static final String ENEMY_FILTER_LIST[] = new String[] { "None", "Hp", "Defense" };
-	public static final String TILE_FILTER_LIST[] = new String[] { "ALL", "Walkable", "Unwalkable", "Slow", "Speed=1" };
+	public static final String ENEMY_FILTER_LIST[] = new String[]{"None", "Hp", "Defense"};
+	public static final String TILE_FILTER_LIST[] = new String[]{"ALL", "Walkable", "Unwalkable", "Slow", "Speed=1"};
 	public static final ObjectProperties defaultProps = new ObjectProperties(null);
 
 	public static Map<String, Class> TYPE_MAP = new HashMap<String, Class>();
@@ -208,7 +211,7 @@ public class ObjectLibrary {
 		}
 
 		if (typeClass != null) {
-			 
+
 		} else {
 			System.out.println("FATAL : Null typeClass!");
 		}
@@ -239,23 +242,27 @@ public class ObjectLibrary {
 		return AssetLibrary.getImageFromSet(IMAGE_SET_NAME, IMAGE_ID);
 	}
 
-	/*public static BitmapData getRedrawnTextureFromType(int param1, int param2, boolean param3, boolean =true param4, double =5param5) {
-	    BitmapData _loc6 = getBitmapData(param1);
-	    if (Parameters.itemTypes16.indexOf(param1) != -1 || _loc6_.height == 16) {
-	        param2 = param2 * 0.5;
-	    }
-	    TextureData _loc7 = typeToTextureData[param1];
-	    var _loc8:BitmapData = !!_loc7_ ? _loc7_.mask_ : null;
-	    if (_loc8_ == null) {
-	        return TextureRedrawer.redraw(_loc6_, param2, param3, 0, param4, param5);
-	    }
-	    XML _loc9 = xmlLibrary[param1];
-	    var _loc10:int =!!_loc9_.hasOwnProperty("Tex1") ? int(int(_loc9_.Tex1)) :0;
-	    var _loc11:int =!!_loc9_.hasOwnProperty("Tex2") ? int(int(_loc9_.Tex2)) :0;
-	    _loc6_ = TextureRedrawer.resize(_loc6_, _loc8_, param2, param3, _loc10_, _loc11_, param5);
-	    _loc6_ = GlowRedrawer.outlineGlow(_loc6_, 0);
-	    return _loc6_;
-	}**/
+	public static BitmapData getRedrawnTextureFromType(int param1, int param2, boolean param3) {
+		return getRedrawnTextureFromType(param1, param2, param3, true, 5);
+	}
+
+	public static BitmapData getRedrawnTextureFromType(int param1, int param2, boolean param3, boolean param4, double param5) {
+		BitmapData loc6 = getBitmapData(param1);
+		if (Parameters.itemTypes16.contains(param1) || loc6.height == 16) {
+			param2 = (int) (param2 * 0.5);
+		}
+		TextureData loc7 = typeToTextureData.get(param1);
+		BitmapData loc8 = loc7 != null ? loc7.mask : null;
+		if (loc8 == null) {
+			return TextureRedrawer.redraw(loc6, param2, param3, 0);
+		}
+		XML loc9 = xmlLibrary.get(param1);
+		int loc10 = loc9.hasOwnProperty("Tex1") ? loc9.getIntValue("Tex1") : 0;
+		int loc11 = loc9.hasOwnProperty("Tex2") ? loc9.getIntValue("Tex2") : 0;
+		loc6 = TextureRedrawer.resize(loc6, loc8, param2, param3, loc10, loc11, param5);
+		loc6 = GlowRedrawer.outlineGlow(loc6, 0);
+		return loc6;
+	}
 
 	public static int getSizeFromType(int param1) {
 		XML _loc2 = xmlLibrary.get(param1);
@@ -382,24 +389,24 @@ public class ObjectLibrary {
 		if (reqXML.toString().equals("Stat")) {
 			val = reqXML.getIntAttribute("value");
 			switch (reqXML.getIntAttribute("stat")) {
-			case StatData.MAX_HP_STAT:
-				return player.maxHP >= val;
-			case StatData.MAX_MP_STAT:
-				return player.maxMP >= val;
-			case StatData.LEVEL_STAT:
-				return player.level >= val;
-			case StatData.ATTACK_STAT:
-				return player.attack >= val;
-			case StatData.DEFENSE_STAT:
-				return player.defense >= val;
-			case StatData.SPEED_STAT:
-				return player.speed >= val;
-			case StatData.VITALITY_STAT:
-				return player.vitality >= val;
-			case StatData.WISDOM_STAT:
-				return player.wisdom >= val;
-			case StatData.DEXTERITY_STAT:
-				return player.dexterity >= val;
+				case StatData.MAX_HP_STAT:
+					return player.maxHP >= val;
+				case StatData.MAX_MP_STAT:
+					return player.maxMP >= val;
+				case StatData.LEVEL_STAT:
+					return player.level >= val;
+				case StatData.ATTACK_STAT:
+					return player.attack >= val;
+				case StatData.DEFENSE_STAT:
+					return player.defense >= val;
+				case StatData.SPEED_STAT:
+					return player.speed >= val;
+				case StatData.VITALITY_STAT:
+					return player.vitality >= val;
+				case StatData.WISDOM_STAT:
+					return player.wisdom >= val;
+				case StatData.DEXTERITY_STAT:
+					return player.dexterity >= val;
 			}
 		}
 		return false;

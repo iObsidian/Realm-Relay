@@ -2,6 +2,8 @@ package rotmg.text.view.stringBuilder;
 
 import rotmg.language.model.StringMap;
 
+import javax.sound.sampled.Line;
+
 /**
  * Not fully implemented (about 15%)
  */
@@ -31,7 +33,7 @@ public class LineBuilder implements StringBuilder {
 		return null;
 	}
 
-	public StringBuilder setParams(String params) {
+	public LineBuilder setParams(String params) {
 		this.params = params;
 		return null;
 	}

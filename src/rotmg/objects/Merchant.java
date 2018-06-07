@@ -1,37 +1,40 @@
 package rotmg.objects;
 
+import alde.flash.utils.Vector;
+import alde.flash.utils.XML;
 import flash.display.BitmapData;
+import flash.geom.ColorTransform;
+import flash.geom.Matrix;
 import javafx.scene.Camera;
-import rotmg.game._as3.XML;
-import rotmg.game.map.Map;
-import rotmg.game.util.IntPoint;
-import sun.java2d.cmm.ColorTransform;
+import rotmg.constants.InventoryOwnerTypes;
+import rotmg.language.model.StringMap;
+import rotmg.map.Map;
+import rotmg.model.AddSpeechBalloonVO;
+import rotmg.signals.AddSpeechBalloonSignal;
+import rotmg.text.view.stringBuilder.LineBuilder;
+import rotmg.util.IntPoint;
 
-/**
- * Merchant for selleableobjects
- */
 public class Merchant extends SellableObject implements IInteractiveObject {
 
-	private static int NONE_MESSAGE = 0;
+	private static final int NONE_MESSAGE = 0;
 
-	private static int NEW_MESSAGE = 1;
+	private static final int NEW_MESSAGE = 1;
 
-	private static int MINS_LEFT_MESSAGE = 2;
+	private static final int MINS_LEFT_MESSAGE = 2;
 
-	private static int ITEMS_LEFT_MESSAGE = 3;
+	private static final int ITEMS_LEFT_MESSAGE = 3;
 
-	private static int DISCOUNT_MESSAGE = 4;
+	private static final int DISCOUNT_MESSAGE = 4;
 
-	private static double T = 1;
+	private static final double T = 1;
 
-	/*
-	 *private static const DOSE_MATRIX:Matrix = function():Matrix
-	 {
-	 var m:* = new Matrix();
-	 m.translate(10,5);
-	 return m;
-	 }();
-	 */
+	private static Matrix DOSE_MATRIX;
+
+	static {
+		Matrix loc1 = new Matrix();
+		loc1.translate(10, 5);
+		DOSE_MATRIX = loc1;
+	}
 
 	public int merchandiseType = -1;
 
@@ -45,9 +48,11 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 
 	public int untilNextMessage = 0;
 
-	public double alpha = 1.0F;
+	public double alpha = 1.0;
 
 	private AddSpeechBalloonSignal addSpeechBalloon;
+
+	private StringMap stringMap;
 
 	private boolean firstUpdate = true;
 
@@ -55,201 +60,191 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 
 	private ColorTransform ct;
 
-	public Merchant(XML objectXML) {
-		super(objectXML);
+	public Merchant(XML param1) {
+		super(param1);
 		this.ct = new ColorTransform(1, 1, 1, 1);
 		this.addSpeechBalloon = AddSpeechBalloonSignal.getInstance();
+		this.stringMap = StringMap.getInstance();
 		isInteractive = true;
 	}
 
-	@Override
-	public void setPrice(int price) {
-		super.setPrice(price);
+	public void setPrice(int param1) {
+		super.setPrice(param1);
 		this.untilNextMessage = 0;
 	}
 
-	@Override
-	public void setRankReq(int rankReq) {
-		super.setRankReq(rankReq);
+	public void setRankReq(int param1) {
+		super.setRankReq(param1);
 		this.untilNextMessage = 0;
 	}
 
-	@Override
-	public boolean addTo(Map map, double x, double y) {
-		if (!super.addTo(map, x, y)) {
+	public boolean addTo(Map param1, double param2, double param3) {
+		if (!super.addTo(param1, param2, param3)) {
 			return false;
 		}
-		map.merchLookup[new IntPoint(x, y)] = this;
+		param1.merchLookup.put(new IntPoint((int) x, (int) y), this);
 		return true;
 	}
 
-	@Override
 	public void removeFromMap() {
-		IntPoint p = new IntPoint(x, y);
-		if (map.merchLookup_[p] == this) {
-			map.merchLookup_[p] = null;
+		IntPoint loc1 = new IntPoint((int) x, (int) y);
+		if (map.merchLookup.get(loc1) == this) {
+			map.merchLookup.put(loc1, null);
 		}
 		super.removeFromMap();
 	}
 
-	public AddSpeechBalloonVO getSpeechBalloon(int message) {
-		String text = null;
-		int backColor = 0;
-		int outlineColor = 0;
-		int textColor = 0;
-		switch (message) {
+	public AddSpeechBalloonVO getSpeechBalloon(int param1) {
+		LineBuilder loc2 = null;
+		int loc3 = 0;
+		int loc4 = 0;
+		int loc5 = 0;
+		switch (param1) {
 			case NEW_MESSAGE:
-				text = "New!";
-				backColor = 15132390;
-				outlineColor = 16777215;
-				textColor = 5931045;
+				loc2 = new LineBuilder().setParams("Merchant.new");
+				loc3 = 15132390;
+				loc4 = 16777215;
+				loc5 = 5931045;
 				break;
 			case MINS_LEFT_MESSAGE:
 				if (this.minsLeft == 0) {
-					text = "Going soon!";
+					loc2 = new LineBuilder().setParams("Merchant.goingSoon");
 				} else if (this.minsLeft == 1) {
-					text = "Going in 1 min!";
+					loc2 = new LineBuilder().setParams("Merchant.goingInOneMinute");
 				} else {
-					text = "Going in " + this.minsLeft + " mins!";
+					loc2 = new LineBuilder().setParams("Merchant.goingInNMinutes", {"minutes":this.minsLeft});
+
 				}
-				backColor = 5973542;
-				outlineColor = 16549442;
-				textColor = 16549442;
+				loc3 = 5973542;
+				loc4 = 16549442;
+				loc5 = 16549442;
 				break;
 			case ITEMS_LEFT_MESSAGE:
-				text = this.count + " left!";
-				backColor = 5973542;
-				outlineColor = 16549442;
-				textColor = 16549442;
+				loc2 = new LineBuilder().setParams("Merchant.limitedStock", {"count":this.count});
+				loc3 = 5973542;
+				loc4 = 16549442;
+				loc5 = 16549442;
 				break;
 			case DISCOUNT_MESSAGE:
-				text = this.discount + "% off!";
-				backColor = 6324275;
-				outlineColor = 16777103;
-				textColor = 16777103;
+				loc2 = new LineBuilder().setParams("Merchant.discount", {"discount":this.discount});
+				loc3 = 6324275;
+				loc4 = 16777103;
+				loc5 = 16777103;
 				break;
 			default:
 				return null;
 		}
-		return new AddSpeechBalloonVO(this, text, backColor, 1, outlineColor, 1, textColor, 6, true, false);
+		loc2.setStringMap(this.stringMap);
+		return new AddSpeechBalloonVO(this, loc2.getString(), "", false, false, loc3, 1, loc4, 1, loc5, 6, true, false);
 	}
 
-	@Override
-	public boolean update(int time, int dt) {
-		GTween tween0 = null;
-		GTween tween1 = null;
-		super.update(time, dt);
-		if (this.firstUpdate_) {
-			if (this.minsLeft_ == 2147483647) {
-				this.alpha = 0;
-				tween0 = new GTween(this, 0.5 * T, {"alpha_":1});
-				tween1 = new GTween(this, 0.5 * T, {"size_":150},{
-					"ease":Sine.easeOut
-				});
-				tween1.nextTween = new GTween(this, 0.5 * T, {"size_":100},{
-					"ease":Sine.easeIn
-				});
-				tween1.nextTween.paused = true;
-			}
-			this.firstUpdate = false;
-		}
-		this.untilNextMessage = this.untilNextMessage_ - dt;
-		if (this.untilNextMessage_ > 0) {
+	public boolean update(int param1, int param2) {
+
+		super.update(param1, param2);
+
+
+		this.untilNextMessage = this.untilNextMessage - param2;
+		if (this.untilNextMessage > 0) {
 			return true;
 		}
 		this.untilNextMessage = 5000;
-		List<int> messages = new List<int>();
-		if (this.minsLeft_ == 2147483647) {
-			messages.add(NEW_MESSAGE);
-		} else if (this.minsLeft_ >= 0 && this.minsLeft_ <= 5) {
-			messages.add(MINS_LEFT_MESSAGE);
+		Vector<Integer> loc3 = new Vector<Integer>();
+		if (this.minsLeft == 2147483647) {
+			loc3.add(NEW_MESSAGE);
+		} else if (this.minsLeft >= 0 && this.minsLeft <= 5) {
+			loc3.add(MINS_LEFT_MESSAGE);
 		}
-		if (this.count_ >= 1 && this.count_ <= 2) {
-			messages.add(ITEMS_LEFT_MESSAGE);
+		if (this.count >= 1 && this.count <= 2) {
+			loc3.add(ITEMS_LEFT_MESSAGE);
 		}
-		if (this.discount_ > 0) {
-			messages.add(DISCOUNT_MESSAGE);
+		if (this.discount > 0) {
+			loc3.add(DISCOUNT_MESSAGE);
 		}
-		if (messages.length == 0) {
+		if (loc3.length == 0) {
 			return true;
 		}
-		this.messageIndex = ++this.messageIndex_ % messages.length;
-		int message = messages[this.messageIndex_];
-		this.addSpeechBalloon.dispatch(this.getSpeechBalloon(message));
+		this.messageIndex = ++this.messageIndex % loc3.length;
+		int loc4 = loc3.get(this.messageIndex);
+		this.addSpeechBalloon.dispatch(this.getSpeechBalloon(loc4));
 		return true;
 	}
 
-	@Override
 	public String soldObjectName() {
 		return ObjectLibrary.typeToDisplayId.get(this.merchandiseType);
 	}
 
-	@Override
 	public String soldObjectInternalName() {
-		XML objectXML = ObjectLibrary.xmlLibrary[this.merchandiseType];
-		return objectXML.getAttribute("id");
+		XML loc1 = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
+		return String.valueOf(loc1.getIntAttribute("id"));
 	}
 
-	@Override
 	public ToolTip getTooltip() {
-		ToolTip toolTip = new EquipmentToolTip(this.merchandiseType_, map_.player_, -1, InventoryOwnerTypes.NPC);
-		return toolTip;
+		ToolTip loc1 = new EquipmentToolTip(this.merchandiseType, map.player, -1, InventoryOwnerTypes.NPC);
+		return loc1;
 	}
 
-	@Override
+	public int getSellableType() {
+		return this.merchandiseType;
+	}
+
 	public BitmapData getIcon() {
-		SimpleText tempText = null;
-		BitmapData texture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 80, true);
-		XML eqXML = ObjectLibrary.xmlLibrary[this.merchandiseType_];
-		if (eqXML.hasOwnProperty("Doses")) {
-			texture = texture.clone();
-			tempText = new SimpleText(12, 16777215, false, 0, 0, "Myriad Pro");
-			tempText.text = String(eqXML.Doses);
-			tempText.updateMetrics();
-			texture.draw(tempText, DOSE_MATRIX);
+		BaseSimpleText loc3 = null;
+		BaseSimpleText loc4 = null;
+		BitmapData loc1 = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 80, true);
+		XML loc2 = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
+		if (loc2.hasOwnProperty("Doses")) {
+			loc1 = loc1.clone();
+			loc3 = new BaseSimpleText(12, 16777215, false, 0, 0);
+			loc3.text = String(loc2.Doses);
+			loc3.updateMetrics();
+			loc1.draw(loc3, DOSE_MATRIX);
 		}
-		return texture;
+		if (loc2.hasOwnProperty("Quantity")) {
+			loc1 = loc1.clone();
+			loc4 = new BaseSimpleText(12, 16777215, false, 0, 0);
+			loc4.text = String(loc2.Quantity);
+			loc4.updateMetrics();
+			loc1.draw(loc4, DOSE_MATRIX);
+		}
+		return loc1;
 	}
 
-	public int getTex1Id(int defaultTexId) {
-		XML objXML = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
-		if (objXML == null) {
-			return defaultTexId;
+	public int getTex1Id(int param1) {
+		XML loc2 = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
+		if (loc2 == null) {
+			return param1;
 		}
-		if (objXML.Activate == "Dye" && objXML.hasOwnProperty("Tex1")) {
-			return objXML.getIntValue("Tex1");
+		if (loc2.getValue("Activate").equals("Dye") && loc2.hasOwnProperty("Tex1")) {
+			return loc2.getIntValue("Tex1");
 		}
-		return defaultTexId;
+		return param1;
 	}
 
-	public int getTex2Id(int defaultTexId) {
-		XML objXML = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
-		if (objXML == null) {
-			return defaultTexId;
+	public int getTex2Id(int param1) {
+		XML loc2 = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
+		if (loc2 == null) {
+			return param1;
 		}
-		if (objXML.getAttribute("Activate").equals("Dye") && objXML.hasOwnProperty("Tex2")) {
-			return objXML.getAttribute("Tex2");
+		if (loc2.getValue("Activate").equals("Dye") && loc2.hasOwnProperty("Tex2")) {
+			return loc2.getIntValue("Tex2");
 		}
-		return defaultTexId;
+		return param1;
 	}
 
-	@Override
-	protected BitmapData getTexture(Camera camera, int time) {
-		if (this.alpha_ == 1 && size_ == 100) {
-			return this.merchandiseTexture_;
+	protected BitmapData getTexture(Camera param1, int param2) {
+		if (this.alpha == 1 && size == 100) {
+			return this.merchandiseTexture;
 		}
-		BitmapData tempTexture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType_, size_, false, false);
-		if (this.alpha_ != 1) {
-			this.ct_.alphaMultiplier = this.alpha_;
-			tempTexture.colorTransform(tempTexture.rect, this.ct_);
+		BitmapData loc3 = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, size, false, false);
+		if (this.alpha != 1) {
+			this.ct.alphaMultiplier = (int) this.alpha;
+			loc3.colorTransform(loc3.rect, this.ct);
 		}
-		return tempTexture;
+		return loc3;
 	}
 
-	public void setMerchandiseType(int merchandiseType) {
-		this.merchandiseType = merchandiseType;
-		this.merchandiseTexture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType_, 100, false);
+	public void setMerchandiseType(int param1) {
+		this.merchandiseType = param1;
+		this.merchandiseTexture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 100, false);
 	}
-
-
 }
