@@ -111,5 +111,10 @@ public class Vector<T> implements Iterable<T> {
 	}
 
 
+	public void clear() {
+		map.clear();
+	}
 
+	public void sortOn(Vector sortOnFields, Vector sortOnParams) {
+	}
 }

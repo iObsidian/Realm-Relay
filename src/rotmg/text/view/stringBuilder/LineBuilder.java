@@ -18,6 +18,7 @@ public class LineBuilder implements StringBuilder {
 	private String prefix = "";
 
 	private StringMap map;
+	private String params;
 
 	public LineBuilder() {
 		super();
@@ -35,9 +36,12 @@ public class LineBuilder implements StringBuilder {
 
 	public LineBuilder setParams(String params) {
 		this.params = params;
-		return null;
+		return this;
 	}
 
 	public LineBuilder setParams(String s, String s1) {
+		this.key = key;
+		this.params = params;
+		return this;
 	}
 }

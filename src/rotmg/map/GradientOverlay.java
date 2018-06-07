@@ -17,8 +17,8 @@ public class GradientOverlay extends Shape {
 	private Vector<IGraphicsData> gradientGraphicsData;
 
 	public GradientOverlay() {
-		gradientGraphicsData = new IGraphicsData[]{this.gradientFill, this.gradientPath, GraphicsUtil.END_FILL};
 		super();
+		gradientGraphicsData = new Vector<IGraphicsData>(this.gradientFill, this.gradientPath, GraphicsUtil.END_FILL);
 		graphics.drawGraphicsData(this.gradientGraphicsData);
 		visible = false;
 	}

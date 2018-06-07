@@ -13,7 +13,7 @@ public class AccountList extends IncomingMessage {
 	}
 
 	public int accountListId;
-	private String[] accountIds;
+	public String[] accountIds;
 	private int lockAction = -1;
 
 	@Override

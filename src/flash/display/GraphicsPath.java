@@ -7,8 +7,8 @@ public class GraphicsPath implements IGraphicsData {
 	public Vector<Double> data;
 	public Vector<Integer> commands;
 
-	public GraphicsPath(Vector<Integer> quadCommands, Vector<Double> doubles) {
 
+	public GraphicsPath(Vector<Integer> quadCommands, Vector<Integer> integers) {
 	}
 
 	public void moveTo(int param1, int param2) {

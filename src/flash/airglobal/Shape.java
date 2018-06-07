@@ -1,6 +1,8 @@
 package flash.airglobal;
 
 
-public class Shape {
+import flash.display.DisplayObject;
+
+public class Shape extends DisplayObject {
 	public Graphics graphics;
 }
