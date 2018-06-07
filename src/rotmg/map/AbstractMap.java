@@ -10,17 +10,14 @@ import org.osflash.signals.Signal;
 import rotmg.game.AGameSprite;
 import rotmg.map.mapoverlay.MapOverlay;
 import rotmg.map.partyoverlay.PartyOverlay;
-import rotmg.objects.BasicObject;
-import rotmg.objects.Party;
-import rotmg.objects.Player;
-import rotmg.objects.Square;
+import rotmg.objects.*;
 
 /**
  * 100% match
  */
 public class AbstractMap extends Sprite {
 
-	public Dictionary goDict;
+	public Dictionary<Integer, GameObject> goDict;
 
 	public AGameSprite gs;
 

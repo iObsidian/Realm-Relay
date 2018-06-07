@@ -1,19 +1,68 @@
 package rotmg.objects;
 
+import alde.flash.utils.Dictionary;
+import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import rotmg.util.ConditionEffect;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * This is a VERY close match to the client.
- *
+ * <p>
  * Only thing is XML attribute '@intensity' is gotten as a Value. (it's like that in the client)
- *
  */
 public class ProjectileProperties {
+
+	public int bulletType;
+
+	public String objectId;
+
+	public int lifetime;
+
+	public int speed;
+
+	public int size;
+
+	public int minDamage;
+
+	public int maxDamage;
+
+	public Vector<Integer> effects = null;
+
+	public boolean multiHit;
+
+	public boolean passesCover;
+
+	public boolean armorPiercing;
+
+	public boolean particleTrail;
+
+	public int particleTrailIntensity = -1;
+
+	public int particleTrailLifetimeMS = -1;
+
+	public int particleTrailColor = 16711935;
+
+	public boolean wavy;
+
+	public boolean parametric;
+
+	public boolean boomerang;
+
+	public double amplitude;
+
+	public double frequency;
+
+	public double magnitude;
+
+	public Dictionary isPetEffect;
+
+	public boolean faceDir;
+
+	public boolean noRotation;
+
 
 	public ProjectileProperties(XML param1) {
 		this.bulletType = param1.getIntAttribute("id");
@@ -29,12 +78,12 @@ public class ProjectileProperties {
 		}
 		for (XML _loc2_ : param1.getChilds("ConditionEffect")) {
 			if (this.effects == null) {
-				this.effects = new ArrayList<>();
+				this.effects = new Vector<>();
 			}
 			this.effects.add(ConditionEffect.getConditionEffectFromName(_loc2_.getTextValue()));
 			if (_loc2_.getAttribute("target").equals("1")) {
 				if (this.isPetEffect == null) {
-					this.isPetEffect = new HashMap<>();
+					this.isPetEffect = new Dictionary();
 				}
 				this.isPetEffect.put(ConditionEffect.getConditionEffectFromName(_loc2_.name()), true);
 			}
@@ -69,29 +118,5 @@ public class ProjectileProperties {
 		this.noRotation = param1.hasOwnProperty("NoRotation");
 	}
 
-	public int bulletType;
-	public String objectId;
-	public int lifetime;
-	public int speed;
-	public int size;
-	public int minDamage;
-	public int maxDamage;
-	public List<Integer> effects;
-	public boolean multiHit;
-	public boolean passesCover;
-	public boolean armorPiercing;
-	public boolean particleTrail;
-	public int particleTrailIntensity = -1;
-	public int particleTrailLifetimeMS = -1;
-	public int particleTrailColor = 16711935;
-	public boolean wavy;
-	public boolean parametric;
-	public boolean boomerang;
-	public double amplitude;
-	public double frequency;
-	public double magnitude;
-	public HashMap<Integer, Boolean> isPetEffect;
-	public boolean faceDir;
-	public boolean noRotation;
 
 }

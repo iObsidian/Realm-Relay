@@ -49,4 +49,11 @@ public class GraphicsUtil {
 		path.lineTo(x, y + radius);
 		path.lineTo(x - radius, y);
 	}
+
+	public static void clearPath(GraphicsPath graphicsPath) {
+	}
+
+	public static int[] drawCutEdgeRect(int i, int i1, int width, int height, int bevel, Object p5) {
+		return new int[0];
+	}
 }

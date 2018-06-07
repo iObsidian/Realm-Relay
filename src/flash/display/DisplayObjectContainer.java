@@ -2,43 +2,74 @@ package flash.display;
 
 import flash.geom.Point;
 
-public interface DisplayObjectContainer extends InteractiveObject {
+public class DisplayObjectContainer extends InteractiveObject {
 
-	public DisplayObject addChild(DisplayObject child);
+	public DisplayObject addChild(DisplayObject child) {
+		return null;
+	}
 
-	public DisplayObject addChildAt(DisplayObject child, int index);
+	public DisplayObject addChildAt(DisplayObject child, int index){
+		return null;
+	}
+	public DisplayObject removeChild(DisplayObject child){
+		return null;
+	}
+	public DisplayObject removeChildAt(int index){
+		return null;
+	}
 
-	public DisplayObject removeChild(DisplayObject child);
+	public int getChildIndex(DisplayObject child){
+		return 1;
+	}
 
-	public DisplayObject removeChildAt(int index);
+	public void setChildIndex(DisplayObject child, int index){
+	}
 
-	public int getChildIndex(DisplayObject child);
+	public DisplayObject getChildAt(int index){
+		return null;
+	}
 
-	public void setChildIndex(DisplayObject child, int index);
+	public DisplayObject getChildByName(String name){
+		return null;
+	}
 
-	public DisplayObject getChildAt(int index);
+	public int getNumChildren(){
+		return 1;
+	}
 
-	public DisplayObject getChildByName(String name);
+	public TextSnapshot getTextSnapshot(){
+		return null;
+	}
 
-	public int getNumChildren();
+	public Array getObjectsUnderPoint(Point point){
+		return null;
+	}
 
-	public TextSnapshot getTextSnapshot();
+	public Boolean areInaccessibleObjectsUnderPoint(Point point){
+		return null;
+	}
 
-	public Array getObjectsUnderPoint(Point point);
+	public Boolean getTabChildren(){
+		return null;
+	}
 
-	public Boolean areInaccessibleObjectsUnderPoint(Point point);
+	public void setTabChildren(Boolean enable){
+	}
 
-	public Boolean getTabChildren();
+	public Boolean getMouseChildren(){
+		return null;
+	}
 
-	public void setTabChildren(Boolean enable);
+	public void setMouseChildren(Boolean enable){
+	}
 
-	public Boolean getMouseChildren();
+	public Boolean contains(DisplayObject child){
+		return null;
+	}
 
-	public void setMouseChildren(Boolean enable);
+	public void swapChildrenAt(int index1, int index2){
+	}
 
-	public Boolean contains(DisplayObject child);
-
-	public void swapChildrenAt(int index1, int index2);
-
-	public void swapChildren(DisplayObject child1, DisplayObject child2);
+	public void swapChildren(DisplayObject child1, DisplayObject child2){
+	}
 }

@@ -1,19 +1,11 @@
 package flash.events;
 
-import alde.flash.utils.Function;
+import flash.airglobal.Graphics;
 
 import java.util.HashMap;
 import java.util.function.Consumer;
 
-public class EventDispatcher implements IEventDispatcher {
-
-	public void addEventListener(String type, Consumer listener) {
-		addEventListener(type, listener, false, 0, false);
-	}
-
-	native void addEventListener(String type, Consumer listener, boolean useCapture, int priority, Boolean useWeakReference);
-
-	public native void removeEventListener(String type, Consumer listener);
+public class EventDispatcher {
 
 	native void removeEventListener(String type, Consumer listener, Boolean useCapture);
 
@@ -23,9 +15,6 @@ public class EventDispatcher implements IEventDispatcher {
 
 	native Boolean willTrigger(String type);
 
-
-
-
 	private HashMap<Consumer<Event>, String> listeners;
 
 	int startTime;
@@ -33,7 +22,7 @@ public class EventDispatcher implements IEventDispatcher {
 	public boolean mouseEnabled;
 	public Graphics graphics;
 
-	public Sprite() {
+	public EventDispatcher() {
 		listeners = new HashMap<>();
 
 	}
@@ -42,8 +31,12 @@ public class EventDispatcher implements IEventDispatcher {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-	public void addEventListener(String event, Consumer<Event> consumer) {
-		listeners.put(consumer, event);
+	public void addEventListener(String event, Consumer<Event> listener) {
+		addEventListener(event, listener, false, 0, false);
+	}
+
+	void addEventListener(String event, Consumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
+		listeners.put(listener, event);
 	}
 
 	public void removeEventListener(String event, Consumer<Event> consumer) {
@@ -58,7 +51,6 @@ public class EventDispatcher implements IEventDispatcher {
 		}
 	}
 
-
 	//TODO link these methods with engine render cycle
 
 	void onAddedToStage(Integer param1) {
@@ -72,8 +64,5 @@ public class EventDispatcher implements IEventDispatcher {
 	void onEnterFrame(Integer param1) {
 		trigger(Event.ENTER_FRAME);
 	}
-
-
-
 
 }

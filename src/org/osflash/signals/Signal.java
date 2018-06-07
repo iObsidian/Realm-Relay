@@ -53,6 +53,7 @@ public class Signal<T> {
 		}
 	}
 
-
-
+//from 'OnceSignal'
+	public void addOnce(Consumer onTextChanged) {
+	}
 }

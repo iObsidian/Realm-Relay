@@ -11,6 +11,10 @@ public class BitmapDataSpy extends BitmapData {
 		super(i, i1);
 	}
 
+	public BitmapDataSpy(double width, double height) {
+		super(width, height);
+	}
+
 	@Override
 	public BitmapData clone() {
 		return super.clone();

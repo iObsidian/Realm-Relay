@@ -42,7 +42,7 @@ public class BasicObject {
 		this.clear();
 	}
 
-	public int getNextFakeObjectId() {
+	public static int getNextFakeObjectId() {
 		return 2130706432 | nextFakeObjectId++;
 	}
 
@@ -60,7 +60,7 @@ public class BasicObject {
 		this.sortVal = 0;
 	}
 
-	public void dispose() {
+	public static void dispose() {
 		this.map = null;
 		this.square = null;
 		this.posW = null;

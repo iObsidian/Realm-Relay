@@ -2,30 +2,72 @@ package flash.display;
 
 import flash.geom.Rectangle;
 
-public interface InteractiveObject extends DisplayObject {
+public class InteractiveObject extends DisplayObject {
 
-	public Boolean getTabEnabled();
-	public void setTabEnabled(Boolean enabled);
+	public Boolean getTabEnabled() {
+		return null;
+	}
 
-	public int getTabIndex();
-	public void setTabIndex(int index);
-	public Object getFocusRect();
-	public void setFocusRect(Object focusRect);
-	public Boolean getMouseEnabled();
+	public void setTabEnabled(Boolean enabled) {
+	}
 
-	public void setMouseEnabled(Boolean enabled);
-	public Boolean getDoubleClickEnabled();
-	public void setDoubleClickEnabled(Boolean enabled);
-	
-	public AccessibilityImplementation getAccessibilityImplementation();
-	public void setAccessibilityImplementation(AccessibilityImplementation value);
+	public int getTabIndex() {
+		return 1;
+	}
 
-	public Rectangle getSoftKeyboardInputAreaOfInterest();
-	public void setSoftKeyboardInputAreaOfInterest(Rectangle value);
-	public Boolean getNeedsSoftKeyboard();
-	public void setNeedsSoftKeyboard(Boolean value);
-	public Boolean requestSoftKeyboard();
+	public void setTabIndex(int index) {
+	}
 
-	public ContextMenu getContextMenu();
-	public void setContextMenu(ContextMenu contextMenu);
+	public Object getFocusRect() {
+		return null;
+	}
+
+	public void setFocusRect(Object focusRect) {
+	}
+
+	public Boolean getMouseEnabled() {
+		return null;
+	}
+
+	public void setMouseEnabled(Boolean enabled) {
+	}
+
+	public Boolean getDoubleClickEnabled() {
+		return null;
+	}
+
+	public void setDoubleClickEnabled(Boolean enabled) {
+	}
+
+	public AccessibilityImplementation getAccessibilityImplementation() {
+		return null;
+	}
+
+	public void setAccessibilityImplementation(AccessibilityImplementation value) {
+	}
+
+	public Rectangle getSoftKeyboardInputAreaOfInterest() {
+		return null;
+	}
+
+	public void setSoftKeyboardInputAreaOfInterest(Rectangle value) {
+	}
+
+	public Boolean getNeedsSoftKeyboard() {
+		return null;
+	}
+
+	public void setNeedsSoftKeyboard(Boolean value) {
+	}
+
+	public Boolean requestSoftKeyboard() {
+		return null;
+	}
+
+	public ContextMenu getContextMenu() {
+		return null;
+	}
+
+	public void setContextMenu(ContextMenu contextMenu) {
+	}
 }

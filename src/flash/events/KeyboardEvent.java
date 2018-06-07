@@ -2,41 +2,37 @@ package flash.events;
 
 public class KeyboardEvent extends Event {
 
-	public KeyboardEvent(String type, Boolean bubbles, Boolean cancelable, int charCodeValue, int keyCodeValue, int keyLocationValue, Boolean ctrlKeyValue, Boolean altKeyValue, Boolean shiftKeyValue);
+	static public final String KEY_DOWN = "keyDown";
+
+	static public final String KEY_UP = "keyUp";
+
+	public KeyboardEvent(String name, int m_keyLocation, int m_keyCode, int charCode, int keyCode, int keyLocation, boolean ctrlKey, boolean altKey, boolean shiftKey) {
+		super(name);
+		this.m_keyLocation = m_keyLocation;
+		this.m_keyCode = m_keyCode;
+		this.charCode = charCode;
+		this.keyCode = keyCode;
+		this.keyLocation = keyLocation;
+		this.ctrlKey = ctrlKey;
+		this.altKey = altKey;
+		this.shiftKey = shiftKey;
+	}
 
 	public int m_keyLocation;
 	public int m_keyCode;
 
-	public String toString();
+	public int charCode;
 
-	public int getCharCode();
+	public int keyCode;
 
-	public void setCharCode(int value);
+	public int keyLocation;
 
-	public int getKeyCode();
+	public boolean ctrlKey;
 
-	public void setKeyCode(int value);
+	public boolean altKey;
 
-	public int getKeyLocation();
+	public boolean shiftKey;
 
-	public void setKeyLocation(int value);
 
-	public Boolean getCtrlKey();
-
-	public void setCtrlKey(Boolean value);
-
-	public Boolean getAltKey();
-
-	public void setAltKey(Boolean value);
-
-	public Boolean getShiftKey();
-
-	public void setShiftKey(Boolean value);
-
-	public void updateAfterEvent();
-
-	static public final String KEY_DOWN = "keyDown";
-
-	static public final String KEY_UP = "keyUp";
 
 }

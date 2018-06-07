@@ -1,69 +1,80 @@
 package rotmg.engine3d;
 
-import flash.display.BitmapData;
-import javafx.scene.Camera;
+import alde.flash.utils.Vector;
+import flash.display.*;
+import flash.geom.Matrix3D;
+import flash.geom.Utils3D;
+import flash.geom.Vector3D;
 import org.bouncycastle.pqc.math.linearalgebra.Matrix;
 import rotmg.game.util.Trig;
+import rotmg.map.Camera;
+import rotmg.util.Trig;
 
 public class Point3D {
 
-    
-    private static final List<int> commands = new <int>[GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO,GraphicsPathCommand.LINE_TO,GraphicsPathCommand.LINE_TO];
+	private static final Vector<Integer> commands = new Vector<Integer>(GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
 
-    private static final GraphicsEndFill END_FILL = new GraphicsEndFill();
-    private final double[] data = new double[0];
-    private final GraphicsBitmapFill bitmapFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
-    private final GraphicsSolidFill solidFill = new GraphicsSolidFill(0, 1);
+	private static final GraphicsEndFill END_FILL = new GraphicsEndFill();
 
-    public Point3D(double param1) {
-        path = new GraphicsPath(commands, this.data);
-        this.size = param1;
-    }
+	public double size;
 
-    public Number size;
-    public Vector3D posS;
-    private GraphicsPath path;
+	public Vector3D posS;
 
-    public void setSize(double param1) {
-        this.size = param1;
-    }
+	private final Vector<Double> data = new Vector<Double>();
+
+	private final GraphicsPath path = new GraphicsPath(commands, this.data);
+
+	private final GraphicsBitmapFill bitmapFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
+
+	private final GraphicsSolidFill solidFill = new GraphicsSolidFill(0, 1);
+
+	public Point3D(double param1) {
+		super();
+		this.size = param1;
+	}
+
+	public void setSize(double param1) {
+		this.size = param1;
+	}
 
 
-    public void draw() {
+	public void draw(Vector<IGraphicsData> param1, Vector3D param2, double param3, Matrix3D param4, Camera param5, BitmapData param6) {
+		draw(param1, param2, param3, param4, param5, param6, 0);
+	}
 
-    }
-
-    public void draw(List<IGraphicsData> graphicsData, Vector3D posL, double angle, Matrix3D lToS, Camera camera, BitmapData bitmapData, int color) {
-        this.posS = Utils3D.projectVector(lToS, posL);
-        if (this.posS.w < 0) {
-            return;
-        }
-        double o = this.posS.w * Math.sin(camera.pp.fieldOfView / 2 * Trig.toRadians);
-        double s = this.size / o;
-        this.data.length = 0;
-        if (angle == 0) {
-            this.data.add(this.posS.x - s, this.posS.y - s, this.posS.x + s, this.posS_.y - s, this.posS_.x + s, this.posS_.y + s, this.posS_.x - s, this.posS_.y + s);
-        } else {
-            double ca = Math.cos(angle);
-            double sa = Math.sin(angle);
-            this.data.add(this.posS_.x + (ca * -s + sa * -s), this.posS_.y + (sa * -s - ca * -s), this.posS_.x + (ca * s + sa * -s), this.posS_.y + (sa * s - ca * -s), this.posS_.x + (ca * s + sa * s), this.posS_.y + (sa * s - ca * s), this.posS_.x + (ca * -s + sa * s), this.posS_.y + (sa * -s - ca * s));
-        }
-        if (bitmapData != null) {
-            this.bitmapFill_.bitmapData = bitmapData;
-            Matrix m = this.bitmapFill_.matrix;
-            m.identity();
-            m.scale(2 * s / bitmapData.width, 2 * s / bitmapData.height);
-            m.translate(-s, -s);
-            m.rotate(angle);
-            m.translate(this.posS_.x, this.posS_.y);
-            graphicsData.add(this.bitmapFill_);
-        } else {
-            this.solidFill_.color = color;
-            graphicsData.add(this.solidFill_);
-        }
-        graphicsData.add(this.path_);
-        graphicsData.add(END_FILL);
-    }
-
+	public void draw(Vector<IGraphicsData> param1, Vector3D param2, double param3, Matrix3D param4, Camera param5, BitmapData param6, int param7) {
+		double loc10 = 0;
+		double loc11 = 0;
+		Matrix loc12 = null;
+		this.posS = Utils3D.projectVector(param4, param2);
+		if (this.posS.w < 0) {
+			return;
+		}
+		double loc8 = this.posS.w * Math.sin(param5.pp.fieldOfView / 2 * Trig.toRadians);
+		double loc9 = this.size / loc8;
+		this.data.length = 0;
+		if (param3 == 0) {
+			this.data.add(this.posS.x - loc9, this.posS.y - loc9, this.posS.x + loc9, this.posS.y - loc9, this.posS.x + loc9, this.posS.y + loc9, this.posS.x - loc9, this.posS.y + loc9);
+		} else {
+			loc10 = Math.cos(param3);
+			loc11 = Math.sin(param3);
+			this.data.add(this.posS.x + (loc10 * -loc9 + loc11 * -loc9), this.posS.y + (loc11 * -loc9 - loc10 * -loc9), this.posS.x + (loc10 * loc9 + loc11 * -loc9), this.posS.y + (loc11 * loc9 - loc10 * -loc9), this.posS.x + (loc10 * loc9 + loc11 * loc9), this.posS.y + (loc11 * loc9 - loc10 * loc9), this.posS.x + (loc10 * -loc9 + loc11 * loc9), this.posS.y + (loc11 * -loc9 - loc10 * loc9));
+		}
+		if (param6 != null) {
+			this.bitmapFill.bitmapData = param6;
+			loc12 = this.bitmapFill.matrix;
+			loc12.identity();
+			loc12.scale(2 * loc9 / param6.width, 2 * loc9 / param6.height);
+			loc12.translate(-loc9, -loc9);
+			loc12.rotate(param3);
+			loc12.translate(this.posS.x, this.posS.y);
+			param1.add(this.bitmapFill);
+		} else {
+			this.solidFill.color = param7;
+			param1.add(this.solidFill);
+		}
+		param1.add(this.path);
+		param1.add(END_FILL);
+	}
 
 }

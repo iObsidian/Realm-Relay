@@ -7,139 +7,117 @@ import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.geom.Vector3D;
+import mx.geom.Transform;
 
 public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
-	native public DisplayObject getRoot();
+	public DisplayObject root;
 
 	public Stage stage;
 
-	native public String getName();
+	public String name;
 
-	native public void setName(String value);
+	public DisplayObjectContainer parent;
 
-	native public DisplayObjectContainer getParent();
+	public DisplayObject mask;
 
-	native public DisplayObject getMask();
+	public Boolean visible;
 
-	native public void setMask(DisplayObject value);
+	public Number x;
 
-	native public Boolean getVisible();
+	public Number y;
 
-	native public void setVisible(Boolean value);
+	public Number z;
 
-	native public Number getX();
+	public Number scaleX;
 
-	native public void setX(Number value);
+	public Number scaleY;
 
-	native public Number getY();
+	public Number scaleZ;
 
-	native public void setY(Number value);
+	public Number mouseX;
 
-	native public Number getZ();
+	public Number mouseY;
 
-	native public void setZ(Number value);
+	public Number rotation;
 
-	native public Number getScaleX();
+	public Number rotationX;
 
-	native public void setScaleX(Number value);
+	public Number rotationY;
 
-	native public Number getScaleY();
+	public Number rotationZ;
 
-	native public void setScaleY(Number value);
+	public Number alpha;
 
-	native public Number getScaleZ();
+	public Number width;
 
-	native public void setScaleZ(Number value);
+	public Number height;
 
-	native public Number getMouseX();
+	public Boolean cacheAsBitmap;
 
-	native public Number getMouseY();
+	public Object opaqueBackground;
 
-	native public Number getRotation();
+	public Rectangle scrollRect;
 
-	native public void setRotation(Number value);
+	public Array filters;
 
-	native public Number getRotationX();
+	public String blendMode;
 
-	native public void setRotationX(Number value);
+	public Transform transform;
 
-	native public Number getRotationY();
+	public Rectangle scale9Grid;
 
-	native public void setRotationY(Number value);
+	public Point globalToLocal(Point point) {
+		return null;
+	}
 
-	native public Number getRotationZ();
+	public Point localToGlobal(Point point) {
+		return null;
+	}
 
-	native public void setRotationZ(Number value);
+	public Rectangle Bounds(DisplayObject tarCoordinateSpace) {
+		return null;
+	}
 
-	native public Number getAlpha();
+	public Rectangle Rect(DisplayObject tarCoordinateSpace) {
+		return null;
+	}
 
-	native public void setAlpha(Number value);
+	public LoaderInfo LoaderInfo;
 
-	native public Number getWidth();
+	public Boolean hitTestObject(DisplayObject obj) {
+		return null;
+	}
 
-	native public void setWidth(Number value);
+	public void hitTestPoint(Number x, Number y, Boolean shapeFlag) {
+	}
 
-	native public Number getHeight();
+	private Boolean _hitTest(Boolean use_xy, Number x, Number y, Boolean useShape, DisplayObject hitTestObject) {
+		return null;
+	}
 
-	native public void setHeight(Number value);
+	public AccessibilityProperties AccessibilityProperties;
 
-	native public Boolean getCacheAsBitmap();
+	public void setAccessibilityProperties(AccessibilityProperties value) {
+		return;
+	}
 
-	native public void setCacheAsBitmap(Boolean value);
+	public Vector3D globalToLocal3D(flash.geom.Point point) {
+		return null;
+	}
 
-	native public Object getOpaqueBackground();
+	public Point local3DToGlobal(flash.geom.Vector3D point3d) {
+		return null;
+	}
 
-	native public void setOpaqueBackground(Object value);
+	public void setBlendShader(Shader value) {
+		return;
+	}
 
-	native public Rectangle getScrollRect();
+	public Matrix CacheAsBitmapMatrix;
 
-	native public void setScrollRect(Rectangle value);
-
-	native public Array getFilters();
-
-	native public void setFilters(Array value);
-
-	native public String getBlendMode();
-
-	native public void setBlendMode(String value);
-
-	native public Transform getTransform();
-
-	native public void setTransform(Transform value);
-
-	native public Rectangle getScale9Grid();
-
-	native public void setScale9Grid(Rectangle innerRectangle);
-
-	native public Point globalToLocal(Point point);
-
-	native public Point localToGlobal(Point point);
-
-	native public Rectangle getBounds(DisplayObject targetCoordinateSpace);
-
-	native public Rectangle getRect(DisplayObject targetCoordinateSpace);
-
-	native public LoaderInfo getLoaderInfo();
-
-	native public Boolean hitTestObject(DisplayObject obj);
-
-	native public function hitTestPoint(Number x, Number y, Boolean shapeFlag);
-
-	native private Boolean _hitTest(Boolean use_xy, Number x, Number y, Boolean useShape, DisplayObject hitTestObject);
-
-	native public AccessibilityProperties getAccessibilityProperties();
-
-	native public void setAccessibilityProperties(AccessibilityProperties value);
-
-	native public Vector3D globalToLocal3D(flash.geom.Point point);
-
-	native public Point local3DToGlobal(flash.geom.Vector3D point3d);
-
-	native public void setBlendShader(Shader value);
-
-	native public Matrix getCacheAsBitmapMatrix();
-
-	native public void setCacheAsBitmapMatrix(Matrix value);
+	public void setCacheAsBitmapMatrix(Matrix value) {
+		return;
+	}
 
 }

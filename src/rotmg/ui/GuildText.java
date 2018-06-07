@@ -1,7 +1,12 @@
 package rotmg.ui;
 
-public class GuildText {
+import flash.display.Bitmap;
+import flash.text.TextFieldAutoSize;
+import rotmg.text.view.stringBuilder.StaticStringBuilder;
+import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
+import spark.filters.DropShadowFilter;
 
+public class GuildText {
 
 	private String name;
 

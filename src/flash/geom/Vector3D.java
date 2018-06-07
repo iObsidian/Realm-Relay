@@ -11,6 +11,7 @@ public class Vector3D {
 	public double z;
 	
 	public int length;
+	public double w;
 
 	public Vector3D() {
 

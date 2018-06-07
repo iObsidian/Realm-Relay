@@ -3,6 +3,7 @@ package rotmg.util.redrawers;
 import alde.flash.utils.Dictionary;
 import flash.airglobal.BitmapFilterQuality;
 import flash.airglobal.Shape;
+import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.GradientType;
 import flash.geom.Matrix;
@@ -24,17 +25,17 @@ public class GlowRedrawer {
 
 	private static Shape gradient = getGradient();
 
-	private static Dictionary glowHashes = new Dictionary();
+	private static Dictionary<BitmapData, Dictionary<String, BitmapData>> glowHashes = new Dictionary();
 
 	public GlowRedrawer() {
 		super();
 	}
 
-	public static BitmapData outlineGlow(BitmapData param1, int param2) {
+	public static BitmapData outlineGlow(BitmapData param1, double param2) {
 		return outlineGlow(param1, param2, 1.4, false, 0);
 	}
 
-	public static BitmapData outlineGlow(BitmapData param1, int param2, double param3, boolean param4, int param5) {
+	public static BitmapData outlineGlow(BitmapData param1, double param2, double param3, boolean param4, int param5) {
 		String loc6 = getHash(param2, param3, param5);
 		if (param4 && isCached(param1, loc6)) {
 			return glowHashes.get(param1).get(loc6);
@@ -49,7 +50,7 @@ public class GlowRedrawer {
 		TextureRedrawer.OUTLINE_FILTER.blurY = param3;
 		TextureRedrawer.OUTLINE_FILTER.color = param5;
 		loc7.applyFilter(loc7, loc7.rect, PointUtil.ORIGIN, TextureRedrawer.OUTLINE_FILTER);
-		if (param2 != 4294967295) {
+		if (param2 != 4294967295.0) {
 			if (Parameters.isGpuRender() && param2 != 0) {
 				GLOW_FILTER_ALT.color = param2;
 				loc7.applyFilter(loc7, loc7.rect, PointUtil.ORIGIN, GLOW_FILTER_ALT);
@@ -64,22 +65,22 @@ public class GlowRedrawer {
 		return loc7;
 	}
 
-	private static void cache(BitmapData param1, int param2, double param3, BitmapData param4, int param5) {
-		Object loc7 = null;
+	private static void cache(BitmapData param1, double param2, double param3, BitmapData param4, int param5) {
+		Dictionary loc7 = null;
 		String loc6 = getHash(param2, param3, param5);
 		if (glowHashes.contains(param1)) {
-			glowHashes[param1][loc6] = param4;
+			glowHashes.get(param1).put(loc6, param4);
 		} else {
-			loc7 = {};
-			loc7[loc6] = param4;
-			glowHashes[param1] = loc7;
+			loc7 = new Dictionary<>();
+			loc7.put(loc6, param4);
+			glowHashes.put(param1, loc7);
 		}
 	}
 
 	private static boolean isCached(BitmapData param1, String param2) {
-		Object loc3 = null;
+		Dictionary loc3 = null;
 		if (glowHashes.contains(param1)) {
-			loc3 = glowHashes[param1];
+			loc3 = glowHashes.get(param1);
 			if (loc3.contains(param2)) {
 				return true;
 			}
@@ -87,15 +88,15 @@ public class GlowRedrawer {
 		return false;
 	}
 
-	private static String getHash(int param1, double param2, int param3) {
-		return int(param2 * 10).toString() + param1 + param3;
+	private static String getHash(double param1, double param2, int param3) {
+		return String.valueOf((param2 * 10) + param1 + param3);
 	}
 
 	private static Shape getGradient() {
 		Shape loc1 = new Shape();
 		Matrix loc2 = new Matrix();
 		loc2.createGradientBox(256, 256, Math.PI / 2, 0, 0);
-		loc1.graphics.beginGradientFill(GradientType.LINEAR,[0, GRADIENT_MAX_SUB], [1, 1], [127, 255],loc2);
+		//loc1.graphics.beginGradientFill(GradientType.LINEAR, [0, GRADIENT_MAX_SUB], [1, 1], [127, 255],loc2);
 		loc1.graphics.drawRect(0, 0, 256, 256);
 		loc1.graphics.endFill();
 		return loc1;

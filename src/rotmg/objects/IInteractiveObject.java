@@ -2,8 +2,9 @@ package rotmg.objects;
 
 
 import rotmg.GameSprite;
+import rotmg.ui.panels.Panel;
 
 public interface IInteractiveObject {
-	rotmg.game.ui.panels.Panel getPanel(GameSprite param1);
+	Panel getPanel(GameSprite param1);
 
 }

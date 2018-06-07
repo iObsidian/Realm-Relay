@@ -1,10 +1,14 @@
 package rotmg.map.mapoverlay;
 
+
+import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.geom.Point;
 import rotmg.map.Camera;
 import rotmg.objects.GameObject;
+import rotmg.text.view.stringBuilder.*;
+import rotmg.text.view.stringBuilder.StringBuilder;
 import spark.filter.GlowFilter;
 
 public class CharacterStatusText extends Sprite implements IMapOverlayElement {
@@ -24,6 +28,11 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 	private int startTime = 0;
 
 	private TextFieldDisplayConcrete textDisplay;
+
+
+	public CharacterStatusText(GameObject param1, int param2, int param3) {
+		this(param1, param2, param3, 0);
+	}
 
 	public CharacterStatusText(GameObject param1, int param2, int param3, int param4) {
 		super();
@@ -55,9 +64,9 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 			return true;
 		}
 		visible = true;
-		x = (this.go != null ? this.go.posS[0] : 0) + (this.offset != null ? this.offset.x : 0);
+		x = (this.go != null ? this.go.posS.get(0) : 0) + (this.offset != null ? this.offset.x : 0);
 		double loc4 = loc3 / this.lifetime * this.MAX_DRIFT;
-		y = (this.go != null ? this.go.posS[1] : 0) + (this.offset != null ? this.offset.y : 0) - loc4;
+		y = (this.go != null ? this.go.posS.get(1) : 0) + (this.offset != null ? this.offset.y : 0) - loc4;
 		return true;
 	}
 
@@ -70,7 +79,7 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 	}
 
 	public void setStringBuilder(StringBuilder param1) {
-		this.textDisplay.textChanged.add(this.onTextChanged);
+		this.textDisplay.textChanged.add(this::onTextChanged);
 		this.textDisplay.setStringBuilder(param1);
 	}
 

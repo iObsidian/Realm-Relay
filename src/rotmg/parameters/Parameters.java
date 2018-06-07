@@ -13,10 +13,29 @@ import rotmg.util.MoreDateUtil;
 /**
  * The AS3 version uses Parameters.data.value (Object)
  *
- * use Parameters.data.get("value") instead (Dictionary)
- *
  */
 public class Parameters {
+
+	/**
+	 * Replacement for AS3's 'data' Object
+	 */
+	public static class Data {
+
+		public boolean GPURender;
+		public boolean playMusic;
+		public boolean noParticlesMaster;
+		public boolean disableEnemyParticles;
+		public boolean noEnemyDamage;
+		public boolean noAllyDamage;
+
+		public boolean contains(String param1) {
+			return true;
+		}
+
+		public void put(String param1, int param2) {
+		}
+	}
+
 
 	public static final String BUILD_VERSION = "X25.1";
 
@@ -56,7 +75,7 @@ public class Parameters {
 
 	public static final int GUILD_CREATION_PRICE = 1000;
 
-	public static Dictionary<String, Object> data = null;
+	public static Data data = null;
 
 	public static boolean GPURenderError = false;
 
@@ -152,7 +171,7 @@ public class Parameters {
 	}
 
 	public static boolean isGpuRender() {
-		return !GPURenderError && (boolean) data.get("GPURender") && !Map.forceSoftwareRender;
+		return !GPURenderError && (boolean) data.GPURender && !Map.forceSoftwareRender;
 	}
 
 	public static void clearGpuRenderEvent(Event param1) {
@@ -262,12 +281,12 @@ public class Parameters {
 		setDefault("toggleBarText", 0);
 		setDefault("toggleToMaxText", false);
 		setDefault("particleEffect", true);
-		if (data.contains("playMusic") && (boolean) data.get("playMusic")) {
+		if (data.contains("playMusic") && data.playMusic) {
 			setDefault("musicVolume", 1);
 		} else {
 			setDefault("musicVolume", 0);
 		}
-		if (data.contains("playSFX") && (boolean) data.get("playMusic")) {
+		if (data.contains("playSFX") && data.playMusic) {
 			setDefault("SFXVolume", 1);
 		} else {
 			setDefault("SFXVolume", 0);

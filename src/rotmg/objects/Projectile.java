@@ -1,401 +1,399 @@
 package rotmg.objects;
 
-import flash.display.BitmapData;
-import javafx.geometry.Point3D;
-import javafx.scene.Camera;
-import realmspy.service.util.RandomUtil;
-import rotmg.game.map.Map;
-import rotmg.game.util.Trig;
+import alde.flash.utils.Dictionary;
+import alde.flash.utils.Vector;
+import flash.display.*;
+import flash.geom.Matrix;
+import flash.geom.Point;
+import flash.geom.Vector3D;
+import rotmg.engine3d.Point3D;
+import rotmg.map.Camera;
+import rotmg.map.Map;
+import rotmg.objects.particles.HitEffect;
 import rotmg.parameters.Parameters;
-
-import java.util.HashMap;
+import rotmg.tutorial.Tutorial;
+import rotmg.util.*;
 
 /**
  * This class is about 10% done. It requires a lot of graphics stuff.
  */
 public class Projectile extends BasicObject {
 
-	private static HashMap<Integer, Integer> objBullIdToObjId = new HashMap<>();
+	private static Dictionary<Integer, Integer> objBullIdToObjId = new Dictionary();
 
 	public ObjectProperties props;
+
 	public ObjectProperties containerProps;
+
 	public ProjectileProperties projProps;
+
 	public BitmapData texture;
+
 	public int bulletId;
+
 	public int ownerId;
+
 	public int containerType;
+
 	public int bulletType;
+
 	public boolean damagesEnemies;
+
 	public boolean damagesPlayers;
+
 	public int damage;
+
 	public String sound;
+
 	public double startX;
+
 	public double startY;
+
 	public int startTime;
+
 	public double angle = 0;
-	public HashMap multiHitDict;
+
+	public Dictionary multiHitDict;
+
 	public Point3D p;
 
-	public Projectile() {
+	private Point staticPoint;
 
+	private Vector3D staticVector3D;
+
+	protected GraphicsGradientFill shadowGradientFill;
+
+	protected GraphicsPath shadowPath;
+
+	public Projectile() {
 		super();
+		this.p = new Point3D(100);
+		this.staticPoint = new Point();
+		this.staticVector3D = new Vector3D();
+		this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[0, 0], [0.5, 0],null, new Matrix());
+		this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<Double>());
 	}
 
 	public static int findObjId(int param1, int param2) {
-		return (objBullIdToObjId.get(((param2 << 24) | param1)));
+		return objBullIdToObjId.get(param2 << 24 | param1);
 	}
 
 	public static int getNewObjId(int param1, int param2) {
 		int loc3 = getNextFakeObjectId();
-		objBullIdToObjId.put(((param2 << 24) | param1), loc3);
+		objBullIdToObjId.put(param2 << 24 | param1, loc3);
 		return loc3;
 	}
 
 	public static void removeObjId(int param1, int param2) {
-		objBullIdToObjId.remove(objBullIdToObjId.get(((param2 << 24) | param1)));
+		objBullIdToObjId.remove(param2 << 24 | param1);
 	}
 
-	@Override
-	public void dispose() {
-		objBullIdToObjId = new HashMap<Integer, Integer>();
+	public static void dispose() {
+		objBullIdToObjId = new Dictionary();
 	}
 
-	public void reset(int containerType, int bulletType, int ownerId, int bulletId, double angle, int startTime) {
+	public void reset(int param1, int param2, int param3, int param4, double param5, int param6, String param7, String param8) {
+		double loc11 = 0;
 		clear();
-		this.containerType = containerType;
-		this.bulletType = bulletType;
-		this.ownerId = ownerId;
-		this.bulletId = bulletId;
-		this.angle = Trig.boundToPI(angle);
-		this.startTime = startTime;
+		this.containerType = param1;
+		this.bulletType = param2;
+		this.ownerId = param3;
+		this.bulletId = param4;
+		this.angle = Trig.boundToPI(param5);
+		this.startTime = param6;
 		objectId = getNewObjId(this.ownerId, this.bulletId);
 		z = 0.5;
 		this.containerProps = ObjectLibrary.propsLibrary.get(this.containerType);
-		this.projProps = this.containerProps.projectiles.get(bulletType);
-		this.props = ObjectLibrary.getPropsFromId(this.projProps.objectId);
+		this.projProps = this.containerProps.projectiles.get(param2);
+		String loc9 = !param7.equals("") && this.projProps.objectId.equals(param8) ? param7 : this.projProps.objectId;
+		this.props = ObjectLibrary.getPropsFromId(loc9);
 		hasShadow = this.props.shadowSize > 0;
-		TextureData textureData = ObjectLibrary.typeToTextureData.get(this.props.type);
-		this.texture = textureData.getTexture(objectId);
+		TextureData loc10 = ObjectLibrary.typeToTextureData.get(this.props.type);
+		this.texture = loc10.getTexture(objectId);
 		this.damagesPlayers = this.containerProps.isEnemy;
 		this.damagesEnemies = !this.damagesPlayers;
 		this.sound = this.containerProps.oldSound;
-		this.multiHitDict = !!this.projProps.multiHit ? new Map<>() : null;
-
-		double size = 0F;
-
+		this.multiHitDict = !!this.projProps.multiHit ? new Dictionary() : null;
 		if (this.projProps.size >= 0) {
-			size = this.projProps.size;
+			loc11 = this.projProps.size;
 		} else {
-			size = ObjectLibrary.getSizeFromType(this.containerType);
+			loc11 = ObjectLibrary.getSizeFromType(this.containerType);
 		}
-		this.p.setSize(8 * (size / 100));
+		this.p.setSize(8 * (loc11 / 100));
 		this.damage = 0;
 	}
 
-	public void setDamage(int damage) {
-		this.damage = damage;
+	public void setDamage(int param1) {
+		this.damage = param1;
 	}
 
-	@Override
-	public boolean addTo(Map map, double x, double y) {
-		Player player = null;
-		this.startX = x;
-		this.startY = y;
-		if (!super.addTo(map, x, y)) {
+	public boolean addTo(Map param1, double param2, double param3) {
+		Player loc4 = null;
+		this.startX = param2;
+		this.startY = param3;
+		if (!super.addTo(param1, param2, param3)) {
 			return false;
 		}
-		if (!this.containerProps.flying && square.sink) {
+		if (!this.containerProps.flying && square.sink != 0) {
 			z = 0.1;
 		} else {
-			player = (Player) map.goDict.get(this.ownerId);
-			if (player != null && player.sinkLevel > 0) {
-				z = 0.5 - 0.4 * (player.sinkLevel / Parameters.MAX_SINK_LEVEL);
+			loc4 = (Player) param1.goDict.get(this.ownerId);
+			if (loc4 != null && loc4.sinkLevel > 0) {
+				z = 0.5 - 0.4 * (loc4.sinkLevel / Parameters.MAX_SINK_LEVEL);
 			}
 		}
 		return true;
 	}
 
-	public boolean moveTo(double x, double y) {
-		Square square = map.getSquare(x, y);
-		if (square == null) {
+	public boolean moveTo(double param1, double param2) {
+		Square loc3 = map.getSquare(param1, param2);
+		if (loc3 == null) {
 			return false;
 		}
-		x = x;
-		y = y;
-		square = square;
+		x = param1;
+		y = param2;
+		square = loc3;
 		return true;
 	}
 
-	public void removeFromMap()
-    {
-        super.removeFromMap();
-        removeObjId(this.ownerId,this.bulletId);
-        this.multiHitDict = null;
-        FreeList.deleteObject(this);
-    }
+	public void removeFromMap() {
+		super.removeFromMap();
+		removeObjId(this.ownerId, this.bulletId);
+		this.multiHitDict = null;
+		//FreeList.deleteObject(this);
+	}
 
-	private void positionAt(elapsed:int, p:Point) : void
-    {
-        double periodFactor = NaN;
-        double amplitudeFactor = NaN;
-        double theta = NaN;
-        double t = NaN;
-        double x = NaN;
-        double y = NaN;
-        double sin = NaN;
-        double cos = NaN;
-        double halfway = NaN;
-        double deflection = NaN;
-        p.x = this.startX_;
-        p.y = this.startY_;
-        double dist = elapsed * (this.projProps.speed_ / 10000);
-        var phase:double = this.bulletId_ % 2 == 0?0:Math.PI;
-        if(this.projProps.wavy_)
-        {
-            periodFactor = 6 * Math.PI;
-            amplitudeFactor = Math.PI / 64;
-            theta = this.angle_ + amplitudeFactor * Math.sin(phase + periodFactor * elapsed / 1000);
-            p.x = p.x + dist * Math.cos(theta);
-            p.y = p.y + dist * Math.sin(theta);
-        }
-        else if(this.projProps.parametric_)
-        {
-            t = elapsed / this.projProps.lifetime_ * 2 * Math.PI;
-            x = Math.sin(t) * (boolean(this.bulletId_ % 2)?1:-1);
-            y = Math.sin(2 * t) * (this.bulletId_ % 4 < 2?1:-1);
-            sin = Math.sin(this.angle);
-            cos = Math.cos(this.angle);
-            p.x = p.x + (x * cos - y * sin) * this.projProps.magnitude_;
-            p.y = p.y + (x * sin + y * cos) * this.projProps.magnitude_;
-        }
-        else
-        {
-            if(this.projProps.boomerang)
-            {
-                halfway = this.projProps.lifetime * (this.projProps.speed_ / 10000) / 2;
-                if(dist > halfway)
-                {
-                    dist = halfway - (dist - halfway);
-                }
-            }
-            p.x = p.x + dist * Math.cos(this.angle);
-            p.y = p.y + dist * Math.sin(this.angle);
-            if(this.projProps.amplitude_ != 0)
-            {
-                deflection = this.projProps.amplitude_ * Math.sin(phase + elapsed / this.projProps.lifetime_ * this.projProps.frequency_ * 2 * Math.PI);
-                p.x = p.x + deflection * Math.cos(this.angle_ + Math.PI / 2);
-                p.y = p.y + deflection * Math.sin(this.angle_ + Math.PI / 2);
-            }
-        }
-    }
+	private void positionAt(int param1, Point param2) {
+		double loc5 = 0;
+		double loc6 = 0;
+		double loc7 = 0;
+		double loc8 = 0;
+		double loc9 = 0;
+		double loc10 = 0;
+		double loc11 = 0;
+		double loc12 = 0;
+		double loc13 = 0;
+		double loc14 = 0;
+		param2.x = this.startX;
+		param2.y = this.startY;
+		double loc3 = param1 * (this.projProps.speed / 10000);
+		double loc4 = this.bulletId % 2 == 0 ? 0 : Math.PI;
+		if (this.projProps.wavy) {
+			loc5 = 6 * Math.PI;
+			loc6 = Math.PI / 64;
+			loc7 = this.angle + loc6 * Math.sin(loc4 + loc5 * param1 / 1000);
+			param2.x = param2.x + loc3 * Math.cos(loc7);
+			param2.y = param2.y + loc3 * Math.sin(loc7);
+		} else if (this.projProps.parametric) {
+			loc8 = param1 / this.projProps.lifetime * 2 * Math.PI;
+			loc9 = Math.sin(loc8) * (this.bulletId % 2 != 0 ? 1 : -1);
+			loc10 = Math.sin(2 * loc8) * (this.bulletId % 4 < 2 ? 1 : -1);
+			loc11 = Math.sin(this.angle);
+			loc12 = Math.cos(this.angle);
+			param2.x = param2.x + (loc9 * loc12 - loc10 * loc11) * this.projProps.magnitude;
+			param2.y = param2.y + (loc9 * loc11 + loc10 * loc12) * this.projProps.magnitude;
+		} else {
+			if (this.projProps.boomerang) {
+				loc13 = this.projProps.lifetime * (this.projProps.speed / 10000) / 2;
+				if (loc3 > loc13) {
+					loc3 = loc13 - (loc3 - loc13);
+				}
+			}
+			param2.x = param2.x + loc3 * Math.cos(this.angle);
+			param2.y = param2.y + loc3 * Math.sin(this.angle);
+			if (this.projProps.amplitude != 0) {
+				loc14 = this.projProps.amplitude * Math.sin(loc4 + param1 / this.projProps.lifetime * this.projProps.frequency * 2 * Math.PI);
+				param2.x = param2.x + loc14 * Math.cos(this.angle + Math.PI / 2);
+				param2.y = param2.y + loc14 * Math.sin(this.angle + Math.PI / 2);
+			}
+		}
+	}
 
-    override
+	public boolean update(int param1, int param2) {
+		Vector<Integer> loc5 = null;
+		Player loc7 = null;
+		boolean loc8 = false;
+		boolean loc9 = false;
+		boolean loc10 = false;
+		int loc11 = 0;
+		boolean loc12 = false;
+		int loc3 = param1 - this.startTime;
+		if (loc3 > this.projProps.lifetime) {
+			return false;
+		}
+		Point loc4 = this.staticPoint;
+		this.positionAt(loc3, loc4);
+		if (!this.moveTo(loc4.x, loc4.y) || square.tileType == 65535) {
+			if (this.damagesPlayers) {
+				map.gs.gsc.squareHit(param1, this.bulletId, this.ownerId);
+			} else if (square.obj != null) {
+				if (!(boolean) Parameters.data.noParticlesMaster) {
+					loc5 = BloodComposition.getColors(this.texture);
+					map.addObj(new HitEffect(loc5, 100, 3, this.angle, this.projProps.speed), loc4.x, loc4.y);
+				}
+			}
+			return false;
+		}
+		if (square.obj != null && (!square.obj.props.isEnemy || !this.damagesEnemies) && (square.obj.props.enemyOccupySquare || !this.projProps.passesCover && square.obj.props.occupySquare)) {
+			if (this.damagesPlayers) {
+				map.gs.gsc.otherHit(param1, this.bulletId, this.ownerId, square.obj.objectId);
+			} else if (!(boolean) Parameters.data.noParticlesMaster) {
+				loc5 = BloodComposition.getColors(this.texture);
+				map.addObj(new HitEffect(loc5, 100, 3, this.angle, this.projProps.speed), loc4.x, loc4.y);
+			}
+			return false;
+		}
+		GameObject loc6 = this.getHit(loc4.x, loc4.y);
+		if (loc6 != null) {
+			loc7 = map.player;
+			loc8 = loc7 != null;
+			loc9 = loc6.props.isEnemy;
+			loc10 = loc8 && !loc7.isPaused() && (this.damagesPlayers || loc9 && this.ownerId == loc7.objectId);
+			if (loc10) {
+				loc11 = GameObject.damageWithDefense(this.damage, loc6.defense, this.projProps.armorPiercing, loc6.condition);
+				loc12 = false;
+				if (loc6.hp <= loc11) {
+					loc12 = true;
+					if (loc6.props.isEnemy) {
+						doneAction(map.gs, Tutorial.KILL_ACTION);
+					}
+				}
+				if (loc6 == loc7) {
+					map.gs.gsc.playerHit(this.bulletId, this.ownerId);
+					loc6.damage(true, loc11, this.projProps.effects, false, this);
+				} else if (loc6.props.isEnemy) {
+					map.gs.gsc.enemyHit(param1, this.bulletId, loc6.objectId, loc12);
+					loc6.damage(true, loc11, this.projProps.effects, loc12, this);
+				} else if (!this.projProps.multiHit) {
+					map.gs.gsc.otherHit(param1, this.bulletId, this.ownerId, loc6.objectId);
+				}
+			}
+			if (this.projProps.multiHit) {
+				this.multiHitDict.put(loc6, true);
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
 
-	public function update(time:int, dt:int) : boolean
-    {
-        List<int> colors = null;
-        Player player = null;
-        boolean isPlayer = false;
-        boolean isTargetAnEnemy = false;
-        boolean sendMessage = false;
-        int d = 0;
-        boolean dead = false;
-        int elapsed = time - this.startTime_;
-        if(elapsed > this.projProps.lifetime_)
-        {
-            return false;
-        }
-        Point p = this.staticPoint_;
-        this.positionAt(elapsed,p);
-        if(!this.moveTo(p.x,p.y) || square.tileType_ == 255)
-        {
-            if(this.damagesPlayers_)
-            {
-                map.gs.gsc.squareHit(time,this.bulletId,this.ownerId);
-            }
-            else if(square.obj_ != null)
-            {
-                colors = BloodComposition.getColors(this.texture);
-                map.addObj(new HitEffect(colors,100,3,this.angle,this.projProps.speed_),p.x,p.y);
-            }
-            return false;
-        }
-        if(square.obj_ != null && (!square.obj.props.isEnemy_ || !this.damagesEnemies_) && (square.obj.props.enemyOccupySquare_ || !this.projProps.passesCover_ && square.obj.props.occupySquare_))
-        {
-            if(this.damagesPlayers_)
-            {
-                map.gs.gsc.otherHit(time,this.bulletId,this.ownerId,square.obj.objectId);
-            }
-            else
-            {
-                colors = BloodComposition.getColors(this.texture);
-                map.addObj(new HitEffect(colors,100,3,this.angle,this.projProps.speed_),p.x,p.y);
-            }
-            return false;
-        }
-        GameObject target = this.getHit(p.x,p.y);
-        if(target != null)
-        {
-            player = map.player_;
-            isPlayer = player != null;
-            isTargetAnEnemy = target.props.isEnemy_;
-            sendMessage = isPlayer && !player.isPaused() && (this.damagesPlayers_ || isTargetAnEnemy && this.ownerId_ == player.objectId);
-            if(sendMessage)
-            {
-                d = GameObject.damageWithDefense(this.damage,target.defense,this.projProps.armorPiercing,target.condition);
-                dead = false;
-                if(target.hp_ <= d)
-                {
-                    dead = true;
-                    if(target.props.isEnemy_)
-                    {
-                        doneAction(map.gs,Tutorial.KILL_ACTION);
-                    }
-                }
-                if(target == player)
-                {
-                    map.gs.gsc.playerHit(this.bulletId,this.ownerId);
-                    target.damage(this.containerType,d,this.projProps.effects,false,this);
-                }
-                else if(target.props.isEnemy_)
-                {
-                    map.gs.gsc.enemyHit(time,this.bulletId,target.objectId,dead);
-                    target.damage(this.containerType,d,this.projProps.effects,dead,this);
-                }
-                else if(!this.projProps.multiHit_)
-                {
-                    map.gs.gsc.otherHit(time,this.bulletId,this.ownerId,target.objectId);
-                }
-            }
-            if(this.projProps.multiHit_)
-            {
-                this.multiHitDict[target] = true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+	public GameObject getHit(double param1, double param2) {
+		double loc6 = 0;
+		double loc7 = 0;
+		double loc8 = 0;
+		double loc9 = 0;
+		double loc3 = Double.MAX_VALUE;
+		GameObject loc4 = null;
+		for (GameObject loc5: map.goDict) {
+			if (!loc5.isInvincible()) {
+				if (!loc5.isStasis()) {
+					if (this.damagesEnemies && loc5.props.isEnemy || this.damagesPlayers && loc5.props.isPlayer) {
+						if (!(loc5.dead || loc5.isPaused())) {
+							loc6 = loc5.x > param1 ? loc5.x - param1 : param1 - loc5.x;
+							loc7 = loc5.y > param2 ? loc5.y - param2 : param2 - loc5.y;
+							if (!(loc6 > loc5.radius || loc7 > loc5.radius)) {
+								if (!(this.projProps.multiHit && this.multiHitDict.get(loc5) != null)) {
+									if (loc5 == map.player) {
+										return loc5;
+									}
+									loc8 = Math.sqrt(loc6 * loc6 + loc7 * loc7);
+									loc9 = loc6 * loc6 + loc7 * loc7;
+									if (loc9 < loc3) {
+										loc3 = loc9;
+										loc4 = loc5;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return loc4;
+	}
 
-	public function getHit(pX:double, pY:double) : GameObject
-    {
-        GameObject go = null;
-        double xDiff = NaN;
-        double yDiff = NaN;
-        double dist = NaN;
-        double minDist = double.MAX_VALUE;
-        GameObject minGO = null;
-        for(go in map.goDict_)
-        {
-            if(!go.isInvincible())
-            {
-                if(!go.isStasis())
-                {
-                    if(this.damagesEnemies_ && go.props.isEnemy_ || this.damagesPlayers_ && go.props.isPlayer_)
-                    {
-                        if(!(go.dead_ || go.isPaused()))
-                        {
-                            xDiff = go.x_ > pX?go.x_ - pX:pX - go.x_;
-                            yDiff = go.y_ > pY?go.y_ - pY:pY - go.y_;
-                            if(!(xDiff > go.radius_ || yDiff > go.radius_))
-                            {
-                                if(!(this.projProps.multiHit_ && this.multiHitDict[go] != null))
-                                {
-                                    if(go == map.player_)
-                                    {
-                                        return go;
-                                    }
-                                    dist = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-                                    if(dist < minDist)
-                                    {
-                                        minDist = dist;
-                                        minGO = go;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return minGO;
-    }
+	public void draw(Vector<IGraphicsData> param1, Camera param2, int param3) {
+		int loc8 = 0;
+		int loc9 = 0;
+		int loc10 = 0;
+		int loc11 = 0;
+		if (!Parameters.drawProj) {
+			return;
+		}
+		BitmapData loc4 = this.texture;
+		if (Parameters.projColorType != 0) {
+			switch (Parameters.projColorType) {
+				case 1:
+					loc8 = 16777100;
+					loc9 = 16777215;
+					break;
+				case 2:
+					loc8 = 16777100;
+					loc9 = 16777100;
+					break;
+				case 3:
+					loc8 = 16711680;
+					loc9 = 16711680;
+					break;
+				case 4:
+					loc8 = 255;
+					loc9 = 255;
+					break;
+				case 5:
+					loc8 = 16777215;
+					loc9 = 16777215;
+					break;
+				case 6:
+					loc8 = 0;
+					loc9 = 0;
+			}
+			loc4 = TextureRedrawer.redraw(loc4, 120, true, loc9);
+		}
+		double loc5 = this.props.rotation == 0 ? 0 : param3 / this.props.rotation;
+		this.staticVector3D.x = x;
+		this.staticVector3D.y = y;
+		this.staticVector3D.z = z;
+		double loc6 = !!this.projProps.faceDir ? this.getDirectionAngle(param3) : this.angle;
+		double loc7 = !!this.projProps.noRotation ? param2.angleRad + this.props.angleCorrection : loc6 - param2.angleRad + this.props.angleCorrection + loc5;
+		this.p.draw(param1, this.staticVector3D, loc7, param2.wToS, param2, loc4);
+		if (!Parameters.data.noParticlesMaster && this.projProps.particleTrail) {
+			loc10 = this.projProps.particleTrailLifetimeMS != -1 ? int(this.projProps.particleTrailLifetimeMS) :600;
+			loc11 = 0;
+			for (; loc11 < 3; loc11++) {
+				if (map != null && map.player.objectId != this.ownerId) {
+					if (this.projProps.particleTrailIntensity == -1 && Math.random() * 100 > this.projProps.particleTrailIntensity) {
+						continue;
+					}
+				}
+				map.addObj(new SparkParticle(100, this.projProps.particleTrailColor, loc10, 0.5, RandomUtil.plusMinus(3), RandomUtil.plusMinus(3)), x, y);
+			}
+		}
+	}
 
-    override
+	private double getDirectionAngle(double param1) {
+		int loc2 = param1 - this.startTime;
+		Point loc3 = new Point();
+		this.positionAt(loc2 + 16, loc3);
+		double loc4 = loc3.x - x;
+		double loc5 = loc3.y - y;
+		return Math.atan2(loc5, loc4);
+	}
 
-	public function draw(graphicsData:List<IGraphicsData>, camera:Camera, time:int) : void
-    {
-        int outlineColor = 0;
-        int glowColor = 0;
-        if(!Parameters.drawProj_)
-        {
-            return;
-        }
-        BitmapData texture = this.texture_;
-        if(Parameters.projColorType_ != 0)
-        {
-            switch(Parameters.projColorType_)
-            {
-                case 1:
-                    outlineColor = 16777100;
-                    glowColor = 16777215;
-                    break;
-                case 2:
-                    outlineColor = 16777100;
-                    glowColor = 16777100;
-                    break;
-                case 3:
-                    outlineColor = 16711680;
-                    glowColor = 16711680;
-                    break;
-                case 4:
-                    outlineColor = 255;
-                    glowColor = 255;
-                    break;
-                case 5:
-                    outlineColor = 16777215;
-                    glowColor = 16777215;
-                    break;
-                case 6:
-                    outlineColor = 0;
-                    glowColor = 0;
-            }
-            texture = TextureRedrawer.redraw(texture,120,true,outlineColor,glowColor);
-        }
-        var r:double = this.props.rotation_ == 0?0:time / this.props.rotation_;
-        this.staticVector3D.x = x_;
-        this.staticVector3D.y = y_;
-        this.staticVector3D.z = z_;
-        this.p.draw(graphicsData,this.staticVector3D,this.angle_ - camera.angleRad_ + this.props.angleCorrection_ + r,camera.wToS,camera,texture);
-        if(this.projProps.particleTrail_)
-        {
-            map.addObj(new SparkParticle(100,16711935,600,0.5, RandomUtil.plusMinus(3),RandomUtil.plusMinus(3)),x,y);
-            map.addObj(new SparkParticle(100,16711935,600,0.5,RandomUtil.plusMinus(3),RandomUtil.plusMinus(3)),x,y);
-            map.addObj(new SparkParticle(100,16711935,600,0.5,RandomUtil.plusMinus(3),RandomUtil.plusMinus(3)),x,y);
-        }
-    }
-
-    override
-
-	public function drawShadow(graphicsData:List<IGraphicsData>, camera:Camera, time:int) : void
-    {
-        if(!Parameters.drawProj_)
-        {
-            return;
-        }
-        double s = this.props.shadowSize_ / 400;
-        double w = 30 * s;
-        double h = 15 * s;
-        this.shadowGradientFill.matrix.createGradientBox(w * 2,h * 2,0,posS[0] - w,posS[1] - h);
-        graphicsData.add(this.shadowGradientFill);
-        this.shadowPath.data.length = 0;
-        this.shadowPath.data.add(posS[0] - w,posS[1] - h,posS[0] + w,posS[1] - h,posS[0] + w,posS[1] + h,posS[0] - w,posS[1] + h);
-        graphicsData.add(this.shadowPath);
-        graphicsData.add(GraphicsUtil.END_FILL);
-    }
-
+	public void drawShadow(Vector<IGraphicsData> param1, Camera param2, int param3) {
+		if (!Parameters.drawProj) {
+			return;
+		}
+		double loc4 = this.props.shadowSize / 400;
+		double loc5 = 30 * loc4;
+		double loc6 = 15 * loc4;
+		this.shadowGradientFill.matrix.createGradientBox(loc5 * 2, loc6 * 2, 0, posS[0] - loc5, posS[1] - loc6);
+		param1.add(this.shadowGradientFill);
+		this.shadowPath.data.length = 0;
+		Vector<Double>
+		(this.shadowPath.data).add(posS[0] - loc5, posS[1] - loc6, posS[0] + loc5, posS[1] - loc6, posS[0] + loc5, posS[1] + loc6, posS[0] - loc5, posS[1] + loc6);
+		param1.add(this.shadowPath);
+		param1.add(GraphicsUtil.END_FILL);
+	}
 
 
 }
