@@ -111,7 +111,7 @@ public class MoreColorUtil {
 
 		return 0; //TODO
 
-		return 16777215 * Math.random() | 4278190080;
+		//return 16777215 * Math.random() | 4278190080;
 	}
 
 	public static int transformColor(ColorTransform param1, int param2) {
@@ -186,18 +186,17 @@ public class MoreColorUtil {
 		return loc3 | loc4 << 16 | loc5 << 8 | loc6;
 	}
 
-	public static Array colorToShaderParameter(int param1) {
+	public static Vector colorToShaderParameter(int param1) {
 		double loc2 = (param1 >> 24 & 255) / 256;
-		return [
-		loc2 * ((param1 >> 16 & 255) / 256), loc2 * ((param1 >> 8 & 255) / 256), loc2 * ((param1 & 255) / 256), loc2];
+		return new Vector<Double>(loc2 * ((param1 >> 16 & 255) / 256), loc2 * ((param1 >> 8 & 255) / 256), loc2 * ((param1 & 255) / 256), loc2);
 	}
 
 	public static int rgbToGreyscale(int param1) {
-		int loc2 = ((param1 & 16711680) >> 16) * 0.3 + ((param1 & 65280) >> 8) * 0.59 + (param1 & 255) * 0.11;
+		int loc2 = (int) (((param1 & 16711680) >> 16) * 0.3 + ((param1 & 65280) >> 8) * 0.59 + (param1 & 255) * 0.11);
 		return (param1 && 4278190080) | loc2 << 16 | loc2 << 8 | loc2;
 	}
 
-	public static Array singleColorFilterMatrix(int param1) {
-		return new Array<Integer>(0, 0, 0, 0, (param1 & 16711680) >> 16, 0, 0, 0, 0, (param1 & 65280) >> 8, 0, 0, 0, 0, param1 & 255, 0, 0, 0, 1, 0);
+	public static Vector singleColorFilterMatrix(int param1) {
+		return new Vector<Integer>(0, 0, 0, 0, (param1 & 16711680) >> 16, 0, 0, 0, 0, (param1 & 65280) >> 8, 0, 0, 0, 0, param1 & 255, 0, 0, 0, 1, 0);
 	}
 }
