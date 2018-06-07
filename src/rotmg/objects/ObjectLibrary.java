@@ -242,6 +242,11 @@ public class ObjectLibrary {
 		return AssetLibrary.getImageFromSet(IMAGE_SET_NAME, IMAGE_ID);
 	}
 
+
+	public static BitmapData getRedrawnTextureFromType(int param1, int param2, boolean param3, boolean param4) {
+		return getRedrawnTextureFromType(param1, param2, param3, param4);
+	}
+
 	public static BitmapData getRedrawnTextureFromType(int param1, int param2, boolean param3) {
 		return getRedrawnTextureFromType(param1, param2, param3, true, 5);
 	}

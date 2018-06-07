@@ -6,15 +6,22 @@ import flash.display.BitmapData;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import javafx.scene.Camera;
+import rotmg.GameSprite;
 import rotmg.constants.InventoryOwnerTypes;
 import rotmg.language.model.StringMap;
 import rotmg.map.Map;
 import rotmg.model.AddSpeechBalloonVO;
 import rotmg.signals.AddSpeechBalloonSignal;
 import rotmg.text.view.stringBuilder.LineBuilder;
+import rotmg.ui.panels.Panel;
+import rotmg.ui.tooltip.EquipmentToolTip;
+import rotmg.ui.tooltip.ToolTip;
 import rotmg.util.IntPoint;
 
-public class Merchant extends SellableObject implements IInteractiveObject {
+/**
+ * Almost a 100% match, except that it's abstract because it doesnt have the getPanel() method
+ */
+public abstract class Merchant extends SellableObject implements IInteractiveObject {
 
 	private static final int NONE_MESSAGE = 0;
 
@@ -112,7 +119,7 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 				} else if (this.minsLeft == 1) {
 					loc2 = new LineBuilder().setParams("Merchant.goingInOneMinute");
 				} else {
-					loc2 = new LineBuilder().setParams("Merchant.goingInNMinutes", {"minutes":this.minsLeft});
+					loc2 = new LineBuilder().setParams("Merchant.goingInNMinutes", "{\"minutes\":this.minsLeft}");
 
 				}
 				loc3 = 5973542;
@@ -120,13 +127,13 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 				loc5 = 16549442;
 				break;
 			case ITEMS_LEFT_MESSAGE:
-				loc2 = new LineBuilder().setParams("Merchant.limitedStock", {"count":this.count});
+				loc2 = new LineBuilder().setParams("Merchant.limitedStock", " {\"count\":this.count}");
 				loc3 = 5973542;
 				loc4 = 16549442;
 				loc5 = 16549442;
 				break;
 			case DISCOUNT_MESSAGE:
-				loc2 = new LineBuilder().setParams("Merchant.discount", {"discount":this.discount});
+				loc2 = new LineBuilder().setParams("Merchant.discount", "{\"discount\":this.discount}");
 				loc3 = 6324275;
 				loc4 = 16777103;
 				loc5 = 16777103;
@@ -188,7 +195,7 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 	}
 
 	public BitmapData getIcon() {
-		BaseSimpleText loc3 = null;
+		/**BaseSimpleText loc3 = null;
 		BaseSimpleText loc4 = null;
 		BitmapData loc1 = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 80, true);
 		XML loc2 = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
@@ -206,7 +213,8 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 			loc4.updateMetrics();
 			loc1.draw(loc4, DOSE_MATRIX);
 		}
-		return loc1;
+		return loc1;*/
+		return null;
 	}
 
 	public int getTex1Id(int param1) {
@@ -247,4 +255,5 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 		this.merchandiseType = param1;
 		this.merchandiseTexture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 100, false);
 	}
+
 }

@@ -37,4 +37,7 @@ public class LineBuilder implements StringBuilder {
 		this.params = params;
 		return null;
 	}
+
+	public LineBuilder setParams(String s, String s1) {
+	}
 }

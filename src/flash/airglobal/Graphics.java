@@ -1,5 +1,8 @@
 package flash.airglobal;
 
+import alde.flash.utils.Vector;
+import flash.display.IGraphicsData;
+
 public class Graphics {
 	public int[] beginGradientFill(String linear, Object p1) {
 		return new int[0];
@@ -15,5 +18,8 @@ public class Graphics {
 	}
 
 	public void beginFill(int param1, double v) {
+	}
+
+	public void drawGraphicsData(Vector<IGraphicsData> graphicsData) {
 	}
 }
