@@ -59,7 +59,7 @@ public class GraphicsUtil {
 	}
 
 	public static GraphicsPath getRectPath(int param1, int param2, int param3, int param4) {
-		return new GraphicsPath(QUAD_COMMANDS, new Vector<Double>(param1, param2, param1 + param3, param2, param1 + param3, param2 + param4, param1, param2 + param4));
+		return new GraphicsPath(QUAD_COMMANDS, new Vector<Double>((double) param1, (double) param2, (double) param1 + param3, (double) param2, (double) param1 + param3, (double) param2 + param4, (double) param1, (double) param2 + param4));
 	}
 
 	public static int[] drawCutEdgeRect(int i, int i1, int width, int height, int bevel, Object p5) {

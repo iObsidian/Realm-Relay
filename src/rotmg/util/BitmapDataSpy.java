@@ -11,7 +11,7 @@ public class BitmapDataSpy extends BitmapData {
 		super(i, i1);
 	}
 
-	public BitmapDataSpy(double width, double height) {
+	public BitmapDataSpy(int width, int height) {
 		super(width, height);
 	}
 

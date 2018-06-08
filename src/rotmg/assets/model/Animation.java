@@ -48,7 +48,7 @@ public class Animation {
 		this.timer.delay = param1;
 	}
 
-	public void setFrames(BitmapData[] rest) {
+	public void setFrames(BitmapData... rest) {
 		this.frames.clear();
 		this.index = 0;
 		for (BitmapData loc2 : rest) {

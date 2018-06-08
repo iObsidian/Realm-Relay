@@ -17,10 +17,16 @@ import rotmg.maploading.signals.HideMapLoadingSignal;
 import rotmg.maploading.signals.ShowLoadingViewSignal;
 import rotmg.model.GameInitData;
 import rotmg.objects.Player;
+import rotmg.packages.control.BeginnersPackageAvailableSignal;
+import rotmg.packages.control.InitPackagesSignal;
+import rotmg.packages.control.PackageAvailableSignal;
+import rotmg.packages.control.PackageModel;
+import rotmg.packages.models.PackageInfo;
 import rotmg.promotions.signals.ShowBeginnersPackageSignal;
 import rotmg.signals.GameClosedSignal;
 import rotmg.signals.PlayGameSignal;
 import rotmg.signals.SetWorldInteractionSignal;
+import rotmg.ui.popups.signals.CloseAllPopupsSignal;
 import rotmg.ui.popups.signals.ShowPopupSignal;
 import rotmg.ui.signals.HUDModelInitialized;
 import rotmg.ui.signals.HUDSetupStarted;
@@ -198,8 +204,8 @@ public class GameSpriteMediator {
 
 	private void onGameSpriteModelInitialized() {
 		this.hudSetupStarted.dispatch(this.view);
-		this.beginnersPackageAvailable.add(this.onBeginner);
-		this.packageAvailable.add(this.onPackage);
+		this.beginnersPackageAvailable.add(this::onBeginner);
+		this.packageAvailable.add(this::onPackage);
 		this.initPackages.dispatch();
 	}
 
