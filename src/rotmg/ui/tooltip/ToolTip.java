@@ -48,7 +48,7 @@ public class ToolTip extends Sprite {
 		this.lineStyle = new GraphicsStroke(1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, this.outlineFill);
 		this.path = new GraphicsPath(new Vector<Integer>(), new Vector<Double>());
 
-		graphicsData = new IGraphicsData[]{this.lineStyle, this.backgroundFill, this.path, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE};
+		graphicsData = new Vector<IGraphicsData>(this.lineStyle, this.backgroundFill, this.path, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE);
 		this.background = param1;
 		this.backgroundAlpha = param2;
 		this.outline = param3;
@@ -62,7 +62,7 @@ public class ToolTip extends Sprite {
 		this.waiter.complete.add(this::alignUIAndDraw);
 	}
 
-	private void alignUIAndDraw() {
+	public void alignUIAndDraw() {
 		this.alignUI();
 		this.draw();
 		this.position();
@@ -153,7 +153,7 @@ public class ToolTip extends Sprite {
 		this.contentWidth = (int) width;
 		this.contentHeight = (int) height;
 		GraphicsUtil.clearPath(this.path);
-		GraphicsUtil.drawCutEdgeRect(-6, -6, this.contentWidth + 12, this.contentHeight + 12, 4,[1, 1, 1, 1],this.path);
+		GraphicsUtil.drawCutEdgeRect(-6, -6, this.contentWidth + 12, this.contentHeight + 12, 4, new Vector<Integer>(1, 1, 1, 1), this.path);
 		graphics.drawGraphicsData(this.graphicsData);
 	}
 

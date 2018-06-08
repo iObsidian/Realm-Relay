@@ -90,8 +90,8 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 		BitmapData loc1 = new BitmapData(this.textDisplay.width, this.textDisplay.height, true, 0);
 		loc2 = new Bitmap(loc1);
 		loc1.draw(this.textDisplay, new Matrix());
-		loc2.x = loc2.x - loc2.width * 0.5;
-		loc2.y = loc2.y - loc2.height * 0.5;
+		loc2.x = (int) (loc2.x - loc2.width * 0.5);
+		loc2.y = (int) (loc2.y - loc2.height * 0.5);
 		addChild(loc2);
 		removeChild(this.textDisplay);
 		this.textDisplay = null;

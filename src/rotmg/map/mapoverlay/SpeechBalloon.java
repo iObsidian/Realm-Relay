@@ -83,7 +83,7 @@ public class SpeechBalloon extends Sprite implements IMapOverlayElement {
 		this.outlineFill.alpha = param9;
 		graphics.clear();
 		GraphicsUtil.clearPath(this.path);
-		GraphicsUtil.drawCutEdgeRect(-6, -6, loc15 + 12, height + 12, 4,[1, 1, 1, 1],this.path);
+		GraphicsUtil.drawCutEdgeRect(-6, -6, loc15 + 12, (int) (height + 12), 4, new Vector<Integer>(1, 1, 1, 1), this.path);
 		this.path.commands.splice(6, 0, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
 		int loc16 = (int) height;
 		this.path.data.splice(12, 0, loc15 / 2 + 8, loc16 + 6, loc15 / 2, loc16 + 18, loc15 / 2 - 8, loc16 + 6);

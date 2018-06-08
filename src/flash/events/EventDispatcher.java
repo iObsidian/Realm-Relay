@@ -31,7 +31,6 @@ public class EventDispatcher {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-
 	public void addEventListener(String event, Consumer<? extends Event> listener) {
 		addEventListener(event, new EventConsumer<>(listener), false, 0, false);
 	}
@@ -40,13 +39,14 @@ public class EventDispatcher {
 		addEventListener(event, listener, false, 0, false);
 	}
 
-	void addEventListener(String event,  EventConsumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
+	void addEventListener(String event, EventConsumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
 		listeners.put(listener, event);
 	}
 
-	public void removeEventListener(String event, EventConsumer consumer) {
-		listeners.remove(consumer, event);
+	public void removeEventListener(String event, Consumer<? extends Event> listener) {
+		listeners.remove(listener, event);
 	}
+
 
 	protected void trigger(String EVENT_TYPE) {
 		for (EventConsumer c : listeners.keySet()) {

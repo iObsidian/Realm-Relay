@@ -1,9 +1,14 @@
 package rotmg.view.components;
 
-import rotmg.game._as3.Sprite;
-import rotmg.objects.GameObject;
 
-public class QueuedStatusText extends Sprite {
+import rotmg.map.mapoverlay.CharacterStatusText;
+import rotmg.objects.GameObject;
+import rotmg.text.view.stringBuilder.StringBuilder;
+
+/**
+ * 100% match.
+ */
+public class QueuedStatusText extends CharacterStatusText {
 
 	public QueuedStatusTextList list;
 
@@ -11,20 +16,15 @@ public class QueuedStatusText extends Sprite {
 
 	public StringBuilder stringBuilder;
 
-
-	public QueuedStatusText(GameObject param1, StringBuilder param2, int param3, int param4) {
-		this(param1, param2, param3, param4, 0);
-	}
-
 	public QueuedStatusText(GameObject param1, StringBuilder param2, int param3, int param4, int param5) {
-		this.stringBuilder = param2;
 		super(param1, param3, param4, param5);
+		this.stringBuilder = param2;
 		setStringBuilder(param2);
 	}
 
-	@Override
 	public void dispose() {
 		this.list.shift();
 	}
+
 
 }

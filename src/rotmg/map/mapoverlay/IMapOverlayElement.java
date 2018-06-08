@@ -5,7 +5,7 @@ import rotmg.map.Camera;
 
 public interface IMapOverlayElement {
 
-	Boolean draw(Camera param1, int param2);
+	boolean draw(Camera param1, int param2);
 
 	void dispose();
 

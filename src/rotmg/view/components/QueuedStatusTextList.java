@@ -1,5 +1,7 @@
 package rotmg.view.components;
 
+import flash.display.DisplayObjectContainer;
+
 public class QueuedStatusTextList {
 
 	public DisplayObjectContainer target;
