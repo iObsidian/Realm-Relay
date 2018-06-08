@@ -1,8 +1,6 @@
 package rotmg.messaging;
 
-import alde.flash.utils.RSA;
-import alde.flash.utils.Timer;
-import alde.flash.utils.XML;
+import alde.flash.utils.*;
 import com.hurlant.crypto.symmetric.ICipher;
 import flash.events.Event;
 import flash.events.TimerEvent;
@@ -48,7 +46,6 @@ import rotmg.model.GameModel;
 import rotmg.model.PotionInventoryModel;
 import rotmg.net.Server;
 import rotmg.net.SocketServer;
-import rotmg.net.api.MessageConsumer;
 import rotmg.net.impl.Message;
 import rotmg.net.impl.MessageCenter;
 import rotmg.objects.*;
@@ -777,7 +774,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		}
 		GameObject target = map.goDict.get(damage.targetId);
 		if (target != null) {
-			target.damage(-1, damage.damageAmount, damage.effects, damage.kill, proj);
+			target.damage(false, damage.damageAmount, damage.effects, damage.kill, proj);
 		}
 	}
 
@@ -1017,7 +1014,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 					player.wisdom = value;
 					continue;
 				case StatData.CONDITION_STAT:
-					go.condition[ConditionEffect.CE_FIRST_BATCH] = value;
+					go.condition.put(ConditionEffect.CE_FIRST_BATCH, value);
 					continue;
 				case StatData.INVENTORY_0_STAT:
 				case StatData.INVENTORY_1_STAT:
@@ -1031,7 +1028,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 				case StatData.INVENTORY_9_STAT:
 				case StatData.INVENTORY_10_STAT:
 				case StatData.INVENTORY_11_STAT:
-					go.equipment[stat.statType - StatData.INVENTORY_0_STAT] = value;
+					go.equipment.put(stat.statType - StatData.INVENTORY_0_STAT, value);
 					continue;
 				case StatData.NUM_STARS_STAT:
 					player.numStars = value;
@@ -1187,7 +1184,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 					index = stat.statType - StatData.BACKPACK_0_STAT + GeneralConstants.NUM_EQUIPMENT_SLOTS
 							+ GeneralConstants.NUM_INVENTORY_SLOTS;
 					Player o = (Player) go;
-					o.equipment[index] = value;
+					o.equipment.put(index, value);
 					continue;
 				default:
 					continue;
@@ -1217,12 +1214,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			go.onTickPos(objectStatus.pos.x, objectStatus.pos.y, tickTime, tickId);
 		}
 		Player player = (Player) go;
-		if (player != null) {
+		if (player  != null) {
 			oldLevel = player.level;
 			oldExp = player.exp;
 		}
 		this.updateGameObject(go, objectStatus.stats, isMyObject);
-		if (player != null && oldLevel != -1) {
+		/*if (oldLevel != -1) {
 			if (player.level > oldLevel) {
 				if (isMyObject) {
 					newUnlocks = this.gs.model.getNewUnlocks(player.objectType, player.level);
@@ -1237,7 +1234,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			} else if (player.exp > oldExp) {
 				player.handleExpUp(player.exp - oldExp);
 			}
-		}
+		}*/
 	}
 
 	/**
@@ -1420,11 +1417,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void retry(int time) {
 		this.retryTimer = new Timer(time * 1000);
+
 		this.retryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, this::onRetryTimer);
 		this.retryTimer.start();
 	}
 
-	private void onRetryTimer() {
+	private void onRetryTimer(Event e) {
 		this.serverConnection.connect(this.server.address, this.server.port);
 	}
 

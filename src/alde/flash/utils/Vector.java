@@ -54,6 +54,7 @@ public class Vector<T> implements Iterable<T> {
 		}
 	}
 
+
 	public void push(T t) {
 		put(map.size() + 1, t);
 	}

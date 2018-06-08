@@ -1,6 +1,6 @@
 package rotmg.net.impl;
 
-import rotmg.net.api.MessageConsumer;
+import alde.flash.utils.MessageConsumer;
 import rotmg.net.api.MessageMapping;
 
 import java.util.function.Consumer;

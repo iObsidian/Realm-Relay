@@ -1,5 +1,6 @@
 package flash.events;
 
+import alde.flash.utils.EventConsumer;
 import flash.airglobal.Graphics;
 
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.function.Consumer;
 
 public class EventDispatcher {
 
-	public HashMap<Runnable, String> listeners;
+	public HashMap<EventConsumer, String> listeners;
 
 	native void removeEventListener(String type, Consumer listener, Boolean useCapture);
 
@@ -24,30 +25,34 @@ public class EventDispatcher {
 
 	public EventDispatcher() {
 		listeners = new HashMap<>();
-
 	}
 
 	protected int getTimer() {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-	public void addEventListener(String event, Runnable listener) {
+
+	public void addEventListener(String event, Consumer<? extends Event> listener) {
+		addEventListener(event, new EventConsumer<>(listener), false, 0, false);
+	}
+
+	public void addEventListener(String event, EventConsumer listener) {
 		addEventListener(event, listener, false, 0, false);
 	}
 
-	void addEventListener(String event, Runnable listener, boolean useCapture, int priority, Boolean useWeakReference) {
+	void addEventListener(String event,  EventConsumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
 		listeners.put(listener, event);
 	}
 
-	public void removeEventListener(String event, Runnable consumer) {
+	public void removeEventListener(String event, EventConsumer consumer) {
 		listeners.remove(consumer, event);
 	}
 
 	protected void trigger(String EVENT_TYPE) {
-		for (Runnable c : listeners.keySet()) {
+		for (EventConsumer c : listeners.keySet()) {
 			if (listeners.get(c).equals(EVENT_TYPE)) {
-				//c.accept(new Event(EVENT_TYPE));
-				c.run();
+				Event e = new Event(EVENT_TYPE);
+				c.getConsumer().accept(e);
 			}
 		}
 	}

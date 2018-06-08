@@ -22,4 +22,7 @@ public class Graphics {
 
 	public void drawGraphicsData(Vector<IGraphicsData> graphicsData) {
 	}
+
+	public void drawCircle(int loc4, int loc5, int loc41) {
+	}
 }

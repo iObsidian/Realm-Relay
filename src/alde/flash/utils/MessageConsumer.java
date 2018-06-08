@@ -1,4 +1,6 @@
-package rotmg.net.api;
+package alde.flash.utils;
+
+import rotmg.net.impl.Message;
 
 import java.util.function.Consumer;
 
@@ -7,7 +9,7 @@ import java.util.function.Consumer;
  */
 public class MessageConsumer<T extends Message> {
 
-	Consumer<T> consumer;
+	private Consumer<T> consumer;
 
 	public MessageConsumer(Consumer<T> consumer) {
 		this.consumer = consumer;

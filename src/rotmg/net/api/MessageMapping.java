@@ -1,5 +1,7 @@
 package rotmg.net.api;
 
+import alde.flash.utils.MessageConsumer;
+
 public interface MessageMapping {
 
 	MessageMapping setID(int param1);

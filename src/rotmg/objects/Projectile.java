@@ -95,6 +95,11 @@ public class Projectile extends BasicObject {
 		objBullIdToObjId = new Dictionary();
 	}
 
+
+	public void reset(int param1, int param2, int param3, int param4, double param5, int param6) {
+		this.reset(param1, param2, param3, param4, param5, param6, "", "");
+	}
+
 	public void reset(int param1, int param2, int param3, int param4, double param5, int param6, String param7, String param8) {
 		double loc11 = 0;
 		clear();

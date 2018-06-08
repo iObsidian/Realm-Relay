@@ -721,11 +721,11 @@ public class GameObject extends BasicObject {
 		this.myLastTickId = param4;
 	}
 
-	public void damage(boolean param1, int param2, Vector<Integer> param3, boolean param4, Projectile param5) {
+	public void damage(boolean param1, int param2, int[] param3, boolean param4, Projectile param5) {
 		damage(param1, param2, param3, param4, param5, false);
 	}
 
-	public void damage(boolean param1, int param2, Vector<Integer> param3, boolean param4, Projectile param5, boolean param6) {
+	public void damage(boolean param1, int param2, int[] param3, boolean param4, Projectile param5, boolean param6) {
 		int loc8 = 0;
 		ConditionEffect loc10 = null;
 		CharacterStatusText loc11 = null;

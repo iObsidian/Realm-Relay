@@ -1,5 +1,6 @@
 package rotmg.objects;
 
+import alde.flash.utils.Dictionary;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.Point;
@@ -8,12 +9,11 @@ import rotmg.assets.services.CharacterFactory;
 import rotmg.constants.GeneralConstants;
 import rotmg.messaging.data.StatData;
 import rotmg.objects.animation.AnimatedChar;
+import rotmg.parameters.Parameters;
 import rotmg.particles.HealingEffect;
 import rotmg.signals.AddTextLineSignal;
 import rotmg.util.ConversionUtil;
 import rotmg.util.IntPoint;
-
-import java.util.Dictionary;
 import java.util.List;
 
 public class Player extends Character {
@@ -345,4 +345,18 @@ public class Player extends Character {
 		return tex2Id;
 	}
 
+	public void onMove() {
+		if (map == null) {
+			return;
+		}
+		Square loc1 = map.getSquare(x, y);
+		if (loc1.props.sinking) {
+			sinkLevel = (int) Math.min(sinkLevel + 1, Parameters.MAX_SINK_LEVEL);
+			this.moveMultiplier = 0.1 + (1 - sinkLevel / Parameters.MAX_SINK_LEVEL) * (loc1.props.speed - 0.1);
+		} else {
+			sinkLevel = 0;
+			this.moveMultiplier = loc1.props.speed;
+		}
+
+	}
 }

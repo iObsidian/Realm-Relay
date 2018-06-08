@@ -1,9 +1,13 @@
 package rotmg.util;
 
+
+import alde.flash.utils.Vector;
+import alde.flash.utils.XML;
 import flash.display.BitmapData;
-import rotmg.game._as3.XML;
+import flash.display.Sprite;
+import flash.geom.ColorTransform;
 import rotmg.objects.ObjectLibrary;
-import sun.java2d.cmm.ColorTransform;
+import spark.filters.DropShadowFilter;
 
 public class FameUtil {
 
@@ -55,9 +59,9 @@ public class FameUtil {
 		int loc4 = 0;
 		int loc5 = 0;
 		for (XML loc6 : param3.getChilds("ClassStats")) {
-			if (param1 == loc6.getIntAttribute("objectType")){
+			if (param1 == loc6.getIntAttribute("objectType")) {
 				loc5 = loc6.getIntValue("BestFame");
-			} else{
+			} else {
 				loc4 = loc4 + FameUtil.numStars(loc6.getIntValue("BestFame"));
 			}
 		}
@@ -67,26 +71,28 @@ public class FameUtil {
 
 	public static Sprite numStarsToBigImage(int param1) {
 		Sprite loc2 = numStarsToImage(param1);
-		loc2.filters = [new DropShadowFilter(0, 0, 0, 1, 4, 4, 2)];
+		loc2.filters = new Vector<DropShadowFilter>(new DropShadowFilter(0, 0, 0, 1, 4, 4, 2));
 		loc2.scaleX = 1.4;
 		loc2.scaleY = 1.4;
 		return loc2;
 	}
 
 	public static Sprite numStarsToImage(int param1) {
-		Sprite loc2 = new StarGraphic();
-		if (param1 < ObjectLibrary.playerChars.size()) {
-			loc2.transform.colorTransform = lightBlueCT;
-		} else if (param1 < ObjectLibrary.playerChars.size() * 2) {
-			loc2.transform.colorTransform = darkBlueCT;
-		} else if (param1 < ObjectLibrary.playerChars.size() * 3) {
-			loc2.transform.colorTransform = redCT;
-		} else if (param1 < ObjectLibrary.playerChars.size() * 4) {
-			loc2.transform.colorTransform = orangeCT;
-		} else if (param1 < ObjectLibrary.playerChars.size() * 5) {
-			loc2.transform.colorTransform = yellowCT;
-		}
-		return loc2;
+		/**Sprite loc2 = new StarGraphic();
+		 if (param1 < ObjectLibrary.playerChars.size()) {
+		 loc2.transform.colorTransform = lightBlueCT;
+		 } else if (param1 < ObjectLibrary.playerChars.size() * 2) {
+		 loc2.transform.colorTransform = darkBlueCT;
+		 } else if (param1 < ObjectLibrary.playerChars.size() * 3) {
+		 loc2.transform.colorTransform = redCT;
+		 } else if (param1 < ObjectLibrary.playerChars.size() * 4) {
+		 loc2.transform.colorTransform = orangeCT;
+		 } else if (param1 < ObjectLibrary.playerChars.size() * 5) {
+		 loc2.transform.colorTransform = yellowCT;
+		 }
+		 return loc2;*/
+
+		return new Sprite();
 	}
 
 	public static Sprite numStarsToIcon(int param1) {
@@ -94,13 +100,13 @@ public class FameUtil {
 		loc2 = numStarsToImage(param1);
 		Sprite loc3 = new Sprite();
 		loc3.graphics.beginFill(0, 0.4);
-		int loc4 = loc2.width / 2 + 2;
-		int loc5 = loc2.height / 2 + 2;
+		int loc4 = (int) (loc2.width / 2 + 2);
+		int loc5 = (int) (loc2.height / 2 + 2);
 		loc3.graphics.drawCircle(loc4, loc5, loc4);
 		loc2.x = 2;
 		loc2.y = 1;
 		loc3.addChild(loc2);
-		loc3.filters = [new DropShadowFilter(0, 0, 0, 0.5, 6, 6, 1)];
+		loc3.filters = new Vector<>(new DropShadowFilter(0.0, 0.0, 0.0, 0.5, 6.0, 6.0, 1.0));
 		return loc3;
 	}
 
