@@ -189,6 +189,8 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		this.setTextIfAble();
 	}
 
+
+
 	public void setTextField(TextField param1) {
 		param1.width = this.textWidth;
 		param1.height = this.textHeight;

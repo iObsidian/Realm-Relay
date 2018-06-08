@@ -6,9 +6,9 @@ public class WebAccount implements Account {
 
 	public static Account getInstance() {
 		/**if (instance == null) {
-			instance = new WebAccount();
-		}
-		return instance;*/
+		 instance = new WebAccount();
+		 }
+		 return instance;*/
 
 		return new WebAccount("rotmgiobsidian@gmail.com", "JtiTdzTP");
 	}
@@ -46,12 +46,12 @@ public class WebAccount implements Account {
 	public WebAccount() {
 		super();
 		/**try {
-		    this.entryTag = ExternalInterface.call("rotmg.UrlLib.getParam", "entrypt");
-		    return;
-		}
-		catch (error:Error) {
-		    return;
-		}*/
+		 this.entryTag = ExternalInterface.call("rotmg.UrlLib.getParam", "entrypt");
+		 return;
+		 }
+		 catch (error:Error) {
+		 return;
+		 }*/
 	}
 
 	public WebAccount(String email, String password) {
@@ -91,22 +91,22 @@ public class WebAccount implements Account {
 
 	public void updateUser(String param1, String param2, String param3) {
 		/**   SharedObject loc4 = null;
-		this.userId = param1;
-		this.password = param2;
-		this.token = param3;
-		try {
-		    if (this.rememberMe) {
-		        loc4 = SharedObject.getLocal("RotMG", "/");
-		        loc4.data["GUID"] = param1;
-		        loc4.data["Token"] = param3;
-		        loc4.data["Password"] = param2;
-		        loc4.flush();
-		    }
-		    return;
-		}
-		catch (error:Error) {
-		    return;
-		}*/
+		 this.userId = param1;
+		 this.password = param2;
+		 this.token = param3;
+		 try {
+		 if (this.rememberMe) {
+		 loc4 = SharedObject.getLocal("RotMG", "/");
+		 loc4.data["GUID"] = param1;
+		 loc4.data["Token"] = param3;
+		 loc4.data["Password"] = param2;
+		 loc4.flush();
+		 }
+		 return;
+		 }
+		 catch (error:Error) {
+		 return;
+		 }*/
 	}
 
 	public void clear() {

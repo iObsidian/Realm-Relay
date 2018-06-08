@@ -75,12 +75,12 @@ public class CharacterSkins {
 		return availableSkins;
 	}
 
-	private void  onSkinChanged(CharacterSkin skin)  {
-        if (skin.getIsSelected() && this.selectedSkin != skin) {
-            this.selectedSkin.setIsSelected(false);
-            this.selectedSkin = skin;
-        }
-    }
+	private void onSkinChanged(CharacterSkin skin) {
+		if (skin.getIsSelected() && this.selectedSkin != skin) {
+			this.selectedSkin.setIsSelected(false);
+			this.selectedSkin = skin;
+		}
+	}
 
 	private void updateSkinState(CharacterSkin param1) {
 		if (!param1.skinSelectEnabled) {

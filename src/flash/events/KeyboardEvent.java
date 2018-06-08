@@ -23,7 +23,7 @@ public class KeyboardEvent extends Event {
 
 	public int charCode;
 
-	public int keyCode;
+	public final int keyCode;
 
 	public int keyLocation;
 
@@ -32,7 +32,6 @@ public class KeyboardEvent extends Event {
 	public boolean altKey;
 
 	public boolean shiftKey;
-
 
 
 }

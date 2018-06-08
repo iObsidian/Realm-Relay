@@ -1,16 +1,13 @@
 package flash.display;
 
 import flash.airglobal.Graphics;
-import flash.events.Event;
 import flash.geom.Rectangle;
 import flash.media.SoundTransform;
-
-import java.util.HashMap;
-import java.util.function.Consumer;
 
 public class Sprite extends DisplayObjectContainer {
 
 	native public Graphics getGraphics();
+
 	native public Boolean getButtonMode();
 
 	native public void setButtonMode(Boolean value);

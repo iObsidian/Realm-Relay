@@ -1,4 +1,4 @@
-package rotmg.game.dialogs.view;
+package rotmg.dialogs.view;
 
 import flash.airglobal.Graphics;
 import flash.display.DisplayObject;
@@ -24,6 +24,11 @@ public class DialogsView extends Sprite {
 		this.background.mouseEnabled = true;
 	}
 
+
+	public void showBackground() {
+		this.showBackground(1381653);
+	}
+
 	public void showBackground(int param1) {
 		Graphics loc2 = this.background.graphics;
 		loc2.clear();
@@ -36,7 +41,9 @@ public class DialogsView extends Sprite {
 	public void show(Sprite param1, boolean param2) {
 		this.removeCurrentDialog();
 		this.addDialog(param1);
-		param2 && this.showBackground();
+
+		if (param2)
+			this.showBackground();
 	}
 
 	public void hideAll() {

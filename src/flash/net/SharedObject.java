@@ -1,6 +1,5 @@
 package flash.net;
 
-import alde.flash.utils.Dictionary;
 import rotmg.parameters.Parameters;
 
 public class SharedObject {

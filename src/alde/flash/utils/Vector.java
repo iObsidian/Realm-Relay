@@ -76,7 +76,9 @@ public class Vector<T> implements Iterable<T> {
 
 	//Removes the last element from the Vector and returns that element.
 	public T pop() {
-		if (length > 0) { length--; }
+		if (length > 0) {
+			length--;
+		}
 		return map.remove(map.size());
 	}
 

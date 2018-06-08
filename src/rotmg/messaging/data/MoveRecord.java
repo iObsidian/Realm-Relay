@@ -10,7 +10,7 @@ public class MoveRecord implements IData {
 
 	public MoveRecord() {
 	}
-	
+
 	public MoveRecord(int time, double x, double y) {
 		super();
 		this.time = time;

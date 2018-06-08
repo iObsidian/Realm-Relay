@@ -1,12 +1,9 @@
 package alde.flash.utils;
 
-import flash.events.Event;
 import flash.events.EventDispatcher;
 import flash.events.TimerEvent;
 
-import java.util.HashMap;
 import java.util.TimerTask;
-import java.util.function.Consumer;
 
 /**
  * Representing AS3's Timer

@@ -68,6 +68,7 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
 	public Rectangle scale9Grid;
 
+
 	public Point globalToLocal(Point point) {
 		return null;
 	}

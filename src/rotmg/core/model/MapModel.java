@@ -8,7 +8,7 @@ public class MapModel {
 
 	public Map currentMap;
 
-	public  MapModel()  {
+	public MapModel() {
 		super();
 	}
 

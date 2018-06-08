@@ -86,11 +86,11 @@ public class GameSprite extends AGameSprite {
 
 	private void showSafeAreaDisplays() {
 		/**this.showRankText();
-		this.showGuildText();
-		this.showShopDisplay();
-		this.showGiftStatusDisplay();
-		this.showNewsUpdate();
-		this.showNewsTicker();*/
+		 this.showGuildText();
+		 this.showShopDisplay();
+		 this.showGiftStatusDisplay();
+		 this.showNewsUpdate();
+		 this.showNewsTicker();*/
 	}
 
 	public void connect() {

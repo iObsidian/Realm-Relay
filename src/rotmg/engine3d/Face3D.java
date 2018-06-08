@@ -89,7 +89,7 @@ public class Face3D {
 	}
 
 	public double maxY() {
-		double loc1 = - Double.MAX_VALUE;
+		double loc1 = -Double.MAX_VALUE;
 		int loc2 = this.vout.length;
 		int loc3 = 0;
 		while (loc3 < loc2) {

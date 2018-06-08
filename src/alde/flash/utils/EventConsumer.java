@@ -1,7 +1,6 @@
 package alde.flash.utils;
 
 import flash.events.Event;
-import rotmg.net.impl.Message;
 
 import java.util.function.Consumer;
 

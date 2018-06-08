@@ -1,10 +1,6 @@
 package rotmg.tutorial;
 
 import flash.display.Sprite;
-import rotmg.AGameSprite;
-import rotmg.objects.GameObject;
-import rotmg.objects.Player;
-import rotmg.util.PointUtil;
 
 public class Tutorial extends Sprite {
 
@@ -44,11 +40,9 @@ public class Tutorial extends Sprite {
 	public static final String EQUIP_REQUIREMENT = "Equip";
 
 
-	void  doneAction(String param1)  {
+	void doneAction(String param1) {
 
 	}
-
-
 
 
 }

@@ -5,7 +5,6 @@ import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import rotmg.engine3d.Face3D;
 import rotmg.objects.Square;
-import rotmg.parameters.Parameters;
 
 import java.util.List;
 
@@ -62,9 +61,9 @@ public class SquareFace {
 			loc5 = this.yOffset;
 		}
 		/**if (Parameters.isGpuRender()) {
-			GraphicsFillExtra.setOffsetUV(this.face.bitmapFill, loc4, loc5);
-			loc4 = loc5 = 0;
-		}*/
+		 GraphicsFillExtra.setOffsetUV(this.face.bitmapFill, loc4, loc5);
+		 loc4 = loc5 = 0;
+		 }*/
 		this.face.uvt.length = 0;
 		this.face.uvt.add(0 + loc4, 0 + loc5, 0.0, 1 + loc4, 0.0 + loc5, 0.0, 1.0 + loc4, 1 + loc5, 0.0, 0.0 + loc4, 1 + loc5, 0.0);
 		this.face.setUVT(this.face.uvt);

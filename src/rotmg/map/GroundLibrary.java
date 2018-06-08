@@ -20,11 +20,11 @@ public class GroundLibrary {
 
 	public static void parseFromXML(XML xml) {
 
-			int objectType = xml.getIntAttribute("type");
-			propsLibrary.put(objectType, new GroundProperties(xml));
-			xmlLibrary.put(objectType, xml);
-			typeToTextureData.put(objectType, new TextureDataConcrete(xml));
-			idToType.put(xml.getAttribute("id"), objectType);
+		int objectType = xml.getIntAttribute("type");
+		propsLibrary.put(objectType, new GroundProperties(xml));
+		xmlLibrary.put(objectType, xml);
+		typeToTextureData.put(objectType, new TextureDataConcrete(xml));
+		idToType.put(xml.getAttribute("id"), objectType);
 
 		defaultProps = propsLibrary.get(255);
 	}

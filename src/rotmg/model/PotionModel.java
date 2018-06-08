@@ -15,11 +15,12 @@ public class PotionModel {
 	public boolean available;
 	int costIndex;
 
-	/**private Timer costCoolDownTimer;
-	private NativeSignal costTimerSignal;    
-	private Timer purchaseCoolDownTimer;
-	private NativeSignal purchaseTimerSignal;
-	*/
+	/**
+	 * private Timer costCoolDownTimer;
+	 * private NativeSignal costTimerSignal;
+	 * private Timer purchaseCoolDownTimer;
+	 * private NativeSignal purchaseTimerSignal;
+	 */
 
 	public Signal<Integer> update;
 

@@ -6,14 +6,12 @@ import flash.display.BitmapData;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import javafx.scene.Camera;
-import rotmg.GameSprite;
 import rotmg.constants.InventoryOwnerTypes;
 import rotmg.language.model.StringMap;
 import rotmg.map.Map;
 import rotmg.model.AddSpeechBalloonVO;
 import rotmg.signals.AddSpeechBalloonSignal;
 import rotmg.text.view.stringBuilder.LineBuilder;
-import rotmg.ui.panels.Panel;
 import rotmg.ui.tooltip.EquipmentToolTip;
 import rotmg.ui.tooltip.ToolTip;
 import rotmg.util.IntPoint;
@@ -196,24 +194,24 @@ public abstract class Merchant extends SellableObject implements IInteractiveObj
 
 	public BitmapData getIcon() {
 		/**BaseSimpleText loc3 = null;
-		BaseSimpleText loc4 = null;
-		BitmapData loc1 = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 80, true);
-		XML loc2 = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
-		if (loc2.hasOwnProperty("Doses")) {
-			loc1 = loc1.clone();
-			loc3 = new BaseSimpleText(12, 16777215, false, 0, 0);
-			loc3.text = String(loc2.Doses);
-			loc3.updateMetrics();
-			loc1.draw(loc3, DOSE_MATRIX);
-		}
-		if (loc2.hasOwnProperty("Quantity")) {
-			loc1 = loc1.clone();
-			loc4 = new BaseSimpleText(12, 16777215, false, 0, 0);
-			loc4.text = String(loc2.Quantity);
-			loc4.updateMetrics();
-			loc1.draw(loc4, DOSE_MATRIX);
-		}
-		return loc1;*/
+		 BaseSimpleText loc4 = null;
+		 BitmapData loc1 = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 80, true);
+		 XML loc2 = ObjectLibrary.xmlLibrary.get(this.merchandiseType);
+		 if (loc2.hasOwnProperty("Doses")) {
+		 loc1 = loc1.clone();
+		 loc3 = new BaseSimpleText(12, 16777215, false, 0, 0);
+		 loc3.text = String(loc2.Doses);
+		 loc3.updateMetrics();
+		 loc1.draw(loc3, DOSE_MATRIX);
+		 }
+		 if (loc2.hasOwnProperty("Quantity")) {
+		 loc1 = loc1.clone();
+		 loc4 = new BaseSimpleText(12, 16777215, false, 0, 0);
+		 loc4.text = String(loc2.Quantity);
+		 loc4.updateMetrics();
+		 loc1.draw(loc4, DOSE_MATRIX);
+		 }
+		 return loc1;*/
 		return null;
 	}
 

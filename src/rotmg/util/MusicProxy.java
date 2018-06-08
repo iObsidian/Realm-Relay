@@ -5,8 +5,8 @@ import rotmg.sound.Music;
 
 public class MusicProxy implements IMusic {
 
-    @Override
-    public void load() {
-        Music.load();
-    }
+	@Override
+	public void load() {
+		Music.load();
+	}
 }

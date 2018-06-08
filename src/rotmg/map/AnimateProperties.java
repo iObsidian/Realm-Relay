@@ -20,11 +20,11 @@ public class AnimateProperties {
 
 	public void parseXML(XML param1) {
 		switch (param1.name()) {
-		case "Wave":
-			this.type = WAVE_ANIMATE;
-			break;
-		case "Flow":
-			this.type = FLOW_ANIMATE;
+			case "Wave":
+				this.type = WAVE_ANIMATE;
+				break;
+			case "Flow":
+				this.type = FLOW_ANIMATE;
 		}
 		this.dx = param1.getDoubleAttribute("dx");
 		this.dy = param1.getDoubleAttribute("dy");

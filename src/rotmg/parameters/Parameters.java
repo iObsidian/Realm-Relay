@@ -17,51 +17,53 @@ public class Parameters {
 
 	/**
 	 * Replacement for AS3's 'data' Object
+	 * <p>
+	 * Made final for now... For switch in MapUserInput
 	 */
 	public static class Data {
 
-		public static int moveLeft = KeyCodes.A;
-		public static int moveRight = KeyCodes.D;
-		public static int moveUp = KeyCodes.W;
-		public static int moveDown = KeyCodes.S;
-		public static int rotateLeft = KeyCodes.Q;
-		public static int rotateRight = KeyCodes.E;
-		public static int useSpecial = KeyCodes.SPACE;
-		public static int interact = KeyCodes.NUMBER_0;
-		public static int useInvSlot1 = KeyCodes.NUMBER_1;
-		public static int useInvSlot2 = KeyCodes.NUMBER_2;
-		public static int useInvSlot3 = KeyCodes.NUMBER_3;
-		public static int useInvSlot4 = KeyCodes.NUMBER_4;
-		public static int useInvSlot5 = KeyCodes.NUMBER_5;
-		public static int useInvSlot6 = KeyCodes.NUMBER_6;
-		public static int useInvSlot7 = KeyCodes.NUMBER_7;
-		public static int useInvSlot8 = KeyCodes.NUMBER_8;
-		public static int escapeToNexus2 = KeyCodes.F5;
-		public static int escapeToNexus = KeyCodes.R;
-		public static int autofireToggle = KeyCodes.I;
-		public static int scrollChatUp = KeyCodes.PAGE_UP;
-		public static int scrollChatDown = KeyCodes.PAGE_DOWN;
-		public static int miniMapZoomOut = KeyCodes.MINUS;
-		public static int miniMapZoomIn = KeyCodes.EQUAL;
-		public static int resetToDefaultCameraAngle = KeyCodes.Z;
-		public static int togglePerformanceStats = KeyCodes.UNSET;
-		public static int options = KeyCodes.O;
-		public static int toggleCentering = KeyCodes.X;
-		public static int chat = KeyCodes.ENTER;
-		public static int chatCommand = KeyCodes.SLASH;
-		public static int tell = KeyCodes.TAB;
-		public static int guildChat = KeyCodes.G;
-		public static int testOne = KeyCodes.PERIOD;
-		public static int toggleFullscreen = KeyCodes.UNSET;
-		public static int useHealthPotion = KeyCodes.F;
-		public static int GPURenderToggle = KeyCodes.UNSET;
-		public static int useMagicPotion = KeyCodes.V;
-		public static int switchTabs = KeyCodes.B;
-		public static int particleEffect = KeyCodes.P;
-		public static int toggleHPBar = KeyCodes.H;
-		public static int toggleProjectiles = KeyCodes.N;
-		public static int toggleMasterParticles = KeyCodes.M;
-		public static int playerObjectType = 782;
+		public int moveLeft = KeyCodes.A;
+		public int moveRight = KeyCodes.D;
+		public final int moveUp = KeyCodes.W;
+		public final int moveDown = KeyCodes.S;
+		public final int rotateLeft = KeyCodes.Q;
+		public int rotateRight = KeyCodes.E;
+		public int useSpecial = KeyCodes.SPACE;
+		public int interact = KeyCodes.NUMBER_0;
+		public int useInvSlot1 = KeyCodes.NUMBER_1;
+		public int useInvSlot2 = KeyCodes.NUMBER_2;
+		public int useInvSlot3 = KeyCodes.NUMBER_3;
+		public int useInvSlot4 = KeyCodes.NUMBER_4;
+		public int useInvSlot5 = KeyCodes.NUMBER_5;
+		public int useInvSlot6 = KeyCodes.NUMBER_6;
+		public int useInvSlot7 = KeyCodes.NUMBER_7;
+		public int useInvSlot8 = KeyCodes.NUMBER_8;
+		public int escapeToNexus2 = KeyCodes.F5;
+		public int escapeToNexus = KeyCodes.R;
+		public int autofireToggle = KeyCodes.I;
+		public int scrollChatUp = KeyCodes.PAGE_UP;
+		public int scrollChatDown = KeyCodes.PAGE_DOWN;
+		public int miniMapZoomOut = KeyCodes.MINUS;
+		public int miniMapZoomIn = KeyCodes.EQUAL;
+		public int resetToDefaultCameraAngle = KeyCodes.Z;
+		public int togglePerformanceStats = KeyCodes.UNSET;
+		public int options = KeyCodes.O;
+		public int toggleCentering = KeyCodes.X;
+		public int chat = KeyCodes.ENTER;
+		public int chatCommand = KeyCodes.SLASH;
+		public int tell = KeyCodes.TAB;
+		public int guildChat = KeyCodes.G;
+		public int testOne = KeyCodes.PERIOD;
+		public int toggleFullscreen = KeyCodes.UNSET;
+		public int useHealthPotion = KeyCodes.F;
+		public int GPURenderToggle = KeyCodes.UNSET;
+		public int useMagicPotion = KeyCodes.V;
+		public int switchTabs = KeyCodes.B;
+		public int particleEffect = KeyCodes.P;
+		public int toggleHPBar = KeyCodes.H;
+		public int toggleProjectiles = KeyCodes.N;
+		public int toggleMasterParticles = KeyCodes.M;
+		public int playerObjectType = 782;
 		public static boolean playMusic = true;
 		public static boolean playSFX = true;
 		public static boolean playPewPew = true;
@@ -70,12 +72,12 @@ public class Parameters {
 		public static String bestServer = null;
 		public static boolean needsTutorial = true;
 		public static boolean needsRandomRealm = true;
-		public static int cameraAngle = 0;
-		public static int defaultCameraAngle = 0;
+		public int cameraAngle = 0;
+		public int defaultCameraAngle = 0;
 		public static boolean showQuestPortraits = true;
 		public static boolean fullscreenMode = false;
 		public static boolean showProtips = true;
-		public static int protipIndex = 0;
+		public int protipIndex = 0;
 		public static String joinDate = MoreDateUtil.getDayStringInPT();
 		public static String lastDailyAnalytics = null;
 		public static boolean allowRotation = true;
@@ -88,9 +90,9 @@ public class Parameters {
 		public static boolean filterLanguage = true;
 		public static boolean showGuildInvitePopup = true;
 		public static boolean showBeginnersOffer = false;
-		public static int beginnersOfferTimeLeft = 0;
+		public int beginnersOfferTimeLeft = 0;
 		public static boolean beginnersOfferShowNow = false;
-		public static int beginnersOfferShowNowTime = 0;
+		public int beginnersOfferShowNowTime = 0;
 		public static boolean watchForTutorialExit = false;
 		public static boolean clickForGold = false;
 		public static boolean contextualPotionBuy = false;
@@ -104,26 +106,26 @@ public class Parameters {
 		public static boolean GPURender = false;
 		public static boolean forceChatQuality = false;
 		public static boolean hidePlayerChat = false;
-		public static int chatStarRequirement = 2;
+		public int chatStarRequirement = 2;
 		public static boolean chatAll = true;
 		public static boolean chatWhisper = true;
 		public static boolean chatGuild = true;
 		public static boolean chatTrade = true;
-		public static int toggleBarText = 0;
+		public int toggleBarText = 0;
 		public static boolean toggleToMaxText = false;
-		public static int musicVolume = 0;
-		public static int SFXVolume = 1;
-		public static int friendList = KeyCodes.UNSET;
+		public int musicVolume = 0;
+		public int SFXVolume = 1;
+		public int friendList = KeyCodes.UNSET;
 		public static boolean tradeWithFriends = false;
 		public static boolean chatFriend = false;
-		public static int friendStarRequirement = 0;
-		public static int HPBar = 1;
+		public int friendStarRequirement = 0;
+		public int HPBar = 1;
 		public static boolean newMiniMapColors = false;
 		public static boolean noParticlesMaster = false;
 		public static boolean noAllyNotifications = false;
 		public static boolean noAllyDamage = false;
 		public static boolean noEnemyDamage = false;
-		public static int forceEXP = 0;
+		public int forceEXP = 0;
 		public static boolean showFameGain = false;
 		public static boolean curseIndication = false;
 
@@ -142,21 +144,21 @@ public class Parameters {
 
 	public static final boolean ENABLE_ENCRYPTION = true;
 
-	public static final int PORT = 2050;
+	public int PORT = 2050;
 
 	public static final boolean ALLOW_SCREENSHOT_MODE = false;
 
 	public static final boolean USE_NEW_FRIENDS_UI = true;
 
-	public static final int FELLOW_GUILD_COLOR = 10944349;
+	public int FELLOW_GUILD_COLOR = 10944349;
 
-	public static final int NAME_CHOSEN_COLOR = 16572160;
+	public int NAME_CHOSEN_COLOR = 16572160;
 
 	public static DisplayObject root;
 
 	public static final double PLAYER_ROTATE_SPEED = 0.003;
 
-	public static final int BREATH_THRESH = 20;
+	public int BREATH_THRESH = 20;
 
 	public static final String SERVER_CHAT_NAME = "";
 
@@ -170,19 +172,19 @@ public class Parameters {
 
 	public static final double NEWS_TIMESTAMP_DEFAULT = 1.1;
 
-	public static final int NAME_CHANGE_PRICE = 1000;
+	public int NAME_CHANGE_PRICE = 1000;
 
-	public static final int GUILD_CREATION_PRICE = 1000;
+	public int GUILD_CREATION_PRICE = 1000;
 
-	public static Data data = null;
+	public static final Data data = new Data();
 
 	public static boolean GPURenderError = false;
 
 	public static boolean sessionStarted = false;
 
-	public static int blendType = 1;
+	public int blendType = 1;
 
-	public static int projColorType = 0;
+	public int projColorType = 0;
 
 	public static boolean drawProj = true;
 
@@ -192,13 +194,13 @@ public class Parameters {
 
 	public static boolean sendLogin = true;
 
-	public static final int TUTORIAL_GAMEID = -1;
+	public int TUTORIAL_GAMEID = -1;
 
-	public static final int NEXUS_GAMEID = -2;
+	public int NEXUS_GAMEID = -2;
 
-	public static final int RANDOM_REALM_GAMEID = -3;
+	public int RANDOM_REALM_GAMEID = -3;
 
-	public static final int MAPTEST_GAMEID = -6;
+	public int MAPTEST_GAMEID = -6;
 
 	public static final double MAX_SINK_LEVEL = 18;
 

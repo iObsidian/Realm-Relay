@@ -10,44 +10,44 @@ import java.util.List;
 
 public class AnimatedChars {
 
-    private static HashMap<String, List<AnimatedChar>> nameMap = new HashMap<>();
+	private static HashMap<String, List<AnimatedChar>> nameMap = new HashMap<>();
 
-    public static AnimatedChar getAnimatedChar(String name, int id) {
-        List<AnimatedChar> chars = nameMap.get(name);
-        if (chars == null || id >= chars.size()) {
-            return null;
-        }
-        return chars.get(id);
-    }
+	public static AnimatedChar getAnimatedChar(String name, int id) {
+		List<AnimatedChar> chars = nameMap.get(name);
+		if (chars == null || id >= chars.size()) {
+			return null;
+		}
+		return chars.get(id);
+	}
 
-    public static void add(String name, BitmapData images, BitmapData masks, int charWidth, int charHeight,
-                           int sheetWidth, int sheetHeight, int firstDir) {
-        List<AnimatedChar> chars = new ArrayList<AnimatedChar>();
-        MaskedImageSet charImages = new MaskedImageSet();
-        
-        System.out.println(name);
-        
-        charImages.addFromBitmapData(images, masks, sheetWidth, sheetHeight);
-        for (MaskedImage image : charImages.images) {
-            chars.add(new AnimatedChar(image, charWidth, charHeight, firstDir));
-        }
-        nameMap.put(name, chars);
-    }
+	public static void add(String name, BitmapData images, BitmapData masks, int charWidth, int charHeight,
+	                       int sheetWidth, int sheetHeight, int firstDir) {
+		List<AnimatedChar> chars = new ArrayList<AnimatedChar>();
+		MaskedImageSet charImages = new MaskedImageSet();
 
-    /**
-     * Utility method to load images using path
-     */
-    public static void add(String name, String imagePath, String masksPath, int charWidth, int charHeight, int sheetWidth,
-                           int sheetHeight, int firstDir) {
+		System.out.println(name);
 
-        BitmapData images = StaticAssetLoaderUtility.getEmbeddedImage(imagePath);
+		charImages.addFromBitmapData(images, masks, sheetWidth, sheetHeight);
+		for (MaskedImage image : charImages.images) {
+			chars.add(new AnimatedChar(image, charWidth, charHeight, firstDir));
+		}
+		nameMap.put(name, chars);
+	}
 
-        BitmapData masks = null;
+	/**
+	 * Utility method to load images using path
+	 */
+	public static void add(String name, String imagePath, String masksPath, int charWidth, int charHeight, int sheetWidth,
+	                       int sheetHeight, int firstDir) {
 
-        if (masksPath != null) {
-            masks = StaticAssetLoaderUtility.getEmbeddedImage(masksPath);
-        }
+		BitmapData images = StaticAssetLoaderUtility.getEmbeddedImage(imagePath);
 
-        add(name, images, masks, charWidth, charHeight, sheetWidth, sheetHeight, firstDir);
-    }
+		BitmapData masks = null;
+
+		if (masksPath != null) {
+			masks = StaticAssetLoaderUtility.getEmbeddedImage(masksPath);
+		}
+
+		add(name, images, masks, charWidth, charHeight, sheetWidth, sheetHeight, firstDir);
+	}
 }

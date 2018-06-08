@@ -1,5 +1,7 @@
 package rotmg.dialogs;
 
+import org.osflash.signals.Signal;
+
 public class FlushPopupStartupQueueSignal extends Signal {
 
 	static FlushPopupStartupQueueSignal instance;

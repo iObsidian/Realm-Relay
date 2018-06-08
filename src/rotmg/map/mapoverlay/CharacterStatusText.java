@@ -31,7 +31,6 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 
 	private TextFieldDisplayConcrete textDisplay;
 
-
 	public CharacterStatusText(GameObject param1, int param2, int param3) {
 		this(param1, param2, param3, 0);
 	}

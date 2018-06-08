@@ -1,11 +1,22 @@
 package rotmg.particles;
 
+import alde.flash.utils.Vector;
 import flash.display.BitmapData;
-import javafx.scene.Camera;
-import org.bouncycastle.pqc.math.linearalgebra.Matrix;
-import rotmg.game.objects.BasicObject;
-import rotmg.game.objects.Square;
+import flash.display.GraphicsBitmapFill;
+import flash.display.GraphicsPath;
+import flash.display.IGraphicsData;
+import flash.geom.Matrix;
+import flash.geom.Vector3D;
+import rotmg.map.Camera;
+import rotmg.objects.BasicObject;
+import rotmg.objects.Square;
+import rotmg.objects.animation.Animations;
+import rotmg.util.GraphicsUtil;
+import rotmg.util.TextureRedrawer;
 
+/**
+ * 100% match
+ */
 public class XMLParticle extends BasicObject {
 
 	public BitmapData texture = null;
@@ -22,88 +33,80 @@ public class XMLParticle extends BasicObject {
 
 	protected GraphicsPath path;
 
-	protected double[] vS;
+	protected Vector<Double> vS;
 
-	protected  double[] uvt;
+	protected Vector<Double> uvt;
 
 	protected Matrix fillMatrix;
 
-	public XMLParticle(ParticleProperties props)
-	{
-		this.bitmapFill = new GraphicsBitmapFill(null,null,false,false);
-		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS,null);
-		this.vS = new List<double>();
-		this.uvt = new List<double>();
-		this.fillMatrix = new Matrix();
+	public XMLParticle(ParticleProperties param1) {
+
 		super();
+
+		this.bitmapFill = new GraphicsBitmapFill(null, null, false, false);
+		this.path = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, null);
+		this.vS = new Vector<Double>();
+		this.uvt = new Vector<Double>();
+		this.fillMatrix = new Matrix();
 		objectId = getNextFakeObjectId();
-		this.size = props.size;
-		z = props.z;
-		this.durationLeft = props.duration;
-		this.texture = props.textureData.getTexture(objectId);
-		if(props.animationsData != null)
-		{
-			this.animations = new Animations(props.animationsData);
+		this.size = param1.size;
+		z = param1.z;
+		this.durationLeft = param1.duration;
+		this.texture = param1.textureData.getTexture(objectId);
+		if (param1.animationsData != null) {
+			this.animations = new Animations(param1.animationsData);
 		}
 		this.moveVec = new Vector3D();
-		double moveAngle = Math.PI * 2 * Math.random();
-		this.moveVec_.x = Math.cos(moveAngle) * 0.1 * 5;
-		this.moveVec_.y = Math.sin(moveAngle) * 0.1 * 5;
+		double loc2 = Math.PI * 2 * Math.random();
+		this.moveVec.x = Math.cos(loc2) * 0.1 * 5;
+		this.moveVec.y = Math.sin(loc2) * 0.1 * 5;
 	}
 
-	public boolean moveTo(double x,double y)
-	{
-		Square square = null;
-		square = map.getSquare(x,y);
-		if(square == null)
-		{
+	public boolean moveTo(double param1, double param2) {
+		Square loc3 = map.getSquare(param1, param2);
+		if (loc3 == null) {
 			return false;
 		}
-		x = x;
-		y = y;
-		square = square;
+		x = param1;
+		y = param2;
+		square = loc3;
 		return true;
 	}
 
-	 public boolean update(int time, int dt)
-	{
-		double fdt = dt / 1000;
-		this.durationLeft = this.durationLeft - fdt;
-		if(this.durationLeft <= 0)
-		{
+	public boolean update(int param1, int param2) {
+		double loc3 = 0;
+		loc3 = param2 / 1000;
+		this.durationLeft = this.durationLeft - loc3;
+		if (this.durationLeft <= 0) {
 			return false;
 		}
-		x = x + this.moveVec.x * fdt;
-		y = y + this.moveVec.y * fdt;
+		x = x + this.moveVec.x * loc3;
+		y = y + this.moveVec.y * loc3;
 		return true;
 	}
 
-	@Override
-	 public void draw(List<IGraphicsData> graphicsData, Camera camera, int time)
-	{
-		BitmapData animTexture = null;
-		BitmapData texture = this.texture;
-		if(this.animations != null)
-		{
-			animTexture = this.animations.getTexture(time);
-			if(animTexture != null)
-			{
-				texture = animTexture;
+	public void draw(Vector<IGraphicsData> param1, Camera param2, int param3) {
+		BitmapData loc7 = null;
+		BitmapData loc4 = this.texture;
+		if (this.animations != null) {
+			loc7 = this.animations.getTexture(param3);
+			if (loc7 != null) {
+				loc4 = loc7;
 			}
 		}
-		texture = TextureRedrawer.redraw(texture,this.size,true,0,0);
-		int w = texture.width;
-		int h = texture.height;
+		loc4 = TextureRedrawer.redraw(loc4, this.size, true, 0);
+		int loc5 = loc4.width;
+		int loc6 = loc4.height;
 		this.vS.length = 0;
-		this.vS.add(posS_[3] - w / 2,posS_[4] - h,posS_[3] + w / 2,posS_[4] - h,posS_[3] + w / 2,posS_[4],posS_[3] - w / 2,posS_[4]);
-		this.path_.data = this.vS_;
-		this.bitmapFill.bitmapData = texture;
+		this.vS.add(posS.get(3) - loc5 / 2, posS.get(4) - loc6, posS.get(3) + loc5 / 2, posS.get(4) - loc6, posS.get(3) + loc5 / 2, posS.get(4), posS.get(3) - loc5 / 2, posS.get(4));
+		this.path.data = this.vS;
+		this.bitmapFill.bitmapData = loc4;
 		this.fillMatrix.identity();
-		this.fillMatrix.translate(this.vS_[0],this.vS_[1]);
-		this.bitmapFill.matrix = this.fillMatrix_;
-		graphicsData.add(this.bitmapFill);
-		graphicsData.add(this.path);
-		graphicsData.add(GraphicsUtil.END_FILL);
+		this.fillMatrix.translate(this.vS.get(0), this.vS.get(1));
+		this.bitmapFill.matrix = this.fillMatrix;
+		param1.add(this.bitmapFill);
+		param1.add(this.path);
+		param1.add(GraphicsUtil.END_FILL);
 	}
 
 

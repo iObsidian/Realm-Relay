@@ -1,4 +1,3 @@
-
 package rotmg.events;
 
 public class GuildResultEvent extends Event {

@@ -1,7 +1,5 @@
 package rotmg.ui.model;
 
-import rotmg.model.PotionInventoryModel;
-
 public class TabStripModel {
 
 	public static TabStripModel instance;

@@ -7,13 +7,13 @@ import java.util.List;
 
 public class AnimationsData {
 
-    public AnimationsData(XML xml) {
-        this.animations = new ArrayList<AnimationData>();
-        for (XML animData : xml.getChilds("Animation")) {
-            this.animations.add(new AnimationData(animData));
-        }
-    }
+	public AnimationsData(XML xml) {
+		this.animations = new ArrayList<AnimationData>();
+		for (XML animData : xml.getChilds("Animation")) {
+			this.animations.add(new AnimationData(animData));
+		}
+	}
 
-    public List<AnimationData> animations;
+	public List<AnimationData> animations;
 
 }

@@ -6,4 +6,5 @@ public class Stage extends DisplayObjectContainer {
 	public DisplayObject root;
 	public double stageWidth;
 	public double stageHeight;
+	public Object focus;
 }

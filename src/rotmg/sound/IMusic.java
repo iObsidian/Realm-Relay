@@ -2,6 +2,6 @@ package rotmg.sound;
 
 public interface IMusic {
 
-    void load();
+	void load();
 
 }

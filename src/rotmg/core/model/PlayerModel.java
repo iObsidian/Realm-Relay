@@ -52,6 +52,7 @@ public class PlayerModel {
 	public boolean getIsAgeVerified() {
 		return (this.isAgeVerified) || this.charList.isAgeVerified;
 	}
+
 	public void setIsAgeVerified(boolean param1) {
 		this.isAgeVerified = true;
 	}

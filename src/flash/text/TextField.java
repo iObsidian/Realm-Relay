@@ -4,10 +4,10 @@ import flash.display.InteractiveObject;
 
 public class TextField extends InteractiveObject {
 
-	 public double width;
-	 public double height;
+	public double width;
+	public double height;
 
-	 public String text;
+	public String text;
 
 	public String name;
 	public boolean selectable;
@@ -35,5 +35,8 @@ public class TextField extends InteractiveObject {
 
 	public TextFormat getTextFormat(int param1, int param2) {
 		return null;
+	}
+
+	public void setTextFormat(TextFormat param1, int param2, int param3) {
 	}
 }

@@ -53,7 +53,7 @@ public class BloodComposition {
 			while (loc4 < param1.height) {
 				loc5 = param1.getPixel32(loc3, loc4);
 				/*if ((loc5 & 4278190080) != 0) {*/
-					loc2.add(loc5);
+				loc2.add(loc5);
 				//}
 				loc4++;
 			}

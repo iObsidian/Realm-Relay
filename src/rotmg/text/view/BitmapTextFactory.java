@@ -6,12 +6,12 @@ import rotmg.text.view.stringBuilder.StringBuilder;
 
 public class BitmapTextFactory {
 	static BitmapTextFactory instance;
-	
+
 	public static BitmapTextFactory getInstance() {
 		if (instance == null) {
 			instance = new BitmapTextFactory();
 		}
-		
+
 		return instance;
 	}
 

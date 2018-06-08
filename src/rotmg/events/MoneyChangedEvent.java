@@ -1,4 +1,3 @@
-
 package rotmg.events;
 //	import flash.events.Event;
 

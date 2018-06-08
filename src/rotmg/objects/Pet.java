@@ -9,7 +9,6 @@ import rotmg.signals.TextPanelMessageUpdateSignal;
 import rotmg.ui.panels.Panel;
 import rotmg.util.AnimatedChars;
 import rotmg.util.MaskedImage;
-import rotmg.util.TextKey;
 
 public class Pet extends GameObject implements IInteractiveObject {
 

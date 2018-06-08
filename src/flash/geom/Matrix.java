@@ -9,7 +9,7 @@ public class Matrix {
 	public Object ty;
 
 	public Matrix(double... doubles) {
-		
+
 	}
 
 	public Matrix() {

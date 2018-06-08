@@ -7,9 +7,6 @@ import rotmg.objects.GameObject;
 import rotmg.util.AssetLibrary;
 import rotmg.util.TextureRedrawer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ParticleGenerator extends ParticleEffect {
 
 	private Vector<BaseParticle> particlePool;
@@ -47,8 +44,7 @@ public class ParticleGenerator extends ParticleEffect {
 	}
 
 	@Override
-	public boolean update(int time, int dt)
-	{
+	public boolean update(int time, int dt) {
 		double tDelta = 0F;
 		BaseParticle newParticle = null;
 		double t = time / 1000;
@@ -90,8 +86,7 @@ public class ParticleGenerator extends ParticleEffect {
 	}
 
 	@Override
-	public void removeFromMap()
-	{
+	public void removeFromMap() {
 		for (BaseParticle particle : this.liveParticles) {
 			map.removeObj(particle.objectId);
 		}

@@ -227,17 +227,17 @@ public class GameServerConnection {
 	}
 
 	public boolean invSwap(Player player, GameObject sourceObj, int slotId1, int itemId1, GameObject targetObj,
-			int slotId2, int itemId2) {
+	                       int slotId2, int itemId2) {
 		return false;
 	}
 
 	public boolean invSwapRaw(Player player, int objectId1, int slotId1, int objectType1, int objectId2, int slotId2,
-			int objectType2) {
+	                          int objectType2) {
 		return false;
 	}
 
 	public boolean invSwapPotion(Player param1, GameObject param2, int param3, int param4, GameObject param5,
-			int param6, int param7) {
+	                             int param6, int param7) {
 		return false;
 	}
 

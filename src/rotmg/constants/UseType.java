@@ -1,4 +1,3 @@
-
 package rotmg.constants;
 
 public class UseType {

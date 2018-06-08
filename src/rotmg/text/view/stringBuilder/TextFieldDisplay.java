@@ -2,7 +2,7 @@ package rotmg.text.view.stringBuilder;
 
 import flash.text.TextField;
 import rotmg.language.model.StringMap;
-import sun.java2d.loops.FontInfo;
+import rotmg.text.model.FontInfo;
 
 public interface TextFieldDisplay {
 

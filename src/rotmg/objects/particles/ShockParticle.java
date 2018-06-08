@@ -3,7 +3,6 @@ package rotmg.objects.particles;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.geom.Point;
-import rotmg.objects.BasicObject;
 import rotmg.objects.GameObject;
 import rotmg.objects.thrown.BitmapParticle;
 

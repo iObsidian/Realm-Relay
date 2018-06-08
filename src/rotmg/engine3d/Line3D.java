@@ -3,27 +3,24 @@ package rotmg.engine3d;
 
 import flash.geom.Vector3D;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Line3D {
 
 
-	public  Vector3D v0;
+	public Vector3D v0;
 
-	public  Vector3D v1;
+	public Vector3D v1;
 
-	public  Line3D(Vector3D param1, Vector3D param2)  {
+	public Line3D(Vector3D param1, Vector3D param2) {
 		super();
 		this.v0 = param1;
 		this.v1 = param2;
 	}
 
-	public static boolean  unitTest()  {
+	public static boolean unitTest() {
 		return UnitTest.run();
 	}
 
-	public int  crossZ(Line3D param1)  {
+	public int crossZ(Line3D param1) {
 		double loc2 = (param1.v1.y - param1.v0.y) * (this.v1.x - this.v0.x) - (param1.v1.x - param1.v0.x) * (this.v1.y - this.v0.y);
 		if (loc2 < 0.001 && loc2 > -0.001) {
 			return Order.NEITHER;
@@ -48,11 +45,11 @@ public class Line3D {
 		return Order.BEHIND;
 	}
 
-	public Vector3D  lerp(double param1)  {
+	public Vector3D lerp(double param1) {
 		return new Vector3D(this.v0.x + (this.v1.x - this.v0.x) * param1, this.v0.y + (this.v1.y - this.v0.y) * param1, this.v0.z + (this.v1.z - this.v0.z) * param1);
 	}
 
-	public String  toString()  {
+	public String toString() {
 		return "(" + this.v0 + ", " + this.v1 + ")";
 	}
 }
@@ -60,11 +57,11 @@ public class Line3D {
 class UnitTest {
 
 
-	UnitTest()  {
+	UnitTest() {
 		super();
 	}
 
-	private static boolean  testCrossZ()  {
+	private static boolean testCrossZ() {
 		Line3D loc1 = new Line3D(new Vector3D(0, 0, 0), new Vector3D(0, 100, 0));
 		Line3D loc2 = new Line3D(new Vector3D(10, 0, 10), new Vector3D(-10, 100, -100));
 		if (loc1.crossZ(loc2) != Order.IN_FRONT) {
@@ -84,7 +81,7 @@ class UnitTest {
 		return true;
 	}
 
-	public static boolean  run()  {
+	public static boolean run() {
 		if (!testCrossZ()) {
 			return false;
 		}

@@ -9,9 +9,6 @@ import rotmg.map.Camera;
 import rotmg.util.MaskedImage;
 import rotmg.util.MaskedImageSet;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * This matches the client by 90%, only the Transparency-check is not suported and mirroring is untested
@@ -80,7 +77,7 @@ public class AnimatedChar {
 	}
 
 	private Dictionary<Integer, Vector<MaskedImage>> loadDir(int offset, boolean mirror, boolean sym,
-	                                                       MaskedImageSet frames) {
+	                                                         MaskedImageSet frames) {
 		Vector<MaskedImage> attackVec = null;
 		BitmapData image = null;
 		BitmapData mask = null;

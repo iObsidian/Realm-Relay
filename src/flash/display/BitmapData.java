@@ -1,6 +1,5 @@
 package flash.display;
 
-import flash.airglobal.Shape;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Point;

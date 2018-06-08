@@ -191,7 +191,7 @@ public class GraphicsFillExtra {
 	}
 
 	public static void disposeVertexBuffers() {
-		for (VertexBuffer3D loc1: vertexBuffers) {
+		for (VertexBuffer3D loc1 : vertexBuffers) {
 			loc1.dispose();
 		}
 		vertexBuffers = new Dictionary<>();

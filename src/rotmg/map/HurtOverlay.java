@@ -2,11 +2,7 @@ package rotmg.map;
 
 import alde.flash.utils.Vector;
 import flash.airglobal.Shape;
-import flash.display.GradientType;
-import flash.display.GraphicsGradientFill;
-import flash.display.GraphicsPath;
 import flash.display.IGraphicsData;
-import rotmg.util.GraphicsUtil;
 
 public class HurtOverlay extends Shape {
 
@@ -20,9 +16,9 @@ public class HurtOverlay extends Shape {
 
 	public HurtOverlay() {
 		/**gradientGraphicsData = new IGraphicsData[]{this.gradientFill, this.gradientPath, GraphicsUtil.END_FILL};
-		super();
-		graphics.drawGraphicsData(this.gradientGraphicsData);
-		visible = false;*/
+		 super();
+		 graphics.drawGraphicsData(this.gradientGraphicsData);
+		 visible = false;*/
 	}
 
 }

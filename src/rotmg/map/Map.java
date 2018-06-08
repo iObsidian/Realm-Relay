@@ -44,7 +44,7 @@ public class Map extends AbstractMap {
 		return square;
 
 	}
-	
+
 	public Point pSTopW(Number param1, double param2) {
 		return null;
 	}

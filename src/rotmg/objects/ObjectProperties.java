@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * Static is a reserved keywor.d Changed to 'isStatic'.
- *
+ * <p>
  * This class is a 100% match
  *
  * @author Alde
@@ -116,7 +116,7 @@ public class ObjectProperties {
 		this.angleCorrection = param1.hasOwnProperty("AngleCorrection")
 				? (double) (param1.getDoubleValue("AngleCorrection") * Math.PI / 4)
 				: 0;
-				
+
 		this.rotation = param1.hasOwnProperty("Rotation") ? param1.getDoubleValue("Rotation") : 0;
 
 		if (param1.hasOwnProperty("BloodProb")) {

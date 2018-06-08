@@ -92,7 +92,7 @@ public class AssetLibrary {
 		if (imageSets.get(name) == null) {
 			System.err.println("ERROR : " + name + " DOES NOT EXIST!");
 		}
-		
+
 
 		return imageSets.get(name).images.get(id);
 	}

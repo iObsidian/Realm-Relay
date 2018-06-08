@@ -56,59 +56,59 @@ public class TextureDataConcrete extends TextureData {
 		MaskedImage image = null;
 		//RemoteTexture remoteTexture = null;
 		switch (xml.name()) {
-		case "Texture":
-			try {
-				texture = AssetLibrary.getImageFromSet(xml.getValue("File"), xml.getIntValue("Index"));
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new Error("Error loading Texture for " + id + " - name: " + xml.getValue("File") + " - idx: "
-						+ xml.getIntValue("Index"));
-			}
-			break;
-		case "Mask":
-			mask = AssetLibrary.getImageFromSet(xml.getValue("File"), xml.getIntValue("Index"));
-			break;
-		case "Effect":
-			effectProps = new EffectProperties(xml);
-			break;
-		case "AnimatedTexture":
-			animatedChar = AnimatedChars.getAnimatedChar(xml.getValue("File"), xml.getIntValue("Index"));
-			try {
-				image = animatedChar.imageFromDir(0, AnimatedChar.STAND, 0);
-				texture = image.image;
-				mask = image.mask;
-			} catch (Exception e) {
-				e.printStackTrace();
-				throw new Error("Error loading AnimatedTexture for " + id + " - name: " + xml.getValue("File")
-						+ " - idx: " + xml.getValue("Index"));
-			}
-			break;
-		/**case "RemoteTexture":
-		texture = AssetLibrary.getImageFromSet("lofiObj3", 255);
-		if (this.isUsingLocalTextures) {
-		    remoteTexture = new RemoteTexture(xml.Id, xml.Instance, this.onRemoteTexture);
-		    remoteTexture.run();
-		    if (!AssetLoader.currentXmlIsTesting) {
-		        remoteTexturesUsed = true;
-		    }
-		}
-		remoteTextureDir = xml.hasOwnProperty("Right") ? AnimatedChar.RIGHT : AnimatedChar.DOWN;
-		break;**/
-		case "RandomTexture":
-			try {
-				randomTextureData = new ArrayList<TextureData>();
-				for (XML childXML : xml.getChilds()) {
-					randomTextureData.add(new TextureDataConcrete(childXML));
+			case "Texture":
+				try {
+					texture = AssetLibrary.getImageFromSet(xml.getValue("File"), xml.getIntValue("Index"));
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new Error("Error loading Texture for " + id + " - name: " + xml.getValue("File") + " - idx: "
+							+ xml.getIntValue("Index"));
 				}
-			} catch (Exception e) {
-				throw new Error("Error loading RandomTexture for " + id);
-			}
-			break;
-		case "AltTexture":
-			if (altTextures == null) {
-				altTextures = new HashMap<Integer, TextureData>();
-			}
-			altTextures.put(xml.getIntAttribute("id"), new TextureDataConcrete(xml));
+				break;
+			case "Mask":
+				mask = AssetLibrary.getImageFromSet(xml.getValue("File"), xml.getIntValue("Index"));
+				break;
+			case "Effect":
+				effectProps = new EffectProperties(xml);
+				break;
+			case "AnimatedTexture":
+				animatedChar = AnimatedChars.getAnimatedChar(xml.getValue("File"), xml.getIntValue("Index"));
+				try {
+					image = animatedChar.imageFromDir(0, AnimatedChar.STAND, 0);
+					texture = image.image;
+					mask = image.mask;
+				} catch (Exception e) {
+					e.printStackTrace();
+					throw new Error("Error loading AnimatedTexture for " + id + " - name: " + xml.getValue("File")
+							+ " - idx: " + xml.getValue("Index"));
+				}
+				break;
+			/**case "RemoteTexture":
+			 texture = AssetLibrary.getImageFromSet("lofiObj3", 255);
+			 if (this.isUsingLocalTextures) {
+			 remoteTexture = new RemoteTexture(xml.Id, xml.Instance, this.onRemoteTexture);
+			 remoteTexture.run();
+			 if (!AssetLoader.currentXmlIsTesting) {
+			 remoteTexturesUsed = true;
+			 }
+			 }
+			 remoteTextureDir = xml.hasOwnProperty("Right") ? AnimatedChar.RIGHT : AnimatedChar.DOWN;
+			 break;**/
+			case "RandomTexture":
+				try {
+					randomTextureData = new ArrayList<TextureData>();
+					for (XML childXML : xml.getChilds()) {
+						randomTextureData.add(new TextureDataConcrete(childXML));
+					}
+				} catch (Exception e) {
+					throw new Error("Error loading RandomTexture for " + id);
+				}
+				break;
+			case "AltTexture":
+				if (altTextures == null) {
+					altTextures = new HashMap<Integer, TextureData>();
+				}
+				altTextures.put(xml.getIntAttribute("id"), new TextureDataConcrete(xml));
 		}
 	}
 

@@ -5,9 +5,6 @@ import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import rotmg.util.ConditionEffect;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /**
  * This is a VERY close match to the client.
  * <p>

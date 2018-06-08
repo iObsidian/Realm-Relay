@@ -18,9 +18,11 @@ public class Message implements IData {
 
 	public Consumer callback;
 
-	/**public Message(int param1) {
-		this(param1, null);
-	}*/
+	/**
+	 * public Message(int param1) {
+	 * this(param1, null);
+	 * }
+	 */
 
 	public Message(int param1, MessageConsumer param2) {
 		this(param1, param2.getConsumer());

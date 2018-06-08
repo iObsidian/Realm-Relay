@@ -8,12 +8,15 @@ import flash.events.MouseEvent;
 import flash.system.Capabilities;
 import net.hires.debug.Stats;
 import rotmg.application.api.ApplicationSetup;
+import rotmg.application.impl.ProductionSetup;
 import rotmg.chat.model.ChatMessage;
 import rotmg.constants.GeneralConstants;
 import rotmg.constants.UseType;
 import rotmg.dialogs.CloseDialogsSignal;
 import rotmg.dialogs.OpenDialogSignal;
+import rotmg.friends.FriendsPopupView;
 import rotmg.friends.model.FriendModel;
+import rotmg.friends.view.FriendListView;
 import rotmg.game.ui.UIUtils;
 import rotmg.messaging.GameServerConnection;
 import rotmg.model.PotionInventoryModel;
@@ -117,7 +120,7 @@ public class MapUserInput {
 		this.openDialogSignal = OpenDialogSignal.getInstance();
 		this.closeDialogSignal = CloseDialogsSignal.getInstance();
 		this.closePopupByClassSignal = ClosePopupByClassSignal.getInstance();
-		ApplicationSetup loc3 = ApplicationSetup.getInstance();
+		ApplicationSetup loc3 = ProductionSetup.getInstance();
 		this.areFKeysAvailable = loc3.areDeveloperHotkeysEnabled();
 		this.gs.map.signalRenderSwitch.add(this::onRenderSwitch);
 	}
@@ -303,7 +306,7 @@ public class MapUserInput {
 		FriendModel loc12 = null;
 		OpenDialogSignal loc13 = null;
 		Stage loc2 = this.gs.stage;
-		this.currentString = this.currentString + String.fromCharCode(param1.keyCode).toLowerCase();
+		this.currentString = this.currentString + param1.keyCode;
 		if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
 			if (this.currentString.length() == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length()) {
 				loc5 = AddTextLineSignal.getInstance();
@@ -341,169 +344,167 @@ public class MapUserInput {
 		}
 
 		Player loc3 = this.gs.map.player;
-		switch (param1.keyCode) {
-			case Parameters.data.moveUp:
-				doneAction(this.gs, Tutorial.MOVE_FORWARD_ACTION);
-				this.moveUp = true;
-				break;
-			case Parameters.data.moveDown:
-				doneAction(this.gs, Tutorial.MOVE_BACKWARD_ACTION);
-				this.moveDown = true;
-				break;
-			case Parameters.data.moveLeft:
-				doneAction(this.gs, Tutorial.MOVE_LEFT_ACTION);
-				this.moveLeft = true;
-				break;
-			case Parameters.data.moveRight:
-				doneAction(this.gs, Tutorial.MOVE_RIGHT_ACTION);
-				this.moveRight = true;
-				break;
-			case Parameters.data.rotateLeft:
-				if (!Parameters.data.allowRotation) {
-					break;
-				}
-				doneAction(this.gs, Tutorial.ROTATE_LEFT_ACTION);
-				this.rotateLeft = true;
-				break;
-			case Parameters.data.rotateRight:
-				if (!Parameters.data.allowRotation) {
-					break;
-				}
-				doneAction(this.gs, Tutorial.ROTATE_RIGHT_ACTION);
-				this.rotateRight = true;
-				break;
-			case Parameters.data.resetToDefaultCameraAngle:
-				Parameters.data.cameraAngle = Parameters.data.defaultCameraAngle;
-				Parameters.save();
-				break;
-			case Parameters.data.useSpecial:
-				loc7 = this.gs.map.player;
-				if (loc7 == null) {
-					break;
-				}
-				if (!this.specialKeyDown) {
-					if (loc3.isUnstable()) {
-						loc8 = Math.random() * 600 - 300;
-						loc9 = Math.random() * 600 - 325;
-					} else {
-						loc8 = this.gs.map.mouseX;
-						loc9 = this.gs.map.mouseY;
-					}
-					loc10 = loc3.useAltWeapon(loc8, loc9, UseType.START_USE);
-					if (loc10) {
-						this.specialKeyDown = true;
-					}
-				}
-				break;
-			case Parameters.data.autofireToggle:
-				this.gs.map.player.isShooting = this.autofire = !this.autofire;
-				break;
-			case Parameters.data.toggleHPBar:
-				Parameters.data.HPBar = Parameters.data.HPBar != 0 ? 0 : 1;
-				break;
-			case Parameters.data.toggleProjectiles:
-				Parameters.data.disableAllyParticles = !Parameters.data.disableAllyParticles;
-				break;
-			case Parameters.data.toggleMasterParticles:
-				Parameters.data.noParticlesMaster = !Parameters.data.noParticlesMaster;
-				break;
-			case Parameters.data.useInvSlot1:
-				this.useItem(4);
-				break;
-			case Parameters.data.useInvSlot2:
-				this.useItem(5);
-				break;
-			case Parameters.data.useInvSlot3:
-				this.useItem(6);
-				break;
-			case Parameters.data.useInvSlot4:
-				this.useItem(7);
-				break;
-			case Parameters.data.useInvSlot5:
-				this.useItem(8);
-				break;
-			case Parameters.data.useInvSlot6:
-				this.useItem(9);
-				break;
-			case Parameters.data.useInvSlot7:
-				this.useItem(10);
-				break;
-			case Parameters.data.useInvSlot8:
-				this.useItem(11);
-				break;
-			case Parameters.data.useHealthPotion:
-				if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.HEALTH_POTION_ID).available) {
-					this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.HEALTH_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
-				}
-				break;
-			case Parameters.data.GPURenderToggle:
-				Parameters.data.GPURender = !Parameters.data.GPURender;
-				break;
-			case Parameters.data.useMagicPotion:
-				if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.MAGIC_POTION_ID).available) {
-					this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.MAGIC_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
-				}
-				break;
-			case Parameters.data.miniMapZoomOut:
-				this.miniMapZoom.dispatch(MiniMapZoomSignal.OUT);
-				break;
-			case Parameters.data.miniMapZoomIn:
-				this.miniMapZoom.dispatch(MiniMapZoomSignal.IN);
-				break;
-			case Parameters.data.togglePerformanceStats:
-				this.togglePerformanceStats();
-				break;
-			case Parameters.data.escapeToNexus:
-			case Parameters.data.escapeToNexus2:
-				loc4 = CloseAllPopupsSignal.getInstance();
-				loc4.dispatch();
-				this.exitGame.dispatch();
-				this.gs.gsc.escape();
-				Parameters.data.needsRandomRealm = false;
-				Parameters.save();
-				break;
-			case Parameters.data.friendList:
-				Parameters.data.friendListDisplayFlag = !Parameters.data.friendListDisplayFlag;
-				if (Parameters.data.friendListDisplayFlag) {
-					if (Parameters.USE_NEW_FRIENDS_UI) {
-						loc11 = ShowPopupSignal.getInstance();
-						loc12 = FriendModel.getInstance();
-						loc11.dispatch(new FriendsPopupView(loc12.hasInvitations));
-					} else {
-						loc13 = OpenDialogSignal.getInstance();
-						loc13.dispatch(new FriendListView());
-					}
+		if (param1.keyCode == Parameters.data.moveUp) {
+			doneAction(this.gs, Tutorial.MOVE_FORWARD_ACTION);
+			this.moveUp = true;
+
+		} else if (param1.keyCode == Parameters.data.moveDown) {
+			doneAction(this.gs, Tutorial.MOVE_BACKWARD_ACTION);
+			this.moveDown = true;
+
+		} else if (param1.keyCode == Parameters.data.moveLeft) {
+			doneAction(this.gs, Tutorial.MOVE_LEFT_ACTION);
+			this.moveLeft = true;
+
+		} else if (param1.keyCode == Parameters.data.moveRight) {
+			doneAction(this.gs, Tutorial.MOVE_RIGHT_ACTION);
+			this.moveRight = true;
+
+		} else if (param1.keyCode == Parameters.data.rotateLeft) {
+			if (!Parameters.data.allowRotation) {
+				return;
+			}
+			doneAction(this.gs, Tutorial.ROTATE_LEFT_ACTION);
+			this.rotateLeft = true;
+
+		} else if (param1.keyCode == Parameters.data.rotateRight) {
+			if (!Parameters.data.allowRotation) {
+				return;
+			}
+			doneAction(this.gs, Tutorial.ROTATE_RIGHT_ACTION);
+			this.rotateRight = true;
+
+		} else if (param1.keyCode == Parameters.data.resetToDefaultCameraAngle) {
+			Parameters.data.cameraAngle = Parameters.data.defaultCameraAngle;
+			Parameters.save();
+
+		} else if (param1.keyCode == Parameters.data.useSpecial) {
+			loc7 = this.gs.map.player;
+			if (loc7 == null) {
+				return;
+			}
+			if (!this.specialKeyDown) {
+				if (loc3.isUnstable()) {
+					loc8 = Math.random() * 600 - 300;
+					loc9 = Math.random() * 600 - 325;
 				} else {
-					this.closeDialogSignal.dispatch();
-					this.closePopupByClassSignal.dispatch(FriendsPopupView);
+					loc8 = this.gs.map.mouseX;
+					loc9 = this.gs.map.mouseY;
 				}
-				break;
-			case Parameters.data.options:
-				CloseAllPopupsSignal.getInstance().dispatch();
-				this.clearInput();
-				this.layers.overlay.addChild(new Options(this.gs));
-				break;
-			case Parameters.data.toggleCentering:
-				Parameters.data.centerOnPlayer = !Parameters.data.centerOnPlayer;
+				loc10 = loc3.useAltWeapon(loc8, loc9, UseType.START_USE);
+				if (loc10) {
+					this.specialKeyDown = true;
+				}
+			}
+
+		} else if (param1.keyCode == Parameters.data.autofireToggle) {
+			this.gs.map.player.isShooting = this.autofire = !this.autofire;
+
+		} else if (param1.keyCode == Parameters.data.toggleHPBar) {
+			Parameters.data.HPBar = Parameters.data.HPBar != 0 ? 0 : 1;
+
+		} else if (param1.keyCode == Parameters.data.toggleProjectiles) {
+			Parameters.data.disableAllyParticles = !Parameters.data.disableAllyParticles;
+
+		} else if (param1.keyCode == Parameters.data.toggleMasterParticles) {
+			Parameters.data.noParticlesMaster = !Parameters.data.noParticlesMaster;
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot1) {
+			this.useItem(4);
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot2) {
+			this.useItem(5);
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot3) {
+			this.useItem(6);
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot4) {
+			this.useItem(7);
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot5) {
+			this.useItem(8);
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot6) {
+			this.useItem(9);
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot7) {
+			this.useItem(10);
+
+		} else if (param1.keyCode == Parameters.data.useInvSlot8) {
+			this.useItem(11);
+
+		} else if (param1.keyCode == Parameters.data.useHealthPotion) {
+			if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.HEALTH_POTION_ID).available) {
+				this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.HEALTH_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
+			}
+
+		} else if (param1.keyCode == Parameters.data.GPURenderToggle) {
+			Parameters.data.GPURender = !Parameters.data.GPURender;
+
+		} else if (param1.keyCode == Parameters.data.useMagicPotion) {
+			if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.MAGIC_POTION_ID).available) {
+				this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.MAGIC_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
+			}
+
+		} else if (param1.keyCode == Parameters.data.miniMapZoomOut) {
+			this.miniMapZoom.dispatch(MiniMapZoomSignal.OUT);
+
+		} else if (param1.keyCode == Parameters.data.miniMapZoomIn) {
+			this.miniMapZoom.dispatch(MiniMapZoomSignal.IN);
+
+		} else if (param1.keyCode == Parameters.data.togglePerformanceStats) {
+			this.togglePerformanceStats();
+
+		} else if (param1.keyCode == Parameters.data.escapeToNexus || param1.keyCode == Parameters.data.escapeToNexus2) {
+			loc4 = CloseAllPopupsSignal.getInstance();
+			loc4.dispatch();
+			this.exitGame.dispatch();
+			this.gs.gsc.escape();
+			Parameters.data.needsRandomRealm = false;
+			Parameters.save();
+
+		} else if (param1.keyCode == Parameters.data.friendList) {
+			Parameters.data.friendListDisplayFlag = !Parameters.data.friendListDisplayFlag;
+			if (Parameters.data.friendListDisplayFlag) {
+				if (Parameters.USE_NEW_FRIENDS_UI) {
+					loc11 = ShowPopupSignal.getInstance();
+					loc12 = FriendModel.getInstance();
+					loc11.dispatch(new FriendsPopupView(loc12.hasInvitations));
+				} else {
+					loc13 = OpenDialogSignal.getInstance();
+					loc13.dispatch(new FriendListView());
+				}
+			} else {
+				this.closeDialogSignal.dispatch();
+				this.closePopupByClassSignal.dispatch(FriendsPopupView);
+			}
+
+		} else if (param1.keyCode == Parameters.data.options) {
+			CloseAllPopupsSignal.getInstance().dispatch();
+			this.clearInput();
+			this.layers.overlay.addChild(new Options(this.gs));
+
+		} else if (param1.keyCode == Parameters.data.toggleCentering) {
+			Parameters.data.centerOnPlayer = !Parameters.data.centerOnPlayer;
+			Parameters.save();
+
+		} else if (param1.keyCode == Parameters.data.toggleFullscreen) {
+			if (Capabilities.playerType == "Desktop") {
+				Parameters.data.fullscreenMode = !Parameters.data.fullscreenMode;
 				Parameters.save();
-				break;
-			case Parameters.data.toggleFullscreen:
-				if (Capabilities.playerType == "Desktop") {
-					Parameters.data.fullscreenMode = !Parameters.data.fullscreenMode;
-					Parameters.save();
-					loc2.displayState = !!Parameters.data.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
-				}
-				break;
-			case Parameters.data.switchTabs:
-				loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
-				loc4.dispatch();
-				this.statsTabHotKeyInputSignal.dispatch();
-				break;
-			case Parameters.data.interact:
-				loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
-				loc4.dispatch();
-				break;
-			case Parameters.data.testOne:
+				loc2.displayState = !!Parameters.data.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
+			}
+
+		} else if (param1.keyCode == Parameters.data.switchTabs) {
+			loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
+			loc4.dispatch();
+			this.statsTabHotKeyInputSignal.dispatch();
+
+		} else if (param1.keyCode == Parameters.data.interact) {
+			loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
+			loc4.dispatch();
+
+		} else if (param1.keyCode == Parameters.data.testOne) {
 		}
 		if (Parameters.ALLOW_SCREENSHOT_MODE) {
 			switch (param1.keyCode) {
@@ -519,29 +520,27 @@ public class MapUserInput {
 			}
 		}
 		if (this.areFKeysAvailable) {
-			switch (param1.keyCode) {
-				case KeyCodes.F6:
-					TextureRedrawer.clearCache();
-					Parameters.projColorType = (Parameters.projColorType + 1) % 7;
-					this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Projectile Color  Type;"));
-					break;
-				case KeyCodes.F7:
-					for (Square loc14 : this.gs.map.squares) {
-						if (loc14 != null) {
-							loc14.faces.length = 0;
-						}
+			if (param1.keyCode == KeyCodes.F6) {
+				TextureRedrawer.clearCache();
+				Parameters.projColorType = (Parameters.projColorType + 1) % 7;
+				this.addTextLine.dispatch(ChatMessage.make(Parameters.ERROR_CHAT_NAME, "Projectile Color  Type;"));
+
+			} else if (param1.keyCode == KeyCodes.F7) {
+				for (Square loc14 : this.gs.map.squares) {
+					if (loc14 != null) {
+						loc14.faces.length = 0;
 					}
-					Parameters.blendType = (Parameters.blendType + 1) % 2;
-					this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend  type;"));
-					break;
-				case KeyCodes.F8:
-					/*Parameters.data.surveyDate = 0;
+				}
+				Parameters.blendType = (Parameters.blendType + 1) % 2;
+				this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend  type;"));
+
+			} else if (param1.keyCode == KeyCodes.F8) {/*Parameters.data.surveyDate = 0;
 					Parameters.data.needsSurvey = true;
 					Parameters.data.playTimeLeftTillSurvey = 5;
 					Parameters.data.surveyGroup = "testing";*/
-					break;
-				case KeyCodes.F9:
-					Parameters.drawProj = !Parameters.drawProj;
+
+			} else if (param1.keyCode == KeyCodes.F9) {
+				Parameters.drawProj = !Parameters.drawProj;
 			}
 		}
 		this.setPlayerMovement();
@@ -550,37 +549,36 @@ public class MapUserInput {
 	private void onKeyUp(KeyboardEvent param1) {
 		double loc2 = 0;
 		double loc3 = 0;
-		switch (param1.keyCode) {
-			case Parameters.data.moveUp:
-				this.moveUp = false;
-				break;
-			case Parameters.data.moveDown:
-				this.moveDown = false;
-				break;
-			case Parameters.data.moveLeft:
-				this.moveLeft = false;
-				break;
-			case Parameters.data.moveRight:
-				this.moveRight = false;
-				break;
-			case Parameters.data.rotateLeft:
-				this.rotateLeft = false;
-				break;
-			case Parameters.data.rotateRight:
-				this.rotateRight = false;
-				break;
-			case Parameters.data.useSpecial:
-				if (this.specialKeyDown) {
-					this.specialKeyDown = false;
-					if (this.gs.map.player.isUnstable()) {
-						loc2 = Math.random() * 600 - 300;
-						loc3 = Math.random() * 600 - 325;
-					} else {
-						loc2 = this.gs.map.mouseX;
-						loc3 = this.gs.map.mouseY;
-					}
-					this.gs.map.player.useAltWeapon(this.gs.map.mouseX, this.gs.map.mouseY, UseType.END_USE);
+		if (param1.keyCode == Parameters.data.moveUp) {
+			this.moveUp = false;
+
+		} else if (param1.keyCode == Parameters.data.moveDown) {
+			this.moveDown = false;
+
+		} else if (param1.keyCode == Parameters.data.moveLeft) {
+			this.moveLeft = false;
+
+		} else if (param1.keyCode == Parameters.data.moveRight) {
+			this.moveRight = false;
+
+		} else if (param1.keyCode == Parameters.data.rotateLeft) {
+			this.rotateLeft = false;
+
+		} else if (param1.keyCode == Parameters.data.rotateRight) {
+			this.rotateRight = false;
+
+		} else if (param1.keyCode == Parameters.data.useSpecial) {
+			if (this.specialKeyDown) {
+				this.specialKeyDown = false;
+				if (this.gs.map.player.isUnstable()) {
+					loc2 = Math.random() * 600 - 300;
+					loc3 = Math.random() * 600 - 325;
+				} else {
+					loc2 = this.gs.map.mouseX;
+					loc3 = this.gs.map.mouseY;
 				}
+				this.gs.map.player.useAltWeapon(this.gs.map.mouseX, this.gs.map.mouseY, UseType.END_USE);
+			}
 		}
 		this.setPlayerMovement();
 	}

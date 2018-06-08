@@ -177,13 +177,13 @@ public class MoreColorUtil {
 	public static int adjustBrightness(int param1, double param2) {
 		/**int loc3 = param1 & 4278190080;
 
-		int loc4 = (int) (((param1 & 16711680) >> 16) + param2 * 255);
-		loc4 = loc4 < 0 ? 0 : loc4 > 255 ? 255 : loc4;
-		int loc5 = (int) (((param1 & 65280) >> 8) + param2 * 255);
-		loc5 = loc5 < 0 ? 0 : loc5 > 255 ? 255 : loc5;
-		int loc6 = (int) ((param1 & 255) + param2 * 255);
-		loc6 = loc6 < 0 ? 0 : loc6 > 255 ? 255 : loc6;
-		return loc3 | loc4 << 16 | loc5 << 8 | loc6;*/
+		 int loc4 = (int) (((param1 & 16711680) >> 16) + param2 * 255);
+		 loc4 = loc4 < 0 ? 0 : loc4 > 255 ? 255 : loc4;
+		 int loc5 = (int) (((param1 & 65280) >> 8) + param2 * 255);
+		 loc5 = loc5 < 0 ? 0 : loc5 > 255 ? 255 : loc5;
+		 int loc6 = (int) ((param1 & 255) + param2 * 255);
+		 loc6 = loc6 < 0 ? 0 : loc6 > 255 ? 255 : loc6;
+		 return loc3 | loc4 << 16 | loc5 << 8 | loc6;*/
 
 		return 1;
 	}
@@ -195,7 +195,7 @@ public class MoreColorUtil {
 
 	public static int rgbToGreyscale(int param1) {
 		/**int loc2 = (int) (((param1 & 16711680) >> 16) * 0.3 + ((param1 & 65280) >> 8) * 0.59 + (param1 & 255) * 0.11);
-		return (param1 && 4278190080) | loc2 << 16 | loc2 << 8 | loc2;*/
+		 return (param1 && 4278190080) | loc2 << 16 | loc2 << 8 | loc2;*/
 
 		return 1;
 	}

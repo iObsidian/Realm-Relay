@@ -216,6 +216,7 @@ public class SocketServer {
 
 	/**
 	 * Send directly the message
+	 *
 	 * @param packet
 	 */
 	public void sendMessage(Message packet) {

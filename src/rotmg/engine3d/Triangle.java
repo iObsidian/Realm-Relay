@@ -1,10 +1,10 @@
 package rotmg.engine3d;
 
+import flash.airglobal.Math;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import rotmg.util.LineSegmentUtil;
 import rotmg.util.PointUtil;
-import flash.airglobal.Math;
 
 public class Triangle {
 

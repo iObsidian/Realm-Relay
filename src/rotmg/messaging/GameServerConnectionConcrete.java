@@ -1,9 +1,13 @@
 package rotmg.messaging;
 
-import alde.flash.utils.*;
+import alde.flash.utils.MessageConsumer;
+import alde.flash.utils.RSA;
+import alde.flash.utils.Timer;
+import alde.flash.utils.XML;
 import com.hurlant.crypto.symmetric.ICipher;
 import flash.events.Event;
 import flash.events.TimerEvent;
+import rotmg.AGameSprite;
 import rotmg.account.core.Account;
 import rotmg.account.core.WebAccount;
 import rotmg.arena.model.ArenaDeathSignal;
@@ -25,7 +29,6 @@ import rotmg.events.KeyInfoResponseSignal;
 import rotmg.events.ReconnectEvent;
 import rotmg.focus.control.SetGameFocusSignal;
 import rotmg.focus.control.UpdateGroundTileSignal;
-import rotmg.AGameSprite;
 import rotmg.map.AbstractMap;
 import rotmg.map.GroundLibrary;
 import rotmg.map.Map;
@@ -1214,7 +1217,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 			go.onTickPos(objectStatus.pos.x, objectStatus.pos.y, tickTime, tickId);
 		}
 		Player player = (Player) go;
-		if (player  != null) {
+		if (player != null) {
 			oldLevel = player.level;
 			oldExp = player.exp;
 		}

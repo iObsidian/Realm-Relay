@@ -15,12 +15,11 @@ public class ParticleLibrary {
 
 	public static void parseFromXML(XML xml) {
 
-			ParticleProperties p = new ParticleProperties(xml);
+		ParticleProperties p = new ParticleProperties(xml);
 
-			propsLibrary.put(xml.getAttribute("id"), p);
+		propsLibrary.put(xml.getAttribute("id"), p);
 
-			System.out.println(p.toString());
-
+		System.out.println(p.toString());
 
 
 	}

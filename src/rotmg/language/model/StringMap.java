@@ -1,7 +1,5 @@
 package rotmg.language.model;
 
-import rotmg.signals.AddSpeechBalloonSignal;
-
 public class StringMap {
 
 	static StringMap instance;

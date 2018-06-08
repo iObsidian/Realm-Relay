@@ -5,6 +5,17 @@ import rotmg.parameters.Parameters;
 
 public class ProductionSetup implements ApplicationSetup {
 
+	static ProductionSetup instance;
+
+	public static ProductionSetup getInstance() {
+		if (instance == null) {
+			instance = new ProductionSetup();
+		}
+
+		return instance;
+	}
+
+
 	private final String SERVER = "realmofthemadgodhrd.appspot.com";
 
 	private final String UNENCRYPTED = "http://" + this.SERVER;
@@ -18,6 +29,7 @@ public class ProductionSetup implements ApplicationSetup {
 	public ProductionSetup() {
 		super();
 	}
+
 
 	public String getAppEngineUrl(boolean param1) {
 		return !!param1 ? this.UNENCRYPTED : this.ENCRYPTED;

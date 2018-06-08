@@ -220,7 +220,7 @@ public class ConditionEffect {
 	}
 
 	public static ConditionEffect getConditionEffectEnumFromName(String param1) {
-		for (ConditionEffect loc2: effects) {
+		for (ConditionEffect loc2 : effects) {
 			if (loc2.name.equals(param1)) {
 				return loc2;
 			}
