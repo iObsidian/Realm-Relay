@@ -1,14 +1,13 @@
 package rotmg.util;
 
+
 import alde.flash.utils.Dictionary;
-import com.sun.prism.ps.Shader;
 import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
+import flash.geom.ColorTransform;
 import flash.geom.Matrix;
-import flash.geom.Rectangle;
 import rotmg.util.redrawers.GlowRedrawer;
-import spark.filter.GlowFilter;
-import sun.java2d.cmm.ColorTransform;
+import spark.filters.GlowFilter;
 
 public class TextureRedrawer {
 
@@ -22,7 +21,7 @@ public class TextureRedrawer {
 
 	private static Dictionary<Integer, Dictionary<Integer, BitmapData>> cache = new Dictionary<>();
 
-	private static Dictionary<Double, Dictionary<Integer, BitmapData>> faceCache = new Dictionary<>();
+	private static Dictionary<Double, Dictionary<BitmapData, BitmapData>> faceCache = new Dictionary<>();
 
 	private static Dictionary<BitmapData, Dictionary<String, BitmapData>> redrawCaches = new Dictionary<>();
 
@@ -86,10 +85,10 @@ public class TextureRedrawer {
 			param1 = retexture(param1, param2, param5, param6);
 			param3 = param3 / 5;
 		}
-		int loc8 = (int) (param7 * (param3 / 100) * param1.width());
-		int loc9 = (int) (param7 * (param3 / 100) * param1.height());
+		int loc8 = (int) (param7 * (param3 / 100) * param1.width);
+		int loc9 = (int) (param7 * (param3 / 100) * param1.height);
 		Matrix loc10 = new Matrix();
-		loc10.scale(loc8 / param1.width(), loc9 / param1.height());
+		loc10.scale(loc8 / param1.width, loc9 / param1.height);
 		loc10.translate(magic, magic);
 		BitmapData loc11 = new BitmapDataSpy(loc8 + minSize, loc9 + (param4 ? magic : 1) + magic, true, 0);
 		loc11.draw(param1, loc10);
@@ -107,7 +106,7 @@ public class TextureRedrawer {
 			return loc4;
 		}
 		loc4 = new BitmapDataSpy(param2 + 4 + 4, param2 + 4 + 4, true, 0);
-		loc4.fillRect(new Rectangle(4, 4, param2, param2), 4278190080 | param1);
+		//loc4.fillRect(new Rectangle(4, 4, param2, param2), 4278190080 | param1);
 		loc4.applyFilter(loc4, loc4.rect, PointUtil.ORIGIN, OUTLINE_FILTER);
 		loc3.put(param1, loc4);
 		return loc4;
@@ -120,7 +119,7 @@ public class TextureRedrawer {
 			}
 		}
 		cache = new Dictionary<>();
-		for (Dictionary<Integer, BitmapData> loc3 : faceCache) {
+		for (Dictionary<BitmapData, BitmapData> loc3 : faceCache) {
 			for (BitmapData loc1 : loc3) {
 				loc1.dispose();
 			}
@@ -132,7 +131,7 @@ public class TextureRedrawer {
 		if (param2 == 1) {
 			return param1;
 		}
-		Dictionary<Integer, BitmapData> loc3 = faceCache.get(param2);
+		Dictionary<BitmapData, BitmapData> loc3 = faceCache.get(param2);
 		if (loc3 == null) {
 			loc3 = new Dictionary<>();
 			faceCache.put(param2, loc3);
@@ -185,18 +184,18 @@ public class TextureRedrawer {
 	private static BitmapData retexture(BitmapData param1, BitmapData param2, int param3, int param4) {
 		Matrix loc5 = new Matrix();
 		loc5.scale(5, 5);
-		BitmapData loc6 = new BitmapDataSpy(param1.width() * 5, param1.height() * 5, true, 0);
+		BitmapData loc6 = new BitmapDataSpy(param1.width * 5, param1.height * 5, true, 0);
 		loc6.draw(param1, loc5);
 		BitmapData loc7 = getTexture(param3 >= 0 ? param3 : 0, colorTexture1);
 		BitmapData loc8 = getTexture(param4 >= 0 ? param4 : 0, colorTexture2);
-		Shader loc9 = new Shader(textureShaderData);
+		/*Shader loc9 = new Shader(textureShaderData);
 		loc9.data.src.input = loc6;
 		loc9.data.mask.input = param2;
 		loc9.data.texture1.input = loc7;
 		loc9.data.texture2.input = loc8;
-		loc9.data.texture1Size.value = [param3 == 0 ? 0 : loc7.width()];
-		loc9.data.texture2Size.value = [param4 == 0 ? 0 : loc8.width()];
-		loc6.applyFilter(loc6, loc6.rect, PointUtil.ORIGIN, new ShaderFilter(loc9));
+		loc9.data.texture1Size.value = [param3 == 0 ? 0 : loc7.width];
+		loc9.data.texture2Size.value = [param4 == 0 ? 0 : loc8.width];
+		loc6.applyFilter(loc6, loc6.rect, PointUtil.ORIGIN, new ShaderFilter(loc9));*/
 		return loc6;
 	}
 

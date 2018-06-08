@@ -10,68 +10,58 @@ public class DisplayObjectContainer extends InteractiveObject {
 		return null;
 	}
 
-	public DisplayObject addChildAt(DisplayObject child, int index){
-		return null;
-	}
-	public DisplayObject removeChild(DisplayObject child){
-		return null;
-	}
-	public DisplayObject removeChildAt(int index){
+	public DisplayObject addChildAt(DisplayObject child, int index) {
 		return null;
 	}
 
-	public int getChildIndex(DisplayObject child){
+	public DisplayObject removeChild(DisplayObject child) {
+		return null;
+	}
+
+	public DisplayObject removeChildAt(int index) {
+		return null;
+	}
+
+	public int getChildIndex(DisplayObject child) {
 		return 1;
 	}
 
-	public void setChildIndex(DisplayObject child, int index){
-	}
 
-	public DisplayObject getChildAt(int index){
+	public DisplayObject getChildAt(int index) {
 		return null;
 	}
 
-	public DisplayObject getChildByName(String name){
+	public DisplayObject getChildByName(String name) {
 		return null;
 	}
 
-	public int getNumChildren(){
-		return 1;
-	}
+	public int numChildren;
 
-	public TextSnapshot getTextSnapshot(){
+	public TextSnapshot textSnapshot;
+
+	public Vector getObjectsUnderPoint(Point point) {
 		return null;
 	}
 
-	public Vector getObjectsUnderPoint(Point point){
+	public Boolean areInaccessibleObjectsUnderPoint(Point point) {
 		return null;
 	}
 
-	public Boolean areInaccessibleObjectsUnderPoint(Point point){
+	public Boolean tabChildren;
+
+
+	public Boolean mouseChildren;
+
+	public Boolean contains(DisplayObject child) {
 		return null;
 	}
 
-	public Boolean getTabChildren(){
-		return null;
+	public void swapChildrenAt(int index1, int index2) {
+		return;
 	}
 
-	public void setTabChildren(Boolean enable){
+	public void swapChildren(DisplayObject child1, DisplayObject child2) {
+		return;
 	}
 
-	public Boolean getMouseChildren(){
-		return null;
-	}
-
-	public void setMouseChildren(Boolean enable){
-	}
-
-	public Boolean contains(DisplayObject child){
-		return null;
-	}
-
-	public void swapChildrenAt(int index1, int index2){
-	}
-
-	public void swapChildren(DisplayObject child1, DisplayObject child2){
-	}
 }

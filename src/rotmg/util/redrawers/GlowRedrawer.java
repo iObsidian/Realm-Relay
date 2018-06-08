@@ -5,13 +5,12 @@ import flash.airglobal.BitmapFilterQuality;
 import flash.airglobal.Shape;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
-import flash.display.GradientType;
 import flash.geom.Matrix;
 import javafx.scene.effect.BlendMode;
 import rotmg.parameters.Parameters;
 import rotmg.util.PointUtil;
 import rotmg.util.TextureRedrawer;
-import spark.filter.GlowFilter;
+import spark.filters.GlowFilter;
 
 public class GlowRedrawer {
 

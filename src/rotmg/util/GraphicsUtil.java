@@ -4,6 +4,8 @@ import alde.flash.utils.Vector;
 import flash.display.GraphicsEndFill;
 import flash.display.GraphicsPath;
 import flash.display.GraphicsPathCommand;
+import flash.display.GraphicsStroke;
+import flash.geom.Matrix;
 
 /**
  * About 10% done
@@ -15,6 +17,9 @@ public class GraphicsUtil {
 	public static final GraphicsEndFill END_FILL = new GraphicsEndFill();
 
 	public static Vector<Integer> QUAD_COMMANDS = new Vector(GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
+
+	public static final GraphicsStroke END_STROKE = new GraphicsStroke();
+
 
 	public void drawRect(int x, int y, int width, int height, GraphicsPath path) {
 		path.moveTo(x, y);
@@ -59,5 +64,9 @@ public class GraphicsUtil {
 
 	public static int[] drawCutEdgeRect(int i, int i1, int width, int height, int bevel, Object p5) {
 		return new int[0];
+	}
+
+	public static Matrix getGradientMatrix(int i, int i1) {
+		return new Matrix();//TODO
 	}
 }

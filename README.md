@@ -14,7 +14,91 @@ TODO :
     Add placeholder for graphic stuff (Player, GameObject)
     
     
-Use my side project AS3toCSharp (github.com/iObsidian) to help with convertion.
+    
+    
+-------------------
+    
+Most changes are automatically made by the AS3 to Java converter AS3toCSharp.
+
+see AldeCommons' *AS3ToJava.java*
+
+Good news, most of the manual changes are related to Arrays and Dictionary.
+
+
+Strings
+--------
+
+   **AS3**
+   
+   this.name.length;
+   
+   
+   **Java**
+   
+    this.name.length();
+
+
+Methods and fields
+-------------
+
+   Remove the '_' by convention.
+   
+   Java declares the type before the name (opposite for AS3, see bellow).
+   In AS3 the return type is after the method name
+   
+   Java uses the @Override annotation while ActionScript uses a keyword.
+   
+   **AS3**
+   
+    public var portrait_:BitmapData;
+    
+    override public function getPortrait() : BitmapData
+
+   **Java**
+   
+    public BitmapData portrait;
+   
+    @Override
+    public BitmapData getPortrait()
+    
+    
+Dictionary
+---------------
+
+   Java has a Dictionary class, but it's not exactly like AS3's.
+   
+   Use the utility class Dictionary instead.
+    
+    Key, Value
+    
+   **AS3**
+   
+    Dictionary textures = new Dictionary();
+    texturingCache[0] = new Texture();
+    
+   **Java**
+   
+    Dictionary<Integer, Texture> textures = new Dictionary<>();
+    textures.put(0, new Texture());
+
+
+
+    
+    
+Number
+-----------
+
+   Java doesn't have the 'Number' object. Use 'double' instead.
+
+    3.0
+    
+   **AS3**
+       
+    Number num = 3.0;
+    
+   **Java**
+   
+    double num = 3.0;
 
 
 Reflection
@@ -72,10 +156,18 @@ Freelist
        new Projectile();
 
 
+Arrays
+-----------
+
+   Arrays in AS3 are weird. There is lists, vectors and arrays.
+   We try to use lists for Messages (packets) as much as possible.
+   For the rest, we use the utility class Vector (see bellow).
+   
+
 Vectors
 ---------------
 
-   We try to use arrays as much as possible
+   Use the utility class Vector.
    
    **AS3**
 
@@ -83,15 +175,7 @@ Vectors
 
    **Java**
 
-	public static final int[] STARS = new int[]{20, 150, 400, 800, 2000};
-
-
-Bitmap Handling
----------
-
-   We use the non-native to Java class Bitmap (wrapper for BufferedImage)
-   
-   .width gets replaced with .width()
+	public static final Vector<Integer> STARS = new Vector<Integer>(20, 150, 400, 800, 2000);
    
 
 XML handling
@@ -124,72 +208,16 @@ XML handling
    Take a look at XML.java for more XML-related tasks
    
 
-Number
------------
 
-   Java doesn't have the 'Number' object. Use 'double' instead.
-
-    3.0
-    
-   **AS3**
-       
-    Number num = 3.0;
-    
-   **Java**
-   
-    double num = 3.0;
     
 
-Dictionary
----------------
 
-   Java has a Dictionary class, but HashMap matches more closely.
-    
-    Key, Value
-    
-   **AS3**
-   
-    Dictionary textures = new Dictionary();
-    texturingCache[0] = new Texture();
-    
-   **Java**
-   
-    HashMap<Integer, Texture> textures = new Map();
-    textures.put(0, new Texture());
     
     
-Methods and fields
--------------
 
-   Remove the '_' by convention.
-   
-   Java declares the type before the name (opposite for AS3)
-   
-   Java uses the @Override anotation while ActionScript uses the override keyword
-   
-   AS3 return type is after the method name
+    
+    
 
-   **AS3**
-   
-    public var portrait_:BitmapData;
-    
-    override public function getPortrait() : BitmapData
-
-   **Java**
-   
-    public BitmapData portrait;
-   
-    @Override
-    public BitmapData getPortrait()
-    
-    
-    
-Arrays
------------
-
-   Arrays in AS3 are weird. There is lists, vectors and arrays.
-   We try to use lists for Messages (packets) as much as possible.
-   For the rest, we use arrays.
    
    
 Signals

@@ -10,7 +10,7 @@ import rotmg.util.GraphicsUtil;
 
 public class GradientOverlay extends Shape {
 
-	private final GraphicsGradientFill gradientFill = new GraphicsGradientFill(GradientType.LINEAR,[0, 0],[0,1],[0,255],GraphicsUtil.getGradientMatrix(10,600));
+	private final GraphicsGradientFill gradientFill = new GraphicsGradientFill(GradientType.LINEAR, new Vector<Integer>(0, 0), new Vector<Double>(0.0, 1.0), new Vector<Integer>(0, 255), GraphicsUtil.getGradientMatrix(10, 600));
 
 	private final GraphicsPath gradientPath = GraphicsUtil.getRectPath(0, 0, 10, 600);
 
@@ -22,6 +22,5 @@ public class GradientOverlay extends Shape {
 		graphics.drawGraphicsData(this.gradientGraphicsData);
 		visible = false;
 	}
-
 
 }

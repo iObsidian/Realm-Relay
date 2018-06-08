@@ -1,4 +1,4 @@
-package spark.filter;
+package spark.filters;
 
 public class GlowFilter {
 

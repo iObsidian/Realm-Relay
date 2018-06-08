@@ -11,7 +11,7 @@ import rotmg.map.Camera;
 import rotmg.objects.GameObject;
 import rotmg.text.view.stringBuilder.StringBuilder;
 import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
-import spark.filter.GlowFilter;
+import spark.filters.GlowFilter;
 
 public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 

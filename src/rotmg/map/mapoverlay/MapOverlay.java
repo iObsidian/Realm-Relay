@@ -1,5 +1,6 @@
 package rotmg.map.mapoverlay;
 
+import alde.flash.utils.Vector;
 import flash.display.Sprite;
 import rotmg.map.Camera;
 import rotmg.view.components.QueuedStatusText;
@@ -7,9 +8,9 @@ import rotmg.view.components.QueuedStatusTextList;
 
 public class MapOverlay extends Sprite {
 
-	private final Object speechBalloons;
+	private final Vector<SpeechBalloon> speechBalloons = new Vector<>();
 
-	private final Object queuedText;
+	private final Vector queuedText = new Vector<>();
 
 	public MapOverlay() {
 		super();
@@ -19,11 +20,11 @@ public class MapOverlay extends Sprite {
 
 	public void addSpeechBalloon(SpeechBalloon param1) {
 		int loc2 = param1.go.objectId;
-		SpeechBalloon loc3 = this.speechBalloons[loc2];
+		SpeechBalloon loc3 = this.speechBalloons.get(loc2);
 		if (loc3 && contains(loc3)) {
 			removeChild(loc3);
 		}
-		this.speechBalloons[loc2] = param1;
+		this.speechBalloons.put(loc2, param1);
 		addChild(param1);
 	}
 
@@ -55,5 +56,6 @@ public class MapOverlay extends Sprite {
 			}
 		}
 	}
+
 
 }

@@ -110,7 +110,6 @@ public class MoreColorUtil {
 	public static int randomColor32() {
 
 		return 0; //TODO
-
 		//return 16777215 * Math.random() | 4278190080;
 	}
 

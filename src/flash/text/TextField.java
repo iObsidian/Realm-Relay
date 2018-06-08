@@ -19,6 +19,8 @@ public class TextField extends InteractiveObject {
 	public boolean wordWrap;
 	public String htmlText;
 	public double y;
+	public int textWidth;
+	public TextFormat defaultTextFormat;
 
 	public TextLineMetrics getLineMetrics(int i) {
 		return null;

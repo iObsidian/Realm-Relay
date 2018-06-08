@@ -4,7 +4,7 @@ import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
-import spark.filter.GlowFilter;
+import spark.filters.GlowFilter;
 
 import java.awt.image.BufferedImage;
 

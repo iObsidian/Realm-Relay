@@ -117,4 +117,10 @@ public class Vector<T> implements Iterable<T> {
 
 	public void sortOn(Vector sortOnFields, Vector sortOnParams) {
 	}
+
+	public void splice(T i, T i1, T lineTo, T lineTo1, T lineTo2) {
+	}
+
+	public void splice(int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+	}
 }

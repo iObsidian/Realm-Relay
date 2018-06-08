@@ -1,11 +1,10 @@
 package rotmg.util;
 
 import alde.flash.utils.Dictionary;
-import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
+import flash.filters.BitmapFilter;
 import flash.geom.ColorTransform;
 import flash.geom.Point;
-import mx.filters.BitmapFilter;
 
 public class CachingColorTransformer {
 

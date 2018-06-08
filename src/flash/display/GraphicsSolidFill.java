@@ -6,4 +6,8 @@ public class GraphicsSolidFill implements IGraphicsData {
 
 	public GraphicsSolidFill(int i, int i1) {
 	}
+
+	public GraphicsSolidFill() {
+
+	}
 }

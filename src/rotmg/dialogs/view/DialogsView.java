@@ -67,7 +67,7 @@ public class DialogsView extends Sprite {
 	}
 
 	private void onRemoved(Event param1) {
-		(Sprite) loc2 = param1. (Sprite) target;
+		Sprite loc2 = (Sprite) param1.target;
 		if (this.current == loc2) {
 			this.background.visible = false;
 			this.current = null;
@@ -81,6 +81,5 @@ public class DialogsView extends Sprite {
 			this.background.visible = false;
 		}
 	}
-
 
 }

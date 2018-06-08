@@ -8,4 +8,5 @@ public class TextFormat {
 	public int leftMargin;
 	public int indent;
 	public int leading;
+	public int color;
 }
