@@ -745,7 +745,7 @@ public class GameObject extends BasicObject {
 					loc12 = PetsModel.getInstance();
 					loc13 = loc12.getActivePet();
 					if (loc13 != null) {
-						loc10 = ConditionEffect.effects[loc9];
+						loc10 = ConditionEffect.effects.get(loc9);
 						this.showConditionEffectPet(loc8, loc10.name);
 						loc8 = loc8 + 500;
 					}
@@ -769,13 +769,13 @@ public class GameObject extends BasicObject {
 						case ConditionEffect.DARKNESS:
 						case ConditionEffect.PETRIFIED_IMMUNE:
 						case ConditionEffect.SILENCED:
-							loc10 = ConditionEffect.effects[loc9];
+							loc10 = ConditionEffect.effects.get(loc9);
 							break;
 						case ConditionEffect.QUIET:
 							if (map.player == this) {
 								map.player.mp = 0;
 							}
-							loc10 = ConditionEffect.effects[loc9];
+							loc10 = ConditionEffect.effects.get(loc9);
 							break;
 						case ConditionEffect.STASIS:
 							if (this.isStasisImmune()) {
@@ -783,7 +783,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.SLOWED:
@@ -792,7 +792,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.ARMORBROKEN:
@@ -801,7 +801,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.STUNNED:
@@ -810,7 +810,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.DAZED:
@@ -819,7 +819,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.PARALYZED:
@@ -828,7 +828,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.PETRIFIED:
@@ -837,7 +837,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.CURSE:
@@ -846,7 +846,7 @@ public class GameObject extends BasicObject {
 								loc11.setStringBuilder(new LineBuilder().setParams(TextKey.GAMEOBJECT_IMMUNE));
 								map.mapOverlay.addStatusText(loc11);
 							} else {
-								loc10 = ConditionEffect.effects[loc9];
+								loc10 = ConditionEffect.effects.get(loc9);
 							}
 							break;
 						case ConditionEffect.GROUND_DAMAGE:
@@ -1238,10 +1238,10 @@ public class GameObject extends BasicObject {
 			loc10 = this.iconFills.get(loc8);
 			loc11 = this.iconPaths.get(loc8);
 			loc10.bitmapData = loc9;
-			loc12 = loc5 - loc9.width() * loc7 / 2 + loc8 * loc9.width();
-			loc13 = loc6 - loc9.height() / 2;
+			loc12 = loc5 - loc9.width * loc7 / 2 + loc8 * loc9.width;
+			loc13 = loc6 - loc9.height / 2;
 			loc11.data.length = 0;
-			loc11.data.add(loc12, loc13, loc12 + loc9.width(), loc13, loc12 + loc9.width(), loc13 + loc9.height(), loc12, loc13 + loc9.height());
+			loc11.data.add(loc12, loc13, loc12 + loc9.width, loc13, loc12 + loc9.width, loc13 + loc9.height, loc12, loc13 + loc9.height);
 			loc14 = loc10.matrix;
 			loc14.identity();
 			loc14.translate(loc12, loc13);
@@ -1255,8 +1255,7 @@ public class GameObject extends BasicObject {
 
 	public void drawShadow(Vector<IGraphicsData> param1, Camera param2, int param3) {
 		if (this.shadowGradientFill == null) {
-			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL,[this.props.shadowColor, this.props.shadowColor], [
-			0.5, 0],null, new Matrix());
+			this.shadowGradientFill = new GraphicsGradientFill(GradientType.RADIAL, new Vector<Integer>(this.props.shadowColor, this.props.shadowColor), new Vector<Double>(0.5, 0.0), null, new Matrix());
 			this.shadowPath = new GraphicsPath(GraphicsUtil.QUAD_COMMANDS, new Vector<Double>());
 		}
 		double loc4 = this.size / 100 * (this.props.shadowSize / 100) * this.sizeMult;
@@ -1265,13 +1264,13 @@ public class GameObject extends BasicObject {
 		this.shadowGradientFill.matrix.createGradientBox(loc5 * 2, loc6 * 2, 0, posS.get(0) - loc5, posS.get(1) - loc6);
 		param1.add(this.shadowGradientFill);
 		this.shadowPath.data.length = 0;
-		this.shadowPath.add(posS.get(0) - loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) + loc6, posS.get(0) - loc5, posS.get(1) + loc6);
+		this.shadowPath.data.add(posS.get(0) - loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) - loc6, posS.get(0) + loc5, posS.get(1) + loc6, posS.get(0) - loc5, posS.get(1) + loc6);
 		param1.add(this.shadowPath);
 		param1.add(GraphicsUtil.END_FILL);
 	}
 
 	public void clearTextureCache() {
-		this.texturingCache = new Dictionary();
+		this.texturingCache = new Dictionary<>();
 	}
 
 	public String toString() {

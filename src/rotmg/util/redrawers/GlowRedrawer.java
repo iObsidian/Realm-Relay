@@ -5,8 +5,8 @@ import flash.airglobal.BitmapFilterQuality;
 import flash.airglobal.Shape;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
+import flash.display.BlendMode;
 import flash.geom.Matrix;
-import javafx.scene.effect.BlendMode;
 import rotmg.parameters.Parameters;
 import rotmg.util.PointUtil;
 import rotmg.util.TextureRedrawer;
@@ -41,7 +41,7 @@ public class GlowRedrawer {
 		}
 		BitmapData loc7 = param1.clone();
 		tempMatrix.identity();
-		tempMatrix.scale(param1.width() / 256, param1.height() / 256);
+		tempMatrix.scale(param1.width / 256, param1.height / 256);
 		loc7.draw(gradient, tempMatrix, null, BlendMode.SUBTRACT);
 		Bitmap loc8 = new Bitmap(param1);
 		loc7.draw(loc8, null, null, BlendMode.ALPHA);

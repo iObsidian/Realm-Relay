@@ -4,6 +4,8 @@ import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
+import flash.geom.Matrix;
+import rotmg.util.redrawers.GlowRedrawer;
 import spark.filters.GlowFilter;
 
 /**
@@ -170,13 +172,13 @@ public class ConditionEffect {
 
 	private static Dictionary<String, Integer> conditionEffectFromName = null;
 
-	private static Object effectIconCache = null;
+	private static Vector<BitmapData> effectIconCache = null;
 
-	private static Object bitToIcon = null;
+	private static Vector<Vector<BitmapData>> bitToIcon = null;
 
 	private static final GlowFilter GLOW_FILTER = new GlowFilter(0, 0.3, 6, 6, 2, BitmapFilterQuality.LOW, false, false);
 
-	private static Object bitToIcon2 = null;
+	private static Vector<Vector<BitmapData>> bitToIcon2 = null;
 
 
 	public String name;
@@ -203,7 +205,6 @@ public class ConditionEffect {
 		this.icon16Bit = param5;
 	}
 
-
 	public static int getConditionEffectFromName(String param1) {
 
 		if (conditionEffectFromName == null) {
@@ -218,6 +219,148 @@ public class ConditionEffect {
 		return conditionEffectFromName.get(param1);
 	}
 
-	public static void getConditionEffectIcons(int condition, Vector<BitmapData> icons, int index) {
+	public static ConditionEffect getConditionEffectEnumFromName(String param1) {
+		for (ConditionEffect loc2: effects) {
+			if (loc2.name.equals(param1)) {
+				return loc2;
+			}
+		}
+		return null;
 	}
+
+	public static void getConditionEffectIcons(int param1, Vector<BitmapData> param2, int param3) {
+		int loc4 = 0;
+		int loc5 = 0;
+		Vector<BitmapData> loc6 = null;
+		while (param1 != 0) {
+			loc4 = param1 & param1 - 1;
+			loc5 = param1 ^ loc4;
+			loc6 = getIconsFromBit(loc5);
+			if (loc6 != null) {
+				param2.add(loc6.get(param3 % loc6.length));
+			}
+			param1 = loc4;
+		}
+	}
+
+	public static void getConditionEffectIcons2(int param1, Vector<BitmapData> param2, int param3) {
+		int loc4 = 0;
+		int loc5 = 0;
+		Vector<BitmapData> loc6 = null;
+		while (param1 != 0) {
+			loc4 = param1 & param1 - 1;
+			loc5 = param1 ^ loc4;
+			loc6 = getIconsFromBit2(loc5);
+			if (loc6 != null) {
+				param2.add(loc6.get(param3 % loc6.length));
+			}
+			param1 = loc4;
+		}
+	}
+
+	public static void addConditionEffectIcon(Vector<BitmapData> param1, int param2, boolean param3) {
+		BitmapData loc4 = null;
+		Matrix loc5 = null;
+		Matrix loc6 = null;
+		if (effectIconCache == null) {
+			effectIconCache = new Vector<>();
+		}
+		if (effectIconCache.get(param2) != null) {
+			loc4 = effectIconCache.get(param2);
+		} else {
+			loc5 = new Matrix();
+			loc5.translate(4, 4);
+			loc6 = new Matrix();
+			loc6.translate(1.5, 1.5);
+			if (param3) {
+				loc4 = new BitmapDataSpy(18, 18, true, 0);
+				loc4.draw(AssetLibrary.getImageFromSet("lofiInterfaceBig", param2), loc6);
+			} else {
+				loc4 = new BitmapDataSpy(16, 16, true, 0);
+				loc4.draw(AssetLibrary.getImageFromSet("lofiInterface2", param2), loc5);
+			}
+			loc4 = GlowRedrawer.outlineGlow(loc4, 4294967295.0);
+			loc4.applyFilter(loc4, loc4.rect, PointUtil.ORIGIN, GLOW_FILTER);
+			effectIconCache.put(param2, loc4);
+		}
+		param1.add(loc4);
+	}
+
+	private static Vector<BitmapData> getIconsFromBit(int param1) {
+		Matrix loc2 = null;
+		int loc3 = 0;
+		Vector<BitmapData> loc4 = null;
+		int loc5 = 0;
+		BitmapData loc6 = null;
+		if (bitToIcon == null) {
+			bitToIcon = new Vector<>();
+			loc2 = new Matrix();
+			loc2.translate(4, 4);
+			loc3 = 0;
+			while (loc3 < 32) {
+				loc4 = null;
+				if (effects.get(loc3).iconOffsets != null) {
+					loc4 = new Vector<BitmapData>();
+					loc5 = 0;
+					while (loc5 < effects.get(loc3).iconOffsets.length) {
+						loc6 = new BitmapDataSpy(16, 16, true, 0);
+						loc6.draw(AssetLibrary.getImageFromSet("lofiInterface2", effects.get(loc3).iconOffsets[loc5]), loc2);
+						loc6 = GlowRedrawer.outlineGlow(loc6, 4294967295.0);
+						loc6.applyFilter(loc6, loc6.rect, PointUtil.ORIGIN, GLOW_FILTER);
+						loc4.add(loc6);
+						loc5++;
+					}
+				}
+				bitToIcon.put(effects.get(loc3).bit, loc4);
+				loc3++;
+			}
+		}
+		return bitToIcon.get(param1);
+	}
+
+	private static Vector<BitmapData> getIconsFromBit2(int param1) {
+		Vector<BitmapData> loc2 = null;
+		BitmapData loc3 = null;
+		Matrix loc4 = null;
+		Matrix loc5 = null;
+		int loc6 = 0;
+		int loc7 = 0;
+		if (bitToIcon2 == null) {
+			bitToIcon2 = new Vector<>();
+			loc2 = new Vector<BitmapData>();
+			loc4 = new Matrix();
+			loc4.translate(4, 4);
+			loc5 = new Matrix();
+			loc5.translate(1.5, 1.5);
+			loc6 = 32;
+			while (loc6 < effects.length) {
+				loc2 = null;
+				if (effects.get(loc6).iconOffsets != null) {
+					loc2 = new Vector<BitmapData>();
+					loc7 = 0;
+					while (loc7 < effects.get(loc6).iconOffsets.length) {
+						if (effects.get(loc6).icon16Bit) {
+							loc3 = new BitmapDataSpy(18, 18, true, 0);
+							loc3.draw(AssetLibrary.getImageFromSet("lofiInterfaceBig", effects.get(loc6).iconOffsets[loc7]), loc5);
+						} else {
+							loc3 = new BitmapDataSpy(16, 16, true, 0);
+							loc3.draw(AssetLibrary.getImageFromSet("lofiInterface2", effects.get(loc6).iconOffsets[loc7]), loc4);
+						}
+						loc3 = GlowRedrawer.outlineGlow(loc3, 4294967295.0);
+						loc3.applyFilter(loc3, loc3.rect, PointUtil.ORIGIN, GLOW_FILTER);
+						loc2.add(loc3);
+						loc7++;
+					}
+				}
+				bitToIcon2.put(effects.get(loc6).bit, loc2);
+				loc6++;
+			}
+		}
+		if (bitToIcon2 != null && bitToIcon2.get(param1) != null) {
+			return bitToIcon2.get(param1);
+		}
+		return null;
+	}
+
+
 }

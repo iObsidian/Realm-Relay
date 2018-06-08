@@ -38,6 +38,20 @@ Strings
     this.name.length();
 
 
+Integers
+------
+
+   Large int to double
+
+   **AS3**
+    
+    4294967295
+    
+   **Java**
+
+    4294967295.0
+
+
 Methods and fields
 -------------
 

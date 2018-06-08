@@ -1,5 +1,6 @@
 package flash.display;
 
+import flash.airglobal.Shape;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Point;
@@ -75,5 +76,8 @@ public class BitmapData {
 	}
 
 	public void copyPixels(BitmapData bitmapData, Rectangle param2, Point param3, BitmapData random, Point p0, boolean b) {
+	}
+
+	public void draw(DisplayObject gradient, Matrix tempMatrix, Object o, String subtract) {
 	}
 }
