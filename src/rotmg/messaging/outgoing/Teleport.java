@@ -12,8 +12,8 @@ public class Teleport extends OutgoingMessage {
 	public Teleport(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
-	
+
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		objectId = in.readInt();

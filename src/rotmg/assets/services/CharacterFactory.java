@@ -1,11 +1,14 @@
 package rotmg.assets.services;
 
 import flash.display.BitmapData;
+import rotmg.assets.model.Animation;
 import rotmg.assets.model.CharacterTemplate;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.util.AnimatedChars;
 import rotmg.util.BitmapUtil;
 import rotmg.util.MaskedImage;
+import rotmg.util.TextureRedrawer;
+import rotmg.util.redrawers.GlowRedrawer;
 
 public class CharacterFactory {
 
@@ -46,7 +49,7 @@ public class CharacterFactory {
 		AnimatedChar loc6 = this.makeCharacter(param1);
 		BitmapData loc7 = this.makeFrame(loc6, AnimatedChar.STAND, 0);
 		loc7 = GlowRedrawer.outlineGlow(loc7, !!param5 ? 16711680 : 0);
-		loc7 = BitmapUtil.cropToBitmapData(loc7, 6, 6, loc7.width() - 12, loc7.height() - 6);
+		loc7 = BitmapUtil.cropToBitmapData(loc7, 6, 6, loc7.width - 12, loc7.height - 6);
 		return loc7;
 	}
 
@@ -68,6 +71,9 @@ public class CharacterFactory {
 		loc7 = GlowRedrawer.outlineGlow(loc7, 0);
 		Animation loc8 = new Animation();
 		loc8.setFrames(loc6, loc7);
+
+		
+
 		return loc8;
 	}
 

@@ -33,15 +33,15 @@ public class PlatformModel {
 
 	private PlatformType determinePlatform() {
 		/**Object loc1 = LoaderInfo(this.root.stage.root.loaderInfo).parameters;
-		if (this.isKongregate(loc1)) {
-			return PlatformType.KONGREGATE;
-		}
-		if (this.isSteam(loc1)) {
-			return PlatformType.STEAM;
-		}
-		if (this.isKabam(loc1)) {
-			return PlatformType.KABAM;
-		}*/
+		 if (this.isKongregate(loc1)) {
+		 return PlatformType.KONGREGATE;
+		 }
+		 if (this.isSteam(loc1)) {
+		 return PlatformType.STEAM;
+		 }
+		 if (this.isKabam(loc1)) {
+		 return PlatformType.KABAM;
+		 }*/
 		return PlatformType.WEB;
 	}
 

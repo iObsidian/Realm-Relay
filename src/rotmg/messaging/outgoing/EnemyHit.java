@@ -11,7 +11,7 @@ public class EnemyHit extends OutgoingMessage {
 	public int bulletId;
 	public int targetId;
 	public boolean kill;
-	
+
 	public EnemyHit(int id, Consumer callback) {
 		super(id, callback);
 	}

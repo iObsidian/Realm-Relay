@@ -20,6 +20,7 @@ import rotmg.friends.view.FriendListView;
 import rotmg.game.ui.UIUtils;
 import rotmg.messaging.GameServerConnection;
 import rotmg.model.PotionInventoryModel;
+import rotmg.model.UseBuyPotionVO;
 import rotmg.objects.GameObject;
 import rotmg.objects.ObjectLibrary;
 import rotmg.objects.Player;
@@ -476,7 +477,7 @@ public class MapUserInput {
 				}
 			} else {
 				this.closeDialogSignal.dispatch();
-				this.closePopupByClassSignal.dispatch(FriendsPopupView);
+				this.closePopupByClassSignal.dispatch(FriendsPopupView.class);
 			}
 
 		} else if (param1.keyCode == Parameters.data.options) {
@@ -496,12 +497,12 @@ public class MapUserInput {
 			}
 
 		} else if (param1.keyCode == Parameters.data.switchTabs) {
-			loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
+			loc4 = CloseAllPopupsSignal.getInstance();
 			loc4.dispatch();
 			this.statsTabHotKeyInputSignal.dispatch();
 
 		} else if (param1.keyCode == Parameters.data.interact) {
-			loc4 = StaticInjectorContext.getInjector().getInstance(CloseAllPopupsSignal);
+			loc4 = CloseAllPopupsSignal.getInstance();
 			loc4.dispatch();
 
 		} else if (param1.keyCode == Parameters.data.testOne) {
@@ -624,5 +625,4 @@ public class MapUserInput {
 			this.setTextBoxVisibility.dispatch(true);
 		}
 	}
-}
 }

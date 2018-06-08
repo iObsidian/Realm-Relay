@@ -1,7 +1,6 @@
 package rotmg.ui.popups.signals;
 
 import org.osflash.signals.Signal;
-import rotmg.signals.AddTextLineSignal;
 
 public class CloseAllPopupsSignal extends Signal {
 

@@ -9,7 +9,7 @@ public class ActivePetUpdateRequest extends OutgoingMessage {
 
 	private int commandtype;
 	private int instanceid;
-	
+
 	public ActivePetUpdateRequest(int id, Consumer callback) {
 		super(id, callback);
 	}

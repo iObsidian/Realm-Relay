@@ -35,6 +35,10 @@ public class BitmapData {
 
 	}
 
+	public BitmapData(int i, int i1, boolean b, double v) {
+
+	}
+
 	public BitmapData clone() {
 		return new BitmapData(image);
 	}

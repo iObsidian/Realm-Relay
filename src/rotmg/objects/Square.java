@@ -141,8 +141,8 @@ public class Square {
 			loc3 = 0;
 			if (loc1 == null) {
 				if (this.props.randomOffset) {
-					loc2 = this.texture.width() * Math.random() / this.texture.width();
-					loc3 = this.texture.height() * Math.random() / this.texture.height();
+					loc2 = this.texture.width * Math.random() / this.texture.width;
+					loc3 = this.texture.height * Math.random() / this.texture.height;
 				} else {
 					loc2 = this.props.xOffset;
 					loc3 = this.props.yOffset;

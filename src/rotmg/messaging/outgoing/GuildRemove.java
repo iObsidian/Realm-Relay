@@ -12,7 +12,7 @@ public class GuildRemove extends OutgoingMessage {
 	public GuildRemove(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		name = in.readUTF();

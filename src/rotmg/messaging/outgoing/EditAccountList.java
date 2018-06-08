@@ -14,7 +14,7 @@ public class EditAccountList extends OutgoingMessage {
 	public EditAccountList(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		accountListId = in.readInt();

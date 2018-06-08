@@ -2,8 +2,6 @@ package rotmg.text.view.stringBuilder;
 
 import rotmg.language.model.StringMap;
 
-import javax.sound.sampled.Line;
-
 /**
  * Not fully implemented (about 15%)
  */

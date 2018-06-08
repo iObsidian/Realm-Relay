@@ -11,7 +11,7 @@ public class AoeAck extends OutgoingMessage {
 
 	public int time;
 	public WorldPosData position;
-	
+
 	public AoeAck(int id, Consumer callback) {
 		super(id, callback);
 		position = new WorldPosData();

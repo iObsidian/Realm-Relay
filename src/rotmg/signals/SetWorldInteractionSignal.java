@@ -1,5 +1,7 @@
 package rotmg.signals;
 
+import org.osflash.signals.Signal;
+
 public class SetWorldInteractionSignal extends Signal<Boolean> {
 
 	private static SetWorldInteractionSignal instance;

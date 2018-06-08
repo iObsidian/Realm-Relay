@@ -17,7 +17,7 @@ public class QuestRedeem extends OutgoingMessage {
 	public QuestRedeem(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		questID = in.readUTF();

@@ -1,6 +1,7 @@
 package rotmg.signals;
 
-import kabam.rotmg.game.model.UseBuyPotionVO;
+import org.osflash.signals.Signal;
+import rotmg.model.UseBuyPotionVO;
 
 public class UseBuyPotionSignal extends Signal<UseBuyPotionVO> {
 

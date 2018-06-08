@@ -12,7 +12,7 @@ public class PlayerText extends OutgoingMessage {
 	public PlayerText(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		this.text = in.readUTF();

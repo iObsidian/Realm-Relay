@@ -10,7 +10,7 @@ public class CheckCredits extends OutgoingMessage {
 	public CheckCredits(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 

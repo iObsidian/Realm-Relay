@@ -1,6 +1,5 @@
 package rotmg.map.mapoverlay;
 
-
 import alde.flash.utils.Vector;
 import flash.display.Bitmap;
 import flash.display.BitmapData;

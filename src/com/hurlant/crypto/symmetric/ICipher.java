@@ -24,7 +24,7 @@ public class ICipher {
 
 	/**
 	 * Cipher bytes and update cipher
-	 * 
+	 *
 	 * @param bytes
 	 */
 	public void cipher(byte[] bytes) {

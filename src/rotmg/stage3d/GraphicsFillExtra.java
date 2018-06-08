@@ -5,6 +5,7 @@ import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.GraphicsBitmapFill;
 import flash.display.GraphicsSolidFill;
+import flash.display3D.Context3DVertexBufferFormat;
 import flash.display3D.VertexBuffer3D;
 import flash.geom.ColorTransform;
 import rotmg.parameters.Parameters;
@@ -88,7 +89,7 @@ public class GraphicsFillExtra {
 		}
 		if (textureOffsets.get(param1) == null) {
 			textureOffsetsSize++;
-			textureOffsets.put(param1, new Vector<Double>(0, 0, 0, 0));
+			textureOffsets.put(param1, new Vector<Double>(0.0, 0.0, 0.0, 0.0));
 		}
 	}
 

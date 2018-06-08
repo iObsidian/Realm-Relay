@@ -176,7 +176,7 @@ public class Parameters {
 
 	public int GUILD_CREATION_PRICE = 1000;
 
-	public static final Data data = new Data();
+	public static Data data = new Data();
 
 	public static boolean GPURenderError = false;
 

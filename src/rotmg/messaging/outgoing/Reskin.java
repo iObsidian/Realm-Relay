@@ -22,7 +22,7 @@ public class Reskin extends OutgoingMessage {
 	}
 
 	@Override
-	 public void consume() {
+	public void consume() {
 		super.consume();
 		this.player = null;
 	}

@@ -14,7 +14,7 @@ public class Buy extends OutgoingMessage {
 	public Buy(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		objectId = in.readInt();

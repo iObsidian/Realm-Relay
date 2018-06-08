@@ -13,7 +13,7 @@ public class Pong extends OutgoingMessage {
 	public Pong(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		serial = in.readInt();

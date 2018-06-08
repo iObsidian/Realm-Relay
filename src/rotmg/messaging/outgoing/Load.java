@@ -13,7 +13,7 @@ public class Load extends OutgoingMessage {
 	public Load(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		charId = in.readInt();

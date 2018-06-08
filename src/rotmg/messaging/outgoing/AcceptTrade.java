@@ -13,7 +13,7 @@ public class AcceptTrade extends OutgoingMessage {
 	public AcceptTrade(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		myOffer = new boolean[in.readShort()];

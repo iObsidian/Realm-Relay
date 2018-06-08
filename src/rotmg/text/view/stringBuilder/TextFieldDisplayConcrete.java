@@ -16,7 +16,7 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 
 	private static final int GUTTER = 2;
 
-	public final Signal textChanged = new Signal();
+	public final Signal<?> textChanged = new Signal();
 
 	public TextField textField;
 
@@ -188,7 +188,6 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		this.stringMap = param1;
 		this.setTextIfAble();
 	}
-
 
 
 	public void setTextField(TextField param1) {

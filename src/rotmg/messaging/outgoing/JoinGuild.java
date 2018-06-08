@@ -12,7 +12,7 @@ public class JoinGuild extends OutgoingMessage {
 	public JoinGuild(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		guildName = in.readUTF();

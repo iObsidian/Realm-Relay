@@ -87,7 +87,6 @@ public class Map extends AbstractMap {
 	 */
 	@Override
 	public void draw(Camera camera, int param2) {
-
 		//draw background
 
 		//draw tiles

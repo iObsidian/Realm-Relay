@@ -12,8 +12,8 @@ public class KeyInfoRequest extends OutgoingMessage {
 	public KeyInfoRequest(int id, Consumer callback) {
 		super(id, callback);
 	}
-	
-	
+
+
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		this.itemType = in.readInt();
