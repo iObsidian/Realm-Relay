@@ -1,10 +1,10 @@
 package rotmg.util;
 
+import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
+import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
-
-import java.util.HashMap;
-import java.util.Map;
+import spark.filters.GlowFilter;
 
 /**
  * This is a very close match to the original source code.
@@ -117,27 +117,7 @@ public class ConditionEffect {
 	public static final int CE_SECOND_BATCH = 1;
 	public static final int NUMBER_CE_BATCHES = 2;
 
-	public ConditionEffect(String param1, int param2, int[] param3, String param4) {
-		this(param1, param2, param3, param4, false);
-	}
-
-	public ConditionEffect(String param1, int param2, int[] param3, String param4, boolean param5) {
-		super();
-		this.name = param1;
-		this.bit = param2;
-		this.iconOffsets = param3;
-		this.localizationKey = param4;
-		this.icon16Bit = param5;
-	}
-
-	public String name;
-	public int bit;
-	public int[] iconOffsets;
-	public String localizationKey;
-	public Boolean icon16Bit;
-
-	//@formatter:off
-	public static ConditionEffect[] effects = new ConditionEffect[]{
+	public static Vector<ConditionEffect> effects = new Vector<ConditionEffect>(
 			new ConditionEffect("Nothing", 0, null, TextKey.CONDITIONEFFECT_NOTHING),
 			new ConditionEffect("Dead", DEAD_BIT, null, TextKey.CONDITIONEFFECT_DEAD),
 			new ConditionEffect("Quiet", QUIET_BIT, new int[]{32}, TextKey.CONDITIONEFFECT_QUIET),
@@ -186,24 +166,55 @@ public class ConditionEffect {
 			new ConditionEffect("Vit Boost", VIT_BOOST_BIT, new int[]{38}, "Vit Boost", true),
 			new ConditionEffect("Wis Boost", WIS_BOOST_BIT, new int[]{39}, "Wis Boost", true),
 			new ConditionEffect("Dex Boost", DEX_BOOST_BIT, new int[]{37}, "Dex Boost", true),
-			new ConditionEffect("Silenced", SILENCED_BIT, new int[]{33}, "Silenced")};
+			new ConditionEffect("Silenced", SILENCED_BIT, new int[]{33}, "Silenced"));
 
-	private static Map<String, Integer> conditionEffectFromName;
+	private static Dictionary<String, Integer> conditionEffectFromName = null;
+
 	private static Object effectIconCache = null;
+
 	private static Object bitToIcon = null;
+
+	private static final GlowFilter GLOW_FILTER = new GlowFilter(0, 0.3, 6, 6, 2, BitmapFilterQuality.LOW, false, false);
+
 	private static Object bitToIcon2 = null;
+
+
+	public String name;
+
+	public int bit;
+
+	public int[] iconOffsets;
+
+	public String localizationKey;
+
+	public boolean icon16Bit;
+
+
+	public ConditionEffect(String param1, int param2, int[] param3, String param4) {
+		this(param1, param2, param3, param4, false);
+	}
+
+	public ConditionEffect(String param1, int param2, int[] param3, String param4, boolean param5) {
+		super();
+		this.name = param1;
+		this.bit = param2;
+		this.iconOffsets = param3;
+		this.localizationKey = param4;
+		this.icon16Bit = param5;
+	}
+
 
 	public static int getConditionEffectFromName(String param1) {
 
 		if (conditionEffectFromName == null) {
-			conditionEffectFromName = new HashMap<>();
+			conditionEffectFromName = new Dictionary<>();
 			int _loc2 = 0;
 			while (_loc2 < effects.length) {
-				conditionEffectFromName.put(effects[_loc2].name, _loc2);
+				conditionEffectFromName.put(effects.get(_loc2).name, _loc2);
 				_loc2++;
 			}
 		}
-		
+
 		return conditionEffectFromName.get(param1);
 	}
 

@@ -81,9 +81,6 @@ Dictionary
     Dictionary<Integer, Texture> textures = new Dictionary<>();
     textures.put(0, new Texture());
 
-
-
-    
     
 Number
 -----------
