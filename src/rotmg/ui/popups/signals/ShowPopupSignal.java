@@ -1,6 +1,5 @@
 package rotmg.ui.popups.signals;
 
-import org.osflash.signals.Signal;
 import rotmg.ui.popups.BasePopup;
 
 public class ShowPopupSignal extends Signal<BasePopup> {

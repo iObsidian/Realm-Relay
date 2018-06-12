@@ -1,9 +1,18 @@
 package rotmg.util;
 
-import alde.flash.utils.XML;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import alde.flash.utils.XML;
 import rotmg.WebMain;
 import rotmg.map.GroundLibrary;
 import rotmg.map.RegionLibrary;
@@ -15,13 +24,6 @@ import rotmg.sound.IMusic;
 import rotmg.sound.SFX;
 import rotmg.sound.SoundEffectLibrary;
 import rotmg.ui.Options;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class AssetLoader {
 
@@ -229,6 +231,8 @@ public class AssetLoader {
 class EmbeddedData {
 
 	static HashMap<String, String> models = new HashMap<>();
+	private static DocumentBuilderFactory dbFactory;
+	private static DocumentBuilder dBuilder;
 
 	static {
 		models.put("Monster Tank1", "monsterTank1Embed_");
@@ -279,9 +283,6 @@ class EmbeddedData {
 		models.put("Jacko", "jackoEmbed_");
 		models.put("Pet Upgrader Obj", "petUpgrader_");
 	}
-
-	private static DocumentBuilderFactory dbFactory;
-	private static DocumentBuilder dBuilder;
 
 	public static List<XML> objectFiles() {
 		return getXMLs(getDocument("/xml/objects.xml"), "Object");

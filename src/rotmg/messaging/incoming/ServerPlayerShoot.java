@@ -1,18 +1,13 @@
 package rotmg.messaging.incoming;
 
-import rotmg.messaging.data.WorldPosData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class ServerPlayerShoot extends IncomingMessage {
+import rotmg.messaging.data.WorldPosData;
 
-	public ServerPlayerShoot(int id, Consumer callback) {
-		super(id, callback);
-		startingPos = new WorldPosData();
-	}
+public class ServerPlayerShoot extends IncomingMessage {
 
 	public int bulletId;
 	public int ownerId;
@@ -20,6 +15,10 @@ public class ServerPlayerShoot extends IncomingMessage {
 	public WorldPosData startingPos;
 	public double angle;
 	public short damage;
+	public ServerPlayerShoot(int id, Consumer callback) {
+		super(id, callback);
+		startingPos = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

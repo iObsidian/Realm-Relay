@@ -1,8 +1,8 @@
 package rotmg.particles;
 
-import alde.flash.utils.XML;
-
 import java.util.HashMap;
+
+import alde.flash.utils.XML;
 
 /**
  * We parse a list of projectiles instead of a root XML.

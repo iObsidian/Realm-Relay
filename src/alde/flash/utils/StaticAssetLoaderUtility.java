@@ -1,10 +1,11 @@
 package alde.flash.utils;
 
-import flash.display.BitmapData;
-import rotmg.WebMain;
+import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+
+import flash.display.BitmapData;
+import rotmg.WebMain;
 
 /**
  * Not a part of AS3, just a lazy way of loading assets without all the stupid Embedded classes

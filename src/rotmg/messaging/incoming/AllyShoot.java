@@ -7,14 +7,13 @@ import java.util.function.Consumer;
 
 public class AllyShoot extends IncomingMessage {
 
-	public AllyShoot(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	public int bulletId;
 	public int ownerId;
 	public short containerType;
 	public double angle;
+	public AllyShoot(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -1,21 +1,20 @@
 package rotmg;
 
-import rotmg.messaging.data.MoveRecord;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import rotmg.messaging.data.MoveRecord;
 
 /**
  * This is a 100% match
  */
 public class MoveRecords {
 
+	public int lastClearTime = -1;
+	public List<MoveRecord> records;
 	public MoveRecords() {
 		this.records = new ArrayList<MoveRecord>();
 	}
-
-	public int lastClearTime = -1;
-	public List<MoveRecord> records;
 
 	public void addRecord(int time, double x, double y) {
 		if (this.lastClearTime < 0) {

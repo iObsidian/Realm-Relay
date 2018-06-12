@@ -1,5 +1,10 @@
 package rotmg.objects;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.constants.GeneralConstants;
@@ -12,11 +17,6 @@ import rotmg.util.ConversionUtil;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * This is 80% complete
  * <p>
@@ -24,12 +24,8 @@ import java.util.Map;
  */
 public class ObjectLibrary {
 
-	public static TextureDataFactory textureDataFactory = new TextureDataFactory();
 	public static final String IMAGE_SET_NAME = "lofiObj3";
 	public static final int IMAGE_ID = 255;
-	public static List<XML> playerChars = new ArrayList<XML>();
-	public static List<XML> hexTransforms = new ArrayList<XML>();
-	public static Map<Object, Object> playerClassAbbr = new HashMap<>();
 	public static final Map<Integer, ObjectProperties> propsLibrary = new HashMap<>(); //objectType
 	public static final Map<Object, XML> xmlLibrary = new HashMap<>(); //objectType, objectXML
 	public static final Map<Integer, XML> setLibrary = new HashMap<>(); //type, set
@@ -44,8 +40,12 @@ public class ObjectLibrary {
 	public static final String ENEMY_FILTER_LIST[] = new String[]{"None", "Hp", "Defense"};
 	public static final String TILE_FILTER_LIST[] = new String[]{"ALL", "Walkable", "Unwalkable", "Slow", "Speed=1"};
 	public static final ObjectProperties defaultProps = new ObjectProperties(null);
-
+	public static TextureDataFactory textureDataFactory = new TextureDataFactory();
+	public static List<XML> playerChars = new ArrayList<XML>();
+	public static List<XML> hexTransforms = new ArrayList<XML>();
+	public static Map<Object, Object> playerClassAbbr = new HashMap<>();
 	public static Map<String, Class> TYPE_MAP = new HashMap<String, Class>();
+	private static String currentDungeon = "";
 
 	static {
 		// TYPE_MAP.put("ArenaGuard", ArenaGuard.class);
@@ -85,8 +85,6 @@ public class ObjectLibrary {
 		// TYPE_MAP.put("PetUpgrader", PetUpgrader);
 		// TYPE_MAP.put("YardUpgrader", YardUpgrader);
 	}
-
-	private static String currentDungeon = "";
 
 	public static void parseDungeonXML(String param1, XML objectXML) {
 		currentDungeon = param1;

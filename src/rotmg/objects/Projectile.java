@@ -1,8 +1,14 @@
 package rotmg.objects;
 
+import static rotmg.tutorial.doneAction.doneAction;
+
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.GradientType;
+import flash.display.GraphicsGradientFill;
+import flash.display.GraphicsPath;
+import flash.display.IGraphicsData;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
@@ -13,9 +19,11 @@ import rotmg.objects.particles.HitEffect;
 import rotmg.objects.particles.SparkParticle;
 import rotmg.parameters.Parameters;
 import rotmg.tutorial.Tutorial;
-import rotmg.util.*;
-
-import static rotmg.tutorial.doneAction.doneAction;
+import rotmg.util.BloodComposition;
+import rotmg.util.GraphicsUtil;
+import rotmg.util.RandomUtil;
+import rotmg.util.TextureRedrawer;
+import rotmg.util.Trig;
 
 /**
  * This class is about 10% done. It requires a lot of graphics stuff.
@@ -59,14 +67,10 @@ public class Projectile extends BasicObject {
 	public Dictionary multiHitDict;
 
 	public Point3D p;
-
-	private Point staticPoint;
-
-	private Vector3D staticVector3D;
-
 	protected GraphicsGradientFill shadowGradientFill;
-
 	protected GraphicsPath shadowPath;
+	private Point staticPoint;
+	private Vector3D staticVector3D;
 
 	public Projectile() {
 		super();

@@ -7,11 +7,9 @@ import flash.display3D.textures.TextureBase;
 
 public class TextureProxy {
 
-	private Texture texture;
-
 	protected int width;
-
 	protected int height;
+	private Texture texture;
 
 	public TextureProxy(Texture param1) {
 		super();

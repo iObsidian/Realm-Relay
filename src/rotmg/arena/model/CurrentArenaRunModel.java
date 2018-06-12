@@ -1,5 +1,7 @@
 package rotmg.arena.model;
 
+import org.osflash.signals.Signal;
+
 import rotmg.assets.services.CharacterFactory;
 import rotmg.classes.model.CharacterSkin;
 import rotmg.classes.model.ClassesModel;
@@ -8,20 +10,13 @@ import rotmg.pets.data.PetsModel;
 
 public class CurrentArenaRunModel {
 
-	public GameModel gameModel = GameModel.getInstance();
-
-	public PetsModel petModel = PetsModel.getInstance();
-
-	public ClassesModel classesModel = ClassesModel.getInstance();
-
-	public CharacterFactory factory = CharacterFactory.getInstance();
-
-	public boolean died = false;
-
-	public ArenaLeaderboardEntry entry;
-
 	public final Signal waveUpdated = new Signal();
-
+	public GameModel gameModel = GameModel.getInstance();
+	public PetsModel petModel = PetsModel.getInstance();
+	public ClassesModel classesModel = ClassesModel.getInstance();
+	public CharacterFactory factory = CharacterFactory.getInstance();
+	public boolean died = false;
+	public ArenaLeaderboardEntry entry;
 	public int costOfContinue = 0;
 
 	public CurrentArenaRunModel() {

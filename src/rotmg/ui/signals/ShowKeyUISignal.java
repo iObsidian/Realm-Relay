@@ -1,7 +1,5 @@
 package rotmg.ui.signals;
 
-import org.osflash.signals.Signal;
-
 public class ShowKeyUISignal extends Signal {
 
 	private static ShowKeyUISignal instance;

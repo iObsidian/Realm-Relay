@@ -1,5 +1,7 @@
 package rotmg.view;
 
+import static flash.utils.getTimer.getTimer;
+
 import rotmg.GameSprite;
 import rotmg.core.model.MapModel;
 import rotmg.core.model.PlayerModel;
@@ -12,16 +14,22 @@ import rotmg.dialogs.AddPopupToStartupQueueSignal;
 import rotmg.dialogs.CloseDialogsSignal;
 import rotmg.dialogs.FlushPopupStartupQueueSignal;
 import rotmg.dialogs.OpenDialogSignal;
+import rotmg.dialogs.model.DialogsModel;
 import rotmg.events.ReconnectEvent;
+import rotmg.game.logging.LoopMonitor;
 import rotmg.maploading.signals.HideMapLoadingSignal;
 import rotmg.maploading.signals.ShowLoadingViewSignal;
 import rotmg.model.GameInitData;
+import rotmg.news.controller.NewsButtonRefreshSignal;
 import rotmg.objects.Player;
 import rotmg.packages.control.BeginnersPackageAvailableSignal;
 import rotmg.packages.control.InitPackagesSignal;
+import rotmg.packages.control.OpenPackageSignal;
 import rotmg.packages.control.PackageAvailableSignal;
-import rotmg.packages.control.PackageModel;
 import rotmg.packages.models.PackageInfo;
+import rotmg.packages.services.PackageModel;
+import rotmg.pets.controller.ShowPetTooltip;
+import rotmg.promotions.model.BeginnersPackageModel;
 import rotmg.promotions.signals.ShowBeginnersPackageSignal;
 import rotmg.signals.GameClosedSignal;
 import rotmg.signals.PlayGameSignal;
@@ -52,7 +60,7 @@ public class GameSpriteMediator {
 
 	public MapModel mapModel;
 
-	//public BeginnersPackageModel beginnersPackageModel;
+	public BeginnersPackageModel beginnersPackageModel;
 
 	public CloseDialogsSignal closeDialogs;
 

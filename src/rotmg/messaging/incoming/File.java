@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class File extends IncomingMessage {
 
+	private String filename;
+	private byte[] bytes = new byte[0];
 	public File(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	private String filename;
-	private byte[] bytes = new byte[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -14,19 +14,12 @@ public class TextureRedrawer {
 	public static final int magic = 12;
 
 	public static final int minSize = 2 * magic;
-
-	private static final int BORDER = 4;
-
 	public static final GlowFilter OUTLINE_FILTER = new GlowFilter(0, 0.8, 1.4, 1.4, 255, BitmapFilterQuality.LOW, false, false);
-
-	private static Dictionary<Integer, Dictionary<Integer, BitmapData>> cache = new Dictionary<>();
-
-	private static Dictionary<Double, Dictionary<BitmapData, BitmapData>> faceCache = new Dictionary<>();
-
-	private static Dictionary<BitmapData, Dictionary<String, BitmapData>> redrawCaches = new Dictionary<>();
-
+	private static final int BORDER = 4;
 	public static BitmapData sharedTexture = null;
-
+	private static Dictionary<Integer, Dictionary<Integer, BitmapData>> cache = new Dictionary<>();
+	private static Dictionary<Double, Dictionary<BitmapData, BitmapData>> faceCache = new Dictionary<>();
+	private static Dictionary<BitmapData, Dictionary<String, BitmapData>> redrawCaches = new Dictionary<>();
 	private static BitmapData colorTexture1 = new BitmapDataSpy(1, 1, false);
 
 	private static BitmapData colorTexture2 = new BitmapDataSpy(1, 1, false);

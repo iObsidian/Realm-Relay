@@ -1,13 +1,5 @@
 package rotmg.net;
 
-import com.hurlant.crypto.symmetric.ICipher;
-import rotmg.AGameSprite;
-import rotmg.messaging.GameServerConnectionConcrete;
-import rotmg.net.impl.Message;
-import rotmg.net.impl.MessageCenter;
-import rotmg.parameters.Parameters;
-import rotmg.util.AssetLoader;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,6 +9,15 @@ import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import com.hurlant.crypto.symmetric.ICipher;
+
+import rotmg.AGameSprite;
+import rotmg.messaging.GameServerConnectionConcrete;
+import rotmg.net.impl.Message;
+import rotmg.net.impl.MessageCenter;
+import rotmg.parameters.Parameters;
+import rotmg.util.AssetLoader;
+
 /**
  * This class is a very loose implementation of WildShadow's SocketServer,
  * it is more closely related to The Force 2477's RealmClient
@@ -24,6 +25,23 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class SocketServer {
 
 	public static SocketServer instance;
+	public static int MESSAGE_LENGTH_SIZE_IN_BYTES = 4;
+	public MessageCenter messages = MessageCenter.getInstance();
+	public Socket socket = null;
+	public long lastTimePacketReceived = 0;
+	public long lastPingTime = 0;
+	private int bufferIndex = 0;
+	private boolean write = false;
+	private boolean read = false;
+	private long startTime = 0;
+	private ICipher outgoingCipher; //Renamed from 'ICipher'.
+	private ICipher incomingCipher;
+	private String server; // host
+	private int port;
+	private DataInputStream inputStream = null;
+	private DataOutputStream outputStream = null;
+	private byte[] buffer = new byte[100000];
+	private BlockingDeque<Message> packetQueue = new LinkedBlockingDeque<Message>();
 
 	public static SocketServer getInstance() {
 		if (instance == null) {
@@ -32,35 +50,6 @@ public class SocketServer {
 
 		return instance;
 	}
-
-	public static int MESSAGE_LENGTH_SIZE_IN_BYTES = 4;
-
-	public MessageCenter messages = MessageCenter.getInstance();
-
-	public Socket socket = null;
-
-	private int bufferIndex = 0;
-
-	private boolean write = false;
-	private boolean read = false;
-
-	private long startTime = 0;
-	public long lastTimePacketReceived = 0;
-	public long lastPingTime = 0;
-
-	private ICipher outgoingCipher; //Renamed from 'ICipher'.
-
-	private ICipher incomingCipher;
-
-	private String server; // host
-
-	private int port;
-
-	private DataInputStream inputStream = null;
-	private DataOutputStream outputStream = null;
-
-	private byte[] buffer = new byte[100000];
-	private BlockingDeque<Message> packetQueue = new LinkedBlockingDeque<Message>();
 
 	public static void main(String[] args) {
 

@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 
 public class InvResult extends IncomingMessage {
 
+	public int result;
+
 	public InvResult(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public int result;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

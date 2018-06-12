@@ -2,46 +2,22 @@ package rotmg.account.core;
 
 public class WebAccount implements Account {
 
-	private static WebAccount instance;
-
-	public static Account getInstance() {
-		/**if (instance == null) {
-		 instance = new WebAccount();
-		 }
-		 return instance;*/
-
-		return new WebAccount("rotmgiobsidian@gmail.com", "JtiTdzTP");
-	}
-
 	public static final String NETWORKNAME = "rotmg";
-
 	private static final String WEBUSERID = "";
-
 	private static final String WEBPLAYPLATFORMNAME = "rotmg";
-
-	private String userId = "";
-
-	private String password;
-
-	private String token = "";
-
-	private String entryTag = "";
-
-	private boolean isVerifiedEmail;
-
-	private String platformToken;
-
-	private String userDisplayName = "";
-
-	private boolean rememberMe = true;
-
-	private String paymentProvider = "";
-
-	private String paymentData = "";
-
+	private static WebAccount instance;
 	public String signedRequest;
-
 	public String kabamId;
+	private String userId = "";
+	private String password;
+	private String token = "";
+	private String entryTag = "";
+	private boolean isVerifiedEmail;
+	private String platformToken;
+	private String userDisplayName = "";
+	private boolean rememberMe = true;
+	private String paymentProvider = "";
+	private String paymentData = "";
 
 	public WebAccount() {
 		super();
@@ -57,6 +33,15 @@ public class WebAccount implements Account {
 	public WebAccount(String email, String password) {
 		this.userId = email;
 		this.password = password;
+	}
+
+	public static Account getInstance() {
+		/**if (instance == null) {
+		 instance = new WebAccount();
+		 }
+		 return instance;*/
+
+		return new WebAccount("rotmgiobsidian@gmail.com", "JtiTdzTP");
 	}
 
 	public String getUserName() {
@@ -187,28 +172,28 @@ public class WebAccount implements Account {
 		this.userDisplayName = param1;
 	}
 
-	public void setRememberMe(boolean param1) {
-		this.rememberMe = param1;
-	}
-
 	public boolean getRememberMe() {
 		return this.rememberMe;
 	}
 
-	public void setPaymentProvider(String param1) {
-		this.paymentProvider = param1;
+	public void setRememberMe(boolean param1) {
+		this.rememberMe = param1;
 	}
 
 	public String getPaymentProvider() {
 		return this.paymentProvider;
 	}
 
-	public void setPaymentData(String param1) {
-		this.paymentData = param1;
+	public void setPaymentProvider(String param1) {
+		this.paymentProvider = param1;
 	}
 
 	public String getPaymentData() {
 		return this.paymentData;
+	}
+
+	public void setPaymentData(String param1) {
+		this.paymentData = param1;
 	}
 
 	@Override

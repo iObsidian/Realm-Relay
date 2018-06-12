@@ -9,14 +9,12 @@ public class AnimateProperties {
 	public static final int WAVE_ANIMATE = 1;
 
 	public static final int FLOW_ANIMATE = 2;
-
-	public AnimateProperties() {
-		super();
-	}
-
 	public int type = 0;
 	public double dx = 0;
 	public double dy = 0;
+	public AnimateProperties() {
+		super();
+	}
 
 	public void parseXML(XML param1) {
 		switch (param1.name()) {

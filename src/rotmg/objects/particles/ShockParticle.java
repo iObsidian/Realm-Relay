@@ -7,6 +7,10 @@ import rotmg.objects.GameObject;
 import rotmg.objects.thrown.BitmapParticle;
 
 public class ShockParticle extends BitmapParticle {
-	public ShockParticle(int objectId, int i, int particleScale, Point start, Point end, double radians, GameObject go, Vector<BitmapData> images) {
+	public ShockParticle(int objectId, int i, int particleScale, Point start, Point end, double radians, GameObject go,
+			Vector<BitmapData> images) {
+		
+		super(null, 0);
+		
 	}
 }

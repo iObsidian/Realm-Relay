@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class TradeAccepted extends IncomingMessage {
 
+	private boolean[] myOffer = new boolean[0];
+	private boolean[] yourOffer = new boolean[0];
 	public TradeAccepted(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	private boolean[] myOffer = new boolean[0];
-	private boolean[] yourOffer = new boolean[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

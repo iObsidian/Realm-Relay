@@ -1,7 +1,5 @@
 package rotmg.ui.signals;
 
-import org.osflash.signals.Signal;
-
 public class EnterGameSignal extends Signal {
 
 	private static EnterGameSignal instance;

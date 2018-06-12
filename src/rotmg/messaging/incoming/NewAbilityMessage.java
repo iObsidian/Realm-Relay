@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 
 public class NewAbilityMessage extends IncomingMessage {
 
+	private int type;
+
 	public NewAbilityMessage(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	private int type;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

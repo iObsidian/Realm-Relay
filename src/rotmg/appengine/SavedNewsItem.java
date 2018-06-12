@@ -2,20 +2,16 @@ package rotmg.appengine;
 
 import flash.display.BitmapData;
 import rotmg.util.AssetLibrary;
+import rotmg.util.TextureRedrawer;
 
 public class SavedNewsItem {
 
 	private static final String FAME = "fame";
-
-	private String iconName;
-
 	public String title;
-
 	public String tagline;
-
 	public String link;
-
 	public int date;
+	private String iconName;
 
 	public SavedNewsItem(String param1, String param2, String param3, String param4, int param5) {
 		super();

@@ -1,44 +1,37 @@
 package rotmg.pets.data;
 
-import alde.flash.utils.XML;
-import rotmg.appengine.SavedCharacter;
-import rotmg.core.model.PlayerModel;
-import rotmg.objects.ObjectLibrary;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import alde.flash.utils.XML;
+import rotmg.appengine.SavedCharacter;
+import rotmg.core.model.PlayerModel;
+import rotmg.objects.ObjectLibrary;
+
 // This is a 100% match, except maybe for the getInstance() [Inject]
 public class PetsModel {
 
 	static public PetsModel instance;
+	public NotifyActivePetUpdated notifyActivePetUpdated = NotifyActivePetUpdated.getInstance();
+	public PlayerModel playerModel = PlayerModel.getInstance();
+	private Map<Integer, PetVO> hash;
+	private List<PetVO> pets;
+	private XML yardXmlData;
+	private int type;
+	private PetVO activePet;
+
+	public PetsModel() {
+		this.hash = new HashMap<>();
+		this.pets = new ArrayList<PetVO>();
+	}
 
 	public static PetsModel getInstance() {
 		if (instance == null) {
 			instance = new PetsModel();
 		}
 		return instance;
-	}
-
-	public NotifyActivePetUpdated notifyActivePetUpdated = NotifyActivePetUpdated.getInstance();
-
-	public PlayerModel playerModel = PlayerModel.getInstance();
-
-	private Map<Integer, PetVO> hash;
-
-	private List<PetVO> pets;
-
-	private XML yardXmlData;
-
-	private int type;
-
-	private PetVO activePet;
-
-	public PetsModel() {
-		this.hash = new HashMap<>();
-		this.pets = new ArrayList<PetVO>();
 	}
 
 	public PetVO getPetVO(int param1) {
@@ -64,6 +57,10 @@ public class PetsModel {
 		this.pets.add(param1);
 	}
 
+	public PetVO getActivePet() {
+		return this.activePet;
+	}
+
 	public void setActivePet(PetVO param1) {
 		this.activePet = param1;
 		SavedCharacter loc2 = this.playerModel.getCharacterById(this.playerModel.currentCharId);
@@ -71,10 +68,6 @@ public class PetsModel {
 			loc2.setPetVO(this.activePet);
 		}
 		this.notifyActivePetUpdated.dispatch();
-	}
-
-	public PetVO getActivePet() {
-		return this.activePet;
 	}
 
 	public void removeActivePet() {
@@ -107,17 +100,17 @@ public class PetsModel {
 		return -1;
 	}
 
-	public void setPetYardType(int param1) {
-		this.type = param1;
-		this.yardXmlData = ObjectLibrary.getXMLfromId(ObjectLibrary.getIdFromType(param1));
-	}
-
 	public int getPetYardRarity() {
 		return PetYardEnum.selectByValue(this.yardXmlData.getAttribute("id")).rarity.ordinal;
 	}
 
 	public int getPetYardType() {
 		return this.yardXmlData != null ? PetYardEnum.selectByValue(this.yardXmlData.getAttribute("id")).ordinal : 1;
+	}
+
+	public void setPetYardType(int param1) {
+		this.type = param1;
+		this.yardXmlData = ObjectLibrary.getXMLfromId(ObjectLibrary.getIdFromType(param1));
 	}
 
 	public boolean isMapNameYardName(AbstractMap param1) {

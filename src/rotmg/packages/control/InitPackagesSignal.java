@@ -1,7 +1,5 @@
 package rotmg.packages.control;
 
-import org.osflash.signals.Signal;
-
 public class InitPackagesSignal extends Signal {
 
 	static InitPackagesSignal instance;

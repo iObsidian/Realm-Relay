@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 
 public class TradeRequested extends IncomingMessage {
 
+	public String name;
+
 	public TradeRequested(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public String name;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

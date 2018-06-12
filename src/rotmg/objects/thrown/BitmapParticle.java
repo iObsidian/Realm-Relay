@@ -13,21 +13,14 @@ import rotmg.util.GraphicsUtil;
 
 public class BitmapParticle extends BasicObject {
 
-	protected GraphicsBitmapFill bitmapFill;
-
-	protected GraphicsPath path;
-
-	protected Vector<Double> vS;
-
-	protected Matrix fillMatrix;
-
 	public int size;
-
 	public BitmapData _bitmapData;
-
-	protected double _rotationDelta = 0;
-
 	public double _rotation = 0;
+	protected GraphicsBitmapFill bitmapFill;
+	protected GraphicsPath path;
+	protected Vector<Double> vS;
+	protected Matrix fillMatrix;
+	protected double _rotationDelta = 0;
 
 	public BitmapParticle(BitmapData param1, double param2) {
 		super();

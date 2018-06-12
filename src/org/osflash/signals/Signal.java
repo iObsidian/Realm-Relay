@@ -1,58 +1,72 @@
 package org.osflash.signals;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 import java.util.function.Consumer;
 
-/**
- * Implementation of AS3's Signal
- * <p>
- * AS3 :
- * public const selected:Signal = new Signal(CharacterClass);
- * select.add(this.method);
- * <p>
- * <p>
- * Java :
- * public final Signal<CharacterClass> selected = new Signal();
- * select.add(this::method);
- * <p>
- * <p>
- * Note :
- * Instead of using StaticInjector, use SignalName.getInstance();
- */
 public class Signal<T> {
 
-	public List<Consumer<T>> consumers;
+	public Vector<SignalFunction> listeners;
 
-	public Signal() {
-		consumers = new ArrayList<Consumer<T>>();
+	public void add(Consumer t) {
+		listeners.add(new SignalFunction(t));
 	}
 
-	public void add(Consumer<T> consumer) {
-		consumers.add(consumer);
+	public void add(Runnable t) {
+		listeners.add(new SignalFunction(t));
 	}
 
-	public void remove(Consumer<T> consumer) {
-		consumers.remove(consumer);
-	}
-
-	public void dispatch(T object) {
-		for (Consumer<T> consumer : consumers) {
-			consumer.accept(object);
+	public void dispatch(T t) {
+		for (SignalFunction sf : listeners) {
+			sf.dispatch(t);
 		}
 	}
 
-	/**
-	 * Replaces Signal.dispatch() from AS3
-	 * Consumer will accept null data.
-	 */
 	public void dispatch() {
-		for (Consumer<T> consumer : consumers) {
-			consumer.accept(null);
+		for (SignalFunction sf : listeners) {
+			sf.dispatch();
 		}
 	}
 
-	//from 'OnceSignal'
-	public void addOnce(Consumer onTextChanged) {
+
+	public class SignalFunction {
+
+		public static final int CONSUMER = 0; // takes something
+		public static final int RUNNABLE = 1; // takes nothing
+
+		public int type;
+
+		public SignalFunction(Consumer<T> listener) {
+			type = CONSUMER;
+			consumer_listener = listener;
+		}
+
+		public SignalFunction(Runnable listener) {
+			type = RUNNABLE;
+			runnable_listener = listener;
+		}
+
+		public Runnable runnable_listener;
+		public Consumer<T> consumer_listener;
+
+		public void dispatch(T t) {
+			if (type == RUNNABLE) {
+				runnable_listener.run();
+			} else if (type == CONSUMER) {
+				consumer_listener.accept(t);
+			} else {
+				System.err.println("Unknown type : " + type);
+			}
+		}
+
+		public void dispatch() {
+			if (type == RUNNABLE) {
+				runnable_listener.run();
+			} else {
+				consumer_listener.accept(null);
+			}
+		}
+
 	}
+
+
 }

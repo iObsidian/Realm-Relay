@@ -1,29 +1,28 @@
 package rotmg.net.impl;
 
-import rotmg.net.api.MessageMap;
-import rotmg.net.api.MessageMapping;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
+import rotmg.net.api.MessageMap;
+import rotmg.net.api.MessageMapping;
+import rotmg.net.api.MessageProvider;
+
 public class MessageCenter implements MessageMap, MessageProvider {
 
+	private static final int MAXID = 256;
 	private static MessageCenter instance;
+	private final HashMap<Integer, MessageCenterMapping> maps = new HashMap<Integer, MessageCenterMapping>(MAXID);
+
+	public MessageCenter() {
+		super();
+	}
 
 	public static MessageCenter getInstance() {
 		if (instance == null) {
 			instance = new MessageCenter();
 		}
 		return instance;
-	}
-
-	private static final int MAXID = 256;
-
-	private final HashMap<Integer, MessageCenterMapping> maps = new HashMap<Integer, MessageCenterMapping>(MAXID);
-
-	public MessageCenter() {
-		super();
 	}
 
 	public MessageMapping map(int param1) {

@@ -118,7 +118,7 @@ public class ConditionEffect {
 	public static final int CE_FIRST_BATCH = 0;
 	public static final int CE_SECOND_BATCH = 1;
 	public static final int NUMBER_CE_BATCHES = 2;
-
+	private static final GlowFilter GLOW_FILTER = new GlowFilter(0, 0.3, 6, 6, 2, BitmapFilterQuality.LOW, false, false);
 	public static Vector<ConditionEffect> effects = new Vector<ConditionEffect>(
 			new ConditionEffect("Nothing", 0, null, TextKey.CONDITIONEFFECT_NOTHING),
 			new ConditionEffect("Dead", DEAD_BIT, null, TextKey.CONDITIONEFFECT_DEAD),
@@ -169,15 +169,9 @@ public class ConditionEffect {
 			new ConditionEffect("Wis Boost", WIS_BOOST_BIT, new int[]{39}, "Wis Boost", true),
 			new ConditionEffect("Dex Boost", DEX_BOOST_BIT, new int[]{37}, "Dex Boost", true),
 			new ConditionEffect("Silenced", SILENCED_BIT, new int[]{33}, "Silenced"));
-
 	private static Dictionary<String, Integer> conditionEffectFromName = null;
-
 	private static Vector<BitmapData> effectIconCache = null;
-
 	private static Vector<Vector<BitmapData>> bitToIcon = null;
-
-	private static final GlowFilter GLOW_FILTER = new GlowFilter(0, 0.3, 6, 6, 2, BitmapFilterQuality.LOW, false, false);
-
 	private static Vector<Vector<BitmapData>> bitToIcon2 = null;
 
 

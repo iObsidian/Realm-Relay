@@ -1,5 +1,6 @@
 package rotmg.arena.model;
 
+import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import rotmg.pets.data.PetVO;
 
@@ -14,9 +15,9 @@ public class ArenaLeaderboardEntry {
 
 	public PetVO pet;
 
-	public int[] slotTypes;
+	public Vector<Integer> slotTypes;
 
-	public int[] equipment;
+	public Vector<Integer> equipment;
 
 	public double runtime;
 

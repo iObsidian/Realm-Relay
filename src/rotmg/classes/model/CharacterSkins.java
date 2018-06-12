@@ -9,14 +9,12 @@ public class CharacterSkins {
 	private final List<CharacterSkin> skins = new ArrayList<CharacterSkin>(0);
 
 	private final HashMap<Integer, CharacterSkin> map = new HashMap<>();
-
-	public CharacterSkins() {
-		super();
-	}
-
 	private CharacterSkin defaultSkin;
 	private CharacterSkin selectedSkin;
 	private int maxLevelAchieved;
+	public CharacterSkins() {
+		super();
+	}
 
 	public int getCount() {
 		return this.skins.size();

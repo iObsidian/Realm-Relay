@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class Create extends OutgoingMessage {
 
+	public int classType;
+	public int skinType;
 	public Create(int param1, Consumer param2) {
 		super(param1, param2);
 	}
-
-	public int classType;
-	public int skinType;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -58,12 +58,12 @@ public class TextureMatrix {
 			return;
 		}
 		int loc2 = param1.length - 3;
-		double loc3 = param1.get(0) * this.texture.width();
-		double loc4 = param1.get(1) * this.texture.height();
-		double loc5 = param1.get(3) * this.texture.width();
-		double loc6 = param1.get(4) * this.texture.height();
-		double loc7 = param1.get(loc2) * this.texture.width();
-		double loc8 = param1.get(loc2 + 1) * this.texture.height();
+		double loc3 = param1.get(0) * this.texture.width;
+		double loc4 = param1.get(1) * this.texture.height;
+		double loc5 = param1.get(3) * this.texture.width;
+		double loc6 = param1.get(4) * this.texture.height;
+		double loc7 = param1.get(loc2) * this.texture.width;
+		double loc8 = param1.get(loc2 + 1) * this.texture.height;
 		double loc9 = loc5 - loc3;
 		double loc10 = loc6 - loc4;
 		double loc11 = loc7 - loc3;

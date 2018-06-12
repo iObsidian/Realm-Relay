@@ -7,10 +7,6 @@ import java.util.function.Consumer;
 
 public class Reconnect extends IncomingMessage {
 
-	public Reconnect(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	public String name;
 	public String host;
 	public int port;
@@ -19,6 +15,9 @@ public class Reconnect extends IncomingMessage {
 	public byte[] key = new byte[0];
 	public boolean isFromArena;
 	public String stats;
+	public Reconnect(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	public void parseFromInput(DataInput in) throws IOException {
 		this.name = in.readUTF();

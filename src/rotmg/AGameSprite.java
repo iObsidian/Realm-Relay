@@ -1,7 +1,6 @@
 package rotmg;
 
 import flash.display.Sprite;
-import org.osflash.signals.Signal;
 import rotmg.core.model.PlayerModel;
 import rotmg.map.AbstractMap;
 import rotmg.map.Camera;

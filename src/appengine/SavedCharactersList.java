@@ -1,8 +1,21 @@
-package rotmg.appengine;
+package appengine;
 
-/**
- * Known as 'Charlist' by The Force
- *//*
+import com.company.assembleegameclient.ui.TOSPopup;
+
+import alde.flash.utils.Dictionary;
+import alde.flash.utils.Vector;
+import alde.flash.utils.XML;
+import flash.events.Event;
+import rotmg.account.core.Account;
+import rotmg.appengine.CharacterStats;
+import rotmg.appengine.SavedCharacter;
+import rotmg.appengine.SavedNewsItem;
+import rotmg.dialogs.OpenDialogSignal;
+import rotmg.net.LatLong;
+import rotmg.objects.ObjectLibrary;
+import rotmg.objects.Player;
+import rotmg.promotions.model.BeginnersPackageModel;
+
 public class SavedCharactersList extends Event {
 
 	public static final String SAVED_CHARS_LIST = "SAVED_CHARS_LIST";
@@ -13,7 +26,7 @@ public class SavedCharactersList extends Event {
 
 	public static final String UNRESTRICTED = "unrestricted";
 
-	private static final LatLong DEFAULT_LATLONG = new LatLong(37.4436F, -122.412F);
+	private static final LatLong DEFAULT_LATLONG = new LatLong(37.4436, -122.412);
 
 	private static final String DEFAULT_SALESFORCE = "unavailable";
 
@@ -27,11 +40,11 @@ public class SavedCharactersList extends Event {
 
 	public int maxNumChars;
 
-	public int numChars;
+	public int numChars = 0;
 
-	public List<SavedCharacter> savedChars;
+	public Vector<SavedCharacter> savedChars;
 
-	public HashMap<Integer, CharacterStats> charStats; //objectType, CharacterStats
+	public Dictionary<Integer, CharacterStats> charStats;
 
 	public int totalFame = 0;
 
@@ -53,33 +66,35 @@ public class SavedCharactersList extends Event {
 
 	public String name = null;
 
-	public Boolean nameChosen;
+	public boolean nameChosen;
 
-	public Boolean converted;
+	public boolean converted;
 
-	public Boolean isAdmin;
+	public boolean isAdmin;
 
-	public Boolean canMapEdit;
+	public boolean canMapEdit;
 
-	public List<SavedNewsItem> news;
+	public Vector<SavedNewsItem> news;
 
 	public LatLong myPos;
 
 	public String salesForceData = "unavailable";
 
-	public Boolean hasPlayerDied = false;
+	public boolean hasPlayerDied = false;
 
-	public HashMap<Integer, String> classAvailability = new HashMap<>();
+	public Dictionary<Integer, XML> classAvailability;
 
-	public Boolean isAgeVerified;
+	public boolean isAgeVerified;
 
 	private Account account;
 
 	public SavedCharactersList(String param1) {
-		this.savedChars = new ArrayList<SavedCharacter>();
-		this.charStats = new HashMap<>();
-		this.news = new ArrayList<SavedNewsItem>();
 		super(SAVED_CHARS_LIST);
+
+		Account loc5 = null;
+		this.savedChars = new Vector<SavedCharacter>();
+		this.charStats = new Dictionary<>();
+		this.news = new Vector<SavedNewsItem>();
 		this.origData = param1;
 		this.charsXML = new XML(this.origData);
 		XML loc2 = this.charsXML.getChild("Account");
@@ -93,17 +108,16 @@ public class SavedCharactersList extends Event {
 		this.parseSalesForceData();
 		this.parseTOSPopup();
 		this.reportUnlocked();
-		Injector loc3 = StaticInjectorContext.getInjector();
-		if (loc3 != null) {
-			Account loc5 = loc3.getInstance(Account);
-			loc5.reportIntStat("BestLevel", this.bestOverallLevel());
-			loc5.reportIntStat("BestFame", this.bestOverallFame());
-			loc5.reportIntStat("NumStars", this.numStars);
-			loc5.verify(loc2.hasOwnProperty("VerifiedEmail"));
-		}
-		this.classAvailability = new HashMap<>();
+
+		loc5 = Account.getInstance();
+		loc5.reportIntStat("BestLevel", this.bestOverallLevel());
+		loc5.reportIntStat("BestFame", this.bestOverallFame());
+		loc5.reportIntStat("NumStars", this.numStars);
+		loc5.verify(loc2.hasOwnProperty("VerifiedEmail"));
+
+		this.classAvailability = new Dictionary<>();
 		for (XML loc4 : this.charsXML.getChild("ClassAvailabilityList").getChilds("ClassAvailability")) {
-			this.classAvailability.put(loc4.getIntAttribute("id"), loc4.toString());
+			this.classAvailability.put(loc4.getIntAttribute("id"), loc4);
 		}
 	}
 
@@ -130,22 +144,24 @@ public class SavedCharactersList extends Event {
 		this.fame = param1.getChild("Stats").getIntValue("Fame");
 		this.credits = param1.getIntValue("Credits");
 		this.tokens = param1.getIntValue("FortuneToken");
-		this.nextCharSlotPrice = param1.getIntAttribute("NextCharSlotPrice");
-		this.isAgeVerified = !this.accountId.equals("") && param1.getIntValue("IsAgeVerified") == 1;
+		this.nextCharSlotPrice = param1.getIntValue("NextCharSlotPrice");
+		this.isAgeVerified = this.accountId != "" && param1.getIntValue("IsAgeVerified") == 1;
 		this.hasPlayerDied = true;
 	}
 
 	private void parseBeginnersPackageData(XML param1) {
+		double loc2 = 0;
 		BeginnersPackageModel loc3 = null;
 		if (param1.hasOwnProperty("BeginnerPackageTimeLeft")) {
-			double loc2 = param1.getDoubleValue("BeginnerPackageTimeLeft");
+			loc2 = param1.getDoubleValue("BeginnerPackageTimeLeft");
 			loc3 = this.getBeginnerModel();
 			loc3.setBeginnersOfferSecondsLeft(loc2);
 		}
 	}
 
 	private BeginnersPackageModel getBeginnerModel() {
-		return BeginnersPackageModel.getInstance();
+		BeginnersPackageModel loc2 = BeginnersPackageModel.getInstance();
+		return loc2;
 	}
 
 	private void parseGuildData(XML param1) {
@@ -158,20 +174,22 @@ public class SavedCharactersList extends Event {
 	}
 
 	private void parseCharacterData() {
-		this.nextCharId = this.charsXML.getIntValue("nextCharId");
-		this.maxNumChars = this.charsXML.getIntValue("maxNumChars");
+		this.nextCharId = this.charsXML.getIntAttribute("nextCharId");
+		this.maxNumChars = this.charsXML.getIntAttribute("maxNumChars");
 		for (XML loc1 : this.charsXML.getChilds("Char")) {
 			this.savedChars.add(new SavedCharacter(loc1, this.name));
 			this.numChars++;
 		}
-		this.savedChars.sort(SavedCharacter.compare);
+		//this.savedChars.sort(SavedCharacter.compare);
 	}
 
 	private void parseCharacterStatsData() {
+		int loc3 = 0;
+		CharacterStats loc4 = null;
 		XML loc1 = this.charsXML.getChild("Account").getChild("Stats");
 		for (XML loc2 : loc1.getChilds("ClassStats")) {
-			int loc3 = loc2.getIntAttribute("objectType");
-			CharacterStats loc4 = new CharacterStats(loc2);
+			loc3 = loc2.getIntAttribute("objectType");
+			loc4 = new CharacterStats(loc2);
 			this.numStars = this.numStars + loc4.numStars();
 			this.charStats.put(loc3, loc4);
 		}
@@ -180,17 +198,13 @@ public class SavedCharactersList extends Event {
 	private void parseNewsData() {
 		XML loc1 = this.charsXML.getChild("News");
 		for (XML loc2 : loc1.getChilds("Item")) {
-			this.news.add(new SavedNewsItem(loc2.getValue("Icon"),
-					loc2.getValue("Title"),
-					loc2.getValue("TagLine"),
-					loc2.getValue("Link"),
-					loc2.getIntValue("Date")));
+			this.news.add(new SavedNewsItem(loc2.getValue("Icon"), loc2.getValue("Title"), loc2.getValue("TagLine"), loc2.getValue("Link"), loc2.getIntValue("Date")));
 		}
 	}
 
 	private void parseGeoPositioningData() {
 		if (this.charsXML.hasOwnProperty("Lat") && this.charsXML.hasOwnProperty("Long")) {
-			this.myPos = new LatLong(this.charsXML.getFloatValue("Lat"), this.charsXML.getFloatValue("Long"));
+			this.myPos = new LatLong(this.charsXML.getDoubleValue("Lat"), this.charsXML.getDoubleValue("Long"));
 		} else {
 			this.myPos = DEFAULT_LATLONG;
 		}
@@ -208,7 +222,7 @@ public class SavedCharactersList extends Event {
 		}
 	}
 
-	public Boolean isFirstTimeLogin() {
+	public boolean isFirstTimeLogin() {
 		return !this.charsXML.hasOwnProperty("TOSPopup");
 	}
 
@@ -219,7 +233,7 @@ public class SavedCharactersList extends Event {
 
 	public int bestOverallLevel() {
 		int loc1 = 0;
-		for (CharacterStats loc2 : this.charStats.values()) {
+		for (CharacterStats loc2 : this.charStats) {
 			if (loc2.bestLevel() > loc1) {
 				loc1 = loc2.bestLevel();
 			}
@@ -234,7 +248,7 @@ public class SavedCharactersList extends Event {
 
 	public int bestOverallFame() {
 		int loc1 = 0;
-		for (CharacterStats loc2 : this.charStats.values()) {
+		for (CharacterStats loc2 : this.charStats) {
 			if (loc2.bestFame() > loc1) {
 				loc1 = loc2.bestFame();
 			}
@@ -242,12 +256,12 @@ public class SavedCharactersList extends Event {
 		return loc1;
 	}
 
-	public Boolean levelRequirementsMet(int param1) {
+	public boolean levelRequirementsMet(int param1) {
 		int loc4 = 0;
 		XML loc2 = ObjectLibrary.xmlLibrary.get(param1);
 		for (XML loc3 : loc2.getChilds("UnlockLevel")) {
 			loc4 = ObjectLibrary.idToType.get(loc3.toString());
-			if (this.bestLevel(loc4) < loc3.getIntAttribute("level")) {
+			if (this.bestLevel(loc4) < loc3.getIntValue("level")) {
 				return false;
 			}
 		}
@@ -258,20 +272,25 @@ public class SavedCharactersList extends Event {
 		return this.maxNumChars - this.numChars;
 	}
 
-	public Boolean hasAvailableCharSlot() {
+	public boolean hasAvailableCharSlot() {
 		return this.numChars < this.maxNumChars;
 	}
 
-	public List newUnlocks(int param1, int param2) {
+	public Vector newUnlocks(int param1, int param2) {
+		XML loc5 = null;
+		int loc6 = 0;
+		boolean loc7 = false;
+		boolean loc8 = false;
 		int loc10 = 0;
 		int loc11 = 0;
-		List loc3 = new ArrayList();
-
-		for (XML loc5 : ObjectLibrary.playerChars) {
-			int loc6 = loc5.getIntAttribute("type");
+		Vector loc3 = new Vector();
+		int loc4 = 0;
+		while (loc4 < ObjectLibrary.playerChars.size()) {
+			loc5 = ObjectLibrary.playerChars.get(loc4);
+			loc6 = loc5.getIntAttribute("type");
 			if (!this.levelRequirementsMet(loc6)) {
-				boolean loc7 = true;
-				boolean loc8 = false;
+				loc7 = true;
+				loc8 = false;
 				for (XML loc9 : loc5.getChilds("UnlockLevel")) {
 					loc10 = ObjectLibrary.idToType.get(loc9.toString());
 					loc11 = loc9.getIntAttribute("level");
@@ -287,33 +306,32 @@ public class SavedCharactersList extends Event {
 					loc3.add(loc6);
 				}
 			}
+			loc4++;
 		}
 		return loc3;
 	}
 
-	@Override
 	public Event clone() {
 		return new SavedCharactersList(this.origData);
 	}
 
-	@Override
 	public String toString() {
 		return "[" + " numChars: " + this.numChars + " maxNumChars: " + this.maxNumChars + " ]";
 	}
 
 	private void reportUnlocked() {
-		var loc1:Injector = StaticInjectorContext.getInjector();
-		if (loc1) {
-			this.account = loc1.getInstance(Account);
-			this.account && this.updateAccount();
-		}
+		this.account = Account.getInstance();
+		this.updateAccount();
 	}
 
 	private void updateAccount() {
+		XML loc3 = null;
+		int loc4 = 0;
 		int loc1 = 0;
 		int loc2 = 0;
-		for (XML loc3 : ObjectLibrary.playerChars) {
-			int loc4 = loc3.getIntAttribute("id");
+		while (loc2 < ObjectLibrary.playerChars.size()) {
+			loc3 = ObjectLibrary.playerChars.get(loc2);
+			loc4 = loc3.getIntAttribute("type");
 			if (this.levelRequirementsMet(loc4)) {
 				this.account.reportIntStat(loc3.getIntAttribute("id") + "Unlocked", 1);
 				loc1++;
@@ -323,6 +341,4 @@ public class SavedCharactersList extends Event {
 		this.account.reportIntStat("ClassesUnlocked", loc1);
 	}
 
-
 }
-**/

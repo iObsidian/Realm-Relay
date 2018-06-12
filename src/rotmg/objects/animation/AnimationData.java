@@ -1,14 +1,20 @@
 package rotmg.objects.animation;
 
-import alde.flash.utils.XML;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import alde.flash.utils.XML;
 
 /**
  * This is a 100% match
  */
 public class AnimationData {
+
+	public double prob = 1.0F;
+	public int period;
+	public int periodJitter;
+	public boolean sync = false;
+	public List<FrameData> frames;
 
 	public AnimationData(XML xml) {
 		this.frames = new ArrayList<>();
@@ -26,16 +32,6 @@ public class AnimationData {
 			this.frames.add(new FrameData(frameXML));
 		}
 	}
-
-	public double prob = 1.0F;
-
-	public int period;
-
-	public int periodJitter;
-
-	public boolean sync = false;
-
-	public List<FrameData> frames;
 
 	private int getPeriod() {
 		if (this.periodJitter == 0) {

@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class NameResult extends IncomingMessage {
 
+	private boolean success;
+	private String errorText;
 	public NameResult(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	private boolean success;
-	private String errorText;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

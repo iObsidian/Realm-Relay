@@ -12,18 +12,12 @@ import rotmg.util.MaskedImage;
 
 public class Pet extends GameObject implements IInteractiveObject {
 
-	private TextPanelMessageUpdateSignal textPanelUpdateSignal;
-
 	public PetVO vo;
-
 	public AnimatedChar skin;
-
 	public AnimatedChar defaultSkin;
-
 	public int skinId;
-
 	public boolean isDefaultAnimatedChar = false;
-
+	private TextPanelMessageUpdateSignal textPanelUpdateSignal;
 	private PetsModel petsModel;
 
 	public Pet(XML param1) {

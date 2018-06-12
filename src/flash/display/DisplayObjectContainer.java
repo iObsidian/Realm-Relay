@@ -6,6 +6,11 @@ import flash.text.TextSnapshot;
 
 public class DisplayObjectContainer extends InteractiveObject {
 
+	public int numChildren;
+	public TextSnapshot textSnapshot;
+	public Boolean tabChildren;
+	public Boolean mouseChildren;
+
 	public DisplayObject addChild(DisplayObject child) {
 		return null;
 	}
@@ -26,7 +31,6 @@ public class DisplayObjectContainer extends InteractiveObject {
 		return 1;
 	}
 
-
 	public DisplayObject getChildAt(int index) {
 		return null;
 	}
@@ -35,10 +39,6 @@ public class DisplayObjectContainer extends InteractiveObject {
 		return null;
 	}
 
-	public int numChildren;
-
-	public TextSnapshot textSnapshot;
-
 	public Vector getObjectsUnderPoint(Point point) {
 		return null;
 	}
@@ -46,11 +46,6 @@ public class DisplayObjectContainer extends InteractiveObject {
 	public Boolean areInaccessibleObjectsUnderPoint(Point point) {
 		return null;
 	}
-
-	public Boolean tabChildren;
-
-
-	public Boolean mouseChildren;
 
 	public Boolean contains(DisplayObject child) {
 		return null;

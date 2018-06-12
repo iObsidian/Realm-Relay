@@ -4,6 +4,30 @@ import alde.flash.utils.XML;
 
 public class EffectProperties {
 
+	public String id;
+	public String particle;
+	public double cooldown;
+	public int color;
+	public int color2;
+	public double rate;
+	public double speed;
+	public double speedVariance;
+	public double spread;
+	public double life;
+	public double lifeVariance;
+	public int size;
+	public double friction;
+	public double rise;
+	public double riseVariance;
+	public double riseAcc;
+	public int rangeX;
+	public int rangeY;
+	public double zOffset;
+	public double minRadius;
+	public double maxRadius;
+	public int amount;
+	public String bitmapFile;
+	public int bitmapIndex;
 	public EffectProperties(XML xml) {
 		this.id = xml.toString();
 		this.particle = xml.getAttribute("particle");
@@ -30,30 +54,5 @@ public class EffectProperties {
 		this.bitmapFile = xml.getAttribute("bitmapFile");
 		this.bitmapIndex = xml.getIntAttribute("bitmapIndex");
 	}
-
-	public String id;
-	public String particle;
-	public double cooldown;
-	public int color;
-	public int color2;
-	public double rate;
-	public double speed;
-	public double speedVariance;
-	public double spread;
-	public double life;
-	public double lifeVariance;
-	public int size;
-	public double friction;
-	public double rise;
-	public double riseVariance;
-	public double riseAcc;
-	public int rangeX;
-	public int rangeY;
-	public double zOffset;
-	public double minRadius;
-	public double maxRadius;
-	public int amount;
-	public String bitmapFile;
-	public int bitmapIndex;
 
 }

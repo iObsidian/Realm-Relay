@@ -3,12 +3,20 @@ package rotmg.classes.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.osflash.signals.Signal;
+
 /**
  * The Class selection model for the UI (create new character)
  */
 public class ClassesModel {
 
+	public static final int WIZARD_ID = 782;
 	private static ClassesModel instance;
+	public final Signal<CharacterClass> selected = new Signal<>();
+	private ArrayList<CharacterClass> classes = new ArrayList<>();
+	private int count = 0;
+	private CharacterClass selectedChar;
+	private HashMap<Integer, CharacterClass> map;
 
 	public static ClassesModel getInstance() {
 		if (instance == null) {
@@ -17,17 +25,6 @@ public class ClassesModel {
 
 		return instance;
 	}
-
-	public static final int WIZARD_ID = 782;
-
-	public final Signal<CharacterClass> selected = new Signal<>();
-
-	private ArrayList<CharacterClass> classes = new ArrayList<>();
-
-	private int count = 0;
-	private CharacterClass selectedChar;
-
-	private HashMap<Integer, CharacterClass> map;
 
 	public int getCount() {
 		return this.count;

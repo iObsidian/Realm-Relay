@@ -1,11 +1,11 @@
 package rotmg.map;
 
+import java.util.List;
+
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.objects.TextureData;
 import rotmg.objects.TextureDataConcrete;
-
-import java.util.List;
 
 /**
  * 75% done : requires AnimateProperties
@@ -38,11 +38,6 @@ public class GroundProperties {
 	private TextureData innerCornerTD = null;
 	private List<BitmapData> edges = null;
 	private List<BitmapData> innerCorners = null;
-
-	@Override
-	public String toString() {
-		return "GroundProperties{" + "type=" + type + ", id='" + id + '}';
-	}
 
 	public GroundProperties(XML xml) {
 		this.animate = new AnimateProperties();
@@ -103,5 +98,10 @@ public class GroundProperties {
 				this.topAnimate.parseXML(xml.getChild("TopAnimate"));
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "GroundProperties{" + "type=" + type + ", id='" + id + '}';
 	}
 }

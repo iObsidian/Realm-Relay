@@ -13,6 +13,10 @@ public class Music {
 	private static double volume = 0.3F;
 
 
+	public Music() {
+		super();
+	}
+
 	public static void load() {
 		// load music
 	}
@@ -23,10 +27,6 @@ public class Music {
 
 	public static void setMusicVolume(double param1) {
 		// set volume
-	}
-
-	public Music() {
-		super();
 	}
 
 

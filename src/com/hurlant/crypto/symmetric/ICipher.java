@@ -22,15 +22,6 @@ public class ICipher {
 		this.cipher.init(true, keyParam);
 	}
 
-	/**
-	 * Cipher bytes and update cipher
-	 *
-	 * @param bytes
-	 */
-	public void cipher(byte[] bytes) {
-		this.cipher.processBytes(bytes, 0, bytes.length, bytes, 0);
-	}
-
 	private static byte[] hexStringToBytes(String key) {
 		if (key.length() % 2 != 0) {
 			throw new IllegalArgumentException("invalid hex string");
@@ -43,6 +34,15 @@ public class ICipher {
 			bytes[(i / 2)] = (byte) j;
 		}
 		return bytes;
+	}
+
+	/**
+	 * Cipher bytes and update cipher
+	 *
+	 * @param bytes
+	 */
+	public void cipher(byte[] bytes) {
+		this.cipher.processBytes(bytes, 0, bytes.length, bytes, 0);
 	}
 
 }

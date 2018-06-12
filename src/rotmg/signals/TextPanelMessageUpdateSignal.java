@@ -1,7 +1,5 @@
 package rotmg.signals;
 
-import org.osflash.signals.Signal;
-
 public class TextPanelMessageUpdateSignal extends Signal<String> {
 
 	private static TextPanelMessageUpdateSignal instance;

@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class InvitedToGuild extends IncomingMessage {
 
+	public String name;
+	public String guildName;
 	public InvitedToGuild(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public String name;
-	public String guildName;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

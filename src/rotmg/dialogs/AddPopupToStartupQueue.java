@@ -1,7 +1,5 @@
 package rotmg.dialogs;
 
-import org.osflash.signals.Signal;
-
 public class AddPopupToStartupQueue {
 
 	public String a;

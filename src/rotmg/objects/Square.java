@@ -3,6 +3,8 @@ package rotmg.objects;
 //import com.company.assembleegameclient.objects.GameObject;
 //import com.company.assembleegameclient.util.TileRedrawer;
 
+import java.util.List;
+
 //import flash.display.BitmapData;
 //import flash.display.IGraphicsData;
 //import flash.geom.Vector3D;
@@ -12,10 +14,13 @@ import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import flash.geom.Vector3D;
 import rotmg.engine3d.TextureMatrix;
-import rotmg.map.*;
+import rotmg.map.AnimateProperties;
+import rotmg.map.Camera;
+import rotmg.map.GroundLibrary;
+import rotmg.map.GroundProperties;
+import rotmg.map.Map;
+import rotmg.map.SquareFace;
 import rotmg.util.TileRedrawer;
-
-import java.util.List;
 
 public class Square {
 
@@ -65,7 +70,7 @@ public class Square {
 	}
 
 	// To be implemented
-	private int hash(int param1, int param2) {
+	private int hash(double x2, double y2) {
 		return 0;
 	}
 

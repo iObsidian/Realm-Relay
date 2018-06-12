@@ -7,13 +7,12 @@ import java.util.function.Consumer;
 
 public class Notification extends IncomingMessage {
 
-	public Notification(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	public int objectId;
 	public String message;
 	public int color;
+	public Notification(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

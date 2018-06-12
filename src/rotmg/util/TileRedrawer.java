@@ -41,32 +41,19 @@ public class TileRedrawer {
 	private static final int INNERP2 = 5;
 
 	private static final Vector<Vector<ImageSet>> mlist = getMasks();
-
-	private static Vector<Dictionary<Vector<Integer>, BitmapData>> cache = new Vector<>();
-
 	private static final Rectangle RECT01 = new Rectangle(0, 0, 8, 4);
-
 	private static final Rectangle RECT13 = new Rectangle(4, 0, 4, 8);
-
 	private static final Rectangle RECT23 = new Rectangle(0, 4, 8, 4);
-
 	private static final Rectangle RECT02 = new Rectangle(0, 0, 4, 8);
-
 	private static final Rectangle RECT0 = new Rectangle(0, 0, 4, 4);
-
 	private static final Rectangle RECT1 = new Rectangle(4, 0, 4, 4);
-
 	private static final Rectangle RECT2 = new Rectangle(0, 4, 4, 4);
-
 	private static final Rectangle RECT3 = new Rectangle(4, 4, 4, 4);
-
 	private static final Point POINT0 = new Point(0, 0);
-
 	private static final Point POINT1 = new Point(4, 0);
-
 	private static final Point POINT2 = new Point(0, 4);
-
 	private static final Point POINT3 = new Point(4, 4);
+	private static Vector<Dictionary<Vector<Integer>, BitmapData>> cache = new Vector<>();
 
 
 	public TileRedrawer() {

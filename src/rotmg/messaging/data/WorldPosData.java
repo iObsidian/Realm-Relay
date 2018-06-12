@@ -1,10 +1,10 @@
 package rotmg.messaging.data;
 
-import alde.flash.utils.IData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+
+import alde.flash.utils.IData;
 
 /**
  * Formelly known as 'Location' in RealmRelay 1.0

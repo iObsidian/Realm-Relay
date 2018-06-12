@@ -1,7 +1,5 @@
 package rotmg.ui.view;
 
-import org.osflash.signals.Signal;
-
 public class NotEnoughGoldDialog /*extends Dialog*/ {
 
 	private static String TRACKING_TAG = "/notEnoughGold";

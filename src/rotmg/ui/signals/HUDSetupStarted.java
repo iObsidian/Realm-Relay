@@ -1,6 +1,5 @@
 package rotmg.ui.signals;
 
-import org.osflash.signals.Signal;
 import rotmg.GameSprite;
 
 public class HUDSetupStarted extends Signal<GameSprite> {

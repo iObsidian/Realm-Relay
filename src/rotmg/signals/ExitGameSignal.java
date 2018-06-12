@@ -1,7 +1,5 @@
 package rotmg.signals;
 
-import org.osflash.signals.Signal;
-
 public class ExitGameSignal extends Signal {
 
 	private static ExitGameSignal instance;

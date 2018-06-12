@@ -6,12 +6,11 @@ public class Key {
 	public static Key GREEN = new Key(1);
 	public static Key RED = new Key(2);
 	public static Key YELLOW = new Key(3);
+	public int position;
 
 	public Key(int param1) {
 		super();
 		this.position = param1;
 	}
-
-	public int position;
 
 }

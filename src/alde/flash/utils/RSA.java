@@ -1,9 +1,5 @@
 package alde.flash.utils;
 
-import rotmg.parameters.Parameters;
-
-import javax.crypto.Cipher;
-import javax.xml.bind.DatatypeConverter;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.security.KeyFactory;
@@ -11,6 +7,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
+
+import javax.crypto.Cipher;
+import javax.xml.bind.DatatypeConverter;
+
+import rotmg.parameters.Parameters;
 
 /**
  * Also known as SCry

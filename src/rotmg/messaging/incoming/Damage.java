@@ -7,10 +7,6 @@ import java.util.function.Consumer;
 
 public class Damage extends IncomingMessage {
 
-	public Damage(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	public int targetId;
 	public int[] effects = new int[0];
 	public int damageAmount;
@@ -18,6 +14,9 @@ public class Damage extends IncomingMessage {
 	public boolean armorPierce;
 	public int bulletId;
 	public int objectId;
+	public Damage(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

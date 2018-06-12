@@ -1,22 +1,22 @@
 package rotmg.map;
 
+import java.util.HashMap;
+
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.objects.TextureData;
 import rotmg.objects.TextureDataConcrete;
 import rotmg.util.BitmapUtil;
 
-import java.util.HashMap;
-
 public class GroundLibrary {
 
 	public static final HashMap<Integer, GroundProperties> propsLibrary = new HashMap<>();
 	public static final HashMap<Integer, XML> xmlLibrary = new HashMap<>(); //ObjectType, XML
-	private static HashMap<Integer, Integer> tileTypeColorDict = new HashMap<>();
 	public static final HashMap<Integer, TextureData> typeToTextureData = new HashMap<>();
 	public static HashMap<String, Integer> idToType = new HashMap<>(); //id, TextureData
 	public static GroundProperties defaultProps;
 	public static String GROUND_CATEGORY = "Ground";
+	private static HashMap<Integer, Integer> tileTypeColorDict = new HashMap<>();
 
 	public static void parseFromXML(XML xml) {
 

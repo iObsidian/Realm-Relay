@@ -7,10 +7,6 @@ import java.util.function.Consumer;
 
 public class Text extends IncomingMessage {
 
-	public Text(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	public String name;
 	public int objectId;
 	public int numStars;
@@ -18,6 +14,9 @@ public class Text extends IncomingMessage {
 	public String recipient;
 	public String text;
 	public String cleanText;
+	public Text(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -16,13 +16,11 @@ public class BuyResult extends IncomingMessage {
 	public static final int TOO_LOW_RANK_BRID = 5;
 	public static final int NOT_ENOUGH_FAME_BRID = 6;
 	public static final int PET_FEED_SUCCESS_BRID = 7;
-
+	public int result;
+	public String resultString;
 	public BuyResult(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public int result;
-	public String resultString;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

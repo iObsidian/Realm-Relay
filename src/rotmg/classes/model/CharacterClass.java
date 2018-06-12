@@ -3,17 +3,14 @@ package rotmg.classes.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.osflash.signals.Signal;
+
 public class CharacterClass {
 
 	public final Signal<CharacterClass> selected = new Signal<>();
 
 	public final List<CharacterClassUnlock> unlocks = new ArrayList<CharacterClassUnlock>(0);
 	public final CharacterSkins skins = new CharacterSkins();
-
-	public CharacterClass() {
-		super();
-	}
-
 	public int id;
 	public String name;
 	public String description;
@@ -33,6 +30,9 @@ public class CharacterClass {
 	public int unlockCost;
 	private int maxLevelAchieved;
 	private boolean isSelected;
+	public CharacterClass() {
+		super();
+	}
 
 	public boolean getIsSelected() {
 		return this.isSelected;

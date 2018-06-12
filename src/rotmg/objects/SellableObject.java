@@ -5,18 +5,15 @@ import alde.flash.utils.XML;
 public class SellableObject extends GameObject {
 
 
+	public int price = 0;
+	public int currency = -1;
+	public int rankReq = 0;
+	public int guildRankReq = -1;
+
 	public SellableObject(XML objectXML) {
 		super(objectXML);
 		isInteractive = true;
 	}
-
-	public int price = 0;
-
-	public int currency = -1;
-
-	public int rankReq = 0;
-
-	public int guildRankReq = -1;
 
 	public void setPrice(int price) {
 		this.price = price;

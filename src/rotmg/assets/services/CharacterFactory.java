@@ -13,22 +13,19 @@ import rotmg.util.redrawers.GlowRedrawer;
 public class CharacterFactory {
 
 	public static CharacterFactory instance;
+	private int texture1;
+	private int texture2;
+	private int size;
+
+	public CharacterFactory() {
+		super();
+	}
 
 	public static CharacterFactory getInstance() {
 		if (instance == null) {
 			instance = new CharacterFactory();
 		}
 		return instance;
-	}
-
-	private int texture1;
-
-	private int texture2;
-
-	private int size;
-
-	public CharacterFactory() {
-		super();
 	}
 
 	public AnimatedChar makeCharacter(CharacterTemplate param1) {
@@ -39,7 +36,11 @@ public class CharacterFactory {
 	 * Utility method for optional params
 	 */
 	public BitmapData makeIcon(CharacterTemplate characterTemplate) {
-		return this.makeIcon(characterTemplate, 100, 0, 0, false);
+		return this.makeIcon(characterTemplate, 100, 0, 0);
+	}
+
+	public BitmapData makeIcon(CharacterTemplate param1, int param2, int param3, int param4) {
+		return this.makeIcon(param1, param2, param3, param4, false);
 	}
 
 	public BitmapData makeIcon(CharacterTemplate param1, int param2, int param3, int param4, boolean param5) {
@@ -72,7 +73,6 @@ public class CharacterFactory {
 		Animation loc8 = new Animation();
 		loc8.setFrames(loc6, loc7);
 
-		
 
 		return loc8;
 	}

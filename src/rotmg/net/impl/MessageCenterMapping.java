@@ -1,19 +1,17 @@
 package rotmg.net.impl;
 
+import java.util.function.Consumer;
+
 import alde.flash.utils.MessageConsumer;
 import rotmg.net.api.MessageMapping;
-
-import java.util.function.Consumer;
 
 /**
  * Map between CLASS and TYPE
  */
 public class MessageCenterMapping implements MessageMapping {
 
-	private int id;
-
 	Class messageType;
-
+	private int id;
 	private int population = 1;
 
 	private MessageConsumer messageConsumer;

@@ -1,9 +1,18 @@
 package rotmg;
 
+import static java.lang.Float.NaN;
+
+import flash.display.DisplayObject;
 import flash.events.Event;
-import org.osflash.signals.Signal;
+import flash.filters.ColorMatrixFilter;
 import rotmg.core.model.MapModel;
 import rotmg.core.model.PlayerModel;
+import rotmg.core.service.GoogleAnalytics;
+import rotmg.dailyLogin.signal.ShowDailyCalendarPopupSignal;
+import rotmg.dialogs.AddPopupToStartupQueueSignal;
+import rotmg.dialogs.FlushPopupStartupQueueSignal;
+import rotmg.dialogs.OpenDialogSignal;
+import rotmg.dialogs.model.DialogsModel;
 import rotmg.map.Map;
 import rotmg.maploading.signals.HideMapLoadingSignal;
 import rotmg.maploading.signals.MapLoadedSignal;
@@ -12,27 +21,67 @@ import rotmg.messaging.incoming.MapInfo;
 import rotmg.net.Server;
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;
+import rotmg.packages.services.PackageModel;
 import rotmg.promotions.model.BeginnersPackageModel;
+import rotmg.promotions.signals.ShowBeginnersPackageSignal;
 import rotmg.stage3d.Renderer;
 import rotmg.ui.GuildText;
-
-import static java.lang.Float.NaN;
+import rotmg.util.MoreColorUtil;
 
 
 public class GameSprite extends AGameSprite {
+
+	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
+
+	public final Signal monitor = new Signal<String, Integer>();
 
 	public final Signal modelInitialized = new Signal();
 
 	public final Signal drawCharacterWindow = new Signal<Player>();
 
+	//public  Chat chatBox;
 
 	public boolean isNexus = false;
 
+	/*public  IdleWatcher idleWatcher;
+
+	public  RankText rankText;*/
+
 	public GuildText guildText;
+
+	/*public  ShopDisplay shopDisplay;
+
+	public  CreditDisplay creditDisplay;
+
+	public  GiftStatusDisplay giftStatusDisplay;
+
+	public  NewsModalButton newsModalButton;
+
+	public  NewsTicker newsTicker;
+
+	public  ArenaTimer arenaTimer;
+
+	public  ArenaWaveCounter arenaWaveCounter;*/
 
 	public MapModel mapModel;
 
 	public BeginnersPackageModel beginnersPackageModel;
+
+	public DialogsModel dialogsModel;
+
+	public ShowBeginnersPackageSignal showBeginnersPackage;
+
+	public ShowDailyCalendarPopupSignal openDailyCalendarPopupSignal;
+
+	public OpenDialogSignal openDialog;
+
+	public Signal showPackage;
+
+	public PackageModel packageModel;
+
+	public AddPopupToStartupQueueSignal addToQueueSignal;
+
+	public FlushPopupStartupQueueSignal flushQueueSignal;
 
 	private GameObject focus;
 
@@ -44,9 +93,13 @@ public class GameSprite extends AGameSprite {
 
 	private int displaysPosY = 4;
 
+	private DisplayObject currentPackage;
+
 	private double packageY;
 
-	//public PlayerMenu chatPlayerMenu;
+	/*public  PlayerMenu chatPlayerMenu;*/
+
+	private GoogleAnalytics googleAnalytics;
 
 	public GameSprite(Server param1, int param2, boolean param3, int param4, int param5, byte[] param6, PlayerModel param7, byte[] param8, boolean param9) {
 		this.model = param7;
@@ -85,7 +138,7 @@ public class GameSprite extends AGameSprite {
 	}
 
 	private void showSafeAreaDisplays() {
-		/**this.showRankText();
+		/*this.showRankText();
 		 this.showGuildText();
 		 this.showShopDisplay();
 		 this.showGiftStatusDisplay();
@@ -143,7 +196,6 @@ public class GameSprite extends AGameSprite {
 		this.lastUpdate = time;
 		int delta = getTimer() - time;
 	}
-
 
 	public void showPetToolTip(boolean param1) {
 	}

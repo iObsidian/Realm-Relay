@@ -25,13 +25,13 @@ public class FontInfo {
 		super();
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
 	public void setName(String param1) {
 		this.name = param1;
 		this.computeRatiosByRendering();
-	}
-
-	public String getName() {
-		return this.name;
 	}
 
 	public double getXHeight(double param1) {

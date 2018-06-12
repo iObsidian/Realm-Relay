@@ -1,12 +1,12 @@
 package rotmg.map;
 
+import java.util.List;
+
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import rotmg.engine3d.Face3D;
 import rotmg.objects.Square;
-
-import java.util.List;
 
 public class SquareFace {
 

@@ -12,33 +12,20 @@ import rotmg.parameters.Parameters;
 
 public class GraphicsFillExtra {
 
-	private static Dictionary<GraphicsBitmapFill, Vector<Double>> textureOffsets = new Dictionary<>();
-
-	private static int textureOffsetsSize = 0;
-
-	private static Dictionary<GraphicsBitmapFill, Double> waterSinks = new Dictionary<>();
-
-	private static int waterSinksSize = 0;
-
-	private static Dictionary<BitmapData, ColorTransform> colorTransforms = new Dictionary<>();
-
-	private static int colorTransformsSize = 0;
-
-	private static Dictionary<GraphicsBitmapFill, VertexBuffer3D> vertexBuffers = new Dictionary<>();
-
-	private static int vertexBuffersSize = 0;
-
-	private static Dictionary<GraphicsBitmapFill, Boolean> softwareDraw = new Dictionary<>();
-
-	private static int softwareDrawSize = 0;
-
-	private static Dictionary<GraphicsSolidFill, Boolean> softwareDrawSolid = new Dictionary<>();
-
-	private static int softwareDrawSolidSize = 0;
-
-	private static int lastChecked = 0;
-
 	private static final Vector<Double> DEFAULT_OFFSET = new Vector<Double>(0.0, 0.0, 0.0, 0.0);
+	private static Dictionary<GraphicsBitmapFill, Vector<Double>> textureOffsets = new Dictionary<>();
+	private static int textureOffsetsSize = 0;
+	private static Dictionary<GraphicsBitmapFill, Double> waterSinks = new Dictionary<>();
+	private static int waterSinksSize = 0;
+	private static Dictionary<BitmapData, ColorTransform> colorTransforms = new Dictionary<>();
+	private static int colorTransformsSize = 0;
+	private static Dictionary<GraphicsBitmapFill, VertexBuffer3D> vertexBuffers = new Dictionary<>();
+	private static int vertexBuffersSize = 0;
+	private static Dictionary<GraphicsBitmapFill, Boolean> softwareDraw = new Dictionary<>();
+	private static int softwareDrawSize = 0;
+	private static Dictionary<GraphicsSolidFill, Boolean> softwareDrawSolid = new Dictionary<>();
+	private static int softwareDrawSolidSize = 0;
+	private static int lastChecked = 0;
 
 	public GraphicsFillExtra() {
 		super();

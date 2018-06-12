@@ -1,26 +1,24 @@
 package rotmg.messaging.data;
 
-import alde.flash.utils.IData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+import alde.flash.utils.IData;
+
 public class MoveRecord implements IData {
 
+	public int time;
+	public double x;
+	public double y;
 	public MoveRecord() {
 	}
-
 	public MoveRecord(int time, double x, double y) {
 		super();
 		this.time = time;
 		this.x = x;
 		this.y = y;
 	}
-
-	public int time;
-	public double x;
-	public double y;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

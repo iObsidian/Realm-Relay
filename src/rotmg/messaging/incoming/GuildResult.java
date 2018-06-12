@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class GuildResult extends IncomingMessage {
 
+	public boolean success;
+	public String lineBuilderJSON;
 	public GuildResult(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public boolean success;
-	public String lineBuilderJSON;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

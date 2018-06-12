@@ -7,13 +7,12 @@ import java.util.function.Consumer;
 
 public class KeyInfoResponse extends IncomingMessage {
 
-	public KeyInfoResponse(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	public String name;
 	public String description;
 	public String creator;
+	public KeyInfoResponse(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

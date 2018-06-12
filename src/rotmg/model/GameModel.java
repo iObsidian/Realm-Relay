@@ -1,13 +1,19 @@
 package rotmg.model;
 
+import java.util.HashMap;
+
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;
-
-import java.util.HashMap;
 
 public class GameModel {
 
 	public static GameModel instance;
+	public Player player;
+	public HashMap<Integer, GameObject> gameObjects;
+
+	public GameModel() {
+		super();
+	}
 
 	public static GameModel getInstance() {
 		if (instance == null) {
@@ -15,14 +21,6 @@ public class GameModel {
 		}
 
 		return instance;
-	}
-
-	public Player player;
-
-	public HashMap<Integer, GameObject> gameObjects;
-
-	public GameModel() {
-		super();
 	}
 
 	public GameObject getGameObject(int param1) {

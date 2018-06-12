@@ -1,7 +1,6 @@
 package flash.display;
 
 import alde.flash.utils.Vector;
-import com.sun.prism.ps.Shader;
 import flash.accessibility.AccessibilityProperties;
 import flash.events.EventDispatcher;
 import flash.geom.Matrix;
@@ -67,7 +66,9 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 	public Transform transform;
 
 	public Rectangle scale9Grid;
-
+	public LoaderInfo LoaderInfo;
+	public AccessibilityProperties AccessibilityProperties;
+	public Matrix CacheAsBitmapMatrix;
 
 	public Point globalToLocal(Point point) {
 		return null;
@@ -85,8 +86,6 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 		return null;
 	}
 
-	public LoaderInfo LoaderInfo;
-
 	public Boolean hitTestObject(DisplayObject obj) {
 		return null;
 	}
@@ -97,8 +96,6 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 	private Boolean _hitTest(Boolean use_xy, double x, double y, Boolean useShape, DisplayObject hitTestObject) {
 		return null;
 	}
-
-	public AccessibilityProperties AccessibilityProperties;
 
 	public void setAccessibilityProperties(AccessibilityProperties value) {
 		return;
@@ -115,8 +112,6 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 	public void setBlendShader(Shader value) {
 		return;
 	}
-
-	public Matrix CacheAsBitmapMatrix;
 
 	public void setCacheAsBitmapMatrix(Matrix value) {
 		return;

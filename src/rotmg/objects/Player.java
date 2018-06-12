@@ -1,10 +1,11 @@
 package rotmg.objects;
 
+import java.util.List;
+
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.Point;
-import org.osflash.signals.Signal;
 import rotmg.assets.services.CharacterFactory;
 import rotmg.constants.GeneralConstants;
 import rotmg.messaging.data.StatData;
@@ -15,28 +16,10 @@ import rotmg.signals.AddTextLineSignal;
 import rotmg.util.ConversionUtil;
 import rotmg.util.IntPoint;
 
-import java.util.List;
-
 public class Player extends Character {
 
 	public static final int MS_BETWEEN_TELEPORT = 10000;
 	public static final int MS_REALM_TELEPORT = 120000;
-
-	private static final double MOVE_THRESHOLD = 0.4;
-	private static final Point[] NEARBY = new Point[]{new Point(0, 0), new Point(1, 0), new Point(0, 1),
-			new Point(1, 1)};
-	private static final int[] RANK_OFFSET_MATRIX = new int[]{1, 0, 0, 1, 2, 2};
-	private static final int[] NAME_OFFSET_MATRIX = new int[]{1, 0, 0, 1, 20, 1};
-	private static final double MIN_MOVE_SPEED = 0.004;
-	private static final double MAX_MOVE_SPEED = 0.0096;
-	private static final double MIN_ATTACK_FREQ = 0.0015;
-	private static final double MAX_ATTACK_FREQ = 0.008;
-	private static final double MIN_ATTACK_MULT = 0.5;
-	private static final double MAX_ATTACK_MULT = 2;
-	public static boolean isAdmin = false;
-	public static boolean isMod = false;
-	private static Point newP = new Point();
-
 	public static final int SEARCH_LOOT_FREQ = 20;
 	public static final double MAX_LOOT_DIST = 1;
 	public static final int VAULT_CHEST = 1284;
@@ -50,6 +33,19 @@ public class Player extends Character {
 	public static final int WEAP_ARMOR_MIN_TIER = 10;
 	public static final int HEALTH_SLOT = 254;
 	public static final int MAGIC_SLOT = 255;
+	private static final double MOVE_THRESHOLD = 0.4;
+	private static final Point[] NEARBY = new Point[]{new Point(0, 0), new Point(1, 0), new Point(0, 1),
+			new Point(1, 1)};
+	private static final int[] RANK_OFFSET_MATRIX = new int[]{1, 0, 0, 1, 2, 2};
+	private static final int[] NAME_OFFSET_MATRIX = new int[]{1, 0, 0, 1, 20, 1};
+	private static final double MIN_MOVE_SPEED = 0.004;
+	private static final double MAX_MOVE_SPEED = 0.0096;
+	private static final double MIN_ATTACK_FREQ = 0.0015;
+	private static final double MAX_ATTACK_FREQ = 0.008;
+	private static final double MIN_ATTACK_MULT = 0.5;
+	private static final double MAX_ATTACK_MULT = 2;
+	public static boolean isAdmin = false;
+	public static boolean isMod = false;
 	public static List<Integer> wantedList = null;
 	public static int lastSearchTime;
 	public static int lastLootTime;
@@ -59,14 +55,13 @@ public class Player extends Character {
 	public static boolean enableAutoLoot = true;
 	public static boolean enableTeleportLoot = false;
 	public static boolean enableSafeLoot = true;
-
+	private static Point newP = new Point();
 	public int xpTimer;
 	public int skinId;
 	public AnimatedChar skin;
 	public boolean isShooting;
 	public Signal creditsWereChanged;
 	public Signal fameWasChanged;
-	private BitmapData famePortrait = null;
 	public int lastSwap = -1;
 	public String accountId = "";
 	public int credits = 0;
@@ -121,16 +116,35 @@ public class Player extends Character {
 	public boolean isDefaultAnimatedChar = true;
 	public String projectileIdSetOverrideNew = "";
 	public String projectileIdSetOverrideOld = "";
+	public Merchant nearestMerchant = null;
 	protected double rotate = 0;
 	protected Point relMoveVec = null;
 	protected double moveMultiplier = 1;
 
 	protected HealingEffect healingEffect = null;
-	public Merchant nearestMerchant = null;
+	private BitmapData famePortrait = null;
 	private AddTextLineSignal addTextLine;
 	private CharacterFactory factory;
 
 	private IntPoint ip;
+
+	public Player(XML param1) {
+		super(param1);
+		this.creditsWereChanged = new Signal();
+		this.fameWasChanged = new Signal();
+		this.ip = new IntPoint();
+		this.addTextLine = AddTextLineSignal.getInstance();
+		this.factory = CharacterFactory.getInstance();
+		this.attackMax = param1.getChild("Attack").getIntAttribute("max");
+		this.defenseMax = param1.getChild("Defense").getIntAttribute("max");
+		this.speedMax = param1.getChild("Speed").getIntAttribute("max");
+		this.dexterityMax = param1.getChild("Dexterity").getIntAttribute("max");
+		this.vitalityMax = param1.getChild("HpRegen").getIntAttribute("max");
+		this.wisdomMax = param1.getChild("MpRegen").getIntAttribute("max");
+		this.maxHPMax = param1.getChild("MaxHitPoints").getIntAttribute("max");
+		this.maxMPMax = param1.getChild("MaxMagicPoints").getIntAttribute("max");
+		texturingCache = new Dictionary<>();
+	}
 
 	/**
 	 * private GraphicsSolidFill breathBackFill = null;
@@ -163,24 +177,6 @@ public class Player extends Character {
 		playerXML.tex2Id = objectXML.getIntValue("Tex2");
 		playerXML.hasBackpack = objectXML.getBooleanValue("HasBackpack");
 		return playerXML;
-	}
-
-	public Player(XML param1) {
-		super(param1);
-		this.creditsWereChanged = new Signal();
-		this.fameWasChanged = new Signal();
-		this.ip = new IntPoint();
-		this.addTextLine = AddTextLineSignal.getInstance();
-		this.factory = CharacterFactory.getInstance();
-		this.attackMax = param1.getChild("Attack").getIntAttribute("max");
-		this.defenseMax = param1.getChild("Defense").getIntAttribute("max");
-		this.speedMax = param1.getChild("Speed").getIntAttribute("max");
-		this.dexterityMax = param1.getChild("Dexterity").getIntAttribute("max");
-		this.vitalityMax = param1.getChild("HpRegen").getIntAttribute("max");
-		this.wisdomMax = param1.getChild("MpRegen").getIntAttribute("max");
-		this.maxHPMax = param1.getChild("MaxHitPoints").getIntAttribute("max");
-		this.maxMPMax = param1.getChild("MaxMagicPoints").getIntAttribute("max");
-		texturingCache = new Dictionary<>();
 	}
 
 	public int getFameBonus() {

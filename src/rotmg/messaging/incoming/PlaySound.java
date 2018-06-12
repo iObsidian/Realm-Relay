@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class PlaySound extends IncomingMessage {
 
+	public int ownerId;
+	public int soundId;
 	public PlaySound(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public int ownerId;
-	public int soundId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

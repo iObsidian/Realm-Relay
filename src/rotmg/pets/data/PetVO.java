@@ -1,33 +1,27 @@
 package rotmg.pets.data;
 
 import alde.flash.utils.XML;
+import flash.display.Bitmap;
 import flash.display.BitmapData;
 import rotmg.objects.ObjectLibrary;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.util.AnimatedChars;
 import rotmg.util.MaskedImage;
+import rotmg.util.TextureRedrawer;
+import rotmg.util.redrawers.GlowRedrawer;
 
 public class PetVO {
 
-	private XML staticData;
-
-	private int id;
-
-	private int type;
-
-	private String rarity;
-
-	private String name;
-
-	private int maxAbilityPower;
-
-	public AbilityVO[] abilityList;
-
-	private int skinID;
-
-	private AnimatedChar skin;
-
 	public static Signal updated = new Signal();
+	public AbilityVO[] abilityList;
+	private XML staticData;
+	private int id;
+	private int type;
+	private String rarity;
+	private String name;
+	private int maxAbilityPower;
+	private int skinID;
+	private AnimatedChar skin;
 
 	public PetVO(int param1) {
 		this.abilityList = new AbilityVO[]{new AbilityVO(), new AbilityVO(), new AbilityVO()};
@@ -101,27 +95,21 @@ public class PetVO {
 		return this.staticData.getValue("Family");
 	}
 
-	public void setID(int param1) {
-		this.id = param1;
-	}
-
 	public int getID() {
 		return this.id;
 	}
 
-	public void setType(int param1) {
-		this.type = param1;
-		this.staticData = ObjectLibrary.xmlLibrary.get(this.type);
+	public void setID(int param1) {
+		this.id = param1;
 	}
 
 	public int getType() {
 		return this.type;
 	}
 
-	public void setRarity(int param1) {
-		this.rarity = PetRarityEnum.selectByOrdinal(param1).value;
-		this.unlockAbilitiesBasedOnPetRarity(param1);
-		this.updated.dispatch();
+	public void setType(int param1) {
+		this.type = param1;
+		this.staticData = ObjectLibrary.xmlLibrary.get(this.type);
 	}
 
 	private void unlockAbilitiesBasedOnPetRarity(int param1) {
@@ -134,6 +122,16 @@ public class PetVO {
 		return this.rarity;
 	}
 
+	public void setRarity(int param1) {
+		this.rarity = PetRarityEnum.selectByOrdinal(param1).value;
+		this.unlockAbilitiesBasedOnPetRarity(param1);
+		this.updated.dispatch();
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
 	public void setName(String param1) {
 		this.name = ObjectLibrary.typeToDisplayId.get(this.skinID);
 		if (this.name == null || this.name.equals("")) {
@@ -142,21 +140,12 @@ public class PetVO {
 		this.updated.dispatch(null);
 	}
 
-	public String getName() {
-		return this.name;
-	}
-
-	public void setMaxAbilityPower(int param1) {
-		this.maxAbilityPower = param1;
-		this.updated.dispatch();
-	}
-
 	public int getMaxAbilityPower() {
 		return this.maxAbilityPower;
 	}
 
-	public void setSkin(int param1) {
-		this.skinID = param1;
+	public void setMaxAbilityPower(int param1) {
+		this.maxAbilityPower = param1;
 		this.updated.dispatch();
 	}
 
@@ -174,6 +163,11 @@ public class PetVO {
 		BitmapData loc3 = TextureRedrawer.resize(loc1.image, loc1.mask, loc2, true, 0, 0);
 		loc3 = GlowRedrawer.outlineGlow(loc3, 0);
 		return new Bitmap(loc3);
+	}
+
+	public void setSkin(int param1) {
+		this.skinID = param1;
+		this.updated.dispatch();
 	}
 
 	public MaskedImage getSkinMaskedImage() {

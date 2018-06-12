@@ -1,15 +1,28 @@
 package rotmg.promotions.model;
 
+import flash.utils.Date;
+import rotmg.account.core.Account;
+import rotmg.account.core.model.OfferModel;
+import rotmg.util.Offer;
+import rotmg.util.TimeUtil;
+
 public class BeginnersPackageModel {
 
-	/*private static final int REALM_GOLD_FOR_BEGINNERS_PKG = 2600;
+	private static BeginnersPackageModel instance;
+
+	public static BeginnersPackageModel getInstance() {
+		if (instance == null) {
+			instance = new BeginnersPackageModel();
+		}
+		return instance;
+	}
+
+	private static final int REALM_GOLD_FOR_BEGINNERS_PKG = 2600;
 
 	private static final int ONE_WEEK_IN_SECONDS = 604800;
 
-    [Inject]
 	public Account account;
 
-    [Inject]
 	public OfferModel model;
 
 	public Signal markedAsPurchased;
@@ -19,6 +32,7 @@ public class BeginnersPackageModel {
 	private double beginnersOfferSetTimestamp;
 
 	public BeginnersPackageModel() {
+		super();
 		this.markedAsPurchased = new Signal();
 	}
 
@@ -49,11 +63,10 @@ public class BeginnersPackageModel {
 	}
 
 	public Offer getOffer() {
-		Offer loc1 = null;
-		if (!this.model.offers) {
+		if (this.model.offers == null) {
 			return null;
 		}
-		for (loc1 in this.model.offers.offerList) {
+		for (Offer loc1 : this.model.offers.offerList) {
 			if (loc1.realmGold == REALM_GOLD_FOR_BEGINNERS_PKG) {
 				return loc1;
 			}
@@ -64,7 +77,7 @@ public class BeginnersPackageModel {
 	public void markAsPurchased() {
 		this.setBeginnersOfferSecondsLeft(-1);
 		this.markedAsPurchased.dispatch();
-	}**/
+	}
 
 
 }

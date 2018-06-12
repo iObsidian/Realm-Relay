@@ -1,15 +1,28 @@
 package rotmg.model;
 
-import alde.flash.utils.XML;
-import org.osflash.signals.Signal;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.osflash.signals.Signal;
+
+import alde.flash.utils.XML;
+
 public class PotionInventoryModel {
 
+	public static final int HEALTH_POTION_ID = 2594;
+	public static final int HEALTH_POTION_SLOT = 254;
+	public static final int MAGIC_POTION_ID = 2595;
+	public static final int MAGIC_POTION_SLOT = 255;
 	public static PotionInventoryModel instance;
+	public HashMap<Integer, PotionModel> potionModels;
+	public Signal<Integer> updatePosition;
+
+	public PotionInventoryModel() {
+		super();
+		this.potionModels = new HashMap<>();
+		this.updatePosition = new Signal<Integer>();
+	}
 
 	public static PotionInventoryModel getInstance() {
 		if (instance == null) {
@@ -18,15 +31,6 @@ public class PotionInventoryModel {
 
 		return instance;
 	}
-
-
-	public static final int HEALTH_POTION_ID = 2594;
-
-	public static final int HEALTH_POTION_SLOT = 254;
-
-	public static final int MAGIC_POTION_ID = 2595;
-
-	public static final int MAGIC_POTION_SLOT = 255;
 
 	public static int getPotionSlot(int param1) {
 		switch (param1) {
@@ -38,15 +42,6 @@ public class PotionInventoryModel {
 				return -1;
 		}
 	}
-
-	public PotionInventoryModel() {
-		super();
-		this.potionModels = new HashMap<>();
-		this.updatePosition = new Signal<Integer>();
-	}
-
-	public HashMap<Integer, PotionModel> potionModels;
-	public Signal<Integer> updatePosition;
 
 	public void initializePotionModels(XML xml) {
 		PotionModel potModel = null;

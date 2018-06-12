@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 
 public class ReskinUnlock extends IncomingMessage {
 
+	private int skinID;
+
 	public ReskinUnlock(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	private int skinID;
 
 	public void parseFromInput(DataInput in) throws IOException {
 		this.skinID = in.readInt();

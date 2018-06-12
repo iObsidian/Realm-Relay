@@ -1,7 +1,5 @@
 package rotmg.dialogs;
 
-import org.osflash.signals.Signal;
-
 public class CloseDialogsSignal extends Signal {
 
 	static CloseDialogsSignal instance;

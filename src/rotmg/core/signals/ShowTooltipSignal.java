@@ -1,5 +1,7 @@
 package rotmg.core.signals;
 
+import rotmg.ui.tooltip.ToolTip;
+
 public class ShowTooltipSignal extends Signal<ToolTip> {
 
 	private static ShowTooltipSignal instance;

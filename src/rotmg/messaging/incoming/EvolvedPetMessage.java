@@ -7,13 +7,12 @@ import java.util.function.Consumer;
 
 public class EvolvedPetMessage extends IncomingMessage {
 
-	public EvolvedPetMessage(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	int petID;
 	int initialSkin;
 	int finalSkin;
+	public EvolvedPetMessage(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

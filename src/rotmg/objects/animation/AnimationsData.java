@@ -1,11 +1,13 @@
 package rotmg.objects.animation;
 
-import alde.flash.utils.XML;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import alde.flash.utils.XML;
+
 public class AnimationsData {
+
+	public List<AnimationData> animations;
 
 	public AnimationsData(XML xml) {
 		this.animations = new ArrayList<AnimationData>();
@@ -13,7 +15,5 @@ public class AnimationsData {
 			this.animations.add(new AnimationData(animData));
 		}
 	}
-
-	public List<AnimationData> animations;
 
 }

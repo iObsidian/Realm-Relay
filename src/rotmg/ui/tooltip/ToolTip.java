@@ -1,7 +1,15 @@
 package rotmg.ui.tooltip;
 
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.CapsStyle;
+import flash.display.DisplayObject;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsSolidFill;
+import flash.display.GraphicsStroke;
+import flash.display.IGraphicsData;
+import flash.display.JointStyle;
+import flash.display.LineScaleMode;
+import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import rotmg.ui.view.SignalWaiter;
@@ -10,36 +18,22 @@ import spark.filters.DropShadowFilter;
 
 public class ToolTip extends Sprite {
 
-	private int background;
-
-	private double backgroundAlpha;
-
-	private int outline;
-
-	private double outlineAlpha;
-
-	private boolean _followMouse;
-
-	private boolean forcePositionLeft = false;
-
-	private boolean forcePositionRight = false;
-
-	public int contentWidth;
-
-	public int contentHeight;
-
-	private DisplayObject targetObj;
-
-	private GraphicsSolidFill backgroundFill;
-
-	private GraphicsSolidFill outlineFill;
-
-	private GraphicsStroke lineStyle;
-
-	private GraphicsPath path;
-
-	private Vector<IGraphicsData> graphicsData;
 	protected final SignalWaiter waiter = new SignalWaiter();
+	public int contentWidth;
+	public int contentHeight;
+	private int background;
+	private double backgroundAlpha;
+	private int outline;
+	private double outlineAlpha;
+	private boolean _followMouse;
+	private boolean forcePositionLeft = false;
+	private boolean forcePositionRight = false;
+	private DisplayObject targetObj;
+	private GraphicsSolidFill backgroundFill;
+	private GraphicsSolidFill outlineFill;
+	private GraphicsStroke lineStyle;
+	private GraphicsPath path;
+	private Vector<IGraphicsData> graphicsData;
 
 	public ToolTip(int param1, double param2, int param3, double param4, boolean param5) {
 		super();

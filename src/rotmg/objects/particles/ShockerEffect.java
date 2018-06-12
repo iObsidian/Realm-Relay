@@ -81,7 +81,7 @@ public class ShockerEffect extends ParticleEffect {
 		this.parseBitmapDataFromImageSet();
 	}
 
-	public void onTimer(TimerEvent param1) {
+	public void onTimer() {
 		if (map != null) {
 			this.radians = Math.random() * 360 * (Math.PI / 180);
 			this.start = new Point(this.go.x + Math.sin(this.radians) * this.innerRadius, this.go.y + Math.cos(this.radians) * this.innerRadius);
@@ -90,7 +90,7 @@ public class ShockerEffect extends ParticleEffect {
 		}
 	}
 
-	private void onTimerComplete(TimerEvent param1) {
+	private void onTimerComplete() {
 		this.destroy();
 	}
 

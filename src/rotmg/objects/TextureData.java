@@ -1,10 +1,10 @@
 package rotmg.objects;
 
+import java.util.HashMap;
+
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import rotmg.objects.animation.AnimatedChar;
-
-import java.util.HashMap;
 
 /**
  * This is a 99.9% match.

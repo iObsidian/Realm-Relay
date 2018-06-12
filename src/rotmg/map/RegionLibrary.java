@@ -1,20 +1,17 @@
 package rotmg.map;
 
-import alde.flash.utils.XML;
-
 import java.util.HashMap;
+
+import alde.flash.utils.XML;
 
 /**
  * 100% match
  */
 public class RegionLibrary {
 	public static final HashMap<Integer, XML> xmlLibrary = new HashMap<>();
-
-	public static HashMap<String, Integer> idToType = new HashMap<>();
-
 	public static final int ENTRY_REGION_TYPE = 1;
-
 	public static final int EXIT_REGION_TYPE = 48;
+	public static HashMap<String, Integer> idToType = new HashMap<>();
 
 	public RegionLibrary() {
 		super();

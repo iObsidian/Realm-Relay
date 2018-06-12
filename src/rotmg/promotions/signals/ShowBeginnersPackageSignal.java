@@ -1,6 +1,6 @@
 package rotmg.promotions.signals;
 
-public class ShowBeginnersPackageSignal {
+public class ShowBeginnersPackageSignal extends Signal {
 
 
 }

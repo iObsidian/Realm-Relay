@@ -7,12 +7,6 @@ import java.util.function.Consumer;
 
 public class MapInfo extends IncomingMessage {
 
-	public MapInfo(int id, Consumer callback) {
-		super(id, callback);
-		this.clientXML = new String[0];
-		this.extraXML = new String[0];
-	}
-
 	public int width;
 	public int height;
 	public String name;
@@ -24,6 +18,11 @@ public class MapInfo extends IncomingMessage {
 	public boolean showDisplays;
 	public String[] clientXML;
 	public String[] extraXML;
+	public MapInfo(int id, Consumer callback) {
+		super(id, callback);
+		this.clientXML = new String[0];
+		this.extraXML = new String[0];
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

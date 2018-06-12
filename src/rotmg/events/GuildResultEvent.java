@@ -1,5 +1,7 @@
 package rotmg.events;
 
+import flash.events.Event;
+
 public class GuildResultEvent extends Event {
 
 	public static final String EVENT = "GUILDRESULTEVENT";

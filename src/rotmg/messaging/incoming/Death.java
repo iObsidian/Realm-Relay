@@ -7,16 +7,15 @@ import java.util.function.Consumer;
 
 public class Death extends IncomingMessage {
 
-	public Death(int id, Consumer callback) {
-		super(id, callback);
-	}
-
-	private String accountId;
-	private int charId;
 	public String killedBy;
 	public int zombieId;
 	public int zombieType;
 	public boolean isZombie;
+	private String accountId;
+	private int charId;
+	public Death(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

@@ -7,10 +7,8 @@ import flash.system.Capabilities;
 public class PlatformModel {
 
 	private static PlatformType platform;
-
-	public DisplayObjectContainer root;
-
 	private final String DESKTOP = "Desktop";
+	public DisplayObjectContainer root;
 
 	public PlatformModel() {
 		super();

@@ -1,9 +1,17 @@
 package rotmg.objects;
 
+import static flash.utils.getTimer.getTimer;
+
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.GradientType;
+import flash.display.GraphicsBitmapFill;
+import flash.display.GraphicsGradientFill;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsSolidFill;
+import flash.display.IGraphicsData;
 import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
@@ -32,167 +40,101 @@ import rotmg.text.view.BitmapTextFactory;
 import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.text.view.stringBuilder.StaticStringBuilder;
 import rotmg.text.view.stringBuilder.StringBuilder;
-import rotmg.util.*;
+import rotmg.util.AssetLibrary;
+import rotmg.util.BitmapUtil;
+import rotmg.util.BloodComposition;
+import rotmg.util.CachingColorTransformer;
+import rotmg.util.ConditionEffect;
+import rotmg.util.ConversionUtil;
+import rotmg.util.GraphicsUtil;
+import rotmg.util.MaskedImage;
+import rotmg.util.MoreColorUtil;
+import rotmg.util.TextKey;
+import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
-
-import static flash.utils.getTimer.getTimer;
 
 public class GameObject extends BasicObject {
 
-	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-
-	protected static final ColorMatrixFilter CURSED_FILTER = new ColorMatrixFilter(MoreColorUtil.redFilterMatrix);
-
-	protected static final Matrix IDENTITY_MATRIX = new Matrix();
-
-	private static final double ZERO_LIMIT = 0.00001;
-
-	private static final double NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
-
 	public static final int ATTACK_PERIOD = 300;
-
+	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
+	protected static final ColorMatrixFilter CURSED_FILTER = new ColorMatrixFilter(MoreColorUtil.redFilterMatrix);
+	protected static final Matrix IDENTITY_MATRIX = new Matrix();
+	private static final double ZERO_LIMIT = 0.00001;
+	private static final double NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
 	private static final int DEFAULT_HP_BAR_Y_OFFSET = 6;
 
 
 	public BitmapData nameBitmapData = null;
-
-	private GraphicsBitmapFill nameFill = null;
-
-	private GraphicsPath namePath = null;
-
 	public ShockerEffect shockEffect;
-
-	private boolean isShocked;
-
-	private boolean isShockedTransformSet = false;
-
-	private boolean isCharging;
-
-	private boolean isChargingTransformSet = false;
-
 	public ObjectProperties props;
-
 	public String name;
-
 	public double radius = 0.5;
-
 	public double facing = 0;
-
 	public boolean flying = false;
-
 	public double attackAngle = 0;
-
 	public int attackStart = 0;
-
 	public AnimatedChar animatedChar = null;
-
 	public BitmapData texture = null;
-
 	public BitmapData mask = null;
-
 	public Vector<TextureData> randomTextureData = null;
-
 	public Object3D obj3D = null;
-
 	public Object3DStage3D object3d = null;
-
 	public ParticleEffect effect = null;
-
 	public Animations animations = null;
-
 	public boolean dead = false;
-
 	public int deadCounter = 0;
-
-	protected BitmapData portrait = null;
-
-	protected Dictionary<BitmapData, BitmapData> texturingCache = null;
-
 	public int maxHP = 200;
-
 	public int hp = 200;
-
 	public int size = 100;
-
 	public int level = -1;
-
 	public int defense = 0;
-
 	public Vector<Integer> slotTypes = null;
-
 	public Vector<Integer> equipment = null;
-
 	public Vector<Integer> lockedSlot = null;
-
 	public Vector<Integer> condition;
-
+	public boolean isInteractive = false;
+	public int objectType;
+	public int sinkLevel = 0;
+	public BitmapData hallucinatingTexture = null;
+	public FlashDescription flash = null;
+	public int connectType = -1;
+	protected BitmapData portrait = null;
+	protected Dictionary<BitmapData, BitmapData> texturingCache = null;
 	protected int tex1Id = 0;
 
 	protected int tex2Id = 0;
-
-	public boolean isInteractive = false;
-
-	public int objectType;
-
-	private int nextBulletId = 1;
-
-	private double sizeMult = 1;
-
-	public int sinkLevel = 0;
-
-	public BitmapData hallucinatingTexture = null;
-
-	public FlashDescription flash = null;
-
-	public int connectType = -1;
-
-	private boolean isStunImmune = false;
-
-	private boolean isParalyzeImmune = false;
-
-	private boolean isDazedImmune = false;
-
-	private boolean isStasisImmune = false;
-
-	private boolean ishpScaleSet = false;
-
 	protected int lastTickUpdateTime = 0;
-
 	protected int myLastTickId = -1;
-
 	protected Point posAtTick;
-
 	protected Point tickPosition;
-
 	protected Vector3D moveVec;
-
 	protected GraphicsBitmapFill bitmapFill;
-
 	protected GraphicsPath path;
-
 	protected Vector<Double> vS;
-
 	protected Vector<Double> uvt;
-
 	protected Matrix fillMatrix;
-
-	private GraphicsSolidFill hpbarBackFill = null;
-
-	private GraphicsPath hpbarBackPath = null;
-
-	private GraphicsSolidFill hpbarFill = null;
-
-	private GraphicsPath hpbarPath = null;
-
-	private Vector<BitmapData> icons = null;
-
-	private Vector<GraphicsBitmapFill> iconFills = null;
-
-	private Vector<GraphicsPath> iconPaths = null;
-
 	protected GraphicsGradientFill shadowGradientFill = null;
-
 	protected GraphicsPath shadowPath = null;
+	private GraphicsBitmapFill nameFill = null;
+	private GraphicsPath namePath = null;
+	private boolean isShocked;
+	private boolean isShockedTransformSet = false;
+	private boolean isCharging;
+	private boolean isChargingTransformSet = false;
+	private int nextBulletId = 1;
+	private double sizeMult = 1;
+	private boolean isStunImmune = false;
+	private boolean isParalyzeImmune = false;
+	private boolean isDazedImmune = false;
+	private boolean isStasisImmune = false;
+	private boolean ishpScaleSet = false;
+	private GraphicsSolidFill hpbarBackFill = null;
+	private GraphicsPath hpbarBackPath = null;
+	private GraphicsSolidFill hpbarFill = null;
+	private GraphicsPath hpbarPath = null;
+	private Vector<BitmapData> icons = null;
+	private Vector<GraphicsBitmapFill> iconFills = null;
+	private Vector<GraphicsPath> iconPaths = null;
 
 	public GameObject(XML param1) {
 		super();
@@ -721,11 +663,11 @@ public class GameObject extends BasicObject {
 		this.myLastTickId = param4;
 	}
 
-	public void damage(boolean param1, int param2, int[] param3, boolean param4, Projectile param5) {
+	public void damage(boolean param1, int param2, Vector<Integer> param3, boolean param4, Projectile param5) {
 		damage(param1, param2, param3, param4, param5, false);
 	}
 
-	public void damage(boolean param1, int param2, int[] param3, boolean param4, Projectile param5, boolean param6) {
+	public void damage(boolean param1, int param2, Vector<Integer> param3, boolean param4, Projectile param5, boolean param6) {
 		int loc8 = 0;
 		ConditionEffect loc10 = null;
 		CharacterStatusText loc11 = null;

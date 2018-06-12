@@ -13,17 +13,15 @@ public class CharacterSkinState {
 	public static CharacterSkinState LOCKED = new CharacterSkinState(true, "LOCKED", true);
 
 	public static CharacterSkinState NULL = new CharacterSkinState(true, "NULL", true);
-
+	private boolean isDisabled;
+	private boolean skinStateDeterminedByLevel;
+	private String name;
 	public CharacterSkinState(boolean param1, String param2, boolean param3) {
 		super();
 		this.isDisabled = param1;
 		this.skinStateDeterminedByLevel = param3;
 		this.name = param2;
 	}
-
-	private boolean isDisabled;
-	private boolean skinStateDeterminedByLevel;
-	private String name;
 
 	public boolean isDisabled() {
 		return this.isDisabled;

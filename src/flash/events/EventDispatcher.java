@@ -1,14 +1,22 @@
 package flash.events;
 
-import alde.flash.utils.EventConsumer;
-import flash.airglobal.Graphics;
-
 import java.util.HashMap;
 import java.util.function.Consumer;
+
+import alde.flash.utils.EventConsumer;
+import flash.airglobal.Graphics;
 
 public class EventDispatcher {
 
 	public HashMap<EventConsumer, String> listeners;
+	public boolean visible;
+	public boolean mouseEnabled;
+	public Graphics graphics;
+	int startTime;
+
+	public EventDispatcher() {
+		listeners = new HashMap<>();
+	}
 
 	native void removeEventListener(String type, Consumer listener, Boolean useCapture);
 
@@ -18,20 +26,16 @@ public class EventDispatcher {
 
 	native Boolean willTrigger(String type);
 
-	int startTime;
-	public boolean visible;
-	public boolean mouseEnabled;
-	public Graphics graphics;
-
-	public EventDispatcher() {
-		listeners = new HashMap<>();
-	}
-
 	protected int getTimer() {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-	public void addEventListener(String event, Consumer<? extends Event> listener) {
+
+	public void addEventListener(String event, Runnable listener) {
+		addEventListener(event, new EventConsumer<>(listener), false, 0, false);
+	}
+
+	public void addEventListener(String event, Consumer<Event> listener) {
 		addEventListener(event, new EventConsumer<>(listener), false, 0, false);
 	}
 
@@ -44,7 +48,10 @@ public class EventDispatcher {
 	}
 
 	public void removeEventListener(String event, Consumer<? extends Event> listener) {
-		listeners.remove(listener, event);
+		//listeners.remove(listener, event);
+	}
+	public void removeEventListener(String event, Runnable listener) {
+		//listeners.remove(listener, event);
 	}
 
 

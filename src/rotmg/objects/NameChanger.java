@@ -2,10 +2,10 @@ package rotmg.objects;
 
 import alde.flash.utils.XML;
 import rotmg.GameSprite;
+import rotmg.ui.panels.Panel;
 
 
 public class NameChanger extends GameObject implements IInteractiveObject {
-
 
 	public int rankRequired = 0;
 
@@ -18,7 +18,7 @@ public class NameChanger extends GameObject implements IInteractiveObject {
 		this.rankRequired = param1;
 	}
 
-	public rotmg.game.ui.panels.Panel getPanel(GameSprite param1) {
+	public Panel getPanel(GameSprite param1) {
 		return new NameChangerPanel(param1, this.rankRequired);
 	}
 }

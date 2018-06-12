@@ -1,11 +1,11 @@
 package rotmg.messaging.incoming;
 
-import rotmg.messaging.data.WorldPosData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
+
+import rotmg.messaging.data.WorldPosData;
 
 public class ShowEffect extends IncomingMessage {
 
@@ -30,20 +30,18 @@ public class ShowEffect extends IncomingMessage {
 	public static final int SHOCKEE_EFFECT_TYPE = 18;
 	public static final int RISING_FURY_EFFECT_TYPE = 19;
 	public static final int NOVA_NO_AOE_EFFECT_TYPE = 20;
-
-	public ShowEffect(int id, Consumer callback) {
-		super(id, callback);
-
-		this.pos1 = new WorldPosData();
-		this.pos2 = new WorldPosData();
-	}
-
 	public int effectType;
 	public int targetObjectId;
 	public WorldPosData pos1;
 	public WorldPosData pos2;
 	public int color;
 	public double duration;
+	public ShowEffect(int id, Consumer callback) {
+		super(id, callback);
+
+		this.pos1 = new WorldPosData();
+		this.pos2 = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

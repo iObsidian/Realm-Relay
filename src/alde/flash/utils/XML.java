@@ -1,24 +1,27 @@
 package alde.flash.utils;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import rotmg.objects.animation.AnimationData;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
+import rotmg.objects.animation.AnimationData;
 
 public class XML {
 
 	public Element element;
+	public List<AnimationData> animations;
 
 	public XML(Element el) {
 		this.element = el;
@@ -41,6 +44,14 @@ public class XML {
 			this.element = doc.getDocumentElement();
 		} else {
 			System.err.println("Could not build XML from String '" + data + "'.");
+		}
+	}
+
+	private static int hexToInt(String textContent) {
+		try {
+			return Integer.decode(textContent);
+		} catch (Exception e) {
+			return Integer.parseInt(textContent);
 		}
 	}
 
@@ -173,16 +184,6 @@ public class XML {
 			return defaultValue;
 		}
 	}
-
-	private static int hexToInt(String textContent) {
-		try {
-			return Integer.decode(textContent);
-		} catch (Exception e) {
-			return Integer.parseInt(textContent);
-		}
-	}
-
-	public List<AnimationData> animations;
 
 	public List<XML> getChilds() {
 		List<XML> xmls = new ArrayList<>();

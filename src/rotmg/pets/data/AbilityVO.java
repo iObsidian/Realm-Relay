@@ -8,20 +8,13 @@ import rotmg.objects.ObjectLibrary;
  */
 public class AbilityVO {
 
-	private int type;
-
-	private XML staticData;
-
 	public static Signal updated = new Signal<AbilityVO>();
-
 	public int level;
-
 	public int points;
-
 	public String name;
-
 	public String description;
-
+	private int type;
+	private XML staticData;
 	private boolean unlocked;
 
 	public AbilityVO() {
@@ -36,12 +29,12 @@ public class AbilityVO {
 		this.description = this.staticData.getValue("Description");
 	}
 
-	public void setUnlocked(boolean param1) {
-		this.unlocked = param1;
-	}
-
 	public boolean getUnlocked() {
 		return this.unlocked;
+	}
+
+	public void setUnlocked(boolean param1) {
+		this.unlocked = param1;
 	}
 
 

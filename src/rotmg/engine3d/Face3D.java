@@ -1,14 +1,19 @@
 package rotmg.engine3d;
 
+import java.util.List;
+
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.GraphicsBitmapFill;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsPathCommand;
+import flash.display.GraphicsSolidFill;
+import flash.display.IGraphicsData;
 import flash.geom.Utils3D;
 import flash.geom.Vector3D;
 import rotmg.map.Camera;
 import rotmg.util.GraphicsUtil;
 import rotmg.util.TextureRedrawer;
-
-import java.util.List;
 
 public class Face3D {
 
@@ -27,13 +32,9 @@ public class Face3D {
 	public double shade = 1.0;
 
 	public boolean blackOut = false;
-
-	private boolean needGen = true;
-
-	private TextureMatrix textureMatrix = null;
-
 	public GraphicsBitmapFill bitmapFill;
-
+	private boolean needGen = true;
+	private TextureMatrix textureMatrix = null;
 	private GraphicsPath path;
 
 	public Face3D(BitmapData param1, Vector<Double> param2, Vector<Double> param3) {

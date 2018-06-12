@@ -1,18 +1,13 @@
 package rotmg.messaging.incoming;
 
-import rotmg.messaging.data.WorldPosData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class EnemyShoot extends IncomingMessage {
+import rotmg.messaging.data.WorldPosData;
 
-	public EnemyShoot(int id, Consumer callback) {
-		super(id, callback);
-		startingPos = new WorldPosData();
-	}
+public class EnemyShoot extends IncomingMessage {
 
 	public int bulletId;
 	public int ownerId;
@@ -22,6 +17,10 @@ public class EnemyShoot extends IncomingMessage {
 	public short damage;
 	public int numShots;
 	public double angleInc;
+	public EnemyShoot(int id, Consumer callback) {
+		super(id, callback);
+		startingPos = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

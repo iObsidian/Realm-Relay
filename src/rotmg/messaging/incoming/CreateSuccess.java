@@ -7,12 +7,11 @@ import java.util.function.Consumer;
 
 public class CreateSuccess extends IncomingMessage {
 
+	public int objectId;
+	public int charId;
 	public CreateSuccess(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public int objectId;
-	public int charId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

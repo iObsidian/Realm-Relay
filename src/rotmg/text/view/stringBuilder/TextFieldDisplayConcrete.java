@@ -4,7 +4,6 @@ import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextLineMetrics;
-import org.osflash.signals.Signal;
 import rotmg.language.model.StringMap;
 import rotmg.text.model.FontInfo;
 
@@ -96,18 +95,6 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		return this;
 	}
 
-	public TextFieldDisplayConcrete setSize(int param1) {
-		this.size = param1;
-		this.setPropertiesIfHasTextField();
-		return this;
-	}
-
-	public TextFieldDisplayConcrete setColor(int param1) {
-		this.color = param1;
-		this.setPropertiesIfHasTextField();
-		return this;
-	}
-
 	public TextFieldDisplayConcrete setBold(boolean param1) {
 		this.bold = param1;
 		this.setPropertiesIfHasTextField();
@@ -144,25 +131,19 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		return this;
 	}
 
-	public TextFieldDisplayConcrete setTextHeight(double param1) {
-		this.textHeight = param1;
-		this.setPropertiesIfHasTextField();
-		return this;
-	}
-
 	public TextFieldDisplayConcrete setHTML(boolean param1) {
 		this.html = param1;
 		return this;
+	}
+
+	public StringBuilder getStringBuilder() {
+		return this.stringBuilder;
 	}
 
 	public TextFieldDisplayConcrete setStringBuilder(StringBuilder param1) {
 		this.stringBuilder = param1;
 		this.setTextIfAble();
 		return this;
-	}
-
-	public StringBuilder getStringBuilder() {
-		return this.stringBuilder;
 	}
 
 	public TextFieldDisplayConcrete setPosition(double param1, double param2) {
@@ -188,7 +169,6 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		this.stringMap = param1;
 		this.setTextIfAble();
 	}
-
 
 	public void setTextField(TextField param1) {
 		param1.width = this.textWidth;
@@ -239,7 +219,6 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		this.setTextFormat(loc1);
 	}
 
-
 	private void updateTextOfInjectedTextField(TextField param1) {
 		if (this.textField != null) {
 			param1.text = this.textField.text;
@@ -263,14 +242,6 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		//this.textField.height;
 	}
 
-	public void setText(String param1) {
-		if (this.html) {
-			this.textField.htmlText = param1;
-		} else {
-			this.textField.text = param1;
-		}
-	}
-
 	private void alignVertically() {
 		TextLineMetrics loc1 = null;
 		if (this.verticalAlign.equals(MIDDLE)) {
@@ -283,6 +254,12 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 
 	public double getTextHeight() {
 		return this.textField != null ? this.textField.height : 0;
+	}
+
+	public TextFieldDisplayConcrete setTextHeight(double param1) {
+		this.textHeight = param1;
+		this.setPropertiesIfHasTextField();
+		return this;
 	}
 
 	private void setYToMiddle() {
@@ -299,7 +276,6 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 	private double getSpecificVerticalSpace(TextFormat param1) {
 		return this.font.getVerticalSpace(param1.size);
 	}
-
 
 	public void setTextFormat(TextFormat param1) {
 		setTextFormat(param1, 0, 0);
@@ -322,12 +298,32 @@ public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay
 		return this.textField != null ? this.textField.text : "null";
 	}
 
+	public void setText(String param1) {
+		if (this.html) {
+			this.textField.htmlText = param1;
+		} else {
+			this.textField.text = param1;
+		}
+	}
+
 	public int getColor() {
 		return this.color;
 	}
 
+	public TextFieldDisplayConcrete setColor(int param1) {
+		this.color = param1;
+		this.setPropertiesIfHasTextField();
+		return this;
+	}
+
 	public int getSize() {
 		return this.size;
+	}
+
+	public TextFieldDisplayConcrete setSize(int param1) {
+		this.size = param1;
+		this.setPropertiesIfHasTextField();
+		return this;
 	}
 
 	public boolean hasTextField() {

@@ -10,6 +10,14 @@ public class LatLong {
 	private static final double TO_RADIANS = Math.PI / 180;
 
 	private static final double DISTANCE_SCALAR = 60 * 1.1515 * 1.609344 * 1000;
+	public double latitude;
+	public double longitude;
+
+	public LatLong(double param1, double param2) {
+		super();
+		this.latitude = param1;
+		this.longitude = param2;
+	}
 
 	public static double distance(LatLong param1, LatLong param2) {
 		double theta = TO_RADIANS * (param1.longitude - param2.longitude);
@@ -19,15 +27,6 @@ public class LatLong {
 		dist = TO_DEGREES * Math.acos(dist) * DISTANCE_SCALAR;
 		return dist;
 	}
-
-	public LatLong(double param1, double param2) {
-		super();
-		this.latitude = param1;
-		this.longitude = param2;
-	}
-
-	public double latitude;
-	public double longitude;
 
 	public String toString() {
 		return "(" + this.latitude + ", " + this.longitude + ")";

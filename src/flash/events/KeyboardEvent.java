@@ -5,6 +5,15 @@ public class KeyboardEvent extends Event {
 	static public final String KEY_DOWN = "keyDown";
 
 	static public final String KEY_UP = "keyUp";
+	public final int keyCode;
+	public int m_keyLocation;
+	public int m_keyCode;
+
+	public int charCode;
+	public int keyLocation;
+	public boolean ctrlKey;
+	public boolean altKey;
+	public boolean shiftKey;
 
 	public KeyboardEvent(String name, int m_keyLocation, int m_keyCode, int charCode, int keyCode, int keyLocation, boolean ctrlKey, boolean altKey, boolean shiftKey) {
 		super(name);
@@ -17,21 +26,6 @@ public class KeyboardEvent extends Event {
 		this.altKey = altKey;
 		this.shiftKey = shiftKey;
 	}
-
-	public int m_keyLocation;
-	public int m_keyCode;
-
-	public int charCode;
-
-	public final int keyCode;
-
-	public int keyLocation;
-
-	public boolean ctrlKey;
-
-	public boolean altKey;
-
-	public boolean shiftKey;
 
 
 }

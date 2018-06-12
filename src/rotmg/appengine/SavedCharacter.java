@@ -2,6 +2,7 @@ package rotmg.appengine;
 
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
+import flash.geom.ColorTransform;
 import rotmg.assets.services.CharacterFactory;
 import rotmg.classes.model.CharacterClass;
 import rotmg.classes.model.CharacterSkin;
@@ -14,8 +15,10 @@ import rotmg.parameters.Parameters;
 import rotmg.pets.data.PetVO;
 import rotmg.pets.data.PetsModel;
 import rotmg.util.AnimatedChars;
+import rotmg.util.CachingColorTransformer;
 import rotmg.util.MaskedImage;
-import sun.java2d.cmm.ColorTransform;
+import rotmg.util.TextureRedrawer;
+import rotmg.util.redrawers.GlowRedrawer;
 
 public class SavedCharacter {
 
@@ -60,10 +63,10 @@ public class SavedCharacter {
 
 	public static double compare(SavedCharacter param1, SavedCharacter param2) {
 		double loc3 = !!Parameters.data.charIdUseMap.hasOwnProperty(param1.charId())
-				? Number(Parameters.data.charIdUseMap[param1.charId()])
+				? Parameters.data.charIdUseMap.get(param1.charId())
 				: 0F;
 		double loc4 = !!Parameters.data.charIdUseMap.hasOwnProperty(param2.charId())
-				? Number(Parameters.data.charIdUseMap[param2.charId()])
+				? Parameters.data.charIdUseMap.get(param2.charId())
 				: 0F;
 		if (loc3 != loc4) {
 			return loc4 - loc3;
@@ -83,7 +86,7 @@ public class SavedCharacter {
 		int loc3 = 0;
 		while (loc3 < GeneralConstants.NUM_EQUIPMENT_SLOTS) {
 			if (loc1.equipment != null && loc1.equipment.length > loc3) {
-				loc4 = loc1.equipment[loc3];
+				loc4 = loc1.equipment.get(loc3);
 				if (loc4 != -1) {
 					loc5 = ObjectLibrary.xmlLibrary.get(loc4);
 					if (loc5 != null && loc5.hasOwnProperty("FameBonus")) {

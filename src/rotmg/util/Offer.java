@@ -4,7 +4,7 @@ public class Offer {
 
 	public String id;
 
-	public Number price;
+	public int price;
 
 	public int realmGold;
 
@@ -18,7 +18,7 @@ public class Offer {
 
 	public int bonus;
 
-	public Offer(String param1, Number param2, int param3, String param4, String param5, String param6) {
+	public Offer(String param1, int param2, int param3, String param4, String param5, String param6) {
 		super();
 		this.id = param1;
 		this.price = param2;

@@ -7,13 +7,12 @@ import java.util.function.Consumer;
 
 public class ClaimDailyRewardResponse extends IncomingMessage {
 
-	public ClaimDailyRewardResponse(int id, Consumer callback) {
-		super(id, callback);
-	}
-
 	public int itemId;
 	public int quantity;
 	public int gold;
+	public ClaimDailyRewardResponse(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

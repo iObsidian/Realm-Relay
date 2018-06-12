@@ -1,5 +1,7 @@
 package rotmg.core.signals;
 
+import rotmg.core.service.TrackingData;
+
 public class TrackEventSignal extends Signal<TrackingData> {
 
 	private static TrackEventSignal instance;

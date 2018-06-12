@@ -1,4 +1,5 @@
 package rotmg.core.signals;
+import rotmg.lib.tasks.Task;
 
 public class TaskErrorSignal extends Signal<Task> {
 

@@ -1,18 +1,13 @@
 package rotmg.messaging.incoming;
 
-import rotmg.messaging.data.WorldPosData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class Aoe extends IncomingMessage {
+import rotmg.messaging.data.WorldPosData;
 
-	public Aoe(int id, Consumer callback) {
-		super(id, callback);
-		pos = new WorldPosData();
-	}
+public class Aoe extends IncomingMessage {
 
 	public WorldPosData pos;
 	public double radius;
@@ -21,6 +16,10 @@ public class Aoe extends IncomingMessage {
 	private double duration;
 	private int origType;
 	private int color;
+	public Aoe(int id, Consumer callback) {
+		super(id, callback);
+		pos = new WorldPosData();
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

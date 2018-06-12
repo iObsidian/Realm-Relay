@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 
 public class QuestObjId extends IncomingMessage {
 
+	public int objectId;
+
 	public QuestObjId(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public int objectId;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

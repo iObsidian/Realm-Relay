@@ -8,6 +8,6 @@ public class Model3D {
 	}
 
 	public static Object3DStage3D getStage3dObject3D(String model) {
-		return new Object3DStage3D();
+		return new Object3DStage3D(null);
 	}
 }

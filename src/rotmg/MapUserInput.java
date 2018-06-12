@@ -1,5 +1,7 @@
 package rotmg;
 
+import static rotmg.tutorial.doneAction.doneAction;
+
 import alde.flash.utils.XML;
 import flash.display.Stage;
 import flash.events.Event;
@@ -17,7 +19,6 @@ import rotmg.dialogs.OpenDialogSignal;
 import rotmg.friends.FriendsPopupView;
 import rotmg.friends.model.FriendModel;
 import rotmg.friends.view.FriendListView;
-import rotmg.game.ui.UIUtils;
 import rotmg.messaging.GameServerConnection;
 import rotmg.model.PotionInventoryModel;
 import rotmg.model.UseBuyPotionVO;
@@ -27,9 +28,14 @@ import rotmg.objects.Player;
 import rotmg.objects.Square;
 import rotmg.parameters.Parameters;
 import rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
-import rotmg.signals.*;
+import rotmg.signals.AddTextLineSignal;
+import rotmg.signals.ExitGameSignal;
+import rotmg.signals.GiftStatusUpdateSignal;
+import rotmg.signals.SetTextBoxVisibilitySignal;
+import rotmg.signals.UseBuyPotionSignal;
 import rotmg.tutorial.Tutorial;
 import rotmg.ui.Options;
+import rotmg.ui.UIUtils;
 import rotmg.ui.model.TabStripModel;
 import rotmg.ui.popups.signals.CloseAllPopupsSignal;
 import rotmg.ui.popups.signals.ClosePopupByClassSignal;
@@ -38,14 +44,10 @@ import rotmg.util.KeyCodes;
 import rotmg.util.TextureRedrawer;
 import rotmg.view.components.StatsTabHotKeyInputSignal;
 
-import static rotmg.tutorial.doneAction.doneAction;
-
 public class MapUserInput {
 
-	private static Stats stats = new Stats();
-
 	private static final int MOUSE_DOWN_WAIT_PERIOD = 175;
-
+	private static Stats stats = new Stats();
 	private static boolean arrowWarning = false;
 
 	public GameSprite gs;

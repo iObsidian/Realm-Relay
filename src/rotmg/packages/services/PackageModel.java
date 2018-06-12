@@ -2,7 +2,6 @@ package rotmg.packages.services;
 
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
-import org.osflash.signals.Signal;
 import rotmg.packages.models.PackageInfo;
 
 public class PackageModel {
@@ -24,7 +23,7 @@ public class PackageModel {
 
 	public Vector<PackageInfo> getBoxesForGrid() {
 		Vector<PackageInfo> loc1 = new Vector<PackageInfo>(this.maxSlots);
-		for (PackageInfo loc2: this.models) {
+		for (PackageInfo loc2 : this.models) {
 			if (loc2.slot != 0) {
 				loc1.put(loc2.slot - 1, loc2);
 			}
@@ -33,7 +32,7 @@ public class PackageModel {
 	}
 
 	public PackageInfo startupPackage() {
-		for (PackageInfo loc1: this.models) {
+		for (PackageInfo loc1 : this.models) {
 			if (loc1.showOnLogin && loc1.popupImage != "") {
 				return loc1;
 			}
@@ -55,7 +54,7 @@ public class PackageModel {
 
 	public void setPackages(Vector<PackageInfo> param1) {
 		this.models = new Dictionary<>();
-		for (PackageInfo loc2: param1) {
+		for (PackageInfo loc2 : param1) {
 			this.models.put(loc2.id, loc2);
 		}
 		this.initialized = true;
@@ -77,7 +76,7 @@ public class PackageModel {
 	}
 
 	public boolean hasPackages() {
-		for (Object loc1: this.models) {
+		for (Object loc1 : this.models) {
 			return true;
 		}
 		return false;

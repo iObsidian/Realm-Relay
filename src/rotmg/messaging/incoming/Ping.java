@@ -7,11 +7,11 @@ import java.util.function.Consumer;
 
 public class Ping extends IncomingMessage {
 
+	public int serial;
+
 	public Ping(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public int serial;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

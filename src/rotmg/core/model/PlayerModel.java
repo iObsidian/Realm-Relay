@@ -1,12 +1,12 @@
 package rotmg.core.model;
 
+
+import alde.flash.utils.Vector;
+import appengine.SavedCharactersList;
 import rotmg.account.core.Account;
 import rotmg.appengine.SavedCharacter;
 import rotmg.appengine.SavedNewsItem;
 import rotmg.net.LatLong;
-import scripts.appengine.SavedCharactersList;
-
-import java.util.List;
 
 public class PlayerModel {
 
@@ -23,22 +23,20 @@ public class PlayerModel {
 	public boolean isInvalidated;
 
 	public int currentCharId;
-
-	private boolean isAgeVerified;
-
 	public Account account;
+	private boolean isAgeVerified;
 
 	public PlayerModel() {
 		super();
 		this.isInvalidated = true;
 	}
 
-	public void setCurrentCharId(int param1) {
-		this.currentCharId = param1;
-	}
-
 	public int getCurrentCharId() {
 		return this.currentCharId;
+	}
+
+	public void setCurrentCharId(int param1) {
+		this.currentCharId = param1;
 	}
 
 	public boolean getHasPlayerDied() {
@@ -73,6 +71,13 @@ public class PlayerModel {
 		return this.charList.credits;
 	}
 
+	public void setCredits(int param1) {
+		if (this.charList.credits != param1) {
+			this.charList.credits = param1;
+			this.creditsChanged.dispatch(param1);
+		}
+	}
+
 	public String getSalesForceData() {
 		return this.charList.salesForceData;
 	}
@@ -80,13 +85,6 @@ public class PlayerModel {
 	public void changeCredits(int param1) {
 		this.charList.credits = this.charList.credits + param1;
 		this.creditsChanged.dispatch(this.charList.credits);
-	}
-
-	public void setCredits(int param1) {
-		if (this.charList.credits != param1) {
-			this.charList.credits = param1;
-			this.creditsChanged.dispatch(param1);
-		}
 	}
 
 	public int getFame() {
@@ -121,9 +119,9 @@ public class PlayerModel {
 
 	public void deleteCharacter(int param1) {
 		SavedCharacter loc2 = this.charList.getCharById(param1);
-		int loc3 = this.charList.savedChars.indexOf(loc2);
-		if (loc3 != -1) {
-			this.charList.savedChars.remove(loc3);
+
+		if ( this.charList.savedChars.contains(loc2)) {
+			this.charList.savedChars.remove(loc2);
 			this.charList.numChars--;
 		}
 	}
@@ -182,7 +180,7 @@ public class PlayerModel {
 		return this.charList.canMapEdit;
 	}
 
-	public List<SavedNewsItem> getNews() {
+	public Vector<SavedNewsItem> getNews() {
 		return this.charList.news;
 	}
 
@@ -198,19 +196,19 @@ public class PlayerModel {
 		return this.charList.name;
 	}
 
-	public boolean getConverted() {
-		return this.charList.converted;
-	}
-
 	public void setName(String param1) {
 		this.charList.name = param1;
+	}
+
+	public boolean getConverted() {
+		return this.charList.converted;
 	}
 
 	public boolean isNameChosen() {
 		return this.charList.nameChosen;
 	}
 
-	public List getNewUnlocks(int param1, int param2) {
+	public Vector getNewUnlocks(int param1, int param2) {
 		return this.charList.newUnlocks(param1, param2);
 	}
 
@@ -222,7 +220,7 @@ public class PlayerModel {
 		return this.charList.availableCharSlots();
 	}
 
-	public List<SavedCharacter> getSavedCharacters() {
+	public Vector<SavedCharacter> getSavedCharacters() {
 		return this.charList.savedChars;
 	}
 

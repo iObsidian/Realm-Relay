@@ -1,13 +1,13 @@
 package rotmg.packages.models;
 
+import java.util.function.Consumer;
+
 import flash.display.Loader;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.events.SecurityError;
+import flash.net.URLRequest;
 import io.decagames.rotmg.shop.genericBox.data.GenericBoxInfo;
-import org.osflash.signals.Signal;
-
-import java.util.function.Consumer;
 
 public class PackageInfo extends GenericBoxInfo {
 
@@ -45,6 +45,12 @@ public class PackageInfo extends GenericBoxInfo {
 		return this.image;
 	}
 
+	public void setImage(String param1) {
+		this.image = param1;
+		this.loader = new Loader();
+		this.loadImage(this.image, this.loader, this::onComplete);
+	}
+
 	public String getPurchaseType() {
 		if (contents != "") {
 			if (this.charSlot > 0 || this.vaultSlot > 0) {
@@ -55,13 +61,7 @@ public class PackageInfo extends GenericBoxInfo {
 		return PURCHASE_TYPE_SLOTS_ONLY;
 	}
 
-	public void setImage(String param1) {
-		this.image = param1;
-		this.loader = new Loader();
-		this.loadImage(this.image, this.loader, this::onComplete);
-	}
-
-	private void loadImage(String param1, Loader param2, Consumer param3) {
+	private void loadImage(String param1, Loader param2, Consumer<Event> param3) {
 		param2.contentLoaderInfo.addEventListener(Event.COMPLETE, param3);
 		param2.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this::onIOError);
 		param2.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, this::onSecurityEventError);
@@ -73,7 +73,7 @@ public class PackageInfo extends GenericBoxInfo {
 		}
 	}
 
-	private void unbindLoaderEvents(Loader param1, Consumer param2) {
+	private void unbindLoaderEvents(Loader param1, Consumer<? extends Event> param2) {
 		if (param1 != null && param1.contentLoaderInfo != null) {
 			param1.contentLoaderInfo.removeEventListener(Event.COMPLETE, param2);
 			param1.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, this::onIOError);

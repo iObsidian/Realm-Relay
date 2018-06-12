@@ -1,7 +1,13 @@
 package rotmg.engine3d;
 
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.GraphicsBitmapFill;
+import flash.display.GraphicsEndFill;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsPathCommand;
+import flash.display.GraphicsSolidFill;
+import flash.display.IGraphicsData;
 import flash.geom.Matrix;
 import flash.geom.Matrix3D;
 import flash.geom.Utils3D;
@@ -14,18 +20,12 @@ public class Point3D {
 	private static final Vector<Integer> commands = new Vector<Integer>(GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
 
 	private static final GraphicsEndFill END_FILL = new GraphicsEndFill();
-
-	public double size;
-
-	public Vector3D posS;
-
 	private final Vector<Double> data = new Vector<Double>();
-
 	private final GraphicsPath path = new GraphicsPath(commands, this.data);
-
 	private final GraphicsBitmapFill bitmapFill = new GraphicsBitmapFill(null, new Matrix(), false, false);
-
 	private final GraphicsSolidFill solidFill = new GraphicsSolidFill(0, 1);
+	public double size;
+	public Vector3D posS;
 
 	public Point3D(double param1) {
 		super();

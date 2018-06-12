@@ -1,7 +1,15 @@
 package rotmg.map.mapoverlay;
 
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.CapsStyle;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsPathCommand;
+import flash.display.GraphicsSolidFill;
+import flash.display.GraphicsStroke;
+import flash.display.IGraphicsData;
+import flash.display.JointStyle;
+import flash.display.LineScaleMode;
+import flash.display.Sprite;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 import flash.text.TextField;

@@ -3,38 +3,21 @@ package rotmg.game;
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
 import rotmg.core.view.ScreensView;
-import rotmg.game.dialogs.view.DialogsView;
+import rotmg.dialogs.view.DialogsView;
 import rotmg.tooltips.view.TooltipsView;
 
 public class Layers extends Sprite {
 
 	public static Layers instance;
-
-	public static Layers getInstance() {
-		if (instance == null) {
-			instance = new Layers();
-		}
-
-		return instance;
-	}
-
-	private ScreensView menu;
-
 	public DisplayObjectContainer overlay;
-
-	private TooltipsView tooltips;
-
 	public DisplayObjectContainer top;
-
 	public DisplayObjectContainer mouseDisabledTop;
-
-	private DialogsView dialogs;
-
-	private PopupView popups;
-
 	public DisplayObjectContainer api;
-
 	public DisplayObjectContainer console;
+	private ScreensView menu;
+	private TooltipsView tooltips;
+	private DialogsView dialogs;
+	private PopupView popups;
 
 	public Layers() {
 		super();
@@ -48,6 +31,14 @@ public class Layers extends Sprite {
 		addChild(this.tooltips = new TooltipsView());
 		addChild(this.api = new Sprite());
 		addChild(this.console = new Sprite());
+	}
+
+	public static Layers getInstance() {
+		if (instance == null) {
+			instance = new Layers();
+		}
+
+		return instance;
 	}
 
 

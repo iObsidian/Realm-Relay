@@ -10,12 +10,11 @@ public class PasswordPrompt extends IncomingMessage {
 	public final int SIGN_IN = 2;
 	public final int SEND_EMAIL_AND_SIGN_IN = 3;
 	public final int REGISTER = 4;
+	private int cleanPasswordStatus;
 
 	public PasswordPrompt(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	private int cleanPasswordStatus;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

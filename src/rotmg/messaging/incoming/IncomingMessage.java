@@ -1,11 +1,11 @@
 package rotmg.messaging.incoming;
 
-import rotmg.net.impl.Message;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
+
+import rotmg.net.impl.Message;
 
 public class IncomingMessage extends Message {
 

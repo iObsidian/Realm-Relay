@@ -6,19 +6,13 @@ import rotmg.WebMain;
 
 public class UIUtils {
 
-	private static final double NOTIFICATION_BACKGROUND_WIDTH = 95;
-
 	public static final double NOTIFICATION_BACKGROUND_HEIGHT = 25;
-
-	private static final double NOTIFICATION_BACKGROUND_ALPHA = 0.4;
-
-	private static final double NOTIFICATION_BACKGROUND_COLOR = 0;
-
 	public static final String EXPERIMENTAL_MENU_PASSWORD = "decamenu";
-
-	public static boolean SHOW_EXPERIMENTAL_MENU = true;
-
 	public static final int NOTIFICATION_SPACE = 28;
+	private static final double NOTIFICATION_BACKGROUND_WIDTH = 95;
+	private static final double NOTIFICATION_BACKGROUND_ALPHA = 0.4;
+	private static final double NOTIFICATION_BACKGROUND_COLOR = 0;
+	public static boolean SHOW_EXPERIMENTAL_MENU = true;
 
 
 	public UIUtils() {

@@ -11,17 +11,11 @@ public class Object3DStage3D {
 	public static final BitmapData missingTextureBitmap = new BitmapData(1, 1, true, 2290649343.0);
 
 	public Model3D_stage3d model = null;
-
-	private BitmapData bitmapData;
-
 	public Matrix3D modelMatrix;
-
 	public Matrix3D modelView;
-
 	public Matrix3D modelViewProjection;
-
 	public Vector3D position;
-
+	private BitmapData bitmapData;
 	private double zRotation;
 
 	private Texture texture;
@@ -69,24 +63,24 @@ public class Object3DStage3D {
 
 	public void draw(Context3D param1) {
 		/**OBJGroup loc2 = null;
-		param1.setVertexBufferAt(0, this.model.vertexBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
-		param1.setVertexBufferAt(1, this.model.vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_3);
-		param1.setVertexBufferAt(2, this.model.vertexBuffer, 6, Context3DVertexBufferFormat.FLOAT_2);
-		if (this.texture == null && this.bitmapData != null) {
-			this.texture = param1.createTexture(this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false);
-			this.texture.uploadFromBitmapData(this.bitmapData);
-		} else if (this.texture == null) {
-			this.bitmapData = missingTextureBitmap;
-			this.texture = param1.createTexture(this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false);
-			this.texture.uploadFromBitmapData(this.bitmapData);
-		}
-		param1.setTextureAt(0, this.texture);
-		for (loc2:
-		     this.model.groups) {
-			if (loc2.indexBuffer != null) {
-				param1.drawTriangles(loc2.indexBuffer);
-			}
-		}*/
+		 param1.setVertexBufferAt(0, this.model.vertexBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
+		 param1.setVertexBufferAt(1, this.model.vertexBuffer, 3, Context3DVertexBufferFormat.FLOAT_3);
+		 param1.setVertexBufferAt(2, this.model.vertexBuffer, 6, Context3DVertexBufferFormat.FLOAT_2);
+		 if (this.texture == null && this.bitmapData != null) {
+		 this.texture = param1.createTexture(this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false);
+		 this.texture.uploadFromBitmapData(this.bitmapData);
+		 } else if (this.texture == null) {
+		 this.bitmapData = missingTextureBitmap;
+		 this.texture = param1.createTexture(this.bitmapData.width, this.bitmapData.height, Context3DTextureFormat.BGRA, false);
+		 this.texture.uploadFromBitmapData(this.bitmapData);
+		 }
+		 param1.setTextureAt(0, this.texture);
+		 for (loc2:
+		 this.model.groups) {
+		 if (loc2.indexBuffer != null) {
+		 param1.drawTriangles(loc2.indexBuffer);
+		 }
+		 }*/
 	}
 
 }

@@ -12,21 +12,10 @@ import flash.geom.Matrix;
  */
 public class GraphicsUtil {
 
-	private static final double TWO_PI = 2 * Math.PI;
-
 	public static final GraphicsEndFill END_FILL = new GraphicsEndFill();
-
-	public static Vector<Integer> QUAD_COMMANDS = new Vector(GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
-
 	public static final GraphicsStroke END_STROKE = new GraphicsStroke();
-
-
-	public void drawRect(int x, int y, int width, int height, GraphicsPath path) {
-		path.moveTo(x, y);
-		path.lineTo(x + width, y);
-		path.lineTo(x + width, y + height);
-		path.lineTo(x, y + height);
-	}
+	private static final double TWO_PI = 2 * Math.PI;
+	public static Vector<Integer> QUAD_COMMANDS = new Vector(GraphicsPathCommand.MOVE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO, GraphicsPathCommand.LINE_TO);
 
 	public static void drawCircle(double centerX, double centerY, double radius, GraphicsPath path, int numPoints) {
 		double th = 0;
@@ -48,13 +37,6 @@ public class GraphicsUtil {
 		}
 	}
 
-	public void drawDiamond(double x, double y, double radius, GraphicsPath path) {
-		path.moveTo(x, y - radius);
-		path.lineTo(x + radius, y);
-		path.lineTo(x, y + radius);
-		path.lineTo(x - radius, y);
-	}
-
 	public static void clearPath(GraphicsPath graphicsPath) {
 	}
 
@@ -71,5 +53,19 @@ public class GraphicsUtil {
 	}
 
 	public static void drawCutEdgeRect(int i, int i1, int i2, int i3, int i4, Vector<Integer> integers, GraphicsPath path) {
+	}
+
+	public void drawRect(int x, int y, int width, int height, GraphicsPath path) {
+		path.moveTo(x, y);
+		path.lineTo(x + width, y);
+		path.lineTo(x + width, y + height);
+		path.lineTo(x, y + height);
+	}
+
+	public void drawDiamond(double x, double y, double radius, GraphicsPath path) {
+		path.moveTo(x, y - radius);
+		path.lineTo(x + radius, y);
+		path.lineTo(x, y + radius);
+		path.lineTo(x - radius, y);
 	}
 }

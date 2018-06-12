@@ -1,5 +1,6 @@
 package rotmg.core.model;
 
+import rotmg.map.Map;
 import rotmg.objects.IInteractiveObject;
 
 public class MapModel {

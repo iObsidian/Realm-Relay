@@ -1,20 +1,19 @@
 package rotmg.messaging.outgoing;
 
-import rotmg.objects.Player;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class Reskin extends OutgoingMessage {
+import rotmg.objects.Player;
 
-	public Reskin(int id, Consumer callback) {
-		super(id, callback);
-	}
+public class Reskin extends OutgoingMessage {
 
 	public int skinID;
 	public Player player;
+	public Reskin(int id, Consumer callback) {
+		super(id, callback);
+	}
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

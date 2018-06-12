@@ -12,13 +12,11 @@ public class Failure extends IncomingMessage {
 	public static final int INVALID_TELEPORT_TARGET = 6;
 	public static final int EMAIL_VERIFICATION_NEEDED = 7;
 	public static final int TELEPORT_REALM_BLOCK = 9;
-
+	public int errorId;
+	public String errorDescription;
 	public Failure(int id, Consumer callback) {
 		super(id, callback);
 	}
-
-	public int errorId;
-	public String errorDescription;
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {

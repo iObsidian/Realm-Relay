@@ -19,52 +19,28 @@ public class Camera {
 	private static final Rectangle SCREENSHOTSCREENRECT = new Rectangle(-400, -325, 800, 600);
 
 	private static final Rectangle SLIMSCREENSHOTSCREENRECT = new Rectangle(-400, -275, 800, 500);
-
-
-	public double x;
-
-	public double y;
-
-	public double z;
-
-	public double angleRad;
-
-	public Rectangle clipRect;
-
-	public PerspectiveProjection pp;
-
-	public double maxDist;
-
-	public double maxDistSq;
-
-	public boolean isHallucinating = false;
-
-	public Matrix3D wToS;
-
-	public Matrix3D wToV;
-
-	public Matrix3D vToS;
-
-	public Matrix3D ppMatrix;
-
-	private Matrix3D nonPPMatrix;
-
-	private Vector3D p;
-
-	private Vector3D f;
-
-	private Vector3D u;
-
-	private Vector3D r;
-
-	private boolean isJittering = false;
-
-	private double jitter = 0;
-
 	private final double MAXJITTER = 0.5;
-
 	private final int JITTERBUILDUPMS = 10000;
-
+	public double x;
+	public double y;
+	public double z;
+	public double angleRad;
+	public Rectangle clipRect;
+	public PerspectiveProjection pp;
+	public double maxDist;
+	public double maxDistSq;
+	public boolean isHallucinating = false;
+	public Matrix3D wToS;
+	public Matrix3D wToV;
+	public Matrix3D vToS;
+	public Matrix3D ppMatrix;
+	private Matrix3D nonPPMatrix;
+	private Vector3D p;
+	private Vector3D f;
+	private Vector3D u;
+	private Vector3D r;
+	private boolean isJittering = false;
+	private double jitter = 0;
 	private double[] rd;
 
 	public Camera() {
