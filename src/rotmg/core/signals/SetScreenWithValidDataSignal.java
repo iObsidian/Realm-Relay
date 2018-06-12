@@ -1,5 +1,7 @@
 package rotmg.core.signals;
 
+import org.osflash.signals.Signal;
+
 import flash.display.Sprite;
 
 public class SetScreenWithValidDataSignal extends Signal<Sprite> {

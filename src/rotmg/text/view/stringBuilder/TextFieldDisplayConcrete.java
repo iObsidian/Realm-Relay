@@ -1,5 +1,7 @@
 package rotmg.text.view.stringBuilder;
 
+import org.osflash.signals.Signal;
+
 import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;

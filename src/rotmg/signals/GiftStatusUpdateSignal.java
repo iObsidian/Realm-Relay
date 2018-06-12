@@ -1,5 +1,7 @@
 package rotmg.signals;
 
+import org.osflash.signals.Signal;
+
 public class GiftStatusUpdateSignal extends Signal<Boolean> {
 
 	public static GiftStatusUpdateSignal instance;

@@ -1,5 +1,7 @@
 package rotmg.ui.signals;
 
+import org.osflash.signals.Signal;
+
 public class HideKeySignal extends Signal<Key> {
 
 	private static HideKeySignal instance;

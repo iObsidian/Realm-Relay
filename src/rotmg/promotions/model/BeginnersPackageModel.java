@@ -1,5 +1,7 @@
 package rotmg.promotions.model;
 
+import org.osflash.signals.Signal;
+
 import flash.utils.Date;
 import rotmg.account.core.Account;
 import rotmg.account.core.model.OfferModel;

@@ -1,5 +1,7 @@
 package rotmg.packages.services;
 
+import org.osflash.signals.Signal;
+
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import rotmg.packages.models.PackageInfo;

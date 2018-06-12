@@ -1,6 +1,8 @@
 package rotmg.core.model;
 
 
+import org.osflash.signals.Signal;
+
 import alde.flash.utils.Vector;
 import appengine.SavedCharactersList;
 import rotmg.account.core.Account;

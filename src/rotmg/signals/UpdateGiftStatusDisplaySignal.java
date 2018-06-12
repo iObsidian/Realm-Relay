@@ -1,5 +1,7 @@
 package rotmg.signals;
 
+import org.osflash.signals.Signal;
+
 public class UpdateGiftStatusDisplaySignal extends Signal {
 
 	private static UpdateGiftStatusDisplaySignal instance;

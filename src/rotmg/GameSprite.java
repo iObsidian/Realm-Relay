@@ -2,6 +2,8 @@ package rotmg;
 
 import static java.lang.Float.NaN;
 
+import org.osflash.signals.Signal;
+
 import flash.display.DisplayObject;
 import flash.events.Event;
 import flash.filters.ColorMatrixFilter;

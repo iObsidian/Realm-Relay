@@ -1,5 +1,7 @@
 package rotmg.core.signals;
 
+import org.osflash.signals.Signal;
+
 public class InvalidateDataSignal extends Signal {
 
 	private static InvalidateDataSignal instance;

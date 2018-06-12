@@ -1,5 +1,7 @@
 package rotmg.dailyLogin.signal;
 
+import org.osflash.signals.Signal;
+
 public class ShowDailyCalendarPopupSignal extends Signal {
 	static ShowDailyCalendarPopupSignal instance;
 

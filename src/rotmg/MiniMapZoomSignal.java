@@ -1,5 +1,7 @@
 package rotmg;
 
+import org.osflash.signals.Signal;
+
 public class MiniMapZoomSignal extends Signal<String> {
 
 	public static final String OUT = "OUT";

@@ -1,5 +1,7 @@
 package rotmg.core.signals;
 
+import org.osflash.signals.Signal;
+
 public class SetupAnalyticsSignal extends Signal {
 
 	private static SetupAnalyticsSignal instance;

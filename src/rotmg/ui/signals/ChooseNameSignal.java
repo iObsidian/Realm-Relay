@@ -1,5 +1,7 @@
 package rotmg.ui.signals;
 
+import org.osflash.signals.Signal;
+
 public class ChooseNameSignal extends Signal {
 
 	private static ChooseNameSignal instance;

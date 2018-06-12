@@ -1,5 +1,7 @@
 package rotmg.arena.model;
 
+import org.osflash.signals.Signal;
+
 public class ImminentArenaWaveSignal extends Signal {
 
 	static ImminentArenaWaveSignal instance;

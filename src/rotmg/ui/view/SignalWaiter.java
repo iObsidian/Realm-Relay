@@ -2,6 +2,8 @@ package rotmg.ui.view;
 
 import java.util.function.Consumer;
 
+import org.osflash.signals.Signal;
+
 import com.adobe.utils.DictionaryUtil;
 
 import alde.flash.utils.Dictionary;

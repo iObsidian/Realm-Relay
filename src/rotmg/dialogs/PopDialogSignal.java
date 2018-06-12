@@ -1,5 +1,7 @@
 package rotmg.dialogs;
 
+import org.osflash.signals.Signal;
+
 public class PopDialogSignal extends Signal {
 
 	static PopDialogSignal instance;

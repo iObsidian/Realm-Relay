@@ -3,6 +3,8 @@ package rotmg.messaging;
 import java.util.List;
 import java.util.Random;
 
+import org.osflash.signals.Signal;
+
 import rotmg.AGameSprite;
 import rotmg.messaging.data.SlotObjectData;
 import rotmg.net.Server;

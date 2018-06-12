@@ -2,6 +2,8 @@ package rotmg.packages.models;
 
 import java.util.function.Consumer;
 
+import org.osflash.signals.Signal;
+
 import flash.display.Loader;
 import flash.events.Event;
 import flash.events.IOErrorEvent;

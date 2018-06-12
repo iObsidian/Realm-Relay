@@ -1,5 +1,7 @@
 package rotmg.dialogs;
 
+import org.osflash.signals.Signal;
+
 import flash.display.Sprite;
 
 public class OpenDialogNoModalSignal extends Signal<Sprite> {

@@ -1,5 +1,7 @@
 package rotmg.minimap.model;
 
+import org.osflash.signals.Signal;
+
 public class UpdateGroundTileVO extends Signal {
 	public int tileX;
 

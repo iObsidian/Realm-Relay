@@ -1,5 +1,7 @@
 package rotmg.ui.signals;
 
+import org.osflash.signals.Signal;
+
 public class UpdateBackpackTabSignal extends Signal<Boolean> {
 
 	private static UpdateBackpackTabSignal instance;

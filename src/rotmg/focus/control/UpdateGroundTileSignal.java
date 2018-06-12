@@ -1,5 +1,7 @@
 package rotmg.focus.control;
 
+import org.osflash.signals.Signal;
+
 import rotmg.minimap.model.UpdateGroundTileVO;
 
 public class UpdateGroundTileSignal extends Signal<UpdateGroundTileVO> {

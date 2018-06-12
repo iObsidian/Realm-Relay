@@ -1,5 +1,7 @@
 package rotmg.pets.controller;
 
+import org.osflash.signals.Signal;
+
 public class PetFeedResultSignal extends Signal {
 	static PetFeedResultSignal instance;
 

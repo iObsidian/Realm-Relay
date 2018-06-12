@@ -1,5 +1,7 @@
 package rotmg.dailyQuests.signal;
 
+import org.osflash.signals.Signal;
+
 import rotmg.dailyQuests.QuestRedeemResponse;
 
 public class QuestRedeemCompleteSignal extends Signal<QuestRedeemResponse> {
