@@ -82,7 +82,7 @@ public class SavedCharactersList extends Event {
 
 	public boolean hasPlayerDied = false;
 
-	public Dictionary<Integer, XML> classAvailability;
+	public Dictionary<Integer, String> classAvailability;
 
 	public boolean isAgeVerified;
 
@@ -117,7 +117,7 @@ public class SavedCharactersList extends Event {
 
 		this.classAvailability = new Dictionary<>();
 		for (XML loc4 : this.charsXML.getChild("ClassAvailabilityList").getChilds("ClassAvailability")) {
-			this.classAvailability.put(loc4.getIntAttribute("id"), loc4);
+			this.classAvailability.put(loc4.getIntAttribute("id"), loc4.toString());
 		}
 	}
 

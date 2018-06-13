@@ -8,6 +8,7 @@ import rotmg.objects.Player;
 
 public class PartyOverlay extends Sprite {
 
+	/**
 	public Map map;
 
 	public Vector<PlayerArrow> partyMemberArrows = null;
@@ -83,6 +84,8 @@ public class PartyOverlay extends Sprite {
 			this.questArrow.draw(param2, param1);
 		}
 	}
+
+	 */
 
 
 }

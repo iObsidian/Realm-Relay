@@ -5,6 +5,7 @@ import flash.display.Sprite;
 import rotmg.core.view.ScreensView;
 import rotmg.dialogs.view.DialogsView;
 import rotmg.tooltips.view.TooltipsView;
+import rotmg.ui.popups.PopupView;
 
 public class Layers extends Sprite {
 

@@ -27,6 +27,12 @@ public class XML {
 		this.element = el;
 	}
 
+
+	@Override
+	public String toString() {
+		return getTextValue();
+	}
+
 	public XML(String data) {
 		Document doc = null;
 

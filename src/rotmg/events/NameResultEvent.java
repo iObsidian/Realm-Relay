@@ -1,5 +1,6 @@
 package rotmg.events;
 
+import flash.events.Event;
 import rotmg.messaging.incoming.NameResult;
 
 public class NameResultEvent extends Event {

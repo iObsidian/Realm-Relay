@@ -341,7 +341,7 @@ public class Parameters {
 		public int toggleProjectiles = KeyCodes.N;
 		public int toggleMasterParticles = KeyCodes.M;
 		public int playerObjectType = 782;
-		public int cameraAngle = 0;
+		public static int cameraAngle = 0;
 		public int defaultCameraAngle = 0;
 		public int protipIndex = 0;
 		public int beginnersOfferTimeLeft = 0;

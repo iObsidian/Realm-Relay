@@ -1,6 +1,7 @@
 package rotmg.events;
 
 import flash.display.BitmapData;
+import flash.events.Event;
 import rotmg.objects.Player;
 
 public class DeathEvent extends Event {

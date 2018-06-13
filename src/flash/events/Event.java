@@ -62,7 +62,12 @@ public class Event {
 	public Event(String type) {
 		this(type, false, false);
 	}
-	public Event(String type, boolean bubbles, Boolean cancelable) {
+
+	public Event(String type, boolean bubbles) {
+
+	}
+
+	public Event(String type, boolean bubbles, boolean cancelable) {
 
 	}
 

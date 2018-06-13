@@ -1,14 +1,15 @@
 package flash.events;
 
+import alde.flash.utils.SignalFunction;
+import flash.airglobal.Graphics;
+
 import java.util.HashMap;
 import java.util.function.Consumer;
-
-import alde.flash.utils.EventConsumer;
-import flash.airglobal.Graphics;
+import java.util.function.Function;
 
 public class EventDispatcher {
 
-	public HashMap<EventConsumer, String> listeners;
+	public HashMap<SignalFunction, String> listeners;
 	public boolean visible;
 	public boolean mouseEnabled;
 	public Graphics graphics;
@@ -30,36 +31,40 @@ public class EventDispatcher {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
+	public void addEventListener(String event, Consumer<? super Event> listener) {
+		addEventListener(event, new SignalFunction(listener), false, 0, false);
+	}
 
 	public void addEventListener(String event, Runnable listener) {
-		addEventListener(event, new EventConsumer<>(listener), false, 0, false);
+		addEventListener(event, new SignalFunction(listener), false, 0, false);
 	}
 
-	public void addEventListener(String event, Consumer<Event> listener) {
-		addEventListener(event, new EventConsumer<>(listener), false, 0, false);
-	}
-
-	public void addEventListener(String event, EventConsumer listener) {
+	public void addEventListener(String event, SignalFunction listener) {
 		addEventListener(event, listener, false, 0, false);
 	}
 
-	void addEventListener(String event, EventConsumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
+	void addEventListener(String event, SignalFunction listener, boolean useCapture, int priority, Boolean useWeakReference) {
 		listeners.put(listener, event);
 	}
 
-	public void removeEventListener(String event, Consumer<? extends Event> listener) {
+
+	public void addListener(Consumer<? extends Event> consumer) {
+	}
+
+	public void removeEventListener(String event, Consumer listener) {
 		//listeners.remove(listener, event);
 	}
+
 	public void removeEventListener(String event, Runnable listener) {
 		//listeners.remove(listener, event);
 	}
 
 
 	protected void trigger(String EVENT_TYPE) {
-		for (EventConsumer c : listeners.keySet()) {
+		for (SignalFunction c : listeners.keySet()) {
 			if (listeners.get(c).equals(EVENT_TYPE)) {
 				Event e = new Event(EVENT_TYPE);
-				c.getConsumer().accept(e);
+				c.dispatch(e);
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 package rotmg.appengine.api;
 
+import org.osflash.OnceSignal;
+
 public interface AppEngineClient {
 
 	OnceSignal getComplete();
