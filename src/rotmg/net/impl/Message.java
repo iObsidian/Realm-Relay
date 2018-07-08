@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 import alde.flash.utils.IData;
-import alde.flash.utils.MessageConsumer;
 
 public class Message implements IData {
 

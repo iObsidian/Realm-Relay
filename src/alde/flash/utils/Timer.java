@@ -2,6 +2,7 @@ package alde.flash.utils;
 
 import java.util.TimerTask;
 
+import alde.flash.utils.function.impl.EventConsumer;
 import flash.events.EventDispatcher;
 import flash.events.TimerEvent;
 

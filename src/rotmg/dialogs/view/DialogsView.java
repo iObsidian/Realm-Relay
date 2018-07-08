@@ -83,7 +83,7 @@ public class DialogsView extends Sprite {
 
 	private void removeCurrentDialog() {
 		if (this.current != null && this.container.contains(this.current)) {
-			this.current.removeEventListener(Event.REMOVED, this::onRemoved);
+			this.current.removeEventListener(Event.REMOVED, new EventConsumer<>(this::onRemoved));
 			this.container.removeChild(this.current);
 			this.background.visible = false;
 		}

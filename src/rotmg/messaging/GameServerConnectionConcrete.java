@@ -5,9 +5,9 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
 
+import alde.flash.utils.MessageConsumer;
 import com.hurlant.crypto.symmetric.ICipher;
 
-import alde.flash.utils.MessageConsumer;
 import alde.flash.utils.RSA;
 import alde.flash.utils.Timer;
 import alde.flash.utils.XML;
@@ -839,7 +839,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	public void onCreateSuccess(CreateSuccess createSuccess) {
-
 		System.out.println("Create success");
 
 		this.playerId = createSuccess.objectId;

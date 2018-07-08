@@ -1,7 +1,5 @@
 package org.osflash.signals;
 
-import alde.flash.utils.SignalFunction;
-
 import java.util.Vector;
 import java.util.function.Consumer;
 

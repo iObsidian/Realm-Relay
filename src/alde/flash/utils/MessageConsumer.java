@@ -9,7 +9,7 @@ import rotmg.net.impl.Message;
  */
 public class MessageConsumer<T extends Message> {
 
-	private Consumer<T> consumer;
+	Consumer<T> consumer;
 
 	public MessageConsumer(Consumer<T> consumer) {
 		this.consumer = consumer;

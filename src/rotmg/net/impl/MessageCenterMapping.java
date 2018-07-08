@@ -2,7 +2,6 @@ package rotmg.net.impl;
 
 import java.util.function.Consumer;
 
-import alde.flash.utils.MessageConsumer;
 import rotmg.net.api.MessageMapping;
 
 /**
