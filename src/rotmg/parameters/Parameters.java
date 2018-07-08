@@ -50,17 +50,17 @@ public class Parameters {
 	public static boolean sendLogin = true;
 	private static Dictionary keyNames = new Dictionary();
 	private static SharedObject savedOptions = null;
-	public int FELLOW_GUILD_COLOR = 10944349;
-	public int NAME_CHOSEN_COLOR = 16572160;
-	public int BREATH_THRESH = 20;
-	public int NAME_CHANGE_PRICE = 1000;
-	public int GUILD_CREATION_PRICE = 1000;
-	public int blendType = 1;
+	public static int blendType = 1;
+	public static int FELLOW_GUILD_COLOR = 10944349;
+	public static int NAME_CHOSEN_COLOR = 16572160;
+	public static int BREATH_THRESH = 20;
+	public static int NAME_CHANGE_PRICE = 1000;
+	public static int GUILD_CREATION_PRICE = 1000;
 	public static int projColorType = 0;
-	public int TUTORIAL_GAMEID = -1;
-	public int NEXUS_GAMEID = -2;
-	public int RANDOM_REALM_GAMEID = -3;
-	public int MAPTEST_GAMEID = -6;
+	public static int TUTORIAL_GAMEID = -1;
+	public static int NEXUS_GAMEID = -2;
+	public static int RANDOM_REALM_GAMEID = -3;
+	public static int MAPTEST_GAMEID = -6;
 
 	public Parameters() {
 		super();

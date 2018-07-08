@@ -17,8 +17,8 @@ public class TextureProxy {
 	}
 
 	public void uploadFromBitmapData(BitmapData param1) {
-		this.width = param1.width();
-		this.height = param1.height();
+		this.width = param1.width;
+		this.height = param1.height;
 		this.texture.uploadFromBitmapData(param1);
 	}
 

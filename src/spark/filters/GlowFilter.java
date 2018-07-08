@@ -1,6 +1,8 @@
 package spark.filters;
 
-public class GlowFilter {
+import mx.filters.BaseFilter;
+
+public class GlowFilter extends BaseFilter {
 
 	public double color;
 	public double blurX;

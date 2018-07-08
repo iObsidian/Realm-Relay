@@ -8,7 +8,7 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import spark.filters.GlowFilter;
 
-public class BitmapData {
+public class BitmapData implements IBitmapDrawable {
 
 	public Object rect;
 
@@ -62,7 +62,7 @@ public class BitmapData {
 	public void draw(BitmapData param1, Matrix loc4, Object o, Object o1, Object o2, boolean b) {
 	}
 
-	public void draw(BitmapData nameText, Object o) {
+	public void draw(IBitmapDrawable nameText, Object o) {
 	}
 
 	public void setPixel(int i, int i1, double loc5) {

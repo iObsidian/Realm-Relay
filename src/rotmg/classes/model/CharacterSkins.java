@@ -1,5 +1,7 @@
 package rotmg.classes.model;
 
+import alde.flash.utils.SignalConsumer;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +35,7 @@ public class CharacterSkins {
 	}
 
 	public void addSkin(CharacterSkin skin, boolean defaultSkin) {
-		skin.changed.add(this::onSkinChanged);
+		skin.changed.add(new SignalConsumer<CharacterSkin>(this::onSkinChanged));
 		this.skins.add(skin);
 		this.map.put(skin.id, skin);
 		this.updateSkinState(skin);

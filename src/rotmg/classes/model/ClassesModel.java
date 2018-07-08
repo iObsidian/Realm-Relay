@@ -3,6 +3,7 @@ package rotmg.classes.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import alde.flash.utils.SignalConsumer;
 import org.osflash.signals.Signal;
 
 /**
@@ -63,7 +64,7 @@ public class ClassesModel {
 
 	private CharacterClass makeCharacterClass() {
 		CharacterClass _loc1 = new CharacterClass();
-		_loc1.selected.add(this::onClassSelected);
+		_loc1.selected.add(new SignalConsumer<CharacterClass>(this::onClassSelected));
 		this.classes.add(_loc1);
 		this.count = this.classes.size();
 		return _loc1;

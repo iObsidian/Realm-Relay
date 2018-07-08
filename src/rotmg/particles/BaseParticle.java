@@ -49,8 +49,8 @@ public class BaseParticle extends BasicObject {
 
 	@Override
 	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
-		double halfW = this.bitmapFill.bitmapData.width() / 2;
-		double halfH = this.bitmapFill.bitmapData.height() / 2;
+		double halfW = this.bitmapFill.bitmapData.width / 2;
+		double halfH = this.bitmapFill.bitmapData.height / 2;
 
 		this.vS.put(6, posS.get(3) - halfW);
 		this.vS.put(0, posS.get(3) - halfW);

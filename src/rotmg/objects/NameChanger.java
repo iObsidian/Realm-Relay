@@ -3,6 +3,7 @@ package rotmg.objects;
 import alde.flash.utils.XML;
 import rotmg.GameSprite;
 import rotmg.ui.panels.Panel;
+import view.NameChangerPanel;
 
 
 public class NameChanger extends GameObject implements IInteractiveObject {

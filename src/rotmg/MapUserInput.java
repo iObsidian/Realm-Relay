@@ -2,6 +2,8 @@ package rotmg;
 
 import static rotmg.tutorial.doneAction.doneAction;
 
+import alde.flash.utils.EventConsumer;
+import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.XML;
 import flash.display.Stage;
 import flash.events.Event;
@@ -21,7 +23,6 @@ import rotmg.friends.model.FriendModel;
 import rotmg.friends.view.FriendListView;
 import rotmg.messaging.GameServerConnection;
 import rotmg.model.PotionInventoryModel;
-import rotmg.model.UseBuyPotionVO;
 import rotmg.objects.GameObject;
 import rotmg.objects.ObjectLibrary;
 import rotmg.objects.Player;
@@ -35,14 +36,13 @@ import rotmg.signals.SetTextBoxVisibilitySignal;
 import rotmg.signals.UseBuyPotionSignal;
 import rotmg.tutorial.Tutorial;
 import rotmg.ui.Options;
-import rotmg.ui.UIUtils;
 import rotmg.ui.model.TabStripModel;
 import rotmg.ui.popups.signals.CloseAllPopupsSignal;
 import rotmg.ui.popups.signals.ClosePopupByClassSignal;
 import rotmg.ui.popups.signals.ShowPopupSignal;
 import rotmg.util.KeyCodes;
 import rotmg.util.TextureRedrawer;
-import rotmg.view.components.StatsTabHotKeyInputSignal;
+import robotlegs.bender.bundles.mvcs.components.StatsTabHotKeyInputSignal;
 
 public class MapUserInput {
 
@@ -107,8 +107,8 @@ public class MapUserInput {
 	public MapUserInput(GameSprite param1) {
 		super();
 		this.gs = param1;
-		this.gs.addEventListener(Event.ADDED_TO_STAGE, this::onAddedToStage);
-		this.gs.addEventListener(Event.REMOVED_FROM_STAGE, this::onRemovedFromStage);
+		this.gs.addEventListener(Event.ADDED_TO_STAGE, new EventConsumer<>(this::onAddedToStage));
+		this.gs.addEventListener(Event.REMOVED_FROM_STAGE, new EventConsumer<>(this::onRemovedFromStage));
 		this.giftStatusUpdateSignal = GiftStatusUpdateSignal.getInstance();
 		this.reskinPetFlowStart = ReskinPetFlowStartSignal.getInstance();
 		this.addTextLine = AddTextLineSignal.getInstance();
@@ -125,20 +125,20 @@ public class MapUserInput {
 		this.closePopupByClassSignal = ClosePopupByClassSignal.getInstance();
 		ApplicationSetup loc3 = ProductionSetup.getInstance();
 		this.areFKeysAvailable = loc3.areDeveloperHotkeysEnabled();
-		this.gs.map.signalRenderSwitch.add(this::onRenderSwitch);
+		this.gs.map.signalRenderSwitch.add(new SignalConsumer<Boolean>(this::onRenderSwitch));
 	}
 
 	public void onRenderSwitch(boolean param1) {
 		if (param1) {
-			this.gs.stage.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			this.gs.stage.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
-			this.gs.map.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			this.gs.map.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			this.gs.stage.removeEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			this.gs.stage.removeEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
+			this.gs.map.addEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			this.gs.map.addEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
 		} else {
-			this.gs.map.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			this.gs.map.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
-			this.gs.stage.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			this.gs.stage.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
+			this.gs.stage.addEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			this.gs.stage.addEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
 		}
 	}
 
@@ -163,20 +163,20 @@ public class MapUserInput {
 
 	private void onAddedToStage(Event param1) {
 		Stage loc2 = this.gs.stage;
-		loc2.addEventListener(Event.ACTIVATE, this::onActivate);
-		loc2.addEventListener(Event.DEACTIVATE, this::onDeactivate);
-		loc2.addEventListener(KeyboardEvent.KEY_DOWN, this::onKeyDown);
-		loc2.addEventListener(KeyboardEvent.KEY_UP, this::onKeyUp);
-		loc2.addEventListener(MouseEvent.MOUSE_WHEEL, this::onMouseWheel);
+		loc2.addEventListener(Event.ACTIVATE, new EventConsumer<>(this::onActivate));
+		loc2.addEventListener(Event.DEACTIVATE, new EventConsumer<>(this::onDeactivate));
+		loc2.addEventListener(KeyboardEvent.KEY_DOWN, new EventConsumer<>(this::onKeyDown));
+		loc2.addEventListener(KeyboardEvent.KEY_UP, new EventConsumer<>(this::onKeyUp));
+		loc2.addEventListener(MouseEvent.MOUSE_WHEEL, new EventConsumer<>(this::onMouseWheel));
 		if (Parameters.isGpuRender()) {
-			loc2.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			loc2.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			loc2.addEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			loc2.addEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
 		} else {
-			this.gs.map.addEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			this.gs.map.addEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			this.gs.map.addEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			this.gs.map.addEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
 		}
-		loc2.addEventListener(Event.ENTER_FRAME, this::onEnterFrame);
-		loc2.addEventListener(MouseEvent.RIGHT_CLICK, this::disableRightClick);
+		loc2.addEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
+		loc2.addEventListener(MouseEvent.RIGHT_CLICK, new EventConsumer<>(this::disableRightClick));
 	}
 
 	public void disableRightClick(MouseEvent param1) {
@@ -184,20 +184,20 @@ public class MapUserInput {
 
 	private void onRemovedFromStage(Event param1) {
 		Stage loc2 = this.gs.stage;
-		loc2.removeEventListener(Event.ACTIVATE, this::onActivate);
-		loc2.removeEventListener(Event.DEACTIVATE, this::onDeactivate);
-		loc2.removeEventListener(KeyboardEvent.KEY_DOWN, this::onKeyDown);
-		loc2.removeEventListener(KeyboardEvent.KEY_UP, this::onKeyUp);
-		loc2.removeEventListener(MouseEvent.MOUSE_WHEEL, this::onMouseWheel);
+		loc2.removeEventListener(Event.ACTIVATE, new EventConsumer<>(this::onActivate));
+		loc2.removeEventListener(Event.DEACTIVATE, new EventConsumer<>(this::onDeactivate));
+		loc2.removeEventListener(KeyboardEvent.KEY_DOWN, new EventConsumer<>(this::onKeyDown));
+		loc2.removeEventListener(KeyboardEvent.KEY_UP, new EventConsumer<>(this::onKeyUp));
+		loc2.removeEventListener(MouseEvent.MOUSE_WHEEL, new EventConsumer<>(this::onMouseWheel));
 		if (Parameters.isGpuRender()) {
-			loc2.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			loc2.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			loc2.removeEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			loc2.removeEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
 		} else {
-			this.gs.map.removeEventListener(MouseEvent.MOUSE_DOWN, this::onMouseDown);
-			this.gs.map.removeEventListener(MouseEvent.MOUSE_UP, this::onMouseUp);
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_DOWN, new EventConsumer<>(this::onMouseDown));
+			this.gs.map.removeEventListener(MouseEvent.MOUSE_UP, new EventConsumer<>(this::onMouseUp));
 		}
-		loc2.removeEventListener(Event.ENTER_FRAME, this::onEnterFrame);
-		loc2.removeEventListener(MouseEvent.RIGHT_CLICK, this::disableRightClick);
+		loc2.removeEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
+		loc2.removeEventListener(MouseEvent.RIGHT_CLICK, new EventConsumer<>(this::disableRightClick));
 	}
 
 	private void onActivate(Event param1) {
@@ -245,15 +245,15 @@ public class MapUserInput {
 			}
 			return;
 		}
-		if (Parameters.isGpuRender()) {
+		/**if (Parameters.isGpuRender()) {
 			if (param1.currentTarget == param1.target || param1.target == this.gs.map || param1.target == this.gs || param1.currentTarget == this.gs.chatBox.list) {
 				loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
 			} else {
 				return;
 			}
-		} else {
+		} else {*/
 			loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
-		}
+		//}
 		doneAction(this.gs, Tutorial.ATTACK_ACTION);
 		if (loc2.isUnstable()) {
 			loc2.attemptAttackAngle(Math.random() * 360);
@@ -309,7 +309,7 @@ public class MapUserInput {
 		FriendModel loc12 = null;
 		OpenDialogSignal loc13 = null;
 		Stage loc2 = this.gs.stage;
-		this.currentString = this.currentString + param1.keyCode;
+		/**this.currentString = this.currentString + param1.keyCode;
 		if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
 			if (this.currentString.length() == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length()) {
 				loc5 = AddTextLineSignal.getInstance();
@@ -322,7 +322,7 @@ public class MapUserInput {
 			}
 		} else {
 			this.currentString = "";
-		}
+		}*/
 		switch (param1.keyCode) {
 			case KeyCodes.F1:
 			case KeyCodes.F2:
@@ -437,18 +437,17 @@ public class MapUserInput {
 			this.useItem(11);
 
 		} else if (param1.keyCode == Parameters.data.useHealthPotion) {
-			if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.HEALTH_POTION_ID).available) {
+			/*if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.HEALTH_POTION_ID).available) {
 				this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.HEALTH_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
-			}
+			}*/
 
 		} else if (param1.keyCode == Parameters.data.GPURenderToggle) {
 			Parameters.data.GPURender = !Parameters.data.GPURender;
 
 		} else if (param1.keyCode == Parameters.data.useMagicPotion) {
-			if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.MAGIC_POTION_ID).available) {
+			/*if (this.potionInventoryModel.getPotionModel(PotionInventoryModel.MAGIC_POTION_ID).available) {
 				this.useBuyPotionSignal.dispatch(new UseBuyPotionVO(PotionInventoryModel.MAGIC_POTION_ID, UseBuyPotionVO.CONTEXTBUY));
-			}
-
+			}*/
 		} else if (param1.keyCode == Parameters.data.miniMapZoomOut) {
 			this.miniMapZoom.dispatch(MiniMapZoomSignal.OUT);
 
@@ -494,8 +493,8 @@ public class MapUserInput {
 		} else if (param1.keyCode == Parameters.data.toggleFullscreen) {
 			if (Capabilities.playerType == "Desktop") {
 				Parameters.data.fullscreenMode = !Parameters.data.fullscreenMode;
-				Parameters.save();
-				loc2.displayState = !!Parameters.data.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
+				//Parameters.save();
+				//loc2.displayState = !!Parameters.data.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
 			}
 
 		} else if (param1.keyCode == Parameters.data.switchTabs) {

@@ -18,11 +18,11 @@ public class MaskedImage {
 	}
 
 	public int width() {
-		return this.image.width();
+		return this.image.width;
 	}
 
 	public int height() {
-		return this.image.height();
+		return this.image.height;
 	}
 
 

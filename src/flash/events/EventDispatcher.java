@@ -1,6 +1,6 @@
 package flash.events;
 
-import alde.flash.utils.function.impl.EventConsumer;
+import alde.flash.utils.EventConsumer;
 import flash.airglobal.Graphics;
 
 import java.util.HashMap;
@@ -18,7 +18,7 @@ public class EventDispatcher {
 		listeners = new HashMap<>();
 	}
 
-	native void removeEventListener(String type, Consumer listener, Boolean useCapture);
+	native void removeEventListener(String type, EventConsumer listener, Boolean useCapture);
 
 	native Boolean dispatchEvent(Event event);
 
@@ -30,12 +30,8 @@ public class EventDispatcher {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-	public void addEventListener(String event, Consumer<? super Event> listener) {
-		addEventListener(event, new EventConsumer(listener), false, 0, false);
-	}
-
-	public void addEventListener(String event, Runnable listener) {
-		addEventListener(event, new EventConsumer(listener), false, 0, false);
+	public void addEventListener(String event, EventConsumer listener) {
+		this.addEventListener(event, listener, false, 0, false);
 	}
 
 	void addEventListener(String event, EventConsumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
@@ -46,21 +42,15 @@ public class EventDispatcher {
 	public void addListener(Consumer<? extends Event> consumer) {
 	}
 
-	public void removeEventListener(String event, Consumer listener) {
+	public void removeEventListener(String event, EventConsumer listener) {
 		//listeners.remove(listener, event);
 	}
-
-	public void removeEventListener(String event, Runnable listener) {
-		//listeners.remove(listener, event);
-	}
-
-
 
 	protected void trigger(String EVENT_TYPE) {
-		for (SignalFunction c : listeners.keySet()) {
+		for (EventConsumer c : listeners.keySet()) {
 			if (listeners.get(c).equals(EVENT_TYPE)) {
 				Event e = new Event(EVENT_TYPE);
-				c.dispatch(e);
+				c.accept(e);
 			}
 		}
 	}

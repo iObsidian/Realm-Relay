@@ -28,7 +28,6 @@ public class Map extends AbstractMap {
 		this.squares = new Vector<Square>();
 	}
 
-	@Override
 	public Square getSquare(double x, double y) {
 
 		if (x < 0 || x >= width || y < 0 || y >= height) {
@@ -49,7 +48,6 @@ public class Map extends AbstractMap {
 		return null;
 	}
 
-	@Override
 	public void setProps(int width, int height, String name) {
 		this.width = width;
 		this.height = height;
@@ -99,12 +97,13 @@ public class Map extends AbstractMap {
 
 	}
 
-	@Override
+
 	public void setGroundTile(double x, double y, int type) {
 		Square square = this.getSquare(x, y);
 		square.setTileType(type);
 	}
 
 	public Square lookupSquare(int loc7, int loc6) {
+		return null;
 	}
 }

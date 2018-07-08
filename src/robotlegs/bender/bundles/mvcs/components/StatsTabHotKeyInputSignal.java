@@ -1,4 +1,4 @@
-package rotmg.view.components;
+package robotlegs.bender.bundles.mvcs.components;
 
 import org.osflash.signals.Signal;
 

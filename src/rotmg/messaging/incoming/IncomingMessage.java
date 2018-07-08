@@ -5,6 +5,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+import alde.flash.utils.MessageConsumer;
 import rotmg.net.impl.Message;
 
 public class IncomingMessage extends Message {

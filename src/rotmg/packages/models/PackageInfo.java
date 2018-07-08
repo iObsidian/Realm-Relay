@@ -2,6 +2,7 @@ package rotmg.packages.models;
 
 import java.util.function.Consumer;
 
+import alde.flash.utils.EventConsumer;
 import org.osflash.signals.Signal;
 
 import flash.display.Loader;
@@ -64,9 +65,9 @@ public class PackageInfo extends GenericBoxInfo {
 	}
 
 	private void loadImage(String param1, Loader param2, Consumer<Event> param3) {
-		param2.contentLoaderInfo.addEventListener(Event.COMPLETE, param3);
-		param2.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this::onIOError);
-		param2.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, this::onSecurityEventError);
+		param2.contentLoaderInfo.addEventListener(Event.COMPLETE, new EventConsumer<>(param3));
+		param2.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, new EventConsumer<>(this::onIOError));
+		param2.contentLoaderInfo.addEventListener(SecurityErrorEvent.SECURITY_ERROR, new EventConsumer<>(this::onSecurityEventError));
 		try {
 			param2.load(new URLRequest(param1));
 			return;
@@ -77,9 +78,9 @@ public class PackageInfo extends GenericBoxInfo {
 
 	private void unbindLoaderEvents(Loader param1, Consumer<? extends Event> param2) {
 		if (param1 != null && param1.contentLoaderInfo != null) {
-			param1.contentLoaderInfo.removeEventListener(Event.COMPLETE, param2);
-			param1.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, this::onIOError);
-			param1.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, this::onSecurityEventError);
+			param1.contentLoaderInfo.removeEventListener(Event.COMPLETE, new EventConsumer<>(param2));
+			param1.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, new EventConsumer<>(this::onIOError));
+			param1.contentLoaderInfo.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, new EventConsumer<>(this::onSecurityEventError));
 		}
 	}
 

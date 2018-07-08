@@ -27,10 +27,15 @@ public class PlayerModel {
 	public int currentCharId;
 	public Account account;
 	private boolean isAgeVerified;
+	private static PlayerModel instance;
 
 	public PlayerModel() {
 		super();
 		this.isInvalidated = true;
+	}
+
+	public static PlayerModel getInstance() {
+		return instance;
 	}
 
 	public int getCurrentCharId() {

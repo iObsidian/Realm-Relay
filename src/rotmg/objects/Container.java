@@ -1,7 +1,5 @@
 package rotmg.objects;
 
-import java.awt.Panel;
-
 import alde.flash.utils.XML;
 import rotmg.GameSprite;
 import rotmg.map.Map;
@@ -48,10 +46,12 @@ public class Container extends GameObject implements IInteractiveObject {
 		return true;
 	}
 
-	public Panel getPanel(GameSprite param1) {
-		Player loc2 = param1 && param1.map ? param1.map.player_ : null;
+	public rotmg.ui.panels.Panel getPanel(GameSprite param1) {
+		/*Player loc2 = param1 != null && param1.map ? param1.map.player_ : null;
 		ContainerGrid loc3 = new ContainerGrid(this, loc2);
-		return loc3;
+		return loc3;*/
+
+		return null;
 	}
 
 

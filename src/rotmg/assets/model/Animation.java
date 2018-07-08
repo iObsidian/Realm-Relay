@@ -1,11 +1,12 @@
 package rotmg.assets.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Timer;
 import flash.display.BitmapData;
 import flash.events.TimerEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * All done. Very simillar to RotMG's Animation,
@@ -30,7 +31,7 @@ public class Animation {
 
 	private Timer makeTimer() {
 		Timer loc1 = new Timer(this.DEFAULT_SPEED);
-		loc1.addEventListener(TimerEvent.TIMER, this::iterate);
+		loc1.addEventListener(TimerEvent.TIMER, new EventConsumer<>(this::iterate));
 		return loc1;
 	}
 

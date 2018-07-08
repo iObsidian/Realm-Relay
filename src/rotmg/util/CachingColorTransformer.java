@@ -42,10 +42,10 @@ public class CachingColorTransformer {
 		}
 		if (loc3 == null) {
 			loc3 = param1.clone();
-			loc3.applyFilter(loc3, loc3.rect, new Point(), param2);
+			//loc3.applyFilter(loc3, loc3.rect, new Point(), param2);
 			loc4.put(param2, loc3);
 		}
-		return loc3;
+		return (BitmapData) loc3;
 	}
 
 	public static BitmapData alphaBitmapData(BitmapData param1, double param2) {

@@ -1,5 +1,7 @@
 package rotmg.dialogs.view;
 
+import alde.flash.utils.EventConsumer;
+import alde.flash.utils.SignalConsumer;
 import flash.airglobal.Graphics;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
@@ -69,7 +71,7 @@ public class DialogsView extends Sprite {
 
 	private void addDialog(Sprite param1) {
 		this.current = param1;
-		param1.addEventListener(Event.REMOVED, this::onRemoved);
+		param1.addEventListener(Event.REMOVED, new EventConsumer<>(this::onRemoved));
 		this.container.addChild(param1);
 	}
 

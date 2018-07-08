@@ -34,6 +34,10 @@ public class GuildText extends Sprite {
 		this.draw(param1, param2);
 	}
 
+	public GuildText(String s, int i) {
+		super();
+	}
+
 	public void draw(String param1, int param2) {
 		if (this.name.equals(param1) && param2 == param2) {
 			return;

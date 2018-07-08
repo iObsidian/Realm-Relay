@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import alde.flash.utils.SignalConsumer;
 import org.osflash.signals.Signal;
 
 import alde.flash.utils.XML;
@@ -61,7 +62,7 @@ public class PotionInventoryModel {
 		potModel.position = 0;
 		potModel.costs = costs;
 		this.potionModels.put(potModel.position, potModel);
-		potModel.update.add(this::update);
+		potModel.update.add(new SignalConsumer<>(this::update));
 		potModel = new PotionModel();
 		potModel.purchaseCooldownMillis = purchaseCooldownMillis;
 		potModel.priceCooldownMillis = costCooldownMillis;
@@ -70,10 +71,14 @@ public class PotionInventoryModel {
 		potModel.position = 1;
 		potModel.costs = costs;
 		this.potionModels.put(potModel.position, potModel);
-		potModel.update.add(this::update);
+		potModel.update.add(new SignalConsumer<>(this::update));
 	}
 
 	private void update(int param1) {
 		this.updatePosition.dispatch(param1);
+	}
+
+	public Object getPotionModel(int magicPotionId) {
+		return null;
 	}
 }

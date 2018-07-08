@@ -95,6 +95,7 @@ public class Projectile extends BasicObject {
 		objBullIdToObjId.remove(param2 << 24 | param1);
 	}
 
+	@Override
 	public void dispose() {
 		objBullIdToObjId = new Dictionary();
 	}

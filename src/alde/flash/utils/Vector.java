@@ -1,5 +1,7 @@
 package alde.flash.utils;
 
+import spark.filters.DropShadowFilter;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -136,5 +138,11 @@ public class Vector<T> implements Iterable<T> {
 	@Deprecated
 	public int indexOf(T loc2) {
 		return -1;
+	}
+
+
+	public void set(T set) {
+		clear();
+		add(set);
 	}
 }

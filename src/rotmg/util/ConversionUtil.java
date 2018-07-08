@@ -4,6 +4,17 @@ import alde.flash.utils.Vector;
 
 public class ConversionUtil {
 
+
+	public static Vector<Integer> toIntVector(int[] array) {
+		Vector<Integer> vector = new Vector<>();
+
+		for (int i = 0; i < array.length; i++) {
+			vector.add(array[i]);
+		}
+
+		return vector;
+	}
+
 	public static Vector<Integer> toIntVector(String data) {
 		return toIntVector(data, ",");
 	}

@@ -4,11 +4,19 @@ import rotmg.core.service.tracking.GoogleAnalyticsTracker;
 
 public class GoogleAnalytics {
 
-
 	private GoogleAnalyticsTracker tracker;
 
 	public GoogleAnalytics() {
 		super();
+	}
+
+	static GoogleAnalytics instance;
+
+	public static GoogleAnalytics getInstance() {
+		if (instance == null) {
+			instance = new GoogleAnalytics();
+		}
+		return instance;
 	}
 
 	public void init(String param1, String param2) {

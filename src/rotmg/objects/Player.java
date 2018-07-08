@@ -358,4 +358,11 @@ public class Player extends Character {
 		}
 
 	}
+
+	public boolean useAltWeapon(double loc8, double loc9, int startUse) {
+		return true;
+	}
+
+	public void attemptAttackAngle(double v) {
+	}
 }

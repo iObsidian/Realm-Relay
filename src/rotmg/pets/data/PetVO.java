@@ -5,6 +5,7 @@ import org.osflash.signals.Signal;
 import alde.flash.utils.XML;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
+import alde.flash.utils.SignalConsumer;
 import rotmg.objects.ObjectLibrary;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.util.AnimatedChars;
@@ -47,7 +48,7 @@ public class PetVO {
 
 	private void listenToAbilities() {
 		for (AbilityVO abilityVO : this.abilityList) {
-			abilityVO.updated.add(this::onAbilityUpdate);
+			abilityVO.updated.add(new SignalConsumer<>(this::onAbilityUpdate));
 		}
 	}
 
@@ -174,7 +175,7 @@ public class PetVO {
 
 	public MaskedImage getSkinMaskedImage() {
 		this.makeSkin();
-		return !!this.skin ? this.skin.imageFromDir(0, AnimatedChar.STAND, 0) : null;
+		return (this.skin != null) ? this.skin.imageFromDir(0, AnimatedChar.STAND, 0) : null;
 	}
 
 	private void makeSkin() {

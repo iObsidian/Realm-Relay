@@ -1,15 +1,8 @@
 package rotmg.map.mapoverlay;
 
+import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
-import flash.display.CapsStyle;
-import flash.display.GraphicsPath;
-import flash.display.GraphicsPathCommand;
-import flash.display.GraphicsSolidFill;
-import flash.display.GraphicsStroke;
-import flash.display.IGraphicsData;
-import flash.display.JointStyle;
-import flash.display.LineScaleMode;
-import flash.display.Sprite;
+import flash.display.*;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 import flash.text.TextField;
@@ -99,7 +92,7 @@ public class SpeechBalloon extends Sprite implements IMapOverlayElement {
 		filters = new Vector<>(new DropShadowFilter(0, 0, 0, 1, 16, 16));
 		this.offset.y = -height - this.go.texture.height * (param1.size / 100) * 5 - 2;
 		visible = false;
-		addEventListener(MouseEvent.RIGHT_CLICK, this::onSpeechBalloonRightClicked);
+		addEventListener(MouseEvent.RIGHT_CLICK, new EventConsumer<>(this::onSpeechBalloonRightClicked));
 	}
 
 	private void onSpeechBalloonRightClicked(MouseEvent param1) {

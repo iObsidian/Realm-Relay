@@ -2,6 +2,7 @@ package rotmg.ui.view;
 
 import java.util.function.Consumer;
 
+import alde.flash.utils.SignalConsumer;
 import org.osflash.signals.Signal;
 
 import com.adobe.utils.DictionaryUtil;
@@ -42,7 +43,7 @@ public class SignalWaiter {
 			texts.remove(value);
 			checkEmpty();
 		};
-		value.addOnce(onTextChanged);
+		value.addOnce(new SignalConsumer<>(onTextChanged)); //TODO make sur this works
 	}
 
 	private void checkEmpty() {

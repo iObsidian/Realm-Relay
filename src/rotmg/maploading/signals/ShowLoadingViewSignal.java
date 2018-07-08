@@ -1,6 +1,8 @@
 package rotmg.maploading.signals;
 
-public class ShowLoadingViewSignal<Signal> {
+import org.osflash.signals.Signal;
+
+public class ShowLoadingViewSignal extends Signal {
 	static ShowLoadingViewSignal instance;
 
 	public static ShowLoadingViewSignal getInstance() {

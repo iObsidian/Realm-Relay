@@ -25,8 +25,8 @@ public class ImageSet {
 	}
 
 	public void addFromBitmapData(BitmapData bitmapData, int width, int height) {
-		int maxX = bitmapData.width() / width;
-		int maxY = bitmapData.height() / height;
+		int maxX = bitmapData.width / width;
+		int maxY = bitmapData.height / height;
 		for (int y = 0; y < maxY; y++) {
 			for (int x = 0; x < maxX; x++) {
 				images.add(BitmapUtil.cropToBitmapData(bitmapData, x * width, y * height, width, height));

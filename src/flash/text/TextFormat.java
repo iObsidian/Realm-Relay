@@ -9,4 +9,12 @@ public class TextFormat {
 	public int indent;
 	public int leading;
 	public int color;
+
+	public TextFormat(String name, double renderingFontSize) {
+
+	}
+
+	public TextFormat() {
+
+	}
 }

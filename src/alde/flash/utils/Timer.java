@@ -1,10 +1,9 @@
 package alde.flash.utils;
 
-import java.util.TimerTask;
-
-import alde.flash.utils.function.impl.EventConsumer;
 import flash.events.EventDispatcher;
 import flash.events.TimerEvent;
+
+import java.util.TimerTask;
 
 /**
  * Representing AS3's Timer
@@ -42,9 +41,9 @@ public class Timer extends EventDispatcher {
 
 						for (EventConsumer r : listeners.keySet()) {
 							if (listeners.get(r).equals(TimerEvent.TIMER)) {
-								r.getConsumer().accept(null);
+								r.accept(null);
 							} else if (listeners.get(r).equals(TimerEvent.TIMER_COMPLETE) && repeatCount == 0) {
-								r.getConsumer().accept(null);
+								r.accept(null);
 							}
 						}
 

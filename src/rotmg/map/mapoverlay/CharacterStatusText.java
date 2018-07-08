@@ -6,6 +6,7 @@ import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.geom.Matrix;
 import flash.geom.Point;
+import alde.flash.utils.SignalConsumer;
 import rotmg.map.Camera;
 import rotmg.objects.GameObject;
 import rotmg.text.view.stringBuilder.StringBuilder;
@@ -42,7 +43,7 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 		this.lifetime = param3;
 		this.offsetTime = param4;
 		this.textDisplay = new TextFieldDisplayConcrete().setSize(24).setColor(param2).setBold(true);
-		this.textDisplay.filters = new Vector<GlowFilter>(new GlowFilter(0, 1, 4, 4, 2, 1));
+		this.textDisplay.filters.set(new GlowFilter(0, 1, 4, 4, 2, 1));
 		addChild(this.textDisplay);
 		visible = false;
 	}
@@ -79,7 +80,7 @@ public class CharacterStatusText extends Sprite implements IMapOverlayElement {
 	}
 
 	public void setStringBuilder(StringBuilder param1) {
-		this.textDisplay.textChanged.add(this::onTextChanged);
+		this.textDisplay.textChanged.add(new SignalConsumer<>(this::onTextChanged));
 		this.textDisplay.setStringBuilder(param1);
 	}
 

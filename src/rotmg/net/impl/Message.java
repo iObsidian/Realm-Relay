@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 import alde.flash.utils.IData;
+import alde.flash.utils.MessageConsumer;
 
 public class Message implements IData {
 
@@ -15,23 +16,13 @@ public class Message implements IData {
 
 	public Message next;
 	public int id;
-	public Consumer callback;
+	public MessageConsumer callback;
 	private boolean isCallback;
-
-	/**
-	 * public Message(int param1) {
-	 * this(param1, null);
-	 * }
-	 */
-
-	public Message(int param1, MessageConsumer param2) {
-		this(param1, param2.getConsumer());
-	}
 
 	public Message(int param1, Consumer param2) {
 		this.id = param1;
 		this.isCallback = param2 != null;
-		this.callback = param2;
+		this.callback = new MessageConsumer<>(param2);
 	}
 
 	public void consume() {

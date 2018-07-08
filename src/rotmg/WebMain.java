@@ -1,5 +1,6 @@
 package rotmg;
 
+import alde.flash.utils.EventConsumer;
 import flash.display.Sprite;
 import flash.display.Stage;
 import flash.display.StageScaleMode;
@@ -23,12 +24,12 @@ public class WebMain extends Sprite {
 		if (stage != null) {
 			this.setup();
 		} else {
-			addEventListener(Event.ADDED_TO_STAGE, this::onAddedToStage);
+			addEventListener(Event.ADDED_TO_STAGE, new EventConsumer<>(this::onAddedToStage));
 		}
 	}
 
 	private void onAddedToStage(Event param1) {
-		removeEventListener(Event.ADDED_TO_STAGE, this::onAddedToStage);
+		removeEventListener(Event.ADDED_TO_STAGE, new EventConsumer<>(this::onAddedToStage));
 		this.setup();
 	}
 

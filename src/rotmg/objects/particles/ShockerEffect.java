@@ -1,5 +1,6 @@
 package rotmg.objects.particles;
 
+import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Timer;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
@@ -75,8 +76,8 @@ public class ShockerEffect extends ParticleEffect {
 
 	private void initialize() {
 		this.timer = new Timer(200, 10);
-		this.timer.addEventListener(TimerEvent.TIMER, this::onTimer);
-		this.timer.addEventListener(TimerEvent.TIMER_COMPLETE, this::onTimerComplete);
+		this.timer.addEventListener(TimerEvent.TIMER, new EventConsumer<>(this::onTimer));
+		this.timer.addEventListener(TimerEvent.TIMER_COMPLETE, new EventConsumer<>(this::onTimerComplete));
 		this.timer.start();
 		this.parseBitmapDataFromImageSet();
 	}
@@ -96,8 +97,8 @@ public class ShockerEffect extends ParticleEffect {
 
 	public void destroy() {
 		if (this.timer != null) {
-			this.timer.removeEventListener(TimerEvent.TIMER, this::onTimer);
-			this.timer.removeEventListener(TimerEvent.TIMER, this::onTimerComplete);
+			this.timer.removeEventListener(TimerEvent.TIMER, new EventConsumer<>(this::onTimer));
+			this.timer.removeEventListener(TimerEvent.TIMER, new EventConsumer<>(this::onTimerComplete));
 			this.timer.stop();
 			this.timer = null;
 		}

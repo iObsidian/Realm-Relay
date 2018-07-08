@@ -1,7 +1,8 @@
-package rotmg.view;
+package rotmg.game.view;
 
-import static flash.utils.getTimer.getTimer;
-
+import alde.flash.utils.EventConsumer;
+import alde.flash.utils.SignalConsumer;
+import robotlegs.bender.bundles.mvcs.Mediator;
 import rotmg.GameSprite;
 import rotmg.core.model.MapModel;
 import rotmg.core.model.PlayerModel;
@@ -40,7 +41,9 @@ import rotmg.ui.signals.HUDModelInitialized;
 import rotmg.ui.signals.HUDSetupStarted;
 import rotmg.ui.signals.UpdateHUDSignal;
 
-public class GameSpriteMediator {
+import static flash.utils.getTimer.getTimer;
+
+public class GameSpriteMediator extends Mediator {
 
 	public GameSprite view;
 
@@ -120,14 +123,14 @@ public class GameSpriteMediator {
 	public void initialize() {
 		this.showLoadingViewSignal.dispatch();
 		this.view.packageModel = this.packageModel;
-		this.setWorldInteraction.add(this::onSetWorldInteraction);
-		addViewListener(ReconnectEvent.RECONNECT, this::onReconnect);
-		this.view.modelInitialized.add(this::onGameSpriteModelInitialized);
-		this.view.drawCharacterWindow.add(this::onStatusPanelDraw);
-		this.hudModelInitialized.add(this::onHUDModelInitialized);
-		this.showPetTooltip.add(this::onShowPetTooltip);
-		this.view.monitor.add(this::onMonitor);
-		this.view.closed.add(this::onClosed);
+		this.setWorldInteraction.add(new SignalConsumer<>(this::onSetWorldInteraction));
+		addViewListener(ReconnectEvent.RECONNECT, new EventConsumer<>(this::onReconnect));
+		this.view.modelInitialized.add(new SignalConsumer<>(this::onGameSpriteModelInitialized));
+		this.view.drawCharacterWindow.add(new SignalConsumer<>(this::onStatusPanelDraw));
+		this.hudModelInitialized.add(new SignalConsumer<>(this::onHUDModelInitialized));
+		this.showPetTooltip.add(new SignalConsumer<>(this::onShowPetTooltip));
+		//this.view.monitor.add(new SignalConsumer<>(this::onMonitor));
+		this.view.closed.add(new SignalConsumer<>(this::onClosed));
 		this.view.mapModel = this.mapModel;
 		this.view.dialogsModel = this.dialogsModel;
 		this.view.beginnersPackageModel = this.beginnersPackageModel;
@@ -138,35 +141,37 @@ public class GameSpriteMediator {
 		this.tracking.dispatch("/gameStarted");
 		this.view.showBeginnersPackage = this.showBeginnersPackage;
 		this.view.openDailyCalendarPopupSignal = this.showDailyCalendarSignal;
-		this.view.showPackage.add(this.onShowPackage);
-		this.newsButtonRefreshSignal.add(this.onNewsButtonRefreshSignal);
+		this.view.showPackage.add(new SignalConsumer<>(this::onShowPackage));
+		this.newsButtonRefreshSignal.add(new SignalConsumer<>(this::onNewsButtonRefreshSignal));
 	}
+
 
 	private void onShowPackage() {
 		PackageInfo loc1 = this.packageModel.startupPackage();
-		if (loc1) {
-			this.showPopupSignal.dispatch(new StartupPackage(loc1));
-		} else {
-			this.flushQueueSignal.dispatch();
-		}
+		/**if (loc1) {
+		 this.showPopupSignal.dispatch(new StartupPackage(loc1));
+		 } else {*/
+		this.flushQueueSignal.dispatch();
+		/*}*/
 	}
 
 
 	//@Override from Mediator
 	public void destroy() {
-		this.view.showPackage.remove(this::onShowPackage);
-		this.setWorldInteraction.remove(this::onSetWorldInteraction);
-		removeViewListener(ReconnectEvent.RECONNECT, this::onReconnect);
-		this.view.modelInitialized.remove(this::onGameSpriteModelInitialized);
-		this.view.drawCharacterWindow.remove(this::onStatusPanelDraw);
-		this.hudModelInitialized.remove(this::onHUDModelInitialized);
-		this.beginnersPackageAvailable.remove(this::onBeginner);
-		this.packageAvailable.remove(this::onPackage);
-		this.view.closed.remove(this::onClosed);
-		this.view.monitor.remove(this::onMonitor);
-		this.newsButtonRefreshSignal.remove(this::onNewsButtonRefreshSignal);
+		this.view.showPackage.remove(new SignalConsumer<>(this::onShowPackage));
+		this.setWorldInteraction.remove(new SignalConsumer<>(this::onSetWorldInteraction));
+		removeViewListener(ReconnectEvent.RECONNECT, new SignalConsumer<>(this::onReconnect));
+		this.view.modelInitialized.remove(new SignalConsumer<>(this::onGameSpriteModelInitialized));
+		this.view.drawCharacterWindow.remove(new SignalConsumer<>(this::onStatusPanelDraw));
+		this.hudModelInitialized.remove(new SignalConsumer<>(this::onHUDModelInitialized));
+		this.beginnersPackageAvailable.remove(new SignalConsumer<>(this::onBeginner));
+		this.packageAvailable.remove(new SignalConsumer<>(this::onPackage));
+		this.view.closed.remove(new SignalConsumer<>(this::onClosed));
+		//this.view.monitor.remove(new SignalConsumer<>(this::onMonitor));
+		this.newsButtonRefreshSignal.remove(new SignalConsumer<>(this::onNewsButtonRefreshSignal));
 		this.view.disconnect();
 	}
+
 
 	private void onMonitor(String param1, int param2) {
 		this.monitor.recordTime(param1, param2);
@@ -190,7 +195,7 @@ public class GameSpriteMediator {
 		}
 		this.closeDialogs.dispatch();
 		this.closeAllPopups.dispatch();
-		HideMapLoadingSignal loc1 = StaticInjectorContext.getInjector().getInstance(HideMapLoadingSignal);
+		HideMapLoadingSignal loc1 = HideMapLoadingSignal.getInstance();
 		loc1.dispatch();
 		sleepForMs(100);
 	}
@@ -212,8 +217,8 @@ public class GameSpriteMediator {
 
 	private void onGameSpriteModelInitialized() {
 		this.hudSetupStarted.dispatch(this.view);
-		this.beginnersPackageAvailable.add(this::onBeginner);
-		this.packageAvailable.add(this::onPackage);
+		this.beginnersPackageAvailable.add(new SignalConsumer<>(this::onBeginner));
+		this.packageAvailable.add(new SignalConsumer<>(this::onPackage));
 		this.initPackages.dispatch();
 	}
 

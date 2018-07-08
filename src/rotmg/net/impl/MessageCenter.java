@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
+import alde.flash.utils.MessageConsumer;
 import rotmg.net.api.MessageMap;
 import rotmg.net.api.MessageMapping;
 import rotmg.net.api.MessageProvider;
@@ -50,10 +51,10 @@ public class MessageCenter implements MessageMap, MessageProvider {
 
 			Class[] cArg = new Class[2]; //Our constructor has 3 arguments
 			cArg[0] = Integer.TYPE; //First argument is of *object* type Long
-			cArg[1] = Consumer.class; //Second argument is of *object* type String
+			cArg[1] = MessageConsumer.class; //Second argument is of *object* type String
 
 			try {
-				return (Message) classToLoad.getDeclaredConstructor(cArg).newInstance(param1, m.getConsumer());
+				return (Message) classToLoad.getDeclaredConstructor(cArg).newInstance(param1, m);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				e.printStackTrace();

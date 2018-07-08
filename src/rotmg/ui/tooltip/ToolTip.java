@@ -1,15 +1,9 @@
 package rotmg.ui.tooltip;
 
+import alde.flash.utils.EventConsumer;
+import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
-import flash.display.CapsStyle;
-import flash.display.DisplayObject;
-import flash.display.GraphicsPath;
-import flash.display.GraphicsSolidFill;
-import flash.display.GraphicsStroke;
-import flash.display.IGraphicsData;
-import flash.display.JointStyle;
-import flash.display.LineScaleMode;
-import flash.display.Sprite;
+import flash.display.*;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import rotmg.ui.view.SignalWaiter;
@@ -51,9 +45,9 @@ public class ToolTip extends Sprite {
 		mouseEnabled = false;
 		mouseChildren = false;
 		filters = new Vector<>(new DropShadowFilter(0, 0, 0, 1, 16, 16));
-		addEventListener(Event.ADDED_TO_STAGE, this::onAddedToStage);
-		addEventListener(Event.REMOVED_FROM_STAGE, this::onRemovedFromStage);
-		this.waiter.complete.add(this::alignUIAndDraw);
+		addEventListener(Event.ADDED_TO_STAGE, new EventConsumer<>(this::onAddedToStage));
+		addEventListener(Event.REMOVED_FROM_STAGE, new EventConsumer<>(this::onRemovedFromStage));
+		this.waiter.complete.add(new SignalConsumer<>(this::alignUIAndDraw));
 	}
 
 	public void alignUIAndDraw() {
@@ -68,13 +62,13 @@ public class ToolTip extends Sprite {
 	public void attachToTarget(DisplayObject param1) {
 		if (param1 != null) {
 			this.targetObj = param1;
-			this.targetObj.addEventListener(MouseEvent.ROLL_OUT, this::onLeaveTarget);
+			this.targetObj.addEventListener(MouseEvent.ROLL_OUT, new EventConsumer<>(this::onLeaveTarget));
 		}
 	}
 
 	public void detachFromTarget() {
 		if (this.targetObj != null) {
-			this.targetObj.removeEventListener(MouseEvent.ROLL_OUT, this::onLeaveTarget);
+			this.targetObj.removeEventListener(MouseEvent.ROLL_OUT, new EventConsumer<>(this::onLeaveTarget));
 			if (parent != null) {
 				parent.removeChild(this);
 			}
@@ -102,13 +96,13 @@ public class ToolTip extends Sprite {
 		}
 		if (this._followMouse) {
 			this.position();
-			addEventListener(Event.ENTER_FRAME, this::onEnterFrame);
+			addEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
 		}
 	}
 
 	private void onRemovedFromStage(Event param1) {
 		if (this._followMouse) {
-			removeEventListener(Event.ENTER_FRAME, this::onEnterFrame);
+			removeEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
 		}
 	}
 

@@ -5,6 +5,7 @@ import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.display.Sprite;
+import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
 import rotmg.objects.ObjectLibrary;
 import spark.filters.DropShadowFilter;
@@ -71,7 +72,7 @@ public class FameUtil {
 
 	public static Sprite numStarsToBigImage(int param1) {
 		Sprite loc2 = numStarsToImage(param1);
-		loc2.filters = new Vector<DropShadowFilter>(new DropShadowFilter(0, 0, 0, 1, 4, 4, 2));
+		loc2.filters.set(new DropShadowFilter(0, 0, 0, 1, 4, 4, 2));
 		loc2.scaleX = 1.4;
 		loc2.scaleY = 1.4;
 		return loc2;
@@ -106,7 +107,7 @@ public class FameUtil {
 		loc2.x = 2;
 		loc2.y = 1;
 		loc3.addChild(loc2);
-		loc3.filters = new Vector<>(new DropShadowFilter(0.0, 0.0, 0.0, 0.5, 6.0, 6.0, 1.0));
+		loc3.filters.set(new DropShadowFilter(0.0, 0.0, 0.0, 0.5, 6.0, 6.0, 1.0));
 		return loc3;
 	}
 

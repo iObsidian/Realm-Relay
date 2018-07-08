@@ -2,6 +2,7 @@ package rotmg.net.impl;
 
 import java.util.function.Consumer;
 
+import alde.flash.utils.MessageConsumer;
 import rotmg.net.api.MessageMapping;
 
 /**
@@ -35,10 +36,4 @@ public class MessageCenterMapping implements MessageMapping {
 		return this;
 	}
 
-	public Consumer getConsumer() {
-		if (messageConsumer == null) {
-			return null;
-		}
-		return messageConsumer.getConsumer();
-	}
 }
