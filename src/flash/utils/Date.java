@@ -1,5 +1,5 @@
 package flash.utils;
 
-public class Date {
+public class Date  {
 	public double time;
 }

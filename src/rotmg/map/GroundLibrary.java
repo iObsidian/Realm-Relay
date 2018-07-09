@@ -19,12 +19,14 @@ public class GroundLibrary {
 	private static HashMap<Integer, Integer> tileTypeColorDict = new HashMap<>();
 
 	public static void parseFromXML(XML xml) {
-
 		int objectType = xml.getIntAttribute("type");
-		propsLibrary.put(objectType, new GroundProperties(xml));
-		xmlLibrary.put(objectType, xml);
-		typeToTextureData.put(objectType, new TextureDataConcrete(xml));
-		idToType.put(xml.getAttribute("id"), objectType);
+
+		for (XML loc2 : xml.getChilds("Ground")) {
+			propsLibrary.put(objectType, new GroundProperties(loc2));
+			xmlLibrary.put(objectType, loc2);
+			typeToTextureData.put(objectType, new TextureDataConcrete(loc2));
+			idToType.put(loc2.getAttribute("id"), objectType);
+		}
 
 		defaultProps = propsLibrary.get(255);
 	}

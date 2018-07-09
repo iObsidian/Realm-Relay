@@ -145,4 +145,8 @@ public class Vector<T> implements Iterable<T> {
 		clear();
 		add(set);
 	}
+
+	public int size() {
+		return length;
+	}
 }

@@ -1,8 +1,8 @@
 package rotmg.particles;
 
-import java.util.HashMap;
-
 import alde.flash.utils.XML;
+
+import java.util.HashMap;
 
 /**
  * We parse a list of projectiles instead of a root XML.
@@ -14,14 +14,8 @@ public class ParticleLibrary {
 	public static final HashMap<String, ParticleProperties> propsLibrary = new HashMap<>();
 
 	public static void parseFromXML(XML xml) {
-
-		ParticleProperties p = new ParticleProperties(xml);
-
-		propsLibrary.put(xml.getAttribute("id"), p);
-
-		System.out.println(p.toString());
-
-
+		for (XML x : xml.getChilds("Particle")) {
+			propsLibrary.put(xml.getAttribute("id"), new ParticleProperties(x));
+		}
 	}
-
 }

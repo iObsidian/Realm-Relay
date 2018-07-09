@@ -3,6 +3,7 @@ package rotmg.objects.animation;
 import java.util.ArrayList;
 import java.util.List;
 
+import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 
 /**
@@ -14,10 +15,10 @@ public class AnimationData {
 	public int period;
 	public int periodJitter;
 	public boolean sync = false;
-	public List<FrameData> frames;
+	public Vector<FrameData> frames;
 
 	public AnimationData(XML xml) {
-		this.frames = new ArrayList<>();
+		this.frames = new Vector<>();
 
 		if (xml.hasOwnProperty("prob")) {
 			this.prob = xml.getIntAttribute("prob");

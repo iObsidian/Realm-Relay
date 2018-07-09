@@ -44,13 +44,11 @@ public class AssetLibrary {
 		imageSet.addFromBitmapData(data, width, height);
 		imageSets.put(name, imageSet);
 
-		System.out
-				.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
+		System.out.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
 
 		for (BitmapData b : imageSet.images) {
 			imageLookup.put(b, name);
 		}
-
 	}
 
 	public static void addToImageSet(String name, BitmapData data) {
@@ -88,12 +86,12 @@ public class AssetLibrary {
 	}
 
 	public static BitmapData getImageFromSet(String name, int id) {
-
 		if (imageSets.get(name) == null) {
 			System.err.println("ERROR : " + name + " DOES NOT EXIST!");
 		}
-
-
+		if (imageSets.get(name).images.size() == 0) {
+			System.err.println("ERROR : " + name + " NO LENGTH!");
+		}
 		return imageSets.get(name).images.get(id);
 	}
 

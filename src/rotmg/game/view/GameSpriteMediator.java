@@ -119,7 +119,7 @@ public class GameSpriteMediator extends Mediator {
 		}
 	}
 
-	//@Override from Mediator
+	@Override
 	public void initialize() {
 		this.showLoadingViewSignal.dispatch();
 		this.view.packageModel = this.packageModel;

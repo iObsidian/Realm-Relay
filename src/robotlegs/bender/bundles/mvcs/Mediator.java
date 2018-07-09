@@ -1,11 +1,11 @@
 package robotlegs.bender.bundles.mvcs;
 
-public class Mediator {
-
+public abstract class Mediator {
 
 	public void addViewListener(String reconnect, Object onReconnect) {
 	}
 
+	public abstract void initialize();
 
 	public void removeViewListener(String reconnect, Object onReconnect) {
 	}

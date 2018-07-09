@@ -36,7 +36,6 @@ public class TextureDataConcrete extends TextureData {
 			this.parse(param1.getChild("Mask"));
 		}
 		if (param1.hasOwnProperty("Effect")) {
-
 			for (XML x : param1.getChilds()) {
 				System.out.println(x.name());
 			}
@@ -61,8 +60,12 @@ public class TextureDataConcrete extends TextureData {
 					texture = AssetLibrary.getImageFromSet(xml.getValue("File"), xml.getIntValue("Index"));
 				} catch (Exception e) {
 					e.printStackTrace();
-					throw new Error("Error loading Texture for " + id + " - name: " + xml.getValue("File") + " - idx: "
+
+					System.err.println("Error loading Texture for " + id + " - name: " + xml.getValue("File") + " - idx: "
 							+ xml.getIntValue("Index"));
+
+					/*throw new Error("Error loading Texture for " + id + " - name: " + xml.getValue("File") + " - idx: "
+							+ xml.getIntValue("Index"));*/
 				}
 				break;
 			case "Mask":

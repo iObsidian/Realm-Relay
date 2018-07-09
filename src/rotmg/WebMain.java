@@ -21,11 +21,17 @@ public class WebMain extends Sprite {
 
 	public WebMain() {
 		super();
-		if (stage != null) {
+
+
+		// Bellow is bootleg code
+
+		this.setup();
+
+		/*if (stage != null) {
 			this.setup();
 		} else {
 			addEventListener(Event.ADDED_TO_STAGE, new EventConsumer<>(this::onAddedToStage));
-		}
+		}*/
 	}
 
 	private void onAddedToStage(Event param1) {
@@ -40,13 +46,17 @@ public class WebMain extends Sprite {
 		new AssetLoader().load();
 		stage.scaleMode = StageScaleMode.EXACT_FIT;
 		StartupSignal.getInstance().dispatch();
-
 		this.configureForAirIfDesktopPlayer();
 		//UIUtils.toggleQuality(Parameters.data.uiQuality);
+
+
+		GameSprite g = new GameSprite();
+		g.connect();
+
 	}
 
 	private void hackParameters() {
-		Parameters.root = stage.root;
+		//Parameters.root = stage.root;
 	}
 
 	private void createContext() {
