@@ -9,7 +9,6 @@ import flash.display3D.Context3DVertexBufferFormat;
 import flash.display3D.VertexBuffer3D;
 import flash.geom.ColorTransform;
 import kabam.rotmg.parameters.Parameters;
-import rotmg.parameters.Parameters;
 
 public class GraphicsFillExtra {
 

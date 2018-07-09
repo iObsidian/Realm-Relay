@@ -2,7 +2,6 @@ package kabam.rotmg.ui.model;
 
 import kabam.rotmg.parameters.Parameters;
 import rotmg.GameSprite;
-import rotmg.parameters.Parameters;
 
 /**
  * 100% match

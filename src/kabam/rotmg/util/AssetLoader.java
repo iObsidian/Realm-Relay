@@ -15,17 +15,6 @@ import kabam.rotmg.ui.Options;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import rotmg.WebMain;
-import rotmg.map.GroundLibrary;
-import rotmg.map.RegionLibrary;
-import rotmg.objects.ObjectLibrary;
-import rotmg.objects.animation.AnimatedChar;
-import rotmg.parameters.Parameters;
-import rotmg.particles.ParticleLibrary;
-import rotmg.sound.IMusic;
-import rotmg.sound.SFX;
-import rotmg.sound.SoundEffectLibrary;
-import rotmg.ui.Options;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

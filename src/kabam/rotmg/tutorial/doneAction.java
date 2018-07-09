@@ -1,7 +1,6 @@
 package kabam.rotmg.tutorial;
 
 import kabam.rotmg.AGameSprite;
-import rotmg.AGameSprite;
 
 public class doneAction {
 

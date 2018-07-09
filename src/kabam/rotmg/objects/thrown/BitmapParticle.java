@@ -10,10 +10,6 @@ import kabam.rotmg.map.Camera;
 import kabam.rotmg.objects.BasicObject;
 import kabam.rotmg.objects.Square;
 import kabam.rotmg.util.GraphicsUtil;
-import rotmg.map.Camera;
-import rotmg.objects.BasicObject;
-import rotmg.objects.Square;
-import rotmg.util.GraphicsUtil;
 
 public class BitmapParticle extends BasicObject {
 

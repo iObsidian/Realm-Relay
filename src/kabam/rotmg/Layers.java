@@ -2,10 +2,11 @@ package kabam.rotmg;
 
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
-import rotmg.core.view.ScreensView;
-import rotmg.dialogs.view.DialogsView;
-import rotmg.tooltips.view.TooltipsView;
-import rotmg.ui.popups.PopupView;
+import kabam.rotmg.core.view.ScreensView;
+import kabam.rotmg.dialogs.view.DialogsView;
+import kabam.rotmg.tooltips.view.TooltipsView;
+import kabam.rotmg.ui.popups.PopupView;
+
 
 public class Layers extends Sprite {
 

@@ -15,6 +15,7 @@ public class Reconnect extends IncomingMessage {
 	public byte[] key = new byte[0];
 	public boolean isFromArena;
 	public String stats;
+
 	public Reconnect(int id, Consumer callback) {
 		super(id, callback);
 	}

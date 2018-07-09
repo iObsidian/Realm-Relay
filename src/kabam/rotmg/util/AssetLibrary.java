@@ -1,12 +1,12 @@
 package kabam.rotmg.util;
 
+import alde.flash.utils.StaticAssetLoaderUtility;
+import flash.display.BitmapData;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import alde.flash.utils.StaticAssetLoaderUtility;
-import flash.display.BitmapData;
 
 /**
  * This class is a 80% match.

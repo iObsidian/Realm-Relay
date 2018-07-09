@@ -1,9 +1,8 @@
 package alde.flash.utils;
 
-import flash.events.Event;
-import rotmg.net.impl.Message;
-
 import java.util.function.Consumer;
+
+import flash.events.Event;
 
 /**
  * A method that accepts a Message

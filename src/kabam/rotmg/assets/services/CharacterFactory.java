@@ -1,17 +1,14 @@
 package kabam.rotmg.assets.services;
 
 import flash.display.BitmapData;
+import kabam.rotmg.assets.model.Animation;
+import kabam.rotmg.assets.model.CharacterTemplate;
 import kabam.rotmg.objects.animation.AnimatedChar;
+import kabam.rotmg.util.AnimatedChars;
+import kabam.rotmg.util.BitmapUtil;
+import kabam.rotmg.util.MaskedImage;
 import kabam.rotmg.util.TextureRedrawer;
 import kabam.rotmg.util.redrawers.GlowRedrawer;
-import rotmg.assets.model.Animation;
-import rotmg.assets.model.CharacterTemplate;
-import rotmg.objects.animation.AnimatedChar;
-import rotmg.util.AnimatedChars;
-import rotmg.util.BitmapUtil;
-import rotmg.util.MaskedImage;
-import rotmg.util.TextureRedrawer;
-import rotmg.util.redrawers.GlowRedrawer;
 
 public class CharacterFactory {
 

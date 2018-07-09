@@ -11,11 +11,6 @@ import kabam.rotmg.objects.BasicObject;
 import kabam.rotmg.objects.Square;
 import kabam.rotmg.util.GraphicsUtil;
 import kabam.rotmg.util.TextureRedrawer;
-import rotmg.map.Camera;
-import rotmg.objects.BasicObject;
-import rotmg.objects.Square;
-import rotmg.util.GraphicsUtil;
-import rotmg.util.TextureRedrawer;
 
 public class Particle extends BasicObject {
 

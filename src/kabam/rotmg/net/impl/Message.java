@@ -1,14 +1,10 @@
 package kabam.rotmg.net.impl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.function.Consumer;
-
 import alde.flash.utils.IData;
 import alde.flash.utils.MessageConsumer;
+
+import java.io.*;
+import java.util.function.Consumer;
 
 public class Message implements IData {
 

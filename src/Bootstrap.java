@@ -1,4 +1,4 @@
-import rotmg.WebMain;
+import kabam.rotmg.WebMain;
 
 /**
  * Run WebMain

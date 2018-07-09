@@ -6,10 +6,6 @@ import kabam.rotmg.AGameSprite;
 import kabam.rotmg.objects.BasicObject;
 import kabam.rotmg.objects.GameObject;
 import kabam.rotmg.objects.Square;
-import rotmg.AGameSprite;
-import rotmg.objects.BasicObject;
-import rotmg.objects.GameObject;
-import rotmg.objects.Square;
 
 public class Map extends AbstractMap {
 

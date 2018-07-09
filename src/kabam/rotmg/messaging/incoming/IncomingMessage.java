@@ -1,12 +1,11 @@
 package kabam.rotmg.messaging.incoming;
 
+import kabam.rotmg.net.impl.Message;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
-
-import alde.flash.utils.MessageConsumer;
-import rotmg.net.impl.Message;
 
 public class IncomingMessage extends Message {
 

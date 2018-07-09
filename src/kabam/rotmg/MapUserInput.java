@@ -1,7 +1,5 @@
 package kabam.rotmg;
 
-import static rotmg.tutorial.doneAction.doneAction;
-
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.XML;
@@ -10,46 +8,36 @@ import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.system.Capabilities;
+import kabam.rotmg.application.api.ApplicationSetup;
+import kabam.rotmg.application.impl.ProductionSetup;
+import kabam.rotmg.chat.model.ChatMessage;
 import kabam.rotmg.constants.GeneralConstants;
 import kabam.rotmg.constants.UseType;
+import kabam.rotmg.dialogs.CloseDialogsSignal;
+import kabam.rotmg.dialogs.OpenDialogSignal;
 import kabam.rotmg.friends.FriendsPopupView;
+import kabam.rotmg.friends.model.FriendModel;
 import kabam.rotmg.friends.view.FriendListView;
 import kabam.rotmg.messaging.GameServerConnection;
+import kabam.rotmg.model.PotionInventoryModel;
+import kabam.rotmg.objects.GameObject;
+import kabam.rotmg.objects.ObjectLibrary;
+import kabam.rotmg.objects.Player;
+import kabam.rotmg.objects.Square;
 import kabam.rotmg.parameters.Parameters;
+import kabam.rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
+import kabam.rotmg.signals.*;
+import kabam.rotmg.tutorial.Tutorial;
+import kabam.rotmg.ui.model.TabStripModel;
+import kabam.rotmg.ui.popups.signals.CloseAllPopupsSignal;
+import kabam.rotmg.ui.popups.signals.ClosePopupByClassSignal;
+import kabam.rotmg.ui.popups.signals.ShowPopupSignal;
+import kabam.rotmg.util.KeyCodes;
 import kabam.rotmg.util.TextureRedrawer;
 import net.hires.debug.Stats;
-import rotmg.application.api.ApplicationSetup;
-import rotmg.application.impl.ProductionSetup;
-import rotmg.chat.model.ChatMessage;
-import rotmg.constants.GeneralConstants;
-import rotmg.constants.UseType;
-import rotmg.dialogs.CloseDialogsSignal;
-import rotmg.dialogs.OpenDialogSignal;
-import rotmg.friends.FriendsPopupView;
-import rotmg.friends.model.FriendModel;
-import rotmg.friends.view.FriendListView;
-import rotmg.messaging.GameServerConnection;
-import rotmg.model.PotionInventoryModel;
-import rotmg.objects.GameObject;
-import rotmg.objects.ObjectLibrary;
-import rotmg.objects.Player;
-import rotmg.objects.Square;
-import rotmg.parameters.Parameters;
-import rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
-import rotmg.signals.AddTextLineSignal;
-import rotmg.signals.ExitGameSignal;
-import rotmg.signals.GiftStatusUpdateSignal;
-import rotmg.signals.SetTextBoxVisibilitySignal;
-import rotmg.signals.UseBuyPotionSignal;
-import rotmg.tutorial.Tutorial;
-import rotmg.ui.Options;
-import rotmg.ui.model.TabStripModel;
-import rotmg.ui.popups.signals.CloseAllPopupsSignal;
-import rotmg.ui.popups.signals.ClosePopupByClassSignal;
-import rotmg.ui.popups.signals.ShowPopupSignal;
-import rotmg.util.KeyCodes;
-import rotmg.util.TextureRedrawer;
 import robotlegs.bender.bundles.mvcs.components.StatsTabHotKeyInputSignal;
+
+import static kabam.rotmg.tutorial.doneAction.doneAction;
 
 public class MapUserInput {
 
@@ -253,13 +241,13 @@ public class MapUserInput {
 			return;
 		}
 		/**if (Parameters.isGpuRender()) {
-			if (param1.currentTarget == param1.target || param1.target == this.gs.map || param1.target == this.gs || param1.currentTarget == this.gs.chatBox.list) {
-				loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
-			} else {
-				return;
-			}
-		} else {*/
-			loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
+		 if (param1.currentTarget == param1.target || param1.target == this.gs.map || param1.target == this.gs || param1.currentTarget == this.gs.chatBox.list) {
+		 loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
+		 } else {
+		 return;
+		 }
+		 } else {*/
+		loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
 		//}
 		doneAction(this.gs, Tutorial.ATTACK_ACTION);
 		if (loc2.isUnstable()) {
@@ -317,19 +305,19 @@ public class MapUserInput {
 		OpenDialogSignal loc13 = null;
 		Stage loc2 = this.gs.stage;
 		/**this.currentString = this.currentString + param1.keyCode;
-		if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
-			if (this.currentString.length() == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length()) {
-				loc5 = AddTextLineSignal.getInstance();
-				loc6 = new ChatMessage();
-				loc6.name = Parameters.SERVER_CHAT_NAME;
-				this.currentString = "";
-				UIUtils.SHOW_EXPERIMENTAL_MENU = !UIUtils.SHOW_EXPERIMENTAL_MENU;
-				loc6.text = UIUtils.SHOW_EXPERIMENTAL_MENU ? "Experimental menu activated" : "Experimental menu deactivated";
-				loc5.dispatch(loc6);
-			}
-		} else {
-			this.currentString = "";
-		}*/
+		 if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
+		 if (this.currentString.length() == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length()) {
+		 loc5 = AddTextLineSignal.getInstance();
+		 loc6 = new ChatMessage();
+		 loc6.name = Parameters.SERVER_CHAT_NAME;
+		 this.currentString = "";
+		 UIUtils.SHOW_EXPERIMENTAL_MENU = !UIUtils.SHOW_EXPERIMENTAL_MENU;
+		 loc6.text = UIUtils.SHOW_EXPERIMENTAL_MENU ? "Experimental menu activated" : "Experimental menu deactivated";
+		 loc5.dispatch(loc6);
+		 }
+		 } else {
+		 this.currentString = "";
+		 }*/
 		switch (param1.keyCode) {
 			case KeyCodes.F1:
 			case KeyCodes.F2:

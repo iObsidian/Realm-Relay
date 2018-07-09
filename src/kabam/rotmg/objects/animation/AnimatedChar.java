@@ -1,14 +1,14 @@
 package kabam.rotmg.objects.animation;
 
+
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.geom.Point;
 import flash.geom.Rectangle;
-import rotmg.map.Camera;
-import rotmg.util.MaskedImage;
-import rotmg.util.MaskedImageSet;
-
+import kabam.rotmg.map.Camera;
+import kabam.rotmg.util.MaskedImage;
+import kabam.rotmg.util.MaskedImageSet;
 
 /**
  * This matches the client by 90%, only the Transparency-check is not suported and mirroring is untested

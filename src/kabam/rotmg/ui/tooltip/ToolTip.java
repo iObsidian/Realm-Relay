@@ -8,8 +8,6 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import kabam.rotmg.ui.view.SignalWaiter;
 import kabam.rotmg.util.GraphicsUtil;
-import rotmg.ui.view.SignalWaiter;
-import rotmg.util.GraphicsUtil;
 import spark.filters.DropShadowFilter;
 
 public class ToolTip extends Sprite {

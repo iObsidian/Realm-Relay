@@ -1,16 +1,16 @@
 package kabam.rotmg.map.mapoverlay;
 
-import alde.flash.utils.Vector;
+
+import alde.flash.utils.SignalConsumer;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.geom.Matrix;
 import flash.geom.Point;
-import alde.flash.utils.SignalConsumer;
-import rotmg.map.Camera;
-import rotmg.objects.GameObject;
-import rotmg.text.view.stringBuilder.StringBuilder;
-import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
+import kabam.rotmg.map.Camera;
+import kabam.rotmg.objects.GameObject;
+import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import spark.filters.GlowFilter;
 
 public class CharacterStatusText extends Sprite implements IMapOverlayElement {

@@ -1,17 +1,18 @@
 package kabam.rotmg.messaging.incoming;
 
+import rotmg.messaging.data.ObjectStatusData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
-
-import rotmg.messaging.data.ObjectStatusData;
 
 public class NewTick extends IncomingMessage {
 
 	public int tickId;
 	public int tickTime;
 	public ObjectStatusData[] statuses = new ObjectStatusData[0];
+
 	public NewTick(int id, Consumer callback) {
 		super(id, callback);
 	}

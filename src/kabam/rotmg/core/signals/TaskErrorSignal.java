@@ -1,6 +1,6 @@
 package kabam.rotmg.core.signals;
-import org.osflash.signals.Signal;
 
+import org.osflash.signals.Signal;
 import rotmg.lib.tasks.Task;
 
 public class TaskErrorSignal extends Signal<Task> {

@@ -1,27 +1,13 @@
 package kabam.rotmg.objects;
-//import com.company.assembleegameclient.engine3d.TextureMatrix;
-//import com.company.assembleegameclient.objects.GameObject;
-//import com.company.assembleegameclient.util.TileRedrawer;
-
-import java.util.List;
-
-//import flash.display.BitmapData;
-//import flash.display.IGraphicsData;
-//import flash.geom.Vector3D;
 
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import flash.geom.Vector3D;
 import kabam.rotmg.engine3d.TextureMatrix;
-import rotmg.engine3d.TextureMatrix;
-import rotmg.map.AnimateProperties;
-import rotmg.map.Camera;
-import rotmg.map.GroundLibrary;
-import rotmg.map.GroundProperties;
-import rotmg.map.Map;
-import rotmg.map.SquareFace;
-import rotmg.util.TileRedrawer;
+import kabam.rotmg.map.*;
+import kabam.rotmg.util.TileRedrawer;
+
 
 public class Square {
 
@@ -105,7 +91,7 @@ public class Square {
 		return !this.props.noWalk && (this.obj == null || !this.obj.props.occupySquare);
 	}
 
-	public void draw(List<IGraphicsData> param1, Camera param2, int param3) {
+	public void draw(Vector<IGraphicsData> param1, Camera param2, int param3) {
 		if (this.texture == null) {
 			return;
 		}
@@ -122,7 +108,7 @@ public class Square {
 		}
 	}
 
-	public void drawTop(List<IGraphicsData> param1, Camera param2, int param3) {
+	public void drawTop(Vector<IGraphicsData> param1, Camera param2, int param3) {
 		this.topFace.draw(param1, param2, param3);
 	}
 

@@ -1,18 +1,16 @@
 package kabam.rotmg.pets.data;
 
+import alde.flash.utils.XML;
+import kabam.rotmg.appengine.SavedCharacter;
+import kabam.rotmg.core.model.PlayerModel;
+import kabam.rotmg.map.AbstractMap;
+import kabam.rotmg.objects.ObjectLibrary;
+import kabam.rotmg.pets.controller.NotifyActivePetUpdated;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import alde.flash.utils.XML;
-import kabam.rotmg.appengine.SavedCharacter;
-import kabam.rotmg.objects.ObjectLibrary;
-import rotmg.appengine.SavedCharacter;
-import rotmg.core.model.PlayerModel;
-import rotmg.map.AbstractMap;
-import rotmg.objects.ObjectLibrary;
-import rotmg.pets.controller.NotifyActivePetUpdated;
 
 // This is a 100% match, except maybe for the getInstance() [Inject]
 public class PetsModel {

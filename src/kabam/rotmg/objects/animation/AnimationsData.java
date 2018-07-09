@@ -1,9 +1,9 @@
 package kabam.rotmg.objects.animation;
 
+import alde.flash.utils.XML;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import alde.flash.utils.XML;
 
 public class AnimationsData {
 

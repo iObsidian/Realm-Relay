@@ -6,7 +6,6 @@ import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.geom.ColorTransform;
 import kabam.rotmg.objects.ObjectLibrary;
-import rotmg.objects.ObjectLibrary;
 import spark.filters.DropShadowFilter;
 
 public class FameUtil {

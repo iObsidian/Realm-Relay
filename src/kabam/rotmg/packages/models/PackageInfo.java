@@ -1,16 +1,15 @@
 package kabam.rotmg.packages.models;
 
-import java.util.function.Consumer;
-
 import alde.flash.utils.EventConsumer;
-import org.osflash.signals.Signal;
-
 import flash.display.Loader;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.events.SecurityError;
 import flash.net.URLRequest;
 import io.decagames.rotmg.shop.genericBox.data.GenericBoxInfo;
+import org.osflash.signals.Signal;
+
+import java.util.function.Consumer;
 
 public class PackageInfo extends GenericBoxInfo {
 

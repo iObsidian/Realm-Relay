@@ -33,9 +33,11 @@ public class MouseEvent extends Event {
 	public boolean updateAfterEvent;
 	public Boolean isRelatedObjectInaccessible;
 	private Number StageY;
+
 	public MouseEvent(String type) {
 		this(type, true, false, 0, 0, null, false, false, false, false, 0);
 	}
+
 	public MouseEvent(String type, Boolean bubbles, Boolean cancelable, Number localX, Number localY, InteractiveObject relatedObject, Boolean ctrlKey, Boolean altKey, Boolean shiftKey, Boolean buttonDown, int delta) {
 		super(type);
 	}

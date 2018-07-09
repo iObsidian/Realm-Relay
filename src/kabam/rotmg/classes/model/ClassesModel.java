@@ -1,10 +1,10 @@
 package kabam.rotmg.classes.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import alde.flash.utils.SignalConsumer;
 import org.osflash.signals.Signal;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * The Class selection model for the UI (create new character)

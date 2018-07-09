@@ -1,8 +1,8 @@
 package kabam.rotmg.map;
 
-import java.util.HashMap;
-
 import alde.flash.utils.XML;
+
+import java.util.HashMap;
 
 /**
  * 100% match

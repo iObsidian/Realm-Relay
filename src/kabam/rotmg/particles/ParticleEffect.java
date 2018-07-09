@@ -1,8 +1,8 @@
 package kabam.rotmg.particles;
 
 
-import rotmg.objects.EffectProperties;
-import rotmg.objects.GameObject;
+import kabam.rotmg.objects.EffectProperties;
+import kabam.rotmg.objects.GameObject;
 
 public class ParticleEffect extends GameObject {
 

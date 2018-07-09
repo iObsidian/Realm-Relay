@@ -1,11 +1,8 @@
 package kabam.rotmg.text.model;
 
-import flash.display.BitmapData;
-import flash.geom.Rectangle;
 import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
-import rotmg.util.BitmapDataSpy;
 
 public class FontInfo {
 
@@ -44,12 +41,12 @@ public class FontInfo {
 
 	private void computeRatiosByRendering() {
 		/**TextField loc1 = this.makeTextField();
-		BitmapData loc2 = new BitmapDataSpy(loc1.width, loc1.height);
-		loc2.draw(loc1);
-		int loc3 = 16777215;
-		Rectangle loc4 = loc2.getColorBoundsRect(loc3, this.textColor, true);
-		this.xHeightRatio = this.deNormalize(loc4.height);
-		this.verticalSpaceRatio = this.deNormalize(loc1.height - loc4.bottom - GUTTER);*/
+		 BitmapData loc2 = new BitmapDataSpy(loc1.width, loc1.height);
+		 loc2.draw(loc1);
+		 int loc3 = 16777215;
+		 Rectangle loc4 = loc2.getColorBoundsRect(loc3, this.textColor, true);
+		 this.xHeightRatio = this.deNormalize(loc4.height);
+		 this.verticalSpaceRatio = this.deNormalize(loc1.height - loc4.bottom - GUTTER);*/
 	}
 
 	private TextField makeTextField() {

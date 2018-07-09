@@ -1,13 +1,11 @@
 package kabam.rotmg.ui.view;
 
-import java.util.function.Consumer;
-
+import alde.flash.utils.Dictionary;
 import alde.flash.utils.SignalConsumer;
+import com.adobe.utils.DictionaryUtil;
 import org.osflash.signals.Signal;
 
-import com.adobe.utils.DictionaryUtil;
-
-import alde.flash.utils.Dictionary;
+import java.util.function.Consumer;
 
 /**
  * 99% match (confirm 'listenTo' is working)

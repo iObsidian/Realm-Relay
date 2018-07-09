@@ -9,8 +9,6 @@ import kabam.rotmg.objects.Square;
 import kabam.rotmg.parameters.Parameters;
 import rotmg.map.GroundLibrary;
 import rotmg.map.Map;
-import rotmg.objects.Square;
-import rotmg.parameters.Parameters;
 
 public class TileRedrawer {
 

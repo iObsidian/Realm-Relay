@@ -6,10 +6,6 @@ import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import kabam.rotmg.ui.view.SignalWaiter;
 import kabam.rotmg.util.TextKey;
-import rotmg.text.view.stringBuilder.LineBuilder;
-import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
-import rotmg.ui.view.SignalWaiter;
-import rotmg.util.TextKey;
 
 /**
  * Not fully implemented

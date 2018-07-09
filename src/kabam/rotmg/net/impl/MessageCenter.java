@@ -1,14 +1,12 @@
 package kabam.rotmg.net.impl;
 
+import alde.flash.utils.MessageConsumer;
+import kabam.rotmg.net.api.MessageMap;
+import kabam.rotmg.net.api.MessageMapping;
+import kabam.rotmg.net.api.MessageProvider;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-import java.util.function.Consumer;
-
-import alde.flash.utils.MessageConsumer;
-import kabam.rotmg.net.api.MessageMapping;
-import rotmg.net.api.MessageMap;
-import rotmg.net.api.MessageMapping;
-import rotmg.net.api.MessageProvider;
 
 public class MessageCenter implements MessageMap, MessageProvider {
 

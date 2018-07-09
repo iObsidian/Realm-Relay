@@ -2,7 +2,6 @@ package kabam.rotmg.events;
 
 import flash.events.Event;
 import kabam.rotmg.messaging.incoming.NameResult;
-import rotmg.messaging.incoming.NameResult;
 
 public class NameResultEvent extends Event {
 

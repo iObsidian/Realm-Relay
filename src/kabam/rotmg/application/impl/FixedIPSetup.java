@@ -2,8 +2,6 @@ package kabam.rotmg.application.impl;
 
 import kabam.rotmg.application.api.ApplicationSetup;
 import kabam.rotmg.parameters.Parameters;
-import rotmg.application.api.ApplicationSetup;
-import rotmg.parameters.Parameters;
 
 public class FixedIPSetup implements ApplicationSetup {
 

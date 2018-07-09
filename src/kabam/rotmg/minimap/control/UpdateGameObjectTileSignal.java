@@ -1,7 +1,6 @@
 package kabam.rotmg.minimap.control;
 
 import org.osflash.signals.Signal;
-
 import rotmg.ui.model.UpdateGameObjectTileVO;
 
 public class UpdateGameObjectTileSignal extends Signal<UpdateGameObjectTileVO> {

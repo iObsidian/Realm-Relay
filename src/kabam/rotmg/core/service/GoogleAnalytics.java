@@ -1,16 +1,15 @@
 package kabam.rotmg.core.service;
 
-import rotmg.core.service.tracking.GoogleAnalyticsTracker;
+import kabam.rotmg.core.service.tracking.GoogleAnalyticsTracker;
 
 public class GoogleAnalytics {
 
+	static GoogleAnalytics instance;
 	private GoogleAnalyticsTracker tracker;
 
 	public GoogleAnalytics() {
 		super();
 	}
-
-	static GoogleAnalytics instance;
 
 	public static GoogleAnalytics getInstance() {
 		if (instance == null) {

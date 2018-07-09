@@ -1,14 +1,8 @@
 package kabam.rotmg.objects;
 
-import static rotmg.tutorial.doneAction.doneAction;
-
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
-import flash.display.BitmapData;
-import flash.display.GradientType;
-import flash.display.GraphicsGradientFill;
-import flash.display.GraphicsPath;
-import flash.display.IGraphicsData;
+import flash.display.*;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
@@ -16,22 +10,11 @@ import kabam.rotmg.engine3d.Point3D;
 import kabam.rotmg.map.Camera;
 import kabam.rotmg.map.Map;
 import kabam.rotmg.objects.particles.HitEffect;
+import kabam.rotmg.objects.particles.SparkParticle;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.tutorial.Tutorial;
 import kabam.rotmg.tutorial.doneAction;
 import kabam.rotmg.util.*;
-import rotmg.engine3d.Point3D;
-import rotmg.map.Camera;
-import rotmg.map.Map;
-import rotmg.objects.particles.HitEffect;
-import rotmg.objects.particles.SparkParticle;
-import rotmg.parameters.Parameters;
-import rotmg.tutorial.Tutorial;
-import rotmg.util.BloodComposition;
-import rotmg.util.GraphicsUtil;
-import rotmg.util.RandomUtil;
-import rotmg.util.TextureRedrawer;
-import rotmg.util.Trig;
 
 /**
  * This class is about 10% done. It requires a lot of graphics stuff.

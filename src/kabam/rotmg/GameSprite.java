@@ -6,57 +6,41 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.filters.ColorMatrixFilter;
+import kabam.rotmg.account.core.Account;
 import kabam.rotmg.constants.GeneralConstants;
 import kabam.rotmg.core.model.MapModel;
 import kabam.rotmg.core.model.PlayerModel;
+import kabam.rotmg.core.service.GoogleAnalytics;
+import kabam.rotmg.dailyLogin.signal.ShowDailyCalendarPopupSignal;
+import kabam.rotmg.dialogs.AddPopupToStartupQueueSignal;
+import kabam.rotmg.dialogs.FlushPopupStartupQueueSignal;
 import kabam.rotmg.dialogs.OpenDialogSignal;
+import kabam.rotmg.dialogs.model.DialogsModel;
 import kabam.rotmg.events.MoneyChangedEvent;
 import kabam.rotmg.map.Map;
+import kabam.rotmg.maploading.signals.HideMapLoadingSignal;
+import kabam.rotmg.maploading.signals.MapLoadedSignal;
+import kabam.rotmg.messaging.GameServerConnectionConcrete;
 import kabam.rotmg.messaging.incoming.MapInfo;
 import kabam.rotmg.net.Server;
 import kabam.rotmg.objects.GameObject;
 import kabam.rotmg.objects.IInteractiveObject;
 import kabam.rotmg.objects.Pet;
+import kabam.rotmg.objects.Player;
+import kabam.rotmg.packages.services.PackageModel;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.promotions.model.BeginnersPackageModel;
+import kabam.rotmg.promotions.signals.ShowBeginnersPackageSignal;
+import kabam.rotmg.stage3d.Renderer;
+import kabam.rotmg.ui.GuildText;
 import kabam.rotmg.ui.HUDView;
+import kabam.rotmg.ui.RankText;
 import kabam.rotmg.util.CachingColorTransformer;
+import kabam.rotmg.util.MoreColorUtil;
 import kabam.rotmg.util.PointUtil;
 import kabam.rotmg.util.TextureRedrawer;
 import org.osflash.signals.Signal;
 import protip.signals.ShowProTipSignal;
-import rotmg.account.core.Account;
-import rotmg.appengine.api.AppEngineClient;
-import rotmg.constants.GeneralConstants;
-import rotmg.core.model.MapModel;
-import rotmg.core.model.PlayerModel;
-import rotmg.core.service.GoogleAnalytics;
-import rotmg.dailyLogin.signal.ShowDailyCalendarPopupSignal;
-import rotmg.dialogs.AddPopupToStartupQueueSignal;
-import rotmg.dialogs.FlushPopupStartupQueueSignal;
-import rotmg.dialogs.OpenDialogSignal;
-import rotmg.dialogs.model.DialogsModel;
-import rotmg.dialogs.model.PopupNamesConfig;
-import rotmg.events.MoneyChangedEvent;
-import rotmg.map.Map;
-import rotmg.maploading.signals.HideMapLoadingSignal;
-import rotmg.maploading.signals.MapLoadedSignal;
-import rotmg.messaging.GameServerConnectionConcrete;
-import rotmg.messaging.incoming.MapInfo;
-import rotmg.net.Server;
-import rotmg.objects.*;
-import rotmg.packages.services.PackageModel;
-import rotmg.parameters.Parameters;
-import rotmg.promotions.model.BeginnersPackageModel;
-import rotmg.promotions.signals.ShowBeginnersPackageSignal;
-import rotmg.stage3d.Renderer;
-import rotmg.ui.GuildText;
-import rotmg.ui.HUDView;
-import rotmg.ui.RankText;
-import rotmg.util.CachingColorTransformer;
-import rotmg.util.MoreColorUtil;
-import rotmg.util.PointUtil;
-import rotmg.util.TextureRedrawer;
 
 
 public class GameSprite extends AGameSprite {
@@ -231,14 +215,14 @@ public class GameSprite extends AGameSprite {
 		loc1 = Account.getInstance();
 		this.googleAnalytics = GoogleAnalytics.getInstance();
 		/**if (map.name.equals(Map.NEXUS)) {
-			this.addToQueueSignal.dispatch(PopupNamesConfig.DAILY_LOGIN_POPUP, this.openDailyCalendarPopupSignal, -1, null);
-			if (this.beginnersPackageModel.isBeginnerAvailable()) {
-				this.addToQueueSignal.dispatch(PopupNamesConfig.BEGINNERS_OFFER_POPUP, this.showBeginnersPackage, 1, null);
-			} else {
-				this.addToQueueSignal.dispatch(PopupNamesConfig.PACKAGES_OFFER_POPUP, this.showPackage, 1, null);
-			}
-			this.flushQueueSignal.dispatch();
-		}*/
+		 this.addToQueueSignal.dispatch(PopupNamesConfig.DAILY_LOGIN_POPUP, this.openDailyCalendarPopupSignal, -1, null);
+		 if (this.beginnersPackageModel.isBeginnerAvailable()) {
+		 this.addToQueueSignal.dispatch(PopupNamesConfig.BEGINNERS_OFFER_POPUP, this.showBeginnersPackage, 1, null);
+		 } else {
+		 this.addToQueueSignal.dispatch(PopupNamesConfig.PACKAGES_OFFER_POPUP, this.showPackage, 1, null);
+		 }
+		 this.flushQueueSignal.dispatch();
+		 }*/
 		this.isNexus = map.name.equals(Map.NEXUS);
 		/*if (this.isNexus || map.name.equals(Map.DAILY_QUEST_ROOM)) {
 			this.creditDisplay = new CreditDisplay(this, true, true);

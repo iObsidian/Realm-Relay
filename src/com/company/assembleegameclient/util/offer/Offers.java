@@ -2,7 +2,7 @@ package com.company.assembleegameclient.util.offer;
 
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
-import rotmg.util.Offer;
+import kabam.rotmg.util.Offer;
 
 public class Offers {
 

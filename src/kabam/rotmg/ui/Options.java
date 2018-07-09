@@ -1,13 +1,12 @@
 package kabam.rotmg.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import alde.flash.utils.Vector;
 import flash.display.Sprite;
 import kabam.rotmg.util.TextKey;
 import rotmg.GameSprite;
-import rotmg.util.TextKey;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Options extends Sprite {
 

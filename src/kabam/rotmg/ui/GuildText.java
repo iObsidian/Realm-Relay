@@ -8,10 +8,6 @@ import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import kabam.rotmg.util.GuildUtil;
 import kabam.rotmg.util.SpriteUtil;
-import rotmg.text.view.stringBuilder.StaticStringBuilder;
-import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
-import rotmg.util.GuildUtil;
-import rotmg.util.SpriteUtil;
 import spark.filters.DropShadowFilter;
 
 public class GuildText extends Sprite {

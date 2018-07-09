@@ -5,18 +5,17 @@ import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
+import kabam.rotmg.constants.InventoryOwnerTypes;
+import kabam.rotmg.language.model.StringMap;
+import kabam.rotmg.map.Camera;
+import kabam.rotmg.map.Map;
+import kabam.rotmg.model.AddSpeechBalloonVO;
 import kabam.rotmg.signals.AddSpeechBalloonSignal;
+import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 import kabam.rotmg.ui.tooltip.EquipmentToolTip;
-import rotmg.constants.InventoryOwnerTypes;
-import rotmg.language.model.StringMap;
-import rotmg.map.Camera;
-import rotmg.map.Map;
-import rotmg.model.AddSpeechBalloonVO;
-import rotmg.signals.AddSpeechBalloonSignal;
-import rotmg.text.view.stringBuilder.LineBuilder;
-import rotmg.ui.tooltip.EquipmentToolTip;
-import rotmg.ui.tooltip.ToolTip;
-import rotmg.util.IntPoint;
+import kabam.rotmg.ui.tooltip.ToolTip;
+import kabam.rotmg.util.IntPoint;
+
 
 /**
  * Almost a 100% match, except that it's abstract because it doesnt have the getPanel() method

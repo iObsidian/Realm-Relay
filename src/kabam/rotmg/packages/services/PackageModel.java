@@ -1,11 +1,9 @@
 package kabam.rotmg.packages.services;
 
-import kabam.rotmg.packages.models.PackageInfo;
-import org.osflash.signals.Signal;
-
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
-import rotmg.packages.models.PackageInfo;
+import kabam.rotmg.packages.models.PackageInfo;
+import org.osflash.signals.Signal;
 
 public class PackageModel {
 

@@ -1,6 +1,7 @@
 package kabam.rotmg.text.view.stringBuilder;
 
-import rotmg.language.model.StringMap;
+
+import kabam.rotmg.language.model.StringMap;
 
 public interface StringBuilder {
 

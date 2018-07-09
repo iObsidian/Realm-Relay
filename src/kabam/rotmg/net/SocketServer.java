@@ -1,5 +1,13 @@
 package kabam.rotmg.net;
 
+import com.hurlant.crypto.symmetric.ICipher;
+import kabam.rotmg.AGameSprite;
+import kabam.rotmg.messaging.GameServerConnectionConcrete;
+import kabam.rotmg.net.impl.Message;
+import kabam.rotmg.net.impl.MessageCenter;
+import kabam.rotmg.parameters.Parameters;
+import kabam.rotmg.util.AssetLoader;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -8,19 +16,6 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
-
-import com.hurlant.crypto.symmetric.ICipher;
-
-import kabam.rotmg.AGameSprite;
-import kabam.rotmg.net.impl.Message;
-import kabam.rotmg.parameters.Parameters;
-import kabam.rotmg.util.AssetLoader;
-import rotmg.AGameSprite;
-import rotmg.messaging.GameServerConnectionConcrete;
-import rotmg.net.impl.Message;
-import rotmg.net.impl.MessageCenter;
-import rotmg.parameters.Parameters;
-import rotmg.util.AssetLoader;
 
 /**
  * This class is a very loose implementation of WildShadow's SocketServer,

@@ -10,6 +10,7 @@ public class EvolvedPetMessage extends IncomingMessage {
 	int petID;
 	int initialSkin;
 	int finalSkin;
+
 	public EvolvedPetMessage(int id, Consumer callback) {
 		super(id, callback);
 	}

@@ -1,16 +1,13 @@
 package kabam.rotmg.core.model;
 
 
-import kabam.rotmg.appengine.SavedCharacter;
-import kabam.rotmg.appengine.SavedNewsItem;
-import org.osflash.signals.Signal;
-
 import alde.flash.utils.Vector;
 import appengine.SavedCharactersList;
-import rotmg.account.core.Account;
-import rotmg.appengine.SavedCharacter;
-import rotmg.appengine.SavedNewsItem;
-import rotmg.net.LatLong;
+import kabam.rotmg.account.core.Account;
+import kabam.rotmg.appengine.SavedCharacter;
+import kabam.rotmg.appengine.SavedNewsItem;
+import kabam.rotmg.net.LatLong;
+import org.osflash.signals.Signal;
 
 public class PlayerModel {
 
@@ -21,15 +18,12 @@ public class PlayerModel {
 	public static Signal fameChanged = new Signal<Integer>();
 
 	public static Signal tokensChanged = new Signal<Integer>();
-
+	private static PlayerModel instance;
 	public SavedCharactersList charList;
-
 	public boolean isInvalidated;
-
 	public int currentCharId;
 	public Account account;
 	private boolean isAgeVerified;
-	private static PlayerModel instance;
 
 	public PlayerModel() {
 		super();
@@ -133,7 +127,7 @@ public class PlayerModel {
 	public void deleteCharacter(int param1) {
 		SavedCharacter loc2 = this.charList.getCharById(param1);
 
-		if ( this.charList.savedChars.contains(loc2)) {
+		if (this.charList.savedChars.contains(loc2)) {
 			this.charList.savedChars.remove(loc2);
 			this.charList.numChars--;
 		}

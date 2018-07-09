@@ -1,7 +1,6 @@
 package kabam.rotmg.ui.model;
 
 import kabam.rotmg.objects.GameObject;
-import rotmg.objects.GameObject;
 
 public class UpdateGameObjectTileVO {
 

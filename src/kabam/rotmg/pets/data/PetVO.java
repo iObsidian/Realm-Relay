@@ -1,5 +1,9 @@
 package kabam.rotmg.pets.data;
 
+import alde.flash.utils.SignalConsumer;
+import alde.flash.utils.XML;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
 import kabam.rotmg.objects.ObjectLibrary;
 import kabam.rotmg.objects.animation.AnimatedChar;
 import kabam.rotmg.util.AnimatedChars;
@@ -7,17 +11,6 @@ import kabam.rotmg.util.MaskedImage;
 import kabam.rotmg.util.TextureRedrawer;
 import kabam.rotmg.util.redrawers.GlowRedrawer;
 import org.osflash.signals.Signal;
-
-import alde.flash.utils.XML;
-import flash.display.Bitmap;
-import flash.display.BitmapData;
-import alde.flash.utils.SignalConsumer;
-import rotmg.objects.ObjectLibrary;
-import rotmg.objects.animation.AnimatedChar;
-import rotmg.util.AnimatedChars;
-import rotmg.util.MaskedImage;
-import rotmg.util.TextureRedrawer;
-import rotmg.util.redrawers.GlowRedrawer;
 
 public class PetVO {
 

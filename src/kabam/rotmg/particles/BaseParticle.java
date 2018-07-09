@@ -1,7 +1,5 @@
 package kabam.rotmg.particles;
 
-import java.util.List;
-
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.GraphicsBitmapFill;
@@ -11,6 +9,8 @@ import flash.geom.Matrix;
 import rotmg.map.Camera;
 import rotmg.objects.BasicObject;
 import rotmg.util.GraphicsUtil;
+
+import java.util.List;
 
 public class BaseParticle extends BasicObject {
 

@@ -1,22 +1,12 @@
 package kabam.rotmg.engine3d;
 
-import java.util.List;
-
 import alde.flash.utils.Vector;
-import flash.display.BitmapData;
-import flash.display.GraphicsBitmapFill;
-import flash.display.GraphicsPath;
-import flash.display.GraphicsPathCommand;
-import flash.display.GraphicsSolidFill;
-import flash.display.IGraphicsData;
+import flash.display.*;
 import flash.geom.Utils3D;
 import flash.geom.Vector3D;
 import kabam.rotmg.map.Camera;
 import kabam.rotmg.util.GraphicsUtil;
 import kabam.rotmg.util.TextureRedrawer;
-import rotmg.map.Camera;
-import rotmg.util.GraphicsUtil;
-import rotmg.util.TextureRedrawer;
 
 public class Face3D {
 
@@ -105,7 +95,7 @@ public class Face3D {
 		return loc1;
 	}
 
-	public boolean draw(List<IGraphicsData> param1, Camera param2) {
+	public boolean draw(Vector<IGraphicsData> param1, Camera param2) {
 		Vector<Double> loc10 = null;
 		double loc11 = 0;
 		double loc12 = 0;

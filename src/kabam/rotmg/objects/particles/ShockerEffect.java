@@ -11,11 +11,6 @@ import kabam.rotmg.particles.ParticleEffect;
 import kabam.rotmg.util.AssetLibrary;
 import kabam.rotmg.util.ImageSet;
 import kabam.rotmg.util.TextureRedrawer;
-import rotmg.objects.GameObject;
-import rotmg.particles.ParticleEffect;
-import rotmg.util.AssetLibrary;
-import rotmg.util.ImageSet;
-import rotmg.util.TextureRedrawer;
 
 public class ShockerEffect extends ParticleEffect {
 

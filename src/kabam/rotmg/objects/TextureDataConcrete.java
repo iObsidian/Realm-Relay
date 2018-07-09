@@ -1,15 +1,14 @@
 package kabam.rotmg.objects;
 
-import java.util.HashMap;
-
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import kabam.rotmg.objects.animation.AnimatedChar;
-import rotmg.objects.animation.AnimatedChar;
 import rotmg.util.AnimatedChars;
 import rotmg.util.AssetLibrary;
 import rotmg.util.MaskedImage;
+
+import java.util.HashMap;
 
 /**
  * This class is a 25% match. Removed the use of remote textures. Parse only works for textures.

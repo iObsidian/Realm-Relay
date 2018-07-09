@@ -8,12 +8,12 @@ import flash.geom.Point;
 import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
+import kabam.rotmg.map.Camera;
+import kabam.rotmg.objects.GameObject;
 import kabam.rotmg.parameters.Parameters;
-import rotmg.map.Camera;
-import rotmg.objects.GameObject;
-import rotmg.parameters.Parameters;
-import rotmg.util.GraphicsUtil;
+import kabam.rotmg.util.GraphicsUtil;
 import spark.filters.DropShadowFilter;
+
 
 public class SpeechBalloon extends Sprite implements IMapOverlayElement {
 

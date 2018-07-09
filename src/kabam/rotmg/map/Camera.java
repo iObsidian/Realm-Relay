@@ -7,9 +7,6 @@ import flash.geom.Vector3D;
 import kabam.rotmg.objects.GameObject;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.util.RandomUtil;
-import rotmg.objects.GameObject;
-import rotmg.parameters.Parameters;
-import rotmg.util.RandomUtil;
 
 public class Camera {
 

@@ -1,9 +1,9 @@
 package kabam.rotmg.objects;
 
-import java.util.HashMap;
-
 import alde.flash.utils.XML;
-import rotmg.sound.SoundEffectLibrary;
+import kabam.rotmg.sound.SoundEffectLibrary;
+
+import java.util.HashMap;
 
 /**
  * Static is a reserved keywor.d Changed to 'isStatic'.

@@ -5,8 +5,6 @@ import alde.flash.utils.Vector;
 import kabam.rotmg.messaging.incoming.AccountList;
 import kabam.rotmg.util.PointUtil;
 import rotmg.map.Map;
-import rotmg.messaging.incoming.AccountList;
-import rotmg.util.PointUtil;
 
 public class Party {
 

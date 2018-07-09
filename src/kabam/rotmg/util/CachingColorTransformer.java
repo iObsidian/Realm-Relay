@@ -4,7 +4,6 @@ import alde.flash.utils.Dictionary;
 import flash.display.BitmapData;
 import flash.filters.BitmapFilter;
 import flash.geom.ColorTransform;
-import flash.geom.Point;
 
 public class CachingColorTransformer {
 

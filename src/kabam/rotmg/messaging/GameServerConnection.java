@@ -1,19 +1,17 @@
 package kabam.rotmg.messaging;
 
-import java.util.List;
-import java.util.Random;
-
 import flash.display.DisplayObject;
+import kabam.rotmg.AGameSprite;
 import kabam.rotmg.messaging.data.SlotObjectData;
+import kabam.rotmg.net.Server;
+import kabam.rotmg.net.SocketServer;
+import kabam.rotmg.objects.GameObject;
+import kabam.rotmg.objects.Player;
+import kabam.rotmg.objects.Projectile;
 import org.osflash.signals.Signal;
 
-import rotmg.AGameSprite;
-import rotmg.messaging.data.SlotObjectData;
-import rotmg.net.Server;
-import rotmg.net.SocketServer;
-import rotmg.objects.GameObject;
-import rotmg.objects.Player;
-import rotmg.objects.Projectile;
+import java.util.List;
+import java.util.Random;
 
 public class GameServerConnection {
 

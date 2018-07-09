@@ -1,10 +1,16 @@
 package kabam.rotmg.util.components;
 
+import java.util.Currency;
+
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
 import flash.airglobal.Graphics;
-import flash.display.*;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsSolidFill;
+import flash.display.IGraphicsData;
 import flash.events.MouseEvent;
 import flash.filters.ColorMatrixFilter;
 import flash.text.TextField;
@@ -12,51 +18,32 @@ import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.ui.Mouse;
-import rotmg.assets.services.IconFactory;
-import rotmg.parameters.Parameters;
-import rotmg.ui.view.SignalWaiter;
-import rotmg.util.Currency;
-import rotmg.util.GraphicsUtil;
-import rotmg.util.MoreColorUtil;
-import rotmg.util.components.api.BuyButton;
+import kabam.rotmg.assets.services.IconFactory;
+import kabam.rotmg.ui.view.SignalWaiter;
+import kabam.rotmg.util.GraphicsUtil;
+import kabam.rotmg.util.MoreColorUtil;
+import kabam.rotmg.util.components.api.BuyButton;
 
 public class SimpleButton extends BuyButton {
 
-	private static final int BEVEL = 4;
-
-	private static final int PADDING = 2;
-
 	public static final BitmapData coin = IconFactory.makeCoin();
-
 	public static final BitmapData fortune = IconFactory.makeFortune();
-
 	public static final BitmapData fame = IconFactory.makeFame();
-
 	public static final BitmapData guildFame = IconFactory.makeGuildFame();
-
+	private static final int BEVEL = 4;
+	private static final int PADDING = 2;
 	private static final ColorMatrixFilter grayfilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-
-	public String prefix;
-
-	public TextField text;
-
-	public Bitmap icon;
-
-	public int price = -1;
-
-	public int currency = -1;
-
-	public int _width = -1;
-
 	private final GraphicsSolidFill enabledFill = new GraphicsSolidFill(16777215, 1);
-
 	private final GraphicsSolidFill disabledFill = new GraphicsSolidFill(8355711, 1);
-
 	private final GraphicsPath graphicsPath = new GraphicsPath(new Vector<Integer>(), new Vector<Double>());
-
-	private Vector<IGraphicsData> graphicsData;
 	private final SignalWaiter waiter = new SignalWaiter();
-
+	public String prefix;
+	public TextField text;
+	public Bitmap icon;
+	public int price = -1;
+	public int currency = -1;
+	public int _width = -1;
+	private Vector<IGraphicsData> graphicsData;
 	private boolean withOutLine = false;
 
 	private int outLineColor = 5526612;
@@ -128,11 +115,6 @@ public class SimpleButton extends BuyButton {
 			filters = new Vector<>(grayfilter);
 			this.draw();
 		}
-	}
-
-	public void setWidth(int param1) {
-		this._width = param1;
-		this.updateUI();
 	}
 
 	private void updateUI() {
@@ -207,6 +189,11 @@ public class SimpleButton extends BuyButton {
 		return this.fixedWidth != -1 ? this.fixedWidth : (int) Math.max(this._width, this.text.width + this.icon.width + 4 * PADDING);
 	}
 
+	public void setWidth(int param1) {
+		this._width = param1;
+		this.updateUI();
+	}
+
 	private int getHeight() {
 		return this.fixedHeight != -1 ? this.fixedHeight : (int) (this.text.height + this.textVertMargin * 2);
 	}
@@ -237,12 +224,12 @@ public class SimpleButton extends BuyButton {
 
 	private void drawOutline(Graphics param1) {
 		/**GraphicsSolidFill loc2 = new GraphicsSolidFill(0, 0.01);
-		GraphicsSolidFill loc3 = new GraphicsSolidFill(new EventConsumer<>(this::outLineColor), 0.6);
-		GraphicsStroke loc4 = new GraphicsStroke(4, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, loc3);
-		GraphicsPath loc5 = new GraphicsPath();
-		GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), 4, GraphicsUtil.ALL_CUTS, loc5);
-		Vector loc6 = new IGraphicsData[]{loc4, loc2, loc5, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE};
-		param1.drawGraphicsData(loc6);*/
+		 GraphicsSolidFill loc3 = new GraphicsSolidFill(new EventConsumer<>(this::outLineColor), 0.6);
+		 GraphicsStroke loc4 = new GraphicsStroke(4, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, loc3);
+		 GraphicsPath loc5 = new GraphicsPath();
+		 GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), 4, GraphicsUtil.ALL_CUTS, loc5);
+		 Vector loc6 = new IGraphicsData[]{loc4, loc2, loc5, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE};
+		 param1.drawGraphicsData(loc6);*/
 	}
 
 }

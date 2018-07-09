@@ -1,8 +1,7 @@
 package kabam.rotmg.core.model;
 
+import kabam.rotmg.map.Map;
 import kabam.rotmg.objects.IInteractiveObject;
-import rotmg.map.Map;
-import rotmg.objects.IInteractiveObject;
 
 public class MapModel {
 

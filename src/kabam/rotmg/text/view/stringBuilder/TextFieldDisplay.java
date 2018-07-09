@@ -1,8 +1,8 @@
 package kabam.rotmg.text.view.stringBuilder;
 
 import flash.text.TextField;
-import rotmg.language.model.StringMap;
-import rotmg.text.model.FontInfo;
+import kabam.rotmg.language.model.StringMap;
+import kabam.rotmg.text.model.FontInfo;
 
 public interface TextFieldDisplay {
 

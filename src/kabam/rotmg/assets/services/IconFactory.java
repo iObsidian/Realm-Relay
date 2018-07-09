@@ -5,7 +5,6 @@ import flash.display.BitmapData;
 import kabam.rotmg.util.TextureRedrawer;
 import rotmg.util.AssetLibrary;
 import rotmg.util.BitmapUtil;
-import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
 
 public class IconFactory {

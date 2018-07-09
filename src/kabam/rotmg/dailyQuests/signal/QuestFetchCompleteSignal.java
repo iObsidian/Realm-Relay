@@ -1,7 +1,6 @@
 package kabam.rotmg.dailyQuests.signal;
 
 import org.osflash.signals.Signal;
-
 import rotmg.dailyQuests.QuestFetchResponse;
 
 public class QuestFetchCompleteSignal extends Signal<QuestFetchResponse> {

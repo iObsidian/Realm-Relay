@@ -9,6 +9,7 @@ public class GlobalNotification extends IncomingMessage {
 
 	public int type;
 	public String text;
+
 	public GlobalNotification(int id, Consumer callback) {
 		super(id, callback);
 	}

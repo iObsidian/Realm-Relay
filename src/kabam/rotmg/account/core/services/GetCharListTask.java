@@ -5,58 +5,44 @@ import alde.flash.utils.Timer;
 import alde.flash.utils.XML;
 import flash.events.TimerEvent;
 import kabam.lib.tasks.BaseTask;
+import kabam.rotmg.account.core.WebAccount;
 import kabam.rotmg.account.core.signals.CharListDataSignal;
 import kabam.rotmg.account.securityQuestions.data.SecurityQuestionsModel;
 import kabam.rotmg.account.web.view.MigrationDialog;
 import kabam.rotmg.account.web.view.WebLoginDialog;
+import kabam.rotmg.appengine.api.AppEngineClient;
+import kabam.rotmg.core.model.PlayerModel;
+import kabam.rotmg.core.signals.SetLoadingMessageSignal;
+import kabam.rotmg.dialogs.CloseDialogsSignal;
+import kabam.rotmg.dialogs.OpenDialogSignal;
 import kabam.rotmg.fortune.components.TimerCallback;
+import kabam.rotmg.util.TextKey;
 import mx.logging.ILogger;
-import rotmg.account.core.WebAccount;
-import rotmg.appengine.api.AppEngineClient;
-import rotmg.core.model.PlayerModel;
-import rotmg.core.signals.SetLoadingMessageSignal;
-import rotmg.dialogs.CloseDialogsSignal;
-import rotmg.dialogs.OpenDialogSignal;
-import rotmg.parameters.Parameters;
-import rotmg.util.TextKey;
+
 
 public class GetCharListTask extends BaseTask {
 
 	private static final int ONE_SECOND_IN_MS = 1000;
 
 	private static final int MAX_RETRIES = 7;
-
+	public static GetCharListTask instance;
 	public WebAccount account;
-
 	public AppEngineClient client;
-
 	public PlayerModel model;
-
 	public SetLoadingMessageSignal setLoadingMessage;
-
 	public CharListDataSignal charListData;
-
 	public ILogger logger;
-
 	public OpenDialogSignal openDialog;
-
 	public CloseDialogsSignal closeDialogs;
-
 	public SecurityQuestionsModel securityQuestionsModel;
-
 	private Object requestData;
-
 	private Timer retryTimer;
-
 	private int numRetries = 0;
-
 	private boolean fromMigration = false;
 
 	public GetCharListTask() {
 		super();
 	}
-
-	public static GetCharListTask instance;
 
 	public static GetCharListTask getInstance() {
 		if (instance == null) {

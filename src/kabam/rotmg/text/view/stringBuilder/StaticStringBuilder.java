@@ -1,8 +1,7 @@
 package kabam.rotmg.text.view.stringBuilder;
 
-import rotmg.language.model.StringMap;
 
-import java.lang.StringBuilder;
+import kabam.rotmg.language.model.StringMap;
 
 public class StaticStringBuilder implements StringBuilder {
 	public StaticStringBuilder(String s) {

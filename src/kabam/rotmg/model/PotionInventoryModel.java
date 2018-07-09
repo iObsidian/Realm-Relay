@@ -1,13 +1,12 @@
 package kabam.rotmg.model;
 
+import alde.flash.utils.SignalConsumer;
+import alde.flash.utils.XML;
+import org.osflash.signals.Signal;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import alde.flash.utils.SignalConsumer;
-import org.osflash.signals.Signal;
-
-import alde.flash.utils.XML;
 
 public class PotionInventoryModel {
 

@@ -3,7 +3,6 @@ package kabam.rotmg.objects.particles;
 import alde.flash.utils.Vector;
 import flash.geom.Vector3D;
 import kabam.rotmg.particles.ParticleEffect;
-import rotmg.particles.ParticleEffect;
 
 public class ExplosionEffect extends ParticleEffect {
 

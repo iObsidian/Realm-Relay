@@ -2,7 +2,6 @@ package kabam.rotmg.ui.panels;
 
 import flash.display.Sprite;
 import kabam.rotmg.AGameSprite;
-import rotmg.AGameSprite;
 
 public class Panel extends Sprite {
 

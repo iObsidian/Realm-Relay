@@ -9,8 +9,6 @@ import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import spark.filters.DropShadowFilter;
 
-import java.util.EventListener;
-
 public class ClickableTextBase extends Sprite {
 
 	public TextFieldDisplayConcrete text;

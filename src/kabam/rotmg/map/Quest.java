@@ -1,7 +1,6 @@
 package kabam.rotmg.map;
 
 import kabam.rotmg.objects.GameObject;
-import rotmg.objects.GameObject;
 
 import static flash.utils.getTimer.getTimer;
 

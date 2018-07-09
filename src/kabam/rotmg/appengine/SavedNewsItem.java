@@ -1,9 +1,8 @@
 package kabam.rotmg.appengine;
 
 import flash.display.BitmapData;
+import kabam.rotmg.util.AssetLibrary;
 import kabam.rotmg.util.TextureRedrawer;
-import rotmg.util.AssetLibrary;
-import rotmg.util.TextureRedrawer;
 
 public class SavedNewsItem {
 

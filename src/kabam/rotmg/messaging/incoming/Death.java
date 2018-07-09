@@ -13,6 +13,7 @@ public class Death extends IncomingMessage {
 	public boolean isZombie;
 	private String accountId;
 	private int charId;
+
 	public Death(int id, Consumer callback) {
 		super(id, callback);
 	}

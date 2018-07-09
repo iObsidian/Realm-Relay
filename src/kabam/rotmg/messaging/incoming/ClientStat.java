@@ -9,6 +9,7 @@ public class ClientStat extends IncomingMessage {
 
 	public String name;
 	public int value;
+
 	public ClientStat(int id, Consumer callback) {
 		super(id, callback);
 	}

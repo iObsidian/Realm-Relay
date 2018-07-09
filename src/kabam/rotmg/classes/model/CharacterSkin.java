@@ -1,8 +1,7 @@
 package kabam.rotmg.classes.model;
 
+import kabam.rotmg.assets.model.CharacterTemplate;
 import org.osflash.signals.Signal;
-
-import rotmg.assets.model.CharacterTemplate;
 
 public class CharacterSkin {
 

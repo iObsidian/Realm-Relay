@@ -1,10 +1,5 @@
 package kabam.rotmg.objects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import kabam.rotmg.constants.GeneralConstants;
@@ -14,15 +9,13 @@ import kabam.rotmg.objects.animation.AnimationsData;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.util.TextureRedrawer;
 import kabam.rotmg.util.redrawers.GlowRedrawer;
-import rotmg.constants.GeneralConstants;
-import rotmg.constants.ItemConstants;
-import rotmg.messaging.data.StatData;
-import rotmg.objects.animation.AnimationsData;
-import rotmg.parameters.Parameters;
 import rotmg.util.AssetLibrary;
 import rotmg.util.ConversionUtil;
-import rotmg.util.TextureRedrawer;
-import rotmg.util.redrawers.GlowRedrawer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This is 80% complete

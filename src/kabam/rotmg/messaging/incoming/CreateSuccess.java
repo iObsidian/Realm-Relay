@@ -9,6 +9,7 @@ public class CreateSuccess extends IncomingMessage {
 
 	public int objectId;
 	public int charId;
+
 	public CreateSuccess(int id, Consumer callback) {
 		super(id, callback);
 	}

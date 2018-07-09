@@ -1,20 +1,15 @@
 package kabam.rotmg.objects;
 
 import alde.flash.utils.XML;
+import kabam.rotmg.GameSprite;
 import kabam.rotmg.objects.animation.AnimatedChar;
 import kabam.rotmg.pets.data.PetVO;
 import kabam.rotmg.pets.data.PetsModel;
 import kabam.rotmg.signals.TextPanelMessageUpdateSignal;
+import kabam.rotmg.ui.panels.Panel;
 import kabam.rotmg.util.AnimatedChars;
 import kabam.rotmg.util.MaskedImage;
-import rotmg.GameSprite;
-import rotmg.objects.animation.AnimatedChar;
-import rotmg.pets.data.PetVO;
-import rotmg.pets.data.PetsModel;
-import rotmg.signals.TextPanelMessageUpdateSignal;
-import rotmg.ui.panels.Panel;
-import rotmg.util.AnimatedChars;
-import rotmg.util.MaskedImage;
+
 
 public class Pet extends GameObject implements IInteractiveObject {
 

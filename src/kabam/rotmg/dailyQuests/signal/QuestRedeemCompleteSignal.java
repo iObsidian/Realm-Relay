@@ -1,8 +1,8 @@
 package kabam.rotmg.dailyQuests.signal;
 
-import org.osflash.signals.Signal;
 
-import rotmg.dailyQuests.QuestRedeemResponse;
+import kabam.rotmg.dailyQuests.QuestRedeemResponse;
+import org.osflash.signals.Signal;
 
 public class QuestRedeemCompleteSignal extends Signal<QuestRedeemResponse> {
 	static QuestRedeemCompleteSignal instance;

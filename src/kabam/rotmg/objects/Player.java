@@ -1,7 +1,9 @@
 package kabam.rotmg.objects;
 
-import java.util.List;
-
+import alde.flash.utils.Dictionary;
+import alde.flash.utils.XML;
+import flash.display.BitmapData;
+import flash.geom.Point;
 import kabam.rotmg.assets.services.CharacterFactory;
 import kabam.rotmg.constants.GeneralConstants;
 import kabam.rotmg.messaging.data.StatData;
@@ -13,19 +15,7 @@ import kabam.rotmg.util.ConversionUtil;
 import kabam.rotmg.util.IntPoint;
 import org.osflash.signals.Signal;
 
-import alde.flash.utils.Dictionary;
-import alde.flash.utils.XML;
-import flash.display.BitmapData;
-import flash.geom.Point;
-import rotmg.assets.services.CharacterFactory;
-import rotmg.constants.GeneralConstants;
-import rotmg.messaging.data.StatData;
-import rotmg.objects.animation.AnimatedChar;
-import rotmg.parameters.Parameters;
-import rotmg.particles.HealingEffect;
-import rotmg.signals.AddTextLineSignal;
-import rotmg.util.ConversionUtil;
-import rotmg.util.IntPoint;
+import java.util.List;
 
 public class Player extends Character {
 

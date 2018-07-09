@@ -1,15 +1,12 @@
 package kabam.rotmg.map;
 
-import java.util.HashMap;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import kabam.rotmg.objects.TextureData;
 import kabam.rotmg.objects.TextureDataConcrete;
 import kabam.rotmg.util.BitmapUtil;
-import rotmg.objects.TextureData;
-import rotmg.objects.TextureDataConcrete;
-import rotmg.util.BitmapUtil;
+
+import java.util.HashMap;
 
 public class GroundLibrary {
 

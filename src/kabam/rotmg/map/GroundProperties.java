@@ -1,13 +1,11 @@
 package kabam.rotmg.map;
 
-import java.util.List;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import kabam.rotmg.objects.TextureData;
 import kabam.rotmg.objects.TextureDataConcrete;
-import rotmg.objects.TextureData;
-import rotmg.objects.TextureDataConcrete;
+
+import java.util.List;
 
 /**
  * 75% done : requires AnimateProperties

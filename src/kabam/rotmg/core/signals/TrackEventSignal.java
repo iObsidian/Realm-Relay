@@ -1,7 +1,6 @@
 package kabam.rotmg.core.signals;
 
 import org.osflash.signals.Signal;
-
 import rotmg.core.service.TrackingData;
 
 public class TrackEventSignal extends Signal<TrackingData> {

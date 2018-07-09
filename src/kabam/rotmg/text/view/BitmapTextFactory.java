@@ -3,7 +3,6 @@ package kabam.rotmg.text.view;
 import flash.display.BitmapData;
 import flash.geom.Matrix;
 import kabam.rotmg.text.view.stringBuilder.StringBuilder;
-import rotmg.text.view.stringBuilder.StringBuilder;
 
 public class BitmapTextFactory {
 	static BitmapTextFactory instance;

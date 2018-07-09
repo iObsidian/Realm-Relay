@@ -18,6 +18,7 @@ public class MapInfo extends IncomingMessage {
 	public boolean showDisplays;
 	public String[] clientXML;
 	public String[] extraXML;
+
 	public MapInfo(int id, Consumer callback) {
 		super(id, callback);
 		this.clientXML = new String[0];

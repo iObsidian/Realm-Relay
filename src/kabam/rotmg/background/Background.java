@@ -2,7 +2,6 @@ package kabam.rotmg.background;
 
 import flash.display.Sprite;
 import kabam.rotmg.map.Camera;
-import rotmg.map.Camera;
 
 /**
  * 100% match

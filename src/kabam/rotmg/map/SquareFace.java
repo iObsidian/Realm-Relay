@@ -1,13 +1,10 @@
 package kabam.rotmg.map;
 
-import java.util.List;
-
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
+import kabam.rotmg.engine3d.Face3D;
 import kabam.rotmg.objects.Square;
-import rotmg.engine3d.Face3D;
-import rotmg.objects.Square;
 
 public class SquareFace {
 
@@ -44,7 +41,7 @@ public class SquareFace {
 		this.face = null;
 	}
 
-	public boolean draw(List<IGraphicsData> param1, Camera param2, int param3) {
+	public boolean draw(Vector<IGraphicsData> param1, Camera param2, int param3) {
 		double loc4 = 0;
 		double loc5 = 0;
 		if (this.animate != AnimateProperties.NO_ANIMATE) {

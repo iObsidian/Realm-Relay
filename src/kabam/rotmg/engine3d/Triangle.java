@@ -5,8 +5,6 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import kabam.rotmg.util.LineSegmentUtil;
 import kabam.rotmg.util.PointUtil;
-import rotmg.util.LineSegmentUtil;
-import rotmg.util.PointUtil;
 
 public class Triangle {
 

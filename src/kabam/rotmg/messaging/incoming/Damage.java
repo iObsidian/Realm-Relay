@@ -14,6 +14,7 @@ public class Damage extends IncomingMessage {
 	public boolean armorPierce;
 	public int bulletId;
 	public int objectId;
+
 	public Damage(int id, Consumer callback) {
 		super(id, callback);
 	}

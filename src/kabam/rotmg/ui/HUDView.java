@@ -8,17 +8,12 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.geom.Point;
 import kabam.rotmg.AGameSprite;
+import kabam.rotmg.GameSprite;
 import kabam.rotmg.messaging.incoming.TradeAccepted;
 import kabam.rotmg.messaging.incoming.TradeChanged;
 import kabam.rotmg.messaging.incoming.TradeStart;
 import kabam.rotmg.ui.view.UnFocusAble;
-import rotmg.AGameSprite;
-import rotmg.GameSprite;
-import rotmg.messaging.incoming.TradeAccepted;
-import rotmg.messaging.incoming.TradeChanged;
-import rotmg.messaging.incoming.TradeStart;
-import rotmg.ui.view.UnFocusAble;
-import rotmg.util.GraphicsUtil;
+import kabam.rotmg.util.GraphicsUtil;
 
 
 public class HUDView extends Sprite implements UnFocusAble {

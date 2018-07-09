@@ -1,5 +1,7 @@
 package kabam.rotmg.account.core.view;
 
+import org.osflash.signals.Signal;
+
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
 import flash.display.Sprite;
@@ -7,17 +9,16 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormatAlign;
+import javafx.scene.shape.LineBuilder;
 import kabam.rotmg.pets.util.PetsViewAssetFactory;
 import kabam.rotmg.pets.view.components.DialogCloseButton;
 import kabam.rotmg.pets.view.components.PopupWindowBackground;
-import org.osflash.signals.Signal;
-import rotmg.WebMain;
-import rotmg.text.view.stringBuilder.LineBuilder;
-import rotmg.text.view.stringBuilder.StaticStringBuilder;
-import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
+import kabam.rotmg.WebMain;
+import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import spark.filters.DropShadowFilter;
 
-public class EmptyFrame  extends Sprite {
+public class EmptyFrame extends Sprite {
 
 	public static final int TEXT_MARGIN = 20;
 

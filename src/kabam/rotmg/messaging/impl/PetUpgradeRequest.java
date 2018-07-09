@@ -1,13 +1,12 @@
 package kabam.rotmg.messaging.impl;
 
+import kabam.rotmg.messaging.outgoing.OutgoingMessage;
+import rotmg.messaging.data.SlotObjectData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
-
-import kabam.rotmg.messaging.outgoing.OutgoingMessage;
-import rotmg.messaging.data.SlotObjectData;
-import rotmg.messaging.outgoing.OutgoingMessage;
 
 public class PetUpgradeRequest extends OutgoingMessage {
 
@@ -19,6 +18,7 @@ public class PetUpgradeRequest extends OutgoingMessage {
 	public int objectId;
 	public SlotObjectData slotObject;
 	public int paymentTransType;
+
 	public PetUpgradeRequest(int param1, Consumer param2) {
 		super(param1, param2);
 		this.slotObject = new SlotObjectData();

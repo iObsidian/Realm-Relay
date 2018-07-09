@@ -1,10 +1,9 @@
 package kabam.rotmg;
 
+import kabam.rotmg.messaging.data.MoveRecord;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import kabam.rotmg.messaging.data.MoveRecord;
-import rotmg.messaging.data.MoveRecord;
 
 /**
  * This is a 100% match
@@ -13,6 +12,7 @@ public class MoveRecords {
 
 	public int lastClearTime = -1;
 	public List<MoveRecord> records;
+
 	public MoveRecords() {
 		this.records = new ArrayList<MoveRecord>();
 	}

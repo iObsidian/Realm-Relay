@@ -6,7 +6,6 @@ import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
 import flash.geom.Matrix;
 import kabam.rotmg.util.redrawers.GlowRedrawer;
-import rotmg.util.redrawers.GlowRedrawer;
 import spark.filters.GlowFilter;
 
 /**

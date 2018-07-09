@@ -1,10 +1,8 @@
 package kabam.rotmg.pets.data;
 
+import alde.flash.utils.XML;
 import kabam.rotmg.objects.ObjectLibrary;
 import org.osflash.signals.Signal;
-
-import alde.flash.utils.XML;
-import rotmg.objects.ObjectLibrary;
 
 /**
  * This is a 90% match, some uncertainty with 'this.name' (setType)

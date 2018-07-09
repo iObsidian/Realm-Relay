@@ -1,7 +1,6 @@
 package protip.signals;
 
 import org.osflash.signals.Signal;
-import rotmg.account.core.Account;
 
 public class ShowProTipSignal extends Signal {
 

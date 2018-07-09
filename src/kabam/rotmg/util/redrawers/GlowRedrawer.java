@@ -10,9 +10,6 @@ import flash.geom.Matrix;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.util.PointUtil;
 import kabam.rotmg.util.TextureRedrawer;
-import rotmg.parameters.Parameters;
-import rotmg.util.PointUtil;
-import rotmg.util.TextureRedrawer;
 import spark.filters.GlowFilter;
 
 public class GlowRedrawer {

@@ -1,13 +1,12 @@
 package kabam.rotmg.util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import alde.flash.utils.StaticAssetLoaderUtility;
 import flash.display.BitmapData;
 import kabam.rotmg.objects.animation.AnimatedChar;
-import rotmg.objects.animation.AnimatedChar;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class AnimatedChars {
 

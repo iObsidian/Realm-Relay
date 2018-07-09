@@ -1,10 +1,7 @@
 package kabam.rotmg.net.impl;
 
-import java.util.function.Consumer;
-
 import alde.flash.utils.MessageConsumer;
 import kabam.rotmg.net.api.MessageMapping;
-import rotmg.net.api.MessageMapping;
 
 /**
  * Map between CLASS and TYPE

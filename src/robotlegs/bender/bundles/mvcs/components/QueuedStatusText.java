@@ -1,9 +1,7 @@
 package robotlegs.bender.bundles.mvcs.components;
 
-
-import rotmg.map.mapoverlay.CharacterStatusText;
-import rotmg.objects.GameObject;
-import rotmg.text.view.stringBuilder.StringBuilder;
+import kabam.rotmg.map.mapoverlay.CharacterStatusText;
+import kabam.rotmg.objects.GameObject;
 
 /**
  * 100% match.
