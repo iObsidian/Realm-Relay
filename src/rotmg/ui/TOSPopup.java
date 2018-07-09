@@ -1,4 +1,4 @@
-package com.company.assembleegameclient.ui;
+package rotmg.ui;
 
 import flash.display.Sprite;
 

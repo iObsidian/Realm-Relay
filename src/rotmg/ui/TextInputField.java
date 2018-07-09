@@ -1,9 +1,8 @@
-package com.company.assembleegameclient.account.ui;
+package rotmg.ui;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
-import com.company.ui.BaseSimpleText;
 import flash.display.CapsStyle;
 import flash.display.JointStyle;
 import flash.display.LineScaleMode;

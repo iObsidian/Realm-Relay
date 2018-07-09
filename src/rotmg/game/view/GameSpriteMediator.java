@@ -130,7 +130,7 @@ public class GameSpriteMediator extends Mediator {
 		this.view.drawCharacterWindow.add(new SignalConsumer<>(this::onStatusPanelDraw));
 		this.hudModelInitialized.add(new SignalConsumer<>(this::onHUDModelInitialized));
 		this.showPetTooltip.add(new SignalConsumer<>(this::onShowPetTooltip));
-		//this.view.monitor.add(new SignalConsumer<>(this::onMonitor));
+		//this.rotmg.view.monitor.add(new SignalConsumer<>(this::onMonitor));
 		this.view.closed.add(new SignalConsumer<>(this::onClosed));
 		this.view.mapModel = this.mapModel;
 		this.view.dialogsModel = this.dialogsModel;
@@ -168,7 +168,7 @@ public class GameSpriteMediator extends Mediator {
 		this.beginnersPackageAvailable.remove(new SignalConsumer<>(this::onBeginner));
 		this.packageAvailable.remove(new SignalConsumer<>(this::onPackage));
 		this.view.closed.remove(new SignalConsumer<>(this::onClosed));
-		//this.view.monitor.remove(new SignalConsumer<>(this::onMonitor));
+		//this.rotmg.view.monitor.remove(new SignalConsumer<>(this::onMonitor));
 		this.newsButtonRefreshSignal.remove(new SignalConsumer<>(this::onNewsButtonRefreshSignal));
 		this.view.disconnect();
 	}

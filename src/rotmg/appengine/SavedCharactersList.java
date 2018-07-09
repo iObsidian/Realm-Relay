@@ -1,15 +1,12 @@
-package com.company.assembleegameclient.appengine;
+package rotmg.appengine;
 
-import com.company.assembleegameclient.ui.TOSPopup;
+import rotmg.ui.TOSPopup;
 
 import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.events.Event;
 import rotmg.account.core.Account;
-import rotmg.appengine.CharacterStats;
-import rotmg.appengine.SavedCharacter;
-import rotmg.appengine.SavedNewsItem;
 import rotmg.dialogs.OpenDialogSignal;
 import rotmg.net.LatLong;
 import rotmg.objects.ObjectLibrary;

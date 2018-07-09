@@ -1,4 +1,4 @@
-package com.company.assembleegameclient.ui;
+package rotmg.ui;
 
 import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 

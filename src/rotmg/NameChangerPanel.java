@@ -1,4 +1,4 @@
-package view;
+package rotmg.view;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;

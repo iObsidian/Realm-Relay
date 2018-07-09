@@ -1,7 +1,6 @@
-package com.company.assembleegameclient.account.ui;
+package rotmg.ui;
 
 import alde.flash.utils.Vector;
-import com.company.assembleegameclient.ui.DeprecatedClickableText;
 import flash.display.GraphicsPath;
 import flash.display.GraphicsSolidFill;
 import flash.display.GraphicsStroke;

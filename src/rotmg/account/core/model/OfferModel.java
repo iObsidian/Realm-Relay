@@ -1,6 +1,6 @@
 package rotmg.account.core.model;
 
-import com.company.assembleegameclient.util.offer.Offers;
+import rotmg.offer.Offers;
 
 public class OfferModel {
 

@@ -1,4 +1,4 @@
-package com.company.assembleegameclient.util.offer;
+package rotmg.offer;
 
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;

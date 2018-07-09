@@ -1,4 +1,4 @@
-package com.company.assembleegameclient.ui;
+package rotmg.ui;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
@@ -8,8 +8,6 @@ import rotmg.sound.SoundEffectLibrary;
 import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import spark.filters.DropShadowFilter;
-
-import java.util.EventListener;
 
 public class ClickableTextBase extends Sprite {
 

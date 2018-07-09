@@ -1,6 +1,6 @@
 package rotmg.account.web.view;
 
-import com.company.assembleegameclient.account.ui.Frame;
+import rotmg.ui.Frame;
 
 public class WebLoginDialog extends Frame {
 
