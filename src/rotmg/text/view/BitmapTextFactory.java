@@ -16,5 +16,6 @@ public class BitmapTextFactory {
 	}
 
 	public BitmapData make(StringBuilder loc1, int i, int i1, boolean b, Matrix identityMatrix, boolean b1) {
+		return null;
 	}
 }

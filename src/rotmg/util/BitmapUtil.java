@@ -33,5 +33,6 @@ public class BitmapUtil {
 	}
 
 	public static BitmapData rotateBitmapData(BitmapData loc4, int param2) {
+		return null;
 	}
 }
