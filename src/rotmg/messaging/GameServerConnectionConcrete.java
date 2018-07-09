@@ -731,9 +731,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		Hello hello = (Hello) this.messages.require(HELLO);
 		hello.buildVersion = Parameters.BUILD_VERSION + "." + Parameters.MINOR_VERSION;
 		hello.gameId = gameId;
-		hello.guid = this.rsaEncrypt(loc1.getUserId());
-		hello.password = this.rsaEncrypt(loc1.getPassword());
-		hello.secret = this.rsaEncrypt(loc1.getSecret());
+		hello.guid = this.rsaEncrypt(loc1.userId);
+		hello.password = this.rsaEncrypt(loc1.password);
+		hello.secret = this.rsaEncrypt(loc1.secret);
 		hello.keyTime = keyTime;
 		if (key != null) {
 			hello.key = key;
@@ -745,12 +745,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		} else {
 			hello.mapJSON = new byte[0];
 		}
-		hello.entrytag = loc1.getEntryTag();
-		hello.gameNet = loc1.gameNetwork();
-		hello.gameNetUserId = loc1.gameNetworkUserId();
-		hello.playPlatform = loc1.playPlatform();
-		hello.platformToken = loc1.getPlatformToken();
-		hello.userToken = loc1.getToken();
+		hello.entrytag = loc1.getEntryTag;
+		hello.gameNet = loc1.gameNetwork;
+		hello.gameNetUserId = loc1.gameNetworkUserId;
+		hello.playPlatform = loc1.playPlatform;
+		hello.platformToken = loc1.getPlatformToken;
+		hello.userToken = loc1.token;
 		serverConnection.sendMessage(hello);
 	}
 

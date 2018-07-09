@@ -1,7 +1,10 @@
 package rotmg.servers.api;
 
 import alde.flash.utils.Vector;
+import kabam.rotmg.servers.model.FixedIPServerModel;
+import rotmg.core.signals.SetScreenSignal;
 import rotmg.net.Server;
+import rotmg.servers.api.model.LiveServerModel;
 
 public interface ServerModel {
 
@@ -9,8 +12,11 @@ public interface ServerModel {
 
 	Server getServer();
 
-	Boolean isServerAvailable();
+	boolean isServerAvailable();
 
 	Vector<Server> getServers();
 
+	static ServerModel getInstance() {
+		return LiveServerModel.getInstance();
+	}
 }

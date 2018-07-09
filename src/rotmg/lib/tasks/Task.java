@@ -15,9 +15,9 @@ public abstract class Task {
 
 	public Signal started;
 
-	/*public TaskResultSignal finished();
+	public TaskResultSignal finished;
 
-	public TaskResultSignal lastly;*/
+	public TaskResultSignal lastly;
 
 	public boolean isStarted;
 

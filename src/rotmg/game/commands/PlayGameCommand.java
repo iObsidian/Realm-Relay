@@ -1,6 +1,8 @@
 package rotmg.game.commands;
 
 import flash.utils.Date;
+import kabam.lib.net.impl.SocketServerModel;
+import kabam.lib.tasks.TaskMonitor;
 import kabam.rotmg.account.core.services.GetCharListTask;
 import rotmg.GameSprite;
 import rotmg.appengine.SavedCharacter;
@@ -34,6 +36,13 @@ public class PlayGameCommand {
 
 	public PlayGameCommand() {
 		super();
+		setScreen = SetScreenSignal.getInstance();
+		data = GameInitData.getInstance();
+		model = PlayerModel.getInstance();
+		petsModel = PetsModel.getInstance();
+		servers = ServerModel.getInstance();
+		task = GetCharListTask.getInstance();
+		monitor = TaskMonitor.getInstance();
 	}
 
 	public void execute() {
@@ -47,7 +56,7 @@ public class PlayGameCommand {
 
 	private void updatePet() {
 		SavedCharacter loc1 = this.model.getCharacterById(this.model.currentCharId);
-		if (loc1) {
+		if (loc1 != null) {
 			this.petsModel.setActivePet(loc1.getPetVO());
 		} else {
 			if (this.model.currentCharId != 0 && this.petsModel.getActivePet() != null && !this.data.isNewGame) {
@@ -58,16 +67,24 @@ public class PlayGameCommand {
 	}
 
 	private void recordCharacterUseInSharedObject() {
-		Parameters.data.charIdUseMap[this.data.charId] = new Date().getTime();
+		Parameters.data.charIdUseMap.put(this.data.charId, new Date().getTime());
 		Parameters.save();
 	}
 
-	private void makeGameView() {
-		Server loc1 = this.data.server || this.servers.getServer();
-		int loc2 = !!this.data.isNewGame ? this.getInitialGameId() : this.data.gameId;
+	public void makeGameView() {
+
+		Server loc1;
+
+		if (this.data.server != null) {
+			loc1 = this.data.server;
+		} else {
+			loc1 = this.servers.getServer();
+		}
+
+		int loc2 = this.data.isNewGame ? this.getInitialGameId() : this.data.gameId;
 		boolean loc3 = this.data.createCharacter;
 		int loc4 = this.data.charId;
-		var loc5:int =!!this.data.isNewGame ? -1 : this.data.keyTime;
+		int loc5 = this.data.isNewGame ? -1 : this.data.keyTime;
 		byte[] loc6 = this.data.key;
 		this.model.currentCharId = loc4;
 		this.setScreen.dispatch(new GameSprite(loc1, loc2, loc3, loc4, loc5, loc6, this.model, null, this.data.isFromArena));

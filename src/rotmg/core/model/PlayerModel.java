@@ -35,6 +35,10 @@ public class PlayerModel {
 	}
 
 	public static PlayerModel getInstance() {
+		if (instance == null) {
+			instance = new PlayerModel();
+		}
+
 		return instance;
 	}
 

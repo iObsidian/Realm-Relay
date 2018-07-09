@@ -1,13 +1,16 @@
 package kabam.rotmg.account.core.services;
 
-import alde.flash.utils.EventConsumer;
+import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Timer;
 import alde.flash.utils.XML;
 import flash.events.TimerEvent;
+import kabam.lib.tasks.BaseTask;
 import kabam.rotmg.account.core.signals.CharListDataSignal;
 import kabam.rotmg.account.securityQuestions.data.SecurityQuestionsModel;
 import kabam.rotmg.account.web.view.MigrationDialog;
-import rotmg.account.core.Account;
+import kabam.rotmg.account.web.view.WebLoginDialog;
+import kabam.rotmg.fortune.components.TimerCallback;
+import mx.logging.ILogger;
 import rotmg.account.core.WebAccount;
 import rotmg.appengine.api.AppEngineClient;
 import rotmg.core.model.PlayerModel;
@@ -17,13 +20,13 @@ import rotmg.dialogs.OpenDialogSignal;
 import rotmg.parameters.Parameters;
 import rotmg.util.TextKey;
 
-public class GetCharListTask {
+public class GetCharListTask extends BaseTask {
 
 	private static final int ONE_SECOND_IN_MS = 1000;
 
 	private static final int MAX_RETRIES = 7;
 
-	public Account account;
+	public WebAccount account;
 
 	public AppEngineClient client;
 
@@ -33,7 +36,7 @@ public class GetCharListTask {
 
 	public CharListDataSignal charListData;
 
-	//public ILogger logger;
+	public ILogger logger;
 
 	public OpenDialogSignal openDialog;
 
@@ -53,6 +56,15 @@ public class GetCharListTask {
 		super();
 	}
 
+	public static GetCharListTask instance;
+
+	public static GetCharListTask getInstance() {
+		if (instance == null) {
+			instance = new GetCharListTask();
+		}
+		return instance;
+	}
+
 	protected void startTask() {
 		this.logger.info("GetUserDataTask start");
 		this.requestData = this.makeRequestData();
@@ -61,11 +73,11 @@ public class GetCharListTask {
 	}
 
 	private void sendRequest() {
-		this.client.complete.addOnce(this::onComplete);
+		//this.client.complete.addOnce(new SignalConsumer<>(this::onComplete));
 		this.client.sendRequest("/char/list", this.requestData);
 	}
 
-	private void onComplete(boolean param1, *param2) {
+	private void onComplete(boolean param1, String param2) {
 		if (param1) {
 			this.onListComplete(param2);
 		} else {
@@ -74,49 +86,48 @@ public class GetCharListTask {
 	}
 
 	public Object makeRequestData() {
-		var loc1:Object = {};
+		/*var loc1:Object = {};
 		loc1.game_net_user_id = this.account.gameNetworkUserId();
 		loc1.game_net = this.account.gameNetwork();
 		loc1.play_platform = this.account.playPlatform();
 		loc1.do_login = Parameters.sendLogin;
 		MoreObjectUtil.addToObject(loc1, this.account.getCredentials());
-		return loc1;
+		return loc1;*/
+		return null;
 	}
 
 	private void onListComplete(String param1) {
 		double loc3 = 0;
 		MigrationDialog loc4 = null;
-		XML loc5 = null;
 		XML loc2 = new XML(param1);
 		if (loc2.hasOwnProperty("MigrateStatus")) {
-			loc3 = loc2.MigrateStatus;
+			loc3 = loc2.getDoubleValue("MigrateStatus");
 			if (loc3 == 5) {
 				this.sendRequest();
 			}
 			loc4 = new MigrationDialog(this.account, loc3);
 			this.fromMigration = true;
-			loc4.done.addOnce(this::sendRequest);
-			loc4.cancel.addOnce(this::clearAccountAndReloadCharacters);
+			loc4.done.addOnce(new SignalConsumer<>(this::sendRequest));
+			loc4.cancel.addOnce(new SignalConsumer<>(this::clearAccountAndReloadCharacters));
 			this.openDialog.dispatch(loc4);
 		} else {
 			if (loc2.hasOwnProperty("Account")) {
 				if (this.account instanceof WebAccount) {
-					WebAccount(this.account).userDisplayName = loc2.Account[0].Name;
-					WebAccount(this.account).paymentProvider = loc2.Account[0].PaymentProvider;
-					if (loc2.Account[0].hasOwnProperty("PaymentData")) {
-						WebAccount(this.account).paymentData = loc2.Account[0].PaymentData;
+					this.account.userDisplayName = loc2.child("Account").getValue("Name");
+					this.account.paymentProvider = loc2.child("Account").getValue("PaymentProvider");
+					if (loc2.child("Account").hasOwnProperty("PaymentData")) {
+						this.account.paymentData = loc2.child("Account").getValue("PaymentData");
 					}
 				}
-				if (loc2.Account[0].hasOwnProperty("SecurityQuestions")) {
-					this.securityQuestionsModel.showSecurityQuestionsOnStartup = loc2.Account[0].SecurityQuestions[0].ShowSecurityQuestionsDialog[0] == "1";
+				if (loc2.childs("Account").get(0).hasOwnProperty("SecurityQuestions")) {
+					this.securityQuestionsModel.showSecurityQuestionsOnStartup = loc2.child("Account").child("SecurityQuestions").getValue("ShowSecurityQuestionsDialog").equals("1");
 					this.securityQuestionsModel.clearQuestionsList();
-					for (loc5:
-					     loc2.Account[0].SecurityQuestions[0].SecurityQuestionsKeys[0].SecurityQuestionsKey) {
+					for (XML loc5 : loc2.child("Account").child("SecurityQuestions").child("SecurityQuestionsKeys").childs("SecurityQuestionsKey")) {
 						this.securityQuestionsModel.addSecurityQuestion(loc5.toString());
 					}
 				}
 			}
-			this.charListData.dispatch(XML(param1));
+			this.charListData.dispatch(param1);
 			completeTask(true);
 		}
 		if (this.retryTimer != null) {
@@ -124,20 +135,21 @@ public class GetCharListTask {
 		}
 	}
 
+
 	private void onTextError(String param1) {
 		WebLoginDialog loc2 = null;
 		this.setLoadingMessage.dispatch("error.loadError");
-		if (param1 == "Account credentials not valid") {
+		if (param1.equals("Account credentials not valid")) {
 			if (this.fromMigration) {
 				loc2 = new WebLoginDialog();
 				loc2.setError(TextKey.WEB_LOGIN_DIALOG_PASSWORD_INVALID);
 				loc2.setEmail(this.account.getUserId());
-				OpenDialogSignal.getInstance().dispatch(loc2));
+				OpenDialogSignal.getInstance().dispatch(loc2);
 			}
 			this.clearAccountAndReloadCharacters();
 		} else if (param1.equals("Account is under maintenance")) {
 			this.setLoadingMessage.dispatch("This account has been banned");
-			new TimerCallback(5, this.clearAccountAndReloadCharacters);
+			new TimerCallback(5, new SignalConsumer<>(this::clearAccountAndReloadCharacters));
 		} else {
 			this.waitForASecondThenRetryRequest();
 		}
@@ -146,7 +158,7 @@ public class GetCharListTask {
 	private void clearAccountAndReloadCharacters() {
 		this.logger.info("GetUserDataTask invalid credentials");
 		this.account.clear();
-		this.client.complete.addOnce(this::onComplete);
+		//this.client.complete.addOnce(new SignalConsumer<>(this::onComplete));
 		this.requestData = this.makeRequestData();
 		this.client.sendRequest("/char/list", this.requestData);
 	}
@@ -154,13 +166,13 @@ public class GetCharListTask {
 	private void waitForASecondThenRetryRequest() {
 		this.logger.info("GetUserDataTask error - retrying");
 		this.retryTimer = new Timer(ONE_SECOND_IN_MS, 1);
-		this.retryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, new EventConsumer<>(this::onRetryTimer));
+		//this.retryTimer.addEventListener(TimerEvent.TIMER_COMPLETE, new EventConsumer<>(this::onRetryTimer));
 		this.retryTimer.start();
 	}
 
 	private void stopRetryTimer() {
 		this.retryTimer.stop();
-		this.retryTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, new EventConsumer<>(this::onRetryTimer));
+		//this.retryTimer.removeEventListener(TimerEvent.TIMER_COMPLETE, new EventConsumer<>(this::onRetryTimer));
 		this.retryTimer = null;
 	}
 
@@ -174,6 +186,4 @@ public class GetCharListTask {
 			this.setLoadingMessage.dispatch("LoginError.tooManyFails");
 		}
 	}
-
-
 }

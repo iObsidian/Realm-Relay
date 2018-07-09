@@ -7,36 +7,36 @@ import alde.flash.utils.Vector;
  */
 public class SecurityQuestionsModel {
 
-	private boolean _showSecurityQuestionsOnStartup = false;
+	public boolean showSecurityQuestionsOnStartup = false;
 
-	private Vector _securityQuestionsList;
+	private Vector securityQuestionsList;
 
 	public Vector securityQuestionsAnswers;
 
 	public SecurityQuestionsModel() {
 		super();
-		this._securityQuestionsList = new Vector<>();
+		this.securityQuestionsList = new Vector<>();
 		this.securityQuestionsAnswers = new Vector<>();
 	}
 
 	public boolean getShowSecurityQuestionsOnStartup() {
-		return this._showSecurityQuestionsOnStartup;
+		return this.showSecurityQuestionsOnStartup;
 	}
 
 	public void setShowSecurityQuestionsOnStartup(boolean param1) {
-		this._showSecurityQuestionsOnStartup = param1;
+		this.showSecurityQuestionsOnStartup = param1;
 	}
 
 	public Vector getSecurityQuestionsList() {
-		return this._securityQuestionsList;
+		return this.securityQuestionsList;
 	}
 
 	public void clearQuestionsList() {
-		this._securityQuestionsList = new Vector();
+		this.securityQuestionsList = new Vector();
 	}
 
 	public void addSecurityQuestion(String param1) {
-		this._securityQuestionsList.add(param1);
+		this.securityQuestionsList.add(param1);
 	}
 
 

@@ -30,4 +30,7 @@ public class Signal<T> {
 
 	public void remove(SignalConsumer<? super T> onShowPackage) {
 	}
+
+	public void removeAll() {
+	}
 }

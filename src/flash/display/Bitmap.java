@@ -8,4 +8,8 @@ public class Bitmap extends DisplayObject {
 
 	public Bitmap(BitmapData loc2) {
 	}
+
+	public Bitmap() {
+
+	}
 }

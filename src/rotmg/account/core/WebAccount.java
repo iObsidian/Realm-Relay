@@ -1,27 +1,27 @@
 package rotmg.account.core;
 
-public class WebAccount implements Account {
+public class WebAccount extends Account {
 
 	public static final String NETWORKNAME = "rotmg";
-	private static final String WEBUSERID = "";
-	private static final String WEBPLAYPLATFORMNAME = "rotmg";
-	private static WebAccount instance;
+	public static final String WEBUSERID = "";
+	public static final String WEBPLAYPLATFORMNAME = "rotmg";
+	public static WebAccount instance;
 	public String signedRequest;
 	public String kabamId;
-	private String userId = "";
-	private String password;
-	private String token = "";
-	private String entryTag = "";
-	private boolean isVerifiedEmail;
-	private String platformToken;
-	private String userDisplayName = "";
-	private boolean rememberMe = true;
-	private String paymentProvider = "";
-	private String paymentData = "";
+	public String userId = "";
+	public String password;
+	public String token = "";
+	public String entryTag = "";
+	public boolean isVerifiedEmail;
+	public String platformToken;
+	public String userDisplayName = "";
+	public boolean rememberMe = true;
+	public String paymentProvider = "";
+	public String paymentData = "";
 
 	public WebAccount() {
 		super();
-		/**try {
+		/*try {
 		 this.entryTag = ExternalInterface.call("rotmg.UrlLib.getParam", "entrypt");
 		 return;
 		 }
@@ -33,15 +33,6 @@ public class WebAccount implements Account {
 	public WebAccount(String email, String password) {
 		this.userId = email;
 		this.password = password;
-	}
-
-	public static Account getInstance() {
-		/**if (instance == null) {
-		 instance = new WebAccount();
-		 }
-		 return instance;*/
-
-		return new WebAccount("rotmgiobsidian@gmail.com", "JtiTdzTP");
 	}
 
 	public String getUserName() {
@@ -194,12 +185,6 @@ public class WebAccount implements Account {
 
 	public void setPaymentData(String param1) {
 		this.paymentData = param1;
-	}
-
-	@Override
-	public Object getCredentials() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

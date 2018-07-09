@@ -1,11 +1,10 @@
 package alde.flash.utils;
 
-import spark.filters.DropShadowFilter;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.function.BiFunction;
 
 /**
  * A wrapper for HashMap that simulates AS3's Vector
@@ -42,6 +41,10 @@ public class Vector<T> implements Iterable<T> {
 	 */
 	@Deprecated
 	public void splice(double start, double deleteCount) {
+	}
+
+	public void sort(BiFunction<T, T, Integer> sort) {
+
 	}
 
 	public void remove(T t) {

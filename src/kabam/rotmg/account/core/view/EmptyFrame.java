@@ -1,12 +1,15 @@
 package kabam.rotmg.account.core.view;
 
 import alde.flash.utils.EventConsumer;
+import alde.flash.utils.Vector;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormatAlign;
+import kabam.rotmg.pets.util.PetsViewAssetFactory;
 import kabam.rotmg.pets.view.components.DialogCloseButton;
+import kabam.rotmg.pets.view.components.PopupWindowBackground;
 import org.osflash.signals.Signal;
 import rotmg.WebMain;
 import rotmg.text.view.stringBuilder.LineBuilder;
@@ -122,7 +125,7 @@ public class EmptyFrame  extends Sprite {
 		loc5.setMultiLine(true);
 		loc5.setAutoSize(TextFieldAutoSize.CENTER);
 		loc5.setHorizontalAlign(TextFormatAlign.CENTER);
-		loc5.filters = [new DropShadowFilter(0, 0, 0)];
+		loc5.filters = new Vector<>(new DropShadowFilter(0, 0, 0));
 		loc5.x = param2;
 		loc5.y = param3;
 		return loc5;

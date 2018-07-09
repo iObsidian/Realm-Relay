@@ -28,4 +28,25 @@ public class Graphics {
 
 	public void drawRoundRect(int i, int i1, double param2, double param3, int i2, int i3) {
 	}
+
+	public void beginFill(int param2) {
+	}
+
+	public void drawRect(double i, double y, double i1, double i2) {
+	}
+
+	public void lineStyle() {
+	}
+
+	public void lineStyle(int i, int loc2, int i1, boolean b, String normal, String round, String round1) {
+	}
+
+	public void moveTo(int i, int param1) {
+	}
+
+	public void lineTo(int param1, double v) {
+	}
+
+	public void lineStyle(int i, int i1) {
+	}
 }

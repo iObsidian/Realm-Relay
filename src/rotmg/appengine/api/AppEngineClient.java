@@ -2,18 +2,18 @@ package rotmg.appengine.api;
 
 import org.osflash.OnceSignal;
 
-public interface AppEngineClient {
+public abstract class AppEngineClient {
 
-	OnceSignal getComplete();
+	public OnceSignal complete;
 
-	void setDataFormat(String param1);
+	abstract void setDataFormat(String param1);
 
-	void setSendEncrypted(Boolean param1);
+	abstract void setSendEncrypted(Boolean param1);
 
-	void setMaxRetries(int param1);
+	abstract void setMaxRetries(int param1);
 
-	void sendRequest(String param1, Object param2);
+	public abstract void sendRequest(String param1, Object param2);
 
-	Boolean requestInProgress();
+	Boolean requestInProgress;
 
 }

@@ -1,6 +1,7 @@
 package kabam.rotmg.util.components;
 
 import alde.flash.utils.EventConsumer;
+import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
 import flash.airglobal.Graphics;
 import flash.display.*;
@@ -68,7 +69,7 @@ public class SimpleButton extends BuyButton {
 
 	public SimpleButton(String param1, int param2, int param3, boolean param4) {
 		super();
-		graphicsData = new IGraphicsData[]{this.enabledFill, this.graphicsPath, GraphicsUtil.END_FILL};
+		graphicsData = new Vector<IGraphicsData>(this.enabledFill, this.graphicsPath, GraphicsUtil.END_FILL);
 		this.prefix = param1;
 		this.text = new TextField();
 		TextFormat loc5 = new TextFormat();
@@ -84,8 +85,8 @@ public class SimpleButton extends BuyButton {
 		this.text.selectable = false;
 		this.text.defaultTextFormat = loc5;
 		this.text.setTextFormat(loc5);
-		this.waiter.complete.add(new EventConsumer<>(this::updateUI));
-		this.waiter.complete.addOnce(new EventConsumer<>(this::readyForPlacementDispatch));
+		this.waiter.complete.add(new SignalConsumer<>(this::updateUI));
+		this.waiter.complete.addOnce(new SignalConsumer<>(this::readyForPlacementDispatch));
 		addChild(this.text);
 		this.icon = new Bitmap();
 		addChild(this.icon);
@@ -100,11 +101,14 @@ public class SimpleButton extends BuyButton {
 		this.withOutLine = param4;
 	}
 
+	public SimpleButton(String param1) {
+	}
+
 	public void setPrice(int param1, int param2) {
 		if (this.price != param1 || this.currency != param2) {
 			this.price = param1;
 			this.currency = param2;
-			this.text.text = this.prefix + param1.toString();
+			this.text.text = this.prefix + param1;
 			this.updateUI();
 		}
 	}
@@ -121,7 +125,7 @@ public class SimpleButton extends BuyButton {
 	public void setEnabled(boolean param1) {
 		if (param1 != mouseEnabled) {
 			mouseEnabled = param1;
-			filters = !!param1 ? [] : [grayfilter];
+			filters = new Vector<>(grayfilter);
 			this.draw();
 		}
 	}
@@ -165,9 +169,8 @@ public class SimpleButton extends BuyButton {
 
 	private void updateBackground() {
 		GraphicsUtil.clearPath(this.graphicsPath);
-		GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), BEVEL, new Vector<>(1, 1, 1, 1
-	},this.graphicsPath);
-}
+		GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), BEVEL, new Vector<>(1, 1, 1, 1, this.graphicsPath));
+	}
 
 	private void updateText() {
 		this.text.x = (this.getWidth() - this.icon.width - this.text.width - PADDING) * 0.5;
@@ -233,14 +236,13 @@ public class SimpleButton extends BuyButton {
 	}
 
 	private void drawOutline(Graphics param1) {
-		GraphicsSolidFill loc2 = new GraphicsSolidFill(0, 0.01);
+		/**GraphicsSolidFill loc2 = new GraphicsSolidFill(0, 0.01);
 		GraphicsSolidFill loc3 = new GraphicsSolidFill(new EventConsumer<>(this::outLineColor), 0.6);
 		GraphicsStroke loc4 = new GraphicsStroke(4, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3, loc3);
 		GraphicsPath loc5 = new GraphicsPath();
 		GraphicsUtil.drawCutEdgeRect(0, 0, this.getWidth(), this.getHeight(), 4, GraphicsUtil.ALL_CUTS, loc5);
 		Vector loc6 = new IGraphicsData[]{loc4, loc2, loc5, GraphicsUtil.END_FILL, GraphicsUtil.END_STROKE};
-		param1.drawGraphicsData(loc6);
+		param1.drawGraphicsData(loc6);*/
 	}
-
 
 }

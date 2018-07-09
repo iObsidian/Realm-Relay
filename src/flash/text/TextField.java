@@ -21,6 +21,8 @@ public class TextField extends InteractiveObject {
 	public double y;
 	public int textWidth;
 	public TextFormat defaultTextFormat;
+	public int maxChars;
+	public boolean border;
 
 	public TextLineMetrics getLineMetrics(int i) {
 		return null;
