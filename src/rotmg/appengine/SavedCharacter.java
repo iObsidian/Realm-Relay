@@ -3,25 +3,23 @@ package rotmg.appengine;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.ColorTransform;
+<<<<<<< HEAD:src/rotmg/appengine/SavedCharacter.java
 <<<<<<< HEAD:src/kabam/rotmg/appengine/SavedCharacter.java
 import kabam.rotmg.assets.services.CharacterFactory;
 import kabam.rotmg.classes.model.CharacterClass;
 import kabam.rotmg.classes.model.CharacterSkin;
 import kabam.rotmg.classes.model.ClassesModel;
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/appengine/SavedCharacter.java
 import kabam.rotmg.constants.GeneralConstants;
-import kabam.rotmg.objects.ObjectLibrary;
-import kabam.rotmg.objects.Player;
-import kabam.rotmg.objects.animation.AnimatedChar;
 import kabam.rotmg.parameters.Parameters;
-import kabam.rotmg.pets.data.PetVO;
-import kabam.rotmg.pets.data.PetsModel;
-import kabam.rotmg.util.AnimatedChars;
-import kabam.rotmg.util.CachingColorTransformer;
-import kabam.rotmg.util.MaskedImage;
 import kabam.rotmg.util.TextureRedrawer;
+<<<<<<< HEAD:src/rotmg/appengine/SavedCharacter.java
 import kabam.rotmg.util.redrawers.GlowRedrawer;
 
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/appengine/SavedCharacter.java
 import rotmg.assets.services.CharacterFactory;
 import rotmg.classes.model.CharacterClass;
 import rotmg.classes.model.CharacterSkin;
@@ -38,7 +36,10 @@ import rotmg.util.CachingColorTransformer;
 import rotmg.util.MaskedImage;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
+<<<<<<< HEAD:src/rotmg/appengine/SavedCharacter.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/appengine/SavedCharacter.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/appengine/SavedCharacter.java
 
 public class SavedCharacter {
 

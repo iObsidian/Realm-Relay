@@ -6,10 +6,15 @@ import flash.geom.Rectangle;
 <<<<<<< HEAD:src/kabam/rotmg/engine3d/Triangle.java
 import kabam.rotmg.util.LineSegmentUtil;
 import kabam.rotmg.util.PointUtil;
+<<<<<<< HEAD:src/rotmg/engine3d/Triangle.java
 =======
 import rotmg.util.LineSegmentUtil;
 import rotmg.util.PointUtil;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/engine3d/Triangle.java
+=======
+import rotmg.util.LineSegmentUtil;
+import rotmg.util.PointUtil;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/engine3d/Triangle.java
 
 public class Triangle {
 

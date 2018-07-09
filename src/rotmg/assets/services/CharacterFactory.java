@@ -1,16 +1,19 @@
 package rotmg.assets.services;
 
 import flash.display.BitmapData;
+<<<<<<< HEAD:src/rotmg/assets/services/CharacterFactory.java
 <<<<<<< HEAD:src/kabam/rotmg/assets/services/CharacterFactory.java
 import kabam.rotmg.assets.model.Animation;
 import kabam.rotmg.assets.model.CharacterTemplate;
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/assets/services/CharacterFactory.java
 import kabam.rotmg.objects.animation.AnimatedChar;
-import kabam.rotmg.util.AnimatedChars;
-import kabam.rotmg.util.BitmapUtil;
-import kabam.rotmg.util.MaskedImage;
 import kabam.rotmg.util.TextureRedrawer;
 import kabam.rotmg.util.redrawers.GlowRedrawer;
+<<<<<<< HEAD:src/rotmg/assets/services/CharacterFactory.java
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/assets/services/CharacterFactory.java
 import rotmg.assets.model.Animation;
 import rotmg.assets.model.CharacterTemplate;
 import rotmg.objects.animation.AnimatedChar;
@@ -19,7 +22,10 @@ import rotmg.util.BitmapUtil;
 import rotmg.util.MaskedImage;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
+<<<<<<< HEAD:src/rotmg/assets/services/CharacterFactory.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/assets/services/CharacterFactory.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/assets/services/CharacterFactory.java
 
 public class CharacterFactory {
 

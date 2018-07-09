@@ -14,7 +14,6 @@ public class CharacterSkins {
 	private CharacterSkin defaultSkin;
 	private CharacterSkin selectedSkin;
 	private int maxLevelAchieved;
-
 	public CharacterSkins() {
 		super();
 	}

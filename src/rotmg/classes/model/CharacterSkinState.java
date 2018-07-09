@@ -16,7 +16,6 @@ public class CharacterSkinState {
 	private boolean isDisabled;
 	private boolean skinStateDeterminedByLevel;
 	private String name;
-
 	public CharacterSkinState(boolean param1, String param2, boolean param3) {
 		super();
 		this.isDisabled = param1;

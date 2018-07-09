@@ -1,8 +1,11 @@
 package rotmg.map;
 
+import java.util.List;
+
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
+<<<<<<< HEAD:src/rotmg/map/SquareFace.java
 <<<<<<< HEAD:src/kabam/rotmg/map/SquareFace.java
 import kabam.rotmg.engine3d.Face3D;
 import kabam.rotmg.objects.Square;
@@ -10,6 +13,11 @@ import kabam.rotmg.objects.Square;
 import rotmg.engine3d.Face3D;
 import rotmg.objects.Square;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/SquareFace.java
+=======
+import kabam.rotmg.objects.Square;
+import rotmg.engine3d.Face3D;
+import rotmg.objects.Square;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/SquareFace.java
 
 public class SquareFace {
 
@@ -46,7 +54,7 @@ public class SquareFace {
 		this.face = null;
 	}
 
-	public boolean draw(Vector<IGraphicsData> param1, Camera param2, int param3) {
+	public boolean draw(List<IGraphicsData> param1, Camera param2, int param3) {
 		double loc4 = 0;
 		double loc5 = 0;
 		if (this.animate != AnimateProperties.NO_ANIMATE) {

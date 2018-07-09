@@ -1,13 +1,15 @@
 package rotmg.map;
 
 
+<<<<<<< HEAD:src/rotmg/map/AbstractMap.java
 <<<<<<< HEAD:src/kabam/rotmg/map/AbstractMap.java
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.Sprite;
 import flash.geom.Point;
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/AbstractMap.java
 import kabam.rotmg.AGameSprite;
-import kabam.rotmg.background.Background;
 import kabam.rotmg.map.mapoverlay.MapOverlay;
 import kabam.rotmg.map.partyoverlay.PartyOverlay;
 import kabam.rotmg.objects.*;
@@ -15,6 +17,22 @@ import kabam.rotmg.util.IntPoint;
 =======
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/AbstractMap.java
 import org.osflash.signals.Signal;
+
+import alde.flash.utils.Dictionary;
+import alde.flash.utils.Vector;
+import flash.display.Sprite;
+import flash.geom.Point;
+import rotmg.AGameSprite;
+import rotmg.background.Background;
+import rotmg.map.mapoverlay.MapOverlay;
+import rotmg.map.partyoverlay.PartyOverlay;
+import rotmg.objects.BasicObject;
+import rotmg.objects.GameObject;
+import rotmg.objects.Merchant;
+import rotmg.objects.Party;
+import rotmg.objects.Player;
+import rotmg.objects.Square;
+import rotmg.util.IntPoint;
 
 /**
  * 100% match

@@ -2,7 +2,7 @@ package rotmg.map.mapoverlay;
 
 import alde.flash.utils.Vector;
 import flash.display.Sprite;
-import kabam.rotmg.map.Camera;
+import rotmg.map.Camera;
 import robotlegs.bender.bundles.mvcs.components.QueuedStatusText;
 import robotlegs.bender.bundles.mvcs.components.QueuedStatusTextList;
 

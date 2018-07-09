@@ -1,10 +1,10 @@
 package rotmg.classes.model;
 
-import alde.flash.utils.SignalConsumer;
-import org.osflash.signals.Signal;
-
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import alde.flash.utils.SignalConsumer;
+import org.osflash.signals.Signal;
 
 /**
  * The Class selection model for the UI (create new character)

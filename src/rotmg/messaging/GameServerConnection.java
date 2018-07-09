@@ -1,6 +1,10 @@
 package rotmg.messaging;
 
+import java.util.List;
+import java.util.Random;
+
 import flash.display.DisplayObject;
+<<<<<<< HEAD:src/rotmg/messaging/GameServerConnection.java
 <<<<<<< HEAD:src/kabam/rotmg/messaging/GameServerConnection.java
 import kabam.rotmg.AGameSprite;
 import kabam.rotmg.messaging.data.SlotObjectData;
@@ -11,10 +15,18 @@ import kabam.rotmg.objects.Player;
 import kabam.rotmg.objects.Projectile;
 =======
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/messaging/GameServerConnection.java
+=======
+import kabam.rotmg.messaging.data.SlotObjectData;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/messaging/GameServerConnection.java
 import org.osflash.signals.Signal;
 
-import java.util.List;
-import java.util.Random;
+import rotmg.AGameSprite;
+import rotmg.messaging.data.SlotObjectData;
+import rotmg.net.Server;
+import rotmg.net.SocketServer;
+import rotmg.objects.GameObject;
+import rotmg.objects.Player;
+import rotmg.objects.Projectile;
 
 public class GameServerConnection {
 

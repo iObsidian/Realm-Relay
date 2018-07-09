@@ -6,15 +6,15 @@ import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.events.Event;
-import kabam.rotmg.account.core.Account;
-import kabam.rotmg.appengine.CharacterStats;
-import kabam.rotmg.appengine.SavedCharacter;
-import kabam.rotmg.appengine.SavedNewsItem;
-import kabam.rotmg.dialogs.OpenDialogSignal;
-import kabam.rotmg.net.LatLong;
-import kabam.rotmg.objects.ObjectLibrary;
-import kabam.rotmg.objects.Player;
-import kabam.rotmg.promotions.model.BeginnersPackageModel;
+import rotmg.account.core.Account;
+import rotmg.appengine.CharacterStats;
+import rotmg.appengine.SavedCharacter;
+import rotmg.appengine.SavedNewsItem;
+import rotmg.dialogs.OpenDialogSignal;
+import rotmg.net.LatLong;
+import rotmg.objects.ObjectLibrary;
+import rotmg.objects.Player;
+import rotmg.promotions.model.BeginnersPackageModel;
 
 public class SavedCharactersList extends Event {
 
@@ -29,34 +29,63 @@ public class SavedCharactersList extends Event {
 	private static final LatLong DEFAULT_LATLONG = new LatLong(37.4436, -122.412);
 
 	private static final String DEFAULT_SALESFORCE = "unavailable";
-	public String accountId;
-	public int nextCharId;
-	public int maxNumChars;
-	public int numChars = 0;
-	public Vector<SavedCharacter> savedChars;
-	public Dictionary<Integer, CharacterStats> charStats;
-	public int totalFame = 0;
-	public int bestCharFame = 0;
-	public int fame = 0;
-	public int credits = 0;
-	public int tokens = 0;
-	public int numStars = 0;
-	public int nextCharSlotPrice;
-	public String guildName;
-	public int guildRank;
-	public String name = null;
-	public boolean nameChosen;
-	public boolean converted;
-	public boolean isAdmin;
-	public boolean canMapEdit;
-	public Vector<SavedNewsItem> news;
-	public LatLong myPos;
-	public String salesForceData = "unavailable";
-	public boolean hasPlayerDied = false;
-	public Dictionary<Integer, String> classAvailability;
-	public boolean isAgeVerified;
+
 	private String origData;
+
 	private XML charsXML;
+
+	public String accountId;
+
+	public int nextCharId;
+
+	public int maxNumChars;
+
+	public int numChars = 0;
+
+	public Vector<SavedCharacter> savedChars;
+
+	public Dictionary<Integer, CharacterStats> charStats;
+
+	public int totalFame = 0;
+
+	public int bestCharFame = 0;
+
+	public int fame = 0;
+
+	public int credits = 0;
+
+	public int tokens = 0;
+
+	public int numStars = 0;
+
+	public int nextCharSlotPrice;
+
+	public String guildName;
+
+	public int guildRank;
+
+	public String name = null;
+
+	public boolean nameChosen;
+
+	public boolean converted;
+
+	public boolean isAdmin;
+
+	public boolean canMapEdit;
+
+	public Vector<SavedNewsItem> news;
+
+	public LatLong myPos;
+
+	public String salesForceData = "unavailable";
+
+	public boolean hasPlayerDied = false;
+
+	public Dictionary<Integer, String> classAvailability;
+
+	public boolean isAgeVerified;
+
 	private Account account;
 
 	public SavedCharactersList(String param1) {

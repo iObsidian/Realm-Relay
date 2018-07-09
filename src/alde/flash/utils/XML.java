@@ -16,7 +16,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import kabam.rotmg.objects.animation.AnimationData;
+import rotmg.objects.animation.AnimationData;
 
 public class XML {
 
@@ -27,6 +27,11 @@ public class XML {
 		this.element = el;
 	}
 
+
+	@Override
+	public String toString() {
+		return getTextValue();
+	}
 
 	public XML(String data) {
 		Document doc = null;
@@ -54,11 +59,6 @@ public class XML {
 		} catch (Exception e) {
 			return Integer.parseInt(textContent);
 		}
-	}
-
-	@Override
-	public String toString() {
-		return getTextValue();
 	}
 
 	public String name() {

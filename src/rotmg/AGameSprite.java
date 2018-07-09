@@ -1,5 +1,6 @@
 package rotmg;
 
+<<<<<<< HEAD:src/rotmg/AGameSprite.java
 <<<<<<< HEAD:src/kabam/rotmg/AGameSprite.java
 import flash.display.Sprite;
 import kabam.rotmg.core.model.PlayerModel;
@@ -12,8 +13,21 @@ import kabam.rotmg.tutorial.Tutorial;
 import kabam.rotmg.ui.HUDView;
 =======
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/AGameSprite.java
+=======
+import kabam.rotmg.messaging.GameServerConnection;
+import kabam.rotmg.messaging.incoming.MapInfo;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/AGameSprite.java
 import org.osflash.signals.Signal;
 
+import flash.display.Sprite;
+import rotmg.core.model.PlayerModel;
+import rotmg.map.AbstractMap;
+import rotmg.map.Camera;
+import rotmg.messaging.GameServerConnection;
+import rotmg.messaging.incoming.MapInfo;
+import rotmg.objects.GameObject;
+import rotmg.tutorial.Tutorial;
+import rotmg.ui.HUDView;
 
 /**
  * Implemented by GameSprite

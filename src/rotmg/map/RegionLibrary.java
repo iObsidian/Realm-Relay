@@ -1,8 +1,8 @@
 package rotmg.map;
 
-import alde.flash.utils.XML;
-
 import java.util.HashMap;
+
+import alde.flash.utils.XML;
 
 /**
  * 100% match

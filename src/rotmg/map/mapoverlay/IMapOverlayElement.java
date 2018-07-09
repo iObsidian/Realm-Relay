@@ -1,7 +1,7 @@
 package rotmg.map.mapoverlay;
 
-import kabam.rotmg.map.Camera;
-import kabam.rotmg.objects.GameObject;
+import rotmg.map.Camera;
+import rotmg.objects.GameObject;
 
 public interface IMapOverlayElement {
 

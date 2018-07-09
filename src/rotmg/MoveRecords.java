@@ -1,15 +1,19 @@
 package rotmg;
 
-import kabam.rotmg.messaging.data.MoveRecord;
-
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD:src/rotmg/MoveRecords.java
 <<<<<<< HEAD:src/kabam/rotmg/MoveRecords.java
 =======
 import rotmg.messaging.data.MoveRecord;
 
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/MoveRecords.java
+=======
+import kabam.rotmg.messaging.data.MoveRecord;
+import rotmg.messaging.data.MoveRecord;
+
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/MoveRecords.java
 /**
  * This is a 100% match
  */
@@ -17,7 +21,6 @@ public class MoveRecords {
 
 	public int lastClearTime = -1;
 	public List<MoveRecord> records;
-
 	public MoveRecords() {
 		this.records = new ArrayList<MoveRecord>();
 	}

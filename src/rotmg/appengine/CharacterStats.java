@@ -1,7 +1,7 @@
 package rotmg.appengine;
 
 import alde.flash.utils.XML;
-import kabam.rotmg.util.FameUtil;
+import rotmg.util.FameUtil;
 
 public class CharacterStats {
 

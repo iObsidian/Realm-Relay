@@ -7,12 +7,18 @@ import kabam.rotmg.AGameSprite;
 import kabam.rotmg.objects.BasicObject;
 import kabam.rotmg.objects.GameObject;
 import kabam.rotmg.objects.Square;
+<<<<<<< HEAD:src/rotmg/map/Map.java
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/Map.java
 import rotmg.AGameSprite;
 import rotmg.objects.BasicObject;
 import rotmg.objects.GameObject;
 import rotmg.objects.Square;
+<<<<<<< HEAD:src/rotmg/map/Map.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/Map.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/Map.java
 
 public class Map extends AbstractMap {
 

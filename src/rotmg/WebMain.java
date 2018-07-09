@@ -8,6 +8,9 @@ import flash.events.Event;
 import flash.system.Capabilities;
 import robotlegs.bender.framework.api.IContext;
 import rotmg.game.commands.PlayGameCommand;
+import rotmg.net.Server;
+import rotmg.parameters.Parameters;
+import rotmg.startup.control.StartupSignal;
 import rotmg.util.AssetLoader;
 
 public class WebMain extends Sprite {
@@ -52,6 +55,7 @@ public class WebMain extends Sprite {
 		// Following is a loose implementation of PlayGameCommand's makeGameView
 
 		PlayGameCommand playGameCommand = new PlayGameCommand();
+
 
 
 	}

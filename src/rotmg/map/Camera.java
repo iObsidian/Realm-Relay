@@ -8,11 +8,17 @@ import flash.geom.Vector3D;
 import kabam.rotmg.objects.GameObject;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.util.RandomUtil;
+<<<<<<< HEAD:src/rotmg/map/Camera.java
 =======
 import rotmg.objects.GameObject;
 import rotmg.parameters.Parameters;
 import rotmg.util.RandomUtil;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/Camera.java
+=======
+import rotmg.objects.GameObject;
+import rotmg.parameters.Parameters;
+import rotmg.util.RandomUtil;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/Camera.java
 
 public class Camera {
 

@@ -1,18 +1,31 @@
 package rotmg.engine3d;
 
+import java.util.List;
+
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.GraphicsBitmapFill;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsPathCommand;
+import flash.display.GraphicsSolidFill;
+import flash.display.IGraphicsData;
 import flash.geom.Utils3D;
 import flash.geom.Vector3D;
 <<<<<<< HEAD:src/kabam/rotmg/engine3d/Face3D.java
 import kabam.rotmg.map.Camera;
 import kabam.rotmg.util.GraphicsUtil;
 import kabam.rotmg.util.TextureRedrawer;
+<<<<<<< HEAD:src/rotmg/engine3d/Face3D.java
 =======
 import rotmg.map.Camera;
 import rotmg.util.GraphicsUtil;
 import rotmg.util.TextureRedrawer;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/engine3d/Face3D.java
+=======
+import rotmg.map.Camera;
+import rotmg.util.GraphicsUtil;
+import rotmg.util.TextureRedrawer;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/engine3d/Face3D.java
 
 public class Face3D {
 
@@ -101,7 +114,7 @@ public class Face3D {
 		return loc1;
 	}
 
-	public boolean draw(Vector<IGraphicsData> param1, Camera param2) {
+	public boolean draw(List<IGraphicsData> param1, Camera param2) {
 		Vector<Double> loc10 = null;
 		double loc11 = 0;
 		double loc12 = 0;

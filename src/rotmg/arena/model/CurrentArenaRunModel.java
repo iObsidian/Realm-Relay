@@ -1,6 +1,11 @@
 package rotmg.arena.model;
 
 import org.osflash.signals.Signal;
+
+import rotmg.assets.services.CharacterFactory;
+import rotmg.classes.model.CharacterSkin;
+import rotmg.classes.model.ClassesModel;
+import rotmg.model.GameModel;
 import rotmg.pets.data.PetsModel;
 
 public class CurrentArenaRunModel {

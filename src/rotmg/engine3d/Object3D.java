@@ -3,7 +3,7 @@ package rotmg.engine3d;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
-import kabam.rotmg.map.Camera;
+import rotmg.map.Camera;
 
 public class Object3D {
 	public void setPosition(double x, double y, int i, double rotation) {
