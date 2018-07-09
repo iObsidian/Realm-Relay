@@ -5,19 +5,9 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-<<<<<<< HEAD:src/rotmg/messaging/impl/ReskinPet.java
-<<<<<<< HEAD:src/kabam/rotmg/messaging/impl/ReskinPet.java
-=======
 import rotmg.messaging.data.SlotObjectData;
 import rotmg.messaging.outgoing.OutgoingMessage;
 
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/messaging/impl/ReskinPet.java
-=======
-import kabam.rotmg.messaging.outgoing.OutgoingMessage;
-import rotmg.messaging.data.SlotObjectData;
-import rotmg.messaging.outgoing.OutgoingMessage;
-
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/messaging/impl/ReskinPet.java
 public class ReskinPet extends OutgoingMessage {
 
 	public int petInstanceId;

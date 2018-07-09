@@ -6,23 +6,10 @@ import flash.display.GraphicsBitmapFill;
 import flash.display.GraphicsPath;
 import flash.display.IGraphicsData;
 import flash.geom.Matrix;
-<<<<<<< HEAD:src/kabam/rotmg/objects/thrown/BitmapParticle.java
-import kabam.rotmg.map.Camera;
-import kabam.rotmg.objects.BasicObject;
-import kabam.rotmg.objects.Square;
-import kabam.rotmg.util.GraphicsUtil;
-<<<<<<< HEAD:src/rotmg/objects/thrown/BitmapParticle.java
-=======
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/thrown/BitmapParticle.java
 import rotmg.map.Camera;
 import rotmg.objects.BasicObject;
 import rotmg.objects.Square;
 import rotmg.util.GraphicsUtil;
-<<<<<<< HEAD:src/rotmg/objects/thrown/BitmapParticle.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/thrown/BitmapParticle.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/thrown/BitmapParticle.java
 
 public class BitmapParticle extends BasicObject {
 

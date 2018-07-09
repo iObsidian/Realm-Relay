@@ -11,21 +11,9 @@ import flash.display.GraphicsSolidFill;
 import flash.display.IGraphicsData;
 import flash.geom.Utils3D;
 import flash.geom.Vector3D;
-<<<<<<< HEAD:src/kabam/rotmg/engine3d/Face3D.java
-import kabam.rotmg.map.Camera;
-import kabam.rotmg.util.GraphicsUtil;
-import kabam.rotmg.util.TextureRedrawer;
-<<<<<<< HEAD:src/rotmg/engine3d/Face3D.java
-=======
 import rotmg.map.Camera;
 import rotmg.util.GraphicsUtil;
 import rotmg.util.TextureRedrawer;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/engine3d/Face3D.java
-=======
-import rotmg.map.Camera;
-import rotmg.util.GraphicsUtil;
-import rotmg.util.TextureRedrawer;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/engine3d/Face3D.java
 
 public class Face3D {
 

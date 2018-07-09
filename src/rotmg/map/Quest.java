@@ -1,14 +1,6 @@
 package rotmg.map;
 
-<<<<<<< HEAD:src/kabam/rotmg/map/Quest.java
-import kabam.rotmg.objects.GameObject;
-<<<<<<< HEAD:src/rotmg/map/Quest.java
-=======
 import rotmg.objects.GameObject;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/Quest.java
-=======
-import rotmg.objects.GameObject;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/Quest.java
 
 import static flash.utils.getTimer.getTimer;
 

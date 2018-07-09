@@ -1,22 +1,6 @@
 package rotmg.objects;
 
 import alde.flash.utils.XML;
-<<<<<<< HEAD:src/rotmg/objects/Pet.java
-<<<<<<< HEAD:src/kabam/rotmg/objects/Pet.java
-import kabam.rotmg.GameSprite;
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Pet.java
-import kabam.rotmg.objects.animation.AnimatedChar;
-import kabam.rotmg.pets.data.PetVO;
-import kabam.rotmg.pets.data.PetsModel;
-import kabam.rotmg.signals.TextPanelMessageUpdateSignal;
-import kabam.rotmg.util.AnimatedChars;
-import kabam.rotmg.util.MaskedImage;
-<<<<<<< HEAD:src/rotmg/objects/Pet.java
-
-=======
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Pet.java
 import rotmg.GameSprite;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.pets.data.PetVO;
@@ -25,10 +9,6 @@ import rotmg.signals.TextPanelMessageUpdateSignal;
 import rotmg.ui.panels.Panel;
 import rotmg.util.AnimatedChars;
 import rotmg.util.MaskedImage;
-<<<<<<< HEAD:src/rotmg/objects/Pet.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/Pet.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Pet.java
 
 public class Pet extends GameObject implements IInteractiveObject {
 

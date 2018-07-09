@@ -5,19 +5,9 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-<<<<<<< HEAD:src/rotmg/dailyQuests/QuestFetchResponse.java
-<<<<<<< HEAD:src/kabam/rotmg/dailyQuests/QuestFetchResponse.java
-=======
 import rotmg.dailyQuests.messages.data.QuestData;
 import rotmg.messaging.incoming.IncomingMessage;
 
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/dailyQuests/QuestFetchResponse.java
-=======
-import kabam.rotmg.dailyQuests.messages.data.QuestData;
-import rotmg.dailyQuests.messages.data.QuestData;
-import rotmg.messaging.incoming.IncomingMessage;
-
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/dailyQuests/QuestFetchResponse.java
 public class QuestFetchResponse extends IncomingMessage {
 
 	public QuestData[] quests;

@@ -5,24 +5,6 @@ import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
-<<<<<<< HEAD:src/rotmg/objects/Merchant.java
-<<<<<<< HEAD:src/kabam/rotmg/objects/Merchant.java
-import kabam.rotmg.constants.InventoryOwnerTypes;
-import kabam.rotmg.language.model.StringMap;
-import kabam.rotmg.map.Camera;
-import kabam.rotmg.map.Map;
-import kabam.rotmg.model.AddSpeechBalloonVO;
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Merchant.java
-import kabam.rotmg.signals.AddSpeechBalloonSignal;
-import kabam.rotmg.ui.tooltip.EquipmentToolTip;
-<<<<<<< HEAD:src/rotmg/objects/Merchant.java
-import kabam.rotmg.ui.tooltip.ToolTip;
-import kabam.rotmg.util.IntPoint;
-
-=======
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Merchant.java
 import rotmg.constants.InventoryOwnerTypes;
 import rotmg.language.model.StringMap;
 import rotmg.map.Camera;
@@ -33,10 +15,6 @@ import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.ui.tooltip.EquipmentToolTip;
 import rotmg.ui.tooltip.ToolTip;
 import rotmg.util.IntPoint;
-<<<<<<< HEAD:src/rotmg/objects/Merchant.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/Merchant.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Merchant.java
 
 /**
  * Almost a 100% match, except that it's abstract because it doesnt have the getPanel() method

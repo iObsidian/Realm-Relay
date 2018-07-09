@@ -5,15 +5,7 @@ import flash.display3D.Context3D;
 import flash.display3D.textures.Texture;
 import flash.geom.Matrix3D;
 import flash.geom.Vector3D;
-<<<<<<< HEAD:src/kabam/rotmg/stage3d/graphic3D/Object3DStage3D.java
-import kabam.rotmg.stage3d.Model3D_stage3d;
-<<<<<<< HEAD:src/rotmg/stage3d/graphic3D/Object3DStage3D.java
-=======
 import rotmg.stage3d.Model3D_stage3d;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/stage3d/graphic3D/Object3DStage3D.java
-=======
-import rotmg.stage3d.Model3D_stage3d;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/stage3d/graphic3D/Object3DStage3D.java
 
 public class Object3DStage3D {
 	public static final BitmapData missingTextureBitmap = new BitmapData(1, 1, true, 2290649343.0);

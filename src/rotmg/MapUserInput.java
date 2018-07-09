@@ -10,22 +10,6 @@ import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.system.Capabilities;
-<<<<<<< HEAD:src/rotmg/MapUserInput.java
-<<<<<<< HEAD:src/kabam/rotmg/MapUserInput.java
-import kabam.rotmg.application.api.ApplicationSetup;
-import kabam.rotmg.application.impl.ProductionSetup;
-import kabam.rotmg.chat.model.ChatMessage;
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/MapUserInput.java
-import kabam.rotmg.constants.GeneralConstants;
-import kabam.rotmg.constants.UseType;
-import kabam.rotmg.friends.FriendsPopupView;
-import kabam.rotmg.friends.view.FriendListView;
-import kabam.rotmg.messaging.GameServerConnection;
-import kabam.rotmg.parameters.Parameters;
-import kabam.rotmg.util.TextureRedrawer;
-=======
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/MapUserInput.java
 import net.hires.debug.Stats;
 import rotmg.application.api.ApplicationSetup;
 import rotmg.application.impl.ProductionSetup;

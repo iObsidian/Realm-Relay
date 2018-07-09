@@ -6,18 +6,8 @@ import alde.flash.utils.Vector;
 import flash.display.*;
 import flash.events.Event;
 import flash.events.MouseEvent;
-<<<<<<< HEAD:src/kabam/rotmg/ui/tooltip/ToolTip.java
-import kabam.rotmg.ui.view.SignalWaiter;
-import kabam.rotmg.util.GraphicsUtil;
-<<<<<<< HEAD:src/rotmg/ui/tooltip/ToolTip.java
-=======
 import rotmg.ui.view.SignalWaiter;
 import rotmg.util.GraphicsUtil;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/ui/tooltip/ToolTip.java
-=======
-import rotmg.ui.view.SignalWaiter;
-import rotmg.util.GraphicsUtil;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/tooltip/ToolTip.java
 import spark.filters.DropShadowFilter;
 
 public class ToolTip extends Sprite {

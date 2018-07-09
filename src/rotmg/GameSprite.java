@@ -6,30 +6,6 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.filters.ColorMatrixFilter;
-<<<<<<< HEAD:src/rotmg/GameSprite.java
-<<<<<<< HEAD:src/kabam/rotmg/GameSprite.java
-import kabam.rotmg.account.core.Account;
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/GameSprite.java
-import kabam.rotmg.constants.GeneralConstants;
-import kabam.rotmg.core.model.MapModel;
-import kabam.rotmg.core.model.PlayerModel;
-import kabam.rotmg.dialogs.OpenDialogSignal;
-import kabam.rotmg.events.MoneyChangedEvent;
-import kabam.rotmg.map.Map;
-import kabam.rotmg.messaging.incoming.MapInfo;
-import kabam.rotmg.net.Server;
-import kabam.rotmg.objects.GameObject;
-import kabam.rotmg.objects.IInteractiveObject;
-import kabam.rotmg.objects.Pet;
-import kabam.rotmg.parameters.Parameters;
-import kabam.rotmg.promotions.model.BeginnersPackageModel;
-import kabam.rotmg.ui.HUDView;
-import kabam.rotmg.util.CachingColorTransformer;
-import kabam.rotmg.util.PointUtil;
-import kabam.rotmg.util.TextureRedrawer;
-=======
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/GameSprite.java
 import org.osflash.signals.Signal;
 import protip.signals.ShowProTipSignal;
 import rotmg.account.core.Account;

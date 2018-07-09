@@ -1,10 +1,4 @@
-<<<<<<< HEAD:src/kabam/rotmg/objects/Square.java
-package kabam.rotmg.objects;
-<<<<<<< HEAD:src/rotmg/objects/Square.java
-=======
 package rotmg.objects;
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Square.java
 //import com.company.assembleegameclient.engine3d.TextureMatrix;
 //import com.company.assembleegameclient.objects.GameObject;
 //import com.company.assembleegameclient.util.TileRedrawer;
@@ -14,24 +8,11 @@ import java.util.List;
 //import flash.display.BitmapData;
 //import flash.display.IGraphicsData;
 //import flash.geom.Vector3D;
-<<<<<<< HEAD:src/rotmg/objects/Square.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/Square.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Square.java
 
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import flash.geom.Vector3D;
-<<<<<<< HEAD:src/kabam/rotmg/objects/Square.java
-import kabam.rotmg.engine3d.TextureMatrix;
-<<<<<<< HEAD:src/rotmg/objects/Square.java
-import kabam.rotmg.map.*;
-import kabam.rotmg.util.TileRedrawer;
-
-=======
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Square.java
 import rotmg.engine3d.TextureMatrix;
 import rotmg.map.AnimateProperties;
 import rotmg.map.Camera;
@@ -40,10 +21,6 @@ import rotmg.map.GroundProperties;
 import rotmg.map.Map;
 import rotmg.map.SquareFace;
 import rotmg.util.TileRedrawer;
-<<<<<<< HEAD:src/rotmg/objects/Square.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/Square.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Square.java
 
 public class Square {
 

@@ -4,17 +4,7 @@ import java.util.HashMap;
 
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
-<<<<<<< HEAD:src/kabam/rotmg/objects/TextureData.java
-import kabam.rotmg.objects.animation.AnimatedChar;
-<<<<<<< HEAD:src/rotmg/objects/TextureData.java
-
-import java.util.HashMap;
-=======
 import rotmg.objects.animation.AnimatedChar;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/TextureData.java
-=======
-import rotmg.objects.animation.AnimatedChar;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/TextureData.java
 
 /**
  * This is a 99.9% match.

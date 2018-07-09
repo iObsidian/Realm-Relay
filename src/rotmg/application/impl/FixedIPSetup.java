@@ -1,17 +1,7 @@
 package rotmg.application.impl;
 
-<<<<<<< HEAD:src/kabam/rotmg/application/impl/FixedIPSetup.java
-import kabam.rotmg.application.api.ApplicationSetup;
-import kabam.rotmg.parameters.Parameters;
-<<<<<<< HEAD:src/rotmg/application/impl/FixedIPSetup.java
-=======
 import rotmg.application.api.ApplicationSetup;
 import rotmg.parameters.Parameters;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/application/impl/FixedIPSetup.java
-=======
-import rotmg.application.api.ApplicationSetup;
-import rotmg.parameters.Parameters;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/application/impl/FixedIPSetup.java
 
 public class FixedIPSetup implements ApplicationSetup {
 

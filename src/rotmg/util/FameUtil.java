@@ -7,15 +7,7 @@ import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
-<<<<<<< HEAD:src/kabam/rotmg/util/FameUtil.java
-import kabam.rotmg.objects.ObjectLibrary;
-<<<<<<< HEAD:src/rotmg/util/FameUtil.java
-=======
 import rotmg.objects.ObjectLibrary;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/util/FameUtil.java
-=======
-import rotmg.objects.ObjectLibrary;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/util/FameUtil.java
 import spark.filters.DropShadowFilter;
 
 public class FameUtil {

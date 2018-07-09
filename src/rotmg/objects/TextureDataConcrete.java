@@ -5,15 +5,7 @@ import java.util.HashMap;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
-<<<<<<< HEAD:src/kabam/rotmg/objects/TextureDataConcrete.java
-import kabam.rotmg.objects.animation.AnimatedChar;
-<<<<<<< HEAD:src/rotmg/objects/TextureDataConcrete.java
-=======
 import rotmg.objects.animation.AnimatedChar;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/TextureDataConcrete.java
-=======
-import rotmg.objects.animation.AnimatedChar;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/TextureDataConcrete.java
 import rotmg.util.AnimatedChars;
 import rotmg.util.AssetLibrary;
 import rotmg.util.MaskedImage;

@@ -5,15 +5,7 @@ import alde.flash.utils.Vector;
 import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
 import flash.geom.Matrix;
-<<<<<<< HEAD:src/kabam/rotmg/util/ConditionEffect.java
-import kabam.rotmg.util.redrawers.GlowRedrawer;
-<<<<<<< HEAD:src/rotmg/util/ConditionEffect.java
-=======
 import rotmg.util.redrawers.GlowRedrawer;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/util/ConditionEffect.java
-=======
-import rotmg.util.redrawers.GlowRedrawer;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/util/ConditionEffect.java
 import spark.filters.GlowFilter;
 
 /**

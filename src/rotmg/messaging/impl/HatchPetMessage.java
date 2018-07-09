@@ -5,17 +5,8 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-<<<<<<< HEAD:src/rotmg/messaging/impl/HatchPetMessage.java
-<<<<<<< HEAD:src/kabam/rotmg/messaging/impl/HatchPetMessage.java
-=======
 import rotmg.messaging.incoming.IncomingMessage;
 
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/messaging/impl/HatchPetMessage.java
-=======
-import kabam.rotmg.messaging.incoming.IncomingMessage;
-import rotmg.messaging.incoming.IncomingMessage;
-
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/messaging/impl/HatchPetMessage.java
 public class HatchPetMessage extends IncomingMessage {
 
 	public String petName;

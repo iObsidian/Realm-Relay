@@ -5,25 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-<<<<<<< HEAD:src/rotmg/pets/data/PetsModel.java
-<<<<<<< HEAD:src/kabam/rotmg/pets/data/PetsModel.java
-=======
 import alde.flash.utils.XML;
-=======
-import alde.flash.utils.XML;
-import kabam.rotmg.appengine.SavedCharacter;
-import kabam.rotmg.objects.ObjectLibrary;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/pets/data/PetsModel.java
 import rotmg.appengine.SavedCharacter;
 import rotmg.core.model.PlayerModel;
 import rotmg.map.AbstractMap;
 import rotmg.objects.ObjectLibrary;
 import rotmg.pets.controller.NotifyActivePetUpdated;
 
-<<<<<<< HEAD:src/rotmg/pets/data/PetsModel.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/pets/data/PetsModel.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/pets/data/PetsModel.java
 // This is a 100% match, except maybe for the getInstance() [Inject]
 public class PetsModel {
 

@@ -12,18 +12,8 @@ import flash.geom.Matrix;
 import flash.geom.Matrix3D;
 import flash.geom.Utils3D;
 import flash.geom.Vector3D;
-<<<<<<< HEAD:src/kabam/rotmg/engine3d/Point3D.java
-import kabam.rotmg.map.Camera;
-import kabam.rotmg.util.Trig;
-<<<<<<< HEAD:src/rotmg/engine3d/Point3D.java
-=======
 import rotmg.map.Camera;
 import rotmg.util.Trig;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/engine3d/Point3D.java
-=======
-import rotmg.map.Camera;
-import rotmg.util.Trig;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/engine3d/Point3D.java
 
 public class Point3D {
 

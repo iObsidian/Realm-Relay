@@ -2,23 +2,10 @@ package rotmg.ui;
 
 import alde.flash.utils.SignalConsumer;
 import flash.display.Sprite;
-<<<<<<< HEAD:src/kabam/rotmg/ui/RankText.java
-import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
-import kabam.rotmg.ui.view.SignalWaiter;
-import kabam.rotmg.util.TextKey;
-<<<<<<< HEAD:src/rotmg/ui/RankText.java
-=======
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/RankText.java
 import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import rotmg.ui.view.SignalWaiter;
 import rotmg.util.TextKey;
-<<<<<<< HEAD:src/rotmg/ui/RankText.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/ui/RankText.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/RankText.java
 
 /**
  * Not fully implemented

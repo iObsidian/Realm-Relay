@@ -4,20 +4,8 @@ import java.util.List;
 
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
-<<<<<<< HEAD:src/kabam/rotmg/map/GroundProperties.java
-import kabam.rotmg.objects.TextureData;
-import kabam.rotmg.objects.TextureDataConcrete;
-<<<<<<< HEAD:src/rotmg/map/GroundProperties.java
-
-import java.util.List;
-=======
 import rotmg.objects.TextureData;
 import rotmg.objects.TextureDataConcrete;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/GroundProperties.java
-=======
-import rotmg.objects.TextureData;
-import rotmg.objects.TextureDataConcrete;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/GroundProperties.java
 
 /**
  * 75% done : requires AnimateProperties

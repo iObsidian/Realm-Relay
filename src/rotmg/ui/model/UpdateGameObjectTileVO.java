@@ -1,14 +1,6 @@
 package rotmg.ui.model;
 
-<<<<<<< HEAD:src/kabam/rotmg/ui/model/UpdateGameObjectTileVO.java
-import kabam.rotmg.objects.GameObject;
-<<<<<<< HEAD:src/rotmg/ui/model/UpdateGameObjectTileVO.java
-=======
 import rotmg.objects.GameObject;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/ui/model/UpdateGameObjectTileVO.java
-=======
-import rotmg.objects.GameObject;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/model/UpdateGameObjectTileVO.java
 
 public class UpdateGameObjectTileVO {
 

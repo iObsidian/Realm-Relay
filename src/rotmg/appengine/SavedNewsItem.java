@@ -1,19 +1,8 @@
 package rotmg.appengine;
 
 import flash.display.BitmapData;
-<<<<<<< HEAD:src/rotmg/appengine/SavedNewsItem.java
-<<<<<<< HEAD:src/kabam/rotmg/appengine/SavedNewsItem.java
-import kabam.rotmg.util.AssetLibrary;
-import kabam.rotmg.util.TextureRedrawer;
-=======
 import rotmg.util.AssetLibrary;
 import rotmg.util.TextureRedrawer;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/appengine/SavedNewsItem.java
-=======
-import kabam.rotmg.util.TextureRedrawer;
-import rotmg.util.AssetLibrary;
-import rotmg.util.TextureRedrawer;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/appengine/SavedNewsItem.java
 
 public class SavedNewsItem {
 

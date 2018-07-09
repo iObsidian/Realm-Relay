@@ -6,25 +6,11 @@ import flash.display.GraphicsBitmapFill;
 import flash.display.GraphicsPath;
 import flash.display.IGraphicsData;
 import flash.geom.Matrix;
-<<<<<<< HEAD:src/kabam/rotmg/objects/particles/Particle.java
-import kabam.rotmg.map.Camera;
-import kabam.rotmg.objects.BasicObject;
-import kabam.rotmg.objects.Square;
-import kabam.rotmg.util.GraphicsUtil;
-import kabam.rotmg.util.TextureRedrawer;
-<<<<<<< HEAD:src/rotmg/objects/particles/Particle.java
-=======
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/particles/Particle.java
 import rotmg.map.Camera;
 import rotmg.objects.BasicObject;
 import rotmg.objects.Square;
 import rotmg.util.GraphicsUtil;
 import rotmg.util.TextureRedrawer;
-<<<<<<< HEAD:src/rotmg/objects/particles/Particle.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/particles/Particle.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/particles/Particle.java
 
 public class Particle extends BasicObject {
 

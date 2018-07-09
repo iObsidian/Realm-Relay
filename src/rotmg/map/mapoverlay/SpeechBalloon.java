@@ -8,24 +8,10 @@ import flash.geom.Point;
 import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
-<<<<<<< HEAD:src/rotmg/map/mapoverlay/SpeechBalloon.java
-<<<<<<< HEAD:src/kabam/rotmg/map/mapoverlay/SpeechBalloon.java
-import kabam.rotmg.map.Camera;
-import kabam.rotmg.objects.GameObject;
-import kabam.rotmg.parameters.Parameters;
-import kabam.rotmg.util.GraphicsUtil;
-=======
-=======
-import kabam.rotmg.parameters.Parameters;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/mapoverlay/SpeechBalloon.java
 import rotmg.map.Camera;
 import rotmg.objects.GameObject;
 import rotmg.parameters.Parameters;
 import rotmg.util.GraphicsUtil;
-<<<<<<< HEAD:src/rotmg/map/mapoverlay/SpeechBalloon.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/mapoverlay/SpeechBalloon.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/mapoverlay/SpeechBalloon.java
 import spark.filters.DropShadowFilter;
 
 public class SpeechBalloon extends Sprite implements IMapOverlayElement {

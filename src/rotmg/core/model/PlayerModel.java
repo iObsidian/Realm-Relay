@@ -1,20 +1,6 @@
 package rotmg.core.model;
 
 
-<<<<<<< HEAD:src/rotmg/core/model/PlayerModel.java
-<<<<<<< HEAD:src/kabam/rotmg/core/model/PlayerModel.java
-import alde.flash.utils.Vector;
-import appengine.SavedCharactersList;
-import kabam.rotmg.account.core.Account;
-import kabam.rotmg.appengine.SavedCharacter;
-import kabam.rotmg.appengine.SavedNewsItem;
-import kabam.rotmg.net.LatLong;
-=======
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/core/model/PlayerModel.java
-=======
-import kabam.rotmg.appengine.SavedCharacter;
-import kabam.rotmg.appengine.SavedNewsItem;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/core/model/PlayerModel.java
 import org.osflash.signals.Signal;
 
 import alde.flash.utils.Vector;

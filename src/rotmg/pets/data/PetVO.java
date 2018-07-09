@@ -1,16 +1,5 @@
-<<<<<<< HEAD:src/kabam/rotmg/pets/data/PetVO.java
-package kabam.rotmg.pets.data;
-
-import kabam.rotmg.objects.ObjectLibrary;
-import kabam.rotmg.objects.animation.AnimatedChar;
-import kabam.rotmg.util.AnimatedChars;
-import kabam.rotmg.util.MaskedImage;
-import kabam.rotmg.util.TextureRedrawer;
-import kabam.rotmg.util.redrawers.GlowRedrawer;
-=======
 package rotmg.pets.data;
 
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/pets/data/PetVO.java
 import org.osflash.signals.Signal;
 
 import alde.flash.utils.XML;

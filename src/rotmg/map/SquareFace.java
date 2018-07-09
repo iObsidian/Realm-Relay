@@ -5,19 +5,8 @@ import java.util.List;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
-<<<<<<< HEAD:src/rotmg/map/SquareFace.java
-<<<<<<< HEAD:src/kabam/rotmg/map/SquareFace.java
-import kabam.rotmg.engine3d.Face3D;
-import kabam.rotmg.objects.Square;
-=======
 import rotmg.engine3d.Face3D;
 import rotmg.objects.Square;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/map/SquareFace.java
-=======
-import kabam.rotmg.objects.Square;
-import rotmg.engine3d.Face3D;
-import rotmg.objects.Square;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/map/SquareFace.java
 
 public class SquareFace {
 

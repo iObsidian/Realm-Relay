@@ -1,25 +1,11 @@
 package rotmg.servers.api.model;
 
 import alde.flash.utils.Vector;
-<<<<<<< HEAD:src/kabam/rotmg/servers/api/model/LiveServerModel.java
-import kabam.rotmg.core.model.PlayerModel;
-import kabam.rotmg.net.LatLong;
-import kabam.rotmg.net.Server;
-import kabam.rotmg.parameters.Parameters;
-import kabam.rotmg.servers.api.ServerModel;
-<<<<<<< HEAD:src/rotmg/servers/api/model/LiveServerModel.java
-=======
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/servers/api/model/LiveServerModel.java
 import rotmg.core.model.PlayerModel;
 import rotmg.net.LatLong;
 import rotmg.net.Server;
 import rotmg.parameters.Parameters;
 import rotmg.servers.api.ServerModel;
-<<<<<<< HEAD:src/rotmg/servers/api/model/LiveServerModel.java
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/servers/api/model/LiveServerModel.java
-=======
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/servers/api/model/LiveServerModel.java
 
 /**
  * 100% match

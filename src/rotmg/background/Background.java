@@ -1,15 +1,7 @@
 package rotmg.background;
 
 import flash.display.Sprite;
-<<<<<<< HEAD:src/kabam/rotmg/background/Background.java
-import kabam.rotmg.map.Camera;
-<<<<<<< HEAD:src/rotmg/background/Background.java
-=======
 import rotmg.map.Camera;
->>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/background/Background.java
-=======
-import rotmg.map.Camera;
->>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/background/Background.java
 
 /**
  * 100% match
