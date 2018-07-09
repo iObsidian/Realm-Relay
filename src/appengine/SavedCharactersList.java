@@ -68,7 +68,7 @@ public class SavedCharactersList extends Event {
 		this.news = new Vector<SavedNewsItem>();
 		this.origData = param1;
 		this.charsXML = new XML(this.origData);
-		XML loc2 = this.charsXML.child("Account");
+		XML loc2 = this.charsXML.getChild("Account");
 		this.parseUserData(loc2);
 		this.parseBeginnersPackageData(loc2);
 		this.parseGuildData(loc2);
@@ -87,7 +87,7 @@ public class SavedCharactersList extends Event {
 		loc5.verify(loc2.hasOwnProperty("VerifiedEmail"));
 
 		this.classAvailability = new Dictionary<>();
-		for (XML loc4 : this.charsXML.child("ClassAvailabilityList").childs("ClassAvailability")) {
+		for (XML loc4 : this.charsXML.getChild("ClassAvailabilityList").getChilds("ClassAvailability")) {
 			this.classAvailability.put(loc4.getIntAttribute("id"), loc4.toString());
 		}
 	}
@@ -110,9 +110,9 @@ public class SavedCharactersList extends Event {
 		Player.isAdmin = this.isAdmin;
 		Player.isMod = param1.hasOwnProperty("Mod");
 		this.canMapEdit = param1.hasOwnProperty("MapEditor");
-		this.totalFame = param1.child("Stats").getIntValue("TotalFame");
-		this.bestCharFame = param1.child("Stats").getIntValue("BestCharFame");
-		this.fame = param1.child("Stats").getIntValue("Fame");
+		this.totalFame = param1.getChild("Stats").getIntValue("TotalFame");
+		this.bestCharFame = param1.getChild("Stats").getIntValue("BestCharFame");
+		this.fame = param1.getChild("Stats").getIntValue("Fame");
 		this.credits = param1.getIntValue("Credits");
 		this.tokens = param1.getIntValue("FortuneToken");
 		this.nextCharSlotPrice = param1.getIntValue("NextCharSlotPrice");
@@ -138,7 +138,7 @@ public class SavedCharactersList extends Event {
 	private void parseGuildData(XML param1) {
 		XML loc2 = null;
 		if (param1.hasOwnProperty("Guild")) {
-			loc2 = param1.child("Guild");
+			loc2 = param1.getChild("Guild");
 			this.guildName = loc2.getValue("Name");
 			this.guildRank = loc2.getIntValue("Rank");
 		}
@@ -147,7 +147,7 @@ public class SavedCharactersList extends Event {
 	private void parseCharacterData() {
 		this.nextCharId = this.charsXML.getIntAttribute("nextCharId");
 		this.maxNumChars = this.charsXML.getIntAttribute("maxNumChars");
-		for (XML loc1 : this.charsXML.childs("Char")) {
+		for (XML loc1 : this.charsXML.getChilds("Char")) {
 			this.savedChars.add(new SavedCharacter(loc1, this.name));
 			this.numChars++;
 		}
@@ -157,8 +157,8 @@ public class SavedCharactersList extends Event {
 	private void parseCharacterStatsData() {
 		int loc3 = 0;
 		CharacterStats loc4 = null;
-		XML loc1 = this.charsXML.child("Account").child("Stats");
-		for (XML loc2 : loc1.childs("ClassStats")) {
+		XML loc1 = this.charsXML.getChild("Account").getChild("Stats");
+		for (XML loc2 : loc1.getChilds("ClassStats")) {
 			loc3 = loc2.getIntAttribute("objectType");
 			loc4 = new CharacterStats(loc2);
 			this.numStars = this.numStars + loc4.numStars();
@@ -167,8 +167,8 @@ public class SavedCharactersList extends Event {
 	}
 
 	private void parseNewsData() {
-		XML loc1 = this.charsXML.child("News");
-		for (XML loc2 : loc1.childs("Item")) {
+		XML loc1 = this.charsXML.getChild("News");
+		for (XML loc2 : loc1.getChilds("Item")) {
 			this.news.add(new SavedNewsItem(loc2.getValue("Icon"), loc2.getValue("Title"), loc2.getValue("TagLine"), loc2.getValue("Link"), loc2.getIntValue("Date")));
 		}
 	}
@@ -230,7 +230,7 @@ public class SavedCharactersList extends Event {
 	public boolean levelRequirementsMet(int param1) {
 		int loc4 = 0;
 		XML loc2 = ObjectLibrary.xmlLibrary.get(param1);
-		for (XML loc3 : loc2.childs("UnlockLevel")) {
+		for (XML loc3 : loc2.getChilds("UnlockLevel")) {
 			loc4 = ObjectLibrary.idToType.get(loc3.toString());
 			if (this.bestLevel(loc4) < loc3.getIntValue("level")) {
 				return false;
@@ -262,7 +262,7 @@ public class SavedCharactersList extends Event {
 			if (!this.levelRequirementsMet(loc6)) {
 				loc7 = true;
 				loc8 = false;
-				for (XML loc9 : loc5.childs("UnlockLevel")) {
+				for (XML loc9 : loc5.getChilds("UnlockLevel")) {
 					loc10 = ObjectLibrary.idToType.get(loc9.toString());
 					loc11 = loc9.getIntAttribute("level");
 					if (this.bestLevel(loc10) < loc11) {

@@ -76,7 +76,7 @@ public class XML {
 		return element.getTextContent();
 	}
 
-	public List<XML> childs(String name) {
+	public List<XML> getChilds(String name) {
 		List<XML> xmls = new ArrayList<>();
 
 		NodeList childs = element.getChildNodes();
@@ -90,7 +90,7 @@ public class XML {
 		return xmls;
 	}
 
-	public XML child(String name) {
+	public XML getChild(String name) {
 		for (Node child = element.getFirstChild(); child != null; child = child.getNextSibling()) {
 			if (child instanceof Element && name.equals(child.getNodeName())) {
 				return new XML((Element) child);
@@ -100,7 +100,7 @@ public class XML {
 	}
 
 	public boolean hasOwnProperty(String tag) {
-		for (XML x : childs(tag)) {
+		for (XML x : getChilds(tag)) {
 			if (x.name().contains(tag)) {
 				return true;
 			}
@@ -109,7 +109,7 @@ public class XML {
 	}
 
 	public String getValue(String tag) {
-		return child(tag).element.getTextContent();
+		return getChild(tag).element.getTextContent();
 		//return element.getElementsByTagName(tag).item(0).getTextContent();
 	}
 
@@ -191,7 +191,7 @@ public class XML {
 		}
 	}
 
-	public List<XML> childs() {
+	public List<XML> getChilds() {
 		List<XML> xmls = new ArrayList<>();
 
 		NodeList childs = element.getChildNodes();
