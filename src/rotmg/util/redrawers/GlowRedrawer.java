@@ -1,6 +1,6 @@
 package rotmg.util.redrawers;
 
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 import flash.airglobal.BitmapFilterQuality;
 import flash.airglobal.Shape;
 import flash.display.Bitmap;

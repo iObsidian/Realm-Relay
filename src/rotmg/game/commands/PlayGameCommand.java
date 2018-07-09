@@ -1,9 +1,9 @@
 package rotmg.game.commands;
 
 import flash.utils.Date;
-import kabam.lib.net.impl.SocketServerModel;
-import kabam.lib.tasks.TaskMonitor;
-import kabam.rotmg.account.core.services.GetCharListTask;
+import rotmg.lib.tasks.impl.SocketServerModel;
+import rotmg.lib.tasks.tasks.TaskMonitor;
+import rotmg.account.core.services.GetCharListTask;
 import rotmg.GameSprite;
 import rotmg.appengine.SavedCharacter;
 import rotmg.core.model.PlayerModel;

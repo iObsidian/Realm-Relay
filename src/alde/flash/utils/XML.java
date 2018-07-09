@@ -16,6 +16,11 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Emulates AS3's built in XML capabilities.
+ *
+ * See readme for more information on how to use
+ */
 public class XML {
 
 	public Element element;
@@ -24,7 +29,6 @@ public class XML {
 	public XML(Element el) {
 		this.element = el;
 	}
-
 
 	@Override
 	public String toString() {

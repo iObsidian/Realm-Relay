@@ -12,7 +12,7 @@ public class EventDispatcher {
 	public boolean visible;
 	public boolean mouseEnabled;
 	public Graphics graphics;
-	int startTime;
+	static int startTime;
 
 	public EventDispatcher() {
 		listeners = new HashMap<>();
@@ -26,7 +26,7 @@ public class EventDispatcher {
 
 	native Boolean willTrigger(String type);
 
-	protected int getTimer() {
+	public static int getTimer() {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 

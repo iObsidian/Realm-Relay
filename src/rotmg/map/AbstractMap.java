@@ -3,7 +3,7 @@ package rotmg.map;
 
 import org.osflash.signals.Signal;
 
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.Sprite;
 import flash.geom.Point;

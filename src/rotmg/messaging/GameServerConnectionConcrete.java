@@ -4,6 +4,7 @@ import alde.flash.utils.*;
 import com.hurlant.crypto.symmetric.ICipher;
 import flash.events.Event;
 import flash.events.TimerEvent;
+import flash.utils.timer.Timer;
 import robotlegs.bender.bundles.mvcs.components.QueuedStatusText;
 import rotmg.AGameSprite;
 import rotmg.account.core.Account;

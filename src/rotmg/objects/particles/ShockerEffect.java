@@ -1,7 +1,7 @@
 package rotmg.objects.particles;
 
 import alde.flash.utils.EventConsumer;
-import alde.flash.utils.Timer;
+import flash.utils.timer.Timer;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.events.TimerEvent;

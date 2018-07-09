@@ -4,7 +4,7 @@ package rotmg.core.model;
 import org.osflash.signals.Signal;
 
 import alde.flash.utils.Vector;
-import appengine.SavedCharactersList;
+import com.company.assembleegameclient.appengine.SavedCharactersList;
 import rotmg.account.core.Account;
 import rotmg.appengine.SavedCharacter;
 import rotmg.appengine.SavedNewsItem;

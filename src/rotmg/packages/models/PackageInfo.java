@@ -10,7 +10,7 @@ import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.events.SecurityError;
 import flash.net.URLRequest;
-import io.decagames.rotmg.shop.genericBox.data.GenericBoxInfo;
+import rotmg.shop.genericBox.data.GenericBoxInfo;
 
 public class PackageInfo extends GenericBoxInfo {
 

@@ -2,7 +2,8 @@ package rotmg.map;
 
 import rotmg.objects.GameObject;
 
-import static flash.utils.getTimer.getTimer;
+import static flash.events.EventDispatcher.getTimer;
+
 
 public class Quest {
 

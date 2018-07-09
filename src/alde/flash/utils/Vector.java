@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.function.BiFunction;
 
 /**
- * A wrapper for HashMap that simulates AS3's Vector
+ * A wrapper for LinkedHashMap that simulates AS3's Vector (like List in Java)
+ * Simulates a List that can be used as <Index, Value>
  */
 public class Vector<T> implements Iterable<T> {
 
@@ -89,7 +90,6 @@ public class Vector<T> implements Iterable<T> {
 		return map.remove(map.size());
 	}
 
-
 	@Override
 	public Iterator<T> iterator() {
 		return map.values().iterator();
@@ -105,11 +105,10 @@ public class Vector<T> implements Iterable<T> {
 		}
 	}
 
-
 	/*
 	 * Concatenates the Vectors specified in the parameters list with the elements in this Vector and creates a new Vector.
 	 */
-	public Vector<T> concat(Vector<T>... vectors) {
+	public final Vector<T> concat(Vector<T>... vectors) {
 		List<T> data = new ArrayList<>();
 
 		for (Vector<T> vec : vectors) {
@@ -142,7 +141,6 @@ public class Vector<T> implements Iterable<T> {
 	public int indexOf(T loc2) {
 		return -1;
 	}
-
 
 	public void set(T set) {
 		clear();

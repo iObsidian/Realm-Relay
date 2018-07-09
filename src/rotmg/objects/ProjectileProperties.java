@@ -1,6 +1,6 @@
 package rotmg.objects;
 
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import rotmg.util.ConditionEffect;

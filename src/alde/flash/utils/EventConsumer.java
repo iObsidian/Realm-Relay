@@ -1,22 +1,20 @@
 package alde.flash.utils;
 
 import flash.events.Event;
-import rotmg.net.impl.Message;
 
 import java.util.function.Consumer;
 
 /**
- * A method that accepts a Message
+ * A method that accepts an Event
  */
 public class EventConsumer<T extends Event> {
 
-	Consumer<T> consumer;
-	Runnable runnable;
+	private Consumer<T> consumer;
+	private Runnable runnable;
 
 	public EventConsumer(Consumer<T> consumer) {
 		this.consumer = consumer;
 	}
-
 	public EventConsumer(Runnable runnable) {
 		this.runnable = runnable;
 	}

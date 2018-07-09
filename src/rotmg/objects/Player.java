@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.osflash.signals.Signal;
 
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.Point;

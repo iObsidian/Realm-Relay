@@ -1,8 +1,6 @@
 package rotmg.objects;
 
-import static flash.utils.getTimer.getTimer;
-
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
@@ -52,6 +50,8 @@ import rotmg.util.MoreColorUtil;
 import rotmg.util.TextKey;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
+
+import static flash.events.EventDispatcher.getTimer;
 
 public class GameObject extends BasicObject {
 

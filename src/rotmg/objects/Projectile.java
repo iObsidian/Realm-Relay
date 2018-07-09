@@ -2,7 +2,7 @@ package rotmg.objects;
 
 import static rotmg.tutorial.doneAction.doneAction;
 
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.GradientType;

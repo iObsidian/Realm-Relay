@@ -1,7 +1,7 @@
 package rotmg.util;
 
 
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
 import flash.geom.ColorTransform;

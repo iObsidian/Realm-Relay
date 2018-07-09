@@ -7,7 +7,7 @@ import org.osflash.signals.Signal;
 
 import com.adobe.utils.DictionaryUtil;
 
-import alde.flash.utils.Dictionary;
+import flash.utils.Dictionary;
 
 /**
  * 99% match (confirm 'listenTo' is working)
