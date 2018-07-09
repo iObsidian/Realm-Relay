@@ -1,11 +1,9 @@
 package rotmg.util;
 
 
-import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.display.Sprite;
-import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
 import rotmg.objects.ObjectLibrary;
 import spark.filters.DropShadowFilter;
@@ -59,7 +57,7 @@ public class FameUtil {
 	public static int numAllTimeStars(int param1, int param2, XML param3) {
 		int loc4 = 0;
 		int loc5 = 0;
-		for (XML loc6 : param3.getChilds("ClassStats")) {
+		for (XML loc6 : param3.childs("ClassStats")) {
 			if (param1 == loc6.getIntAttribute("objectType")) {
 				loc5 = loc6.getIntValue("BestFame");
 			} else {

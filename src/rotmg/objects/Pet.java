@@ -42,8 +42,8 @@ public class Pet extends GameObject implements IInteractiveObject {
 		MaskedImage loc5 = null;
 		this.skinId = param1;
 		XML loc2 = ObjectLibrary.getXMLfromId(ObjectLibrary.getIdFromType(param1));
-		String loc3 = loc2.getChild("AnimatedTexture").getValue("File");
-		int loc4 = loc2.getChild("AnimatedTexture").getIntValue("Index");
+		String loc3 = loc2.child("AnimatedTexture").getValue("File");
+		int loc4 = loc2.child("AnimatedTexture").getIntValue("Index");
 		if (this.skin == null) {
 			this.isDefaultAnimatedChar = true;
 			this.skin = AnimatedChars.getAnimatedChar(loc3, loc4);

@@ -50,7 +50,7 @@ public class PotionInventoryModel {
 		int costCooldownMillis = xml.getIntValue("PotionPurchaseCostCooldown");
 		int maxStackable = xml.getIntValue("MaxStackablePotions");
 		List<Integer> costs = new ArrayList<>();
-		for (XML potionCost : xml.getChilds("PotionPurchaseCosts")) {
+		for (XML potionCost : xml.childs("PotionPurchaseCosts")) {
 			costs.add(potionCost.getIntValue("cost"));
 		}
 

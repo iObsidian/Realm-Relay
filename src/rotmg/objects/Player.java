@@ -137,14 +137,14 @@ public class Player extends Character {
 		this.ip = new IntPoint();
 		this.addTextLine = AddTextLineSignal.getInstance();
 		this.factory = CharacterFactory.getInstance();
-		this.attackMax = param1.getChild("Attack").getIntAttribute("max");
-		this.defenseMax = param1.getChild("Defense").getIntAttribute("max");
-		this.speedMax = param1.getChild("Speed").getIntAttribute("max");
-		this.dexterityMax = param1.getChild("Dexterity").getIntAttribute("max");
-		this.vitalityMax = param1.getChild("HpRegen").getIntAttribute("max");
-		this.wisdomMax = param1.getChild("MpRegen").getIntAttribute("max");
-		this.maxHPMax = param1.getChild("MaxHitPoints").getIntAttribute("max");
-		this.maxMPMax = param1.getChild("MaxMagicPoints").getIntAttribute("max");
+		this.attackMax = param1.child("Attack").getIntAttribute("max");
+		this.defenseMax = param1.child("Defense").getIntAttribute("max");
+		this.speedMax = param1.child("Speed").getIntAttribute("max");
+		this.dexterityMax = param1.child("Dexterity").getIntAttribute("max");
+		this.vitalityMax = param1.child("HpRegen").getIntAttribute("max");
+		this.wisdomMax = param1.child("MpRegen").getIntAttribute("max");
+		this.maxHPMax = param1.child("MaxHitPoints").getIntAttribute("max");
+		this.maxMPMax = param1.child("MaxMagicPoints").getIntAttribute("max");
 		texturingCache = new Dictionary<>();
 	}
 
@@ -216,7 +216,7 @@ public class Player extends Character {
 			if (equipment != -1) {
 				XML objectXML = ObjectLibrary.xmlLibrary.get(equipment);
 				if (objectXML != null && objectXML.hasOwnProperty("ActivateOnEquip")) {
-					for (XML loc4 : objectXML.getChilds("ActivateOnEquip")) {
+					for (XML loc4 : objectXML.childs("ActivateOnEquip")) {
 						if (loc4.name().equals("IncrementStat")) {
 							int loc5 = loc4.getIntAttribute("stat");
 							int loc6 = loc4.getIntAttribute("amount");

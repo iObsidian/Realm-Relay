@@ -1,8 +1,5 @@
 package rotmg.objects.animation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 
@@ -29,7 +26,7 @@ public class AnimationData {
 		this.periodJitter = (int) (xml.getDoubleAttribute("periodJitter") * 1000);
 
 		this.sync = xml.getAttribute("sync").equalsIgnoreCase("true");
-		for (XML frameXML : xml.getChilds("Frame")) {
+		for (XML frameXML : xml.childs("Frame")) {
 			this.frames.add(new FrameData(frameXML));
 		}
 	}

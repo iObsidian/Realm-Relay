@@ -11,7 +11,7 @@ public class AnimationsData {
 
 	public AnimationsData(XML xml) {
 		this.animations = new ArrayList<AnimationData>();
-		for (XML animData : xml.getChilds("Animation")) {
+		for (XML animData : xml.childs("Animation")) {
 			this.animations.add(new AnimationData(animData));
 		}
 	}

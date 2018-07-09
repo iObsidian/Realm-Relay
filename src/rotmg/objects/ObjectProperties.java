@@ -110,7 +110,7 @@ public class ObjectProperties {
 			}
 		}
 		this.oldSound = param1.hasOwnProperty("OldSound") ? param1.getValue("OldSound") : null;
-		for (XML projectile : param1.getChilds("Projectile")) {
+		for (XML projectile : param1.childs("Projectile")) {
 			this.projectiles.put(projectile.getIntAttribute("id"), new ProjectileProperties(projectile));
 		}
 		this.angleCorrection = param1.hasOwnProperty("AngleCorrection")
@@ -129,7 +129,7 @@ public class ObjectProperties {
 			this.shadowColor = param1.getIntValue("ShadowColor");
 		}
 
-		for (XML loc : param1.getChilds("Sound")) {
+		for (XML loc : param1.childs("Sound")) {
 			if (this.sounds == null) {
 				this.sounds = new HashMap<>();
 			}
@@ -137,10 +137,10 @@ public class ObjectProperties {
 		}
 
 		if (param1.hasOwnProperty("Portrait")) {
-			this.portrait = new TextureDataConcrete(param1.getChild("Portrait"));
+			this.portrait = new TextureDataConcrete(param1.child("Portrait"));
 		}
 		if (param1.hasOwnProperty("WhileMoving")) {
-			this.whileMoving = new WhileMovingProperties(param1.getChild("WhileMoving"));
+			this.whileMoving = new WhileMovingProperties(param1.child("WhileMoving"));
 		}
 	}
 

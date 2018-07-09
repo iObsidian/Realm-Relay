@@ -35,7 +35,7 @@ public class SavedCharacter {
 		this.charXML = param1;
 		this.name = param2;
 		if (this.charXML.hasOwnProperty("Pet")) {
-			loc3 = this.charXML.getChild("Pet");
+			loc3 = this.charXML.child("Pet");
 			loc4 = loc3.getIntAttribute("instanceId");
 			loc5 = PetsModel.getInstance().getPetVO(loc4);
 			loc5.apply(loc3);
@@ -45,8 +45,8 @@ public class SavedCharacter {
 
 	public static BitmapData getImage(SavedCharacter param1, XML param2, int param3, int param4, double param5,
 	                                  boolean param6, boolean param7) {
-		AnimatedChar loc8 = AnimatedChars.getAnimatedChar(param2.getChild("AnimatedTexture").getValue("File"),
-				param2.getChild("AnimatedTexture").getIntValue("Index"));
+		AnimatedChar loc8 = AnimatedChars.getAnimatedChar(param2.child("AnimatedTexture").getValue("File"),
+				param2.child("AnimatedTexture").getIntValue("Index"));
 		MaskedImage loc9 = loc8.imageFromDir(param3, param4, param5);
 		int loc10 = param1 != null ? param1.tex1() : null;
 		int loc11 = param1 != null ? param1.tex2() : null;

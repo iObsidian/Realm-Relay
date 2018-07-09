@@ -19,27 +19,27 @@ public class TextureDataConcrete extends TextureData {
 
 	public TextureDataConcrete(XML param1) {
 		if (param1.hasOwnProperty("RandomTexture")) {
-			this.parse(param1.getChild("RandomTexture"), param1.getAttribute("id"));
+			this.parse(param1.child("RandomTexture"), param1.getAttribute("id"));
 		} else if (param1.hasOwnProperty("AnimatedTexture")) {
-			this.parse(param1.getChild("AnimatedTexture"), param1.getAttribute("id"));
+			this.parse(param1.child("AnimatedTexture"), param1.getAttribute("id"));
 		} else if (param1.hasOwnProperty("Texture")) {
-			this.parse(param1.getChild("Texture"), param1.getAttribute("id"));
+			this.parse(param1.child("Texture"), param1.getAttribute("id"));
 		} else if (param1.hasOwnProperty("RemoteTexture")) {
-			this.parse(param1.getChild("RemoteTexture"));
+			this.parse(param1.child("RemoteTexture"));
 		} else {
 			this.parse(param1);
 		}
-		for (XML xml : param1.getChilds("AltTexture")) {
+		for (XML xml : param1.childs("AltTexture")) {
 			this.parse(xml);
 		}
 		if (param1.hasOwnProperty("Mask")) {
-			this.parse(param1.getChild("Mask"));
+			this.parse(param1.child("Mask"));
 		}
 		if (param1.hasOwnProperty("Effect")) {
-			for (XML x : param1.getChilds()) {
+			for (XML x : param1.childs()) {
 				System.out.println(x.name());
 			}
-			this.parse(param1.getChild("Effect"));
+			this.parse(param1.child("Effect"));
 		}
 
 	}
@@ -100,7 +100,7 @@ public class TextureDataConcrete extends TextureData {
 			case "RandomTexture":
 				try {
 					randomTextureData = new Vector<TextureData>();
-					for (XML childXML : xml.getChilds()) {
+					for (XML childXML : xml.childs()) {
 						randomTextureData.add(new TextureDataConcrete(childXML));
 					}
 				} catch (Exception e) {

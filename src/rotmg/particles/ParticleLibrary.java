@@ -14,7 +14,7 @@ public class ParticleLibrary {
 	public static final HashMap<String, ParticleProperties> propsLibrary = new HashMap<>();
 
 	public static void parseFromXML(XML xml) {
-		for (XML x : xml.getChilds("Particle")) {
+		for (XML x : xml.childs("Particle")) {
 			propsLibrary.put(xml.getAttribute("id"), new ParticleProperties(x));
 		}
 	}

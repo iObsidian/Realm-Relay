@@ -18,7 +18,7 @@ public class RegionLibrary {
 	}
 
 	public static void parseFromXML(XML param1) {
-		for (XML loc2 : param1.getChilds("Region")) {
+		for (XML loc2 : param1.childs("Region")) {
 			int type = loc2.getIntAttribute("type");
 			xmlLibrary.put(type, loc2);
 			idToType.put(loc2.getAttribute("id"), type);

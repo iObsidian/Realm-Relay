@@ -73,7 +73,7 @@ public class ProjectileProperties {
 			this.minDamage = param1.getIntValue("MinDamage");
 			this.maxDamage = param1.getIntValue("MaxDamage");
 		}
-		for (XML _loc2_ : param1.getChilds("ConditionEffect")) {
+		for (XML _loc2_ : param1.childs("ConditionEffect")) {
 			if (this.effects == null) {
 				this.effects = new Vector<>();
 			}
@@ -89,16 +89,16 @@ public class ProjectileProperties {
 		this.passesCover = param1.hasOwnProperty("PassesCover");
 		this.armorPiercing = param1.hasOwnProperty("ArmorPiercing");
 		this.particleTrail = param1.hasOwnProperty("ParticleTrail");
-		if (param1.getChild("ParticleTrail") != null) {
+		if (param1.child("ParticleTrail") != null) {
 
-			XML particleTrail = param1.getChild("ParticleTrail");
+			XML particleTrail = param1.child("ParticleTrail");
 
 			if (particleTrail.hasOwnProperty("intensity")) {
-				this.particleTrailIntensity = param1.getChild("ParticleTrail").getIntAttribute("intensity") * 100;
+				this.particleTrailIntensity = param1.child("ParticleTrail").getIntAttribute("intensity") * 100;
 			}
 
 			if (particleTrail.hasOwnProperty("lifetimeMS")) {
-				this.particleTrailLifetimeMS = param1.getChild("ParticleTrail").getIntAttribute("lifetimeMS");
+				this.particleTrailLifetimeMS = param1.child("ParticleTrail").getIntAttribute("lifetimeMS");
 			}
 		}
 		this.particleTrailColor = this.particleTrail ? param1.getIntValue("ParticleTrail") : 16711935;

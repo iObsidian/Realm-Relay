@@ -59,7 +59,7 @@ public class GroundProperties {
 
 		if (xml.hasOwnProperty("Animate")) {
 			System.out.println(displayId);
-			this.animate.parseXML(xml.getChild("Animate"));
+			this.animate.parseXML(xml.child("Animate"));
 		}
 
 		if (xml.hasOwnProperty("BlendPriority")) {
@@ -82,20 +82,20 @@ public class GroundProperties {
 		this.randomOffset = xml.hasOwnProperty("RandomOffset");
 		if (xml.hasOwnProperty("Edge")) {
 			this.hasEdge = true;
-			this.edgeTD = new TextureDataConcrete(xml.getChild("Edge"));
+			this.edgeTD = new TextureDataConcrete(xml.child("Edge"));
 			if (xml.hasOwnProperty("Corner")) {
-				this.cornerTD = new TextureDataConcrete(xml.getChild("Corner"));
+				this.cornerTD = new TextureDataConcrete(xml.child("Corner"));
 			}
 			if (xml.hasOwnProperty("InnerCorner")) {
-				this.innerCornerTD = new TextureDataConcrete(xml.getChild("InnerCorner"));
+				this.innerCornerTD = new TextureDataConcrete(xml.child("InnerCorner"));
 			}
 		}
 		this.sameTypeEdgeMode = xml.hasOwnProperty("SameTypeEdgeMode");
 		if (xml.hasOwnProperty("Top")) {
-			this.topTD = new TextureDataConcrete(xml.getChild("Top"));
+			this.topTD = new TextureDataConcrete(xml.child("Top"));
 			this.topAnimate = new AnimateProperties();
 			if (xml.hasOwnProperty("TopAnimate")) {
-				this.topAnimate.parseXML(xml.getChild("TopAnimate"));
+				this.topAnimate.parseXML(xml.child("TopAnimate"));
 			}
 		}
 	}

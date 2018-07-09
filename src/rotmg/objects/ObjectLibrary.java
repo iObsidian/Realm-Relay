@@ -142,7 +142,7 @@ public class ObjectLibrary {
 
 			typeToTextureData.put(objectType, textureDataFactory.create(objectXML));
 			if (objectXML.hasOwnProperty("Top")) {
-				typeToTopTextureData.put(objectType, textureDataFactory.create(objectXML.getChild("Top")));
+				typeToTopTextureData.put(objectType, textureDataFactory.create(objectXML.child("Top")));
 			}
 
 		}
@@ -379,7 +379,7 @@ public class ObjectLibrary {
 			return true;
 		}
 		XML objectXML = xmlLibrary.get(objectType);
-		for (XML xml : objectXML.getChilds("EquipRequirement")) {
+		for (XML xml : objectXML.childs("EquipRequirement")) {
 			if (!playerMeetsRequirement(xml, param2)) {
 				return false;
 			}

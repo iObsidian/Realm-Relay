@@ -21,7 +21,7 @@ public class GroundLibrary {
 	public static void parseFromXML(XML xml) {
 		int objectType = xml.getIntAttribute("type");
 
-		for (XML loc2 : xml.getChilds("Ground")) {
+		for (XML loc2 : xml.childs("Ground")) {
 			propsLibrary.put(objectType, new GroundProperties(loc2));
 			xmlLibrary.put(objectType, loc2);
 			typeToTextureData.put(objectType, new TextureDataConcrete(loc2));
