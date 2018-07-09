@@ -4,9 +4,13 @@ import flash.display.BitmapData;
 import flash.geom.Matrix;
 <<<<<<< HEAD:src/kabam/rotmg/text/view/BitmapTextFactory.java
 import kabam.rotmg.text.view.stringBuilder.StringBuilder;
+<<<<<<< HEAD:src/rotmg/text/view/BitmapTextFactory.java
 =======
 import rotmg.text.view.stringBuilder.StringBuilder;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/text/view/BitmapTextFactory.java
+=======
+import rotmg.text.view.stringBuilder.StringBuilder;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/text/view/BitmapTextFactory.java
 
 public class BitmapTextFactory {
 	static BitmapTextFactory instance;

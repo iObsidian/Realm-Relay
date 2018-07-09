@@ -1,13 +1,5 @@
 package rotmg.net;
 
-import com.hurlant.crypto.symmetric.ICipher;
-import kabam.rotmg.AGameSprite;
-import kabam.rotmg.messaging.GameServerConnectionConcrete;
-import kabam.rotmg.net.impl.Message;
-import kabam.rotmg.net.impl.MessageCenter;
-import kabam.rotmg.parameters.Parameters;
-import kabam.rotmg.util.AssetLoader;
-
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -17,10 +9,19 @@ import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
 
+<<<<<<< HEAD:src/rotmg/net/SocketServer.java
 <<<<<<< HEAD:src/kabam/rotmg/net/SocketServer.java
 =======
 import com.hurlant.crypto.symmetric.ICipher;
 
+=======
+import com.hurlant.crypto.symmetric.ICipher;
+
+import kabam.rotmg.AGameSprite;
+import kabam.rotmg.net.impl.Message;
+import kabam.rotmg.parameters.Parameters;
+import kabam.rotmg.util.AssetLoader;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/net/SocketServer.java
 import rotmg.AGameSprite;
 import rotmg.messaging.GameServerConnectionConcrete;
 import rotmg.net.impl.Message;
@@ -28,7 +29,10 @@ import rotmg.net.impl.MessageCenter;
 import rotmg.parameters.Parameters;
 import rotmg.util.AssetLoader;
 
+<<<<<<< HEAD:src/rotmg/net/SocketServer.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/net/SocketServer.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/net/SocketServer.java
 /**
  * This class is a very loose implementation of WildShadow's SocketServer,
  * it is more closely related to The Force 2477's RealmClient

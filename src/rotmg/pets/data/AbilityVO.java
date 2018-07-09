@@ -1,11 +1,17 @@
 package rotmg.pets.data;
 
+<<<<<<< HEAD:src/rotmg/pets/data/AbilityVO.java
 <<<<<<< HEAD:src/kabam/rotmg/pets/data/AbilityVO.java
 import alde.flash.utils.XML;
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/pets/data/AbilityVO.java
 import kabam.rotmg.objects.ObjectLibrary;
 =======
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/pets/data/AbilityVO.java
 import org.osflash.signals.Signal;
+
+import alde.flash.utils.XML;
+import rotmg.objects.ObjectLibrary;
 
 /**
  * This is a 90% match, some uncertainty with 'this.name' (setType)

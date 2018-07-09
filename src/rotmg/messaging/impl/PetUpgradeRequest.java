@@ -1,19 +1,23 @@
 package rotmg.messaging.impl;
 
-import kabam.rotmg.messaging.outgoing.OutgoingMessage;
-import rotmg.messaging.data.SlotObjectData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
 
+<<<<<<< HEAD:src/rotmg/messaging/impl/PetUpgradeRequest.java
 <<<<<<< HEAD:src/kabam/rotmg/messaging/impl/PetUpgradeRequest.java
 =======
 import rotmg.messaging.data.SlotObjectData;
 import rotmg.messaging.outgoing.OutgoingMessage;
 
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/messaging/impl/PetUpgradeRequest.java
+=======
+import kabam.rotmg.messaging.outgoing.OutgoingMessage;
+import rotmg.messaging.data.SlotObjectData;
+import rotmg.messaging.outgoing.OutgoingMessage;
+
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/messaging/impl/PetUpgradeRequest.java
 public class PetUpgradeRequest extends OutgoingMessage {
 
 	public static final int GOLD_PAYMENT_TYPE = 0;
@@ -24,7 +28,6 @@ public class PetUpgradeRequest extends OutgoingMessage {
 	public int objectId;
 	public SlotObjectData slotObject;
 	public int paymentTransType;
-
 	public PetUpgradeRequest(int param1, Consumer param2) {
 		super(param1, param2);
 		this.slotObject = new SlotObjectData();

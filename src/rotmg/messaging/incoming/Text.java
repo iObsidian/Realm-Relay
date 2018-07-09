@@ -14,7 +14,6 @@ public class Text extends IncomingMessage {
 	public String recipient;
 	public String text;
 	public String cleanText;
-
 	public Text(int id, Consumer callback) {
 		super(id, callback);
 	}

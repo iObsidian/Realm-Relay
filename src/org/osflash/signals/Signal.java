@@ -1,8 +1,9 @@
 package org.osflash.signals;
 
-import java.util.Vector;
-
 import alde.flash.utils.SignalConsumer;
+
+import java.util.Vector;
+import java.util.function.Consumer;
 
 public class Signal<T> {
 

@@ -11,6 +11,8 @@ import java.security.spec.X509EncodedKeySpec;
 import javax.crypto.Cipher;
 import javax.xml.bind.DatatypeConverter;
 
+import rotmg.parameters.Parameters;
+
 /**
  * Also known as SCry
  */

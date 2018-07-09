@@ -1,6 +1,7 @@
 package rotmg.ui.signals;
 
 import org.osflash.signals.Signal;
+
 import rotmg.ui.model.Key;
 
 public class ShowKeySignal extends Signal<Key> {

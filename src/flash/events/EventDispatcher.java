@@ -1,10 +1,10 @@
 package flash.events;
 
-import java.util.HashMap;
-import java.util.function.Consumer;
-
 import alde.flash.utils.EventConsumer;
 import flash.airglobal.Graphics;
+
+import java.util.HashMap;
+import java.util.function.Consumer;
 
 public class EventDispatcher {
 

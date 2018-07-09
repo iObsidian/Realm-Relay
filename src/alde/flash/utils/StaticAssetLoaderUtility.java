@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
 import flash.display.BitmapData;
-import kabam.rotmg.WebMain;
+import rotmg.WebMain;
 
 /**
  * Not a part of AS3, just a lazy way of loading assets without all the stupid Embedded classes

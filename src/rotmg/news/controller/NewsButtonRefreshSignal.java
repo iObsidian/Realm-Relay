@@ -2,8 +2,8 @@ package rotmg.news.controller;
 
 import org.osflash.signals.Signal;
 
-public class NewsButtonRefreshSignal extends Signal {
-
+public class NewsButtonRefreshSignal  extends Signal {
+	
 	static NewsButtonRefreshSignal instance;
 
 	public static NewsButtonRefreshSignal getInstance() {
@@ -11,7 +11,7 @@ public class NewsButtonRefreshSignal extends Signal {
 		if (instance == null) {
 			instance = new NewsButtonRefreshSignal();
 		}
-
+		
 		return instance;
 	}
 }

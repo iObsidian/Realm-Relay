@@ -1,17 +1,22 @@
 package rotmg.text.view.stringBuilder;
 
+<<<<<<< HEAD:src/rotmg/text/view/stringBuilder/TextFieldDisplayConcrete.java
 <<<<<<< HEAD:src/kabam/rotmg/text/view/stringBuilder/TextFieldDisplayConcrete.java
 =======
 import org.osflash.signals.Signal;
 
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/text/view/stringBuilder/TextFieldDisplayConcrete.java
+=======
+import kabam.rotmg.text.model.FontInfo;
+import org.osflash.signals.Signal;
+
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/text/view/stringBuilder/TextFieldDisplayConcrete.java
 import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextLineMetrics;
-import kabam.rotmg.language.model.StringMap;
-import kabam.rotmg.text.model.FontInfo;
-import org.osflash.signals.Signal;
+import rotmg.language.model.StringMap;
+import rotmg.text.model.FontInfo;
 
 public class TextFieldDisplayConcrete extends Sprite implements TextFieldDisplay {
 

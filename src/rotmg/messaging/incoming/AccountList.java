@@ -10,7 +10,6 @@ public class AccountList extends IncomingMessage {
 	public int accountListId;
 	public String[] accountIds;
 	private int lockAction = -1;
-
 	public AccountList(int param1, Consumer param2) {
 		super(param1, param2);
 		accountIds = new String[0];

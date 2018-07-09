@@ -1,5 +1,6 @@
 package rotmg.model;
 
+<<<<<<< HEAD:src/rotmg/model/GameModel.java
 <<<<<<< HEAD:src/kabam/rotmg/model/GameModel.java
 import kabam.rotmg.objects.GameObject;
 =======
@@ -7,9 +8,13 @@ import java.util.HashMap;
 
 import rotmg.objects.GameObject;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/model/GameModel.java
-import rotmg.objects.Player;
-
+=======
 import java.util.HashMap;
+
+import kabam.rotmg.objects.GameObject;
+import rotmg.objects.GameObject;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/model/GameModel.java
+import rotmg.objects.Player;
 
 public class GameModel {
 

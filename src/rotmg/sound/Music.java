@@ -1,6 +1,6 @@
 package rotmg.sound;
 
-import kabam.rotmg.util.Sound;
+import rotmg.util.Sound;
 
 /**
  * This class will derive from the Game Client

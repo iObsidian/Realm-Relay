@@ -9,7 +9,6 @@ public class NameResult extends IncomingMessage {
 
 	private boolean success;
 	private String errorText;
-
 	public NameResult(int id, Consumer callback) {
 		super(id, callback);
 	}

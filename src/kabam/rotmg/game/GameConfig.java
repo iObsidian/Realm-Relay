@@ -1,5 +1,8 @@
 package kabam.rotmg.game;
 
+import robotlegs.bender.framework.api.IContext;
+import rotmg.application.api.ApplicationSetup;
+
 /*
 0%
  */

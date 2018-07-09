@@ -1,9 +1,8 @@
 package rotmg.objects.animation;
 
 import alde.flash.utils.XML;
-import kabam.rotmg.objects.TextureData;
-import kabam.rotmg.objects.TextureDataConcrete;
-
+import rotmg.objects.TextureData;
+import rotmg.objects.TextureDataConcrete;
 
 /**
  * This is a 100% match.

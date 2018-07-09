@@ -1,11 +1,10 @@
 package kabam.rotmg.pets.view.components;
 
-import org.osflash.signals.Signal;
-
 import alde.flash.utils.EventConsumer;
 import flash.display.DisplayObject;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
+import org.osflash.signals.Signal;
 
 public class DialogCloseButton extends Sprite {
 

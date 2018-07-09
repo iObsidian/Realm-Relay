@@ -1,8 +1,14 @@
 package rotmg.objects;
 
+import static rotmg.tutorial.doneAction.doneAction;
+
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.GradientType;
+import flash.display.GraphicsGradientFill;
+import flash.display.GraphicsPath;
+import flash.display.IGraphicsData;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
@@ -11,12 +17,14 @@ import kabam.rotmg.engine3d.Point3D;
 import kabam.rotmg.map.Camera;
 import kabam.rotmg.map.Map;
 import kabam.rotmg.objects.particles.HitEffect;
-import kabam.rotmg.objects.particles.SparkParticle;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.tutorial.Tutorial;
 import kabam.rotmg.tutorial.doneAction;
 import kabam.rotmg.util.*;
+<<<<<<< HEAD:src/rotmg/objects/Projectile.java
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Projectile.java
 import rotmg.engine3d.Point3D;
 import rotmg.map.Camera;
 import rotmg.map.Map;
@@ -29,7 +37,10 @@ import rotmg.util.GraphicsUtil;
 import rotmg.util.RandomUtil;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.Trig;
+<<<<<<< HEAD:src/rotmg/objects/Projectile.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/Projectile.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Projectile.java
 
 /**
  * This class is about 10% done. It requires a lot of graphics stuff.

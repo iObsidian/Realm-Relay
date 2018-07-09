@@ -12,13 +12,19 @@ import kabam.rotmg.particles.ParticleEffect;
 import kabam.rotmg.util.AssetLibrary;
 import kabam.rotmg.util.ImageSet;
 import kabam.rotmg.util.TextureRedrawer;
+<<<<<<< HEAD:src/rotmg/objects/particles/ShockerEffect.java
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/particles/ShockerEffect.java
 import rotmg.objects.GameObject;
 import rotmg.particles.ParticleEffect;
 import rotmg.util.AssetLibrary;
 import rotmg.util.ImageSet;
 import rotmg.util.TextureRedrawer;
+<<<<<<< HEAD:src/rotmg/objects/particles/ShockerEffect.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/particles/ShockerEffect.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/particles/ShockerEffect.java
 
 public class ShockerEffect extends ParticleEffect {
 

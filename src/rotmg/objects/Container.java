@@ -4,6 +4,7 @@ import alde.flash.utils.XML;
 import rotmg.GameSprite;
 import rotmg.map.Map;
 import rotmg.sound.SoundEffectLibrary;
+import rotmg.util.PointUtil;
 
 public class Container extends GameObject implements IInteractiveObject {
 

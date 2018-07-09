@@ -2,17 +2,19 @@ package kabam.lib.tasks;
 
 import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
-import kabam.rotmg.lib.tasks.Task;
+import rotmg.core.signals.SetScreenSignal;
+import rotmg.lib.tasks.Task;
 
 public class TaskMonitor {
 
-	public static TaskMonitor instance;
 	private Vector<Task> tasks;
 
 	public TaskMonitor() {
 		super();
 		this.tasks = new Vector<Task>(0);
 	}
+
+	public static TaskMonitor instance;
 
 	public static TaskMonitor getInstance() {
 		if (instance == null) {

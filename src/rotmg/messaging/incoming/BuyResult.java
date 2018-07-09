@@ -18,7 +18,6 @@ public class BuyResult extends IncomingMessage {
 	public static final int PET_FEED_SUCCESS_BRID = 7;
 	public int result;
 	public String resultString;
-
 	public BuyResult(int id, Consumer callback) {
 		super(id, callback);
 	}

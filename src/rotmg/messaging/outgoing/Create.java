@@ -9,7 +9,6 @@ public class Create extends OutgoingMessage {
 
 	public int classType;
 	public int skinType;
-
 	public Create(int param1, Consumer param2) {
 		super(param1, param2);
 	}

@@ -3,6 +3,7 @@ package flash.display;
 import alde.flash.utils.Vector;
 import flash.accessibility.AccessibilityProperties;
 import flash.events.EventDispatcher;
+import flash.filters.ColorMatrixFilter;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;

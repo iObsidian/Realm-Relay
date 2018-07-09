@@ -8,8 +8,10 @@ import alde.flash.utils.Vector;
 public class SecurityQuestionsModel {
 
 	public boolean showSecurityQuestionsOnStartup = false;
-	public Vector securityQuestionsAnswers;
+
 	private Vector securityQuestionsList;
+
+	public Vector securityQuestionsAnswers;
 
 	public SecurityQuestionsModel() {
 		super();

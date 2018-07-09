@@ -1,10 +1,15 @@
 package rotmg.objects;
 
+<<<<<<< HEAD:src/rotmg/objects/Player.java
 <<<<<<< HEAD:src/kabam/rotmg/objects/Player.java
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.Point;
+=======
+import java.util.List;
+
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/Player.java
 import kabam.rotmg.assets.services.CharacterFactory;
 import kabam.rotmg.constants.GeneralConstants;
 import kabam.rotmg.messaging.data.StatData;
@@ -20,7 +25,19 @@ import java.util.List;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/Player.java
 import org.osflash.signals.Signal;
 
-import java.util.List;
+import alde.flash.utils.Dictionary;
+import alde.flash.utils.XML;
+import flash.display.BitmapData;
+import flash.geom.Point;
+import rotmg.assets.services.CharacterFactory;
+import rotmg.constants.GeneralConstants;
+import rotmg.messaging.data.StatData;
+import rotmg.objects.animation.AnimatedChar;
+import rotmg.parameters.Parameters;
+import rotmg.particles.HealingEffect;
+import rotmg.signals.AddTextLineSignal;
+import rotmg.util.ConversionUtil;
+import rotmg.util.IntPoint;
 
 public class Player extends Character {
 

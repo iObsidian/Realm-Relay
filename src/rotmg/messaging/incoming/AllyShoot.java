@@ -11,7 +11,6 @@ public class AllyShoot extends IncomingMessage {
 	public int ownerId;
 	public short containerType;
 	public double angle;
-
 	public AllyShoot(int id, Consumer callback) {
 		super(id, callback);
 	}

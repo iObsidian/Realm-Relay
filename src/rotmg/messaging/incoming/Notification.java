@@ -10,7 +10,6 @@ public class Notification extends IncomingMessage {
 	public int objectId;
 	public String message;
 	public int color;
-
 	public Notification(int id, Consumer callback) {
 		super(id, callback);
 	}

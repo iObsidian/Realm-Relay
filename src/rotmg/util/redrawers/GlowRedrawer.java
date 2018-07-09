@@ -11,11 +11,17 @@ import flash.geom.Matrix;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.util.PointUtil;
 import kabam.rotmg.util.TextureRedrawer;
+<<<<<<< HEAD:src/rotmg/util/redrawers/GlowRedrawer.java
 =======
 import rotmg.parameters.Parameters;
 import rotmg.util.PointUtil;
 import rotmg.util.TextureRedrawer;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/util/redrawers/GlowRedrawer.java
+=======
+import rotmg.parameters.Parameters;
+import rotmg.util.PointUtil;
+import rotmg.util.TextureRedrawer;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/util/redrawers/GlowRedrawer.java
 import spark.filters.GlowFilter;
 
 public class GlowRedrawer {

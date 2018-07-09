@@ -2,7 +2,7 @@ package rotmg.objects;
 
 import flash.display.BitmapData;
 import flash.geom.ColorTransform;
-import kabam.rotmg.stage3d.GraphicsFillExtra;
+import rotmg.stage3d.GraphicsFillExtra;
 
 public class FlashDescription {
 

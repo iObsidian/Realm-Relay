@@ -28,7 +28,6 @@ public class EffectProperties {
 	public int amount;
 	public String bitmapFile;
 	public int bitmapIndex;
-
 	public EffectProperties(XML xml) {
 		this.id = xml.toString();
 		this.particle = xml.getAttribute("particle");

@@ -3,7 +3,7 @@ package rotmg.objects;
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
-import kabam.rotmg.util.ConditionEffect;
+import rotmg.util.ConditionEffect;
 
 /**
  * This is a VERY close match to the client.

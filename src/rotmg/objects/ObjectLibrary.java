@@ -1,5 +1,10 @@
 package rotmg.objects;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 <<<<<<< HEAD:src/kabam/rotmg/objects/ObjectLibrary.java
@@ -10,20 +15,23 @@ import kabam.rotmg.objects.animation.AnimationsData;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.util.TextureRedrawer;
 import kabam.rotmg.util.redrawers.GlowRedrawer;
+<<<<<<< HEAD:src/rotmg/objects/ObjectLibrary.java
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/ObjectLibrary.java
 import rotmg.constants.GeneralConstants;
 import rotmg.constants.ItemConstants;
 import rotmg.messaging.data.StatData;
 import rotmg.objects.animation.AnimationsData;
 import rotmg.parameters.Parameters;
+<<<<<<< HEAD:src/rotmg/objects/ObjectLibrary.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/ObjectLibrary.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/ObjectLibrary.java
 import rotmg.util.AssetLibrary;
 import rotmg.util.ConversionUtil;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import rotmg.util.TextureRedrawer;
+import rotmg.util.redrawers.GlowRedrawer;
 
 /**
  * This is 80% complete

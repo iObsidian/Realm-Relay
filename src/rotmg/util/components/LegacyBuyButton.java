@@ -14,7 +14,10 @@ import kabam.rotmg.ui.view.SignalWaiter;
 import kabam.rotmg.util.Currency;
 import kabam.rotmg.util.MoreColorUtil;
 import kabam.rotmg.util.components.api.BuyButton;
+<<<<<<< HEAD:src/rotmg/util/components/LegacyBuyButton.java
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/util/components/LegacyBuyButton.java
 import rotmg.assets.services.IconFactory;
 import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.text.view.stringBuilder.StaticStringBuilder;
@@ -23,33 +26,56 @@ import rotmg.ui.view.SignalWaiter;
 import rotmg.util.Currency;
 import rotmg.util.MoreColorUtil;
 import rotmg.util.components.api.BuyButton;
+<<<<<<< HEAD:src/rotmg/util/components/LegacyBuyButton.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/util/components/LegacyBuyButton.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/util/components/LegacyBuyButton.java
 
 /**
  * Not fully implemented
  */
 public class LegacyBuyButton extends BuyButton {
 
-	public static final BitmapData coin = IconFactory.makeCoin();
-	public static final BitmapData fortune = IconFactory.makeFortune();
-	public static final BitmapData fame = IconFactory.makeFame();
-	public static final BitmapData guildFame = IconFactory.makeGuildFame();
 	private static final int BEVEL = 4;
+
 	private static final int PADDING = 2;
+
+	public static final BitmapData coin = IconFactory.makeCoin();
+
+	public static final BitmapData fortune = IconFactory.makeFortune();
+
+	public static final BitmapData fame = IconFactory.makeFame();
+
+	public static final BitmapData guildFame = IconFactory.makeGuildFame();
+
 	private static final ColorMatrixFilter grayfilter = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
-	private final GraphicsSolidFill enabledFill = new GraphicsSolidFill(16777215, 1);
-	private final GraphicsSolidFill disabledFill = new GraphicsSolidFill(8355711, 1);
-	private final GraphicsPath graphicsPath = new GraphicsPath(new Vector<Integer>(), new Vector<Double>());
-	private final SignalWaiter waiter = new SignalWaiter();
+
+
 	public String prefix;
+
 	public TextFieldDisplayConcrete text;
-	public Bitmap icon;
-	public int price = -1;
-	public int currency = -1;
-	public int _width = -1;
+
 	private StaticStringBuilder staticStringBuilder;
+
 	private LineBuilder lineBuilder;
+
+	public Bitmap icon;
+
+	public int price = -1;
+
+	public int currency = -1;
+
+	public int _width = -1;
+
+	private final GraphicsSolidFill enabledFill = new GraphicsSolidFill(16777215, 1);
+
+	private final GraphicsSolidFill disabledFill = new GraphicsSolidFill(8355711, 1);
+
+	private final GraphicsPath graphicsPath = new GraphicsPath(new Vector<Integer>(), new Vector<Double>());
+
 	private Vector<IGraphicsData> graphicsData;
+	private final SignalWaiter waiter = new SignalWaiter();
+
 	private boolean withOutLine = false;
 
 	private int outLineColor = 5526612;
@@ -90,6 +116,11 @@ public class LegacyBuyButton extends BuyButton {
 
 	public void setEnabled(boolean param1) {
 
+	}
+
+	public void setWidth(int param1) {
+		this._width = param1;
+		this.updateUI();
 	}
 
 	private void updateUI() {
@@ -153,11 +184,6 @@ public class LegacyBuyButton extends BuyButton {
 
 	private int getWidth() {
 		return this._width;
-	}
-
-	public void setWidth(int param1) {
-		this._width = param1;
-		this.updateUI();
 	}
 
 	private int getHeight() {

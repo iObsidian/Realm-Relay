@@ -1,9 +1,9 @@
 package rotmg.util;
 
-import flash.display.BitmapData;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import flash.display.BitmapData;
 
 /**
  * This is a 100% match

@@ -10,7 +10,6 @@ public class ClaimDailyRewardResponse extends IncomingMessage {
 	public int itemId;
 	public int quantity;
 	public int gold;
-
 	public ClaimDailyRewardResponse(int id, Consumer callback) {
 		super(id, callback);
 	}

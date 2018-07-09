@@ -9,7 +9,6 @@ public class PlaySound extends IncomingMessage {
 
 	public int ownerId;
 	public int soundId;
-
 	public PlaySound(int id, Consumer callback) {
 		super(id, callback);
 	}

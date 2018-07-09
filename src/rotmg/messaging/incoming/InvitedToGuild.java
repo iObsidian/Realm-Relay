@@ -9,7 +9,6 @@ public class InvitedToGuild extends IncomingMessage {
 
 	public String name;
 	public String guildName;
-
 	public InvitedToGuild(int id, Consumer callback) {
 		super(id, callback);
 	}

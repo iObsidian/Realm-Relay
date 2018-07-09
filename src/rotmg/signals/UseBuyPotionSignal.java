@@ -2,6 +2,8 @@ package rotmg.signals;
 
 import org.osflash.signals.Signal;
 
+import rotmg.model.UseBuyPotionVO;
+
 public class UseBuyPotionSignal extends Signal<UseBuyPotionVO> {
 
 	private static UseBuyPotionSignal instance;

@@ -4,9 +4,13 @@ import alde.flash.utils.Vector;
 import flash.geom.Vector3D;
 <<<<<<< HEAD:src/kabam/rotmg/objects/particles/ExplosionEffect.java
 import kabam.rotmg.particles.ParticleEffect;
+<<<<<<< HEAD:src/rotmg/objects/particles/ExplosionEffect.java
 =======
 import rotmg.particles.ParticleEffect;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/particles/ExplosionEffect.java
+=======
+import rotmg.particles.ParticleEffect;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/particles/ExplosionEffect.java
 
 public class ExplosionEffect extends ParticleEffect {
 

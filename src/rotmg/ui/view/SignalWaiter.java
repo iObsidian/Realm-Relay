@@ -1,11 +1,13 @@
 package rotmg.ui.view;
 
-import alde.flash.utils.Dictionary;
+import java.util.function.Consumer;
+
 import alde.flash.utils.SignalConsumer;
-import com.adobe.utils.DictionaryUtil;
 import org.osflash.signals.Signal;
 
-import java.util.function.Consumer;
+import com.adobe.utils.DictionaryUtil;
+
+import alde.flash.utils.Dictionary;
 
 /**
  * 99% match (confirm 'listenTo' is working)

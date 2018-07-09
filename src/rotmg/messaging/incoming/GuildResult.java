@@ -9,7 +9,6 @@ public class GuildResult extends IncomingMessage {
 
 	public boolean success;
 	public String lineBuilderJSON;
-
 	public GuildResult(int id, Consumer callback) {
 		super(id, callback);
 	}

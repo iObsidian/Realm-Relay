@@ -1,42 +1,47 @@
 package rotmg.objects;
 
+import static flash.utils.getTimer.getTimer;
+
 import alde.flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.GradientType;
+import flash.display.GraphicsBitmapFill;
+import flash.display.GraphicsGradientFill;
+import flash.display.GraphicsPath;
+import flash.display.GraphicsSolidFill;
+import flash.display.IGraphicsData;
 import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
+<<<<<<< HEAD:src/rotmg/objects/GameObject.java
 <<<<<<< HEAD:src/kabam/rotmg/objects/GameObject.java
 import kabam.rotmg.engine3d.Model3D;
 import kabam.rotmg.engine3d.Object3D;
 import kabam.rotmg.map.Camera;
 import kabam.rotmg.map.Map;
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/GameObject.java
 import kabam.rotmg.map.mapoverlay.CharacterStatusText;
 import kabam.rotmg.messaging.data.WorldPosData;
 import kabam.rotmg.objects.animation.AnimatedChar;
 import kabam.rotmg.objects.animation.Animations;
 import kabam.rotmg.objects.animation.AnimationsData;
-import kabam.rotmg.objects.particles.ExplosionEffect;
-import kabam.rotmg.objects.particles.HitEffect;
-import kabam.rotmg.objects.particles.ShockerEffect;
 import kabam.rotmg.parameters.Parameters;
 import kabam.rotmg.particles.ParticleEffect;
-import kabam.rotmg.pets.data.PetVO;
-import kabam.rotmg.pets.data.PetsModel;
-import kabam.rotmg.sound.SoundEffectLibrary;
-import kabam.rotmg.stage3d.GraphicsFillExtra;
-import kabam.rotmg.stage3d.graphic3D.Object3DStage3D;
-import kabam.rotmg.text.view.BitmapTextFactory;
-import kabam.rotmg.text.view.stringBuilder.LineBuilder;
 import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
+<<<<<<< HEAD:src/rotmg/objects/GameObject.java
 import kabam.rotmg.util.*;
 import kabam.rotmg.util.redrawers.GlowRedrawer;
 
 import static flash.utils.getTimer.getTimer;
 =======
+=======
+import kabam.rotmg.util.TextureRedrawer;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/GameObject.java
 import rotmg.engine3d.Model3D;
 import rotmg.engine3d.Object3D;
 import rotmg.map.Camera;
@@ -72,7 +77,10 @@ import rotmg.util.MoreColorUtil;
 import rotmg.util.TextKey;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
+<<<<<<< HEAD:src/rotmg/objects/GameObject.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/objects/GameObject.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/objects/GameObject.java
 
 public class GameObject extends BasicObject {
 

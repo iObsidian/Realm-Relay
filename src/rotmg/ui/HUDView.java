@@ -9,13 +9,15 @@ import flash.events.Event;
 import flash.geom.Point;
 <<<<<<< HEAD:src/kabam/rotmg/ui/HUDView.java
 import kabam.rotmg.AGameSprite;
-import kabam.rotmg.GameSprite;
 import kabam.rotmg.messaging.incoming.TradeAccepted;
 import kabam.rotmg.messaging.incoming.TradeChanged;
 import kabam.rotmg.messaging.incoming.TradeStart;
 import kabam.rotmg.ui.view.UnFocusAble;
+<<<<<<< HEAD:src/rotmg/ui/HUDView.java
 import kabam.rotmg.util.GraphicsUtil;
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/HUDView.java
 import rotmg.AGameSprite;
 import rotmg.GameSprite;
 import rotmg.messaging.incoming.TradeAccepted;
@@ -23,7 +25,10 @@ import rotmg.messaging.incoming.TradeChanged;
 import rotmg.messaging.incoming.TradeStart;
 import rotmg.ui.view.UnFocusAble;
 import rotmg.util.GraphicsUtil;
+<<<<<<< HEAD:src/rotmg/ui/HUDView.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/ui/HUDView.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/HUDView.java
 
 
 public class HUDView extends Sprite implements UnFocusAble {

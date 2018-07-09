@@ -1,5 +1,7 @@
 package flash.net;
 
+import rotmg.parameters.Parameters;
+
 public class SharedObject {
 	public Parameters.Data data;
 

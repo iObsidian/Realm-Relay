@@ -1,5 +1,6 @@
 package rotmg.net.impl;
 
+<<<<<<< HEAD:src/rotmg/net/impl/MessageCenter.java
 import alde.flash.utils.MessageConsumer;
 <<<<<<< HEAD:src/kabam/rotmg/net/impl/MessageCenter.java
 import kabam.rotmg.net.api.MessageMap;
@@ -13,6 +14,17 @@ import rotmg.net.api.MessageMap;
 import rotmg.net.api.MessageMapping;
 import rotmg.net.api.MessageProvider;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/net/impl/MessageCenter.java
+=======
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.function.Consumer;
+
+import alde.flash.utils.MessageConsumer;
+import kabam.rotmg.net.api.MessageMapping;
+import rotmg.net.api.MessageMap;
+import rotmg.net.api.MessageMapping;
+import rotmg.net.api.MessageProvider;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/net/impl/MessageCenter.java
 
 public class MessageCenter implements MessageMap, MessageProvider {
 

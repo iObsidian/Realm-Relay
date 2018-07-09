@@ -9,12 +9,18 @@ import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
 import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import kabam.rotmg.util.GuildUtil;
 import kabam.rotmg.util.SpriteUtil;
+<<<<<<< HEAD:src/rotmg/ui/GuildText.java
 =======
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/GuildText.java
 import rotmg.text.view.stringBuilder.StaticStringBuilder;
 import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import rotmg.util.GuildUtil;
 import rotmg.util.SpriteUtil;
+<<<<<<< HEAD:src/rotmg/ui/GuildText.java
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/ui/GuildText.java
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/ui/GuildText.java
 import spark.filters.DropShadowFilter;
 
 public class GuildText extends Sprite {

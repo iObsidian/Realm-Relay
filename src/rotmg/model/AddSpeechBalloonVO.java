@@ -2,9 +2,13 @@ package rotmg.model;
 
 <<<<<<< HEAD:src/kabam/rotmg/model/AddSpeechBalloonVO.java
 import kabam.rotmg.objects.GameObject;
+<<<<<<< HEAD:src/rotmg/model/AddSpeechBalloonVO.java
 =======
 import rotmg.objects.GameObject;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/model/AddSpeechBalloonVO.java
+=======
+import rotmg.objects.GameObject;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/model/AddSpeechBalloonVO.java
 
 public class AddSpeechBalloonVO {
 

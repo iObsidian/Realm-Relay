@@ -7,6 +7,8 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import rotmg.map.GroundLibrary;
 import rotmg.map.Map;
+import rotmg.objects.Square;
+import rotmg.parameters.Parameters;
 
 public class TileRedrawer {
 

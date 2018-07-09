@@ -1,16 +1,24 @@
 package rotmg.util;
 
+<<<<<<< HEAD:src/rotmg/util/AnimatedChars.java
 import alde.flash.utils.StaticAssetLoaderUtility;
 import flash.display.BitmapData;
 <<<<<<< HEAD:src/kabam/rotmg/util/AnimatedChars.java
 import kabam.rotmg.objects.animation.AnimatedChar;
 
+=======
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/util/AnimatedChars.java
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 =======
 import rotmg.objects.animation.AnimatedChar;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/util/AnimatedChars.java
+
+import alde.flash.utils.StaticAssetLoaderUtility;
+import flash.display.BitmapData;
+import kabam.rotmg.objects.animation.AnimatedChar;
+import rotmg.objects.animation.AnimatedChar;
 
 public class AnimatedChars {
 

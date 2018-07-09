@@ -1,11 +1,12 @@
 package rotmg.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import alde.flash.utils.Vector;
 import flash.display.Sprite;
 import rotmg.GameSprite;
-
-import java.util.ArrayList;
-import java.util.List;
+import rotmg.util.TextKey;
 
 public class Options extends Sprite {
 

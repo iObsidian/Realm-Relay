@@ -1,17 +1,17 @@
 package com.company.assembleegameclient.account.ui;
 
-
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
+import com.company.ui.BaseSimpleText;
 import flash.display.CapsStyle;
 import flash.display.JointStyle;
 import flash.display.LineScaleMode;
 import flash.display.Sprite;
 import flash.events.Event;
-import kabam.rotmg.text.view.stringBuilder.LineBuilder;
-import kabam.rotmg.text.view.stringBuilder.StaticStringBuilder;
-import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
+import rotmg.text.view.stringBuilder.LineBuilder;
+import rotmg.text.view.stringBuilder.StaticStringBuilder;
+import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import spark.filters.DropShadowFilter;
 
 public class TextInputField extends Sprite {

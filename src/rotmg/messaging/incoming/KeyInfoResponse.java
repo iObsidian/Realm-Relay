@@ -10,7 +10,6 @@ public class KeyInfoResponse extends IncomingMessage {
 	public String name;
 	public String description;
 	public String creator;
-
 	public KeyInfoResponse(int id, Consumer callback) {
 		super(id, callback);
 	}

@@ -1,10 +1,5 @@
 package view;
 
-import java.awt.Panel;
-import java.util.Currency;
-
-import org.osflash.signals.Signal;
-
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
 import flash.display.Sprite;
@@ -12,13 +7,18 @@ import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.text.TextFormatAlign;
-import javafx.scene.shape.LineBuilder;
-import kabam.rotmg.GameSprite;
-import kabam.rotmg.objects.Player;
-import kabam.rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
-import kabam.rotmg.ui.RankText;
-import kabam.rotmg.util.TextKey;
-import kabam.rotmg.util.components.LegacyBuyButton;
+import org.osflash.signals.Signal;
+import rotmg.GameSprite;
+import rotmg.objects.Player;
+import rotmg.parameters.Parameters;
+import rotmg.text.view.stringBuilder.LineBuilder;
+import rotmg.text.view.stringBuilder.StringBuilder;
+import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
+import rotmg.ui.RankText;
+import rotmg.ui.panels.Panel;
+import rotmg.util.Currency;
+import rotmg.util.TextKey;
+import rotmg.util.components.LegacyBuyButton;
 import spark.filters.DropShadowFilter;
 
 /**
@@ -95,8 +95,8 @@ public class NameChangerPanel extends Panel {
 		this.title.y = 6;
 		addChild(this.title);
 		/**DeprecatedTextButton loc1 = new DeprecatedTextButton(16, TextKey.NAME_CHANGER_CHOOSE);
-		 loc1.textChanged.addOnce(this.positionTextButton);
-		 this.button = loc1;*/
+		loc1.textChanged.addOnce(this.positionTextButton);
+		this.button = loc1;*/
 		addChild(this.button);
 		this.addListeners();
 	}

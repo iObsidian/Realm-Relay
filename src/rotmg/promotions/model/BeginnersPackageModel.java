@@ -1,28 +1,16 @@
 package rotmg.promotions.model;
 
-import flash.utils.Date;
-import kabam.rotmg.account.core.Account;
-import kabam.rotmg.account.core.model.OfferModel;
-import kabam.rotmg.util.Offer;
-import kabam.rotmg.util.TimeUtil;
 import org.osflash.signals.Signal;
 
+import flash.utils.Date;
+import rotmg.account.core.Account;
+import rotmg.account.core.model.OfferModel;
+import rotmg.util.Offer;
+import rotmg.util.TimeUtil;
 
 public class BeginnersPackageModel {
 
-	private static final int REALM_GOLD_FOR_BEGINNERS_PKG = 2600;
-	private static final int ONE_WEEK_IN_SECONDS = 604800;
 	private static BeginnersPackageModel instance;
-	public Account account;
-	public OfferModel model;
-	public Signal markedAsPurchased;
-	private double beginnersOfferSecondsLeft;
-	private double beginnersOfferSetTimestamp;
-
-	public BeginnersPackageModel() {
-		super();
-		this.markedAsPurchased = new Signal();
-	}
 
 	public static BeginnersPackageModel getInstance() {
 		if (instance == null) {
@@ -31,8 +19,32 @@ public class BeginnersPackageModel {
 		return instance;
 	}
 
+	private static final int REALM_GOLD_FOR_BEGINNERS_PKG = 2600;
+
+	private static final int ONE_WEEK_IN_SECONDS = 604800;
+
+	public Account account;
+
+	public OfferModel model;
+
+	public Signal markedAsPurchased;
+
+	private double beginnersOfferSecondsLeft;
+
+	private double beginnersOfferSetTimestamp;
+
+	public BeginnersPackageModel() {
+		super();
+		this.markedAsPurchased = new Signal();
+	}
+
 	public boolean isBeginnerAvailable() {
 		return this.getBeginnersOfferSecondsLeft() > 0;
+	}
+
+	public void setBeginnersOfferSecondsLeft(double param1) {
+		this.beginnersOfferSecondsLeft = param1;
+		this.beginnersOfferSetTimestamp = this.getNowTimeSeconds();
 	}
 
 	private double getNowTimeSeconds() {
@@ -42,11 +54,6 @@ public class BeginnersPackageModel {
 
 	public double getBeginnersOfferSecondsLeft() {
 		return this.beginnersOfferSecondsLeft - (this.getNowTimeSeconds() - this.beginnersOfferSetTimestamp);
-	}
-
-	public void setBeginnersOfferSecondsLeft(double param1) {
-		this.beginnersOfferSecondsLeft = param1;
-		this.beginnersOfferSetTimestamp = this.getNowTimeSeconds();
 	}
 
 	public double getUserCreatedAt() {

@@ -10,9 +10,13 @@ import flash.display3D.VertexBuffer3D;
 import flash.geom.ColorTransform;
 <<<<<<< HEAD:src/kabam/rotmg/stage3d/GraphicsFillExtra.java
 import kabam.rotmg.parameters.Parameters;
+<<<<<<< HEAD:src/rotmg/stage3d/GraphicsFillExtra.java
 =======
 import rotmg.parameters.Parameters;
 >>>>>>> parent of 5927bf7... Migrated to kabam.rotmg:src/rotmg/stage3d/GraphicsFillExtra.java
+=======
+import rotmg.parameters.Parameters;
+>>>>>>> parent of 5791e6e... Commit before reverting refactoring:src/kabam/rotmg/stage3d/GraphicsFillExtra.java
 
 public class GraphicsFillExtra {
 

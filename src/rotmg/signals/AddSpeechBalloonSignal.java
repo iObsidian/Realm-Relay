@@ -1,8 +1,8 @@
 package rotmg.signals;
 
-
-import kabam.rotmg.model.AddSpeechBalloonVO;
 import org.osflash.signals.Signal;
+
+import rotmg.model.AddSpeechBalloonVO;
 
 public class AddSpeechBalloonSignal extends Signal<AddSpeechBalloonVO> {
 

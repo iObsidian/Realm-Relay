@@ -1,11 +1,11 @@
 package rotmg.messaging.incoming;
 
-import rotmg.messaging.data.WorldPosData;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.function.Consumer;
+
+import rotmg.messaging.data.WorldPosData;
 
 public class ShowEffect extends IncomingMessage {
 
@@ -36,7 +36,6 @@ public class ShowEffect extends IncomingMessage {
 	public WorldPosData pos2;
 	public int color;
 	public double duration;
-
 	public ShowEffect(int id, Consumer callback) {
 		super(id, callback);
 

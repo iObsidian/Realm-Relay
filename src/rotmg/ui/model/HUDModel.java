@@ -1,6 +1,7 @@
 package rotmg.ui.model;
 
 import rotmg.GameSprite;
+import rotmg.parameters.Parameters;
 
 /**
  * 100% match

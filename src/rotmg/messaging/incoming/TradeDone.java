@@ -11,7 +11,6 @@ public class TradeDone extends IncomingMessage {
 	public static final int PLAYER_CANCELED = 1;
 	public int code;
 	public String description;
-
 	public TradeDone(int id, Consumer callback) {
 		super(id, callback);
 	}

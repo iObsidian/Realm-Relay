@@ -14,7 +14,6 @@ public class Failure extends IncomingMessage {
 	public static final int TELEPORT_REALM_BLOCK = 9;
 	public int errorId;
 	public String errorDescription;
-
 	public Failure(int id, Consumer callback) {
 		super(id, callback);
 	}
