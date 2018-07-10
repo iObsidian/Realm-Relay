@@ -15,7 +15,7 @@ import rotmg.util.MoreDateUtil;
  */
 public class Parameters {
 
-	public static final String BUILD_VERSION = "X25.1";
+	public static final String BUILD_VERSION = "X27.0";
 	public static final String MINOR_VERSION = "1";
 	public static final boolean ENABLE_ENCRYPTION = true;
 	public static int PORT = 2050;
