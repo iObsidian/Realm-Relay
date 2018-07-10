@@ -1,18 +1,18 @@
 package rotmg.dailyQuests;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.dailyQuests.messages.data.QuestData;
+import rotmg.messaging.incoming.IncomingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.dailyQuests.messages.data.QuestData;
-import rotmg.messaging.incoming.IncomingMessage;
 
 public class QuestFetchResponse extends IncomingMessage {
 
 	public QuestData[] quests;
 
-	public QuestFetchResponse(int param1, Consumer param2) {
+	public QuestFetchResponse(int param1, MessageConsumer param2) {
 		super(param1, param2);
 		this.quests = new QuestData[0];
 	}

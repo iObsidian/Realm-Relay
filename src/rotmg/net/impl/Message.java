@@ -1,14 +1,9 @@
 package rotmg.net.impl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.function.Consumer;
-
 import alde.flash.utils.IData;
 import alde.flash.utils.MessageConsumer;
+
+import java.io.*;
 
 public class Message implements IData {
 
@@ -19,10 +14,10 @@ public class Message implements IData {
 	public MessageConsumer callback;
 	private boolean isCallback;
 
-	public Message(int param1, Consumer param2) {
+	public Message(int param1, MessageConsumer param2) {
 		this.id = param1;
 		this.isCallback = param2 != null;
-		this.callback = new MessageConsumer<>(param2);
+		this.callback = param2;
 	}
 
 	public void consume() {

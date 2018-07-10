@@ -13,18 +13,14 @@ import java.util.function.BiFunction;
 public class Vector<T> implements Iterable<T> {
 
 	public int length;
-	private LinkedHashMap<Integer, T> map;
+	private LinkedHashMap<Integer, T> map = new LinkedHashMap<>();
 
 	public Vector() {
 		this(0);
 	}
 
 	public Vector(int initialCapacity) {
-		map = new LinkedHashMap<>();
-
-		for (int i = 0; i < initialCapacity; i++) {
-			push(null);
-		}
+		map = new LinkedHashMap<>(initialCapacity);
 	}
 
 	public Vector(T... addAll) {
@@ -36,6 +32,11 @@ public class Vector<T> implements Iterable<T> {
 			push(t);
 		}
 	}
+
+	private void updateLength() {
+		this.length = map.size();
+	}
+
 
 	/**
 	 * Used remove instead
@@ -64,7 +65,8 @@ public class Vector<T> implements Iterable<T> {
 	}
 
 	public void push(T t) {
-		put(map.size() + 1, t);
+		int newSize = map.size() == 0 ? 0 : map.size() + 1;
+		put(newSize, t);
 	}
 
 	public void set(int index, T t) {
@@ -73,7 +75,7 @@ public class Vector<T> implements Iterable<T> {
 
 	public T put(int index, T t) {
 		map.put(index, t);
-		length = map.size();
+		updateLength();
 
 		return t;
 	}
@@ -87,6 +89,7 @@ public class Vector<T> implements Iterable<T> {
 		if (length > 0) {
 			length--;
 		}
+		updateLength();
 		return map.remove(map.size());
 	}
 
@@ -116,6 +119,9 @@ public class Vector<T> implements Iterable<T> {
 				data.add(t);
 			}
 		}
+
+		updateLength();
+
 		return new Vector<T>(data);
 	}
 
@@ -139,6 +145,11 @@ public class Vector<T> implements Iterable<T> {
 
 	@Deprecated
 	public int indexOf(T loc2) {
+		for (int i : map.keySet()) {
+			if (map.get(i).equals(loc2)) {
+				return i;
+			}
+		}
 		return -1;
 	}
 

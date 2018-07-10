@@ -1,15 +1,17 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class TradeAccepted extends IncomingMessage {
 
 	private boolean[] myOffer = new boolean[0];
 	private boolean[] yourOffer = new boolean[0];
-	public TradeAccepted(int id, Consumer callback) {
+
+	public TradeAccepted(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

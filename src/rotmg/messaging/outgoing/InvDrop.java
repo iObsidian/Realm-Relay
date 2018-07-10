@@ -1,17 +1,17 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.SlotObjectData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.SlotObjectData;
 
 public class InvDrop extends OutgoingMessage {
 
 	public SlotObjectData slotObject;
 
-	public InvDrop(int id, Consumer callback) {
+	public InvDrop(int id, MessageConsumer callback) {
 		super(id, callback);
 		slotObject = new SlotObjectData();
 	}

@@ -1,9 +1,10 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 
 public class Buy extends OutgoingMessage {
@@ -11,7 +12,7 @@ public class Buy extends OutgoingMessage {
 	public int objectId;
 	public int quantity;
 
-	public Buy(int id, Consumer callback) {
+	public Buy(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

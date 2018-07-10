@@ -1,16 +1,17 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class ActivePetUpdateRequest extends OutgoingMessage {
 
 	private int commandtype;
 	private int instanceid;
 
-	public ActivePetUpdateRequest(int id, Consumer callback) {
+	public ActivePetUpdateRequest(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

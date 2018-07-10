@@ -1,10 +1,5 @@
 package rotmg.objects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.constants.GeneralConstants;
@@ -16,6 +11,11 @@ import rotmg.util.AssetLibrary;
 import rotmg.util.ConversionUtil;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This is 80% complete
@@ -136,13 +136,13 @@ public class ObjectLibrary {
 				}
 			}
 
-			if (objectXML.hasOwnProperty("Animation")) {
-				typeToAnimationsData.put(objectType, new AnimationsData(objectXML));
-			}
-
 			typeToTextureData.put(objectType, textureDataFactory.create(objectXML));
 			if (objectXML.hasOwnProperty("Top")) {
 				typeToTopTextureData.put(objectType, textureDataFactory.create(objectXML.child("Top")));
+			}
+
+			if (objectXML.hasOwnProperty("Animation")) {
+				typeToAnimationsData.put(objectType, new AnimationsData(objectXML));
 			}
 
 		}

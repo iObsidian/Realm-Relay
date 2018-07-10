@@ -1,17 +1,17 @@
 package rotmg.messaging.incoming.arena;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.outgoing.OutgoingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.outgoing.OutgoingMessage;
 
 public class ImminentArenaWave extends OutgoingMessage {
 
 	private int currentRuntime;
 
-	public ImminentArenaWave(int id, Consumer callback) {
+	public ImminentArenaWave(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

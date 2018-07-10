@@ -1,9 +1,10 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class SquareHit extends OutgoingMessage {
 
@@ -11,7 +12,7 @@ public class SquareHit extends OutgoingMessage {
 	public int bulletId;
 	public int objectId;
 
-	public SquareHit(int id, Consumer callback) {
+	public SquareHit(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

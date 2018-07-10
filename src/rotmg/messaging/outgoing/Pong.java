@@ -1,16 +1,17 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Pong extends OutgoingMessage {
 
 	public int serial;
 	public int time;
 
-	public Pong(int id, Consumer callback) {
+	public Pong(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

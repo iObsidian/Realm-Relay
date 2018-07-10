@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Failure extends IncomingMessage {
 
@@ -14,7 +15,8 @@ public class Failure extends IncomingMessage {
 	public static final int TELEPORT_REALM_BLOCK = 9;
 	public int errorId;
 	public String errorDescription;
-	public Failure(int id, Consumer callback) {
+
+	public Failure(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

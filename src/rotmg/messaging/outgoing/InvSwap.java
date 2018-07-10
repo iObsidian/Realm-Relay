@@ -1,12 +1,12 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.SlotObjectData;
+import rotmg.messaging.data.WorldPosData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.SlotObjectData;
-import rotmg.messaging.data.WorldPosData;
 
 public class InvSwap extends OutgoingMessage {
 
@@ -15,7 +15,7 @@ public class InvSwap extends OutgoingMessage {
 	public SlotObjectData slotObject1;
 	public SlotObjectData slotObject2;
 
-	public InvSwap(int id, Consumer callback) {
+	public InvSwap(int id, MessageConsumer callback) {
 		super(id, callback);
 		position = new WorldPosData();
 		slotObject1 = new SlotObjectData();

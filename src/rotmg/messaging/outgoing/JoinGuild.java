@@ -1,15 +1,16 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class JoinGuild extends OutgoingMessage {
 
 	public String guildName;
 
-	public JoinGuild(int id, Consumer callback) {
+	public JoinGuild(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

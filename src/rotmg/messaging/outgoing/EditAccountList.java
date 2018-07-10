@@ -1,9 +1,10 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class EditAccountList extends OutgoingMessage {
 
@@ -11,7 +12,7 @@ public class EditAccountList extends OutgoingMessage {
 	public boolean add;
 	public int objectId;
 
-	public EditAccountList(int id, Consumer callback) {
+	public EditAccountList(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

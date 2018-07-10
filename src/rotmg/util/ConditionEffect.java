@@ -8,6 +8,8 @@ import flash.geom.Matrix;
 import rotmg.util.redrawers.GlowRedrawer;
 import spark.filters.GlowFilter;
 
+import java.util.Arrays;
+
 /**
  * This is a very close match to the original source code.
  * <p>
@@ -119,7 +121,7 @@ public class ConditionEffect {
 	public static final int CE_SECOND_BATCH = 1;
 	public static final int NUMBER_CE_BATCHES = 2;
 	private static final GlowFilter GLOW_FILTER = new GlowFilter(0, 0.3, 6, 6, 2, BitmapFilterQuality.LOW, false, false);
-	public static Vector<ConditionEffect> effects = new Vector<ConditionEffect>(
+	public static Vector<ConditionEffect> effects = new Vector<>(
 			new ConditionEffect("Nothing", 0, null, TextKey.CONDITIONEFFECT_NOTHING),
 			new ConditionEffect("Dead", DEAD_BIT, null, TextKey.CONDITIONEFFECT_DEAD),
 			new ConditionEffect("Quiet", QUIET_BIT, new int[]{32}, TextKey.CONDITIONEFFECT_QUIET),
@@ -174,7 +176,6 @@ public class ConditionEffect {
 	private static Vector<Vector<BitmapData>> bitToIcon = null;
 	private static Vector<Vector<BitmapData>> bitToIcon2 = null;
 
-
 	public String name;
 
 	public int bit;
@@ -190,11 +191,10 @@ public class ConditionEffect {
 		this(param1, param2, param3, param4, false);
 	}
 
-	public ConditionEffect(String param1, int param2, int[] param3, String param4, boolean param5) {
-		super();
-		this.name = param1;
-		this.bit = param2;
-		this.iconOffsets = param3;
+	public ConditionEffect(String name, int bit, int[] iconOffsets, String param4, boolean param5) {
+		this.name = name;
+		this.bit = bit;
+		this.iconOffsets = iconOffsets;
 		this.localizationKey = param4;
 		this.icon16Bit = param5;
 	}
@@ -203,14 +203,32 @@ public class ConditionEffect {
 
 		if (conditionEffectFromName == null) {
 			conditionEffectFromName = new Dictionary<>();
-			int _loc2 = 0;
-			while (_loc2 < effects.length) {
-				conditionEffectFromName.put(effects.get(_loc2).name, _loc2);
-				_loc2++;
+
+			for (ConditionEffect effect : effects) {
+				System.out.println(effect);
+				System.out.println(effect.name);
+
+				conditionEffectFromName.put(effect.name, effects.indexOf(effect));
 			}
 		}
 
+		if (conditionEffectFromName.get(param1) == null) {
+			System.err.println("DEBUG : ERROR WITH "+param1+" EFFECT DOES NOT EXIST.");
+		}
+
 		return conditionEffectFromName.get(param1);
+	}
+
+
+	@Override
+	public String toString() {
+		return "ConditionEffect{" +
+				"name='" + name + '\'' +
+				", bit=" + bit +
+				", iconOffsets=" + Arrays.toString(iconOffsets) +
+				", localizationKey='" + localizationKey + '\'' +
+				", icon16Bit=" + icon16Bit +
+				'}';
 	}
 
 	public static ConditionEffect getConditionEffectEnumFromName(String param1) {

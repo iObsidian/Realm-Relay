@@ -1,13 +1,12 @@
 package rotmg.net.impl;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.function.Consumer;
-
 import alde.flash.utils.MessageConsumer;
 import rotmg.net.api.MessageMap;
 import rotmg.net.api.MessageMapping;
 import rotmg.net.api.MessageProvider;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 
 public class MessageCenter implements MessageMap, MessageProvider {
 
@@ -42,9 +41,9 @@ public class MessageCenter implements MessageMap, MessageProvider {
 	}
 
 	@Override
-	public Message require(int param1) {
+	public Message require(int id) {
 
-		MessageCenterMapping m = maps.get(param1);
+		MessageCenterMapping m = maps.get(id);
 
 		if (m != null) {
 			Class classToLoad = m.messageType;
@@ -54,7 +53,7 @@ public class MessageCenter implements MessageMap, MessageProvider {
 			cArg[1] = MessageConsumer.class; //Second argument is of *object* type String
 
 			try {
-				return (Message) classToLoad.getDeclaredConstructor(cArg).newInstance(param1, m);
+				return (Message) classToLoad.getDeclaredConstructor(cArg).newInstance(id, m.messageConsumer);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				e.printStackTrace();

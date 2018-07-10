@@ -27,12 +27,13 @@ public class PlayerModel {
 	public int currentCharId;
 	public Account account;
 	private boolean isAgeVerified;
-	private static PlayerModel instance;
 
 	public PlayerModel() {
 		super();
 		this.isInvalidated = true;
 	}
+
+	private static PlayerModel instance;
 
 	public static PlayerModel getInstance() {
 		if (instance == null) {

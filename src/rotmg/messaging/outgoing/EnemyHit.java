@@ -1,9 +1,10 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class EnemyHit extends OutgoingMessage {
 
@@ -12,7 +13,7 @@ public class EnemyHit extends OutgoingMessage {
 	public int targetId;
 	public boolean kill;
 
-	public EnemyHit(int id, Consumer callback) {
+	public EnemyHit(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

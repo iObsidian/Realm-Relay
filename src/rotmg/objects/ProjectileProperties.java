@@ -73,16 +73,16 @@ public class ProjectileProperties {
 			this.minDamage = param1.getIntValue("MinDamage");
 			this.maxDamage = param1.getIntValue("MaxDamage");
 		}
-		for (XML _loc2_ : param1.childs("ConditionEffect")) {
+		for (XML xml : param1.childs("ConditionEffect")) {
 			if (this.effects == null) {
 				this.effects = new Vector<>();
 			}
-			this.effects.add(ConditionEffect.getConditionEffectFromName(_loc2_.getTextValue()));
-			if (_loc2_.getAttribute("target").equals("1")) {
+			this.effects.add(ConditionEffect.getConditionEffectFromName(xml.getTextValue()));
+			if (xml.getAttribute("target").equals("1")) {
 				if (this.isPetEffect == null) {
 					this.isPetEffect = new Dictionary();
 				}
-				this.isPetEffect.put(ConditionEffect.getConditionEffectFromName(_loc2_.name()), true);
+				this.isPetEffect.put(ConditionEffect.getConditionEffectFromName(xml.name()), true);
 			}
 		}
 		this.multiHit = param1.hasOwnProperty("MultiHit");

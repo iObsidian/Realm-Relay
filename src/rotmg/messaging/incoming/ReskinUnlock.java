@@ -1,15 +1,16 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class ReskinUnlock extends IncomingMessage {
 
 	private int skinID;
 
-	public ReskinUnlock(int id, Consumer callback) {
+	public ReskinUnlock(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

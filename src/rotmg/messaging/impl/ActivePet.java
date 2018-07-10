@@ -1,17 +1,17 @@
 package rotmg.messaging.impl;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.incoming.IncomingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.incoming.IncomingMessage;
 
 public class ActivePet extends IncomingMessage {
 
 	public int instanceID;
 
-	public ActivePet(int param1, Consumer param2) {
+	public ActivePet(int param1, MessageConsumer param2) {
 		super(param1, param2);
 	}
 

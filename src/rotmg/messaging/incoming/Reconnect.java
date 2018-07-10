@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Reconnect extends IncomingMessage {
 
@@ -15,7 +16,8 @@ public class Reconnect extends IncomingMessage {
 	public byte[] key = new byte[0];
 	public boolean isFromArena;
 	public String stats;
-	public Reconnect(int id, Consumer callback) {
+
+	public Reconnect(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

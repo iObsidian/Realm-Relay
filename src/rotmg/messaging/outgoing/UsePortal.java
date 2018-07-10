@@ -1,15 +1,16 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class UsePortal extends OutgoingMessage {
 
 	public int objectId;
 
-	public UsePortal(int id, Consumer callback) {
+	public UsePortal(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

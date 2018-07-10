@@ -1,12 +1,12 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.SlotObjectData;
+import rotmg.messaging.data.WorldPosData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.SlotObjectData;
-import rotmg.messaging.data.WorldPosData;
 
 public class UseItem extends OutgoingMessage {
 
@@ -15,7 +15,7 @@ public class UseItem extends OutgoingMessage {
 	public WorldPosData itemUsePos;
 	public int useType;
 
-	public UseItem(int id, Consumer callback) {
+	public UseItem(int id, MessageConsumer callback) {
 		super(id, callback);
 		slotObject = new SlotObjectData();
 		itemUsePos = new WorldPosData();

@@ -1,16 +1,18 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class AccountList extends IncomingMessage {
 
 	public int accountListId;
 	public String[] accountIds;
 	private int lockAction = -1;
-	public AccountList(int param1, Consumer param2) {
+
+	public AccountList(int param1, MessageConsumer param2) {
 		super(param1, param2);
 		accountIds = new String[0];
 	}

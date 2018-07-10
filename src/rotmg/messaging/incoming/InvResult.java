@@ -1,15 +1,16 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class InvResult extends IncomingMessage {
 
 	public int result;
 
-	public InvResult(int id, Consumer callback) {
+	public InvResult(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

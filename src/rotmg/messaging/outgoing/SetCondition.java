@@ -1,16 +1,17 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class SetCondition extends OutgoingMessage {
 
 	public int conditionEffect;
 	public double conditionDuration;
 
-	public SetCondition(int id, Consumer callback) {
+	public SetCondition(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

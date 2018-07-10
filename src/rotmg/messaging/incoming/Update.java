@@ -1,12 +1,12 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.GroundTileData;
+import rotmg.messaging.data.ObjectData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.GroundTileData;
-import rotmg.messaging.data.ObjectData;
 
 public class Update extends IncomingMessage {
 
@@ -14,7 +14,7 @@ public class Update extends IncomingMessage {
 	public ObjectData[] newObjs;
 	public int[] drops;
 
-	public Update(int id, Consumer callback) {
+	public Update(int id, MessageConsumer callback) {
 		super(id, callback);
 		this.tiles = new GroundTileData[0];
 		this.newObjs = new ObjectData[0];

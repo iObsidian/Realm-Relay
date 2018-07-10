@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Text extends IncomingMessage {
 
@@ -14,7 +15,8 @@ public class Text extends IncomingMessage {
 	public String recipient;
 	public String text;
 	public String cleanText;
-	public Text(int id, Consumer callback) {
+
+	public Text(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

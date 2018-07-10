@@ -1,16 +1,15 @@
 package rotmg.messaging.incoming;
 
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
-import java.util.function.Consumer;
-
 import alde.flash.utils.MessageConsumer;
 import rotmg.net.impl.Message;
 
+import java.io.DataInput;
+import java.io.DataOutput;
+import java.io.IOException;
+
 public class IncomingMessage extends Message {
 
-	public IncomingMessage(int param1, Consumer param2) {
+	public IncomingMessage(int param1, MessageConsumer param2) {
 		super(param1, param2);
 	}
 

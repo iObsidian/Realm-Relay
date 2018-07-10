@@ -67,12 +67,12 @@ public class Parameters {
 	}
 
 	public static void load() {
-		try {
+		/*try {
 			savedOptions = SharedObject.getLocal("AssembleeGameClientOptions", "/");
 			data = savedOptions.data;
 		} catch (Error error) {
 			data = null;
-		}
+		}*/
 		setDefaults();
 		save();
 	}

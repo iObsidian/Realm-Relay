@@ -1,12 +1,12 @@
 package rotmg.messaging.outgoing.arena;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.SlotObjectData;
+import rotmg.messaging.outgoing.OutgoingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.SlotObjectData;
-import rotmg.messaging.outgoing.OutgoingMessage;
 
 public class QuestRedeem extends OutgoingMessage {
 
@@ -14,7 +14,7 @@ public class QuestRedeem extends OutgoingMessage {
 	SlotObjectData[] slots;
 	int item;
 
-	public QuestRedeem(int id, Consumer callback) {
+	public QuestRedeem(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

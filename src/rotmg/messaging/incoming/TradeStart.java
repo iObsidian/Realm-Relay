@@ -1,18 +1,19 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.TradeItem;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.TradeItem;
 
 public class TradeStart extends IncomingMessage {
 
 	private TradeItem[] myItems;
 	private String yourName;
 	private TradeItem[] yourItems;
-	public TradeStart(int id, Consumer callback) {
+
+	public TradeStart(int id, MessageConsumer callback) {
 		super(id, callback);
 		this.myItems = new TradeItem[0];
 		this.yourItems = new TradeItem[0];

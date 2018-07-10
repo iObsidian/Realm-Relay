@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Death extends IncomingMessage {
 
@@ -13,7 +14,8 @@ public class Death extends IncomingMessage {
 	public boolean isZombie;
 	private String accountId;
 	private int charId;
-	public Death(int id, Consumer callback) {
+
+	public Death(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class PasswordPrompt extends IncomingMessage {
 
@@ -12,7 +13,7 @@ public class PasswordPrompt extends IncomingMessage {
 	public final int REGISTER = 4;
 	private int cleanPasswordStatus;
 
-	public PasswordPrompt(int id, Consumer callback) {
+	public PasswordPrompt(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

@@ -3,11 +3,11 @@ package rotmg;
 import alde.flash.utils.EventConsumer;
 import flash.display.Sprite;
 import flash.display.Stage;
-import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.system.Capabilities;
 import robotlegs.bender.framework.api.IContext;
-import rotmg.game.commands.PlayGameCommand;
+import rotmg.account.core.Account;
+import rotmg.core.model.PlayerModel;
 import rotmg.net.Server;
 import rotmg.parameters.Parameters;
 import rotmg.startup.control.StartupSignal;
@@ -46,7 +46,7 @@ public class WebMain extends Sprite {
 		this.hackParameters();
 		this.createContext();
 		new AssetLoader().load();
-		stage.scaleMode = StageScaleMode.EXACT_FIT;
+		//stage.scaleMode = StageScaleMode.EXACT_FIT;
 		StartupSignal.getInstance().dispatch();
 		this.configureForAirIfDesktopPlayer();
 		//UIUtils.toggleQuality(Parameters.data.uiQuality);
@@ -54,10 +54,21 @@ public class WebMain extends Sprite {
 
 		// Following is a loose implementation of PlayGameCommand's makeGameView
 
-		PlayGameCommand playGameCommand = new PlayGameCommand();
+		PlayerModel p = PlayerModel.getInstance();
+		p.account = Account.getInstance();
+		p.currentCharId = 2;
+		p.setIsAgeVerified(true);
 
+		Server loc1 = new Server().setAddress("54.153.32.11").setPort(2050);
 
+		int loc2 = Parameters.NEXUS_GAMEID;
+		boolean createCharacter = false;
+		int keyTime = -1;
+		byte[] loc6 = new byte[0];
+		boolean isFromArena = false;
 
+		GameSprite g = new GameSprite(loc1, loc2, createCharacter, p.currentCharId, keyTime, loc6, p, null, isFromArena);
+		g.connect();
 	}
 
 	private void hackParameters() {

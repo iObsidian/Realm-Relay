@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class TradeDone extends IncomingMessage {
 
@@ -11,7 +12,8 @@ public class TradeDone extends IncomingMessage {
 	public static final int PLAYER_CANCELED = 1;
 	public int code;
 	public String description;
-	public TradeDone(int id, Consumer callback) {
+
+	public TradeDone(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

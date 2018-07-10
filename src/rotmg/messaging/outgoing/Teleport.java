@@ -1,15 +1,16 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Teleport extends OutgoingMessage {
 
 	public int objectId;
 
-	public Teleport(int id, Consumer callback) {
+	public Teleport(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

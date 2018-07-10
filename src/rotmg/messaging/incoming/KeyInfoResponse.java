@@ -1,16 +1,18 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class KeyInfoResponse extends IncomingMessage {
 
 	public String name;
 	public String description;
 	public String creator;
-	public KeyInfoResponse(int id, Consumer callback) {
+
+	public KeyInfoResponse(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

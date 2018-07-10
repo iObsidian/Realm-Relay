@@ -1,9 +1,10 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class UpdateAck extends OutgoingMessage {
 
@@ -12,7 +13,7 @@ public class UpdateAck extends OutgoingMessage {
 	 * This class is meant as a replacement of an empty packet
 	 */
 
-	public UpdateAck(int id, Consumer callback) {
+	public UpdateAck(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

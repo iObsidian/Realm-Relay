@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Damage extends IncomingMessage {
 
@@ -14,7 +15,8 @@ public class Damage extends IncomingMessage {
 	public boolean armorPierce;
 	public int bulletId;
 	public int objectId;
-	public Damage(int id, Consumer callback) {
+
+	public Damage(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

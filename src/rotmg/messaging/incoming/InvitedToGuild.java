@@ -1,15 +1,17 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class InvitedToGuild extends IncomingMessage {
 
 	public String name;
 	public String guildName;
-	public InvitedToGuild(int id, Consumer callback) {
+
+	public InvitedToGuild(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

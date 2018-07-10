@@ -1,10 +1,10 @@
 package rotmg.objects.animation;
 
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import flash.utils.Dictionary;
 import rotmg.map.Camera;
 import rotmg.util.MaskedImage;
 import rotmg.util.MaskedImageSet;
@@ -145,22 +145,19 @@ public class AnimatedChar {
 		return dirDict;
 	}
 
-	public MaskedImage imageFromDir(double angle, int action, double p) {
-		int sec = (int) (angle / PIOVER4 + 4 % 8);
-		int[] dirs = SEC_TO_DIRS[sec];
-		Dictionary<Integer, Vector<MaskedImage>> actionDict = this.dict.get(dirs[0]);
-		if (actionDict == null) {
-			actionDict = this.dict.get(dirs[1]);
-			if (actionDict == null) {
-				actionDict = this.dict.get(dirs[2]);
-			}
-		}
-		Vector<MaskedImage> texVec = actionDict.get(action);
-		p = (double) Math.max(0, Math.min(0.99999, p));
-		int i = (int) (p * texVec.length);
-		return texVec.get(i);
-	}
+	public MaskedImage imageFromDir(int angle, int action, double p) {
+		Vector<MaskedImage> loc4 = this.dict.get(angle).get(action);
+		p = Math.max(0, Math.min(0.99999, p));
+		int loc5 = (int) (p * loc4.length);
 
+		System.out.println("Loc4 size : "+loc4.length);
+		System.out.println("p = "+p);
+		System.out.println("Loc5 = "+loc5);
+
+		System.out.println(loc4.get(loc5));
+
+		return loc4.get(loc5);
+	}
 
 	public MaskedImage imageFromAngle(double param1, int param2, double param3) {
 		int loc4 = (int) ((param1 / PIOVER4 + 4) % 8);

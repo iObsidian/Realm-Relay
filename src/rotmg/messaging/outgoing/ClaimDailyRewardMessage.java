@@ -1,15 +1,16 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class ClaimDailyRewardMessage extends OutgoingMessage {
 	public String claimKey;
 	public String type;
 
-	public ClaimDailyRewardMessage(int id, Consumer callback) {
+	public ClaimDailyRewardMessage(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

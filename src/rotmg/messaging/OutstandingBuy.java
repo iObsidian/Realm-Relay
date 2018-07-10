@@ -6,6 +6,7 @@ public class OutstandingBuy {
 	private int price;
 	private int currency;
 	private boolean converted;
+
 	OutstandingBuy(String id, int price, int currency, boolean converted) {
 		super();
 		this.id = id;

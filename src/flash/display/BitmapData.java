@@ -1,12 +1,12 @@
 package flash.display;
 
-import java.awt.image.BufferedImage;
-
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import spark.filters.GlowFilter;
+
+import java.awt.image.BufferedImage;
 
 public class BitmapData implements IBitmapDrawable {
 
@@ -19,6 +19,12 @@ public class BitmapData implements IBitmapDrawable {
 
 	public BitmapData(BufferedImage b) {
 		image = b;
+		updateWidthAndHeight();
+	}
+
+	private void updateWidthAndHeight() {
+		width = image.getWidth();
+		height = image.getHeight();
 	}
 
 	/**
@@ -26,6 +32,7 @@ public class BitmapData implements IBitmapDrawable {
 	 */
 	public BitmapData(int param1, int param2, boolean param3, int param4) {
 		this.image = new BufferedImage(param1, param2, 1);
+		updateWidthAndHeight();
 	}
 
 	public BitmapData(int i, int i1) {

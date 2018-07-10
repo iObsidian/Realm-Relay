@@ -1,13 +1,10 @@
 package rotmg.ui.view;
 
-import java.util.function.Consumer;
-
 import alde.flash.utils.SignalConsumer;
+import flash.utils.Dictionary;
 import org.osflash.signals.Signal;
 
-import com.adobe.utils.DictionaryUtil;
-
-import flash.utils.Dictionary;
+import java.util.function.Consumer;
 
 /**
  * 99% match (confirm 'listenTo' is working)
@@ -53,7 +50,7 @@ public class SignalWaiter {
 	}
 
 	public boolean isEmpty() {
-		return DictionaryUtil.getKeys(this.texts).length == 0;
+		return this.texts.size() == 0;
 	}
 
 }

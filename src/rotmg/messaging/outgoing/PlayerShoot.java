@@ -1,11 +1,11 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.WorldPosData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.WorldPosData;
 
 public class PlayerShoot extends OutgoingMessage {
 
@@ -15,7 +15,7 @@ public class PlayerShoot extends OutgoingMessage {
 	public WorldPosData startingPos;
 	public double angle;
 
-	public PlayerShoot(int id, Consumer callback) {
+	public PlayerShoot(int id, MessageConsumer callback) {
 		super(id, callback);
 		startingPos = new WorldPosData();
 	}

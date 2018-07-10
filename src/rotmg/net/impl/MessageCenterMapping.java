@@ -14,7 +14,7 @@ public class MessageCenterMapping implements MessageMapping {
 	private int id;
 	private int population = 1;
 
-	private MessageConsumer messageConsumer;
+	public MessageConsumer messageConsumer;
 
 	public MessageMapping setID(int param1) {
 		this.id = param1;

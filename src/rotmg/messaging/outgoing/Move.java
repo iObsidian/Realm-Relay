@@ -1,14 +1,14 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.MoveRecord;
+import rotmg.messaging.data.WorldPosData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.MoveRecord;
-import rotmg.messaging.data.WorldPosData;
 
 public class Move extends OutgoingMessage {
 
@@ -17,7 +17,7 @@ public class Move extends OutgoingMessage {
 	public WorldPosData newPosition;
 	public List<MoveRecord> records;
 
-	public Move(int param1, Consumer param2) {
+	public Move(int param1, MessageConsumer param2) {
 		super(param1, param2);
 		newPosition = new WorldPosData();
 		records = new ArrayList<MoveRecord>();

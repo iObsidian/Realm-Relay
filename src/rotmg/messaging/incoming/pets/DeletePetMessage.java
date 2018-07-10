@@ -1,17 +1,17 @@
 package rotmg.messaging.incoming.pets;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.outgoing.OutgoingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.outgoing.OutgoingMessage;
 
 public class DeletePetMessage extends OutgoingMessage {
 
 	int petID;
 
-	public DeletePetMessage(int id, Consumer callback) {
+	public DeletePetMessage(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

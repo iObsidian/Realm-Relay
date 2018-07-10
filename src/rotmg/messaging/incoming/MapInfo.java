@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class MapInfo extends IncomingMessage {
 
@@ -18,7 +19,8 @@ public class MapInfo extends IncomingMessage {
 	public boolean showDisplays;
 	public String[] clientXML;
 	public String[] extraXML;
-	public MapInfo(int id, Consumer callback) {
+
+	public MapInfo(int id, MessageConsumer callback) {
 		super(id, callback);
 		this.clientXML = new String[0];
 		this.extraXML = new String[0];

@@ -7,7 +7,6 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Unused class kept from Realm-Relay
@@ -16,7 +15,7 @@ public class UnknownPacket extends IncomingMessage {
 
 	private final List<Byte> bytes = new LinkedList<Byte>();
 	private byte id;
-	public UnknownPacket(int id, Consumer callback) {
+	public UnknownPacket(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

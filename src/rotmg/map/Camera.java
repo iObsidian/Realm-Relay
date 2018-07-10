@@ -45,7 +45,7 @@ public class Camera {
 
 	public Camera() {
 		super();
-		//this.pp = new PerspectiveProjection();
+		this.pp = new PerspectiveProjection();
 		this.wToS = new Matrix3D();
 		this.wToV = new Matrix3D();
 		this.vToS = new Matrix3D();

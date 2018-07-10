@@ -3,11 +3,14 @@ package org.osflash.signals;
 import alde.flash.utils.SignalConsumer;
 
 import java.util.Vector;
-import java.util.function.Consumer;
 
 public class Signal<T> {
 
 	public Vector<SignalConsumer<? super T>> listeners;
+
+	public Signal() {
+		listeners = new Vector<>();
+	}
 
 	public void add(SignalConsumer<? super T> t) {
 		listeners.add(t);

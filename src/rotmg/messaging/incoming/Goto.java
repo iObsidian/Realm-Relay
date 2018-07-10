@@ -1,17 +1,18 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.data.WorldPosData;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.data.WorldPosData;
 
 public class Goto extends IncomingMessage {
 
 	public int objectId;
 	public WorldPosData pos;
-	public Goto(int id, Consumer callback) {
+
+	public Goto(int id, MessageConsumer callback) {
 		super(id, callback);
 		pos = new WorldPosData();
 	}

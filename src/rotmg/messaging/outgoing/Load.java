@@ -1,16 +1,17 @@
 package rotmg.messaging.outgoing;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class Load extends OutgoingMessage {
 
 	public int charId;
 	public boolean isFromArena;
 
-	public Load(int id, Consumer callback) {
+	public Load(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

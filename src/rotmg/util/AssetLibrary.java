@@ -1,12 +1,12 @@
 package rotmg.util;
 
+import alde.flash.utils.StaticAssetLoaderUtility;
+import flash.display.BitmapData;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import alde.flash.utils.StaticAssetLoaderUtility;
-import flash.display.BitmapData;
 
 /**
  * This class is a 80% match.
@@ -44,7 +44,7 @@ public class AssetLibrary {
 		imageSet.addFromBitmapData(data, width, height);
 		imageSets.put(name, imageSet);
 
-		System.out.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
+		//System.out.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
 
 		for (BitmapData b : imageSet.images) {
 			imageLookup.put(b, name);
@@ -87,10 +87,10 @@ public class AssetLibrary {
 
 	public static BitmapData getImageFromSet(String name, int id) {
 		if (imageSets.get(name) == null) {
-			System.err.println("ERROR : " + name + " DOES NOT EXIST!");
+			System.err.println("ERROR : ImageSet '" + name + "' DOES NOT EXIST!");
 		}
 		if (imageSets.get(name).images.size() == 0) {
-			System.err.println("ERROR : " + name + " NO LENGTH!");
+			System.err.println("ERROR : ImageSet '" + name + "' IS EMPTY!");
 		}
 		return imageSets.get(name).images.get(id);
 	}

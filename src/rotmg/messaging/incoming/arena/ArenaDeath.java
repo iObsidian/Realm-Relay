@@ -1,17 +1,17 @@
 package rotmg.messaging.incoming.arena;
 
+import alde.flash.utils.MessageConsumer;
+import rotmg.messaging.outgoing.OutgoingMessage;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
-
-import rotmg.messaging.outgoing.OutgoingMessage;
 
 public class ArenaDeath extends OutgoingMessage {
 
 	private int cost;
 
-	public ArenaDeath(int id, Consumer callback) {
+	public ArenaDeath(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 

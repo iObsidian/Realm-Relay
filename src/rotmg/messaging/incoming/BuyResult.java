@@ -1,9 +1,10 @@
 package rotmg.messaging.incoming;
 
+import alde.flash.utils.MessageConsumer;
+
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
-import java.util.function.Consumer;
 
 public class BuyResult extends IncomingMessage {
 
@@ -18,7 +19,8 @@ public class BuyResult extends IncomingMessage {
 	public static final int PET_FEED_SUCCESS_BRID = 7;
 	public int result;
 	public String resultString;
-	public BuyResult(int id, Consumer callback) {
+
+	public BuyResult(int id, MessageConsumer callback) {
 		super(id, callback);
 	}
 
