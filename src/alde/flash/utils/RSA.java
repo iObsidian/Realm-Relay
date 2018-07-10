@@ -1,5 +1,7 @@
 package alde.flash.utils;
 
+import rotmg.parameters.Parameters;
+
 import javax.crypto.Cipher;
 import javax.xml.bind.DatatypeConverter;
 import java.io.UnsupportedEncodingException;
@@ -15,8 +17,7 @@ import java.security.spec.X509EncodedKeySpec;
  */
 public class RSA {
 
-	private final static String serverPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeOcmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99UoSGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7F3yWYqUbZd/HCBtawwIDAQAB\n";
-	//private final static String serverPublicKey = Parameters.RSA_PUBLIC_KEY;
+	private final static String serverPublicKey = Parameters.RSA_PUBLIC_KEY;
 
 	private static PublicKey key;
 
@@ -37,6 +38,11 @@ public class RSA {
 	}**/
 
 	public static String encrypt(String string) {
+
+		if (string == null) {
+			System.err.println("ERROR : string is null!");
+		}
+
 		byte[] buf = string.getBytes(Charset.forName("UTF-8"));
 
 		try {

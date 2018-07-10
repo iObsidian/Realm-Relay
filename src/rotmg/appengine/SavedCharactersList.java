@@ -1,5 +1,6 @@
 package rotmg.appengine;
 
+import rotmg.account.core.WebAccount;
 import rotmg.ui.TOSPopup;
 
 import flash.utils.Dictionary;
@@ -106,7 +107,7 @@ public class SavedCharactersList extends Event {
 		this.parseTOSPopup();
 		this.reportUnlocked();
 
-		loc5 = Account.getInstance();
+		loc5 = WebAccount.getInstance();
 		loc5.reportIntStat("BestLevel", this.bestOverallLevel());
 		loc5.reportIntStat("BestFame", this.bestOverallFame());
 		loc5.reportIntStat("NumStars", this.numStars);
@@ -317,7 +318,7 @@ public class SavedCharactersList extends Event {
 	}
 
 	private void reportUnlocked() {
-		this.account = Account.getInstance();
+		this.account = WebAccount.getInstance();
 		this.updateAccount();
 	}
 

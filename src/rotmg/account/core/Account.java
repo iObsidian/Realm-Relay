@@ -1,54 +1,50 @@
 package rotmg.account.core;
 
 /**
- * From interface with set and get
- * to abstract class
+ * 100% match
  */
-public abstract class Account {
+public interface Account {
 
-	public String getPlatformToken;
+	String getPlatformToken();
 
-	abstract void setPlatformToken(String param1);
+	void setPlatformToken(String param1);
 
-	abstract void updateUser(String param1, String param2, String param3);
+	void updateUser(String param1, String param2, String param3);
 
-	String userName;
+	String getUserName();
 
-	public String userId;
+	String getUserId();
 
-	public String password;
+	String getPassword();
 
-	public String token;
+	String getToken();
 
-	public String secret;
+	String getSecret();
 
-	public Object credentials;
+	Object getCredentials();
 
-	boolean isRegistered;
+	boolean isRegistered();
 
-	abstract void clear();
+	void clear();
 
-	public abstract void reportIntStat(String param1, int param2);
+	void reportIntStat(String param1, int param2);
 
-	String getRequestPrefix;
+	String getRequestPrefix();
 
-	public String gameNetworkUserId;
+	String gameNetworkUserId();
 
-	public String gameNetwork;
+	String gameNetwork();
 
-	public String playPlatform;
+	String playPlatform();
 
-	public String getEntryTag;
+	String getEntryTag();
 
-	public abstract void verify(Boolean aram1);
+	void verify(boolean param1);
 
-	boolean isVerified;
+	boolean isVerified();
 
-	String getMoneyUserId;
+	String getMoneyUserId();
 
-	String getMoneyAccessToken;
+	String getMoneyAccessToken();
 
-	public static Account getInstance() {
-		return new WebAccount("fliphcc@gmail.com", "ati3SmaQ3de");
-	}
 }

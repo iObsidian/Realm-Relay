@@ -1,23 +1,59 @@
 package rotmg.account.core;
 
-public class WebAccount extends Account {
+/**
+ * 10% match (very loose implementation for debugging)
+ */
+public class WebAccount implements Account {
 
 	public static final String NETWORKNAME = "rotmg";
 	public static final String WEBUSERID = "";
 	public static final String WEBPLAYPLATFORMNAME = "rotmg";
-	public static WebAccount instance;
-	public String signedRequest;
-	public String kabamId;
-	public String userId = "";
-	public String password;
-	public String token = "";
-	public String entryTag = "";
-	public boolean isVerifiedEmail;
-	public String platformToken;
+
+	public String signedRequest = "";
+	public String kabamId = "";
+
+	public boolean isVerifiedEmail = true;
+	public String platformToken = "";
 	public String userDisplayName = "";
+
+	public String entryTag = "";
 	public boolean rememberMe = true;
 	public String paymentProvider = "";
 	public String paymentData = "";
+
+	String userName = "";
+
+	public String userId = "";
+
+	public String password = "";
+
+	public String token = "";
+
+	public String secret = "";
+
+	public Object credentials;
+
+	boolean isRegistered;
+
+	String requestPrefix = "";
+
+	public String gameNetworkUserId = "";
+
+	public String gameNetwork = "";
+
+	public String playPlatform = "";
+
+	boolean isVerified = true;
+
+	String moneyUserId = "";
+
+	String moneyAccessToken = "";
+
+	public static Account getInstance() {
+		WebAccount account = new WebAccount("fliphcc@gmail.com", "ati3SmaQ3de");
+		account.userId = "Null";
+		return account;
+	}
 
 	public WebAccount() {
 		super();
@@ -62,7 +98,7 @@ public class WebAccount extends Account {
 	}
 
 	public boolean isRegistered() {
-		return this.getPassword() != "" || this.getToken() != "";
+		return true;
 	}
 
 	public void updateUser(String param1, String param2, String param3) {
@@ -123,6 +159,11 @@ public class WebAccount extends Account {
 
 	public String getSecret() {
 		return "";
+	}
+
+	@Override
+	public Object getCredentials() {
+		return null;
 	}
 
 	public void verify(boolean param1) {
@@ -187,10 +228,5 @@ public class WebAccount extends Account {
 		this.paymentData = param1;
 	}
 
-	@Override
-	public void verify(Boolean aram1) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

@@ -7,6 +7,7 @@ import flash.events.Event;
 import flash.system.Capabilities;
 import robotlegs.bender.framework.api.IContext;
 import rotmg.account.core.Account;
+import rotmg.account.core.WebAccount;
 import rotmg.core.model.PlayerModel;
 import rotmg.net.Server;
 import rotmg.parameters.Parameters;
@@ -55,7 +56,7 @@ public class WebMain extends Sprite {
 		// Following is a loose implementation of PlayGameCommand's makeGameView
 
 		PlayerModel p = PlayerModel.getInstance();
-		p.account = Account.getInstance();
+		p.account = WebAccount.getInstance();
 		p.currentCharId = 2;
 		p.setIsAgeVerified(true);
 

@@ -10,7 +10,6 @@ import flash.events.TimerEvent;
 import flash.utils.timer.Timer;
 import robotlegs.bender.bundles.mvcs.components.QueuedStatusText;
 import rotmg.AGameSprite;
-import rotmg.account.core.Account;
 import rotmg.account.core.WebAccount;
 import rotmg.arena.model.ArenaDeathSignal;
 import rotmg.arena.model.CurrentArenaRunModel;
@@ -729,7 +728,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	 * This method needs verification (mapJSON is a String, not a byte[])
 	 */
 	private void onConnected() {
-		Account loc1 = WebAccount.getInstance();
+		WebAccount loc1 = (WebAccount) WebAccount.getInstance();
 		this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, TextKey.CHAT_CONNECTED));
 		this.encryptConnection();
 		Hello hello = (Hello) this.messages.require(HELLO);
@@ -749,11 +748,11 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		} else {
 			hello.mapJSON = new byte[0];
 		}
-		hello.entrytag = loc1.getEntryTag;
+		hello.entrytag = loc1.entryTag;
 		hello.gameNet = loc1.gameNetwork;
 		hello.gameNetUserId = loc1.gameNetworkUserId;
 		hello.playPlatform = loc1.playPlatform;
-		hello.platformToken = loc1.getPlatformToken;
+		hello.platformToken = loc1.platformToken;
 		hello.userToken = loc1.token;
 		serverConnection.sendMessage(hello);
 	}

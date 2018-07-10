@@ -1,11 +1,11 @@
 package rotmg.parameters;
 
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.DisplayObject;
 import flash.events.Event;
 import flash.net.SharedObject;
 import flash.system.Capabilities;
+import flash.utils.Dictionary;
 import rotmg.map.Map;
 import rotmg.util.KeyCodes;
 import rotmg.util.MoreDateUtil;
@@ -34,7 +34,13 @@ public class Parameters {
 	public static final String USER_GENERATED_CONTENT_TERMS = "/UGDTermsofUse.html";
 	public static final String RANDOM1 = "311f80691451c71b09a13a2a6e";
 	public static final String RANDOM2 = "72c5583cafb6818995cbd74b80";
-	public static final String RSA_PUBLIC_KEY = "-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO" + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo" + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7" + "F3yWYqUbZd/HCBtawwIDAQAB\n" + "-----END PUBLIC KEY-----";
+
+	/**
+	 * RSA formatted
+	 * AS3 format : "-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO" + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo" + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7" + "F3yWYqUbZd/HCBtawwIDAQAB\n" + "-----END PUBLIC KEY-----";
+	 */
+	public static final String RSA_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeOcmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99UoSGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7F3yWYqUbZd/HCBtawwIDAQAB\n";
+
 	public static final Vector<Integer> skinTypes16 = new Vector<Integer>(1027, 1028, 1029, 1030, 10973, 19494, 19531);
 	public static final Vector<Integer> itemTypes16 = new Vector<Integer>(5473, 5474, 5475, 5476, 10939, 19494, 19531);
 	public static DisplayObject root;

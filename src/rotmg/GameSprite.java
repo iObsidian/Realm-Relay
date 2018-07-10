@@ -7,6 +7,7 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.filters.ColorMatrixFilter;
 import org.osflash.signals.Signal;
+import rotmg.account.core.WebAccount;
 import rotmg.signals.ShowProTipSignal;
 import rotmg.account.core.Account;
 import rotmg.constants.GeneralConstants;
@@ -209,7 +210,7 @@ public class GameSprite extends AGameSprite {
 			this.showTimer();
 			this.showWaveCounter();
 		}
-		loc1 = Account.getInstance();
+		loc1 = WebAccount.getInstance();
 		this.googleAnalytics = GoogleAnalytics.getInstance();
 		/**if (map.name.equals(Map.NEXUS)) {
 			this.addToQueueSignal.dispatch(PopupNamesConfig.DAILY_LOGIN_POPUP, this.openDailyCalendarPopupSignal, -1, null);
@@ -444,9 +445,11 @@ public class GameSprite extends AGameSprite {
 			gsc.connect();
 			//this.idleWatcher.start(this);
 			lastUpdate = getTimer();
-			stage.addEventListener(MoneyChangedEvent.MONEY_CHANGED, new EventConsumer<>(this::onMoneyChanged));
-			stage.addEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
+			//stage.addEventListener(MoneyChangedEvent.MONEY_CHANGED, new EventConsumer<>(this::onMoneyChanged));
+			//stage.addEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
 			//LoopedProcess.addProcess(new LoopedCallback(100, this.updateNearestInteractive));
+
+			this.onEnterFrame(new Event(""));
 		}
 	}
 
