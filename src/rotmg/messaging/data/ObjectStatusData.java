@@ -9,13 +9,8 @@ import java.io.IOException;
 public class ObjectStatusData implements IData {
 
 	public int objectId;
-	public WorldPosData pos;
-	public StatData[] stats;
-
-	public ObjectStatusData() {
-		pos = new WorldPosData();
-		stats = new StatData[0];
-	}
+	public WorldPosData pos = new WorldPosData();
+	public StatData[] stats = new StatData[0];
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
@@ -24,26 +19,22 @@ public class ObjectStatusData implements IData {
 		pos.parseFromInput(in);
 
 		stats = new StatData[in.readShort()];
-
 		for (int i = 0; i < stats.length; i++) {
-			StatData newStatData = new StatData();
-			newStatData.parseFromInput(in);
-			stats[i] = newStatData;
+			StatData statData = new StatData();
+			statData.parseFromInput(in);
+			stats[i] = statData;
 		}
-
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 
-		out.writeInt(this.objectId);
-		this.pos.writeToOutput(out);
-		out.writeShort(this.stats.length);
-
-		for (StatData s : stats) {
-			s.writeToOutput(out);
+		out.writeInt(objectId);
+		pos.writeToOutput(out);
+		out.writeShort(stats.length);
+		for (StatData statData : stats) {
+			statData.writeToOutput(out);
 		}
-
 	}
 
 }

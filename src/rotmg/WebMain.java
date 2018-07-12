@@ -50,7 +50,7 @@ public class WebMain extends Sprite {
 		//stage.scaleMode = StageScaleMode.EXACT_FIT;
 		StartupSignal.getInstance().dispatch();
 		this.configureForAirIfDesktopPlayer();
-		//UIUtils.toggleQuality(Parameters.data.uiQuality);
+		//UIUtils.toggleQuality(Parameters.stats.uiQuality);
 
 
 		// Following is a loose implementation of PlayGameCommand's makeGameView
@@ -87,7 +87,7 @@ public class WebMain extends Sprite {
 
 	private void configureForAirIfDesktopPlayer() {
 		if (Capabilities.playerType.equals("Desktop")) {
-			//Parameters.data.fullscreenMode = false;
+			//Parameters.stats.fullscreenMode = false;
 			Parameters.save();
 		}
 	}

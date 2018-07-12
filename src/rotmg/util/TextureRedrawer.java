@@ -182,12 +182,12 @@ public class TextureRedrawer {
 		BitmapData loc7 = getTexture(param3 >= 0 ? param3 : 0, colorTexture1);
 		BitmapData loc8 = getTexture(param4 >= 0 ? param4 : 0, colorTexture2);
 		/*Shader loc9 = new Shader(textureShaderData);
-		loc9.data.src.input = loc6;
-		loc9.data.mask.input = param2;
-		loc9.data.texture1.input = loc7;
-		loc9.data.texture2.input = loc8;
-		loc9.data.texture1Size.value = [param3 == 0 ? 0 : loc7.width];
-		loc9.data.texture2Size.value = [param4 == 0 ? 0 : loc8.width];
+		loc9.stats.src.input = loc6;
+		loc9.stats.mask.input = param2;
+		loc9.stats.texture1.input = loc7;
+		loc9.stats.texture2.input = loc8;
+		loc9.stats.texture1Size.value = [param3 == 0 ? 0 : loc7.width];
+		loc9.stats.texture2Size.value = [param4 == 0 ? 0 : loc8.width];
 		loc6.applyFilter(loc6, loc6.rect, PointUtil.ORIGIN, new ShaderFilter(loc9));*/
 		return loc6;
 	}

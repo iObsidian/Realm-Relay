@@ -53,8 +53,8 @@ public class WorldPosData implements IData {
 
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
-		x = in.readDouble();
-		y = in.readDouble();
+		x = in.readFloat();
+		y = in.readFloat();
 	}
 
 	@Override
@@ -64,8 +64,8 @@ public class WorldPosData implements IData {
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeDouble(x);
-		out.writeDouble(y);
+		out.writeFloat((float)x);
+		out.writeFloat((float)y);
 	}
 
 }

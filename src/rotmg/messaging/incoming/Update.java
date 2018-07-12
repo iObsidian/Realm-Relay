@@ -33,9 +33,9 @@ public class Update extends IncomingMessage {
 
 		newObjs = new ObjectData[in.readShort()];
 		for (int i = 0; i < newObjs.length; i++) {
-			ObjectData Entity = new ObjectData();
-			Entity.parseFromInput(in);
-			newObjs[i] = Entity;
+			ObjectData entity = new ObjectData();
+			entity.parseFromInput(in);
+			newObjs[i] = entity;
 		}
 
 		try {
@@ -43,9 +43,7 @@ public class Update extends IncomingMessage {
 			for (int i = 0; i < drops.length; i++) {
 				drops[i] = in.readInt();
 			}
-
 		} catch (Exception e) {
-
 		}
 
 	}

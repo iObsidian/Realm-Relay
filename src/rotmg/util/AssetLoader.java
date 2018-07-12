@@ -224,7 +224,7 @@ public class AssetLoader {
 }
 
 /**
- * Utility class to represent Embeded data (XML), images are loaded directly.
+ * Utility class to represent Embeded stats (XML), images are loaded directly.
  */
 class EmbeddedData {
 

@@ -1,5 +1,13 @@
 package rotmg.net;
 
+import com.hurlant.crypto.symmetric.ICipher;
+import rotmg.AGameSprite;
+import rotmg.messaging.GameServerConnectionConcrete;
+import rotmg.net.impl.Message;
+import rotmg.net.impl.MessageCenter;
+import rotmg.parameters.Parameters;
+import rotmg.util.AssetLoader;
+
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -8,15 +16,6 @@ import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
-
-import com.hurlant.crypto.symmetric.ICipher;
-
-import rotmg.AGameSprite;
-import rotmg.messaging.GameServerConnectionConcrete;
-import rotmg.net.impl.Message;
-import rotmg.net.impl.MessageCenter;
-import rotmg.parameters.Parameters;
-import rotmg.util.AssetLoader;
 
 /**
  * This class is a very loose implementation of WildShadow's SocketServer,
@@ -124,6 +123,7 @@ public class SocketServer {
 							}
 							break;
 						} else if (bytesRead > 0) {
+
 							lastTimePacketReceived = System.currentTimeMillis();
 							bufferIndex += bytesRead;
 							while (bufferIndex >= 5) {
@@ -145,8 +145,8 @@ public class SocketServer {
 								incomingCipher.cipher(packetBytes);
 
 								Message m = messages.require(packetId);
+								System.out.println("Received a " + m.getClass().getSimpleName() + " packet.");
 								m.parseFromInput(new DataInputStream(new ByteArrayInputStream(packetBytes)));
-
 								m.consume();
 
 							}
@@ -213,7 +213,7 @@ public class SocketServer {
 			if (write) {
 				byte[] packetBytes = packet.getBytes();
 
-				System.out.println("Packet bytes : " + packetBytes.length + ".");
+				System.out.println("Packet '" + packet.getClass().getSimpleName() + "' bytes : " + packetBytes.length + ".");
 
 				outgoingCipher.cipher(packetBytes);
 				int packetLength = packetBytes.length + 5;

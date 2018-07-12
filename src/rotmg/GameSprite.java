@@ -237,8 +237,8 @@ public class GameSprite extends AGameSprite {
 				"play_platform":loc1.playPlatform()
         };
 		MoreObjectUtil.addToObject(loc3, loc1.getCredentials());
-		if (map.name != "Kitchen" && map.name != "Tutorial" && map.name != "Nexus Explanation" && Parameters.data.watchForTutorialExit == true) {
-			Parameters.data.watchForTutorialExit = false;
+		if (map.name != "Kitchen" && map.name != "Tutorial" && map.name != "Nexus Explanation" && Parameters.stats.watchForTutorialExit == true) {
+			Parameters.stats.watchForTutorialExit = false;
 			this.callTracking("rotmg.Marketing.track(\"tutorialComplete\")");
 			loc3["fteStepCompleted"] = 9900;
 			loc2.sendRequest("/log/logFteStep", loc3);
@@ -248,14 +248,14 @@ public class GameSprite extends AGameSprite {
 			loc2.sendRequest("/log/logFteStep", loc3);
 		}
 		if (map.name == "Tutorial") {
-			if (Parameters.data.needsTutorial == true) {
-				Parameters.data.watchForTutorialExit = true;
+			if (Parameters.stats.needsTutorial == true) {
+				Parameters.stats.watchForTutorialExit = true;
 				this.callTracking("rotmg.Marketing.track(\"install\")");
 				loc3["fteStepCompleted"] = 100;
 				loc2.sendRequest("/log/logFteStep", loc3);
 			}
 			this.startTutorial();
-		} else if (map.name != "Arena" && map.name != "Kitchen" && map.name != "Nexus Explanation" && map.name != "Vault Explanation" && map.name != "Guild Explanation" && !this.evalIsNotInCombatMapArea() && Parameters.data.showProtips) {
+		} else if (map.name != "Arena" && map.name != "Kitchen" && map.name != "Nexus Explanation" && map.name != "Vault Explanation" && map.name != "Guild Explanation" && !this.evalIsNotInCombatMapArea() && Parameters.stats.showProtips) {
 			loc4 = ShowProTipSignal.getInstance();
 			loc4 && loc4.dispatch();
 		}

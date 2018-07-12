@@ -11,7 +11,7 @@ import rotmg.util.KeyCodes;
 import rotmg.util.MoreDateUtil;
 
 /**
- * The AS3 version uses Parameters.data.value (Object)
+ * The AS3 version uses Parameters.stats.value (Object)
  */
 public class Parameters {
 
@@ -75,9 +75,9 @@ public class Parameters {
 	public static void load() {
 		/*try {
 			savedOptions = SharedObject.getLocal("AssembleeGameClientOptions", "/");
-			data = savedOptions.data;
+			stats = savedOptions.stats;
 		} catch (Error error) {
-			data = null;
+			stats = null;
 		}*/
 		setDefaults();
 		save();
@@ -248,7 +248,7 @@ public class Parameters {
 	}
 
 	/**
-	 * Replacement for AS3's 'data' Object
+	 * Replacement for AS3's 'stats' Object
 	 * <p>
 	 * Made final for now... For switch in MapUserInput
 	 */

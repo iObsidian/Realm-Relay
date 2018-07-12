@@ -980,7 +980,7 @@ public class TextKey {
 
 	public static final String ACTIVE_EFFECT_ARMOR_BROKEN = "activeEffect.ArmorBroken";
 
-	public static final String POISON_GRENADE_DATA = "PoisonComparison.data";
+	public static final String POISON_GRENADE_DATA = "PoisonComparison.stats";
 
 	public static final String POISON_GRENADE = "PoisonComparison.output";
 

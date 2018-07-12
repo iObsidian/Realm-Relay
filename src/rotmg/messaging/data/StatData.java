@@ -1,6 +1,8 @@
 package rotmg.messaging.data;
 
 import alde.flash.utils.IData;
+import mx.logging.ILogger;
+import rotmg.util.TextKey;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -105,11 +107,46 @@ public class StatData implements IData {
 	public static final int FORTUNE_TOKEN_STAT = 97;
 
 	public int statType;
+
 	public int statValue;
+
 	public String strStatValue;
 
+	public static String statToName(int param1) {
+		switch (param1) {
+			case MAX_HP_STAT:
+				return TextKey.STAT_DATA_MAXHP;
+			case HP_STAT:
+				return TextKey.STATUS_BAR_HEALTH_POINTS;
+			case SIZE_STAT:
+				return TextKey.STAT_DATA_SIZE;
+			case MAX_MP_STAT:
+				return TextKey.STAT_DATA_MAXMP;
+			case MP_STAT:
+				return TextKey.STATUS_BAR_MANA_POINTS;
+			case EXP_STAT:
+				return TextKey.STAT_DATA_XP;
+			case LEVEL_STAT:
+				return TextKey.STAT_DATA_LEVEL;
+			case ATTACK_STAT:
+				return TextKey.STAT_MODEL_ATTACK_LONG;
+			case DEFENSE_STAT:
+				return TextKey.STAT_MODEL_DEFENSE_LONG;
+			case SPEED_STAT:
+				return TextKey.STAT_MODEL_SPEED_LONG;
+			case VITALITY_STAT:
+				return TextKey.STAT_MODEL_VITALITY_LONG;
+			case WISDOM_STAT:
+				return TextKey.STAT_MODEL_WISDOM_LONG;
+			case DEXTERITY_STAT:
+				return TextKey.STAT_MODEL_DEXTERITY_LONG;
+			default:
+				return TextKey.STAT_DATA_UNKNOWN_STAT;
+		}
+	}
+
 	public boolean isStringStat() {
-		switch (this.statType) {
+		switch(this.statType) {
 			case NAME_STAT:
 			case GUILD_NAME_STAT:
 			case PET_NAME_STAT:
@@ -124,20 +161,24 @@ public class StatData implements IData {
 	@Override
 	public void parseFromInput(DataInput in) throws IOException {
 		statType = in.readUnsignedByte();
-		if (isStringStat()) {
-			strStatValue = in.readUTF();
-		} else {
+		if (!isStringStat()) {
 			statValue = in.readInt();
+		} else {
+			try {
+				strStatValue = in.readUTF();
+			} catch (IOException exception) {
+				ILogger.info("EOF");
+			}
 		}
 	}
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
 		out.writeByte(statType);
-		if (isStringStat()) {
-			out.writeUTF(strStatValue);
-		} else {
+		if (!isStringStat()) {
 			out.writeInt(statValue);
+		} else {
+			out.writeUTF(strStatValue);
 		}
 	}
 

@@ -494,7 +494,7 @@ public class MapUserInput {
 			if (Capabilities.playerType == "Desktop") {
 				Parameters.data.fullscreenMode = !Parameters.data.fullscreenMode;
 				//Parameters.save();
-				//loc2.displayState = !!Parameters.data.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
+				//loc2.displayState = !!Parameters.stats.fullscreenMode ? "fullScreenInteractive" : StageDisplayState.NORMAL;
 			}
 
 		} else if (param1.keyCode == Parameters.data.switchTabs) {
@@ -536,10 +536,10 @@ public class MapUserInput {
 				Parameters.blendType = (Parameters.blendType + 1) % 2;
 				this.addTextLine.dispatch(ChatMessage.make(Parameters.CLIENT_CHAT_NAME, "Blend  type;"));
 
-			} else if (param1.keyCode == KeyCodes.F8) {/*Parameters.data.surveyDate = 0;
-					Parameters.data.needsSurvey = true;
-					Parameters.data.playTimeLeftTillSurvey = 5;
-					Parameters.data.surveyGroup = "testing";*/
+			} else if (param1.keyCode == KeyCodes.F8) {/*Parameters.stats.surveyDate = 0;
+					Parameters.stats.needsSurvey = true;
+					Parameters.stats.playTimeLeftTillSurvey = 5;
+					Parameters.stats.surveyGroup = "testing";*/
 
 			} else if (param1.keyCode == KeyCodes.F9) {
 				Parameters.drawProj = !Parameters.drawProj;

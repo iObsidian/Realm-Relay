@@ -5,6 +5,7 @@ import alde.flash.utils.MessageConsumer;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Hello extends OutgoingMessage {
 
@@ -80,4 +81,25 @@ public class Hello extends OutgoingMessage {
 		this.userToken = in.readUTF();
 	}
 
+	@Override
+	public String toString() {
+		return "Hello{" +
+				"buildVersion='" + buildVersion + '\'' +
+				", gameId=" + gameId +
+				", guid='" + guid + '\'' +
+				", random1=" + random1 +
+				", password='" + password + '\'' +
+				", random2=" + random2 +
+				", secret='" + secret + '\'' +
+				", keyTime=" + keyTime +
+				", key=" + Arrays.toString(key) +
+				", mapJSON=" + Arrays.toString(mapJSON) +
+				", entrytag='" + entrytag + '\'' +
+				", gameNet='" + gameNet + '\'' +
+				", gameNetUserId='" + gameNetUserId + '\'' +
+				", playPlatform='" + playPlatform + '\'' +
+				", platformToken='" + platformToken + '\'' +
+				", userToken='" + userToken + '\'' +
+				'}';
+	}
 }

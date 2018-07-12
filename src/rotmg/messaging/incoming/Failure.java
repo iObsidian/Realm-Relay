@@ -32,4 +32,11 @@ public class Failure extends IncomingMessage {
 		out.writeUTF(errorDescription);
 	}
 
+	@Override
+	public String toString() {
+		return "Failure{" +
+				"errorId=" + errorId +
+				", errorDescription='" + errorDescription + '\'' +
+				'}';
+	}
 }

@@ -49,6 +49,16 @@ public class Vector<T> implements Iterable<T> {
 
 	}
 
+	/**
+	 * Removes object at index
+	 */
+	public void remove(int i) {
+		map.remove(i);
+	}
+
+	/**
+	 * Removes object
+	 */
 	public void remove(T t) {
 		Iterator<T> e = this.iterator();
 
@@ -160,5 +170,18 @@ public class Vector<T> implements Iterable<T> {
 
 	public int size() {
 		return length;
+	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder s = new StringBuilder();
+		s.append("'");
+		for (T t : map.values()) {
+			s.append(t);
+			s.append(", ");
+		}
+		s.append("'");
+		return s.toString();
 	}
 }

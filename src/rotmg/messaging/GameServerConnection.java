@@ -113,7 +113,6 @@ public class GameServerConnection {
 	public static final int QUEST_ROOM_MSG = 88;
 	public static final int PET_CHANGE_SKIN_MSG = 105;
 
-
 	public static GameServerConnection instance;
 	public Signal changeMapSignal;
 	public AGameSprite gs;

@@ -27,4 +27,11 @@ public class Load extends OutgoingMessage {
 		out.writeBoolean(isFromArena);
 	}
 
+	@Override
+	public String toString() {
+		return "Load{" +
+				"charId=" + charId +
+				", isFromArena=" + isFromArena +
+				'}';
+	}
 }

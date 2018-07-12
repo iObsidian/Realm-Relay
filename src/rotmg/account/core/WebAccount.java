@@ -51,7 +51,7 @@ public class WebAccount implements Account {
 
 	public static Account getInstance() {
 		WebAccount account = new WebAccount("fliphcc@gmail.com", "ati3SmaQ3de");
-		account.userId = "Null";
+		account.secret = account.password;
 		return account;
 	}
 
@@ -109,9 +109,9 @@ public class WebAccount implements Account {
 		 try {
 		 if (this.rememberMe) {
 		 loc4 = SharedObject.getLocal("RotMG", "/");
-		 loc4.data["GUID"] = param1;
-		 loc4.data["Token"] = param3;
-		 loc4.data["Password"] = param2;
+		 loc4.stats["GUID"] = param1;
+		 loc4.stats["Token"] = param3;
+		 loc4.stats["Password"] = param2;
 		 loc4.flush();
 		 }
 		 return;
@@ -125,7 +125,7 @@ public class WebAccount implements Account {
 		this.rememberMe = true;
 		//this.updateUser(GUID.create(), null, null);
 		/*Parameters.sendLogin = true;
-		Parameters.data.charIdUseMap={};
+		Parameters.stats.charIdUseMap={};
 		
 		Parameters.save();**/
 	}

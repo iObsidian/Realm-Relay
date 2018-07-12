@@ -1,9 +1,6 @@
 package rotmg.messaging;
 
-import alde.flash.utils.EventConsumer;
-import alde.flash.utils.MessageConsumer;
-import alde.flash.utils.RSA;
-import alde.flash.utils.XML;
+import alde.flash.utils.*;
 import com.hurlant.crypto.symmetric.ICipher;
 import flash.events.Event;
 import flash.events.TimerEvent;
@@ -336,6 +333,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private void encryptConnection() {
 		serverConnection.setOutgoingCipher(new ICipher("6a39570cc9de4ec71d64821894"));
 		serverConnection.setIncomingCipher(new ICipher("c79332b197f92ba85ed281a023"));
+
 	}
 
 	/**
@@ -356,14 +354,17 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void load() {
-		System.out.println("Loading...");
+		System.out.println("Loading character '" + charId + "'...");
 
 		Load load = (Load) this.messages.require(LOAD);
 		load.charId = charId;
 		load.isFromArena = isFromArena;
+
+		System.out.println(load);
+
 		serverConnection.sendMessage(load);
 
-		/**if (isFromArena) {
+		/*if (isFromArena) {
 		 this.openDialog.dispatch(new BattleSummaryDialog());
 		 }*/
 	}
@@ -538,9 +539,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.serverConnection.sendMessage(useItemMess);
 	}
 
-	public boolean useItem_new(GameObject itemOwner, int slotId)
-
-	{
+	public boolean useItem_new(GameObject itemOwner, int slotId) {
 		int itemId = itemOwner.equipment.get(slotId);
 		XML objectXML = ObjectLibrary.xmlLibrary.get(itemId);
 		if ((objectXML != null) && !itemOwner.isPaused()
@@ -754,6 +753,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		hello.playPlatform = loc1.playPlatform;
 		hello.platformToken = loc1.platformToken;
 		hello.userToken = loc1.token;
+
+		System.out.println(hello);
+
 		serverConnection.sendMessage(hello);
 	}
 
@@ -1304,7 +1306,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		for (String extraXMLString : mapInfo.extraXML) {
 			this.parseXML(extraXMLString);
 		}
-		//this.gs.applyMapInfo(mapInfo);
+		this.gs.applyMapInfo(mapInfo);
 		this.rand = new Random(mapInfo.fp);
 		if (this.createCharacter) {
 			this.create();
@@ -1317,9 +1319,9 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void onDeath(Death death) {
 		this.death = death;
-		/**BitmapData data = new BitmapData(this.gs.stage.stageWidth, this.gs.stage.stageHeight);
-		 data.draw(this.gs);
-		 death.background = data;
+		/**BitmapData stats = new BitmapData(this.gs.stage.stageWidth, this.gs.stage.stageHeight);
+		 stats.draw(this.gs);
+		 death.background = stats;
 		 if (!this.gs.isEditor) {
 		 this.handleDeath.dispatch(death);
 		 }*/
@@ -1386,7 +1388,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	void onInvitedToGuild(InvitedToGuild invitedToGuild) {
-		/**if (Parameters.data.showGuildInvitePopup) {
+		/**if (Parameters.stats.showGuildInvitePopup) {
 		 this.gs.hudView.interactPanel
 		 .setOverride(new GuildInvitePanel(this.gs, invitedToGuild.name, invitedToGuild.guildName));
 		 }*/
@@ -1436,6 +1438,8 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	public void onFailure(Failure event) {
+		System.err.println("Received Failure : " + event);
+
 		switch (event.errorId) {
 			case Failure.INCORRECT_VERSION:
 				this.handleIncorrectVersionFailure(event);

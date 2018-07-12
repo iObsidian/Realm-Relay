@@ -58,7 +58,6 @@ public class MessageCenter implements MessageMap, MessageProvider {
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				e.printStackTrace();
 			}
-
 		}
 
 		System.err.println("Null mapping");
