@@ -1,24 +1,23 @@
 package rotmg.map;
 
-import java.util.HashMap;
-
 import alde.flash.utils.XML;
+import flash.utils.Dictionary;
 
 /**
  * 100% match
  */
 public class RegionLibrary {
-	public static final HashMap<Integer, XML> xmlLibrary = new HashMap<>();
+	public static final Dictionary<Integer, XML> xmlLibrary = new Dictionary<>();
 	public static final int ENTRY_REGION_TYPE = 1;
 	public static final int EXIT_REGION_TYPE = 48;
-	public static HashMap<String, Integer> idToType = new HashMap<>();
+	public static Dictionary<String, Integer> idToType = new Dictionary<>();
 
 	public RegionLibrary() {
 		super();
 	}
 
 	public static void parseFromXML(XML param1) {
-		for (XML loc2 : param1.childs("Region")) {
+		for (XML loc2 : param1.children("Region")) {
 			int type = loc2.getIntAttribute("type");
 			xmlLibrary.put(type, loc2);
 			idToType.put(loc2.getAttribute("id"), type);

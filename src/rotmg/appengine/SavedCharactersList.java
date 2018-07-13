@@ -114,7 +114,7 @@ public class SavedCharactersList extends Event {
 		loc5.verify(loc2.hasOwnProperty("VerifiedEmail"));
 
 		this.classAvailability = new Dictionary<>();
-		for (XML loc4 : this.charsXML.child("ClassAvailabilityList").childs("ClassAvailability")) {
+		for (XML loc4 : this.charsXML.child("ClassAvailabilityList").children("ClassAvailability")) {
 			this.classAvailability.put(loc4.getIntAttribute("id"), loc4.toString());
 		}
 	}
@@ -174,7 +174,7 @@ public class SavedCharactersList extends Event {
 	private void parseCharacterData() {
 		this.nextCharId = this.charsXML.getIntAttribute("nextCharId");
 		this.maxNumChars = this.charsXML.getIntAttribute("maxNumChars");
-		for (XML loc1 : this.charsXML.childs("Char")) {
+		for (XML loc1 : this.charsXML.children("Char")) {
 			this.savedChars.add(new SavedCharacter(loc1, this.name));
 			this.numChars++;
 		}
@@ -185,7 +185,7 @@ public class SavedCharactersList extends Event {
 		int loc3 = 0;
 		CharacterStats loc4 = null;
 		XML loc1 = this.charsXML.child("Account").child("Stats");
-		for (XML loc2 : loc1.childs("ClassStats")) {
+		for (XML loc2 : loc1.children("ClassStats")) {
 			loc3 = loc2.getIntAttribute("objectType");
 			loc4 = new CharacterStats(loc2);
 			this.numStars = this.numStars + loc4.numStars();
@@ -195,7 +195,7 @@ public class SavedCharactersList extends Event {
 
 	private void parseNewsData() {
 		XML loc1 = this.charsXML.child("News");
-		for (XML loc2 : loc1.childs("Item")) {
+		for (XML loc2 : loc1.children("Item")) {
 			this.news.add(new SavedNewsItem(loc2.getValue("Icon"), loc2.getValue("Title"), loc2.getValue("TagLine"), loc2.getValue("Link"), loc2.getIntValue("Date")));
 		}
 	}
@@ -257,7 +257,7 @@ public class SavedCharactersList extends Event {
 	public boolean levelRequirementsMet(int param1) {
 		int loc4 = 0;
 		XML loc2 = ObjectLibrary.xmlLibrary.get(param1);
-		for (XML loc3 : loc2.childs("UnlockLevel")) {
+		for (XML loc3 : loc2.children("UnlockLevel")) {
 			loc4 = ObjectLibrary.idToType.get(loc3.toString());
 			if (this.bestLevel(loc4) < loc3.getIntValue("level")) {
 				return false;
@@ -289,7 +289,7 @@ public class SavedCharactersList extends Event {
 			if (!this.levelRequirementsMet(loc6)) {
 				loc7 = true;
 				loc8 = false;
-				for (XML loc9 : loc5.childs("UnlockLevel")) {
+				for (XML loc9 : loc5.children("UnlockLevel")) {
 					loc10 = ObjectLibrary.idToType.get(loc9.toString());
 					loc11 = loc9.getIntAttribute("level");
 					if (this.bestLevel(loc10) < loc11) {

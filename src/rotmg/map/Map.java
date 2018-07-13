@@ -329,11 +329,11 @@ public class Map extends AbstractMap {
 		return loc4;
 	}
 
-	public Square lookupSquare(int param1, int param2) {
+	public Square lookupSquare(double param1, double param2) {
 		if (param1 < 0 || param1 >= width || param2 < 0 || param2 >= height) {
 			return null;
 		}
-		return squares.get(param1 + param2 * width);
+		return squares.get((int) (param1 + param2 * width));
 	}
 
 	public void draw(Camera param1, int param2) {

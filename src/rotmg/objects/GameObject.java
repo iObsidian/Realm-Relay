@@ -63,11 +63,10 @@ public class GameObject extends BasicObject {
 	private static final double NEGATIVE_ZERO_LIMIT = -ZERO_LIMIT;
 	private static final int DEFAULT_HP_BAR_Y_OFFSET = 6;
 
-
 	public BitmapData nameBitmapData = null;
 	public ShockerEffect shockEffect;
 	public ObjectProperties props;
-	public String name;
+	public String name = "";
 	public double radius = 0.5;
 	public double facing = 0;
 	public boolean flying = false;

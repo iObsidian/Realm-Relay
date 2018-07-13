@@ -1,27 +1,26 @@
 package rotmg.map;
 
-import java.util.HashMap;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
+import flash.utils.Dictionary;
 import rotmg.objects.TextureData;
 import rotmg.objects.TextureDataConcrete;
 import rotmg.util.BitmapUtil;
 
 public class GroundLibrary {
 
-	public static final HashMap<Integer, GroundProperties> propsLibrary = new HashMap<>();
-	public static final HashMap<Integer, XML> xmlLibrary = new HashMap<>(); //ObjectType, XML
-	public static final HashMap<Integer, TextureData> typeToTextureData = new HashMap<>();
-	public static HashMap<String, Integer> idToType = new HashMap<>(); //id, TextureData
+	public static final Dictionary<Integer, GroundProperties> propsLibrary = new Dictionary<>();
+	public static final Dictionary<Integer, XML> xmlLibrary = new Dictionary<>(); //ObjectType, XML
+	public static final Dictionary<Integer, TextureData> typeToTextureData = new Dictionary<>();
+	public static Dictionary<String, Integer> idToType = new Dictionary<>(); //id, TextureData
 	public static GroundProperties defaultProps;
 	public static String GROUND_CATEGORY = "Ground";
-	private static HashMap<Integer, Integer> tileTypeColorDict = new HashMap<>();
+	private static Dictionary<Integer, Integer> tileTypeColorDict = new Dictionary<>();
 
 	public static void parseFromXML(XML xml) {
 		int objectType = xml.getIntAttribute("type");
 
-		for (XML loc2 : xml.childs("Ground")) {
+		for (XML loc2 : xml.children("Ground")) {
 			propsLibrary.put(objectType, new GroundProperties(loc2));
 			xmlLibrary.put(objectType, loc2);
 			typeToTextureData.put(objectType, new TextureDataConcrete(loc2));

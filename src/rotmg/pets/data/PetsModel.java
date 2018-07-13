@@ -1,16 +1,16 @@
 package rotmg.pets.data;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import alde.flash.utils.XML;
+import flash.utils.Dictionary;
 import rotmg.appengine.SavedCharacter;
 import rotmg.core.model.PlayerModel;
 import rotmg.map.AbstractMap;
 import rotmg.objects.ObjectLibrary;
 import rotmg.pets.controller.NotifyActivePetUpdated;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 // This is a 100% match, except maybe for the getInstance() [Inject]
 public class PetsModel {
@@ -25,7 +25,7 @@ public class PetsModel {
 	private PetVO activePet;
 
 	public PetsModel() {
-		this.hash = new HashMap<>();
+		this.hash = new Dictionary<>();
 		this.pets = new ArrayList<PetVO>();
 	}
 

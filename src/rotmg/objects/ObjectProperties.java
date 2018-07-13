@@ -1,8 +1,7 @@
 package rotmg.objects;
 
-import java.util.HashMap;
-
 import alde.flash.utils.XML;
+import flash.utils.Dictionary;
 import rotmg.sound.SoundEffectLibrary;
 
 /**
@@ -40,7 +39,7 @@ public class ObjectProperties {
 	public double bloodProb = 0.0F;
 	public int bloodColor = 16711680;
 	public int shadowColor = 0;
-	public HashMap<Integer, String> sounds; // ID, Sound name
+	public Dictionary<Integer, String> sounds; // ID, Sound name
 	public TextureData portrait = null;
 	public int minSize = 100;
 	public int maxSize = 100;
@@ -48,13 +47,13 @@ public class ObjectProperties {
 	public WhileMovingProperties whileMoving = null;
 	public String belonedDungeon = "";
 	public String oldSound = null;
-	public HashMap<Integer, ProjectileProperties> projectiles; // ID, Properties
+	public Dictionary<Integer, ProjectileProperties> projectiles; // ID, Properties
 	public double angleCorrection = 0;
 	public double rotation = 0;
 
 	public ObjectProperties(XML param1) {
 
-		this.projectiles = new HashMap<>();
+		this.projectiles = new Dictionary<>();
 
 		if (param1 == null) {
 			return;
@@ -110,7 +109,7 @@ public class ObjectProperties {
 			}
 		}
 		this.oldSound = param1.hasOwnProperty("OldSound") ? param1.getValue("OldSound") : null;
-		for (XML projectile : param1.childs("Projectile")) {
+		for (XML projectile : param1.children("Projectile")) {
 			this.projectiles.put(projectile.getIntAttribute("id"), new ProjectileProperties(projectile));
 		}
 		this.angleCorrection = param1.hasOwnProperty("AngleCorrection")
@@ -129,9 +128,9 @@ public class ObjectProperties {
 			this.shadowColor = param1.getIntValue("ShadowColor");
 		}
 
-		for (XML loc : param1.childs("Sound")) {
+		for (XML loc : param1.children("Sound")) {
 			if (this.sounds == null) {
-				this.sounds = new HashMap<>();
+				this.sounds = new Dictionary<>();
 			}
 			this.sounds.put(loc.getIntAttribute("id"), loc.element.getNodeValue());
 		}

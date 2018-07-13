@@ -2,20 +2,21 @@ package flash.events;
 
 import alde.flash.utils.EventConsumer;
 import flash.airglobal.Graphics;
+import flash.utils.Dictionary;
 
-import java.util.HashMap;
 import java.util.function.Consumer;
+
 
 public class EventDispatcher {
 
-	public HashMap<EventConsumer, String> listeners;
+	public Dictionary<EventConsumer, String> listeners;
 	public boolean visible;
 	public boolean mouseEnabled;
 	public Graphics graphics;
 	static int startTime;
 
 	public EventDispatcher() {
-		listeners = new HashMap<>();
+		listeners = new Dictionary<>();
 	}
 
 	native void removeEventListener(String type, EventConsumer listener, Boolean useCapture);

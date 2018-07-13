@@ -1,15 +1,15 @@
 package rotmg.model;
 
-import java.util.HashMap;
-
+import flash.utils.Dictionary;
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;
+
 
 public class GameModel {
 
 	public static GameModel instance;
 	public Player player;
-	public HashMap<Integer, GameObject> gameObjects;
+	public Dictionary<Integer, GameObject> gameObjects;
 
 	public GameModel() {
 		super();

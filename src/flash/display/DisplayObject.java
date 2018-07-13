@@ -3,7 +3,6 @@ package flash.display;
 import alde.flash.utils.Vector;
 import flash.accessibility.AccessibilityProperties;
 import flash.events.EventDispatcher;
-import flash.filters.ColorMatrixFilter;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Rectangle;
@@ -100,7 +99,7 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 	}
 
 	public void setAccessibilityProperties(AccessibilityProperties value) {
-		return;
+
 	}
 
 	public Vector3D globalToLocal3D(flash.geom.Point point) {
@@ -112,15 +111,15 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 	}
 
 	public void setBlendShader(Shader value) {
-		return;
+
 	}
 
 	public void setCacheAsBitmapMatrix(Matrix value) {
-		return;
+
 	}
 
-
 	protected Rectangle getRect(Stage stage) {
+		return new Rectangle(0, 0, 0, 0);
 	}
 
 }

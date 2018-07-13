@@ -73,7 +73,7 @@ public class ProjectileProperties {
 			this.minDamage = param1.getIntValue("MinDamage");
 			this.maxDamage = param1.getIntValue("MaxDamage");
 		}
-		for (XML xml : param1.childs("ConditionEffect")) {
+		for (XML xml : param1.children("ConditionEffect")) {
 			if (this.effects == null) {
 				this.effects = new Vector<>();
 			}

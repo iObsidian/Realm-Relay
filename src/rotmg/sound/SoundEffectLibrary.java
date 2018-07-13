@@ -1,12 +1,13 @@
 package rotmg.sound;
 
-import java.util.HashMap;
+import flash.utils.Dictionary;
+
 import java.util.Map;
 
 public class SoundEffectLibrary {
 
 	private static final String URL_PATTERN = "{URLBASE}/sfx/{NAME}.mp3";
-	public static Map nameMap = new HashMap<String, Integer>();
+	public static Map nameMap = new Dictionary<String, Integer>();
 	private static String urlBase;
 
 	public static void load(String name) {

@@ -1,7 +1,5 @@
 package rotmg.particles;
 
-import java.util.List;
-
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.GraphicsBitmapFill;
@@ -48,7 +46,7 @@ public class BaseParticle extends BasicObject {
 	}
 
 	@Override
-	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
+	public void draw(Vector<IGraphicsData> graphicsData, Camera camera, int time) {
 		double halfW = this.bitmapFill.bitmapData.width / 2;
 		double halfH = this.bitmapFill.bitmapData.height / 2;
 

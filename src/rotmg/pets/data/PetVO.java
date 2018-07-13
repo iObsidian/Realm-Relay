@@ -86,11 +86,11 @@ public class PetVO {
 		for (int i = 0; i < this.abilityList.length; i++) {
 			AbilityVO abilityVO = this.abilityList[i];
 
-			int objectType = param1.child("Abilities").childs("Ability").get(i).getIntAttribute("type");
+			int objectType = param1.child("Abilities").children("Ability").get(i).getIntAttribute("type");
 			abilityVO.name = getPetDataDisplayId(objectType);
 			abilityVO.description = getPetDataDescription(objectType);
-			abilityVO.level = param1.child("Abilities").childs("Ability").get(i).getIntAttribute("power");
-			abilityVO.points = param1.child("Abilities").childs("Ability").get(i).getIntAttribute("points");
+			abilityVO.level = param1.child("Abilities").children("Ability").get(i).getIntAttribute("power");
+			abilityVO.points = param1.child("Abilities").children("Ability").get(i).getIntAttribute("points");
 		}
 	}
 

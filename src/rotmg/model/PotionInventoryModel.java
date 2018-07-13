@@ -1,13 +1,12 @@
 package rotmg.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import alde.flash.utils.SignalConsumer;
+import alde.flash.utils.XML;
+import flash.utils.Dictionary;
 import org.osflash.signals.Signal;
 
-import alde.flash.utils.XML;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PotionInventoryModel {
 
@@ -16,12 +15,12 @@ public class PotionInventoryModel {
 	public static final int MAGIC_POTION_ID = 2595;
 	public static final int MAGIC_POTION_SLOT = 255;
 	public static PotionInventoryModel instance;
-	public HashMap<Integer, PotionModel> potionModels;
+	public Dictionary<Integer, PotionModel> potionModels;
 	public Signal<Integer> updatePosition;
 
 	public PotionInventoryModel() {
 		super();
-		this.potionModels = new HashMap<>();
+		this.potionModels = new Dictionary<>();
 		this.updatePosition = new Signal<Integer>();
 	}
 
@@ -50,7 +49,7 @@ public class PotionInventoryModel {
 		int costCooldownMillis = xml.getIntValue("PotionPurchaseCostCooldown");
 		int maxStackable = xml.getIntValue("MaxStackablePotions");
 		List<Integer> costs = new ArrayList<>();
-		for (XML potionCost : xml.childs("PotionPurchaseCosts")) {
+		for (XML potionCost : xml.children("PotionPurchaseCosts")) {
 			costs.add(potionCost.getIntValue("cost"));
 		}
 

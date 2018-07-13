@@ -2,6 +2,7 @@ package rotmg.objects;
 
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
+import flash.utils.Dictionary;
 import rotmg.constants.GeneralConstants;
 import rotmg.constants.ItemConstants;
 import rotmg.messaging.data.StatData;
@@ -14,9 +15,8 @@ import rotmg.util.redrawers.GlowRedrawer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * This is 80% complete
@@ -27,25 +27,25 @@ public class ObjectLibrary {
 
 	public static final String IMAGE_SET_NAME = "lofiObj3";
 	public static final int IMAGE_ID = 255;
-	public static final Map<Integer, ObjectProperties> propsLibrary = new HashMap<>(); //objectType
-	public static final Map<Object, XML> xmlLibrary = new HashMap<>(); //objectType, objectXML
-	public static final Map<Integer, XML> setLibrary = new HashMap<>(); //type, set
-	public static final Map<String, Integer> idToType = new HashMap<>(); //id, objectType
-	public static final Map<Integer, String> typeToDisplayId = new HashMap<>(); //objectType, displayId
-	public static final Map<Integer, TextureData> typeToTextureData = new HashMap<>();
-	public static final Map<Integer, TextureData> typeToTopTextureData = new HashMap<>(); //ObjectType, TextureData
-	public static final Map<Integer, AnimationsData> typeToAnimationsData = new HashMap<>();
-	public static final Map<Integer, XML> petXMLDataLibrary = new HashMap<>(); //ObjectType, XML
-	public static final Map<Object, Object> skinSetXMLDataLibrary = new HashMap<>();
-	public static final Map<String, HashMap<Integer, XML>> dungeonsXMLLibrary = new HashMap<>();
+	public static final Dictionary<Integer, ObjectProperties> propsLibrary = new Dictionary<>(); //objectType
+	public static final Dictionary<Object, XML> xmlLibrary = new Dictionary<>(); //objectType, objectXML
+	public static final Dictionary<Integer, XML> setLibrary = new Dictionary<>(); //type, set
+	public static final Dictionary<String, Integer> idToType = new Dictionary<>(); //id, objectType
+	public static final Dictionary<Integer, String> typeToDisplayId = new Dictionary<>(); //objectType, displayId
+	public static final Dictionary<Integer, TextureData> typeToTextureData = new Dictionary<>();
+	public static final Dictionary<Integer, TextureData> typeToTopTextureData = new Dictionary<>(); //ObjectType, TextureData
+	public static final Dictionary<Integer, AnimationsData> typeToAnimationsData = new Dictionary<>();
+	public static final Dictionary<Integer, XML> petXMLDataLibrary = new Dictionary<>(); //ObjectType, XML
+	public static final Dictionary<Object, Object> skinSetXMLDataLibrary = new Dictionary<>();
+	public static final Dictionary<String, Dictionary<Integer, XML>> dungeonsXMLLibrary = new Dictionary<>();
 	public static final String ENEMY_FILTER_LIST[] = new String[]{"None", "Hp", "Defense"};
 	public static final String TILE_FILTER_LIST[] = new String[]{"ALL", "Walkable", "Unwalkable", "Slow", "Speed=1"};
 	public static final ObjectProperties defaultProps = new ObjectProperties(null);
 	public static TextureDataFactory textureDataFactory = new TextureDataFactory();
 	public static List<XML> playerChars = new ArrayList<XML>();
 	public static List<XML> hexTransforms = new ArrayList<XML>();
-	public static Map<Object, Object> playerClassAbbr = new HashMap<>();
-	public static Map<String, Class> TYPE_MAP = new HashMap<String, Class>();
+	public static Dictionary<Object, Object> playerClassAbbr = new Dictionary<>();
+	public static Dictionary<String, Class> TYPE_MAP = new Dictionary<String, Class>();
 	private static String currentDungeon = "";
 
 	static {
@@ -90,7 +90,7 @@ public class ObjectLibrary {
 	public static void parseDungeonXML(String param1, XML objectXML) {
 		currentDungeon = param1;
 
-		dungeonsXMLLibrary.put(currentDungeon, new HashMap<>());
+		dungeonsXMLLibrary.put(currentDungeon, new Dictionary<>());
 		parseFromXML(objectXML);
 	}
 
@@ -389,7 +389,7 @@ public class ObjectLibrary {
 			return true;
 		}
 		XML objectXML = xmlLibrary.get(objectType);
-		for (XML xml : objectXML.childs("EquipRequirement")) {
+		for (XML xml : objectXML.children("EquipRequirement")) {
 			if (!playerMeetsRequirement(xml, param2)) {
 				return false;
 			}

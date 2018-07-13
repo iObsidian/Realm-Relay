@@ -2,11 +2,10 @@ package rotmg.util;
 
 import alde.flash.utils.StaticAssetLoaderUtility;
 import flash.display.BitmapData;
+import flash.utils.Dictionary;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * This class is a 80% match.
@@ -17,13 +16,13 @@ import java.util.Map;
  */
 public class AssetLibrary {
 
-	private static Map<String, BitmapData> images = new HashMap<>();
+	private static Dictionary<String, BitmapData> images = new Dictionary<>();
 
-	private static Map<String, ImageSet> imageSets = new HashMap<>();
+	private static Dictionary<String, ImageSet> imageSets = new Dictionary<>();
 
-	private static Map<String, List<Sound>> sounds = new HashMap<>();
+	private static Dictionary<String, List<Sound>> sounds = new Dictionary<>();
 
-	private static Map<BitmapData, String> imageLookup = new HashMap<BitmapData, String>();
+	private static Dictionary<BitmapData, String> imageLookup = new Dictionary<BitmapData, String>();
 
 	public static void addImage(String name, BitmapData data) {
 		images.put(name, data);

@@ -979,7 +979,16 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	private void updateGameObject(GameObject go, StatData[] stats, boolean isMyObject) {
 		int index = 0;
 		Player player = (Player) go;
-		Merchant merchant = (Merchant) go;
+
+		Merchant merchant = null;
+		if (go instanceof Merchant) {
+			merchant = (Merchant) go;
+		}
+
+		if (go == null) {
+			System.err.println("We got a fuck! " + isMyObject);
+		}
+
 		for (StatData stat : stats) {
 			int value = stat.statValue;
 			switch (stat.statType) {

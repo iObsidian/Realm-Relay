@@ -1,16 +1,16 @@
 package rotmg.classes.model;
 
 import alde.flash.utils.SignalConsumer;
+import flash.utils.Dictionary;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class CharacterSkins {
 
 	private final List<CharacterSkin> skins = new ArrayList<CharacterSkin>(0);
 
-	private final HashMap<Integer, CharacterSkin> map = new HashMap<>();
+	private final Dictionary<Integer, CharacterSkin> map = new Dictionary<>();
 	private CharacterSkin defaultSkin;
 	private CharacterSkin selectedSkin;
 	private int maxLevelAchieved;

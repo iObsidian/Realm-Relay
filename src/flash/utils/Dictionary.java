@@ -8,6 +8,13 @@ import java.util.Iterator;
  */
 public class Dictionary<K, V> extends HashMap<K, V> implements Iterable<V> {
 
+	public Dictionary() {
+	}
+
+
+	public Dictionary(K maxid) {
+	}
+
 	@Override
 	public Iterator<V> iterator() {
 		return values().iterator();

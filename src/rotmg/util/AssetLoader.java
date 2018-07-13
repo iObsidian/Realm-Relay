@@ -1,6 +1,7 @@
 package rotmg.util;
 
 import alde.flash.utils.XML;
+import flash.utils.Dictionary;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -20,7 +21,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class AssetLoader {
@@ -228,7 +228,7 @@ public class AssetLoader {
  */
 class EmbeddedData {
 
-	static HashMap<String, String> models = new HashMap<>();
+	static Dictionary<String, String> models = new Dictionary<>();
 	private static DocumentBuilderFactory dbFactory;
 	private static DocumentBuilder dBuilder;
 

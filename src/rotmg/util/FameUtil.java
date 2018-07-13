@@ -57,7 +57,7 @@ public class FameUtil {
 	public static int numAllTimeStars(int param1, int param2, XML param3) {
 		int loc4 = 0;
 		int loc5 = 0;
-		for (XML loc6 : param3.childs("ClassStats")) {
+		for (XML loc6 : param3.children("ClassStats")) {
 			if (param1 == loc6.getIntAttribute("objectType")) {
 				loc5 = loc6.getIntValue("BestFame");
 			} else {

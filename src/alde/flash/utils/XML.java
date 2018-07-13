@@ -74,7 +74,7 @@ public class XML {
 	/**
 	 * Get all children with name
 	 */
-	public List<XML> childs(String name) {
+	public List<XML> children(String name) {
 		List<XML> xmls = new ArrayList<>();
 
 		NodeList childs = element.getChildNodes();
@@ -91,7 +91,7 @@ public class XML {
 	/**
 	 * Get all child values
 	 */
-	public List<XML> childs() {
+	public List<XML> children() {
 		List<XML> xmls = new ArrayList<>();
 
 		NodeList childs = element.getChildNodes();
@@ -115,7 +115,7 @@ public class XML {
 	}
 
 	public boolean hasOwnProperty(String tag) {
-		for (XML x : childs(tag)) {
+		for (XML x : children(tag)) {
 			if (x.name().contains(tag)) {
 				return true;
 			}

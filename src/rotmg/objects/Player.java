@@ -217,7 +217,7 @@ public class Player extends Character {
 			if (equipment != -1) {
 				XML objectXML = ObjectLibrary.xmlLibrary.get(equipment);
 				if (objectXML != null && objectXML.hasOwnProperty("ActivateOnEquip")) {
-					for (XML loc4 : objectXML.childs("ActivateOnEquip")) {
+					for (XML loc4 : objectXML.children("ActivateOnEquip")) {
 						if (loc4.name().equals("IncrementStat")) {
 							int loc5 = loc4.getIntAttribute("stat");
 							int loc6 = loc4.getIntAttribute("amount");

@@ -119,10 +119,10 @@ public class GetCharListTask extends BaseTask {
 						this.account.paymentData = loc2.child("Account").getValue("PaymentData");
 					}
 				}
-				if (loc2.childs("Account").get(0).hasOwnProperty("SecurityQuestions")) {
+				if (loc2.children("Account").get(0).hasOwnProperty("SecurityQuestions")) {
 					this.securityQuestionsModel.showSecurityQuestionsOnStartup = loc2.child("Account").child("SecurityQuestions").getValue("ShowSecurityQuestionsDialog").equals("1");
 					this.securityQuestionsModel.clearQuestionsList();
-					for (XML loc5 : loc2.child("Account").child("SecurityQuestions").child("SecurityQuestionsKeys").childs("SecurityQuestionsKey")) {
+					for (XML loc5 : loc2.child("Account").child("SecurityQuestions").child("SecurityQuestionsKeys").children("SecurityQuestionsKey")) {
 						this.securityQuestionsModel.addSecurityQuestion(loc5.toString());
 					}
 				}

@@ -60,7 +60,7 @@ public class Wall extends GameObject {
 		int loc5 = 0;
 		while (loc5 < this.faces.length) {
 			loc7 = this.faces.get(loc5);
-			loc8 = map.lookupSquare(x + sqX.get(loc5), y + sqY.get(loc5));
+			loc8 = map.lookupSquare((x + sqX.get(loc5)), (y + sqY.get(loc5)));
 			if (loc8 == null || loc8.texture == null || loc8 != null && loc8.obj instanceof Wall && !loc8.obj.dead) {
 				loc7.blackOut = true;
 			} else {

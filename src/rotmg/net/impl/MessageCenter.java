@@ -1,18 +1,18 @@
 package rotmg.net.impl;
 
 import alde.flash.utils.MessageConsumer;
+import flash.utils.Dictionary;
 import rotmg.net.api.MessageMap;
 import rotmg.net.api.MessageMapping;
 import rotmg.net.api.MessageProvider;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 
 public class MessageCenter implements MessageMap, MessageProvider {
 
 	private static final int MAXID = 256;
 	private static MessageCenter instance;
-	private final HashMap<Integer, MessageCenterMapping> maps = new HashMap<>(MAXID);
+	private final Dictionary<Integer, MessageCenterMapping> maps = new Dictionary<>(MAXID);
 
 	public MessageCenter() {
 		super();
