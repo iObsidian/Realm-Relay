@@ -224,7 +224,6 @@ public class ObjectLibrary {
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				e.printStackTrace();
-
 			}
 		} else {
 			System.out.println("Error with creating class " + typeReference + "...");

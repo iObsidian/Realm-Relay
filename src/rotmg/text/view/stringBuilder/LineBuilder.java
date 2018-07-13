@@ -42,4 +42,15 @@ public class LineBuilder implements StringBuilder {
 		this.params = params;
 		return this;
 	}
+
+	public LineBuilder setPrefix(String prefix) {
+		this.prefix = prefix;
+		return this;
+	}
+
+	public LineBuilder setPostfix(String postfix) {
+		this.postfix = postfix;
+		return this;
+	}
+
 }

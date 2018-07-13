@@ -984,7 +984,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void updateGameObject(GameObject go, StatData[] stats, boolean isMyObject) {
 		int index = 0;
-		Player player = (Player) go;
+
+		Player player = null;
+
+		if (go instanceof Player) {
+			player = (Player) go;
+		}
 
 		Merchant merchant = null;
 		if (go instanceof Merchant) {
@@ -1241,7 +1246,12 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		if (tickTime != 0 && !isMyObject) {
 			go.onTickPos(objectStatus.pos.x, objectStatus.pos.y, tickTime, tickId);
 		}
-		Player player = (Player) go;
+
+		Player player = null;
+		if (go instanceof Player) {
+			player = (Player) go;
+		}
+
 		if (player != null) {
 			oldLevel = player.level;
 			oldExp = player.exp;
