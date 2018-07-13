@@ -52,7 +52,6 @@ public class ObjectProperties {
 	public double rotation = 0;
 
 	public ObjectProperties(XML param1) {
-
 		this.projectiles = new Dictionary<>();
 
 		if (param1 == null) {

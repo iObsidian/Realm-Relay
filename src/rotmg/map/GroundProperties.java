@@ -1,11 +1,11 @@
 package rotmg.map;
 
-import java.util.List;
-
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import rotmg.objects.TextureData;
 import rotmg.objects.TextureDataConcrete;
+
+import java.util.List;
 
 /**
  * 75% done : requires AnimateProperties
@@ -58,7 +58,6 @@ public class GroundProperties {
 		this.push = xml.hasOwnProperty("Push");
 
 		if (xml.hasOwnProperty("Animate")) {
-			System.out.println(displayId);
 			this.animate.parseXML(xml.child("Animate"));
 		}
 

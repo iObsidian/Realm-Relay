@@ -5,7 +5,7 @@ import flash.display.BitmapData;
 import flash.geom.Matrix;
 
 /**
- * This is a 100 match
+ * This is a 100% match
  */
 public class TextureMatrix {
 
@@ -53,7 +53,7 @@ public class TextureMatrix {
 	}
 
 	public void calculateUVMatrix(Vector<Double> param1) {
-		if (this.texture == null) {
+		/*if (this.texture == null) {
 			this.uvMatrix = null;
 			return;
 		}
@@ -69,7 +69,7 @@ public class TextureMatrix {
 		double loc11 = loc7 - loc3;
 		double loc12 = loc8 - loc4;
 		this.uvMatrix = new Matrix(loc9, loc10, loc11, loc12, loc3, loc4);
-		this.uvMatrix.invert();
+		this.uvMatrix.invert();*/
 	}
 
 

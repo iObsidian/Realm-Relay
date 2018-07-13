@@ -56,8 +56,6 @@ public class SocketServer {
 
 		Server s = new Server().setAddress("54.67.119.179").setPort(Parameters.PORT);
 
-		System.out.println(s.toString());
-
 		AGameSprite a = new AGameSprite();
 
 		GameServerConnectionConcrete g = new GameServerConnectionConcrete(a, s, -1, false, 404, -1, new byte[0], null,

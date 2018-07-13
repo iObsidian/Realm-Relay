@@ -205,9 +205,6 @@ public class ConditionEffect {
 			conditionEffectFromName = new Dictionary<>();
 
 			for (ConditionEffect effect : effects) {
-				System.out.println(effect);
-				System.out.println(effect.name);
-
 				conditionEffectFromName.put(effect.name, effects.indexOf(effect));
 			}
 		}

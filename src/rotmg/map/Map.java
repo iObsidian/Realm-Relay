@@ -38,7 +38,6 @@ import rotmg.util.ConditionEffect;
  */
 public class Map extends AbstractMap {
 
-
 	public static final String CLOTH_BAZAAR = "Cloth Bazaar";
 
 	public static final String NEXUS = "Nexus";
@@ -85,7 +84,7 @@ public class Map extends AbstractMap {
 
 	private Vector<Integer> idsToRemove;
 
-	private Dictionary forceSoftwareMap;
+	private Dictionary<String, Boolean> forceSoftwareMap;
 
 	private boolean lastSoftwareClear = false;
 
@@ -109,18 +108,18 @@ public class Map extends AbstractMap {
 
 	public Map(AGameSprite param1) {
 		super();
-		this.objsToAdd = new Vector<BasicObject>();
-		this.idsToRemove = new Vector<Integer>();
-		this.forceSoftwareMap = new Dictionary();
+		this.objsToAdd = new Vector<>();
+		this.idsToRemove = new Vector<>();
+		this.forceSoftwareMap = new Dictionary<>();
 		//this.darkness = new EmbeddedAssets.DarknessBackground();
 		this.bgCont = new Sprite();
-		this.graphicsData = new Vector<IGraphicsData>();
-		this.graphicsDataStageSoftware = new Vector<IGraphicsData>();
-		this.graphicsData3d = new Vector<Object3DStage3D>();
-		this.visible = new Vector();
-		this.visibleUnder = new Vector();
-		this.visibleSquares = new Vector<Square>();
-		this.topSquares = new Vector<Square>();
+		this.graphicsData = new Vector<>();
+		this.graphicsDataStageSoftware = new Vector<>();
+		this.graphicsData3d = new Vector<>();
+		this.visible = new Vector<>();
+		this.visibleUnder = new Vector<>();
+		this.visibleSquares = new Vector<>();
+		this.topSquares = new Vector<>();
 		gs = param1;
 		hurtOverlay = new HurtOverlay();
 		gradientOverlay = new GradientOverlay();
@@ -163,7 +162,14 @@ public class Map extends AbstractMap {
 	}
 
 	public void initialize() {
-		squares.length = width * height;
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				squares.add(new Square(this, x, y));
+			}
+		}
+
+		//squares.length = width * height;
+
 		addChild(this.bgCont);
 		background = Background.getBackground(back);
 		if (!Parameters.isGpuRender()) {
@@ -246,28 +252,26 @@ public class Map extends AbstractMap {
 		return null;
 	}
 
-	public void setGroundTile(int param1, int param2, int param3) {
-		int loc8;
-		int loc9;
-		Square loc10;
-		Square loc4 = this.getSquare(param1, param2);
-		loc4.setTileType(param3);
-		int loc5 = param1 < width - 1 ? param1 + 1 : param1;
-		int loc6 = param2 < height - 1 ? param2 + 1 : param2;
-		int loc7 = param1 > 0 ? param1 - 1 : param1;
-		while (loc7 <= loc5) {
-			loc8 = param2 > 0 ? param2 - 1 : param2;
-			while (loc8 <= loc6) {
-				loc9 = loc7 + loc8 * width;
-				loc10 = squares.get(loc9);
-				if (loc10 != null && (loc10.props.hasEdge || loc10.tileType != param3)) {
-					loc10.faces.length = 0;
+	@Override
+	public void setGroundTile(int x, int y, int tileType) {
+		int yi = 0;
+		int ind = 0;
+		Square n = null;
+		Square square = this.getSquare(x, y);
+		square.setTileType(tileType);
+		int xend = x < this.width - 1 ? x + 1 : x;
+		int yend = y < this.height - 1 ? y + 1 : y;
+		for (int xi = x > 0 ? x - 1 : x; xi <= xend; xi++) {
+			for (yi = y > 0 ? y - 1 : y; yi <= yend; yi++) {
+				ind = xi + yi * this.width;
+				n = this.squares.get(ind);
+				if (n != null && (n.props.hasEdge || n.tileType != tileType)) {
+					n.faces.length = 0;
 				}
-				loc8++;
 			}
-			loc7++;
 		}
 	}
+
 
 	public void addObj(BasicObject param1, double param2, double param3) {
 		param1.x = param2;
@@ -337,13 +341,13 @@ public class Map extends AbstractMap {
 	}
 
 	public void draw(Camera param1, int param2) {
-		Square loc6 = null;
-		double loc15 = 0;
-		double loc16 = 0;
-		double loc17 = 0;
-		double loc18 = 0;
-		double loc19 = 0;
-		double loc20 = 0;
+		Square loc6;
+		double loc15;
+		double loc16;
+		double loc17;
+		double loc18;
+		double loc19;
+		double loc20;
 		int loc21 = 0;
 		Render3D loc22 = null;
 		int loc23 = 0;

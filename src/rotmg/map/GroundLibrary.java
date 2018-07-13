@@ -18,11 +18,14 @@ public class GroundLibrary {
 	private static Dictionary<Integer, Integer> tileTypeColorDict = new Dictionary<>();
 
 	public static void parseFromXML(XML xml) {
-		int objectType = xml.getIntAttribute("type");
 
 		for (XML loc2 : xml.children("Ground")) {
+			int objectType = loc2.getIntAttribute("type");
 			propsLibrary.put(objectType, new GroundProperties(loc2));
 			xmlLibrary.put(objectType, loc2);
+
+			//System.out.println("Added new objectType : " + objectType);
+
 			typeToTextureData.put(objectType, new TextureDataConcrete(loc2));
 			idToType.put(loc2.getAttribute("id"), objectType);
 		}
@@ -50,7 +53,15 @@ public class GroundLibrary {
 	}
 
 	public static BitmapData getBitmapData(int param1, int param2) {
-		return typeToTextureData.get(param1).getTexture(param2);
+		System.out.println("param1 : " + param1 + " : " + param2);
+
+		try {
+			return typeToTextureData.get(param1).getTexture(param2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("Error : " + param1 + " : " + param2);
+		}
+		return null;
 	}
 
 	public static int getColor(int param1) {

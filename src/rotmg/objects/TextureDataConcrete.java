@@ -10,9 +10,6 @@ import rotmg.util.AnimatedChars;
 import rotmg.util.AssetLibrary;
 import rotmg.util.MaskedImage;
 
-/**
- * This class is a 25% match. Removed the use of remote textures. Parse only works for textures.
- */
 public class TextureDataConcrete extends TextureData {
 
 	public static boolean remoteTexturesUsed = false;
@@ -53,11 +50,6 @@ public class TextureDataConcrete extends TextureData {
 		return loc2.getTexture(param1);
 	}
 
-	private void parse(XML xml) {
-		parse(xml, "");
-	}
-
-
 	public TextureData getAltTextureData(int param1) {
 		if (altTextures == null) {
 			return null;
@@ -75,17 +67,19 @@ public class TextureDataConcrete extends TextureData {
 	}
 
 
-	private void parse(XML param1, String param2) {
+	private void parse(XML xml) {
+		parse(xml, "");
+	}
+
+	private void parse(XML xml, String param2) {
 		MaskedImage image = null;
 		RemoteTexture remoteTexture = null;
-		XML xml = param1;
-		String id = param2;
 		switch (xml.name()) {
 			case "Texture":
 				try {
 					texture = AssetLibrary.getImageFromSet(xml.getValue("File"), xml.getIntValue("Index"));
 				} catch (Error error) {
-					throw new Error("Error loading Texture for " + id + " -  name");
+					throw new Error("Error loading Texture for " + param2 + " -  name");
 				}
 				break;
 			case "Mask":
@@ -101,7 +95,7 @@ public class TextureDataConcrete extends TextureData {
 					texture = image.image;
 					mask = image.mask;
 				} catch (Error error) {
-					throw new Error("Error loading AnimatedTexture for " + id + " -  name");
+					throw new Error("Error loading AnimatedTexture for " + param2 + " -  name");
 				}
 				break;
 			case "RemoteTexture":
@@ -118,12 +112,12 @@ public class TextureDataConcrete extends TextureData {
 				break;
 			case "RandomTexture":
 				try {
-					randomTextureData = new Vector<TextureData>();
+					randomTextureData = new Vector<>();
 					for (XML childXML : xml.children()) {
 						randomTextureData.add(new TextureDataConcrete(childXML));
 					}
 				} catch (Error error) {
-					throw new Error("Error loading RandomTexture for " + id);
+					throw new Error("Error loading RandomTexture for " + param2);
 				}
 				break;
 			case "AltTexture":

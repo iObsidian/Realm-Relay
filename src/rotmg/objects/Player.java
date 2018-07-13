@@ -290,7 +290,7 @@ public class Player extends Character {
 	}
 
 	public void setGuildName(String param1) {
-		System.out.println("Guild name : " + param1);
+		//System.out.println("Guild name : " + param1);
 	}
 
 	public boolean isTeleportEligible(Player param1) {

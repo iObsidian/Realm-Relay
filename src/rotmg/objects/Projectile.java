@@ -1,17 +1,11 @@
 package rotmg.objects;
 
-import static rotmg.tutorial.doneAction.doneAction;
-
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
-import flash.display.BitmapData;
-import flash.display.GradientType;
-import flash.display.GraphicsGradientFill;
-import flash.display.GraphicsPath;
-import flash.display.IGraphicsData;
+import flash.display.*;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
+import flash.utils.Dictionary;
 import rotmg.engine3d.Point3D;
 import rotmg.map.Camera;
 import rotmg.map.Map;
@@ -19,11 +13,9 @@ import rotmg.objects.particles.HitEffect;
 import rotmg.objects.particles.SparkParticle;
 import rotmg.parameters.Parameters;
 import rotmg.tutorial.Tutorial;
-import rotmg.util.BloodComposition;
-import rotmg.util.GraphicsUtil;
-import rotmg.util.RandomUtil;
-import rotmg.util.TextureRedrawer;
-import rotmg.util.Trig;
+import rotmg.util.*;
+
+import static rotmg.tutorial.doneAction.doneAction;
 
 /**
  * This class is about 10% done. It requires a lot of graphics stuff.
@@ -117,6 +109,11 @@ public class Projectile extends BasicObject {
 		objectId = getNewObjId(this.ownerId, this.bulletId);
 		z = 0.5;
 		this.containerProps = ObjectLibrary.propsLibrary.get(this.containerType);
+
+		if (this.containerProps == null) {
+			System.err.println("Error, could not find projectile " + this.containerType+ " ObjectLibrary.propsLibrary : " + ObjectLibrary.propsLibrary.size());
+		}
+
 		this.projProps = this.containerProps.projectiles.get(param2);
 		String loc9 = !param7.equals("") && this.projProps.objectId.equals(param8) ? param7 : this.projProps.objectId;
 		this.props = ObjectLibrary.getPropsFromId(loc9);

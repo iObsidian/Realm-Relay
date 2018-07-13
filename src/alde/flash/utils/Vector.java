@@ -193,4 +193,6 @@ public class Vector<T> implements Iterable<T> {
 	public Vector<T> slice() {
 		return this;
 	}
+
+
 }

@@ -171,8 +171,6 @@ public class XML {
 	}
 
 
-
-
 	public String getAttribute(String name) {
 		return element.getAttribute(name);
 	}
@@ -225,11 +223,11 @@ public class XML {
 		return textContent;
 	}
 
-	private static int hexToInt(String textContent) {
-		try {
-			return Integer.decode(textContent);
-		} catch (Exception e) {
-			return Integer.parseInt(textContent);
+	private static int hexToInt(String hex) {
+		if (hex.startsWith("0x")) {
+			return Integer.decode(hex);
+		} else {
+			return Integer.parseInt(hex);
 		}
 	}
 

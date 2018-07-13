@@ -1,10 +1,9 @@
 package rotmg.util;
 
+import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.utils.Dictionary;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import rotmg.WebMain;
 import rotmg.map.GroundLibrary;
 import rotmg.map.RegionLibrary;
@@ -20,8 +19,6 @@ import rotmg.ui.Options;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AssetLoader {
 
@@ -190,15 +187,11 @@ public class AssetLoader {
 	}
 
 	private void parse3DModels() {
-		/*for (Object object : EmbeddedData.models.values()) {
-		 //read file as byte[]
-		}*/
+		// Not implemented
 	}
 
 	private void parseParticleEffects() {
-		for (XML xml : EmbeddedData.particlesEmbed()) {
-			ParticleLibrary.parseFromXML(xml);
-		}
+			ParticleLibrary.parseFromXML(EmbeddedData.particlesEmbed());
 	}
 
 	private void parseGroundFiles() {
@@ -212,6 +205,10 @@ public class AssetLoader {
 			ObjectLibrary.parseDungeonXML(objectOBJ.getAttribute("type"), objectOBJ); //type attribute is a substitute for the class name
 		}
 		currentXmlIsTesting = false;
+	}
+
+	private boolean checkIsTestingXML(Class param1) {
+		return param1.getSimpleName().contains("TestingCXML");
 	}
 
 	private void parseRegionFiles() {
@@ -282,34 +279,35 @@ class EmbeddedData {
 		models.put("Pet Upgrader Obj", "petUpgrader_");
 	}
 
-	public static List<XML> objectFiles() {
-		return getXMLs(getDocument("/xml/objects.xml"), "Object");
+
+	/**
+	 * I kept the names (objectFiles, groundFiles) but there is only really 1 file for each type.
+	 * Se we return a list with only one XML.
+	 */
+
+	// Remember : "Items" and "Objects" are put in the same file!
+	public static Vector<XML> objectFiles() { //Object
+		return new Vector<>(getXML(getDocument("/xml/objects.xml")));
 	}
 
-	public static List<XML> groundFiles() {
-		return getXMLs(getDocument("/xml/tiles.xml"), "Ground");
+	public static Vector<XML> groundFiles() { //Ground
+		return new Vector<>(getXML(getDocument("/xml/tiles.xml")));
 	}
 
-	public static List<XML> getAllPackets() {
-		return getXMLs(getDocument("/xml/packets.xml"), "Packet");
+	public static XML particlesEmbed() { //Particle
+		return getXML(getDocument("/xml/particles.xml"));
 	}
 
-	public static List<XML> getAllItems() {
-		return getXMLs(getDocument("/xml/items.xml"), "Object");
+	public static Vector<XML> regionFiles() { //Region
+		return new Vector<>(getXML(getDocument("/xml/regions.xml")));
 	}
 
-	public static List<XML> particlesEmbed() {
-		return getXMLs(getDocument("/xml/particles.xml"), "Particle");
-	}
 
-	public static List<XML> regionFiles() {
-		return getXMLs(getDocument("/xml/regions.xml"), "Region");
+	private static XML getXML(Document d) {
+		return new XML(d.getDocumentElement());
 	}
 
 	private static Document getDocument(String resourceFile) {
-
-		System.out.println(resourceFile);
-
 		try {
 			if (dbFactory == null) {
 				dbFactory = DocumentBuilderFactory.newInstance();
@@ -333,19 +331,6 @@ class EmbeddedData {
 			e.printStackTrace();
 			throw new RuntimeException("Unable to load Local File: " + resourceFile);
 		}
-	}
-
-	// TODO replace this with XML's GetChilds?
-	private static List<XML> getXMLs(Document doc, String elementTagName) {
-		NodeList node = doc.getElementsByTagName(elementTagName);
-
-		List<XML> xmls = new ArrayList<XML>();
-
-		for (int j = 0; j < node.getLength(); j++) {
-			Element el = (Element) node.item(j);
-			xmls.add(new XML(el));
-		}
-		return xmls;
 	}
 
 }

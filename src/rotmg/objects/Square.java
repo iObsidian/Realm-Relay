@@ -3,24 +3,17 @@ package rotmg.objects;
 //import com.company.assembleegameclient.objects.GameObject;
 //import com.company.assembleegameclient.util.TileRedrawer;
 
-import java.util.List;
-
-//import flash.display.BitmapData;
-//import flash.display.IGraphicsData;
-//import flash.geom.Vector3D;
-
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import flash.geom.Vector3D;
 import rotmg.engine3d.TextureMatrix;
-import rotmg.map.AnimateProperties;
-import rotmg.map.Camera;
-import rotmg.map.GroundLibrary;
-import rotmg.map.GroundProperties;
-import rotmg.map.Map;
-import rotmg.map.SquareFace;
+import rotmg.map.*;
 import rotmg.util.TileRedrawer;
+
+//import flash.display.BitmapData;
+//import flash.display.IGraphicsData;
+//import flash.geom.Vector3D;
 
 public class Square {
 
@@ -61,7 +54,7 @@ public class Square {
 	public Square(Map param1, double param2, double param3) {
 		super();
 		this.props = GroundLibrary.defaultProps;
-		this.faces = new Vector<SquareFace>();
+		this.faces = new Vector<>();
 		this.map = param1;
 		this.x = param2;
 		this.y = param3;
@@ -69,9 +62,18 @@ public class Square {
 		this.vin = new Vector<Double>((double) this.x, (double) this.y, (double) 0, (double) this.x + 1, (double) this.y, (double) 0, (double) this.x + 1, (double) this.y + 1, (double) 0, (double) this.x, (double) this.y + 1, (double) 0);
 	}
 
-	// To be implemented
-	private int hash(double x2, double y2) {
-		return 0;
+	// Not sure this is a good implementation
+	private int hash(double p1, double p2) {
+		int param1 = (int) p1;
+		int param2 = (int) p2;
+
+		int loc3 = LOOKUP[(param1 + param2) % 7];
+		int loc4 = (param1 << 16 | param2) ^ 81397550;
+		loc4 = loc4 * loc3 % 65535;
+
+		System.out.println("HASH : " + loc4);
+
+		return loc4;
 	}
 
 	public void dispose() {
@@ -92,8 +94,8 @@ public class Square {
 		this.baseTexMatrix = null;
 	}
 
-	public void setTileType(int param1) {
-		this.tileType = param1;
+	public void setTileType(int tileType) {
+		this.tileType = tileType;
 		this.props = GroundLibrary.propsLibrary.get(this.tileType);
 		this.texture = GroundLibrary.getBitmapData(this.tileType, hash(this.x, this.y));
 		this.baseTexMatrix = new TextureMatrix(this.texture, UVT);

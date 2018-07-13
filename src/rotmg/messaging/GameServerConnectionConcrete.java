@@ -895,20 +895,26 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onUpdate(Update update) {
-		int i = 0;
-		GroundTileData tile = null;
-		Message updateAck = this.messages.require(UPDATEACK);
-		this.serverConnection.sendMessage(updateAck);
-		for (i = 0; i < update.tiles.length; i++) {
-			tile = update.tiles[i];
-			this.gs.map.setGroundTile(tile.x, tile.y, tile.type);
-			this.updateGroundTileSignal.dispatch(new UpdateGroundTileVO(tile.x, tile.y, tile.type));
+		int loc3 = 0;
+		GroundTileData loc4 = null;
+		Message loc2 = this.messages.require(UPDATEACK);
+		serverConnection.sendMessage(loc2);
+		loc3 = 0;
+		while (loc3 < update.tiles.length) {
+			loc4 = update.tiles[loc3];
+			gs.map.setGroundTile(loc4.x, loc4.y, loc4.type);
+			this.updateGroundTileSignal.dispatch(new UpdateGroundTileVO(loc4.x, loc4.y, loc4.type));
+			loc3++;
 		}
-		for (i = 0; i < update.newObjs.length; i++) {
-			this.addObject(update.newObjs[i]);
+		loc3 = 0;
+		while (loc3 < update.newObjs.length) {
+			this.addObject(update.newObjs[loc3]);
+			loc3++;
 		}
-		for (i = 0; i < update.drops.length; i++) {
-			this.gs.map.removeObj(update.drops[i]);
+		loc3 = 0;
+		while (loc3 < update.drops.length) {
+			gs.map.removeObj(update.drops[loc3]);
+			loc3++;
 		}
 	}
 

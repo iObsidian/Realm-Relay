@@ -1,12 +1,12 @@
 package rotmg.util;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import alde.flash.utils.StaticAssetLoaderUtility;
 import flash.display.BitmapData;
 import rotmg.objects.animation.AnimatedChar;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class AnimatedChars {
 
@@ -15,6 +15,7 @@ public class AnimatedChars {
 	public static AnimatedChar getAnimatedChar(String name, int id) {
 		List<AnimatedChar> chars = nameMap.get(name);
 		if (chars == null || id >= chars.size()) {
+			System.err.println("Null texture");
 			return null;
 		}
 		return chars.get(id);
@@ -25,7 +26,7 @@ public class AnimatedChars {
 		List<AnimatedChar> chars = new ArrayList<AnimatedChar>();
 		MaskedImageSet charImages = new MaskedImageSet();
 
-		System.out.println(name);
+		//System.out.println(name);
 
 		charImages.addFromBitmapData(images, masks, sheetWidth, sheetHeight);
 		for (MaskedImage image : charImages.images) {

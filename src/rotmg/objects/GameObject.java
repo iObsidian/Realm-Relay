@@ -1,20 +1,14 @@
 package rotmg.objects;
 
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
-import flash.display.BitmapData;
-import flash.display.GradientType;
-import flash.display.GraphicsBitmapFill;
-import flash.display.GraphicsGradientFill;
-import flash.display.GraphicsPath;
-import flash.display.GraphicsSolidFill;
-import flash.display.IGraphicsData;
+import flash.display.*;
 import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Point;
 import flash.geom.Vector3D;
+import flash.utils.Dictionary;
 import rotmg.engine3d.Model3D;
 import rotmg.engine3d.Object3D;
 import rotmg.map.Camera;
@@ -38,17 +32,7 @@ import rotmg.text.view.BitmapTextFactory;
 import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.text.view.stringBuilder.StaticStringBuilder;
 import rotmg.text.view.stringBuilder.StringBuilder;
-import rotmg.util.AssetLibrary;
-import rotmg.util.BitmapUtil;
-import rotmg.util.BloodComposition;
-import rotmg.util.CachingColorTransformer;
-import rotmg.util.ConditionEffect;
-import rotmg.util.ConversionUtil;
-import rotmg.util.GraphicsUtil;
-import rotmg.util.MaskedImage;
-import rotmg.util.MoreColorUtil;
-import rotmg.util.TextKey;
-import rotmg.util.TextureRedrawer;
+import rotmg.util.*;
 import rotmg.util.redrawers.GlowRedrawer;
 
 import static flash.events.EventDispatcher.getTimer;
@@ -252,9 +236,13 @@ public class GameObject extends BasicObject {
 
 	public void setTexture(int param1) {
 		TextureData loc2 = ObjectLibrary.typeToTextureData.get(param1);
-		this.texture = loc2.texture;
-		this.mask = loc2.mask;
-		this.animatedChar = loc2.animatedChar;
+		if (loc2 == null) {
+			System.err.println("Error, could not find data for object : " + param1);
+		} else {
+			this.texture = loc2.texture;
+			this.mask = loc2.mask;
+			this.animatedChar = loc2.animatedChar;
+		}
 	}
 
 	public void setAltTexture(int param1) {

@@ -49,42 +49,42 @@ public class ObjectLibrary {
 	private static String currentDungeon = "";
 
 	static {
-		// TYPE_MAP.put("ArenaGuard", ArenaGuard.class);
-		// TYPE_MAP.put("ArenaPortal", ArenaPortal);
-		// TYPE_MAP.put("CaveWall", CaveWall);
+		/*TYPE_MAP.put("ArenaGuard", ArenaGuard.class);
+		TYPE_MAP.put("ArenaPortal", ArenaPortal.class);
+		TYPE_MAP.put("CaveWall", CaveWall.class);*/
 		TYPE_MAP.put("Character", Character.class);
-		// TYPE_MAP.put("CharacterChanger", CharacterChanger);
-		// TYPE_MAP.put("ClosedGiftChest", ClosedGiftChest);
-		// TYPE_MAP.put("ClosedVaultChest", ClosedVaultChest);
-		// TYPE_MAP.put("ConnectedWall", ConnectedWall);
-		// TYPE_MAP.put("Container", Container);
-		//TYPE_MAP.put("DoubleWall", DoubleWall);
-		// TYPE_MAP.put("FortuneGround", FortuneGround);
-		// TYPE_MAP.put("FortuneTeller", FortuneTeller);
-		// TYPE_MAP.put("GameObject", GameObject.class);
-		// TYPE_MAP.put("GuildBoard", GuildBoard);
-		// TYPE_MAP.put("GuildChronicle", GuildChronicle);
-		// TYPE_MAP.put("GuildHallPortal", GuildHallPortal);
-		// TYPE_MAP.put("GuildMerchant", GuildMerchant);
-		//TYPE_MAP.put("GuildRegister", GuildRegister);
-		//TYPE_MAP.put("Merchant", Merchant);
-		// TYPE_MAP.put("MoneyChanger", MoneyChanger);
-		// TYPE_MAP.put("MysteryBoxGround", MysteryBoxGround);
-		// TYPE_MAP.put("NameChanger", NameChanger);
-		// TYPE_MAP.put("ReskinVendor", ReskinVendor);
-		// TYPE_MAP.put("OneWayContainer", OneWayContainer);
+		/*TYPE_MAP.put("CharacterChanger", CharacterChanger.class);
+		TYPE_MAP.put("ClosedGiftChest", ClosedGiftChest.class);
+		TYPE_MAP.put("ClosedVaultChest", ClosedVaultChest.class);
+		TYPE_MAP.put("ConnectedWall", ConnectedWall.class);*/
+		TYPE_MAP.put("Container", Container.class);
+		/*TYPE_MAP.put("DoubleWall", DoubleWall.class);
+		TYPE_MAP.put("FortuneGround", FortuneGround.class);
+		TYPE_MAP.put("FortuneTeller", FortuneTeller);*/
+		TYPE_MAP.put("GameObject", GameObject.class);
+		/*TYPE_MAP.put("GuildBoard", GuildBoard.class);
+		TYPE_MAP.put("GuildChronicle", GuildChronicle.class);
+		TYPE_MAP.put("GuildHallPortal", GuildHallPortal.class);
+		TYPE_MAP.put("GuildMerchant", GuildMerchant.class);
+		TYPE_MAP.put("GuildRegister", GuildRegister.class);*/
+		TYPE_MAP.put("Merchant", Merchant.class);
+		/*TYPE_MAP.put("MoneyChanger", MoneyChanger.class);
+		TYPE_MAP.put("MysteryBoxGround", MysteryBoxGround.class);*/
+		TYPE_MAP.put("NameChanger", NameChanger.class);
+		/*TYPE_MAP.put("ReskinVendor", ReskinVendor.class);
+		TYPE_MAP.put("OneWayContainer", OneWayContainer.class);*/
 		TYPE_MAP.put("Player", Player.class);
-		// TYPE_MAP.put("Portal", Portal);
-		// TYPE_MAP.put("Projectile", Projectile);
-		// TYPE_MAP.put("QuestRewards", QuestRewards);
-		// TYPE_MAP.put("DailyLoginRewards", DailyLoginRewards);
-		// TYPE_MAP.put("Sign", Sign);
-		// TYPE_MAP.put("SpiderWeb", SpiderWeb);
-		// TYPE_MAP.put("Stalagmite", Stalagmite);
-		// TYPE_MAP.put("Wall", Wall);
-		// TYPE_MAP.put("Pet", Pet);
-		// TYPE_MAP.put("PetUpgrader", PetUpgrader);
-		// TYPE_MAP.put("YardUpgrader", YardUpgrader);
+		TYPE_MAP.put("Portal", Portal.class);
+		TYPE_MAP.put("Projectile", Projectile.class);
+		/*TYPE_MAP.put("QuestRewards", QuestRewards.class);
+		TYPE_MAP.put("DailyLoginRewards", DailyLoginRewards.class);
+		TYPE_MAP.put("Sign", Sign.class);
+		TYPE_MAP.put("SpiderWeb", SpiderWeb.class);
+		TYPE_MAP.put("Stalagmite", Stalagmite.class);*/
+		TYPE_MAP.put("Wall", Wall.class);
+		TYPE_MAP.put("Pet", Pet.class);
+		/*TYPE_MAP.put("PetUpgrader", PetUpgrader.class);
+		TYPE_MAP.put("YardUpgrader", YardUpgrader.class);*/
 	}
 
 	public static void parseDungeonXML(String param1, XML objectXML) {
@@ -94,60 +94,64 @@ public class ObjectLibrary {
 		parseFromXML(objectXML);
 	}
 
-	public static void parseFromXML(XML objectXML) {
-		String id = objectXML.getAttribute("id");
-		String displayId = id;
-		if (objectXML.hasOwnProperty("DisplayId")) {
-			displayId = objectXML.getValue("DisplayId");
-		}
-		if (objectXML.hasOwnProperty("Group")) {
-			if (objectXML.getValue("Group").equals("Hexable")) {
-				hexTransforms.add(objectXML);
+	public static void parseFromXML(XML objects) {
+
+		for (XML objectXML : objects.children("Object")) {
+
+			String id = objectXML.getAttribute("id");
+			String displayId = id;
+			if (objectXML.hasOwnProperty("DisplayId")) {
+				displayId = objectXML.getValue("DisplayId");
 			}
-		}
-		int objectType = objectXML.getIntAttribute("type");
-
-		if (objectXML.hasOwnProperty("PetBehavior") || objectXML.hasOwnProperty("PetAbility")) {
-			petXMLDataLibrary.put(objectType, objectXML);
-		} else {
-
-			propsLibrary.put(objectType, new ObjectProperties(objectXML));
-			xmlLibrary.put(objectType, objectXML);
-			idToType.put(id, objectType);
-			typeToDisplayId.put(objectType, displayId);
-
-			if (!currentDungeon.equals("") && dungeonsXMLLibrary.get(currentDungeon) != null) {
-				dungeonsXMLLibrary.get(currentDungeon).put(objectType, objectXML);
-				propsLibrary.get(objectType).belonedDungeon = currentDungeon;
+			if (objectXML.hasOwnProperty("Group")) {
+				if (objectXML.getValue("Group").equals("Hexable")) {
+					hexTransforms.add(objectXML);
+				}
 			}
+			int objectType = objectXML.getIntAttribute("type");
 
-			if (objectXML.hasOwnProperty("Class") && objectXML.getValue("Class").equals("Player")) {
-				playerClassAbbr.put(objectType, objectXML.getAttribute("id").substring(0, 2));
-				boolean found = false;
+			if (objectXML.hasOwnProperty("PetBehavior") || objectXML.hasOwnProperty("PetAbility")) {
+				petXMLDataLibrary.put(objectType, objectXML);
+			} else {
 
-				for (XML player : playerChars) {
-					if (player.getIntAttribute("type") == objectType) {
+				System.out.println("ObjectType : " + objectType);
+
+				propsLibrary.put(objectType, new ObjectProperties(objectXML));
+				xmlLibrary.put(objectType, objectXML);
+				idToType.put(id, objectType);
+				typeToDisplayId.put(objectType, displayId);
+
+				if (!currentDungeon.equals("") && dungeonsXMLLibrary.get(currentDungeon) != null) {
+					dungeonsXMLLibrary.get(currentDungeon).put(objectType, objectXML);
+					propsLibrary.get(objectType).belonedDungeon = currentDungeon;
+				}
+
+				if (objectXML.hasOwnProperty("Class") && objectXML.getValue("Class").equals("Player")) {
+					playerClassAbbr.put(objectType, objectXML.getAttribute("id").substring(0, 2));
+					boolean found = false;
+
+					for (XML player : playerChars) {
+						if (player.getIntAttribute("type") == objectType) {
+							playerChars.add(objectXML);
+							found = true;
+						}
+					}
+
+					if (!found) {
 						playerChars.add(objectXML);
-						found = true;
 					}
 				}
 
-				if (!found) {
-					playerChars.add(objectXML);
+				typeToTextureData.put(objectType, textureDataFactory.create(objectXML));
+				if (objectXML.hasOwnProperty("Top")) {
+					typeToTopTextureData.put(objectType, textureDataFactory.create(objectXML.child("Top")));
+				}
+
+				if (objectXML.hasOwnProperty("Animation")) {
+					typeToAnimationsData.put(objectType, new AnimationsData(objectXML));
 				}
 			}
-
-			typeToTextureData.put(objectType, textureDataFactory.create(objectXML));
-			if (objectXML.hasOwnProperty("Top")) {
-				typeToTopTextureData.put(objectType, textureDataFactory.create(objectXML.child("Top")));
-			}
-
-			if (objectXML.hasOwnProperty("Animation")) {
-				typeToAnimationsData.put(objectType, new AnimationsData(objectXML));
-			}
-
 		}
-
 	}
 
 	public static String getIdFromType(int type) {
@@ -164,7 +168,7 @@ public class ObjectLibrary {
 		if (setLibrary.get(param1) != null) {
 			return setLibrary.get(param1);
 		}
-		/**for (loc2 in EmbeddedData.skinsEquipmentSetsXML.EquipmentSet) {
+		/*for (loc2 in EmbeddedData.skinsEquipmentSetsXML.EquipmentSet) {
 		 loc3 = loc2.getValueAsInt("type");
 		 setLibrary.put(loc3, loc2);
 		 }*/
@@ -173,6 +177,8 @@ public class ObjectLibrary {
 
 	public static ObjectProperties getPropsFromId(String param1) {
 		int objectType = idToType.get(param1);
+		System.out.println(objectType + ", " + param1);
+
 		return propsLibrary.get(objectType);
 	}
 
