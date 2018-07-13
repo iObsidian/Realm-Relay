@@ -102,7 +102,7 @@ public class TextureDataConcrete extends TextureData {
 				}
 				break;
 			case "RemoteTexture":
-				System.err.println("Remote textures are not implemented!");
+				//System.err.println("Remote textures are not fully implemented!");
 				texture = AssetLibrary.getImageFromSet("lofiObj3", 255);
 				if (this.isUsingLocalTextures) {
 					remoteTexture = new RemoteTexture(xml.getValue("Id"), xml.getValue("Instance"), new SignalConsumer<>(this::onRemoteTexture));
@@ -111,7 +111,7 @@ public class TextureDataConcrete extends TextureData {
 						remoteTexturesUsed = true;
 					}
 				}
-				remoteTextureDir = !!xml.hasOwnProperty("Right") ? AnimatedChar.RIGHT : AnimatedChar.DOWN;
+				remoteTextureDir = xml.hasOwnProperty("Right") ? AnimatedChar.RIGHT : AnimatedChar.DOWN;
 				break;
 			case "RandomTexture":
 				try {

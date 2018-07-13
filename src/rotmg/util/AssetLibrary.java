@@ -43,7 +43,7 @@ public class AssetLibrary {
 		imageSet.addFromBitmapData(data, width, height);
 		imageSets.put(name, imageSet);
 
-		System.out.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
+		//System.out.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
 
 		for (BitmapData b : imageSet.images) {
 			imageLookup.put(b, name);

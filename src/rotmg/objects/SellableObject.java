@@ -1,6 +1,7 @@
 package rotmg.objects;
 
 import alde.flash.utils.XML;
+import flash.display.BitmapData;
 
 public class SellableObject extends GameObject {
 
@@ -35,5 +36,7 @@ public class SellableObject extends GameObject {
 		return null;
 	}
 
-
+	public BitmapData getIcon() {
+		return null;
+	}
 }

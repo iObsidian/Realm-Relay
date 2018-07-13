@@ -70,8 +70,8 @@ public class ObjectLibrary {
 		TYPE_MAP.put("GuildMerchant", GuildMerchant.class);
 		TYPE_MAP.put("GuildRegister", GuildRegister.class);*/
 		TYPE_MAP.put("Merchant", Merchant.class);
-		TYPE_MAP.put("MoneyChanger", MoneyChanger.class);/*
-		TYPE_MAP.put("MysteryBoxGround", MysteryBoxGround.class);*/
+		TYPE_MAP.put("MoneyChanger", MoneyChanger.class);
+		TYPE_MAP.put("MysteryBoxGround", MysteryBoxGround.class);
 		TYPE_MAP.put("NameChanger", NameChanger.class);
 		/*TYPE_MAP.put("ReskinVendor", ReskinVendor.class);
 		TYPE_MAP.put("OneWayContainer", OneWayContainer.class);*/
@@ -125,7 +125,7 @@ public class ObjectLibrary {
 				petXMLDataLibrary.put(loc6, loc3);
 			} else {
 
-				System.out.println("Putting " + loc6 + " ( " + loc3.getAttribute("type") + " )" + " for " + loc3.getAttribute("id"));
+				//System.out.println("Putting " + loc6 + " (" + loc3.getAttribute("type") + ")" + " for " + loc3.getAttribute("id") + ".");
 
 				propsLibrary.put(loc6, new ObjectProperties(loc3));
 				xmlLibrary.put(loc6, loc3);

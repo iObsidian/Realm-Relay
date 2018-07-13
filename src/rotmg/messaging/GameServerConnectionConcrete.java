@@ -759,7 +759,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		hello.platformToken = loc1.platformToken;
 		hello.userToken = loc1.token;
 
-		System.out.println(hello);
+		System.out.println("Sending hello packet...");
 
 		serverConnection.sendMessage(hello);
 	}

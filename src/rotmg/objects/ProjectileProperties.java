@@ -54,7 +54,7 @@ public class ProjectileProperties {
 
 	public double magnitude;
 
-	public Dictionary isPetEffect;
+	public Dictionary<Integer, Boolean> isPetEffect;
 
 	public boolean faceDir;
 
@@ -80,9 +80,9 @@ public class ProjectileProperties {
 			this.effects.add(ConditionEffect.getConditionEffectFromName(xml.getTextValue()));
 			if (xml.getAttribute("target").equals("1")) {
 				if (this.isPetEffect == null) {
-					this.isPetEffect = new Dictionary();
+					this.isPetEffect = new Dictionary<>();
 				}
-				this.isPetEffect.put(ConditionEffect.getConditionEffectFromName(xml.name()), true);
+				this.isPetEffect.put(ConditionEffect.getConditionEffectFromName(xml.getTextValue()), true);
 			}
 		}
 		this.multiHit = param1.hasOwnProperty("MultiHit");
