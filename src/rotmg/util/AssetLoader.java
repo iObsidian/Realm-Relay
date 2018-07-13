@@ -115,6 +115,8 @@ public class AssetLoader {
 		AssetLibrary.addImageSet("epicHiveObjects16x16", "epicHiveObjects16x16Embed_", 16, 16);
 		AssetLibrary.addImageSet("lostHallsObjects8x8", "lostHallsObjects8x8Embed_", 8, 8);
 		AssetLibrary.addImageSet("lostHallsObjects16x16", "lostHallsObjects16x16Embed_", 16, 16);
+		AssetLibrary.addImageSet("cnidarianReefObjects8x8", "cnidarianReefObjects8x8Embed_", 8, 8);
+		AssetLibrary.addImageSet("cnidarianReefObjects16x16", "cnidarianReefObjects16x16Embed_", 16, 16);
 		AssetLibrary.addImageSet("magicWoodsObjects8x8", "magicWoodsObjects8x8Embed_", 8, 8);
 		AssetLibrary.addImageSet("magicWoodsObjects16x16", "magicWoodsObjects16x16Embed_", 16, 16);
 	}
@@ -170,6 +172,8 @@ public class AssetLoader {
 		AnimatedChars.add("epicHiveChars16x16", "epicHiveChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 		AnimatedChars.add("lostHallsChars16x16", "lostHallsChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 		AnimatedChars.add("lostHallsChars8x8", "lostHallsChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
+		AnimatedChars.add("magicWoodsChars8x8", "magicWoodsChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
+		AnimatedChars.add("magicWoodsChars16x16", "magicWoodsChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 	}
 	//@formatter:on
 
@@ -334,7 +338,7 @@ class EmbeddedData {
 
 			Document doc = dBuilder.parse(in);
 			in.close();
-			//doc.getDocumentElement().normalize();
+			doc.getDocumentElement().normalize();
 			return doc;
 
 		} catch (Exception e) {

@@ -116,12 +116,8 @@ public class XML {
 			if (list.item(i) instanceof Element) {
 				Element root = (Element) list.item(i);
 				xmls.add(new XML(root));
-
-				System.out.println(root.getAttribute("id"));
 			}
 		}
-
-		System.out.println(xmls.size());
 
 		return xmls;
 	}

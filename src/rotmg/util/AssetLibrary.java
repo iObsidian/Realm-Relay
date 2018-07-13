@@ -43,7 +43,7 @@ public class AssetLibrary {
 		imageSet.addFromBitmapData(data, width, height);
 		imageSets.put(name, imageSet);
 
-		//System.out.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
+		System.out.println("Adding image set to imageSets, size : " + imageSets.size() + " : " + imageSet.images.size());
 
 		for (BitmapData b : imageSet.images) {
 			imageLookup.put(b, name);
@@ -85,12 +85,30 @@ public class AssetLibrary {
 	}
 
 	public static BitmapData getImageFromSet(String name, int id) {
+
+		System.out.println("Loading '" + id + "' from '" + name + "'.");
+
+
+		boolean error = false;
+
 		if (imageSets.get(name) == null) {
 			System.err.println("ERROR : ImageSet '" + name + "' DOES NOT EXIST!");
+			error = true;
 		}
+
 		if (imageSets.get(name).images.size() == 0) {
 			System.err.println("ERROR : ImageSet '" + name + "' IS EMPTY!");
+			error = true;
 		}
+
+		if (error) {
+			System.err.println("If you have correctly added the file inside assets folder, have you forgotten the '_' at the end of the file?");
+		}
+
+		if (imageSets.get(name).images.size() < id) {
+			System.err.println("File '" + name + "' is not up to date, trying to load image " + id + " but there is only " + images.size() + " images. Replace all images and retry.");
+		}
+
 		return imageSets.get(name).images.get(id);
 	}
 
