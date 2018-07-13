@@ -66,6 +66,7 @@ public class ConditionEffect {
 	public static final int WIS_BOOST = 46;
 	public static final int DEX_BOOST = 47;
 	public static final int SILENCED = 48;
+	public static final int EXPOSED = 49;
 	public static final int GROUND_DAMAGE = 99;
 	public static final int DEAD_BIT = 1 << DEAD - 1;
 	public static final int QUIET_BIT = 1 << QUIET - 1;
@@ -116,6 +117,7 @@ public class ConditionEffect {
 	public static final int WIS_BOOST_BIT = 1 << WIS_BOOST - NEW_CON_THREASHOLD;
 	public static final int DEX_BOOST_BIT = 1 << DEX_BOOST - NEW_CON_THREASHOLD;
 	public static final int SILENCED_BIT = 1 << SILENCED - NEW_CON_THREASHOLD;
+	public static final int EXPOSED_BIT = 1 << EXPOSED - NEW_CON_THREASHOLD;
 	public static final int MAP_FILTER_BITMASK = DRUNK_BIT | BLIND_BIT | PAUSED_BIT;
 	public static final int CE_FIRST_BATCH = 0;
 	public static final int CE_SECOND_BATCH = 1;
@@ -170,7 +172,9 @@ public class ConditionEffect {
 			new ConditionEffect("Vit Boost", VIT_BOOST_BIT, new int[]{38}, "Vit Boost", true),
 			new ConditionEffect("Wis Boost", WIS_BOOST_BIT, new int[]{39}, "Wis Boost", true),
 			new ConditionEffect("Dex Boost", DEX_BOOST_BIT, new int[]{37}, "Dex Boost", true),
-			new ConditionEffect("Silenced", SILENCED_BIT, new int[]{33}, "Silenced"));
+			new ConditionEffect("Silenced", SILENCED_BIT, new int[]{33}, "Silenced"),
+			new ConditionEffect("Exposed", EXPOSED_BIT, new int[]{41}, "Exposed", true)
+	);
 	private static Dictionary<String, Integer> conditionEffectFromName = null;
 	private static Vector<BitmapData> effectIconCache = null;
 	private static Vector<Vector<BitmapData>> bitToIcon = null;
@@ -210,7 +214,7 @@ public class ConditionEffect {
 		}
 
 		if (conditionEffectFromName.get(param1) == null) {
-			System.err.println("DEBUG : ERROR WITH " + param1 + " EFFECT DOES NOT EXIST.");
+			System.err.println("DEBUG : ERROR WITH '" + param1 + "', EFFECT DOES NOT EXIST.");
 		}
 
 		return conditionEffectFromName.get(param1);

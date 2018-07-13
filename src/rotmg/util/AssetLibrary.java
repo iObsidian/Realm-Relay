@@ -86,7 +86,7 @@ public class AssetLibrary {
 
 	public static BitmapData getImageFromSet(String name, int id) {
 
-		System.out.println("Loading '" + id + "' from '" + name + "'.");
+		//System.out.println("Loading '" + id + "' from '" + name + "'.");
 
 
 		boolean error = false;
