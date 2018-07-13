@@ -104,7 +104,7 @@ public class Square {
 		return !this.props.noWalk && (this.obj == null || !this.obj.props.occupySquare);
 	}
 
-	public void draw(List<IGraphicsData> param1, Camera param2, int param3) {
+	public void draw(Vector<IGraphicsData> param1, Camera param2, int param3) {
 		if (this.texture == null) {
 			return;
 		}
@@ -121,7 +121,7 @@ public class Square {
 		}
 	}
 
-	public void drawTop(List<IGraphicsData> param1, Camera param2, int param3) {
+	public void drawTop(Vector<IGraphicsData> param1, Camera param2, int param3) {
 		this.topFace.draw(param1, param2, param3);
 	}
 

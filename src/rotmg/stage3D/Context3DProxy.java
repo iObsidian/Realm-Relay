@@ -1,4 +1,4 @@
-package rotmg.stage3d;
+package rotmg.stage3D;
 
 import flash.display3D.Context3D;
 

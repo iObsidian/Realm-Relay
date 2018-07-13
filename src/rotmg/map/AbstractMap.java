@@ -1,28 +1,22 @@
 package rotmg.map;
 
 
-import org.osflash.signals.Signal;
-
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.Sprite;
 import flash.geom.Point;
+import flash.utils.Dictionary;
+import org.osflash.signals.Signal;
 import rotmg.AGameSprite;
 import rotmg.background.Background;
 import rotmg.map.mapoverlay.MapOverlay;
 import rotmg.map.partyoverlay.PartyOverlay;
-import rotmg.objects.BasicObject;
-import rotmg.objects.GameObject;
-import rotmg.objects.Merchant;
-import rotmg.objects.Party;
-import rotmg.objects.Player;
-import rotmg.objects.Square;
+import rotmg.objects.*;
 import rotmg.util.IntPoint;
 
 /**
- * 100% match
+ * 100% match (except I made everything abstract)
  */
-public class AbstractMap extends Sprite {
+public abstract class AbstractMap extends Sprite {
 
 	public Dictionary<Integer, GameObject> goDict;
 	public AGameSprite gs;
@@ -40,7 +34,7 @@ public class AbstractMap extends Sprite {
 	public PartyOverlay partyOverlay = null;
 	public Vector<Square> squareList;
 	public Vector<Square> squares;
-	public Dictionary boDict;
+	public Dictionary<Integer, BasicObject> boDict;
 	public Dictionary<IntPoint, Merchant> merchLookup;
 	public Party party = null;
 	public Quest quest = null;
@@ -59,33 +53,25 @@ public class AbstractMap extends Sprite {
 		this.signalRenderSwitch = new Signal<Boolean>();
 	}
 
-	public void setProps(int param1, int param2, String param3, int param4, boolean param5, boolean param6) {
-	}
+	public abstract void setProps(int param1, int param2, String param3, int param4, boolean param5, boolean param6);
 
-	public void addObj(BasicObject param1, double param2, double param3) {
-	}
+	public abstract void addObj(BasicObject param1, double param2, double param3);
 
-	public void setGroundTile(int param1, int param2, int param3) {
-	}
+	public abstract void setGroundTile(int param1, int param2, int param3);
 
-	public void initialize() {
-	}
+	public abstract void initialize();
 
-	public void dispose() {
-	}
+	public abstract void dispose();
 
-	public void update(int param1, int param2) {
-	}
+	public abstract void update(int param1, int param2);
 
 	public Point pSTopW(double param1, double param2) {
 		return null;
 	}
 
-	public void removeObj(int param1) {
-	}
+	public abstract void removeObj(int param1);
 
-	public void draw(Camera param1, int param2) {
-	}
+	public abstract void draw(Camera param1, int param2);
 
 	public boolean allowPlayerTeleport() {
 		return this.name != Map.NEXUS && this.allowPlayerTeleport;

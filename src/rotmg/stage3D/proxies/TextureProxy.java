@@ -1,4 +1,4 @@
-package rotmg.stage3d.proxies;
+package rotmg.stage3D.proxies;
 
 
 import flash.display.BitmapData;

@@ -31,7 +31,7 @@ import rotmg.packages.services.PackageModel;
 import rotmg.parameters.Parameters;
 import rotmg.promotions.model.BeginnersPackageModel;
 import rotmg.promotions.signals.ShowBeginnersPackageSignal;
-import rotmg.stage3d.Renderer;
+import rotmg.stage3D.Renderer;
 import rotmg.ui.GuildText;
 import rotmg.ui.HUDView;
 import rotmg.ui.RankText;

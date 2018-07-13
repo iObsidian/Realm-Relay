@@ -1,13 +1,13 @@
 package rotmg.objects;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import alde.flash.utils.Vector;
 import flash.display.IGraphicsData;
 import rotmg.map.Camera;
 import rotmg.map.Map;
-import rotmg.stage3d.graphic3D.Object3DStage3D;
+import rotmg.stage3D.graphic3D.Object3DStage3D;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BasicObject {
 
@@ -74,10 +74,10 @@ public class BasicObject {
 	public void draw3d(Vector<Object3DStage3D> param1) {
 	}
 
-	public void draw(List<IGraphicsData> graphicsData, Camera camera, int time) {
+	public void draw(Vector<IGraphicsData> graphicsData, Camera camera, int time) {
 	}
 
-	public void drawShadow(List<IGraphicsData> graphicsData, Camera camera, int time) {
+	public void drawShadow(Vector<IGraphicsData> graphicsData, Camera camera, int time) {
 	}
 
 	public void computeSortVal(Camera camera) {

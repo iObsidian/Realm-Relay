@@ -119,4 +119,8 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 		return;
 	}
 
+
+	protected Rectangle getRect(Stage stage) {
+	}
+
 }

@@ -1,11 +1,11 @@
-package rotmg.stage3d.graphic3D;
+package rotmg.stage3D.graphic3D;
 
 import flash.display.BitmapData;
 import flash.display3D.Context3D;
 import flash.display3D.textures.Texture;
 import flash.geom.Matrix3D;
 import flash.geom.Vector3D;
-import rotmg.stage3d.Model3D_stage3d;
+import rotmg.stage3D.Model3D_stage3d;
 
 public class Object3DStage3D {
 	public static final BitmapData missingTextureBitmap = new BitmapData(1, 1, true, 2290649343.0);

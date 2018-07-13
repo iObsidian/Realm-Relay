@@ -49,6 +49,7 @@ public class Vector<T> implements Iterable<T> {
 
 	}
 
+
 	/**
 	 * Removes object at index
 	 */
