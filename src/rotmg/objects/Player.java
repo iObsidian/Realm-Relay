@@ -1,13 +1,10 @@
 package rotmg.objects;
 
-import java.util.List;
-
-import org.osflash.signals.Signal;
-
-import flash.utils.Dictionary;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.Point;
+import flash.utils.Dictionary;
+import org.osflash.signals.Signal;
 import rotmg.assets.services.CharacterFactory;
 import rotmg.constants.GeneralConstants;
 import rotmg.messaging.data.StatData;
@@ -17,6 +14,10 @@ import rotmg.particles.HealingEffect;
 import rotmg.signals.AddTextLineSignal;
 import rotmg.util.ConversionUtil;
 import rotmg.util.IntPoint;
+
+import java.util.List;
+
+import static flash.events.EventDispatcher.getTimer;
 
 public class Player extends Character {
 
@@ -365,4 +366,38 @@ public class Player extends Character {
 
 	public void attemptAttackAngle(double v) {
 	}
+
+	public int msUtilTeleport() {
+		int loc1 = getTimer();
+		return Math.max(0, this.nextTeleportAt - loc1);
+	}
+
+	public boolean teleportTo(Player param1) {
+		/*if (isPaused()) {
+			this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_NOTELEPORTWHILEPAUSED));
+			return false;
+		}
+		int loc2 = this.msUtilTeleport();
+		if (loc2 > 0) {
+			if (!(loc2 > MS_BETWEEN_TELEPORT && param1.isFellowGuild)) {
+				this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_TELEPORT_COOLDOWN, {"seconds": int
+				(loc2 / 1000 + 1)}));
+				return false;
+			}
+		}
+		if (!this.isTeleportEligible(param1)) {
+			if (param1.isInvisible()) {
+				this.addTextLine.dispatch(this.makeErrorMessage(TextKey.TELEPORT_INVISIBLE_PLAYER, {"player":
+				param1.name_}));
+			} else {
+				this.addTextLine.dispatch(this.makeErrorMessage(TextKey.PLAYER_TELEPORT_TO_PLAYER, {"player":
+				param1.name_}));
+			}
+			return false;
+		}
+		map.gs.gsc.teleport(param1.objectId);
+		this.nextTeleportAt = getTimer() + MS_BETWEEN_TELEPORT;*/
+		return true;
+	}
+
 }

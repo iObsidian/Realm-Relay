@@ -33,6 +33,10 @@ public class Vector<T> implements Iterable<T> {
 		}
 	}
 
+	public Vector(int numMembers, boolean fixedLength) {
+		this(numMembers);
+	}
+
 	private void updateLength() {
 		this.length = map.size();
 	}
@@ -184,5 +188,9 @@ public class Vector<T> implements Iterable<T> {
 		}
 		s.append("'");
 		return s.toString();
+	}
+
+	public Vector<T> slice() {
+		return this;
 	}
 }

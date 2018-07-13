@@ -55,14 +55,14 @@ public class GraphicsUtil {
 	public static void drawCutEdgeRect(int i, int i1, int i2, int i3, int i4, Vector<Integer> integers, GraphicsPath path) {
 	}
 
-	public void drawRect(int x, int y, int width, int height, GraphicsPath path) {
+	public static void drawRect(int x, int y, int width, int height, GraphicsPath path) {
 		path.moveTo(x, y);
 		path.lineTo(x + width, y);
 		path.lineTo(x + width, y + height);
 		path.lineTo(x, y + height);
 	}
 
-	public void drawDiamond(double x, double y, double radius, GraphicsPath path) {
+	public static void drawDiamond(double x, double y, double radius, GraphicsPath path) {
 		path.moveTo(x, y - radius);
 		path.lineTo(x + radius, y);
 		path.lineTo(x, y + radius);

@@ -20,7 +20,7 @@ public class Party {
 
 	public Map map;
 
-	public Vector members;
+	public Vector<Player> members;
 
 	private Dictionary<String, Integer> starred;
 

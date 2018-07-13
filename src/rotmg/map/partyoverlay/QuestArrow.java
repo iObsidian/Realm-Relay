@@ -1,6 +1,8 @@
 package rotmg.map.partyoverlay;
 
+import com.ui.tooltip.PortraitToolTip;
 import flash.events.MouseEvent;
+import rotmg.map.Camera;
 import rotmg.map.Map;
 import rotmg.map.Quest;
 import rotmg.objects.GameObject;
@@ -50,7 +52,7 @@ public class QuestArrow extends GameObjectArrow {
 	}
 
 	public void draw(int param1, Camera param2) {
-         *loc4 = false;
+        Object loc4 = false;
 		boolean loc5 = false;
 		GameObject loc3 = this.map.quest.getObject(param1);
 		if (loc3 != go) {
@@ -59,7 +61,7 @@ public class QuestArrow extends GameObjectArrow {
 		} else if (go != null) {
 			loc4 = tooltip instanceof QuestToolTip;
 			loc5 = this.shouldShowFullQuest(param1);
-			if (loc4 != loc5) {
+			if (!loc4.equals(loc5)) {
 				setToolTip(this.getToolTip(loc3, param1));
 			}
 		}

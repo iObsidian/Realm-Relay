@@ -1,13 +1,18 @@
 package rotmg.map;
 
 import alde.flash.utils.Vector;
-import flash.display.*;
+import flash.display.BitmapData;
+import flash.display.DisplayObject;
+import flash.display.IGraphicsData;
+import flash.display.Sprite;
+import flash.filters.BlurFilter;
 import flash.filters.ColorMatrixFilter;
 import flash.geom.ColorTransform;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.library.Array;
 import flash.utils.Dictionary;
+import mx.filters.BaseFilter;
 import rotmg.AGameSprite;
 import rotmg.WebMain;
 import rotmg.background.Background;
@@ -123,7 +128,7 @@ public class Map extends AbstractMap {
 		partyOverlay = new PartyOverlay(this);
 		party = new Party(this);
 		quest = new Quest(this);
-		this.loopMonitor = RollingMeanLoopMonitor.getInstance();
+		//this.loopMonitor = RollingMeanLoopMonitor.getInstance();
 		GameModel.getInstance().gameObjects = goDict;
 		this.forceSoftwareMap.put(PET_YARD_1, true);
 		this.forceSoftwareMap.put(PET_YARD_2, true);
@@ -154,7 +159,7 @@ public class Map extends AbstractMap {
 	}
 
 	private void forceSoftwareRenderCheck(String param1) {
-		forceSoftwareRender = this.forceSoftwareMap.get(param1) != null || WebMain.STAGE != null && WebMain.STAGE.stage3Ds[0].context3D == null;
+		forceSoftwareRender = this.forceSoftwareMap.get(param1) != null || WebMain.STAGE != null /*&& WebMain.STAGE.stage3Ds[0].context3D == null*/;
 	}
 
 	public void initialize() {
@@ -333,7 +338,7 @@ public class Map extends AbstractMap {
 
 	public void draw(Camera param1, int param2) {
 		Square loc6 = null;
-		int loc15 = 0;
+		double loc15 = 0;
 		double loc16 = 0;
 		double loc17 = 0;
 		double loc18 = 0;
@@ -342,7 +347,7 @@ public class Map extends AbstractMap {
 		int loc21 = 0;
 		Render3D loc22 = null;
 		int loc23 = 0;
-		Vector loc24 = null;
+		Vector<BaseFilter> loc24 = null;
 		double loc25 = 0;
 		if (wasLastFrameGpu != Parameters.isGpuRender()) {
 			/*if (wasLastFrameGpu == true && WebMain.STAGE.stage3Ds[0].context3D != null && !(WebMain.STAGE.stage3Ds[0].context3D != null && WebMain.STAGE.stage3Ds[0].context3D.driverInfo.toLowerCase().indexOf("disposed") != -1)) {
@@ -373,19 +378,19 @@ public class Map extends AbstractMap {
 		this.visibleUnder.length = 0;
 		this.visibleSquares.length = 0;
 		this.topSquares.length = 0;
-		int loc7 = param1.maxDist;
-		int loc8 = Math.max(0, loc5.x - loc7);
-		int loc9 = Math.min(width - 1, loc5.x + loc7);
-		int loc10 = Math.max(0, loc5.y - loc7);
-		int loc11 = Math.min(height - 1, loc5.y + loc7);
+		double loc7 = param1.maxDist;
+		double loc8 = Math.max(0, loc5.x - loc7);
+		double loc9 = Math.min(width - 1, loc5.x + loc7);
+		double loc10 = Math.max(0, loc5.y - loc7);
+		double loc11 = Math.min(height - 1, loc5.y + loc7);
 		this.graphicsData.length = 0;
 		this.graphicsDataStageSoftware.length = 0;
 		this.graphicsData3d.length = 0;
-		int loc12 = loc8;
+		double loc12 = loc8;
 		while (loc12 <= loc9) {
 			loc15 = loc10;
 			while (loc15 <= loc11) {
-				loc6 = squares.get(loc12 + loc15 * width);
+				loc6 = squares.get((int) (loc12 + loc15 * width));
 				if (loc6 != null) {
 					loc16 = loc5.x - loc6.center.x;
 					loc17 = loc5.y - loc6.center.y;
@@ -505,38 +510,34 @@ public class Map extends AbstractMap {
 				GraphicsFillExtra.manageSize();
 			}
 		} else {*/
-			map.graphics.clear();
-			map.graphics.drawGraphicsData(this.graphicsData);
+		map.graphics.clear();
+		map.graphics.drawGraphicsData(this.graphicsData);
+		/*}*/
+
+		map.filters.clear();
+		if (player != null && (player.condition.get(ConditionEffect.CE_FIRST_BATCH) & ConditionEffect.MAP_FILTER_BITMASK) != 0) {
+			loc24 = new Vector();
+			if (player.isDrunk()) {
+				loc25 = 20 + 10 * Math.sin(param2 / 1000);
+				loc24.add(new BlurFilter(loc25, loc25));
+			}
+			if (player.isBlind()) {
+				loc24.add(BLIND_FILTER);
+			}
+			map.filters = loc24;
+		} else if (map.filters.length > 0) {
+			map.filters = new Vector<>();
 		}
-
-
-	map.filters.clear();
-        if (player != null && (player.condition[ConditionEffect.CE_FIRST_BATCH] & ConditionEffect.MAP_FILTER_BITMASK) != 0) {
-		loc24 = [];
-		if (player.isDrunk()) {
-			loc25 = 20 + 10 * Math.sin(param2 / 1000);
-			loc24.add(new BlurFilter(loc25, loc25));
+		mapOverlay.draw(param1, param2);
+		partyOverlay.draw(param1, param2);
+		if (player != null && player.isDarkness()) {
+			this.darkness.x = -300;
+			this.darkness.y = !!Parameters.data.centerOnPlayer ? -525 : -515;
+			this.darkness.alpha = 0.95;
+			addChild(this.darkness);
+		} else if (contains(this.darkness)) {
+			removeChild(this.darkness);
 		}
-		if (player.isBlind()) {
-			loc24.add(BLIND_FILTER);
-		}
-		map.filters = loc24;
-	} else if (map.filters.length > 0) {
-		map.filters = [];
-	}
-        mapOverlay.draw(param1, param2);
-        partyOverlay.draw(param1, param2);
-        if (player && player.isDarkness()) {
-		this.darkness.x = -300;
-		this.darkness.y = !!Parameters.data.centerOnPlayer ? double(-525) : double(-515);
-		this.darkness.alpha = 0.95;
-		addChild(this.darkness);
-	} else if (contains(this.darkness)) {
-		removeChild(this.darkness);
-	}
-
-
-
 	}
 
 	private int getFilterIndex() {
@@ -552,8 +553,4 @@ public class Map extends AbstractMap {
 		}
 		return loc1;
 	}
-}
-
-
-
 }

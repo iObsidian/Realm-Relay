@@ -11,6 +11,10 @@ public class GraphicsPath implements IGraphicsData {
 	public GraphicsPath(Vector<Integer> quadCommands, Vector<Double> integers) {
 	}
 
+	public GraphicsPath(Vector<Integer> integers, Vector<Double> doubles, String nonZero) {
+
+	}
+
 	public void moveTo(int param1, int param2) {
 	}
 

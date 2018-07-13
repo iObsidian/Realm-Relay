@@ -1,9 +1,11 @@
 package rotmg.map.partyoverlay;
 
+import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
 import com.company.assembleegameclient.map.partyoverlay.PlayerArrow;
 import flash.display.Sprite;
 import flash.events.Event;
+import rotmg.map.Camera;
 import rotmg.map.Map;
 import rotmg.objects.Party;
 import rotmg.objects.Player;
@@ -24,13 +26,13 @@ public class PartyOverlay extends Sprite {
 		int loc2 = 0;
 		while (loc2 < Party.NUM_MEMBERS) {
 			loc3 = new PlayerArrow();
-			this.partyMemberArrows[loc2] = loc3;
+			this.partyMemberArrows.put(loc2, loc3);
 			addChild(loc3);
 			loc2++;
 		}
 		this.questArrow = new QuestArrow(this.map);
 		addChild(this.questArrow);
-		addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
+		addEventListener(Event.REMOVED_FROM_STAGE, new EventConsumer<>(this::onRemovedFromStage));
 	}
 
 	private void onRemovedFromStage(Event param1) {
@@ -51,19 +53,19 @@ public class PartyOverlay extends Sprite {
 		Player loc4 = this.map.player;
 		int loc5 = 0;
 		while (loc5 < Party.NUM_MEMBERS) {
-			loc6 = this.partyMemberArrows[loc5];
+			loc6 = this.partyMemberArrows.get(loc5);
 			if (!loc6.mouseOver) {
 				if (loc5 >= loc3.members.length) {
 					loc6.setGameObject(null);
 				} else {
-					loc7 = loc3.members[loc5];
+					loc7 = loc3.members.get(loc5);
 					if (loc7.drawn || loc7.map == null || loc7.dead) {
 						loc6.setGameObject(null);
 					} else {
 						loc6.setGameObject(loc7);
 						loc8 = 0;
 						while (loc8 < loc5) {
-							loc9 = this.partyMemberArrows[loc8];
+							loc9 = this.partyMemberArrows.get(loc8);
 							loc10 = loc6.x - loc9.x;
 							loc11 = loc6.y - loc9.y;
 							if (loc10 * loc10 + loc11 * loc11 < 64) {
