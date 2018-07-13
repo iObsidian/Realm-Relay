@@ -53,8 +53,6 @@ public class GroundLibrary {
 	}
 
 	public static BitmapData getBitmapData(int param1, int param2) {
-		System.out.println("param1 : " + param1 + " : " + param2);
-
 		try {
 			return typeToTextureData.get(param1).getTexture(param2);
 		} catch (Exception e) {

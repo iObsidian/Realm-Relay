@@ -46,7 +46,10 @@ public class TextureDataConcrete extends TextureData {
 		if (randomTextureData == null) {
 			return texture;
 		}
-		TextureData loc2 = randomTextureData.get(param1 % randomTextureData.length);
+		TextureData loc2 = randomTextureData.get(param1 % randomTextureData.length); //
+
+		System.out.println("Random texture : loc2" + loc2 + " " + param1);
+
 		return loc2.getTexture(param1);
 	}
 
@@ -114,7 +117,7 @@ public class TextureDataConcrete extends TextureData {
 				try {
 					randomTextureData = new Vector<>();
 					for (XML childXML : xml.children()) {
-						randomTextureData.add(new TextureDataConcrete(childXML));
+						randomTextureData.push(new TextureDataConcrete(childXML));
 					}
 				} catch (Error error) {
 					throw new Error("Error loading RandomTexture for " + param2);

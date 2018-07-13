@@ -1,5 +1,6 @@
 package rotmg.objects;
 
+import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.utils.Dictionary;
@@ -37,13 +38,14 @@ public class ObjectLibrary {
 	public static final Dictionary<Integer, AnimationsData> typeToAnimationsData = new Dictionary<>();
 	public static final Dictionary<Integer, XML> petXMLDataLibrary = new Dictionary<>(); //ObjectType, XML
 	public static final Dictionary<Object, Object> skinSetXMLDataLibrary = new Dictionary<>();
+	public static final Dictionary dungeonToPortalTextureData = new Dictionary();
 	public static final Dictionary<String, Dictionary<Integer, XML>> dungeonsXMLLibrary = new Dictionary<>();
 	public static final String ENEMY_FILTER_LIST[] = new String[]{"None", "Hp", "Defense"};
 	public static final String TILE_FILTER_LIST[] = new String[]{"ALL", "Walkable", "Unwalkable", "Slow", "Speed=1"};
 	public static final ObjectProperties defaultProps = new ObjectProperties(null);
 	public static TextureDataFactory textureDataFactory = new TextureDataFactory();
-	public static List<XML> playerChars = new ArrayList<XML>();
-	public static List<XML> hexTransforms = new ArrayList<XML>();
+	public static Vector<XML> playerChars = new Vector<XML>();
+	public static Vector<XML> hexTransforms = new Vector<XML>();
 	public static Dictionary<Object, Object> playerClassAbbr = new Dictionary<>();
 	public static Dictionary<String, Class> TYPE_MAP = new Dictionary<String, Class>();
 	private static String currentDungeon = "";
@@ -53,7 +55,7 @@ public class ObjectLibrary {
 		TYPE_MAP.put("ArenaPortal", ArenaPortal.class);
 		TYPE_MAP.put("CaveWall", CaveWall.class);*/
 		TYPE_MAP.put("Character", Character.class);
-		/*TYPE_MAP.put("CharacterChanger", CharacterChanger.class);
+		TYPE_MAP.put("CharacterChanger", CharacterChanger.class);/*
 		TYPE_MAP.put("ClosedGiftChest", ClosedGiftChest.class);
 		TYPE_MAP.put("ClosedVaultChest", ClosedVaultChest.class);
 		TYPE_MAP.put("ConnectedWall", ConnectedWall.class);*/
@@ -68,7 +70,7 @@ public class ObjectLibrary {
 		TYPE_MAP.put("GuildMerchant", GuildMerchant.class);
 		TYPE_MAP.put("GuildRegister", GuildRegister.class);*/
 		TYPE_MAP.put("Merchant", Merchant.class);
-		/*TYPE_MAP.put("MoneyChanger", MoneyChanger.class);
+		TYPE_MAP.put("MoneyChanger", MoneyChanger.class);/*
 		TYPE_MAP.put("MysteryBoxGround", MysteryBoxGround.class);*/
 		TYPE_MAP.put("NameChanger", NameChanger.class);
 		/*TYPE_MAP.put("ReskinVendor", ReskinVendor.class);
@@ -89,66 +91,62 @@ public class ObjectLibrary {
 
 	public static void parseDungeonXML(String param1, XML objectXML) {
 		currentDungeon = param1;
-
 		dungeonsXMLLibrary.put(currentDungeon, new Dictionary<>());
 		parseFromXML(objectXML);
 	}
 
-	public static void parseFromXML(XML objects) {
-
-		for (XML objectXML : objects.children("Object")) {
-
-			String id = objectXML.getAttribute("id");
-			String displayId = id;
-			if (objectXML.hasOwnProperty("DisplayId")) {
-				displayId = objectXML.getValue("DisplayId");
+	public static void parseFromXML(XML param1/*, Function param2*/) {
+		String loc4 = null;
+		String loc5 = null;
+		int loc6 = 0;
+		boolean loc7 = false;
+		int loc8 = 0;
+		for (XML loc3 : param1.children("Object")) {
+			loc4 = loc3.getValue("id");
+			loc5 = loc4;
+			if (loc3.hasOwnProperty("DisplayId")) {
+				loc5 = loc3.getValue("DisplayId");
 			}
-			if (objectXML.hasOwnProperty("Group")) {
-				if (objectXML.getValue("Group").equals("Hexable")) {
-					hexTransforms.add(objectXML);
+			if (loc3.hasOwnProperty("Group")) {
+				if (loc3.getValue("Group") == "Hexable") {
+					hexTransforms.add(loc3);
 				}
 			}
-			int objectType = objectXML.getIntAttribute("type");
-
-			if (objectXML.hasOwnProperty("PetBehavior") || objectXML.hasOwnProperty("PetAbility")) {
-				petXMLDataLibrary.put(objectType, objectXML);
+			loc6 = loc3.getIntAttribute("type");
+			if (loc3.hasOwnProperty("PetBehavior") || loc3.hasOwnProperty("PetAbility")) {
+				petXMLDataLibrary.put(loc6, loc3);
 			} else {
-
-				System.out.println("ObjectType : " + objectType);
-
-				propsLibrary.put(objectType, new ObjectProperties(objectXML));
-				xmlLibrary.put(objectType, objectXML);
-				idToType.put(id, objectType);
-				typeToDisplayId.put(objectType, displayId);
-
-				if (!currentDungeon.equals("") && dungeonsXMLLibrary.get(currentDungeon) != null) {
-					dungeonsXMLLibrary.get(currentDungeon).put(objectType, objectXML);
-					propsLibrary.get(objectType).belonedDungeon = currentDungeon;
-				}
-
-				if (objectXML.hasOwnProperty("Class") && objectXML.getValue("Class").equals("Player")) {
-					playerClassAbbr.put(objectType, objectXML.getAttribute("id").substring(0, 2));
-					boolean found = false;
-
-					for (XML player : playerChars) {
-						if (player.getIntAttribute("type") == objectType) {
-							playerChars.add(objectXML);
-							found = true;
+				propsLibrary.put(loc6, new ObjectProperties(loc3));
+				xmlLibrary.put(loc6, loc3);
+				idToType.put(loc4, loc6);
+				typeToDisplayId.put(loc6, loc5);
+				/*if (param2 != null) {
+					param2(loc6, loc3);
+				}*/
+				if (loc3.getValue("Class").equals("Player")) {
+					playerClassAbbr.put(loc6, loc3.getValue("id").substring(0, 2));
+					loc7 = false;
+					loc8 = 0;
+					while (loc8 < playerChars.length) {
+						if (playerChars.get(loc8).getIntAttribute("type") == loc6) {
+							playerChars.put(loc8, loc3);
+							loc7 = true;
 						}
+						loc8++;
 					}
-
-					if (!found) {
-						playerChars.add(objectXML);
+					if (!loc7) {
+						playerChars.add(loc3);
 					}
 				}
-
-				typeToTextureData.put(objectType, textureDataFactory.create(objectXML));
-				if (objectXML.hasOwnProperty("Top")) {
-					typeToTopTextureData.put(objectType, textureDataFactory.create(objectXML.child("Top")));
+				typeToTextureData.put(loc6, textureDataFactory.create(loc3));
+				if (loc3.hasOwnProperty("Top")) {
+					typeToTopTextureData.put(loc6, textureDataFactory.create(loc3.child("Top")));
 				}
-
-				if (objectXML.hasOwnProperty("Animation")) {
-					typeToAnimationsData.put(objectType, new AnimationsData(objectXML));
+				if (loc3.hasOwnProperty("Animation")) {
+					typeToAnimationsData.put(loc6, new AnimationsData(loc3));
+				}
+				if (loc3.hasOwnProperty("IntergamePortal") && loc3.hasOwnProperty("DungeonName")) {
+					dungeonToPortalTextureData.put(loc3.getValue("DungeonName"), typeToTextureData.get(loc6));
 				}
 			}
 		}
@@ -248,6 +246,9 @@ public class ObjectLibrary {
 
 	public static BitmapData getBitmapData(int param1) {
 		TextureData _loc2 = typeToTextureData.get(param1);
+
+		System.out.println("Loading texture " + param1);
+
 		BitmapData loc3 = _loc2.getTexture();
 		if (loc3 != null) {
 			return loc3;

@@ -64,16 +64,7 @@ public class Square {
 
 	// Not sure this is a good implementation
 	private int hash(double p1, double p2) {
-		int param1 = (int) p1;
-		int param2 = (int) p2;
-
-		int loc3 = LOOKUP[(param1 + param2) % 7];
-		int loc4 = (param1 << 16 | param2) ^ 81397550;
-		loc4 = loc4 * loc3 % 65535;
-
-		System.out.println("HASH : " + loc4);
-
-		return loc4;
+		return (int) (p1 * 2949 + p2);
 	}
 
 	public void dispose() {

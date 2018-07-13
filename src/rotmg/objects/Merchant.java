@@ -5,6 +5,7 @@ import alde.flash.utils.XML;
 import flash.display.BitmapData;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
+import rotmg.GameSprite;
 import rotmg.constants.InventoryOwnerTypes;
 import rotmg.language.model.StringMap;
 import rotmg.map.Camera;
@@ -12,6 +13,7 @@ import rotmg.map.Map;
 import rotmg.model.AddSpeechBalloonVO;
 import rotmg.signals.AddSpeechBalloonSignal;
 import rotmg.text.view.stringBuilder.LineBuilder;
+import rotmg.ui.panels.Panel;
 import rotmg.ui.tooltip.EquipmentToolTip;
 import rotmg.ui.tooltip.ToolTip;
 import rotmg.util.IntPoint;
@@ -19,7 +21,7 @@ import rotmg.util.IntPoint;
 /**
  * Almost a 100% match, except that it's abstract because it doesnt have the getPanel() method
  */
-public abstract class Merchant extends SellableObject implements IInteractiveObject {
+public class Merchant extends SellableObject implements IInteractiveObject {
 
 	private static final int NONE_MESSAGE = 0;
 
@@ -254,4 +256,8 @@ public abstract class Merchant extends SellableObject implements IInteractiveObj
 		this.merchandiseTexture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 100, false);
 	}
 
+	@Override //TODO this is not correctly implemented
+	public Panel getPanel(GameSprite param1) {
+		return new Panel(param1);
+	}
 }

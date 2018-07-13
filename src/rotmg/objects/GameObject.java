@@ -224,7 +224,7 @@ public class GameObject extends BasicObject {
 		TextureData loc2 = null;
 		objectId = param1;
 		if (this.randomTextureData != null) {
-			loc2 = this.randomTextureData.get(objectId % this.randomTextureData.length);
+			loc2 = this.randomTextureData.get(0); //objectId % this.randomTextureData.length
 			this.texture = loc2.texture;
 			this.mask = loc2.mask;
 			this.animatedChar = loc2.animatedChar;
