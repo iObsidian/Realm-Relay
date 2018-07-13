@@ -1,7 +1,5 @@
 package rotmg.net.impl;
 
-import java.util.function.Consumer;
-
 import alde.flash.utils.MessageConsumer;
 import rotmg.net.api.MessageMapping;
 
@@ -23,6 +21,11 @@ public class MessageCenterMapping implements MessageMapping {
 
 	public MessageMapping toMessage(Class param1) {
 		this.messageType = param1;
+		return this;
+	}
+
+	@Override
+	public MessageMapping toHandler(Class param1) { //TODO
 		return this;
 	}
 

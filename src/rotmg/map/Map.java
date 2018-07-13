@@ -103,7 +103,7 @@ public class Map extends AbstractMap {
 		square.setTileType(type);
 	}
 
-	public Square lookupSquare(int loc7, int loc6) {
+	public Square lookupSquare(double loc7, double loc6) {
 		return null;
 	}
 }

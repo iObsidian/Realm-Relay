@@ -150,11 +150,11 @@ public class AnimatedChar {
 		p = Math.max(0, Math.min(0.99999, p));
 		int loc5 = (int) (p * loc4.length);
 
-		System.out.println("Loc4 size : "+loc4.length);
+		/*System.out.println("Loc4 size : "+loc4.length);
 		System.out.println("p = "+p);
 		System.out.println("Loc5 = "+loc5);
 
-		System.out.println(loc4.get(loc5));
+		System.out.println(loc4.get(loc5));*/
 
 		return loc4.get(loc5);
 	}

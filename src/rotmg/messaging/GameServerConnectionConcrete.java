@@ -1,6 +1,9 @@
 package rotmg.messaging;
 
-import alde.flash.utils.*;
+import alde.flash.utils.EventConsumer;
+import alde.flash.utils.MessageConsumer;
+import alde.flash.utils.RSA;
+import alde.flash.utils.XML;
 import com.hurlant.crypto.symmetric.ICipher;
 import flash.events.Event;
 import flash.events.TimerEvent;
@@ -11,6 +14,8 @@ import rotmg.account.core.WebAccount;
 import rotmg.arena.model.ArenaDeathSignal;
 import rotmg.arena.model.CurrentArenaRunModel;
 import rotmg.arena.model.ImminentArenaWaveSignal;
+import rotmg.characters.reskin.control.ReskinHandler;
+import rotmg.chat.control.TextHandler;
 import rotmg.chat.model.ChatMessage;
 import rotmg.classes.model.CharacterClass;
 import rotmg.classes.model.ClassesModel;
@@ -73,7 +78,6 @@ import rotmg.util.TextKey;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Consumer;
 
 public class GameServerConnectionConcrete extends GameServerConnection {
 
@@ -300,9 +304,10 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		_loc1.map(KEY_INFO_RESPONSE).toMessage(KeyInfoResponse.class).toMethod(new MessageConsumer<>(this::onKeyInfoResponse));
 		_loc1.map(LOGIN_REWARD_MSG).toMessage(ClaimDailyRewardResponse.class).toMethod(new MessageConsumer<>(this::onLoginRewardResponse));**/
 
-	}
-
-	public void jesus(Consumer<? super Message> consumer) {
+		//The following is a map that is in a IConfig thing, I put it here for debugging purpose (see CharactersConfig)
+		loc1.map(GameServerConnection.RESKIN).toMessage(Reskin.class).toHandler(ReskinHandler.class);
+		//This one awsell (see ChatConfig)
+		loc1.map(GameServerConnection.TEXT).toMessage(Text.class).toHandler(TextHandler.class);
 
 	}
 
@@ -1201,6 +1206,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private void setPlayerSkinTemplate(Player player, int skinId) {
 		Reskin message = (Reskin) this.messages.require(RESKIN);
+
 		message.skinID = skinId;
 		message.player = player;
 		message.consume();

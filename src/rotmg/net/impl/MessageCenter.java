@@ -12,7 +12,7 @@ public class MessageCenter implements MessageMap, MessageProvider {
 
 	private static final int MAXID = 256;
 	private static MessageCenter instance;
-	private final HashMap<Integer, MessageCenterMapping> maps = new HashMap<Integer, MessageCenterMapping>(MAXID);
+	private final HashMap<Integer, MessageCenterMapping> maps = new HashMap<>(MAXID);
 
 	public MessageCenter() {
 		super();
@@ -42,7 +42,6 @@ public class MessageCenter implements MessageMap, MessageProvider {
 
 	@Override
 	public Message require(int id) {
-
 		MessageCenterMapping m = maps.get(id);
 
 		if (m != null) {
@@ -58,9 +57,9 @@ public class MessageCenter implements MessageMap, MessageProvider {
 					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
 				e.printStackTrace();
 			}
+		} else {
+			System.err.println("No mapping for ID '" + id + "'");
 		}
-
-		System.err.println("Null mapping");
 
 		return null;
 

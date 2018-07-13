@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * Emulates AS3's built in XML capabilities.
- *
+ * <p>
  * See readme for more information on how to use
  */
 public class XML {
@@ -55,13 +55,6 @@ public class XML {
 		}
 	}
 
-	private static int hexToInt(String textContent) {
-		try {
-			return Integer.decode(textContent);
-		} catch (Exception e) {
-			return Integer.parseInt(textContent);
-		}
-	}
 
 	public String name() {
 		if (element.getTagName() == null) {
@@ -78,6 +71,9 @@ public class XML {
 		return element.getTextContent();
 	}
 
+	/**
+	 * Get all children with name
+	 */
 	public List<XML> childs(String name) {
 		List<XML> xmls = new ArrayList<>();
 
@@ -86,6 +82,23 @@ public class XML {
 			Node child = childs.item(i);
 
 			if (child instanceof Element && name.equals(child.getNodeName())) {
+				xmls.add(new XML((Element) child));
+			}
+		}
+		return xmls;
+	}
+
+	/**
+	 * Get all child values
+	 */
+	public List<XML> childs() {
+		List<XML> xmls = new ArrayList<>();
+
+		NodeList childs = element.getChildNodes();
+		for (int i = 0; i < childs.getLength(); i++) {
+			Node child = childs.item(i);
+
+			if (child instanceof Element) {
 				xmls.add(new XML((Element) child));
 			}
 		}
@@ -110,23 +123,28 @@ public class XML {
 		return false;
 	}
 
+	/**
+	 * Begin values
+	 */
+
 	public String getValue(String tag) {
 		return child(tag).element.getTextContent();
 		//return element.getElementsByTagName(tag).item(0).getTextContent();
 	}
 
+
 	public boolean getBooleanValue(String tag) {
 		return getBooleanValue(tag, false);
 	}
 
+	/**
+	 * Boolean (0 or 1)
+	 */
 	public boolean getBooleanValue(String tag, boolean defaultValue) {
 		int value = getIntValue(tag, -1);
 
 		if (value == -1) {
 			System.err.println("Error : Could not get boolean value '" + tag + "' from int value.");
-
-			//TODO attempt with String 'True'?
-
 			return defaultValue;
 		} else if (value == 1) {
 			return false;
@@ -141,16 +159,19 @@ public class XML {
 
 	public int getIntValue(String tag, int defaultValue) {
 		try {
-			return hexToInt(getValue(tag));
+			return hexToInt(checkIfHasZero(getValue(tag)));
 		} catch (Exception e) {
-			System.err.println(e.getMessage() + " with getting value " + tag + ", returning " + defaultValue + ".");
+			System.err.println(e.getMessage() + " with getting integer value " + tag + ", returning " + defaultValue + ".");
 			return defaultValue;
 		}
 	}
 
 	public double getDoubleValue(String tag) {
-		return Double.parseDouble(getValue(tag));
+		return Double.parseDouble(checkIfHasZero(getValue(tag)));
 	}
+
+
+
 
 	public String getAttribute(String name) {
 		return element.getAttribute(name);
@@ -162,10 +183,10 @@ public class XML {
 
 	public int getIntAttribute(String name, int defaultValue) {
 		try {
-			return hexToInt(getAttribute(name));
+			return hexToInt(checkIfHasZero(getAttribute(name)));
 		} catch (Exception e) {
 			System.err
-					.println(e.getMessage() + " with getting attribute " + name + ", returning " + defaultValue + ".");
+					.println(e.getMessage() + " with getting double attribute '" + name + "', returning " + defaultValue + ".");
 			return defaultValue;
 		}
 	}
@@ -185,27 +206,31 @@ public class XML {
 	 */
 	public double getDoubleAttribute(String name, double defaultValue) {
 		try {
-			return Double.parseDouble(getAttribute(name));
+			return Float.parseFloat(checkIfHasZero(getAttribute(name)));
 		} catch (Exception e) {
-			System.err.println("Value : " + getAttribute(name) + " Error : " + e.getMessage() + " with " + name
-					+ ", returning " + defaultValue + "F.");
-			return defaultValue;
-		}
-	}
-
-	public List<XML> childs() {
-		List<XML> xmls = new ArrayList<>();
-
-		NodeList childs = element.getChildNodes();
-		for (int i = 0; i < childs.getLength(); i++) {
-			Node child = childs.item(i);
-
-			if (child instanceof Element) {
-				xmls.add(new XML((Element) child));
+			try {
+				return Double.parseDouble(checkIfHasZero(getAttribute(name)));
+			} catch (Exception a) {
+				System.err.println(a.getMessage() + " with getting double attribute " + name
+						+ ", returning " + defaultValue + "F.");
+				return defaultValue;
 			}
 		}
-		return xmls;
 	}
 
+	private static String checkIfHasZero(String textContent) {
+		if (textContent.startsWith(".")) {
+			textContent = "0" + textContent;
+		}
+		return textContent;
+	}
+
+	private static int hexToInt(String textContent) {
+		try {
+			return Integer.decode(textContent);
+		} catch (Exception e) {
+			return Integer.parseInt(textContent);
+		}
+	}
 
 }

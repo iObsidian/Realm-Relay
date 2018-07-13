@@ -12,6 +12,7 @@ import rotmg.util.ConversionUtil;
 import rotmg.util.TextureRedrawer;
 import rotmg.util.redrawers.GlowRedrawer;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -188,8 +189,8 @@ public class ObjectLibrary {
 			objectXML = xmlLibrary.get(objectType);
 			typeReference = objectXML.getValue("Class");
 
-			System.out.println("Class : " + " Object type : " + objectType + "typeReference : " + typeReference);
-			System.out.println(xmlLibrary.size());
+			/*System.out.println("Class : '" + typeReference + "' Object type : '" + objectType + "'.");
+			System.out.println(xmlLibrary.size());*/
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -209,12 +210,21 @@ public class ObjectLibrary {
 		}
 
 		if (typeClass != null) {
+			Class[] cArg = new Class[1]; //Our constructor has 3 arguments
+			cArg[0] = XML.class; //First argument is of *object* type Long
 
+			try {
+				return (GameObject) typeClass.getDeclaredConstructor(cArg).newInstance(objectXML);
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
+
+			}
 		} else {
-			System.out.println("FATAL : Null typeClass!");
+			System.out.println("Error with creating class " + typeReference + "...");
 		}
 
-		System.err.println("Error with instantiation of object class '" + typeReference + "'.");
+		System.err.println("Error with instantiation of object class '" + typeReference + "', '" + typeClass + "'.");
 
 		return null;
 	}

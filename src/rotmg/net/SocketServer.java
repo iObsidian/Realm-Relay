@@ -145,9 +145,16 @@ public class SocketServer {
 								incomingCipher.cipher(packetBytes);
 
 								Message m = messages.require(packetId);
-								System.out.println("Received a " + m.getClass().getSimpleName() + " packet.");
-								m.parseFromInput(new DataInputStream(new ByteArrayInputStream(packetBytes)));
-								m.consume();
+
+								if (m == null) {
+									System.err.println("FATAL: Null packet...");
+								} else {
+									System.out.println("Received a " + m.getClass().getSimpleName() + " packet.");
+									m.parseFromInput(new DataInputStream(new ByteArrayInputStream(packetBytes)));
+									m.consume();
+								}
+
+
 
 							}
 						}
