@@ -1,9 +1,8 @@
-package com.company.assembleegameclient.map.partyoverlay;
+package rotmg.map.partyoverlay;
 
 import alde.flash.utils.Vector;
 import com.ui.menu.PlayerGroupMenu;
 import flash.events.MouseEvent;
-import rotmg.map.partyoverlay.GameObjectArrow;
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;
 import rotmg.ui.menu.Menu;

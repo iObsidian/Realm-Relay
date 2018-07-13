@@ -1,9 +1,11 @@
 package rotmg.objects;
 
 import alde.flash.utils.XML;
+import rotmg.GameSprite;
+import rotmg.ui.panels.Panel;
 
 
-public abstract class Portal extends GameObject implements IInteractiveObject {
+public class Portal extends GameObject implements IInteractiveObject {
 
 	//private static final RegExp NAME_PARSER = /(^\s+)\s\(([0-9]+)\/[0-9]+\)/;
 
@@ -18,6 +20,11 @@ public abstract class Portal extends GameObject implements IInteractiveObject {
 		isInteractive = true;
 		this.nexusPortal = param1.hasOwnProperty("NexusPortal");
 		this.lockedPortal = param1.hasOwnProperty("LockedPortal");
+	}
+
+	@Override
+	public Panel getPanel(GameSprite param1) {
+		return null;
 	}
 
 	/**@Override protected BitmapData makeNameBitmapData() {

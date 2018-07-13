@@ -7,4 +7,5 @@ public class Injector {
 	public static Injector getInstance() {
 		return instance;
 	}
+
 }

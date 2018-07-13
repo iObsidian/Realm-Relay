@@ -19,20 +19,20 @@ public class EventDispatcher {
 		listeners = new Dictionary<>();
 	}
 
-	native void removeEventListener(String type, EventConsumer listener, Boolean useCapture);
+	public native void removeEventListener(String type, EventConsumer listener, Boolean useCapture);
 
-	native Boolean dispatchEvent(Event event);
+	public native Boolean dispatchEvent(Event event);
 
-	native Boolean hasEventListener(String type);
+	public native Boolean hasEventListener(String type);
 
-	native Boolean willTrigger(String type);
+	public native Boolean willTrigger(String type);
 
 
 	public void addEventListener(String event, EventConsumer listener) {
 		this.addEventListener(event, listener, false, 0, false);
 	}
 
-	void addEventListener(String event, EventConsumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
+	public void addEventListener(String event, EventConsumer listener, boolean useCapture, int priority, Boolean useWeakReference) {
 		listeners.put(listener, event);
 	}
 

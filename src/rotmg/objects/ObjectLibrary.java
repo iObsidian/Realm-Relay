@@ -65,9 +65,9 @@ public class ObjectLibrary {
 		TYPE_MAP.put("FortuneTeller", FortuneTeller);*/
 		TYPE_MAP.put("GameObject", GameObject.class);
 		/*TYPE_MAP.put("GuildBoard", GuildBoard.class);
-		TYPE_MAP.put("GuildChronicle", GuildChronicle.class);
+		TYPE_MAP.put("GuildChronicle", GuildChronicle.class);*/
 		TYPE_MAP.put("GuildHallPortal", GuildHallPortal.class);
-		TYPE_MAP.put("GuildMerchant", GuildMerchant.class);
+		/*TYPE_MAP.put("GuildMerchant", GuildMerchant.class);
 		TYPE_MAP.put("GuildRegister", GuildRegister.class);*/
 		TYPE_MAP.put("Merchant", Merchant.class);
 		TYPE_MAP.put("MoneyChanger", MoneyChanger.class);

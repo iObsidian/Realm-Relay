@@ -142,13 +142,13 @@ public class Map extends AbstractMap {
 	}
 
 	public void initialize() {
+
+		//squares.length = width * height;
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				squares.add(new Square(this, x, y));
 			}
 		}
-
-		//squares.length = width * height;
 
 		addChild(this.bgCont);
 		background = Background.getBackground(back);
@@ -234,6 +234,9 @@ public class Map extends AbstractMap {
 
 	@Override
 	public void setGroundTile(int x, int y, int tileType) {
+
+		//System.out.println("Ground type : " + tileType + " for x : " + x + " y : " + y);
+
 		int yi = 0;
 		int ind = 0;
 		Square n = null;

@@ -145,9 +145,9 @@ public class SocketServer {
 								Message m = messages.require(packetId);
 
 								if (m == null) {
-									System.err.println("FATAL: Null packet...");
+									System.err.println("FATAL: Null packet... Id : " + packetId);
 								} else {
-									System.out.println("Received a " + m.getClass().getSimpleName() + " packet.");
+									//System.out.println("Received a " + m.getClass().getSimpleName() + " packet.");
 									m.parseFromInput(new DataInputStream(new ByteArrayInputStream(packetBytes)));
 									m.consume();
 								}

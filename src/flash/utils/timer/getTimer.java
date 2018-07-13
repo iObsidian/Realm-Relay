@@ -8,5 +8,4 @@ public class getTimer {
 		return (int) (System.currentTimeMillis() - startTime);
 	}
 
-
 }

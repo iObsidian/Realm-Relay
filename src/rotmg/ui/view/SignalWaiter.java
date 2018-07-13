@@ -22,6 +22,10 @@ public class SignalWaiter {
 		this.texts = new Dictionary<>();
 	}
 
+	public SignalWaiter add(Signal signal) {
+		return this.push(signal);
+	}
+
 	public SignalWaiter push(Signal param1) {
 		this.texts.put(param1, true);
 		this.listenTo(param1);

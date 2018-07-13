@@ -59,7 +59,7 @@ public class WebMain extends Sprite {
 		p.currentCharId = 2;
 		p.setIsAgeVerified(true);
 
-		Server loc1 = new Server().setAddress("54.153.32.11").setPort(2050);
+		Server loc1 = new Server().setAddress("54.183.179.205").setPort(2050);
 
 		int loc2 = Parameters.NEXUS_GAMEID;
 		boolean createCharacter = false;

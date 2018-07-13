@@ -79,6 +79,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import static flash.utils.timer.getTimer.getTimer;
+
 public class GameServerConnectionConcrete extends GameServerConnection {
 
 	private static final int TO_MILLISECONDS = 1000;
@@ -1395,7 +1397,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	public void onAoe(Aoe aoe) {
-
 		this.aoeAck(this.gs.lastUpdate, this.player.x, this.player.y);
 	}
 
@@ -1521,7 +1522,4 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		this.gs.closed.dispatch();**/
 	}
 
-	public int getTimer() {
-		return (int) (System.currentTimeMillis() - startTime);
-	}
 }

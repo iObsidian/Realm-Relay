@@ -2,7 +2,6 @@ package rotmg.map.partyoverlay;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
-import com.company.assembleegameclient.map.partyoverlay.PlayerArrow;
 import flash.display.Sprite;
 import flash.events.Event;
 import rotmg.map.Camera;

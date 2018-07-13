@@ -6,6 +6,7 @@ public class Stage extends DisplayObjectContainer {
 	public DisplayObject root;
 	public double stageWidth;
 	public double stageHeight;
-	public Object focus;
+	public InteractiveObject focus;
 	public String quality;
+	public Stage3D[] stage3Ds;
 }

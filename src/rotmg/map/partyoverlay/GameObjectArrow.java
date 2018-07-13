@@ -2,7 +2,7 @@ package rotmg.map.partyoverlay;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
-import com.company.util.RectangleUtil;
+import rotmg.util.RectangleUtil;
 import flash.airglobal.Graphics;
 import flash.airglobal.Shape;
 import flash.display.DisplayObjectContainer;
