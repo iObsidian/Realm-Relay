@@ -7,23 +7,18 @@ public class PopupWindowBackground extends Sprite {
 	public static final String HORIZONTAL_DIVISION = "HORIZONTAL_DIVISION";
 
 	public static final String VERTICAL_DIVISION = "VERTICAL_DIVISION";
-
+	public static final int TYPE_DEFAULT_GREY = 0;
+	public static final int TYPE_TRANSPARENT_WITH_HEADER = 1;
+	public static final int TYPE_TRANSPARENT_WITHOUT_HEADER = 2;
+	public static final int TYPE_DEFAULT_BLACK = 3;
 	private static final int BEVEL = 4;
 
-	public static final int TYPE_DEFAULT_GREY = 0;
 
-	public static final int TYPE_TRANSPARENT_WITH_HEADER = 1;
-
-	public static final int TYPE_TRANSPARENT_WITHOUT_HEADER = 2;
-
-	public static final int TYPE_DEFAULT_BLACK = 3;
-
-
-	public  PopupWindowBackground()  {
+	public PopupWindowBackground() {
 		super();
 	}
 
-	public void  draw(double param1, double param2, double param3)  {
+	public void draw(double param1, double param2, double param3) {
 		/*BevelRect loc4 = new BevelRect(param1, param2, BEVEL);
 		GraphicsHelper loc5 = new GraphicsHelper();
 		graphics.lineStyle(1, 16777215, 1, false, LineScaleMode.NORMAL, CapsStyle.NONE, JointStyle.ROUND, 3);
@@ -55,7 +50,7 @@ public class PopupWindowBackground extends Sprite {
 		}*/
 	}
 
-	public void  divide(String param1, int param2)  {
+	public void divide(String param1, int param2) {
 		if (param1.equals(HORIZONTAL_DIVISION)) {
 			this.divideHorizontally(param2);
 		} else if (param1.equals(VERTICAL_DIVISION)) {
@@ -63,7 +58,7 @@ public class PopupWindowBackground extends Sprite {
 		}
 	}
 
-	private void  divideHorizontally(int param1)  {
+	private void divideHorizontally(int param1) {
 		graphics.lineStyle();
 		graphics.endFill();
 		graphics.moveTo(1, param1);
@@ -71,7 +66,7 @@ public class PopupWindowBackground extends Sprite {
 		graphics.drawRect(1, param1, width - 2, 2);
 	}
 
-	private void  divideVertically(int param1)  {
+	private void divideVertically(int param1) {
 		graphics.lineStyle();
 		graphics.moveTo(param1, 1);
 		graphics.lineStyle(2, 6710886);

@@ -1,7 +1,5 @@
 package rotmg;
 
-import static rotmg.tutorial.doneAction.doneAction;
-
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.XML;
@@ -11,6 +9,7 @@ import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.system.Capabilities;
 import net.hires.debug.Stats;
+import robotlegs.bender.bundles.mvcs.components.StatsTabHotKeyInputSignal;
 import rotmg.application.api.ApplicationSetup;
 import rotmg.application.impl.ProductionSetup;
 import rotmg.chat.model.ChatMessage;
@@ -29,11 +28,7 @@ import rotmg.objects.Player;
 import rotmg.objects.Square;
 import rotmg.parameters.Parameters;
 import rotmg.pets.controller.reskin.ReskinPetFlowStartSignal;
-import rotmg.signals.AddTextLineSignal;
-import rotmg.signals.ExitGameSignal;
-import rotmg.signals.GiftStatusUpdateSignal;
-import rotmg.signals.SetTextBoxVisibilitySignal;
-import rotmg.signals.UseBuyPotionSignal;
+import rotmg.signals.*;
 import rotmg.tutorial.Tutorial;
 import rotmg.ui.Options;
 import rotmg.ui.model.TabStripModel;
@@ -42,7 +37,8 @@ import rotmg.ui.popups.signals.ClosePopupByClassSignal;
 import rotmg.ui.popups.signals.ShowPopupSignal;
 import rotmg.util.KeyCodes;
 import rotmg.util.TextureRedrawer;
-import robotlegs.bender.bundles.mvcs.components.StatsTabHotKeyInputSignal;
+
+import static rotmg.tutorial.doneAction.doneAction;
 
 public class MapUserInput {
 
@@ -246,13 +242,13 @@ public class MapUserInput {
 			return;
 		}
 		/**if (Parameters.isGpuRender()) {
-			if (param1.currentTarget == param1.target || param1.target == this.gs.map || param1.target == this.gs || param1.currentTarget == this.gs.chatBox.list) {
-				loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
-			} else {
-				return;
-			}
-		} else {*/
-			loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
+		 if (param1.currentTarget == param1.target || param1.target == this.gs.map || param1.target == this.gs || param1.currentTarget == this.gs.chatBox.list) {
+		 loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
+		 } else {
+		 return;
+		 }
+		 } else {*/
+		loc3 = Math.atan2(this.gs.map.mouseY, this.gs.map.mouseX);
 		//}
 		doneAction(this.gs, Tutorial.ATTACK_ACTION);
 		if (loc2.isUnstable()) {
@@ -310,19 +306,19 @@ public class MapUserInput {
 		OpenDialogSignal loc13 = null;
 		Stage loc2 = this.gs.stage;
 		/**this.currentString = this.currentString + param1.keyCode;
-		if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
-			if (this.currentString.length() == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length()) {
-				loc5 = AddTextLineSignal.getInstance();
-				loc6 = new ChatMessage();
-				loc6.name = Parameters.SERVER_CHAT_NAME;
-				this.currentString = "";
-				UIUtils.SHOW_EXPERIMENTAL_MENU = !UIUtils.SHOW_EXPERIMENTAL_MENU;
-				loc6.text = UIUtils.SHOW_EXPERIMENTAL_MENU ? "Experimental menu activated" : "Experimental menu deactivated";
-				loc5.dispatch(loc6);
-			}
-		} else {
-			this.currentString = "";
-		}*/
+		 if (this.currentString.equals(UIUtils.EXPERIMENTAL_MENU_PASSWORD.substring(0, this.currentString.length()))) {
+		 if (this.currentString.length() == UIUtils.EXPERIMENTAL_MENU_PASSWORD.length()) {
+		 loc5 = AddTextLineSignal.getInstance();
+		 loc6 = new ChatMessage();
+		 loc6.name = Parameters.SERVER_CHAT_NAME;
+		 this.currentString = "";
+		 UIUtils.SHOW_EXPERIMENTAL_MENU = !UIUtils.SHOW_EXPERIMENTAL_MENU;
+		 loc6.text = UIUtils.SHOW_EXPERIMENTAL_MENU ? "Experimental menu activated" : "Experimental menu deactivated";
+		 loc5.dispatch(loc6);
+		 }
+		 } else {
+		 this.currentString = "";
+		 }*/
 		switch (param1.keyCode) {
 			case KeyCodes.F1:
 			case KeyCodes.F2:

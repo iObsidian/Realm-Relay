@@ -191,7 +191,7 @@ public class AssetLoader {
 	}
 
 	private void parseParticleEffects() {
-			ParticleLibrary.parseFromXML(EmbeddedData.particlesEmbed());
+		ParticleLibrary.parseFromXML(EmbeddedData.particlesEmbed());
 	}
 
 	private void parseGroundFiles() {
@@ -214,6 +214,15 @@ public class AssetLoader {
 	private void parseRegionFiles() {
 		for (XML loc1 : EmbeddedData.regionFiles()) {
 			RegionLibrary.parseFromXML(loc1);
+		}
+	}
+
+
+	public static void main(String[] args) {
+		for (XML x : EmbeddedData.objectFiles()) {
+			for (XML a : x.children()) {
+				System.out.println(a.name());
+			}
 		}
 	}
 
@@ -287,7 +296,8 @@ class EmbeddedData {
 
 	// Remember : "Items" and "Objects" are put in the same file!
 	public static Vector<XML> objectFiles() { //Object
-		return new Vector<>(getXML(getDocument("/xml/objects.xml")));
+		XML x = getXML(getDocument("/xml/objects.xml"));
+		return new Vector<>(x);
 	}
 
 	public static Vector<XML> groundFiles() { //Ground
@@ -324,7 +334,7 @@ class EmbeddedData {
 
 			Document doc = dBuilder.parse(in);
 			in.close();
-			doc.getDocumentElement().normalize();
+			//doc.getDocumentElement().normalize();
 			return doc;
 
 		} catch (Exception e) {

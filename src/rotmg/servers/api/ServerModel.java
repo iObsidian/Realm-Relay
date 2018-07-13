@@ -1,14 +1,14 @@
 package rotmg.servers.api;
 
 import alde.flash.utils.Vector;
-import kabam.rotmg.servers.model.FixedIPServerModel;
-import rotmg.core.signals.SetScreenSignal;
 import rotmg.net.Server;
 import rotmg.servers.api.model.LiveServerModel;
 
 public interface ServerModel {
 
-	void setServers(Vector<Server> param1);
+	static ServerModel getInstance() {
+		return LiveServerModel.getInstance();
+	}
 
 	Server getServer();
 
@@ -16,7 +16,5 @@ public interface ServerModel {
 
 	Vector<Server> getServers();
 
-	static ServerModel getInstance() {
-		return LiveServerModel.getInstance();
-	}
+	void setServers(Vector<Server> param1);
 }

@@ -61,50 +61,30 @@ public class Map extends AbstractMap {
 	public static final String NEXUS_EXPLANATION = "Nexus_Explanation";
 
 	public static final String VAULT = "Vault";
-
-	public static boolean forceSoftwareRender = false;
-
+	protected static final ColorMatrixFilter BLIND_FILTER = new ColorMatrixFilter(0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 1, 0);
 	private static final Vector<String> VISIBLE_SORT_FIELDS = new Vector<>("sortVal_", "objectId_");
 
 	private static final Vector<Integer> VISIBLE_SORT_PARAMS = new Vector<>(Array.NUMERIC, Array.NUMERIC);
-
-	protected static final ColorMatrixFilter BLIND_FILTER = new ColorMatrixFilter(0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 0, 0, 0.05, 0.05, 0.05, 1, 0);
-
-	protected static ColorTransform BREATH_CT = new ColorTransform(1, 55 / 255, 0 / 255, 0);
-
+	public static boolean forceSoftwareRender = false;
 	public static BitmapData texture;
-
+	protected static ColorTransform BREATH_CT = new ColorTransform(1, 55 / 255, 0 / 255, 0);
 	public boolean ifDrawEffectFlag = true;
 
 	//private RollingMeanLoopMonitor loopMonitor;
-
-	private boolean inUpdate = false;
-
-	private Vector<BasicObject> objsToAdd;
-
-	private Vector<Integer> idsToRemove;
-
-	private Dictionary<String, Boolean> forceSoftwareMap;
-
-	private boolean lastSoftwareClear = false;
-
-	private DisplayObject darkness;
-
-	private Sprite bgCont;
-
-	private Vector<IGraphicsData> graphicsData;
-
-	private Vector<IGraphicsData> graphicsDataStageSoftware;
-
-	private Vector<Object3DStage3D> graphicsData3d;
-
 	public Vector<BasicObject> visible;
-
 	public Vector<BasicObject> visibleUnder;
-
 	public Vector<Square> visibleSquares;
-
 	public Vector<Square> topSquares;
+	private boolean inUpdate = false;
+	private Vector<BasicObject> objsToAdd;
+	private Vector<Integer> idsToRemove;
+	private Dictionary<String, Boolean> forceSoftwareMap;
+	private boolean lastSoftwareClear = false;
+	private DisplayObject darkness;
+	private Sprite bgCont;
+	private Vector<IGraphicsData> graphicsData;
+	private Vector<IGraphicsData> graphicsDataStageSoftware;
+	private Vector<Object3DStage3D> graphicsData3d;
 
 	public Map(AGameSprite param1) {
 		super();

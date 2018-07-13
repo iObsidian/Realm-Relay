@@ -22,11 +22,6 @@ public class BitmapData implements IBitmapDrawable {
 		updateWidthAndHeight();
 	}
 
-	private void updateWidthAndHeight() {
-		width = image.getWidth();
-		height = image.getHeight();
-	}
-
 	/**
 	 * Used by BitmapDataSpy
 	 */
@@ -35,7 +30,7 @@ public class BitmapData implements IBitmapDrawable {
 		updateWidthAndHeight();
 	}
 
-	public BitmapData(int i, int i1) {
+	public BitmapData(double i, double i1) {
 	}
 
 	public BitmapData(double width, double height, boolean param3, int param4) {
@@ -44,6 +39,11 @@ public class BitmapData implements IBitmapDrawable {
 
 	public BitmapData(int i, int i1, boolean b, double v) {
 
+	}
+
+	private void updateWidthAndHeight() {
+		width = image.getWidth();
+		height = image.getHeight();
 	}
 
 	public BitmapData clone() {

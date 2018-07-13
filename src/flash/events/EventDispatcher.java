@@ -13,7 +13,7 @@ public class EventDispatcher {
 	public boolean visible;
 	public boolean mouseEnabled;
 	public Graphics graphics;
-	static int startTime;
+
 
 	public EventDispatcher() {
 		listeners = new Dictionary<>();
@@ -27,9 +27,6 @@ public class EventDispatcher {
 
 	native Boolean willTrigger(String type);
 
-	public static int getTimer() {
-		return (int) (System.currentTimeMillis() - startTime);
-	}
 
 	public void addEventListener(String event, EventConsumer listener) {
 		this.addEventListener(event, listener, false, 0, false);

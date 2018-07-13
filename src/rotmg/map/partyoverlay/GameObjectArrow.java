@@ -38,13 +38,9 @@ public class GameObjectArrow extends Sprite {
 	public Vector<GameObject> extraGOs;
 
 	public boolean mouseOver = false;
-
-	private boolean big;
-
-	private Shape arrow;
-
 	protected ToolTip tooltip = null;
-
+	private boolean big;
+	private Shape arrow;
 	private Point tempPoint;
 
 	public GameObjectArrow(int param1, int param2, boolean param3) {

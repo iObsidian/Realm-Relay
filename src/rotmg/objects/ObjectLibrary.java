@@ -96,19 +96,27 @@ public class ObjectLibrary {
 	}
 
 	public static void parseFromXML(XML param1/*, Function param2*/) {
+
 		String loc4 = null;
 		String loc5 = null;
 		int loc6 = 0;
 		boolean loc7 = false;
 		int loc8 = 0;
+
 		for (XML loc3 : param1.children("Object")) {
-			loc4 = loc3.getValue("id");
+
+			/*System.out.println(loc3.getAttribute("id") + " has " + loc3.children().size() + " children : ");
+			for (XML x : loc3.children()) {
+				System.out.println(x.name());
+			}*/
+
+			loc4 = loc3.getAttribute("id");
 			loc5 = loc4;
 			if (loc3.hasOwnProperty("DisplayId")) {
 				loc5 = loc3.getValue("DisplayId");
 			}
 			if (loc3.hasOwnProperty("Group")) {
-				if (loc3.getValue("Group") == "Hexable") {
+				if (loc3.getValue("Group").equals("Hexable")) {
 					hexTransforms.add(loc3);
 				}
 			}
@@ -116,6 +124,9 @@ public class ObjectLibrary {
 			if (loc3.hasOwnProperty("PetBehavior") || loc3.hasOwnProperty("PetAbility")) {
 				petXMLDataLibrary.put(loc6, loc3);
 			} else {
+
+				System.out.println("Putting " + loc6 + " ( " + loc3.getAttribute("type") + " )" + " for " + loc3.getAttribute("id"));
+
 				propsLibrary.put(loc6, new ObjectProperties(loc3));
 				xmlLibrary.put(loc6, loc3);
 				idToType.put(loc4, loc6);
@@ -123,18 +134,17 @@ public class ObjectLibrary {
 				/*if (param2 != null) {
 					param2(loc6, loc3);
 				}*/
-				if (loc3.getValue("Class").equals("Player")) {
-					playerClassAbbr.put(loc6, loc3.getValue("id").substring(0, 2));
-					loc7 = false;
-					loc8 = 0;
-					while (loc8 < playerChars.length) {
-						if (playerChars.get(loc8).getIntAttribute("type") == loc6) {
-							playerChars.put(loc8, loc3);
-							loc7 = true;
+				if (loc3.hasOwnProperty("Class") && loc3.getValue("Class").equals("Player")) {
+					playerClassAbbr.put(loc6, loc3.getAttribute("id").substring(0, 2));
+					boolean found = false;
+
+					for (XML player : playerChars) {
+						if (player.getIntAttribute("type") == loc6) {
+							playerChars.add(loc3);
+							found = true;
 						}
-						loc8++;
 					}
-					if (!loc7) {
+					if (!found) {
 						playerChars.add(loc3);
 					}
 				}
@@ -244,12 +254,8 @@ public class ObjectLibrary {
 		return _loc2.getTexture();
 	}
 
-	public static BitmapData getBitmapData(int param1) {
-		TextureData _loc2 = typeToTextureData.get(param1);
-
-		System.out.println("Loading texture " + param1);
-
-		BitmapData loc3 = _loc2.getTexture();
+	public static BitmapData getBitmapData(int objectType) {
+		BitmapData loc3 = typeToTextureData.get(objectType).getTexture();
 		if (loc3 != null) {
 			return loc3;
 		}

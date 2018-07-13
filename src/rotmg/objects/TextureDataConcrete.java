@@ -1,5 +1,6 @@
 package rotmg.objects;
 
+import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import flash.display.BitmapData;
@@ -8,6 +9,7 @@ import rotmg.appengine.RemoteTexture;
 import rotmg.objects.animation.AnimatedChar;
 import rotmg.util.AnimatedChars;
 import rotmg.util.AssetLibrary;
+import rotmg.util.AssetLoader;
 import rotmg.util.MaskedImage;
 
 public class TextureDataConcrete extends TextureData {
@@ -42,15 +44,13 @@ public class TextureDataConcrete extends TextureData {
 		}
 	}
 
+	// TODO this is a debug implementation
 	public BitmapData getTexture(int param1) {
 		if (randomTextureData == null) {
 			return texture;
+		} else {
+			return randomTextureData.get(0).getTexture();
 		}
-		TextureData loc2 = randomTextureData.get(param1 % randomTextureData.length); //
-
-		System.out.println("Random texture : loc2" + loc2 + " " + param1);
-
-		return loc2.getTexture(param1);
 	}
 
 	public TextureData getAltTextureData(int param1) {
@@ -103,15 +103,15 @@ public class TextureDataConcrete extends TextureData {
 				break;
 			case "RemoteTexture":
 				System.err.println("Remote textures are not implemented!");
-				/*texture = AssetLibrary.getImageFromSet("lofiObj3", 255);
+				texture = AssetLibrary.getImageFromSet("lofiObj3", 255);
 				if (this.isUsingLocalTextures) {
-					remoteTexture = new RemoteTexture(xml.getValue("Id"), xml.getValue("Instance"), this.onRemoteTexture);
+					remoteTexture = new RemoteTexture(xml.getValue("Id"), xml.getValue("Instance"), new SignalConsumer<>(this::onRemoteTexture));
 					remoteTexture.run();
 					if (!AssetLoader.currentXmlIsTesting) {
 						remoteTexturesUsed = true;
 					}
 				}
-				remoteTextureDir = !!xml.hasOwnProperty("Right") ? AnimatedChar.RIGHT : AnimatedChar.DOWN;*/
+				remoteTextureDir = !!xml.hasOwnProperty("Right") ? AnimatedChar.RIGHT : AnimatedChar.DOWN;
 				break;
 			case "RandomTexture":
 				try {

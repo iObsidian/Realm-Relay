@@ -1,11 +1,11 @@
 package rotmg.objects.particles;
 
 import alde.flash.utils.EventConsumer;
-import flash.utils.timer.Timer;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.events.TimerEvent;
 import flash.geom.Point;
+import flash.utils.timer.Timer;
 import rotmg.objects.GameObject;
 import rotmg.particles.ParticleEffect;
 import rotmg.util.AssetLibrary;

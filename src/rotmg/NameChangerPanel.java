@@ -95,8 +95,8 @@ public class NameChangerPanel extends Panel {
 		this.title.y = 6;
 		addChild(this.title);
 		/**DeprecatedTextButton loc1 = new DeprecatedTextButton(16, TextKey.NAME_CHANGER_CHOOSE);
-		loc1.textChanged.addOnce(this.positionTextButton);
-		this.button = loc1;*/
+		 loc1.textChanged.addOnce(this.positionTextButton);
+		 this.button = loc1;*/
 		addChild(this.button);
 		this.addListeners();
 	}

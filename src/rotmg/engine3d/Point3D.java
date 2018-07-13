@@ -1,13 +1,7 @@
 package rotmg.engine3d;
 
 import alde.flash.utils.Vector;
-import flash.display.BitmapData;
-import flash.display.GraphicsBitmapFill;
-import flash.display.GraphicsEndFill;
-import flash.display.GraphicsPath;
-import flash.display.GraphicsPathCommand;
-import flash.display.GraphicsSolidFill;
-import flash.display.IGraphicsData;
+import flash.display.*;
 import flash.geom.Matrix;
 import flash.geom.Matrix3D;
 import flash.geom.Utils3D;

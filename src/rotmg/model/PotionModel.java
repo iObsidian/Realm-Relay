@@ -1,8 +1,8 @@
 package rotmg.model;
 
-import java.util.List;
-
 import org.osflash.signals.Signal;
+
+import java.util.List;
 
 public class PotionModel {
 

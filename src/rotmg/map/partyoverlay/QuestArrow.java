@@ -10,6 +10,8 @@ import rotmg.parameters.Parameters;
 import rotmg.ui.tooltip.QuestToolTip;
 import rotmg.ui.tooltip.ToolTip;
 
+import static flash.utils.timer.getTimer.getTimer;
+
 public class QuestArrow extends GameObjectArrow {
 
 	public Map map;
@@ -52,7 +54,7 @@ public class QuestArrow extends GameObjectArrow {
 	}
 
 	public void draw(int param1, Camera param2) {
-        Object loc4 = false;
+		Object loc4 = false;
 		boolean loc5 = false;
 		GameObject loc3 = this.map.quest.getObject(param1);
 		if (loc3 != go) {

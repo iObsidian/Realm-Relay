@@ -2,8 +2,6 @@ package rotmg.ui.signals;
 
 
 import org.osflash.signals.Signal;
-
-import rotmg.signals.AddSpeechBalloonSignal;
 import rotmg.signals.GiftStatusUpdateSignal;
 
 public class ShowHideKeyUISignal extends Signal<GiftStatusUpdateSignal> {

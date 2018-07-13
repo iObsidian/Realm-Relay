@@ -89,7 +89,7 @@ public class Projectile extends BasicObject {
 
 	@Override
 	public void dispose() {
-		objBullIdToObjId = new Dictionary();
+		objBullIdToObjId = new Dictionary<>();
 	}
 
 
@@ -110,27 +110,27 @@ public class Projectile extends BasicObject {
 		z = 0.5;
 		this.containerProps = ObjectLibrary.propsLibrary.get(this.containerType);
 
-		if (this.containerProps == null) {
-			System.err.println("Error, could not find projectile " + this.containerType+ " ObjectLibrary.propsLibrary : " + ObjectLibrary.propsLibrary.size());
-		}
-
-		this.projProps = this.containerProps.projectiles.get(param2);
-		String loc9 = !param7.equals("") && this.projProps.objectId.equals(param8) ? param7 : this.projProps.objectId;
-		this.props = ObjectLibrary.getPropsFromId(loc9);
-		hasShadow = this.props.shadowSize > 0;
-		TextureData loc10 = ObjectLibrary.typeToTextureData.get(this.props.type);
-		this.texture = loc10.getTexture(objectId);
-		this.damagesPlayers = this.containerProps.isEnemy;
-		this.damagesEnemies = !this.damagesPlayers;
-		this.sound = this.containerProps.oldSound;
-		this.multiHitDict = !!this.projProps.multiHit ? new Dictionary() : null;
-		if (this.projProps.size >= 0) {
-			loc11 = this.projProps.size;
+		if (this.containerProps == null) { //This is debug TODO
+			System.err.println("Error, could not find projectile " + this.containerType + " ObjectLibrary.propsLibrary : " + ObjectLibrary.propsLibrary.size());
 		} else {
-			loc11 = ObjectLibrary.getSizeFromType(this.containerType);
+			this.projProps = this.containerProps.projectiles.get(param2);
+			String loc9 = !param7.equals("") && this.projProps.objectId.equals(param8) ? param7 : this.projProps.objectId;
+			this.props = ObjectLibrary.getPropsFromId(loc9);
+			hasShadow = this.props.shadowSize > 0;
+			TextureData loc10 = ObjectLibrary.typeToTextureData.get(this.props.type);
+			this.texture = loc10.getTexture(objectId);
+			this.damagesPlayers = this.containerProps.isEnemy;
+			this.damagesEnemies = !this.damagesPlayers;
+			this.sound = this.containerProps.oldSound;
+			this.multiHitDict = !!this.projProps.multiHit ? new Dictionary() : null;
+			if (this.projProps.size >= 0) {
+				loc11 = this.projProps.size;
+			} else {
+				loc11 = ObjectLibrary.getSizeFromType(this.containerType);
+			}
+			this.p.setSize(8 * (loc11 / 100));
+			this.damage = 0;
 		}
-		this.p.setSize(8 * (loc11 / 100));
-		this.damage = 0;
 	}
 
 	public void setDamage(int param1) {

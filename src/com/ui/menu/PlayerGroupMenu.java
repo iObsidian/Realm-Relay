@@ -16,19 +16,13 @@ import rotmg.ui.menu.MenuOption;
 public class PlayerGroupMenu extends Menu {
 
 
-	private Vector<GameObjectListItem> playerPanels;
-
-	private int posY = 4;
-
 	public AbstractMap map;
-
 	public Vector<Player> players;
-
 	public MenuOption teleportOption;
-
 	public LineBreakDesign lineBreakDesign;
-
 	public Signal unableToTeleport;
+	private Vector<GameObjectListItem> playerPanels;
+	private int posY = 4;
 
 	public PlayerGroupMenu(AbstractMap param1, Vector<Player> param2) {
 		super(3552822, 16777215);

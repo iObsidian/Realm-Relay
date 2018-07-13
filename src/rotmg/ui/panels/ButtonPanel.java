@@ -14,9 +14,8 @@ import spark.filters.DropShadowFilter;
 
 public class ButtonPanel extends Panel {
 
-	private TextFieldDisplayConcrete titleText;
-
 	protected DeprecatedTextButton button;
+	private TextFieldDisplayConcrete titleText;
 
 	public ButtonPanel(GameSprite param1, String param2, String param3) {
 		super(param1);

@@ -10,9 +10,8 @@ import spark.filters.DropShadowFilter;
 
 public class QuestToolTip extends ToolTip {
 
-	private TextFieldDisplayConcrete text;
-
 	public GameObjectListItem enemyGOLI;
+	private TextFieldDisplayConcrete text;
 
 	public QuestToolTip(GameObject param1) {
 		super(6036765, 1, 16549442, 1, false);

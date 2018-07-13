@@ -1,8 +1,7 @@
 package rotmg.core.signals;
 
-import org.osflash.signals.Signal;
-
 import alde.flash.utils.XML;
+import org.osflash.signals.Signal;
 
 public class AppInitDataReceivedSignal extends Signal<XML> {
 

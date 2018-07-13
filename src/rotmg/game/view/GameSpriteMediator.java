@@ -41,7 +41,7 @@ import rotmg.ui.signals.HUDModelInitialized;
 import rotmg.ui.signals.HUDSetupStarted;
 import rotmg.ui.signals.UpdateHUDSignal;
 
-import static flash.events.EventDispatcher.getTimer;
+import static flash.utils.timer.getTimer.getTimer;
 
 
 public class GameSpriteMediator extends Mediator {

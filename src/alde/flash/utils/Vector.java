@@ -158,7 +158,6 @@ public class Vector<T> implements Iterable<T> {
 		return contains(i);
 	}
 
-	@Deprecated
 	public int indexOf(T loc2) {
 		for (int i : map.keySet()) {
 			if (map.get(i).equals(loc2)) {

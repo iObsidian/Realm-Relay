@@ -1,12 +1,11 @@
 package rotmg.core.model;
 
 
-import org.osflash.signals.Signal;
-
 import alde.flash.utils.Vector;
-import rotmg.appengine.SavedCharactersList;
+import org.osflash.signals.Signal;
 import rotmg.account.core.Account;
 import rotmg.appengine.SavedCharacter;
+import rotmg.appengine.SavedCharactersList;
 import rotmg.appengine.SavedNewsItem;
 import rotmg.net.LatLong;
 
@@ -19,11 +18,9 @@ public class PlayerModel {
 	public static Signal fameChanged = new Signal<Integer>();
 
 	public static Signal tokensChanged = new Signal<Integer>();
-
+	private static PlayerModel instance;
 	public SavedCharactersList charList;
-
 	public boolean isInvalidated;
-
 	public int currentCharId;
 	public Account account;
 	private boolean isAgeVerified;
@@ -32,8 +29,6 @@ public class PlayerModel {
 		super();
 		this.isInvalidated = true;
 	}
-
-	private static PlayerModel instance;
 
 	public static PlayerModel getInstance() {
 		if (instance == null) {
@@ -132,7 +127,7 @@ public class PlayerModel {
 	public void deleteCharacter(int param1) {
 		SavedCharacter loc2 = this.charList.getCharById(param1);
 
-		if ( this.charList.savedChars.contains(loc2)) {
+		if (this.charList.savedChars.contains(loc2)) {
 			this.charList.savedChars.remove(loc2);
 			this.charList.numChars--;
 		}

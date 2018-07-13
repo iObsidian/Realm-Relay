@@ -15,6 +15,7 @@ public class UnknownPacket extends IncomingMessage {
 
 	private final List<Byte> bytes = new LinkedList<Byte>();
 	private byte id;
+
 	public UnknownPacket(int id, MessageConsumer callback) {
 		super(id, callback);
 	}

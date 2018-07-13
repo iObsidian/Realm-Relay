@@ -1,11 +1,11 @@
 package rotmg.util;
 
 
-import flash.utils.Dictionary;
 import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
+import flash.utils.Dictionary;
 import rotmg.util.redrawers.GlowRedrawer;
 import spark.filters.GlowFilter;
 

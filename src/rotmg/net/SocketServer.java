@@ -153,7 +153,6 @@ public class SocketServer {
 								}
 
 
-
 							}
 						}
 
@@ -204,22 +203,13 @@ public class SocketServer {
 		}.start();
 	}
 
-	protected int currentTime() {
-		return (int) (System.currentTimeMillis() - startTime);
-	}
-
 	/**
 	 * Send directly the message
-	 *
-	 * @param packet
 	 */
 	public void sendMessage(Message packet) {
 		try {
 			if (write) {
 				byte[] packetBytes = packet.getBytes();
-
-				System.out.println("Packet '" + packet.getClass().getSimpleName() + "' bytes : " + packetBytes.length + ".");
-
 				outgoingCipher.cipher(packetBytes);
 				int packetLength = packetBytes.length + 5;
 				outputStream.writeInt(packetLength);

@@ -1,6 +1,5 @@
 package rotmg.stage3D;
 
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.GraphicsBitmapFill;
@@ -8,6 +7,7 @@ import flash.display.GraphicsSolidFill;
 import flash.display3D.Context3DVertexBufferFormat;
 import flash.display3D.VertexBuffer3D;
 import flash.geom.ColorTransform;
+import flash.utils.Dictionary;
 import rotmg.parameters.Parameters;
 
 public class GraphicsFillExtra {

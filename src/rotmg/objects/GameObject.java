@@ -35,7 +35,8 @@ import rotmg.text.view.stringBuilder.StringBuilder;
 import rotmg.util.*;
 import rotmg.util.redrawers.GlowRedrawer;
 
-import static flash.events.EventDispatcher.getTimer;
+import static flash.utils.timer.getTimer.getTimer;
+
 
 public class GameObject extends BasicObject {
 

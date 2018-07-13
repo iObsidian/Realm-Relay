@@ -30,11 +30,6 @@ public class XML {
 		this.element = el;
 	}
 
-	@Override
-	public String toString() {
-		return getTextValue();
-	}
-
 	public XML(String data) {
 		Document doc = null;
 
@@ -51,10 +46,32 @@ public class XML {
 		if (doc != null) {
 			this.element = doc.getDocumentElement();
 		} else {
-			System.err.println("Could not build XML from String '" + data + "'.");
+			debug("Could not build XML from String '" + data + "'.");
 		}
 	}
 
+	private static String checkIfHasZero(String textContent) {
+		textContent = textContent.replace(" ", "");
+
+		if (textContent.startsWith(".")) {
+			textContent = "0" + textContent;
+		}
+		return textContent;
+	}
+
+	private static int hexToInt(String hex) {
+		if (hex.startsWith("0x")) {
+			//System.out.println("Hex ; " + hex + " to int : " + Integer.decode(hex));
+			return Integer.decode(hex);
+		} else {
+			return Integer.parseInt(hex);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return getTextValue();
+	}
 
 	public String name() {
 		if (element.getTagName() == null) {
@@ -94,14 +111,18 @@ public class XML {
 	public List<XML> children() {
 		List<XML> xmls = new ArrayList<>();
 
-		NodeList childs = element.getChildNodes();
-		for (int i = 0; i < childs.getLength(); i++) {
-			Node child = childs.item(i);
+		NodeList list = element.getChildNodes();
+		for (int i = 0; i < list.getLength(); i++) {
+			if (list.item(i) instanceof Element) {
+				Element root = (Element) list.item(i);
+				xmls.add(new XML(root));
 
-			if (child instanceof Element) {
-				xmls.add(new XML((Element) child));
+				System.out.println(root.getAttribute("id"));
 			}
 		}
+
+		System.out.println(xmls.size());
+
 		return xmls;
 	}
 
@@ -132,7 +153,6 @@ public class XML {
 		//return element.getElementsByTagName(tag).item(0).getTextContent();
 	}
 
-
 	public boolean getBooleanValue(String tag) {
 		return getBooleanValue(tag, false);
 	}
@@ -144,13 +164,17 @@ public class XML {
 		int value = getIntValue(tag, -1);
 
 		if (value == -1) {
-			System.err.println("Error : Could not get boolean value '" + tag + "' from int value.");
+			debug("Error : Could not get boolean value '" + tag + "' from int value.");
 			return defaultValue;
 		} else if (value == 1) {
 			return false;
 		} else {
 			return false;
 		}
+	}
+
+	private void debug(String s) {
+		//TODO
 	}
 
 	public int getIntValue(String tag) {
@@ -161,7 +185,7 @@ public class XML {
 		try {
 			return hexToInt(checkIfHasZero(getValue(tag)));
 		} catch (Exception e) {
-			System.err.println(e.getMessage() + " with getting integer value " + tag + ", returning " + defaultValue + ".");
+			debug(e.getMessage() + " with getting integer value " + tag + ", returning " + defaultValue + ".");
 			return defaultValue;
 		}
 	}
@@ -169,7 +193,6 @@ public class XML {
 	public double getDoubleValue(String tag) {
 		return Double.parseDouble(checkIfHasZero(getValue(tag)));
 	}
-
 
 	public String getAttribute(String name) {
 		return element.getAttribute(name);
@@ -183,8 +206,7 @@ public class XML {
 		try {
 			return hexToInt(checkIfHasZero(getAttribute(name)));
 		} catch (Exception e) {
-			System.err
-					.println(e.getMessage() + " with getting double attribute '" + name + "', returning " + defaultValue + ".");
+			debug(e.getMessage() + " with getting double attribute '" + name + "', returning " + defaultValue + ".");
 			return defaultValue;
 		}
 	}
@@ -209,25 +231,10 @@ public class XML {
 			try {
 				return Double.parseDouble(checkIfHasZero(getAttribute(name)));
 			} catch (Exception a) {
-				System.err.println(a.getMessage() + " with getting double attribute " + name
+				debug(a.getMessage() + " with getting double attribute " + name
 						+ ", returning " + defaultValue + "F.");
 				return defaultValue;
 			}
-		}
-	}
-
-	private static String checkIfHasZero(String textContent) {
-		if (textContent.startsWith(".")) {
-			textContent = "0" + textContent;
-		}
-		return textContent;
-	}
-
-	private static int hexToInt(String hex) {
-		if (hex.startsWith("0x")) {
-			return Integer.decode(hex);
-		} else {
-			return Integer.parseInt(hex);
 		}
 	}
 

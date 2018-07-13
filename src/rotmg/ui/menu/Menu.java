@@ -13,21 +13,14 @@ import spark.filters.DropShadowFilter;
 
 public class Menu extends Sprite implements UnFocusAble {
 
-	private GraphicsSolidFill backgroundFill;
-
-	private GraphicsSolidFill outlineFill;
-
-	private GraphicsStroke lineStyle;
-
-	private GraphicsPath path;
-
-	private Vector<IGraphicsData> graphicsData;
-
-	private int background;
-
-	private int outline;
-
 	protected int yOffset;
+	private GraphicsSolidFill backgroundFill;
+	private GraphicsSolidFill outlineFill;
+	private GraphicsStroke lineStyle;
+	private GraphicsPath path;
+	private Vector<IGraphicsData> graphicsData;
+	private int background;
+	private int outline;
 
 	public Menu(int param1, int param2) {
 		super();

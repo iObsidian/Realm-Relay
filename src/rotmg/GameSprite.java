@@ -7,9 +7,8 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.filters.ColorMatrixFilter;
 import org.osflash.signals.Signal;
-import rotmg.account.core.WebAccount;
-import rotmg.signals.ShowProTipSignal;
 import rotmg.account.core.Account;
+import rotmg.account.core.WebAccount;
 import rotmg.constants.GeneralConstants;
 import rotmg.core.model.MapModel;
 import rotmg.core.model.PlayerModel;
@@ -26,11 +25,15 @@ import rotmg.maploading.signals.MapLoadedSignal;
 import rotmg.messaging.GameServerConnectionConcrete;
 import rotmg.messaging.incoming.MapInfo;
 import rotmg.net.Server;
-import rotmg.objects.*;
+import rotmg.objects.GameObject;
+import rotmg.objects.IInteractiveObject;
+import rotmg.objects.Pet;
+import rotmg.objects.Player;
 import rotmg.packages.services.PackageModel;
 import rotmg.parameters.Parameters;
 import rotmg.promotions.model.BeginnersPackageModel;
 import rotmg.promotions.signals.ShowBeginnersPackageSignal;
+import rotmg.signals.ShowProTipSignal;
 import rotmg.stage3D.Renderer;
 import rotmg.ui.GuildText;
 import rotmg.ui.HUDView;
@@ -39,6 +42,8 @@ import rotmg.util.CachingColorTransformer;
 import rotmg.util.MoreColorUtil;
 import rotmg.util.PointUtil;
 import rotmg.util.TextureRedrawer;
+
+import static flash.utils.timer.getTimer.getTimer;
 
 
 public class GameSprite extends AGameSprite {
@@ -213,14 +218,14 @@ public class GameSprite extends AGameSprite {
 		loc1 = WebAccount.getInstance();
 		this.googleAnalytics = GoogleAnalytics.getInstance();
 		/**if (map.name.equals(Map.NEXUS)) {
-			this.addToQueueSignal.dispatch(PopupNamesConfig.DAILY_LOGIN_POPUP, this.openDailyCalendarPopupSignal, -1, null);
-			if (this.beginnersPackageModel.isBeginnerAvailable()) {
-				this.addToQueueSignal.dispatch(PopupNamesConfig.BEGINNERS_OFFER_POPUP, this.showBeginnersPackage, 1, null);
-			} else {
-				this.addToQueueSignal.dispatch(PopupNamesConfig.PACKAGES_OFFER_POPUP, this.showPackage, 1, null);
-			}
-			this.flushQueueSignal.dispatch();
-		}*/
+		 this.addToQueueSignal.dispatch(PopupNamesConfig.DAILY_LOGIN_POPUP, this.openDailyCalendarPopupSignal, -1, null);
+		 if (this.beginnersPackageModel.isBeginnerAvailable()) {
+		 this.addToQueueSignal.dispatch(PopupNamesConfig.BEGINNERS_OFFER_POPUP, this.showBeginnersPackage, 1, null);
+		 } else {
+		 this.addToQueueSignal.dispatch(PopupNamesConfig.PACKAGES_OFFER_POPUP, this.showPackage, 1, null);
+		 }
+		 this.flushQueueSignal.dispatch();
+		 }*/
 		this.isNexus = map.name.equals(Map.NEXUS);
 		/*if (this.isNexus || map.name.equals(Map.DAILY_QUEST_ROOM)) {
 			this.creditDisplay = new CreditDisplay(this, true, true);

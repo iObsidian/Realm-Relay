@@ -20,40 +20,22 @@ public class WebAccount implements Account {
 	public boolean rememberMe = true;
 	public String paymentProvider = "";
 	public String paymentData = "";
-
-	String userName = "";
-
 	public String userId = "";
-
 	public String password = "";
-
 	public String token = "";
-
 	public String secret = "";
-
 	public Object credentials;
-
-	boolean isRegistered;
-
-	String requestPrefix = "";
-
 	public String gameNetworkUserId = "";
-
 	public String gameNetwork = "";
-
 	public String playPlatform = "";
-
+	String userName = "";
+	boolean isRegistered;
+	String requestPrefix = "";
 	boolean isVerified = true;
 
 	String moneyUserId = "";
 
 	String moneyAccessToken = "";
-
-	public static Account getInstance() {
-		WebAccount account = new WebAccount("fliphcc@gmail.com", "ati3SmaQ3de");
-		account.secret = account.password;
-		return account;
-	}
 
 	public WebAccount() {
 		super();
@@ -69,6 +51,12 @@ public class WebAccount implements Account {
 	public WebAccount(String email, String password) {
 		this.userId = email;
 		this.password = password;
+	}
+
+	public static Account getInstance() {
+		WebAccount account = new WebAccount("fliphcc@gmail.com", "ati3SmaQ3de");
+		account.secret = account.password;
+		return account;
 	}
 
 	public String getUserName() {

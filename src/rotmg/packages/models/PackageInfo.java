@@ -1,16 +1,15 @@
 package rotmg.packages.models;
 
-import java.util.function.Consumer;
-
 import alde.flash.utils.EventConsumer;
-import org.osflash.signals.Signal;
-
 import flash.display.Loader;
 import flash.events.Event;
 import flash.events.IOErrorEvent;
 import flash.events.SecurityError;
 import flash.net.URLRequest;
+import org.osflash.signals.Signal;
 import rotmg.shop.genericBox.data.GenericBoxInfo;
+
+import java.util.function.Consumer;
 
 public class PackageInfo extends GenericBoxInfo {
 

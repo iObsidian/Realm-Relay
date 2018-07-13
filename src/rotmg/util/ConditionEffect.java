@@ -1,10 +1,10 @@
 package rotmg.util;
 
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.airglobal.BitmapFilterQuality;
 import flash.display.BitmapData;
 import flash.geom.Matrix;
+import flash.utils.Dictionary;
 import rotmg.util.redrawers.GlowRedrawer;
 import spark.filters.GlowFilter;
 
@@ -210,22 +210,10 @@ public class ConditionEffect {
 		}
 
 		if (conditionEffectFromName.get(param1) == null) {
-			System.err.println("DEBUG : ERROR WITH "+param1+" EFFECT DOES NOT EXIST.");
+			System.err.println("DEBUG : ERROR WITH " + param1 + " EFFECT DOES NOT EXIST.");
 		}
 
 		return conditionEffectFromName.get(param1);
-	}
-
-
-	@Override
-	public String toString() {
-		return "ConditionEffect{" +
-				"name='" + name + '\'' +
-				", bit=" + bit +
-				", iconOffsets=" + Arrays.toString(iconOffsets) +
-				", localizationKey='" + localizationKey + '\'' +
-				", icon16Bit=" + icon16Bit +
-				'}';
 	}
 
 	public static ConditionEffect getConditionEffectEnumFromName(String param1) {
@@ -369,6 +357,17 @@ public class ConditionEffect {
 			return bitToIcon2.get(param1);
 		}
 		return null;
+	}
+
+	@Override
+	public String toString() {
+		return "ConditionEffect{" +
+				"name='" + name + '\'' +
+				", bit=" + bit +
+				", iconOffsets=" + Arrays.toString(iconOffsets) +
+				", localizationKey='" + localizationKey + '\'' +
+				", icon16Bit=" + icon16Bit +
+				'}';
 	}
 
 

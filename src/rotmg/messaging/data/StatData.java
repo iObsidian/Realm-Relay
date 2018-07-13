@@ -146,7 +146,7 @@ public class StatData implements IData {
 	}
 
 	public boolean isStringStat() {
-		switch(this.statType) {
+		switch (this.statType) {
 			case NAME_STAT:
 			case GUILD_NAME_STAT:
 			case PET_NAME_STAT:

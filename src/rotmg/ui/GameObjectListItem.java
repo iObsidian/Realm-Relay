@@ -17,19 +17,12 @@ import spark.filters.DropShadowFilter;
 public class GameObjectListItem extends Sprite {
 
 	public Bitmap portrait;
-
-	private TextFieldDisplayConcrete text;
-
-	private TemplateBuilder builder;
-
-	private int color;
-
 	public boolean isLongVersion;
-
 	public GameObject go;
-
 	public Signal textReady;
-
+	private TextFieldDisplayConcrete text;
+	private TemplateBuilder builder;
+	private int color;
 	private String objname;
 
 	private int type;

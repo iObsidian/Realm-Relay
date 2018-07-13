@@ -6,7 +6,6 @@ import flash.display.Stage;
 import flash.events.Event;
 import flash.system.Capabilities;
 import robotlegs.bender.framework.api.IContext;
-import rotmg.account.core.Account;
 import rotmg.account.core.WebAccount;
 import rotmg.core.model.PlayerModel;
 import rotmg.net.Server;

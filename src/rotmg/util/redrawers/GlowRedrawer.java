@@ -1,12 +1,12 @@
 package rotmg.util.redrawers;
 
-import flash.utils.Dictionary;
 import flash.airglobal.BitmapFilterQuality;
 import flash.airglobal.Shape;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.BlendMode;
 import flash.geom.Matrix;
+import flash.utils.Dictionary;
 import rotmg.parameters.Parameters;
 import rotmg.util.PointUtil;
 import rotmg.util.TextureRedrawer;

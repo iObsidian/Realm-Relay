@@ -253,7 +253,7 @@ public class Merchant extends SellableObject implements IInteractiveObject {
 
 	public void setMerchandiseType(int param1) {
 		this.merchandiseType = param1;
-		this.merchandiseTexture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 100, false);
+		//this.merchandiseTexture = ObjectLibrary.getRedrawnTextureFromType(this.merchandiseType, 100, false);
 	}
 
 	@Override //TODO this is not correctly implemented

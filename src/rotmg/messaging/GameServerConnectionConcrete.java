@@ -967,7 +967,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 	}
 
 	private void onShowEffect(ShowEffect showEffect) {
-		System.out.println("Show effect : " + showEffect);
+		//System.out.println("Show effect : " + showEffect);
 	}
 
 	/**
@@ -1195,7 +1195,7 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 					player.magicPotionCount = value;
 					continue;
 				case StatData.TEXTURE_STAT:
-					if (player.skinId != value) {
+					if (player != null && player.skinId != value) {
 						this.setPlayerSkinTemplate(player, value);
 					}
 					continue;

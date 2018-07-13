@@ -18,7 +18,6 @@ public class Parameters {
 	public static final String BUILD_VERSION = "X27.0";
 	public static final String MINOR_VERSION = "1";
 	public static final boolean ENABLE_ENCRYPTION = true;
-	public static int PORT = 2050;
 	public static final boolean ALLOW_SCREENSHOT_MODE = false;
 	public static final boolean USE_NEW_FRIENDS_UI = true;
 	public static final double PLAYER_ROTATE_SPEED = 0.003;
@@ -34,15 +33,14 @@ public class Parameters {
 	public static final String USER_GENERATED_CONTENT_TERMS = "/UGDTermsofUse.html";
 	public static final String RANDOM1 = "311f80691451c71b09a13a2a6e";
 	public static final String RANDOM2 = "72c5583cafb6818995cbd74b80";
-
 	/**
 	 * RSA formatted
 	 * AS3 format : "-----BEGIN PUBLIC KEY-----\n" + "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeO" + "cmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99Uo" + "SGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7" + "F3yWYqUbZd/HCBtawwIDAQAB\n" + "-----END PUBLIC KEY-----";
 	 */
 	public static final String RSA_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCKFctVrhfF3m2Kes0FBL/JFeOcmNg9eJz8k/hQy1kadD+XFUpluRqa//Uxp2s9W2qE0EoUCu59ugcf/p7lGuL99UoSGmQEynkBvZct+/M40L0E0rZ4BVgzLOJmIbXMp0J4PnPcb6VLZvxazGcmSfjauC7F3yWYqUbZd/HCBtawwIDAQAB\n";
-
 	public static final Vector<Integer> skinTypes16 = new Vector<Integer>(1027, 1028, 1029, 1030, 10973, 19494, 19531);
 	public static final Vector<Integer> itemTypes16 = new Vector<Integer>(5473, 5474, 5475, 5476, 10939, 19494, 19531);
+	public static int PORT = 2050;
 	public static DisplayObject root;
 	public static Data data = new Data();
 	public static boolean GPURenderError = false;
@@ -54,8 +52,6 @@ public class Parameters {
 	public static boolean screenShotSlimMode = false;
 
 	public static boolean sendLogin = true;
-	private static Dictionary keyNames = new Dictionary();
-	private static SharedObject savedOptions = null;
 	public static int blendType = 1;
 	public static int FELLOW_GUILD_COLOR = 10944349;
 	public static int NAME_CHOSEN_COLOR = 16572160;
@@ -67,6 +63,8 @@ public class Parameters {
 	public static int NEXUS_GAMEID = -2;
 	public static int RANDOM_REALM_GAMEID = -3;
 	public static int MAPTEST_GAMEID = -6;
+	private static Dictionary keyNames = new Dictionary();
+	private static SharedObject savedOptions = null;
 
 	public Parameters() {
 		super();
@@ -305,6 +303,7 @@ public class Parameters {
 		public static boolean noEnemyDamage = false;
 		public static boolean showFameGain = false;
 		public static boolean curseIndication = false;
+		public static int cameraAngle = 0;
 		public final int moveUp = KeyCodes.W;
 		public final int moveDown = KeyCodes.S;
 		public final int rotateLeft = KeyCodes.Q;
@@ -347,7 +346,6 @@ public class Parameters {
 		public int toggleProjectiles = KeyCodes.N;
 		public int toggleMasterParticles = KeyCodes.M;
 		public int playerObjectType = 782;
-		public static int cameraAngle = 0;
 		public int defaultCameraAngle = 0;
 		public int protipIndex = 0;
 		public int beginnersOfferTimeLeft = 0;

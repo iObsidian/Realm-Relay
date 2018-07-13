@@ -1,8 +1,8 @@
 package rotmg.util;
 
-import flash.utils.Dictionary;
 import alde.flash.utils.Vector;
 import flash.display.BitmapData;
+import flash.utils.Dictionary;
 
 
 public class BloodComposition {

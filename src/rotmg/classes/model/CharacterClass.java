@@ -1,9 +1,9 @@
 package rotmg.classes.model;
 
+import org.osflash.signals.Signal;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.osflash.signals.Signal;
 
 public class CharacterClass {
 
@@ -30,6 +30,7 @@ public class CharacterClass {
 	public int unlockCost;
 	private int maxLevelAchieved;
 	private boolean isSelected;
+
 	public CharacterClass() {
 		super();
 	}

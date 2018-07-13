@@ -17,7 +17,8 @@ import rotmg.util.IntPoint;
 
 import java.util.List;
 
-import static flash.events.EventDispatcher.getTimer;
+import static flash.utils.timer.getTimer.getTimer;
+
 
 public class Player extends Character {
 

@@ -8,19 +8,18 @@ import rotmg.servers.api.ServerModel;
 public class FixedIPServerModel implements ServerModel {
 
 	public static FixedIPServerModel instance;
+	private Server localhost;
+
+	public FixedIPServerModel() {
+		super();
+		this.localhost = new Server().setName("localhost").setPort(Parameters.PORT);
+	}
 
 	public static FixedIPServerModel getInstance() {
 		if (instance == null) {
 			instance = new FixedIPServerModel();
 		}
 		return instance;
-	}
-
-	private Server localhost;
-
-	public FixedIPServerModel() {
-		super();
-		this.localhost = new Server().setName("localhost").setPort(Parameters.PORT);
 	}
 
 	public FixedIPServerModel setIP(String param1) {
@@ -32,14 +31,14 @@ public class FixedIPServerModel implements ServerModel {
 		return new Vector<Server>(this.localhost);
 	}
 
+	public void setServers(Vector<Server> param1) {
+	}
+
 	public Server getServer() {
 		return this.localhost;
 	}
 
 	public boolean isServerAvailable() {
 		return true;
-	}
-
-	public void setServers(Vector<Server> param1) {
 	}
 }

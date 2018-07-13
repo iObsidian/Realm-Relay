@@ -1,11 +1,10 @@
 package rotmg.text.view.stringBuilder;
 
-import org.osflash.signals.Signal;
-
 import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextLineMetrics;
+import org.osflash.signals.Signal;
 import rotmg.language.model.StringMap;
 import rotmg.text.model.FontInfo;
 

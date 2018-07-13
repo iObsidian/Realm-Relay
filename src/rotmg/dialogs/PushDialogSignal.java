@@ -1,8 +1,7 @@
 package rotmg.dialogs;
 
-import org.osflash.signals.Signal;
-
 import flash.display.Sprite;
+import org.osflash.signals.Signal;
 
 public class PushDialogSignal extends Signal<Sprite> {
 

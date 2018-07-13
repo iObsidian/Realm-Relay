@@ -1,9 +1,9 @@
 package rotmg.util;
 
-import flash.utils.Dictionary;
 import flash.display.BitmapData;
 import flash.filters.BitmapFilter;
 import flash.geom.ColorTransform;
+import flash.utils.Dictionary;
 
 public class CachingColorTransformer {
 

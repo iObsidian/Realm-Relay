@@ -12,6 +12,7 @@ public class AnimateProperties {
 	public int type = 0;
 	public double dx = 0;
 	public double dy = 0;
+
 	public AnimateProperties() {
 		super();
 	}

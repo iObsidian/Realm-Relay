@@ -15,6 +15,7 @@ public class EventConsumer<T extends Event> {
 	public EventConsumer(Consumer<T> consumer) {
 		this.consumer = consumer;
 	}
+
 	public EventConsumer(Runnable runnable) {
 		this.runnable = runnable;
 	}

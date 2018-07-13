@@ -1,22 +1,22 @@
 package rotmg.account.core.services;
 
 import alde.flash.utils.SignalConsumer;
-import flash.utils.timer.Timer;
 import alde.flash.utils.XML;
 import flash.events.TimerEvent;
-import rotmg.lib.tasks.tasks.BaseTask;
+import flash.utils.timer.Timer;
+import mx.logging.ILogger;
+import rotmg.account.core.WebAccount;
 import rotmg.account.core.signals.CharListDataSignal;
 import rotmg.account.securityQuestions.data.SecurityQuestionsModel;
 import rotmg.account.web.view.MigrationDialog;
 import rotmg.account.web.view.WebLoginDialog;
-import rotmg.components.TimerCallback;
-import mx.logging.ILogger;
-import rotmg.account.core.WebAccount;
 import rotmg.appengine.api.AppEngineClient;
+import rotmg.components.TimerCallback;
 import rotmg.core.model.PlayerModel;
 import rotmg.core.signals.SetLoadingMessageSignal;
 import rotmg.dialogs.CloseDialogsSignal;
 import rotmg.dialogs.OpenDialogSignal;
+import rotmg.lib.tasks.tasks.BaseTask;
 import rotmg.parameters.Parameters;
 import rotmg.util.TextKey;
 
@@ -25,38 +25,24 @@ public class GetCharListTask extends BaseTask {
 	private static final int ONE_SECOND_IN_MS = 1000;
 
 	private static final int MAX_RETRIES = 7;
-
+	public static GetCharListTask instance;
 	public WebAccount account;
-
 	public AppEngineClient client;
-
 	public PlayerModel model;
-
 	public SetLoadingMessageSignal setLoadingMessage;
-
 	public CharListDataSignal charListData;
-
 	public ILogger logger;
-
 	public OpenDialogSignal openDialog;
-
 	public CloseDialogsSignal closeDialogs;
-
 	public SecurityQuestionsModel securityQuestionsModel;
-
 	private Object requestData;
-
 	private Timer retryTimer;
-
 	private int numRetries = 0;
-
 	private boolean fromMigration = false;
 
 	public GetCharListTask() {
 		super();
 	}
-
-	public static GetCharListTask instance;
 
 	public static GetCharListTask getInstance() {
 		if (instance == null) {
@@ -74,6 +60,7 @@ public class GetCharListTask extends BaseTask {
 
 	private void sendRequest() {
 		//this.client.complete.addOnce(new SignalConsumer<>(this::onComplete));
+
 		this.client.sendRequest("/char/list", this.requestData);
 	}
 

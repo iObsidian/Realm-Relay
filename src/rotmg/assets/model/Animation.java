@@ -1,9 +1,9 @@
 package rotmg.assets.model;
 
 import alde.flash.utils.EventConsumer;
-import flash.utils.timer.Timer;
 import flash.display.BitmapData;
 import flash.events.TimerEvent;
+import flash.utils.timer.Timer;
 
 import java.util.ArrayList;
 import java.util.List;

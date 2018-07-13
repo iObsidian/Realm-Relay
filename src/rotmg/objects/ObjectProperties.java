@@ -160,6 +160,14 @@ public class ObjectProperties {
 		return this.minSize + (int) (Math.random() * size) * this.sizeStep;
 	}
 
+
+	@Override
+	public String toString() {
+		return "ObjectProperties{" +
+				"type=" + type +
+				", id='" + id + '\'' +
+				'}';
+	}
 }
 
 class WhileMovingProperties {

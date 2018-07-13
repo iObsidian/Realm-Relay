@@ -7,17 +7,17 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormatAlign;
+import org.osflash.signals.Signal;
+import rotmg.WebMain;
 import rotmg.pets.util.PetsViewAssetFactory;
 import rotmg.pets.view.components.DialogCloseButton;
 import rotmg.pets.view.components.PopupWindowBackground;
-import org.osflash.signals.Signal;
-import rotmg.WebMain;
 import rotmg.text.view.stringBuilder.LineBuilder;
 import rotmg.text.view.stringBuilder.StaticStringBuilder;
 import rotmg.text.view.stringBuilder.TextFieldDisplayConcrete;
 import spark.filters.DropShadowFilter;
 
-public class EmptyFrame  extends Sprite {
+public class EmptyFrame extends Sprite {
 
 	public static final int TEXT_MARGIN = 20;
 

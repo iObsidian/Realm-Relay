@@ -64,8 +64,8 @@ public class WorldPosData implements IData {
 
 	@Override
 	public void writeToOutput(DataOutput out) throws IOException {
-		out.writeFloat((float)x);
-		out.writeFloat((float)y);
+		out.writeFloat((float) x);
+		out.writeFloat((float) y);
 	}
 
 }
