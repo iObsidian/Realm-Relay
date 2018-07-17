@@ -51,6 +51,9 @@ public class LoaderUI {
 		frame.setBackground(Color.black);
 		frame.setTitle("Oryx2D Launcher");
 		frame.setLocationRelativeTo(null);
+
+		
+
 		//frame.setResizable(false);
 		frame.setBounds(100, 100, 800, 550);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
