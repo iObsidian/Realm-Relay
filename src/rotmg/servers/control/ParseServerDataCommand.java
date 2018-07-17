@@ -1,12 +1,12 @@
-package kabam.rotmg.servers.control;
+package rotmg.servers.control;
+
+import java.util.List;
 
 import alde.flash.utils.Vector;
 import alde.flash.utils.XML;
 import rotmg.net.Server;
 import rotmg.parameters.Parameters;
 import rotmg.servers.api.ServerModel;
-
-import java.util.List;
 
 public class ParseServerDataCommand {
 

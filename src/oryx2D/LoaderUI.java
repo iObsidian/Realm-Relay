@@ -1,9 +1,11 @@
 package oryx2D;
 
+import oryx2D.util.hint.HintTextField;
+import oryx2D.util.hint.PasswordHintTextField;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class LoaderUI {
 
@@ -39,20 +41,28 @@ public class LoaderUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+	
+		ArrayList<Image> icons = new ArrayList<Image>();
+		icons.add(Toolkit.getDefaultToolkit().getImage(LoaderUI.class.getResource("/oryx2D/icons/icon128.png")));
+		icons.add(Toolkit.getDefaultToolkit().getImage(LoaderUI.class.getResource("/oryx2D/icons/icon16.png")));
+		icons.add(Toolkit.getDefaultToolkit().getImage(LoaderUI.class.getResource("/oryx2D/icons/icon32.png")));
+		frame.setIconImages(icons);
+		frame.setResizable(false);
 		frame.setBackground(Color.black);
 		frame.setTitle("Oryx2D Launcher");
+		frame.setLocationRelativeTo(null);
 		//frame.setResizable(false);
-		frame.setBounds(100, 100, 800, 450);
+		frame.setBounds(100, 100, 800, 550);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(LoaderUI.class.getResource("/oryx2D/loader/oryx2D.png")));
-		panel.add(lblNewLabel, BorderLayout.NORTH);
+		panel.add(lblNewLabel, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.BLACK);
@@ -63,11 +73,8 @@ public class LoaderUI {
 		panel_2.setBackground(Color.BLACK);
 		panel_1.add(panel_2);
 		
-		JLabel lblEmail = new JLabel("Email: ");
-		lblEmail.setForeground(Color.WHITE);
-		panel_2.add(lblEmail);
-		
-		emailField = new JTextField();
+
+		emailField = new HintTextField("Email");
 		panel_2.add(emailField);
 		emailField.setColumns(20);
 		
@@ -75,13 +82,9 @@ public class LoaderUI {
 		panel_3.setBackground(Color.BLACK);
 		panel_1.add(panel_3);
 		
-		JLabel lblPassword = new JLabel("Password: ");
-		lblPassword.setForeground(Color.WHITE);
-		panel_3.add(lblPassword);
-		
-		passwordField = new JPasswordField(10);
+		passwordField = new PasswordHintTextField("Password");
 		panel_3.add(passwordField);
-		passwordField.setColumns(18);
+		passwordField.setColumns(20);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBackground(Color.BLACK);
@@ -96,10 +99,9 @@ public class LoaderUI {
 		panel_1.add(panel_6);
 		
 		JButton btnJoin = new JButton("        Connect        ");
-		btnJoin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Bas les couilles frero'");
-			}
+		btnJoin.addActionListener(e -> {
+			Game.main(null);
+			frame.dispose();
 		});
 		btnJoin.setForeground(Color.BLACK);
 		btnJoin.setBackground(Color.WHITE);

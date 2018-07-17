@@ -1,4 +1,4 @@
-package kabam.rotmg.servers.model;
+package rotmg.servers.model;
 
 import alde.flash.utils.Vector;
 import rotmg.net.Server;

@@ -5,7 +5,6 @@ import rotmg.GameSprite;
 import rotmg.ui.panels.Panel;
 import rotmg.view.NameChangerPanel;
 
-
 public class NameChanger extends GameObject implements IInteractiveObject {
 
 	public int rankRequired = 0;
