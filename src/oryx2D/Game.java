@@ -19,40 +19,47 @@ import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
 
-	private static final double FPS = 60;
-
-	private static final int SCALE = 6; // (50 / 8 = 6.25)
-
-	private static final int WIDTH = 1000 / SCALE;
-	private static final int HEIGHT = 750 / SCALE;
-
+	private JFrame frame;
 	private static final String TITLE = "Oryx2D";
 
+	//
+
+	private static final double frameRate = 60;
+
+	private static final int scale = 6; // (50 / 8 = 6.25)
+
+	private static final int width = 800 / scale;
+	private static final int height = 600 / scale;
+
+	private static final int backgroundColor = 0000000;
+
+	//
 
 	private static boolean showFPS = true;
 	private int currentFPS = 0;
 
+	//
+
 	private boolean running = false;
 	private Thread thread;
 
-	private JFrame frame;
+	//
 
 	private Keyboard key;
 
-	private Level level;
+	private Level level  = new Level(200, 200);
 
 	private Player player;
 
 	private Screen screen;
 
 	public Game() {
-		Dimension size = new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
+		Dimension size = new Dimension(width * scale, height * scale);
 		setPreferredSize(size);
 
-		screen = new Screen(WIDTH, HEIGHT);
+		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = Level.spawn;
 		TileCoordinate playerSpawn = new TileCoordinate(19, 62);
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
 		player.init(level);
@@ -76,15 +83,16 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static int getWindowWidth() {
-		return WIDTH * SCALE;
+		return width * scale;
 	}
 
 	public static int getWindowHeight() {
-		return HEIGHT * SCALE;
+		return height * scale;
 	}
 
 	public static void main(String[] args) {
-
+		WebMain webMain = new WebMain();
+		//webMain.hook(this);
 
 		Game game = new Game();
 		game.frame.add(game);
@@ -119,11 +127,11 @@ public class Game extends Canvas implements Runnable {
 
 	public void run() {
 
-		WebMain webMain = new WebMain();
+
 
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
-		final double ns = 1_000_000_000.0 / FPS;
+		final double ns = 1_000_000_000.0 / frameRate;
 		double delta = 0;
 		int updates = 0;
 
@@ -157,7 +165,7 @@ public class Game extends Canvas implements Runnable {
 		System.out.println("Squares : " + AbstractMap.squares.length + ", BO : " + AbstractMap.boDict.size() + ", GO : " + AbstractMap.goDict.size());
 
 		for (Square q : AbstractMap.squares) {
-			System.out.println(q.texture);
+			System.out.println(q.x + ", " + q.y);
 		}
 
 		key.update();
@@ -204,7 +212,7 @@ public class Game extends Canvas implements Runnable {
 			g.setFont(new Font("Verdana", Font.PLAIN, 20));
 
 			if (showFPS) {
-				g.drawString("FPS : " + currentFPS, 80, 40);
+				g.drawString("frameRate : " + currentFPS, 80, 40);
 			}
 
 

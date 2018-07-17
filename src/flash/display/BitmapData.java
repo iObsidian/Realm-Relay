@@ -6,35 +6,57 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import spark.filters.GlowFilter;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 public class BitmapData implements IBitmapDrawable {
 
-	public Object rect;
-
 	public int width;
 	public int height;
 
+	public int[] pixels;
+
 	public BufferedImage image;
 
-	public BitmapData(BufferedImage b) {
-		image = b;
+	public Rectangle rect;
+
+	public BitmapData(String path) {
+		try {
+			BufferedImage image = ImageIO.read(Sprite.class.getResource(path));
+			this.width = image.getWidth();
+			this.height = image.getHeight();
+			pixels = new int[width * height];
+			image.getRGB(0, 0, width, height, pixels, 0, width); //write rgb pixels to pixels array
+		} catch (Exception e) {
+			System.err.println("Error with file : " + path + ", width : " + width + ", height : " + height + ".");
+			e.printStackTrace();
+		}
+	}
+
+	public BitmapData(BufferedImage image) {
+
+		this.image = image;
+
+		this.width = image.getWidth();
+		this.height = image.getHeight();
+
+		this.pixels = new int[width * height];
+
+		image.getRGB(0, 0, width, height, pixels, 0, width); //write rgb pixels to pixels array
+
 		updateWidthAndHeight();
 	}
 
 	/**
 	 * Used by BitmapDataSpy
 	 */
-	public BitmapData(int param1, int param2, boolean param3, int param4) {
-		this.image = new BufferedImage(param1, param2, 1);
+	public BitmapData(int width, int height, boolean param3, int param4) {
+		this(width, height);
+	}
+
+	public BitmapData(int width, int height) {
+		this(new BufferedImage(width, height, 1));
 		updateWidthAndHeight();
-	}
-
-	public BitmapData(double i, double i1) {
-	}
-
-	public BitmapData(double width, double height, boolean param3, int param4) {
-
 	}
 
 	public BitmapData(int i, int i1, boolean b, double v) {
@@ -44,9 +66,9 @@ public class BitmapData implements IBitmapDrawable {
 	private void updateWidthAndHeight() {
 		width = image.getWidth();
 		height = image.getHeight();
+
+		rect = new Rectangle(0,0,width, height);
 	}
-
-
 
 
 	public BitmapData clone() {

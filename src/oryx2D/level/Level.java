@@ -6,24 +6,20 @@ import oryx2D.level.tile.Tile;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Level {
+import static oryx2D.level.tile.Tile.voidTile;
+
+public class Level {
 
 	public static final int TILE_SIZE = 8;
 
-	public static Level spawn = new SpawnLevel("/oryx2D/levels/spawn.png");
-
-	List<Tile> tiles = new ArrayList<>();
+	protected List<Tile> tiles = new ArrayList<>();
 
 	protected int width, height;
 
-	public Level(String path) {
-		loadLevel(path);
-		generateLevel();
+	public Level(int width, int height) {
+		this.width = width;
+		this.height = height;
 	}
-
-	protected abstract void generateLevel();
-
-	protected abstract void loadLevel(String path);
 
 	/*
 	Render level
@@ -56,8 +52,7 @@ public abstract class Level {
 				return t;
 			}
 		}
-		return null;
-
+		return new Tile(x, y, voidTile);
 	}
 
 }

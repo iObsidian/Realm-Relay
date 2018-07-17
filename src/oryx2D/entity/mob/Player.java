@@ -1,27 +1,27 @@
 package oryx2D.entity.mob;
 
-import oryx2D.input.Mouse;
+import flash.display.BitmapData;
 import oryx2D.Game;
 import oryx2D.graphics.Screen;
-import oryx2D.graphics.Sprite;
 import oryx2D.input.Keyboard;
+import oryx2D.input.Mouse;
 
 public class Player extends Mob {
 
-	private static Sprite player_forward = new Sprite("/oryx2D/textures/player/player_forward.png");
-	private static Sprite player_forward_1 = new Sprite("/oryx2D/textures/player/player_forward1.png");
-	private static Sprite player_forward_2 = new Sprite("/oryx2D/textures/player/player_forward2.png");
+	private static BitmapData player_forward = new BitmapData("/oryx2D/textures/player/player_forward.png");
+	private static BitmapData player_forward_1 = new BitmapData("/oryx2D/textures/player/player_forward1.png");
+	private static BitmapData player_forward_2 = new BitmapData("/oryx2D/textures/player/player_forward2.png");
 
-	private static Sprite player_back = new Sprite("/oryx2D/textures/player/player_back.png");
-	private static Sprite player_back_1 = new Sprite("/oryx2D/textures/player/player_back1.png");
-	private static Sprite player_back_2 = new Sprite("/oryx2D/textures/player/player_back2.png");
+	private static BitmapData player_back = new BitmapData("/oryx2D/textures/player/player_back.png");
+	private static BitmapData player_back_1 = new BitmapData("/oryx2D/textures/player/player_back1.png");
+	private static BitmapData player_back_2 = new BitmapData("/oryx2D/textures/player/player_back2.png");
 
-	private static Sprite player_side = new Sprite("/oryx2D/textures/player/player_side.png");
-	private static Sprite player_side_1 = new Sprite("/oryx2D/textures/player/player_side1.png");
+	private static BitmapData player_side = new BitmapData("/oryx2D/textures/player/player_side.png");
+	private static BitmapData player_side_1 = new BitmapData("/oryx2D/textures/player/player_side1.png");
 
 	private boolean walking = false;
 	private Keyboard input;
-	private Sprite sprite;
+	private BitmapData sprite;
 	private int anim = 0;
 
 	public Player(int x, int y, Keyboard input) {
@@ -100,7 +100,7 @@ public class Player extends Mob {
 			}
 		}
 
-		screen.render(x - sprite.SIZE / 2, y - sprite.SIZE / 2, sprite, flip);
+		screen.render(x - sprite.width / 2, y - sprite.height / 2, sprite, flip);
 	}
 
 }

@@ -1,8 +1,6 @@
 package rotmg;
 
-
 //The uppermost Sprite
-
 
 import alde.flash.utils.EventConsumer;
 import flash.display.Sprite;
@@ -10,7 +8,6 @@ import flash.display.Stage;
 import flash.display.StageScaleMode;
 import flash.events.Event;
 import flash.system.Capabilities;
-import robotlegs.bender.framework.api.IContext;
 import rotmg.account.core.WebAccount;
 import rotmg.core.model.PlayerModel;
 import rotmg.net.Server;
@@ -24,10 +21,6 @@ import rotmg.util.StageProxy;
 public class WebMain extends Sprite {
 
 	public static Stage STAGE;
-
-	public static String USER_AGENT = "None";
-
-	protected IContext context;
 
 	public WebMain() {
 		super();

@@ -25,6 +25,8 @@ public abstract class Mob extends Entity {
 
 	}
 
+
+
 	void shoot(int x, int y, double dir) {
 		dir = Math.toDegrees(dir);
 		System.out.println("Angle: " + dir);

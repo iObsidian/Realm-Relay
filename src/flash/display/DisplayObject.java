@@ -50,9 +50,9 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
 	public double alpha;
 
-	public double width;
+	public int width;
 
-	public double height;
+	public int height;
 
 	public Boolean cacheAsBitmap;
 

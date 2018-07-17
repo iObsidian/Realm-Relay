@@ -57,7 +57,7 @@ public class TeleportMenuOption extends MenuOption {
 
 	private void onEnterFrame(Event param1) {
 		int loc3 = 0;
-		double loc4 = 0;
+		int loc4 = 0;
 		int loc2 = this.player.msUtilTeleport();
 		if (loc2 > 0) {
 			loc3 = loc2 <= Player.MS_BETWEEN_TELEPORT ? Player.MS_BETWEEN_TELEPORT : Player.MS_REALM_TELEPORT;
