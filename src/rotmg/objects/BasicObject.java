@@ -93,7 +93,11 @@ public class BasicObject {
 		this.sortVal = this.posS.get(1);
 	}
 
-	public boolean addTo(Map map, double x, double y) {
+	public boolean addTo(Map map, double par1, double par2) {
+
+		int x = (int) par1;
+		int y = (int) par2;
+
 		this.map = map;
 		this.square = this.map.getSquare(x, y);
 		if (this.square == null) {

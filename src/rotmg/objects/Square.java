@@ -7,6 +7,7 @@ import alde.flash.utils.Vector;
 import flash.display.BitmapData;
 import flash.display.IGraphicsData;
 import flash.geom.Vector3D;
+import oryx2D.graphics.Screen;
 import rotmg.engine3d.TextureMatrix;
 import rotmg.map.*;
 import rotmg.util.TileRedrawer;
@@ -23,9 +24,9 @@ public class Square {
 
 	public Map map;
 
-	public double x;
+	public int x;
 
-	public double y;
+	public int y;
 
 	public int tileType = 255;
 
@@ -51,7 +52,7 @@ public class Square {
 
 	public int lastVisible;
 
-	public Square(Map param1, double param2, double param3) {
+	public Square(Map param1, int param2, int param3) {
 		super();
 		this.props = GroundLibrary.defaultProps;
 		this.faces = new Vector<>();
@@ -64,7 +65,7 @@ public class Square {
 
 	// Not sure this is a good implementation
 	private int hash(double p1, double p2) {
-		return (int) (p1 * 2949 + p2);
+		return (int) ((int) p1 * 2949 + (int)p2);
 	}
 
 	public void dispose() {
@@ -85,12 +86,14 @@ public class Square {
 		this.baseTexMatrix = null;
 	}
 
-	public void setTileType(int tileType) {
+	public Square setTileType(int tileType) {
 		this.tileType = tileType;
 		this.props = GroundLibrary.propsLibrary.get(this.tileType);
 		this.texture = GroundLibrary.getBitmapData(this.tileType, hash(this.x, this.y));
 		this.baseTexMatrix = new TextureMatrix(this.texture, UVT);
 		this.faces.length = 0;
+
+		return this;
 	}
 
 	public boolean isWalkable() {
@@ -164,4 +167,21 @@ public class Square {
 			this.topFace = new SquareFace(loc4, loc5, 0, 0, this.props.topAnimate.type, this.props.topAnimate.dx, this.props.topAnimate.dy);
 		}
 	}
+
+	/**
+	 * Every tiles render themselves
+	 */
+	public void render(int x, int y, Screen screen) {
+
+		if (texture != null) {
+			screen.render(x * texture.height, y * texture.width, texture);
+		}
+
+
+	}
+
+	public boolean isSolid() {
+		return this.props.noWalk;
+	}
+
 }

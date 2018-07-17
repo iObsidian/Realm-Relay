@@ -302,7 +302,11 @@ public class Map extends AbstractMap {
 		boDict.remove(param1);
 	}
 
-	public Square getSquare(double param1, double param2) {
+	public Square getSquare(double par1, double par2) {
+
+		int param1 = (int) par1;
+		int param2 = (int) par2;
+
 		if (param1 < 0 || param1 >= width || param2 < 0 || param2 >= height) {
 			return null;
 		}

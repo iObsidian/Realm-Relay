@@ -573,7 +573,11 @@ public class GameObject extends BasicObject {
 		this.dispose();
 	}
 
-	public boolean moveTo(double param1, double param2) {
+	public boolean moveTo(double par1, double par2) {
+
+		int param1 = (int) par1;
+		int param2 = (int) par2;
+
 		Square loc3 = map.getSquare(param1, param2);
 		if (loc3 == null) {
 			return false;

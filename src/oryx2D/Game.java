@@ -7,8 +7,6 @@ import oryx2D.input.Mouse;
 import oryx2D.level.Level;
 import oryx2D.level.TileCoordinate;
 import rotmg.WebMain;
-import rotmg.map.AbstractMap;
-import rotmg.objects.Square;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,10 +24,10 @@ public class Game extends Canvas implements Runnable {
 
 	private static final double frameRate = 60;
 
-	private static final int scale = 6; // (50 / 8 = 6.25)
+	private static final int scale = 2; // (50 / 8 = 6.25)
 
-	private static final int width = 800 / scale;
-	private static final int height = 600 / scale;
+	private static final int width = 1000 / scale;
+	private static final int height = 750 / scale;
 
 	private static final int backgroundColor = 0000000;
 
@@ -47,7 +45,7 @@ public class Game extends Canvas implements Runnable {
 
 	private Keyboard key;
 
-	private Level level  = new Level(200, 200);
+	private Level level  = new Level(500, 500);
 
 	private Player player;
 
@@ -60,12 +58,11 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		TileCoordinate playerSpawn = new TileCoordinate(19, 62);
+		TileCoordinate playerSpawn = new TileCoordinate(113, 159);
 		player = new Player(playerSpawn.x(), playerSpawn.y(), key);
 		player.init(level);
 
 		addKeyListener(key);
-
 
 		try {
 			BufferedImage image = ImageIO.read(Game.class.getResource("/oryx2D/cursor/cursor.png"));
@@ -75,7 +72,6 @@ public class Game extends Canvas implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 
 		Mouse mouse = new Mouse();
 		addMouseListener(mouse);
@@ -104,7 +100,6 @@ public class Game extends Canvas implements Runnable {
 		game.frame.setVisible(true);
 		game.start();
 
-
 	}
 
 	public synchronized void start() {
@@ -127,8 +122,6 @@ public class Game extends Canvas implements Runnable {
 
 	public void run() {
 
-
-
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
 		final double ns = 1_000_000_000.0 / frameRate;
@@ -150,7 +143,6 @@ public class Game extends Canvas implements Runnable {
 				delta--;
 			}
 
-
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				currentFPS = updates;
@@ -162,11 +154,7 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 
-		System.out.println("Squares : " + AbstractMap.squares.length + ", BO : " + AbstractMap.boDict.size() + ", GO : " + AbstractMap.goDict.size());
-
-		for (Square q : AbstractMap.squares) {
-			System.out.println(q.x + ", " + q.y);
-		}
+		//System.out.println("Squares : " + AbstractMap.squares.length + ", BO : " + AbstractMap.boDict.size() + ", GO : " + AbstractMap.goDict.size());
 
 		key.update();
 		player.update();

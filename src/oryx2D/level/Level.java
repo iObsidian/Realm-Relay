@@ -1,18 +1,19 @@
 package oryx2D.level;
 
+import alde.flash.utils.Vector;
+import flash.display.BitmapData;
 import oryx2D.graphics.Screen;
-import oryx2D.level.tile.Tile;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static oryx2D.level.tile.Tile.voidTile;
+import rotmg.map.AbstractMap;
+import rotmg.objects.Square;
 
 public class Level {
 
+	public static BitmapData voidTile = new BitmapData("/oryx2D/textures/tiles/void.png");
+
+
 	public static final int TILE_SIZE = 8;
 
-	protected List<Tile> tiles = new ArrayList<>();
+	protected Vector<Square> tiles = AbstractMap.squares;
 
 	protected int width, height;
 
@@ -39,20 +40,20 @@ public class Level {
 
 		for (int x = tilePositionTopLeft; x < tilePositionTopRight; x++) {
 			for (int y = tilePositionBottomLeft; y < tilePositionBottomRight; y++) {
-				if (getTile(x,y) != null) {
+				if (getTile(x, y) != null) {
 					getTile(x, y).render(x, y, screen);
 				}
 			}
 		}
 	}
 
-	public Tile getTile(int x, int y) {
-		for (Tile t : tiles) {
+	public Square getTile(int x, int y) {
+		for (Square t : tiles) {
 			if ((t.x == x) && (t.y == y)) {
 				return t;
 			}
 		}
-		return new Tile(x, y, voidTile);
+		return null;
 	}
 
 }
