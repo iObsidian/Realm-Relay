@@ -21,17 +21,12 @@ import spark.filters.DropShadowFilter;
 
 public class GuildHallPortalPanel extends Panel {
 
-	public StageProxy stageProxy;
-
-	private GuildHallPortal owner;
-
-	private TextFieldDisplayConcrete nameText;
-
-	private DeprecatedTextButton enterButton;
-
-	private TextFieldDisplayConcrete noGuildText;
-
 	private final SignalWaiter waiter = new SignalWaiter();
+	public StageProxy stageProxy;
+	private GuildHallPortal owner;
+	private TextFieldDisplayConcrete nameText;
+	private DeprecatedTextButton enterButton;
+	private TextFieldDisplayConcrete noGuildText;
 
 	public GuildHallPortalPanel(AGameSprite param1, GuildHallPortal param2) {
 		super(param1);

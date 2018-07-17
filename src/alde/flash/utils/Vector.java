@@ -2,8 +2,8 @@ package alde.flash.utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
 
 /**
@@ -13,14 +13,14 @@ import java.util.function.BiFunction;
 public class Vector<T> implements Iterable<T> {
 
 	public int length;
-	private LinkedHashMap<Integer, T> map = new LinkedHashMap<>();
+	private ConcurrentHashMap<Integer, T> map = new ConcurrentHashMap<>();
 
 	public Vector() {
 		this(0);
 	}
 
 	public Vector(int initialCapacity) {
-		map = new LinkedHashMap<>(initialCapacity);
+		map = new ConcurrentHashMap<>(initialCapacity);
 	}
 
 	public Vector(T... addAll) {

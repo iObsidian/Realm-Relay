@@ -14,11 +14,15 @@ import rotmg.objects.*;
 import rotmg.util.IntPoint;
 
 /**
- * 100% match (except I made everything abstract)
+ * 90% match (except I made everything abstract)
+ * made some stuff static for Oryx2D
  */
 public abstract class AbstractMap extends Sprite {
 
-	public Dictionary<Integer, GameObject> goDict;
+	public static final Vector<Square> squares = new Vector<Square>();
+	public static final Dictionary<Integer, BasicObject> boDict = new Dictionary<>();
+	public static final Dictionary<Integer, GameObject> goDict = new Dictionary<>();
+
 	public AGameSprite gs;
 	public String name;
 	public Player player = null;
@@ -33,8 +37,6 @@ public abstract class AbstractMap extends Sprite {
 	public MapOverlay mapOverlay = null;
 	public PartyOverlay partyOverlay = null;
 	public Vector<Square> squareList;
-	public Vector<Square> squares;
-	public Dictionary<Integer, BasicObject> boDict;
 	public Dictionary<IntPoint, Merchant> merchLookup;
 	public Party party = null;
 	public Quest quest = null;
@@ -44,11 +46,8 @@ public abstract class AbstractMap extends Sprite {
 	protected boolean wasLastFrameGpu = false;
 
 	public AbstractMap() {
-		this.goDict = new Dictionary<>();
 		this.map = new Sprite();
 		this.squareList = new Vector<Square>();
-		this.squares = new Vector<Square>();
-		this.boDict = new Dictionary();
 		this.merchLookup = new Dictionary<>();
 		this.signalRenderSwitch = new Signal<Boolean>();
 	}

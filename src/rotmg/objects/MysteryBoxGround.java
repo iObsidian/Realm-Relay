@@ -2,7 +2,7 @@ package rotmg.objects;
 
 import alde.flash.utils.XML;
 import rotmg.GameSprite;
-import rotmg.game.view.MysteryBoxPanel;
+import rotmg.view.MysteryBoxPanel;
 import rotmg.ui.panels.Panel;
 
 public class MysteryBoxGround extends GameObject implements IInteractiveObject {

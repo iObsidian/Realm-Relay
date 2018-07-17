@@ -179,15 +179,15 @@ public class Map extends AbstractMap {
 		squareList.length = 0;
 		squareList = null;
 		squares.length = 0;
-		squares = null;
+		squares.clear();
 		for (GameObject loc2 : goDict) {
 			loc2.dispose();
 		}
-		goDict = null;
+		goDict.clear();
 		for (BasicObject loc3 : boDict) {
 			loc3.dispose();
 		}
-		boDict = null;
+		boDict.clear();
 		merchLookup = null;
 		player = null;
 		party = null;
@@ -323,6 +323,7 @@ public class Map extends AbstractMap {
 		return squares.get((int) (param1 + param2 * width));
 	}
 
+	@Override
 	public void draw(Camera param1, int param2) {
 		Square loc6;
 		double loc15;
@@ -336,23 +337,6 @@ public class Map extends AbstractMap {
 		int loc23 = 0;
 		Vector<BaseFilter> loc24 = null;
 		double loc25 = 0;
-		if (wasLastFrameGpu != Parameters.isGpuRender()) {
-			/*if (wasLastFrameGpu == true && WebMain.STAGE.stage3Ds[0].context3D != null && !(WebMain.STAGE.stage3Ds[0].context3D != null && WebMain.STAGE.stage3Ds[0].context3D.driverInfo.toLowerCase().indexOf("disposed") != -1)) {
-				WebMain.STAGE.stage3Ds[0].context3D.clear();
-				WebMain.STAGE.stage3Ds[0].context3D.present();
-			} else {
-				map.graphics.clear();
-			}*/
-			signalRenderSwitch.dispatch(wasLastFrameGpu);
-			wasLastFrameGpu = Parameters.isGpuRender();
-			if (Parameters.isGpuRender()) {
-				if (background != null && this.bgCont.contains(background)) {
-					this.bgCont.removeChild(background);
-				}
-			} else if (background != null && !this.bgCont.contains(background)) {
-				this.bgCont.addChild(background);
-			}
-		}
 		Rectangle loc3 = param1.clipRect;
 		x = -loc3.x;
 		y = -loc3.y;
@@ -361,18 +345,18 @@ public class Map extends AbstractMap {
 		if (background != null && this.bgCont.contains(background)) {
 			background.draw(param1, param2);
 		}
-		this.visible.length = 0;
-		this.visibleUnder.length = 0;
-		this.visibleSquares.length = 0;
-		this.topSquares.length = 0;
+		this.visible.clear();
+		this.visibleUnder.clear();
+		this.visibleSquares.clear();
+		this.topSquares.clear();
 		double loc7 = param1.maxDist;
 		double loc8 = Math.max(0, loc5.x - loc7);
 		double loc9 = Math.min(width - 1, loc5.x + loc7);
 		double loc10 = Math.max(0, loc5.y - loc7);
 		double loc11 = Math.min(height - 1, loc5.y + loc7);
-		this.graphicsData.length = 0;
-		this.graphicsDataStageSoftware.length = 0;
-		this.graphicsData3d.length = 0;
+		this.graphicsData.clear();
+		this.graphicsDataStageSoftware.clear();
+		this.graphicsData3d.clear();
 		double loc12 = loc8;
 		while (loc12 <= loc9) {
 			loc15 = loc10;
@@ -501,9 +485,11 @@ public class Map extends AbstractMap {
 		map.graphics.drawGraphicsData(this.graphicsData);
 		/*}*/
 
+		System.out.println("Drew");
+
 		map.filters.clear();
 		if (player != null && (player.condition.get(ConditionEffect.CE_FIRST_BATCH) & ConditionEffect.MAP_FILTER_BITMASK) != 0) {
-			loc24 = new Vector();
+			loc24 = new Vector<>();
 			if (player.isDrunk()) {
 				loc25 = 20 + 10 * Math.sin(param2 / 1000);
 				loc24.add(new BlurFilter(loc25, loc25));

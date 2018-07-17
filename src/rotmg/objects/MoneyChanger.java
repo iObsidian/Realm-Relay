@@ -2,7 +2,7 @@ package rotmg.objects;
 
 import alde.flash.utils.XML;
 import rotmg.GameSprite;
-import rotmg.game.view.MoneyChangerPanel;
+import rotmg.view.MoneyChangerPanel;
 import rotmg.ui.panels.Panel;
 
 public class MoneyChanger extends GameObject implements IInteractiveObject {

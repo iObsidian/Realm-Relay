@@ -2,7 +2,6 @@ package rotmg.map.partyoverlay;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
-import rotmg.util.RectangleUtil;
 import flash.airglobal.Graphics;
 import flash.airglobal.Shape;
 import flash.display.DisplayObjectContainer;
@@ -14,6 +13,7 @@ import rotmg.map.Camera;
 import rotmg.objects.GameObject;
 import rotmg.ui.menu.Menu;
 import rotmg.ui.tooltip.ToolTip;
+import rotmg.util.RectangleUtil;
 import rotmg.util.Trig;
 import spark.filters.DropShadowFilter;
 

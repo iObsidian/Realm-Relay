@@ -1,4 +1,4 @@
-package rotmg.game.view;
+package rotmg.view;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
@@ -17,7 +17,7 @@ import rotmg.dialogs.FlushPopupStartupQueueSignal;
 import rotmg.dialogs.OpenDialogSignal;
 import rotmg.dialogs.model.DialogsModel;
 import rotmg.events.ReconnectEvent;
-import rotmg.game.logging.LoopMonitor;
+import rotmg.logging.LoopMonitor;
 import rotmg.maploading.signals.HideMapLoadingSignal;
 import rotmg.maploading.signals.ShowLoadingViewSignal;
 import rotmg.model.GameInitData;

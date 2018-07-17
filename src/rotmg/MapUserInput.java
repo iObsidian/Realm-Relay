@@ -92,7 +92,7 @@ public class MapUserInput {
 
 	private TabStripModel tabStripModel;
 
-	private rotmg.game.Layers layers;
+	private Layers layers;
 
 	private ExitGameSignal exitGame;
 
@@ -113,7 +113,7 @@ public class MapUserInput {
 		this.useBuyPotionSignal = UseBuyPotionSignal.getInstance();
 		this.potionInventoryModel = PotionInventoryModel.getInstance();
 		this.tabStripModel = TabStripModel.getInstance();
-		this.layers = rotmg.game.Layers.getInstance();
+		this.layers = Layers.getInstance();
 		this.statsTabHotKeyInputSignal = StatsTabHotKeyInputSignal.getInstance();
 		this.exitGame = ExitGameSignal.getInstance();
 		this.openDialogSignal = OpenDialogSignal.getInstance();

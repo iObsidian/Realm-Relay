@@ -1,4 +1,4 @@
-package rotmg.game.view;
+package rotmg.view;
 
 import alde.flash.utils.EventConsumer;
 import flash.events.Event;

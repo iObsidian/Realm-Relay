@@ -25,7 +25,6 @@ public class TextureMatrix {
 		this.calculateUVMatrix(param2);
 	}
 
-
 	public void setUVT(Vector<Double> param1) {
 		this.calculateUVMatrix(param1);
 	}

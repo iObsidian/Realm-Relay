@@ -1,6 +1,7 @@
 package rotmg;
 
 import alde.flash.utils.EventConsumer;
+import alde.flash.utils.Vector;
 import flash.display.DisplayObject;
 import flash.display.Sprite;
 import flash.events.Event;
@@ -38,6 +39,8 @@ import rotmg.stage3D.Renderer;
 import rotmg.ui.GuildText;
 import rotmg.ui.HUDView;
 import rotmg.ui.RankText;
+import rotmg.ui.UIUtils;
+import rotmg.ui.menu.PlayerMenu;
 import rotmg.util.CachingColorTransformer;
 import rotmg.util.MoreColorUtil;
 import rotmg.util.PointUtil;
@@ -45,13 +48,12 @@ import rotmg.util.TextureRedrawer;
 
 import static flash.utils.timer.getTimer.getTimer;
 
-
 public class GameSprite extends AGameSprite {
-
 
 	protected static final ColorMatrixFilter PAUSED_FILTER = new ColorMatrixFilter(MoreColorUtil.greyscaleFilterMatrix);
 
-	//public final Signal monitor = new Signal(String, int);
+	/*public final Signal monitor = new Signal(String,
+	int);*/
 
 	public final Signal modelInitialized = new Signal();
 
@@ -100,59 +102,46 @@ public class GameSprite extends AGameSprite {
 	public AddPopupToStartupQueueSignal addToQueueSignal;
 
 	public FlushPopupStartupQueueSignal flushQueueSignal;
-
+	public PlayerMenu chatPlayerMenu;
 	private GameObject focus;
-
 	private int frameTimeSum = 0;
-
 	private int frameTimeCount = 0;
-
 	private boolean isGameStarted;
-
 	private int displaysPosY = 4;
-
 	private DisplayObject currentPackage;
-
 	private double packageY;
-
-	//public PlayerMenu chatPlayerMenu;
-
 	private GoogleAnalytics googleAnalytics;
 
-	public GameSprite(Server server, int gameId, boolean createCharacter, int charId, int keyTime, byte[] key, PlayerModel param7, byte[] mapJSon, boolean isFromArena) {
+	public GameSprite(Server param1, int param2, boolean param3, int param4, int param5, byte[] param6, PlayerModel param7, byte[] param8, boolean param9) {
 		super();
 		this.showPackage = new Signal();
 		this.currentPackage = new Sprite();
 		this.model = param7;
 		map = new Map(this);
 		addChild(map);
-		gsc = new GameServerConnectionConcrete(this, server, gameId, createCharacter, charId, keyTime, key, mapJSon, isFromArena);
+		gsc = new GameServerConnectionConcrete(this, param1, param2, param3, param4, param5, param6, param8, param9);
 		mui = new MapUserInput(this);
-		/**this.chatBox = new Chat();
-		 this.chatBox.list.addEventListener(MouseEvent.MOUSE_DOWN, this::onChatDown);
-		 this.chatBox.list.addEventListener(MouseEvent.MOUSE_UP, this::onChatUp);
-		 addChild(this.chatBox);
-		 this.idleWatcher = new IdleWatcher();*/
+		/*this.chatBox = new Chat();
+		this.chatBox.list.addEventListener(MouseEvent.MOUSE_DOWN, this.onChatDown);
+		this.chatBox.list.addEventListener(MouseEvent.MOUSE_UP, this.onChatUp);
+		addChild(this.chatBox);
+		this.idleWatcher = new IdleWatcher();*/
 	}
 
 	public static void dispatchMapLoaded(MapInfo param1) {
 		MapLoadedSignal loc2 = MapLoadedSignal.getInstance();
-		if (loc2 != null) {
-			loc2.dispatch(param1);
-		}
+		loc2.dispatch(param1);
 	}
 
 	private static void hidePreloader() {
 		HideMapLoadingSignal loc1 = HideMapLoadingSignal.getInstance();
-		if (loc1 != null) {
-			loc1.dispatch();
-		}
+		loc1.dispatch();
 	}
 
 	public void onChatDown(MouseEvent param1) {
-		/*if (this.chatPlayerMenu != null) {
+		if (this.chatPlayerMenu != null) {
 			this.removeChatPlayerMenu();
-		}*/
+		}
 		mui.onMouseDown(param1);
 	}
 
@@ -161,35 +150,33 @@ public class GameSprite extends AGameSprite {
 	}
 
 	public void setFocus(GameObject param1) {
-		if (param1 == null) {
-			param1 = map.player;
-		}
+		param1 = map.player;
 		this.focus = param1;
 	}
 
 	public void addChatPlayerMenu(Player param1, double param2, double param3, String param4, boolean param5, boolean param6) {
-		/*this.removeChatPlayerMenu();
+		this.removeChatPlayerMenu();
 		this.chatPlayerMenu = new PlayerMenu();
 		if (param4 == null) {
 			this.chatPlayerMenu.init(this, param1);
 		} else if (param6) {
 			this.chatPlayerMenu.initDifferentServer(this, param4, param5, param6);
 		} else {
-			if (param4.length > 0 && (param4.charAt(0) == "#" || param4.charAt(0) == "*" || param4.charAt(0) == "@")) {
+			if (param4.length() > 0 && (param4.charAt(0) == '#' || param4.charAt(0) == '*' || param4.charAt(0) == '@')) {
 				return;
 			}
-			this.chatPlayerMenu.initDifferentServer(this, param4, param5);
+			this.chatPlayerMenu.initDifferentServer(this, param4, param5, false);
 		}
 		addChild(this.chatPlayerMenu);
 		this.chatPlayerMenu.x = param2;
-		this.chatPlayerMenu.y = param3 - this.chatPlayerMenu.height;*/
+		this.chatPlayerMenu.y = param3 - this.chatPlayerMenu.height;
 	}
 
 	public void removeChatPlayerMenu() {
-		/*if (this.chatPlayerMenu != null && this.chatPlayerMenu.parent != null) {
+		if (this.chatPlayerMenu != null && this.chatPlayerMenu.parent != null) {
 			removeChild(this.chatPlayerMenu);
 			this.chatPlayerMenu = null;
-		}*/
+		}
 	}
 
 	public void applyMapInfo(MapInfo param1) {
@@ -216,16 +203,16 @@ public class GameSprite extends AGameSprite {
 			this.showWaveCounter();
 		}
 		loc1 = WebAccount.getInstance();
-		this.googleAnalytics = GoogleAnalytics.getInstance();
-		/**if (map.name.equals(Map.NEXUS)) {
-		 this.addToQueueSignal.dispatch(PopupNamesConfig.DAILY_LOGIN_POPUP, this.openDailyCalendarPopupSignal, -1, null);
-		 if (this.beginnersPackageModel.isBeginnerAvailable()) {
-		 this.addToQueueSignal.dispatch(PopupNamesConfig.BEGINNERS_OFFER_POPUP, this.showBeginnersPackage, 1, null);
-		 } else {
-		 this.addToQueueSignal.dispatch(PopupNamesConfig.PACKAGES_OFFER_POPUP, this.showPackage, 1, null);
-		 }
-		 this.flushQueueSignal.dispatch();
-		 }*/
+		//this.googleAnalytics = SGoogleAnalytics.getInstance();
+		if (map.name.equals(Map.NEXUS)) {
+			/*this.addToQueueSignal.dispatch(PopupNamesConfig.DAILY_LOGIN_POPUP, this.openDailyCalendarPopupSignal, -1, null);
+			if (this.beginnersPackageModel.isBeginnerAvailable()) {
+				this.addToQueueSignal.dispatch(PopupNamesConfig.BEGINNERS_OFFER_POPUP, this.showBeginnersPackage, 1, null);
+			} else {
+				this.addToQueueSignal.dispatch(PopupNamesConfig.PACKAGES_OFFER_POPUP, this.showPackage, 1, null);
+			}*/
+			this.flushQueueSignal.dispatch();
+		}
 		this.isNexus = map.name.equals(Map.NEXUS);
 		/*if (this.isNexus || map.name.equals(Map.DAILY_QUEST_ROOM)) {
 			this.creditDisplay = new CreditDisplay(this, true, true);
@@ -242,8 +229,8 @@ public class GameSprite extends AGameSprite {
 				"play_platform":loc1.playPlatform()
         };
 		MoreObjectUtil.addToObject(loc3, loc1.getCredentials());
-		if (map.name != "Kitchen" && map.name != "Tutorial" && map.name != "Nexus Explanation" && Parameters.stats.watchForTutorialExit == true) {
-			Parameters.stats.watchForTutorialExit = false;
+		if (map.name != "Kitchen" && map.name != "Tutorial" && map.name != "Nexus Explanation" && Parameters.data.watchForTutorialExit == true) {
+			Parameters.data.watchForTutorialExit = false;
 			this.callTracking("rotmg.Marketing.track(\"tutorialComplete\")");
 			loc3["fteStepCompleted"] = 9900;
 			loc2.sendRequest("/log/logFteStep", loc3);
@@ -253,15 +240,15 @@ public class GameSprite extends AGameSprite {
 			loc2.sendRequest("/log/logFteStep", loc3);
 		}
 		if (map.name == "Tutorial") {
-			if (Parameters.stats.needsTutorial == true) {
-				Parameters.stats.watchForTutorialExit = true;
+			if (Parameters.data.needsTutorial == true) {
+				Parameters.data.watchForTutorialExit = true;
 				this.callTracking("rotmg.Marketing.track(\"install\")");
 				loc3["fteStepCompleted"] = 100;
 				loc2.sendRequest("/log/logFteStep", loc3);
 			}
 			this.startTutorial();
-		} else if (map.name != "Arena" && map.name != "Kitchen" && map.name != "Nexus Explanation" && map.name != "Vault Explanation" && map.name != "Guild Explanation" && !this.evalIsNotInCombatMapArea() && Parameters.stats.showProtips) {
-			loc4 = ShowProTipSignal.getInstance();
+		} else if (map.name != "Arena" && map.name != "Kitchen" && map.name != "Nexus Explanation" && map.name != "Vault Explanation" && map.name != "Guild Explanation" && !this.evalIsNotInCombatMapArea() && Parameters.data.showProtips) {
+			loc4 = StaticInjectorContext.getInjector().getInstance(ShowProTipSignal);
 			loc4 && loc4.dispatch();
 		}
 		if (map.name == Map.DAILY_QUEST_ROOM) {
@@ -281,7 +268,7 @@ public class GameSprite extends AGameSprite {
 	}
 
 	private void setDisplayPosY(double param1) {
-		double loc2 = rotmg.game.ui.UIUtils.NOTIFICATION_SPACE * param1;
+		double loc2 = UIUtils.NOTIFICATION_SPACE * param1;
 		if (param1 != 0) {
 			this.displaysPosY = (int) (4 + loc2);
 		} else {
@@ -353,7 +340,7 @@ public class GameSprite extends AGameSprite {
 
 	private void setYAndPositionPackage() {
 		this.packageY = this.displaysPosY + 2;
-		this.displaysPosY = this.displaysPosY + rotmg.game.ui.UIUtils.NOTIFICATION_SPACE;
+		this.displaysPosY = this.displaysPosY + UIUtils.NOTIFICATION_SPACE;
 		this.positionPackage();
 	}
 
@@ -426,7 +413,7 @@ public class GameSprite extends AGameSprite {
 		double loc6 = loc1.y;
 		for (GameObject loc7 : map.goDict) {
 			loc8 = (IInteractiveObject) loc7;
-			if (loc8 != null && (!(loc8 instanceof Pet) || this.map.isPetYard)) {
+			if (loc8 != null && (!(loc8 instanceof Pet) || !this.map.isPetYard)) {
 				if (Math.abs(loc5 - loc7.x) < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE || Math.abs(loc6 - loc7.y) < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE) {
 					loc4 = PointUtil.distanceXY(loc7.x, loc7.y, loc5, loc6);
 					if (loc4 < GeneralConstants.MAXIMUM_INTERACTION_DISTANCE && loc4 < loc2) {
@@ -450,11 +437,9 @@ public class GameSprite extends AGameSprite {
 			gsc.connect();
 			//this.idleWatcher.start(this);
 			lastUpdate = getTimer();
-			//stage.addEventListener(MoneyChangedEvent.MONEY_CHANGED, new EventConsumer<>(this::onMoneyChanged));
-			//stage.addEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
-			//LoopedProcess.addProcess(new LoopedCallback(100, this.updateNearestInteractive));
-
-			this.onEnterFrame(new Event(""));
+			stage.addEventListener(MoneyChangedEvent.MONEY_CHANGED, new EventConsumer<>(this::onMoneyChanged));
+			stage.addEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
+			//LoopedProcess.addProcess(new LoopedCallback(100, new EventConsumer<>(this::updateNearestInteractive)));
 		}
 	}
 
@@ -466,9 +451,7 @@ public class GameSprite extends AGameSprite {
 			stage.removeEventListener(MoneyChangedEvent.MONEY_CHANGED, new EventConsumer<>(this::onMoneyChanged));
 			stage.removeEventListener(Event.ENTER_FRAME, new EventConsumer<>(this::onEnterFrame));
 			//LoopedProcess.destroyAll();
-			if (contains(map)) {
-				removeChild(map);
-			}
+			//contains(map) && removeChild(map);
 			map.dispose();
 			CachingColorTransformer.clear();
 			TextureRedrawer.clearCache();
@@ -486,6 +469,9 @@ public class GameSprite extends AGameSprite {
 	}
 
 	private void onEnterFrame(Event param1) {
+
+		System.out.println("On enter frame");
+
 		double loc7 = 0;
 		int loc2 = getTimer();
 		int loc3 = loc2 - lastUpdate;
@@ -508,7 +494,10 @@ public class GameSprite extends AGameSprite {
 		camera.update(loc3);
 		Player loc5 = map.player;
 		if (this.focus != null) {
-			camera.configureCamera(this.focus, loc5 != null ? loc5.isHallucinating() : false);
+
+			System.out.println("Camera..");
+
+			camera.configureCamera(this.focus, loc5 != null && loc5.isHallucinating());
 			map.draw(camera, loc2);
 		}
 		if (loc5 != null) {
@@ -519,15 +508,15 @@ public class GameSprite extends AGameSprite {
 				this.guildText.draw(loc5.guildName, loc5.guildRank);
 			}
 			if (loc5.isPaused()) {
-				map.filters.add(PAUSED_FILTER);
-				hudView.filters.add(PAUSED_FILTER);
+				map.filters = new Vector<>(PAUSED_FILTER);
+				hudView.filters = new Vector<>(PAUSED_FILTER);
 				map.mouseEnabled = false;
 				map.mouseChildren = false;
 				hudView.mouseEnabled = false;
 				hudView.mouseChildren = false;
 			} else if (map.filters.length > 0) {
-				map.filters.clear();
-				hudView.filters.clear();
+				map.filters = new Vector<>();
+				hudView.filters = new Vector<>();
 				map.mouseEnabled = true;
 				map.mouseChildren = true;
 				hudView.mouseEnabled = true;
@@ -542,6 +531,4 @@ public class GameSprite extends AGameSprite {
 
 	public void showPetToolTip(boolean param1) {
 	}
-
-
 }

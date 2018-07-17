@@ -46,6 +46,9 @@ public class BitmapData implements IBitmapDrawable {
 		height = image.getHeight();
 	}
 
+
+
+
 	public BitmapData clone() {
 		return new BitmapData(image);
 	}

@@ -6,7 +6,7 @@ import flash.media.SoundTransform;
 
 public class Sprite extends DisplayObjectContainer {
 
-	native public Graphics getGraphics();
+	public Graphics graphics = new Graphics();
 
 	native public Boolean getButtonMode();
 

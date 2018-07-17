@@ -1,4 +1,4 @@
-package rotmg.game;
+package rotmg;
 
 /*
 0%

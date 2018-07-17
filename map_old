@@ -1,0 +1,201 @@
+Square loc6;
+		double loc15;
+		double loc16;
+		double loc17;
+		double loc18;
+		double loc19;
+		double loc20;
+		int loc21 = 0;
+		Render3D loc22 = null;
+		int loc23 = 0;
+		Vector<BaseFilter> loc24 = null;
+		double loc25 = 0;
+		if (wasLastFrameGpu != Parameters.isGpuRender()) {
+			/*if (wasLastFrameGpu == true && WebMain.STAGE.stage3Ds[0].context3D != null && !(WebMain.STAGE.stage3Ds[0].context3D != null && WebMain.STAGE.stage3Ds[0].context3D.driverInfo.toLowerCase().indexOf("disposed") != -1)) {
+				WebMain.STAGE.stage3Ds[0].context3D.clear();
+				WebMain.STAGE.stage3Ds[0].context3D.present();
+			} else {
+				map.graphics.clear();
+			}*/
+			signalRenderSwitch.dispatch(wasLastFrameGpu);
+			wasLastFrameGpu = Parameters.isGpuRender();
+			if (Parameters.isGpuRender()) {
+				if (background != null && this.bgCont.contains(background)) {
+					this.bgCont.removeChild(background);
+				}
+			} else if (background != null && !this.bgCont.contains(background)) {
+				this.bgCont.addChild(background);
+			}
+		}
+		Rectangle loc3 = param1.clipRect;
+		x = -loc3.x;
+		y = -loc3.y;
+		double loc4 = (-loc3.y - loc3.height / 2) / 50;
+		Point loc5 = new Point(param1.x + loc4 * Math.cos(param1.angleRad - Math.PI / 2), param1.y + loc4 * Math.sin(param1.angleRad - Math.PI / 2));
+		if (background != null && this.bgCont.contains(background)) {
+			background.draw(param1, param2);
+		}
+		this.visible.length = 0;
+		this.visibleUnder.length = 0;
+		this.visibleSquares.length = 0;
+		this.topSquares.length = 0;
+		double loc7 = param1.maxDist;
+		double loc8 = Math.max(0, loc5.x - loc7);
+		double loc9 = Math.min(width - 1, loc5.x + loc7);
+		double loc10 = Math.max(0, loc5.y - loc7);
+		double loc11 = Math.min(height - 1, loc5.y + loc7);
+		this.graphicsData.length = 0;
+		this.graphicsDataStageSoftware.length = 0;
+		this.graphicsData3d.length = 0;
+		double loc12 = loc8;
+		while (loc12 <= loc9) {
+			loc15 = loc10;
+			while (loc15 <= loc11) {
+				loc6 = squares.get((int) (loc12 + loc15 * width));
+				if (loc6 != null) {
+					loc16 = loc5.x - loc6.center.x;
+					loc17 = loc5.y - loc6.center.y;
+					loc18 = loc16 * loc16 + loc17 * loc17;
+					if (loc18 <= param1.maxDistSq) {
+						loc6.lastVisible = param2;
+						loc6.draw(this.graphicsData, param1, param2);
+						this.visibleSquares.add(loc6);
+						if (loc6.topFace != null) {
+							this.topSquares.add(loc6);
+						}
+					}
+				}
+				loc15++;
+			}
+			loc12++;
+		}
+		for (GameObject loc13 : goDict) {
+			loc13.drawn = false;
+			if (!loc13.dead) {
+				loc6 = loc13.square;
+				if (!(loc6 == null || loc6.lastVisible != param2)) {
+					loc13.drawn = true;
+					loc13.computeSortVal(param1);
+					if (loc13.props.drawUnder) {
+						if (loc13.props.drawOnGround) {
+							loc13.draw(this.graphicsData, param1, param2);
+						} else {
+							this.visibleUnder.add(loc13);
+						}
+					} else {
+						this.visible.add(loc13);
+					}
+				}
+			}
+		}
+		for (BasicObject loc14 : boDict) {
+			loc14.drawn = false;
+			loc6 = loc14.square;
+			if (!(loc6 == null || loc6.lastVisible != param2)) {
+				loc14.drawn = true;
+				loc14.computeSortVal(param1);
+				this.visible.add(loc14);
+			}
+		}
+		if (this.visibleUnder.length > 0) {
+			this.visibleUnder.sortOn(VISIBLE_SORT_FIELDS, VISIBLE_SORT_PARAMS);
+			for (BasicObject c : this.visibleUnder) {
+				c.draw(this.graphicsData, param1, param2);
+			}
+		}
+		this.visible.sortOn(VISIBLE_SORT_FIELDS, VISIBLE_SORT_PARAMS);
+		if (Parameters.data.drawShadows) {
+			for (BasicObject x : this.visible) {
+				if (x.hasShadow) {
+					x.drawShadow(this.graphicsData, param1, param2);
+				}
+			}
+		}
+		for (BasicObject v : this.visible) {
+			v.draw(this.graphicsData, param1, param2);
+			if (Parameters.isGpuRender()) {
+				v.draw3d(this.graphicsData3d);
+			}
+		}
+		if (this.topSquares.length > 0) {
+			for (Square z : this.topSquares) {
+				z.drawTop(this.graphicsData, param1, param2);
+			}
+		}
+		if (player != null && player.breath >= 0 && player.breath < Parameters.BREATH_THRESH) {
+			loc19 = (Parameters.BREATH_THRESH - player.breath) / Parameters.BREATH_THRESH;
+			loc20 = Math.abs(Math.sin(param2 / 300)) * 0.75;
+			BREATH_CT.alphaMultiplier = (int) (loc19 * loc20);
+			hurtOverlay.transform.colorTransform = BREATH_CT;
+			hurtOverlay.visible = true;
+			hurtOverlay.x = loc3.left;
+			hurtOverlay.y = loc3.top;
+		} else {
+			hurtOverlay.visible = false;
+		}
+		if (player != null && !Parameters.screenShotMode) {
+			gradientOverlay.visible = true;
+			gradientOverlay.x = loc3.right - 10;
+			gradientOverlay.y = loc3.top;
+		} else {
+			gradientOverlay.visible = false;
+		}
+		/*if (Parameters.isGpuRender() && Renderer.inGame) {
+			loc21 = this.getFilterIndex();
+			loc22 = Render3D.getInstance();
+			loc22.dispatch(this.graphicsData, this.graphicsData3d, width, height, param1, loc21);
+			loc23 = 0;
+			while (loc23 < this.graphicsData.length) {
+				if (this.graphicsData[loc23] instanceof GraphicsBitmapFill && GraphicsFillExtra.isSoftwareDraw(GraphicsBitmapFill(this.graphicsData[loc23]))) {
+					this.graphicsDataStageSoftware.add(this.graphicsData[loc23]);
+					this.graphicsDataStageSoftware.add(this.graphicsData[loc23 + 1]);
+					this.graphicsDataStageSoftware.add(this.graphicsData[loc23 + 2]);
+				} else if (this.graphicsData[loc23] instanceof GraphicsSolidFill && GraphicsFillExtra.isSoftwareDrawSolid(GraphicsSolidFill(this.graphicsData[loc23]))) {
+					this.graphicsDataStageSoftware.add(this.graphicsData[loc23]);
+					this.graphicsDataStageSoftware.add(this.graphicsData[loc23 + 1]);
+					this.graphicsDataStageSoftware.add(this.graphicsData[loc23 + 2]);
+				}
+				loc23++;
+			}
+			if (this.graphicsDataStageSoftware.length > 0) {
+				map.graphics.clear();
+				map.graphics.drawGraphicsData(this.graphicsDataStageSoftware);
+				if (this.lastSoftwareClear) {
+					this.lastSoftwareClear = false;
+				}
+			} else if (!this.lastSoftwareClear) {
+				map.graphics.clear();
+				this.lastSoftwareClear = true;
+			}
+			if (param2 % 149 == 0) {
+				GraphicsFillExtra.manageSize();
+			}
+		} else {*/
+		map.graphics.clear();
+		map.graphics.drawGraphicsData(this.graphicsData);
+		/*}*/
+
+		map.filters.clear();
+		if (player != null && (player.condition.get(ConditionEffect.CE_FIRST_BATCH) & ConditionEffect.MAP_FILTER_BITMASK) != 0) {
+			loc24 = new Vector<>();
+			if (player.isDrunk()) {
+				loc25 = 20 + 10 * Math.sin(param2 / 1000);
+				loc24.add(new BlurFilter(loc25, loc25));
+			}
+			if (player.isBlind()) {
+				loc24.add(BLIND_FILTER);
+			}
+			map.filters = loc24;
+		} else if (map.filters.length > 0) {
+			map.filters = new Vector<>();
+		}
+		mapOverlay.draw(param1, param2);
+		partyOverlay.draw(param1, param2);
+		if (player != null && player.isDarkness()) {
+			this.darkness.x = -300;
+			this.darkness.y = !!Parameters.data.centerOnPlayer ? -525 : -515;
+			this.darkness.alpha = 0.95;
+			addChild(this.darkness);
+		} else if (contains(this.darkness)) {
+			removeChild(this.darkness);
+		}

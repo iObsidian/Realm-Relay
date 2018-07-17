@@ -18,6 +18,7 @@ public class PlayerModel {
 	public static Signal fameChanged = new Signal<Integer>();
 
 	public static Signal tokensChanged = new Signal<Integer>();
+
 	private static PlayerModel instance;
 	public SavedCharactersList charList;
 	public boolean isInvalidated;

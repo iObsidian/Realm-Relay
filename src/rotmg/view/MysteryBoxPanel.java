@@ -1,4 +1,4 @@
-package rotmg.game.view;
+package rotmg.view;
 
 import alde.flash.utils.EventConsumer;
 import flash.display.Bitmap;
@@ -19,21 +19,14 @@ import rotmg.util.components.LegacyBuyButton;
 //100% match but commented unimplemented stuff
 public class MysteryBoxPanel extends Panel {
 
-	public Signal buyItem;
-
-	private SellableObject owner;
-
-	private TextFieldDisplayConcrete nameText;
-
-	private LegacyBuyButton buyButton;
-
-	private DeprecatedTextButton infoButton;
-
-	private Sprite icon;
-
-	private Bitmap bitmap;
-
 	private final int BUTTON_OFFSET = 17;
+	public Signal buyItem;
+	private SellableObject owner;
+	private TextFieldDisplayConcrete nameText;
+	private LegacyBuyButton buyButton;
+	private DeprecatedTextButton infoButton;
+	private Sprite icon;
+	private Bitmap bitmap;
 
 	public MysteryBoxPanel(GameSprite param1, int param2) {
 		super(param1);

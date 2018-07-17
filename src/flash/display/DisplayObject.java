@@ -14,7 +14,7 @@ public class DisplayObject extends EventDispatcher implements IBitmapDrawable {
 
 	public DisplayObject root;
 
-	public Stage stage;
+	public Stage stage = Stage.getInstance();
 
 	public String name;
 

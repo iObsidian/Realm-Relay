@@ -2,13 +2,13 @@ package rotmg.ui.menu;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
-import rotmg.util.RectangleUtil;
 import flash.display.*;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.geom.Rectangle;
 import rotmg.ui.view.UnFocusAble;
 import rotmg.util.GraphicsUtil;
+import rotmg.util.RectangleUtil;
 import spark.filters.DropShadowFilter;
 
 public class Menu extends Sprite implements UnFocusAble {

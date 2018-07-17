@@ -1,4 +1,4 @@
-package rotmg.game.commands;
+package rotmg.commands;
 
 import flash.utils.Date;
 import rotmg.GameSprite;

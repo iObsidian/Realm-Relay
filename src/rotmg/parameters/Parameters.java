@@ -63,6 +63,7 @@ public class Parameters {
 	public static int NEXUS_GAMEID = -2;
 	public static int RANDOM_REALM_GAMEID = -3;
 	public static int MAPTEST_GAMEID = -6;
+	public static Object stats;
 	private static Dictionary keyNames = new Dictionary();
 	private static SharedObject savedOptions = null;
 
@@ -261,7 +262,6 @@ public class Parameters {
 		public static boolean needsTutorial = true;
 		public static boolean needsRandomRealm = true;
 		public static boolean showQuestPortraits = true;
-		public static boolean fullscreenMode = false;
 		public static boolean showProtips = true;
 		public static String joinDate = MoreDateUtil.getDayStringInPT();
 		public static String lastDailyAnalytics = null;
@@ -280,7 +280,6 @@ public class Parameters {
 		public static boolean clickForGold = false;
 		public static boolean contextualPotionBuy = false;
 		public static boolean inventorySwap = true;
-		public static boolean uiQuality = true;
 		public static boolean disableEnemyParticles = false;
 		public static boolean disableAllyParticles = false;
 		public static boolean disablePlayersHitParticles = false;
@@ -307,6 +306,8 @@ public class Parameters {
 		public final int moveUp = KeyCodes.W;
 		public final int moveDown = KeyCodes.S;
 		public final int rotateLeft = KeyCodes.Q;
+		public boolean fullscreenMode = false;
+		public boolean uiQuality = true;
 		public int moveLeft = KeyCodes.A;
 		public int moveRight = KeyCodes.D;
 		public int rotateRight = KeyCodes.E;

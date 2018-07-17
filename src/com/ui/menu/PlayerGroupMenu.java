@@ -15,7 +15,6 @@ import rotmg.ui.menu.MenuOption;
 
 public class PlayerGroupMenu extends Menu {
 
-
 	public AbstractMap map;
 	public Vector<Player> players;
 	public MenuOption teleportOption;

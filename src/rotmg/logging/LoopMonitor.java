@@ -1,4 +1,4 @@
-package rotmg.game.logging;
+package rotmg.logging;
 
 public interface LoopMonitor {
 

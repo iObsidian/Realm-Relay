@@ -988,7 +988,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		int index = 0;
 
 		Player player = null;
-
 		if (go instanceof Player) {
 			player = (Player) go;
 		}
@@ -996,10 +995,6 @@ public class GameServerConnectionConcrete extends GameServerConnection {
 		Merchant merchant = null;
 		if (go instanceof Merchant) {
 			merchant = (Merchant) go;
-		}
-
-		if (go == null) {
-			System.err.println("We got a fuck! " + isMyObject);
 		}
 
 		for (StatData stat : stats) {

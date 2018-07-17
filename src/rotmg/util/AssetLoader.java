@@ -30,6 +30,14 @@ public class AssetLoader {
 		this.music = new MusicProxy();
 	}
 
+	public static void main(String[] args) {
+		for (XML x : EmbeddedData.objectFiles()) {
+			for (XML a : x.children()) {
+				System.out.println(a.name());
+			}
+		}
+	}
+
 	public void load() {
 		this.addImages();
 		this.addAnimatedCharacters();
@@ -120,6 +128,7 @@ public class AssetLoader {
 		AssetLibrary.addImageSet("magicWoodsObjects8x8", "magicWoodsObjects8x8Embed_", 8, 8);
 		AssetLibrary.addImageSet("magicWoodsObjects16x16", "magicWoodsObjects16x16Embed_", 16, 16);
 	}
+	//@formatter:on
 
 	private void addAnimatedCharacters() {
 		AnimatedChars.add("chars8x8rBeach", "chars8x8rBeachEmbed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
@@ -175,7 +184,6 @@ public class AssetLoader {
 		AnimatedChars.add("magicWoodsChars8x8", "magicWoodsChars8x8Embed_", null, 8, 8, 56, 8, AnimatedChar.RIGHT);
 		AnimatedChars.add("magicWoodsChars16x16", "magicWoodsChars16x16Embed_", null, 16, 16, 112, 16, AnimatedChar.RIGHT);
 	}
-	//@formatter:on
 
 	private void addSoundEffects() {
 		SoundEffectLibrary.load("button_click");
@@ -218,15 +226,6 @@ public class AssetLoader {
 	private void parseRegionFiles() {
 		for (XML loc1 : EmbeddedData.regionFiles()) {
 			RegionLibrary.parseFromXML(loc1);
-		}
-	}
-
-
-	public static void main(String[] args) {
-		for (XML x : EmbeddedData.objectFiles()) {
-			for (XML a : x.children()) {
-				System.out.println(a.name());
-			}
 		}
 	}
 

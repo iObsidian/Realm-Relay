@@ -1,4 +1,4 @@
-package rotmg.game;
+package rotmg;
 
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;

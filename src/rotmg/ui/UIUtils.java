@@ -1,4 +1,4 @@
-package rotmg.game.ui;
+package rotmg.ui;
 
 import flash.display.Sprite;
 import flash.display.StageQuality;
