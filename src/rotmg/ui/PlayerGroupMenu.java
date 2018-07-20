@@ -1,15 +1,13 @@
-package com.ui.menu;
+package rotmg.ui;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;
 import alde.flash.utils.Vector;
-import com.ui.LineBreakDesign;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import org.osflash.signals.Signal;
 import rotmg.map.AbstractMap;
 import rotmg.objects.Player;
-import rotmg.ui.GameObjectListItem;
 import rotmg.ui.menu.Menu;
 import rotmg.ui.menu.MenuOption;
 

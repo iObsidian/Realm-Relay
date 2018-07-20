@@ -1,10 +1,9 @@
-package com.ui.tooltip;
+package rotmg.ui.tooltip;
 
 import alde.flash.utils.Vector;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import rotmg.objects.GameObject;
-import rotmg.ui.tooltip.ToolTip;
 import rotmg.util.BitmapUtil;
 
 public class PortraitToolTip extends ToolTip {

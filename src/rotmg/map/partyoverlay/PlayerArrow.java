@@ -1,7 +1,7 @@
 package rotmg.map.partyoverlay;
 
 import alde.flash.utils.Vector;
-import com.ui.menu.PlayerGroupMenu;
+import rotmg.ui.PlayerGroupMenu;
 import flash.events.MouseEvent;
 import rotmg.objects.GameObject;
 import rotmg.objects.Player;

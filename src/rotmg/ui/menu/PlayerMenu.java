@@ -2,7 +2,7 @@ package rotmg.ui.menu;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.Vector;
-import com.ui.menu.TeleportMenuOption;
+import rotmg.ui.TeleportMenuOption;
 import flash.events.Event;
 import flash.events.MouseEvent;
 import rotmg.AGameSprite;

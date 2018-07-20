@@ -1,4 +1,4 @@
-package com.ui;
+package rotmg.ui;
 
 import alde.flash.utils.Vector;
 import flash.airglobal.Shape;

@@ -1,4 +1,4 @@
-package com.ui.menu;
+package rotmg.ui;
 
 import alde.flash.utils.EventConsumer;
 import alde.flash.utils.SignalConsumer;

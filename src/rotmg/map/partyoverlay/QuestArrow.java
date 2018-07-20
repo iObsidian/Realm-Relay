@@ -1,6 +1,6 @@
 package rotmg.map.partyoverlay;
 
-import com.ui.tooltip.PortraitToolTip;
+import rotmg.ui.tooltip.PortraitToolTip;
 import flash.events.MouseEvent;
 import rotmg.map.Camera;
 import rotmg.map.Map;
