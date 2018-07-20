@@ -24,7 +24,7 @@ public class Game extends Canvas implements Runnable {
 
 	private static final double frameRate = 60;
 
-	private static final int scale = 2; // (50 / 8 = 6.25)
+	private static final int scale = 6; // (50 / 8 = 6.25)
 
 	private static final int width = 1000 / scale;
 	private static final int height = 750 / scale;
@@ -45,7 +45,7 @@ public class Game extends Canvas implements Runnable {
 
 	private Keyboard key;
 
-	private Level level  = new Level(500, 500);
+	private Level level = new Level(500, 500);
 
 	private Player player;
 
@@ -124,7 +124,7 @@ public class Game extends Canvas implements Runnable {
 
 		long lastTime = System.nanoTime();
 		long timer = System.currentTimeMillis();
-		final double ns = 1_000_000_000.0 / frameRate;
+		final double ns = 1000000000.0 / frameRate;
 		double delta = 0;
 		int updates = 0;
 
